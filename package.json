@@ -4,7 +4,7 @@
   "description": "ATLP pulse app",
   "main": "src/index.tsx",
   "scripts": {
-    "start": "webpack server --port 1025",
+    "dev": "webpack server --port 1025",
     "build": "NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/atlp-rwanda/atlp-pulse-fn#readme",
   "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "graphql": "^16.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
