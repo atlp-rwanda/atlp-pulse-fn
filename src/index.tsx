@@ -3,19 +3,9 @@ import * as ReactDOMClient from 'react-dom/client'
 import {ApolloProvider, ApolloClient, InMemoryCache, useQuery, gql} from "@apollo/client"
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: 'http://54.147.153.168',
   cache: new InMemoryCache()
 })
-
-// test the graphql server
-client.query({
-  query: gql`
-    query shake {
-      hello
-    } `
-})
-.then(result => console.info(result))
-.catch(error => console.error(error))
 
 // create an app component
 const App = () => {
