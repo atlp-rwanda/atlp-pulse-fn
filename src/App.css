@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  li{
+    @apply p-4
+  }
+  button{
+    @apply text-white border bg-sky-900 border-sky-400
+    rounded-md
+  }
+}
+
+@media (max-width: 500px) {
+    .hideSvg{
+        display: none;
+    }
+}
