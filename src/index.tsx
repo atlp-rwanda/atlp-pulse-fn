@@ -23,10 +23,7 @@ function App() {
   `);
   if (loading) return <p className="text-red-600 ">Loading...</p>;
   if (error) {
-    return (
-<p className="text-red-600">
-Error:{error.message}</p>
-);
+    return <p className="text-red-600">Error:{error.message}</p>;
   }
   return <p>{data.hello}</p>;
 }
