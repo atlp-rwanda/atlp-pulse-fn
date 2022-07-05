@@ -3,4 +3,4 @@ node_modules
 coverage
 .vscode
 dist
-build
+buildcoverage
