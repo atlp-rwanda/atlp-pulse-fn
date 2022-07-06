@@ -9,6 +9,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
+// render the app using apolloprovider
 const container = document.getElementById('tree')!;
 
 const root = ReactDOMClient.createRoot(container).render(

@@ -86,7 +86,6 @@ const Header = () => {
               Sign In
             </button>
           </Link>
-
           <Link to="/register-organization">
             <button className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md">
               Register an organization
@@ -117,14 +116,20 @@ const Header = () => {
             : 'absolute bg-white dark:bg-dark-bg w-1/8 justify-end px-8 cursor-pointer m-1 right-0 lg:hidden'
         }
       >
-        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
-          Home
-        </li>
-        <li className="p-2 w-full dark:text-dark-text-fill">Pricing</li>
+        <Link to="/">
+          <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
+            Home
+          </li>
+        </Link>
+        <Link to="/pricing">
+          <li className="p-2 w-full dark:text-dark-text-fill">Pricing</li>
+        </Link>
         <li className="p-2 w-full dark:text-dark-text-fill">Product</li>
-        <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
-          Sign In
-        </li>
+        <Link to="/org-login">
+          <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
+            Sign In
+          </li>
+        </Link>
         <Link to="/register-organization">
           <li className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md">
             Register Organization

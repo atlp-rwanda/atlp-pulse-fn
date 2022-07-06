@@ -151,26 +151,41 @@ exports[`App test  Should render app 1`] = `
     <ul
       className="hidden"
     >
-      <li
-        className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      <a
+        href="/"
+        onClick={[Function]}
       >
-        Home
-      </li>
-      <li
-        className="p-2 w-full dark:text-dark-text-fill"
+        <li
+          className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+        >
+          Home
+        </li>
+      </a>
+      <a
+        href="/pricing"
+        onClick={[Function]}
       >
-        Pricing
-      </li>
+        <li
+          className="p-2 w-full dark:text-dark-text-fill"
+        >
+          Pricing
+        </li>
+      </a>
       <li
         className="p-2 w-full dark:text-dark-text-fill"
       >
         Product
       </li>
-      <li
-        className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
+      <a
+        href="/org-login"
+        onClick={[Function]}
       >
-        Sign In
-      </li>
+        <li
+          className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
+        >
+          Sign In
+        </li>
+      </a>
       <a
         href="/register-organization"
         onClick={[Function]}
