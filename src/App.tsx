@@ -1,22 +1,19 @@
-import React from 'react'
-import { useQuery, gql } from "@apollo/client"
-import Header from './components/Header'
-import LandingPageBody from './components/LandingPageBody'
-import Footer from './components/Footer'
+import React from 'react';
+import { useQuery, gql } from "@apollo/client";
+import Register from './pages/OrgRegister'
+import Home from './pages/Home'
+import "./index.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
-    // const { data, loading, error } = useQuery(gql`
-    //   query shake {
-    //     hello
-    //   } `)
-    // if (loading) return <p>Loading...</p>
-    // if (error) return <p>Error: {error.message}</p>
+ 
     return (
-        <div>
-            <Header />
-            <LandingPageBody />
-            <Footer />
-        </div>
+        <Router>
+            <Routes>
+            <Route index element={<Home />} />
+            <Route path="/orgregister" element={<Register />} />
+            </Routes>
+        </Router>
     )
 }
 export default App;
