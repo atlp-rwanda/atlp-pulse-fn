@@ -49,9 +49,12 @@ const Header = () => {
               <SunIcon className="w-8 text-dark-text-fill" />
             )}
           </div>
-          <button className="border-none w-24 h-10 mr-4 cursor-pointer bg-primary text-white rounded-md">
-            Sign In
-          </button>
+          <Link to="/org-login">
+            <button className="border-none w-24 h-10 mr-4 cursor-pointer bg-primary text-white rounded-md">
+              Sign In
+            </button>
+          </Link>
+
           <Link to="/register-organization">
             <button className="px-4 py-2 mr-8 h-10 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md">
               Register an organization
@@ -82,10 +85,14 @@ const Header = () => {
             : 'absolute bg-white dark:bg-dark-bg w-1/8 justify-end px-8 cursor-pointer m-1 right-0 lg:hidden'
         }
       >
-        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">Home</li>
+        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
+          Home
+        </li>
         <li className="p-2 w-full dark:text-dark-text-fill">Pricing</li>
         <li className="p-2 w-full dark:text-dark-text-fill">Product</li>
-        <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">Sign In</li>
+        <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
+          Sign In
+        </li>
         <Link to="/register-organization">
           <li className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md">
             Register Organization

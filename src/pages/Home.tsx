@@ -11,8 +11,8 @@ const LandingPage = () => {
               DevPulse - Welcome
             </h1>
             <p className="text-2xl md:text-5xl lg:text-2xl text-center mt-8 md:mt-28 lg:mt-8 w-3/4 md:px-0 lg:px-8 text-light-text dark:text-dark-text-fill">
-              The No 1 platform for managing trainees or students in
-              any ed-tech organization
+              The No 1 platform for managing trainees or students in any ed-tech
+              organization
             </p>
           </div>
           <img
