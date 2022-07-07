@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run format
+npm run lint || (
+  echo 'Check for linting errors';
+  false;
+)
+npx lint-staged
+git add .
