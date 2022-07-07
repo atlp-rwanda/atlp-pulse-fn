@@ -15,17 +15,17 @@ module.exports = {
         test: /\.(tsx|ts)$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: [".js", ".json", ".tsx", ".ts",".svg"],
+          extensions: ['.js', '.json', '.tsx', '.ts', '.svg'],
         },
         use: 'ts-loader',
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: ["file-loader"]
+        use: ['file-loader'],
       },
     ],
   },

@@ -4,19 +4,16 @@ import {
   ApolloProvider,
   ApolloClient,
   InMemoryCache,
-  useQuery,
-  gql,
-} from "@apollo/client";
-
-import "./index.css";
-import App from './App'
+} from '@apollo/client';
+import './index.css';
+import App from './App';
 
 const client = new ApolloClient({
   uri: 'http://54.147.153.168',
   cache: new InMemoryCache(),
 });
 
-const container = document.getElementById("tree")!;
+const container = document.getElementById('tree')!;
 
 const root = ReactDOMClient.createRoot(container).render(
   <ApolloProvider client={client}>

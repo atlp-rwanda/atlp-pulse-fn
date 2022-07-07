@@ -1,8 +1,8 @@
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}", "./index.html"],
-  darkMode: "class",
+  content: ['./src/**/*.{ts,tsx}', './index.html'],
+  darkMode: 'class',
   theme: {
-    theme: {
+    extend: {
       screens: {
         sm: '375px',
         md: '768px',
