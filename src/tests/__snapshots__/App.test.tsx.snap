@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App test  Should render app 1`] = `
+<p>
+  This is my first Appollo App
+</p>
+`;
