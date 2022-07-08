@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media (max-width: 375px) {
+  .max-375-footrt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .max-375-footrt-img img {
+    margin-right: 0;
+  }
+  .max-375-footrt-icon {
+    margin-left: 27%;
+  }
+}

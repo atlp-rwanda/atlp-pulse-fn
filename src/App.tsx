@@ -1,13 +1,13 @@
 import React from 'react';
+import MainRoutes from './Routes';
+import './index.css';
 
 const App = () => {
-  // const { data, loading, error } = useQuery(gql`
-  //   query shake {
-  //     hello
-  //   } `)
-  // if (loading) return <p>Loading...</p>
-  // if (error) return <p>Error: {error.message}</p>
-  return <p>This is my first Appollo App</p>;
+  return (
+    <div>
+      <MainRoutes />
+    </div>
+  );
 };
 
 export default App;
