@@ -3,8 +3,7 @@
 
 npm run format
 git add .
-npx lint-staged
-npm run lint || (
+npx lint-staged || (
   echo 'Check for linting errors';
   false;
 )
