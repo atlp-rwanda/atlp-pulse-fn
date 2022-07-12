@@ -14,9 +14,9 @@ export default function Pricing() {
           come up with high throughput
         </h3>
         <div className="flex flex-wrap justify-center m-10">
-          <PricingCard plan="Free"/>
-          <PricingCard plan="Premium"/>
-          <PricingCard plan="Pro"/>
+          <PricingCard plan="Free" />
+          <PricingCard plan="Premium" />
+          <PricingCard plan="Pro" />
         </div>
 
         {/* <div className="flex flex-col justify-center w-3/4">

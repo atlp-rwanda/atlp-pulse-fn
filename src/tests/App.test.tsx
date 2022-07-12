@@ -4,9 +4,9 @@ import App from '../App';
 
 describe('App test ', () => {
   beforeAll(() => {
-    Object.defineProperty(window, "matchMedia", {
+    Object.defineProperty(window, 'matchMedia', {
       writable: true,
-      value: jest.fn().mockImplementation(query => ({
+      value: jest.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
         onchange: null,
@@ -15,7 +15,7 @@ describe('App test ', () => {
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
         dispatchEvent: jest.fn(),
-      }))
+      })),
     });
   });
   it('Should render app', () => {

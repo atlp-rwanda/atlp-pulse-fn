@@ -4,11 +4,13 @@ import { Icon } from '@iconify/react';
 export default function PricingForm() {
   return (
     <div className="flex flex-col bg-light-bg dark:bg-dark-frame-bg justify-center mx-auto w-full py-32">
-      <h2 className="text-light-text dark:text-dark-text-fill text-4xl font-bold mb-4 mx-auto">Pro</h2>
+      <h2 className="text-light-text dark:text-dark-text-fill text-4xl font-bold mb-4 mx-auto">
+        Pro
+      </h2>
       <h3 className="text-light-text dark:text-dark-text-fill text-3xl mb-4 mx-auto">
         Fill this form
       </h3>
-      <div className='w-3/4 md:w-2/4 mx-auto'>
+      <div className="w-3/4 md:w-2/4 mx-auto">
         <form>
           <div className="mb-4">
             <div className="flex flex-row items-center">
@@ -156,7 +158,9 @@ export default function PricingForm() {
                 ></input>
               </div>
               <div>
-                <label className="text-light-text dark:text-dark-text-fill text-lg ">Postal Code</label>
+                <label className="text-light-text dark:text-dark-text-fill text-lg ">
+                  Postal Code
+                </label>
                 <input
                   className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
                   id="pcode"
