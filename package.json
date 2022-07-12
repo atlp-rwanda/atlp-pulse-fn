@@ -4,8 +4,8 @@
   "description": "Dev pulse app",
   "main": "src/index.tsx",
   "scripts": {
-    "dev": "webpack server --port 1025",
-    "build": "NODE_ENV=production webpack",
+    "dev": "webpack server",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "lint-staged": "eslint --fix",
@@ -79,7 +79,7 @@
     "webpack-dev-server": "^4.9.2"
   },
   "lint-staged": {
-		"*.{js, ts}": "eslint --fix",
+		"*.{js, ts, tsx,jsx}": "eslint --fix",
 		"*.{js,ts,html,css,md}": "prettier --write  \"./**/*.{js,ts,jsx,tsx,json}\""
 	}
 }

@@ -4,7 +4,7 @@ import './index.css';
 
 const App = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen ">
       <MainRoutes />
     </div>
   );

@@ -9,6 +9,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
   },
+  devServer: {
+    historyApiFallback: true,
+    port: 3000,
+    compress: true,
+  },
   module: {
     rules: [
       {
