@@ -3,6 +3,10 @@
   "version": "2.0.0",
   "description": "Dev pulse app",
   "main": "src/index.tsx",
+  "engines": {
+    "npm": "8.x",
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "webpack server",
     "build": "webpack",
