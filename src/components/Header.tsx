@@ -74,7 +74,10 @@ const Header = () => {
           </ul>
         </div>
         <div className="hidden lg:flex lg:w-full justify-end ">
-          <div className="px-4 mt-1 cursor-pointer" onClick={() => handleTheme()}>
+          <div
+            className="px-4 mt-1 cursor-pointer"
+            onClick={() => handleTheme()}
+          >
             {colorTheme === 'dark' ? (
               <MoonIcon className="w-8" />
             ) : (

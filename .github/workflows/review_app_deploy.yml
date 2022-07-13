@@ -1,0 +1,107 @@
+name: review-app-create
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+# SEE: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
+permissions:
+  contents: read
+  deployments: write
+  pull-requests: read
+
+# Update these variables for your project
+env:
+  GITHUB_DEPLOYMENT_ENVIRONMENT: heroku-review-app
+  HEROKU_PIPELINE_NAME: devpulse
+
+jobs:
+  heroku_review_app_check:
+    name: Create or Update Heroku Review App
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.state != 'closed'
+    steps:
+      - name: Login to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          justlogin: true
+
+      - name: Set Heroku Review App name
+        run: echo HEROKU_APP_NAME="${{ env.HEROKU_PIPELINE_NAME }}-review-app-${{ github.event.number }}" >> $GITHUB_ENV
+
+      - name: Get Heroku Review App info
+        id: heroku_apps_info
+        continue-on-error: true
+        run: heroku apps:info -a ${{ env.HEROKU_APP_NAME }}
+
+      - name: Set exists ENV vars
+        run: |
+          echo HEROKU_APP_EXISTS="${{ steps.heroku_apps_info.outcome == 'success' }}" >> $GITHUB_ENV
+
+      - name: Check out PR code from GitHub
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      # Wire up the github deployment so links to `view deployment` are valid on the PR
+      - name: Create GitHub deployment
+        id: deployment
+        uses: chrnorm/deployment-action@releases/v1
+        with:
+          initial_status: in_progress
+          token: ${{ github.token }}
+          target_url: https://${{ env.HEROKU_APP_NAME}}.herokuapp.com/
+          environment: ${{ env.GITHUB_DEPLOYMENT_ENVIRONMENT }}
+          ref: ${{ github.head_ref }}
+
+      - name: Create Heroku Review App
+        id: heroku_review_app_create
+        if: env.HEROKU_APP_EXISTS == 'false'
+        run: heroku apps:create ${{ env.HEROKU_APP_NAME }} ${{ env.HEROKU_REVIEW_APP_ADDONS }}
+
+      # Setup Heroku env vars (copy GitHub secrets etc...)
+      - name: Set Heroku Review App environment
+        id: heroku_review_app_env
+        run: >-
+          heroku config:set
+          --app=${{ env.HEROKU_APP_NAME }}
+          NODE_ENV=development
+          MODE=review
+
+      - name: Add Heroku Review App to pipeline
+        if: steps.heroku_review_app_create.outcome == 'success'
+        run: heroku pipelines:add ${{ env.HEROKU_PIPELINE_NAME }} --app=${{ env.HEROKU_APP_NAME }} --stage=development
+
+      - name: Add Heroku git remote
+        id: heroku_git_remote
+        run: heroku git:remote --app=${{ env.HEROKU_APP_NAME }}
+
+      - name: Push PR branch to Heroku
+        id: heroku_git_push
+        if: steps.heroku_git_remote.outcome == 'success'
+        run: git push heroku ${{ github.head_ref }}:main --force
+
+      # Updates the PR with a link to the Review App deployment
+      - name: Update deployment status on GitHub to success
+        if: steps.heroku_git_push.outcome == 'success'
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: ${{ github.token }}
+          target_url: https://${{ env.HEROKU_APP_NAME }}.herokuapp.com/
+          environment_url: https://${{ env.HEROKU_APP_NAME }}.herokuapp.com/
+          state: success
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+      - name: Comment on commit # Optional: You can use any action to comment on the PR
+        uses: phulsechinmay/rewritable-pr-comment@v0.2.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          COMMENT_IDENTIFIER: "Deploy"
+          message: |
+            I deployed a review app for you to try out this pull request 👇🏽
+
+            Heroku App: https://${{ env.HEROKU_APP_NAME }}.herokuapp.com/

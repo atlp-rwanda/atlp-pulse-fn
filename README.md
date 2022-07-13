@@ -8,7 +8,7 @@ Pulse is a platform designed to handle ratings for the companies in the **Ed-tec
 
 ## Hosted version
 
-- [Staging Application on Heroku](https://dev-pulse-staging.herokuapp.com/)
+- [Staging Application on Heroku](https://devpulse-staging.herokuapp.com/)
 
 ## How to run
 
