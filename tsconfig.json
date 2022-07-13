@@ -13,6 +13,6 @@
     "src/components",
     "custom.d.ts",
     "src/context/ThemeContextWrapper.tsx"
-  ],
+, "src/pages/tests/TraineeRatingDashboard.test.tsx"  ],
   "exclude": ["node_modules"]
 }

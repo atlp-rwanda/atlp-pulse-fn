@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
-import developers from '../dummyData/developers3.json'
+import developers from '../dummyData/developers3.json';
 
 const TraineeRatingDashboard = () => {
   const { t } = useTranslation();
@@ -23,11 +23,11 @@ const TraineeRatingDashboard = () => {
   };
 
   const handleCloseDropdown = () => {
-    if(showCohorts || showPhases) {
+    if (showCohorts || showPhases) {
       setShowCohorts(false);
       setShowPhases(false);
     }
-  }
+  };
 
   const handleShowActions = (index: any) => {
     setRowId(index);
@@ -67,7 +67,7 @@ const TraineeRatingDashboard = () => {
                     type="text"
                     name="name"
                     className="border border-primary border-gray-300 bg-dark-tertiary rounded outline-none px-5 font-sans text-xs py-2 w-full"
-                    placeholder= {t('name')}
+                    placeholder={t('name')}
                   />
                 </div>
               </div>
@@ -105,13 +105,14 @@ const TraineeRatingDashboard = () => {
 
               <div className="w-full flex justify-between">
                 <button
+                  data-testid="removeModel"
                   className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
                   onClick={(e) => removeModel()}
                 >
                   {t('cancel')}
                 </button>
                 <button className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded">
-                {t('save')}
+                  {t('save')}
                 </button>
               </div>
             </form>
@@ -142,13 +143,14 @@ const TraineeRatingDashboard = () => {
               </div>
               <div className="w-full flex justify-between">
                 <button
+                  data-testid="removeDeleteModel"
                   className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
                   onClick={(e) => removeDeleteModel()}
                 >
-                   {t('cancel')}
+                  {t('cancel')}
                 </button>
                 <button className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded">
-                {t('supprimer')}
+                  {t('supprimer')}
                 </button>
               </div>
             </form>
@@ -157,7 +159,10 @@ const TraineeRatingDashboard = () => {
       </div>
       {/* =========================== End::  deleteTraineeModel =============================== */}
 
-      <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg" onClick={handleCloseDropdown}>
+      <div
+        className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg"
+        onClick={handleCloseDropdown}
+      >
         <div className="flex flex-row">
           <Sidebar style="hidden lg:flex" />
           <div className="w-full">
@@ -273,9 +278,9 @@ const TraineeRatingDashboard = () => {
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                   {t('Professional skills')}
                                 </th>
-                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                {/* <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                   {t('Actions')}
-                                </th>
+                                </th> */}
                               </tr>
                             </thead>
                             <tbody>
@@ -315,46 +320,6 @@ const TraineeRatingDashboard = () => {
                                       <p className="text-gray-900 dark:text-white whitespace-no-wrap">
                                         {developer.professionalSkills}
                                       </p>
-                                    </td>
-                                    <td className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <div className="flex flex-row">
-                                        <div
-                                          className="cursor-pointer"
-                                          onClick={() => {
-                                            handleShowActions(index.toString());
-                                          }}
-                                        >
-                                          <Icon
-                                            icon="entypo:dots-three-vertical"
-                                            color="#148fb6"
-                                          />
-                                        </div>
-                                        {rowId == index.toString() &&
-                                        showActions ? (
-                                          <div className="absolute bg-white z-20 dark:bg-dark-bg text-gray-500 dark:text-white ml-4 flex justify-center items-center border rounded dark:border-white">
-                                            <div className=" p-3">
-                                              <ul>
-                                                <li
-                                                  className="hover:text-primary"
-                                                  onClick={() => removeModel()}
-                                                >
-                                                  {t('Edit')}
-                                                </li>
-                                                <li
-                                                  className="hover:text-primary"
-                                                  onClick={() =>
-                                                    removeDeleteModel()
-                                                  }
-                                                >
-                                                  {t('Delete')}
-                                                </li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        ) : (
-                                          ''
-                                        )}
-                                      </div>
                                     </td>
                                   </tr>
                                 );

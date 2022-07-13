@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: "16.x"
       - name: Install all dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install 
       # to added after the merge of test PR
       - name: Run tests and generate coverage
         run: npm run coverage

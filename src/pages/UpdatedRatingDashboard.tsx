@@ -70,7 +70,7 @@ const UpdatedRatingDashboard = () => {
                     <div className="card-body">
                         <form className=" py-3 px-8" >
                            <div>
-                             <h2 className='text-base dark:text-white m-4'>{t('Are should you want to reject this updated ratings')} ?</h2>
+                             <h2 className='text-base dark:text-white m-4'>{t('Are you sure you want to reject this updated ratings')} ?</h2>
                            </div>
                             <div className="w-full flex justify-between">
                                 <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' onClick={() => removeRejectModel()}>{t('cancel')}</button>
@@ -109,8 +109,8 @@ const UpdatedRatingDashboard = () => {
                                                     {t('name')}
                                                 </th>
                                                 <th
-                                                    className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                                    {t('Sprint')}
+                                                    className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                                    {t('sprint')}
                                                 </th>
                                                 <th
                                                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -143,10 +143,10 @@ const UpdatedRatingDashboard = () => {
                                                             </p>
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td> 
                                                 <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                        {`${developer.sprint} -> 2`}
+                                                    {developer.sprint}
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">

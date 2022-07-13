@@ -27,21 +27,27 @@ function DashRoutes() {
         <DashHeader />
         <Sidebar style="hidden lg:flex" />
         <Routes>
+       
+
+        
+
           <Route path="" element={<Dashboard />} />
+          <Route path="/trainees" element={<AdminTraineeDashboard />} />
+          <Route path="/ratings" element={<TraineeRatingDashboard />} />
+          <Route path="/updated-ratings" element={<UpdatedRatingDashboard />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/performance" element={<TraineePerfomance />} />
+          <Route path="/attendance" element={<TraineeAttendance />} />
+          <Route path="/attendance-details" element={<AttendanceDetails />} />
+          <Route path="/cohorts" element={<AdminCohorts />} />
+          <Route path="/session" element={<AdminSession />} />
+          <Route path="/manage" element={<AdminManageRoles />} />
+          <Route path="/performance-details" element={<PerformanceDetails />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/super-admin" element={<SupAdDashboard />} />
-          <Route path="/trainee-dashboard" element={<TraineeDashboard />} />
-          <Route path="/trainee/performance" element={<TraineePerfomance />} />
-          <Route path="/trainee/performance-details" element={<PerformanceDetails />} />
-          <Route path="/trainee/attendance" element={<TraineeAttendance/>}/>
-          <Route path="/trainee/attendance-details" element={<AttendanceDetails/>}/>
-          <Route path="/admin/cohorts" element={<AdminCohorts />} />
-          <Route path="/admin/session" element={<AdminSession/>} />
-          <Route path="/admin/manage" element={<AdminManageRoles/>} />
-          <Route path="/trainee" element={<AdminTraineeDashboard />} />
-          <Route path="/trainee/rating" element={<TraineeRatingDashboard />} />
-          <Route path="/trainee/updated-rating" element={<UpdatedRatingDashboard />} />
+
+
+
+
         </Routes>
       </div>
     </PrivateRoute>

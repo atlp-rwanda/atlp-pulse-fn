@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<UpdatedRatingDashboard /> Renders UpdatedRatingDashboard 1`] = `
+exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
 Array [
   <div
     className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
@@ -14,7 +14,7 @@ Array [
         <h3
           className="font-bold text-sm dark:text-white text-center w-11/12"
         >
-          Approve updated ratings
+          Update Trainee
         </h3>
         <hr
           className=" bg-primary border-b my-3 w-full"
@@ -26,19 +26,68 @@ Array [
         <form
           className=" py-3 px-8"
         >
-          <div>
-            <h2
-              className="text-base dark:text-white m-4"
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
             >
-              Are you sure you want to approve this updated ratings
-               ?
-            </h2>
+              <input
+                className="border border-primary border-gray-300 bg-dark-tertiary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                name="name"
+                placeholder="name"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border-gray-300 bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="email"
+                placeholder="email"
+                type="email"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border-gray-300 bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="cohort"
+                placeholder="cohort"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border-gray-300 bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="program"
+                placeholder="program"
+                type="text"
+              />
+            </div>
           </div>
           <div
             className="w-full flex justify-between"
           >
             <button
               className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
+              data-testid="removeModel"
               onClick={[Function]}
             >
               cancel
@@ -46,7 +95,7 @@ Array [
             <button
               className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
             >
-              Approve
+              save
             </button>
           </div>
         </form>
@@ -65,7 +114,7 @@ Array [
         <h3
           className="font-bold text-sm dark:text-white text-center w-11/12"
         >
-          Reject Updated ratings
+          Delete Trainee
         </h3>
         <hr
           className=" bg-primary border-b my-3 w-full"
@@ -81,7 +130,7 @@ Array [
             <h2
               className="text-base dark:text-white m-4"
             >
-              Are you sure you want to reject this updated ratings
+              Are you sure you want to delete this person
                ?
             </h2>
           </div>
@@ -90,6 +139,7 @@ Array [
           >
             <button
               className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
+              data-testid="removeDeleteModel"
               onClick={[Function]}
             >
               cancel
@@ -97,7 +147,7 @@ Array [
             <button
               className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
             >
-              Reject
+              supprimer
             </button>
           </div>
         </form>
@@ -105,7 +155,8 @@ Array [
     </div>
   </div>,
   <div
-    className="flex flex-col h-screen bg-light-bg"
+    className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg"
+    onClick={[Function]}
   >
     <div
       className="flex flex-row"
@@ -327,7 +378,39 @@ Array [
             className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden"
           >
             <div
-              className="px-3 md:px-8 mt-20"
+              className="flex flex-col relative items-left px-10 lg:px-60 pt-24 pb-8"
+            >
+              <div
+                className="space-x-8 flex flex-row"
+              >
+                <button
+                  className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
+                  onClick={[Function]}
+                >
+                  <div>
+                    cohort
+                  </div>
+                   
+                  <div>
+                    <span />
+                  </div>
+                </button>
+                <button
+                  className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
+                  onClick={[Function]}
+                >
+                  <div>
+                    phases
+                  </div>
+                   
+                  <div>
+                    <span />
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div
+              className="px-3 md:px-8"
             >
               <div
                 className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-52 mb-10"
@@ -339,7 +422,7 @@ Array [
                     <h2
                       className="text-gray-800 dark:text-white font-semibold text-xl"
                     >
-                      Updated Ratings
+                      Performance score
                     </h2>
                   </div>
                 </div>
@@ -361,9 +444,9 @@ Array [
                               name
                             </th>
                             <th
-                              className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                              className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                             >
-                              sprint
+                              Sprint
                             </th>
                             <th
                               className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
@@ -376,14 +459,9 @@ Array [
                               Quality
                             </th>
                             <th
-                              className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider text-center"
-                            >
-                              Professional skills
-                            </th>
-                            <th
                               className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                             >
-                              Actions
+                              Professional skills
                             </th>
                           </tr>
                         </thead>
@@ -423,7 +501,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -432,60 +510,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2 -&gt; 1
-                              </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-light-bg dark:bg-dark-tertiary"
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Shema alain
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                5
+                                0
                               </p>
                             </td>
                             <td
@@ -494,111 +519,8 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                0 -&gt; 2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2 -&gt; 1
-                              </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-white dark:bg-dark-bg"
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Muneza James
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                3
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2 -&gt; 1
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                0 -&gt; 2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2 -&gt; 1
-                              </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
                             </td>
                           </tr>
                           <tr
@@ -636,7 +558,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -645,31 +567,17 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
+                                0
                               </p>
                             </td>
                             <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
                             </td>
                           </tr>
                           <tr
@@ -707,7 +615,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -716,31 +624,17 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
+                                0
                               </p>
                             </td>
                             <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
                             </td>
                           </tr>
                           <tr
@@ -778,7 +672,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -787,31 +681,17 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
+                                0
                               </p>
                             </td>
                             <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
                             </td>
                           </tr>
                           <tr
@@ -849,7 +729,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -858,31 +738,17 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
+                                0
                               </p>
                             </td>
                             <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
                             </td>
                           </tr>
                           <tr
@@ -920,7 +786,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -929,31 +795,17 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
+                                0
                               </p>
                             </td>
                             <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
                             </td>
                           </tr>
                           <tr
@@ -991,7 +843,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -1000,31 +852,17 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
+                                0
                               </p>
                             </td>
                             <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
-                            </td>
-                            <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex flex-row"
-                              >
-                                <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
-                                >
-                                  <span />
-                                </div>
-                              </div>
                             </td>
                           </tr>
                           <tr
@@ -1062,7 +900,7 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
                               </p>
                             </td>
                             <td
@@ -1071,31 +909,131 @@ Array [
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                0 -&gt; 2
+                                0
                               </p>
                             </td>
                             <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm text-center"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <p
                                 className="text-gray-900 dark:text-white whitespace-no-wrap"
                               >
-                                2 -&gt; 1
+                                2
+                              </p>
+                            </td>
+                          </tr>
+                          <tr
+                            className="bg-white dark:bg-dark-bg"
+                          >
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <div
+                                className="flex items-center"
+                              >
+                                <div
+                                  className="ml-3"
+                                >
+                                  <p
+                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
+                                  >
+                                    Keza Alice
+                                  </p>
+                                </div>
+                              </div>
+                            </td>
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                1
                               </p>
                             </td>
                             <td
-                              className="relative px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                2
+                              </p>
+                            </td>
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                0
+                              </p>
+                            </td>
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                2
+                              </p>
+                            </td>
+                          </tr>
+                          <tr
+                            className="bg-light-bg dark:bg-dark-tertiary"
+                          >
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
                             >
                               <div
-                                className="flex flex-row"
+                                className="flex items-center"
                               >
                                 <div
-                                  className="cursor-pointer"
-                                  onClick={[Function]}
+                                  className="ml-3"
                                 >
-                                  <span />
+                                  <p
+                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
+                                  >
+                                    Keza Alice
+                                  </p>
                                 </div>
                               </div>
+                            </td>
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                1
+                              </p>
+                            </td>
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                2
+                              </p>
+                            </td>
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                0
+                              </p>
+                            </td>
+                            <td
+                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
+                            >
+                              <p
+                                className="text-gray-900 dark:text-white whitespace-no-wrap"
+                              >
+                                2
+                              </p>
                             </td>
                           </tr>
                         </tbody>

@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(expressStatic(join(resolve(), 'dist')));
-
 app.use(expressStatic(join(resolve(), 'public')));
 
 app.all('*', (_, res) => {
