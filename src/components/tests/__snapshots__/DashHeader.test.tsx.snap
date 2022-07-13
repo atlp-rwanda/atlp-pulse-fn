@@ -212,6 +212,65 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
           className="mb-4 hover:text-primary"
         >
           <a
+            className="flex flex-row"
+            href="/trainee/attendance"
+            onClick={[Function]}
+          >
+            <svg
+              aria-hidden="true"
+              className="w-5 mr-2 dark:text-dark-text-fill"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"
+              />
+              <path
+                clipRule="evenodd"
+                d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                fillRule="evenodd"
+              />
+            </svg>
+            <span
+              className="text-base dark:text-dark-text-fill"
+            >
+              Attendance
+            </span>
+          </a>
+        </li>
+        <li
+          className="mb-4 hover:text-primary"
+        >
+          <a
+            className="flex flex-row"
+            href="/trainee/performance"
+            onClick={[Function]}
+          >
+            <svg
+              aria-hidden="true"
+              className="w-5 mr-2 dark:text-dark-text-fill"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+                fillRule="evenodd"
+              />
+            </svg>
+            <span
+              className="text-base dark:text-dark-text-fill"
+            >
+              Perfomance
+            </span>
+          </a>
+        </li>
+        <li
+          className="mb-4 hover:text-primary"
+        >
+          <a
             aria-current="page"
             className="flex flex-row active"
             href="/#link"

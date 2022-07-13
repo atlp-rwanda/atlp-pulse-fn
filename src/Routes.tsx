@@ -7,6 +7,7 @@ import Orglogin from './pages/Organization/Orglogin';
 import Pricing from './pages/Pricing';
 import PricingForm from './components/PricingForm';
 import AdminLogin from './pages/Organization/AdminLogin';
+import Perfomancetraineetable from './components/TraineePerformance';
 
 function MainRoutes() {
   return (
@@ -19,6 +20,9 @@ function MainRoutes() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/pricing-form" element={<PricingForm />} />
           <Route path="/login-admin" element={<AdminLogin />} />
+          <Route path="/" element={<Perfomancetraineetable />} />
+          <Route path="/register-organization" element={<OrgRegister />} />
+          <Route path="/org-login" element={<Orglogin />} />
         </Routes>
         <Footer />
       </Router>
