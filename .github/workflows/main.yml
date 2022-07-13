@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: "16.x"
       - name: Install all dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: Check linting errors
         run: npm run lint
       - name: Run tests and generate coverage reports
