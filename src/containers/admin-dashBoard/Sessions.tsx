@@ -97,7 +97,7 @@ const AdminSission = () => {
                             </div>
                             <div className="w-full flex justify-between">
 
-                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' onClick={(e) => removeModel()}>{t('Cancel')}</button>
+                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' data-testid="remove" onClick={(e) => removeModel()}>{t('Cancel')}</button>
                                 <button className='text-white py-2 w-[40%] md:w-1/3 bg-primary rounded'>{t('Save')}</button>
                             </div>
                         </form>
@@ -121,7 +121,7 @@ const AdminSission = () => {
                                 <h2 className='text-base dark:text-white m-4'>{t('reallydeleteSession')}</h2>
                             </div>
                             <div className="w-full flex justify-between">
-                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' onClick={(e) => removeDeleteModel()}>{t('Cancel')}</button>
+                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' data-testid="delete" onClick={(e) => removeDeleteModel()}>{t('Cancel')}</button>
                                 <button className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'>{t('Delete')}</button>
                             </div>
                         </form>
@@ -254,24 +254,24 @@ const AdminSission = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                            {t("demo")}
+                                                            Demo
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">{t("Jointime")}</p>
+                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">Join on time</p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("Zoom")}
+                                                    Zoom
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("11am-12am")}
+                                                    11am - 12am
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
@@ -302,24 +302,24 @@ const AdminSission = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 dark:bg-dark-tertiary bg-gray-100 text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                                {t('Standup')}
+                                                                Stand up
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">{t("Jointime")}</p>
+                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">Join on time</p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("Zoom")}
+                                                    Zoom
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("11am-12am")}
+                                                    11am - 12am
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
@@ -334,24 +334,24 @@ const AdminSission = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                                {t('E-Levelup')}
+                                                                E-Level up
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">{t("Jointime")}</p>
+                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">Join on time</p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("Zoom")}
+                                                    Zoom
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("11am-12am")}
+                                                    11am - 12am
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
@@ -366,24 +366,24 @@ const AdminSission = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                                {t('CodeReview')}
+                                                                Code Review
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">{t("Jointime")}</p>
+                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">Join on time</p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("Zoom")}
+                                                    Zoom
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("11am-12am")}
+                                                    11am - 12am
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
@@ -398,24 +398,24 @@ const AdminSission = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                                {t('ProfessionalSkills')}
+                                                                Professional Skills
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">{t("Jointime")}</p>
+                                                    <p className="text-gray-900 dark:text-white whitespace-no-wrap">Join on time</p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("Zoom")}
+                                                    Zoom
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t("11am-12am")}
+                                                    11am - 12am
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">

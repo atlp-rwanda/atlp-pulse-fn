@@ -4,6 +4,7 @@ import { FaEllipsisV } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next';
 
 const AdminCohort = () => {
+    
     const { t } = useTranslation();
 
     const [createCohortModel, setCreateCohortModel] = useState(false);
@@ -92,7 +93,7 @@ const AdminCohort = () => {
                             </div>
                             <div className="w-full flex justify-between">
 
-                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' onClick={(e) => removeModel()}>{t('Cancel')}</button>
+                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' data-testid="remove" onClick={(e) => removeModel()}>{t('Cancel')}</button>
                                 <button className='text-white py-2 w-[40%] md:w-1/3 bg-primary rounded'>{t('Save')}</button>
                             </div>
                         </form>
@@ -116,7 +117,7 @@ const AdminCohort = () => {
                                 <h2 className='text-base dark:text-white m-4'>{t('reallyRemoveCohort')}</h2>
                             </div>
                             <div className="w-full flex justify-between">
-                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' onClick={(e) => removeDeleteModel()}>{t('Cancel')}</button>
+                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' data-testid="delete" onClick={(e) => removeDeleteModel()}>{t('Cancel')}</button>
                                 <button className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'>{t('Delete')}</button>
                             </div>
                         </form>
@@ -128,7 +129,7 @@ const AdminCohort = () => {
             <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
                 <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
                     <div className="space-x-8">
-                        <button className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" onClick={removeModel}>{t('Cohort')} +</button>
+                        <button className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" data-testid="removeModel" onClick={removeModel}>{t('Cohort')} +</button>
                     </div>
                 </div>
                 <div className="px-3 md:px-8">
@@ -174,9 +175,9 @@ const AdminCohort = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                                {t('Cohort')} 5
+                                                                Cohort 5
                                                             </p>
                                                         </div>
                                                     </div>
@@ -186,17 +187,17 @@ const AdminCohort = () => {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                        {t('CoreConcept')}
+                                                        Core Concept
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                        {t('1stJan2022')}
+                                                        1st Jan 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                        {t('11thDec2022')}
+                                                        11th Dec 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white dark:bg-dark-bg text-lg">
@@ -222,9 +223,9 @@ const AdminCohort = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                            {t('Cohort')} 6
+                                                            Cohort 6
                                                             </p>
                                                         </div>
                                                     </div>
@@ -234,17 +235,17 @@ const AdminCohort = () => {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('CoreConcept')}
+                                                    Core Concept
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('1stJan2022')}
+                                                    1st Jan 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('11thDec2022')}
+                                                    11th Dec 2022 
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-gray-100 dark:bg-dark-tertiary text-lg">
@@ -254,9 +255,9 @@ const AdminCohort = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                            {t('Cohort')} 7
+                                                            Cohort 7
                                                             </p>
                                                         </div>
                                                     </div>
@@ -266,17 +267,17 @@ const AdminCohort = () => {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('CoreConcept')}
+                                                    Core Concept
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('1stJan2022')}
+                                                     1st Jan 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('11thDec2022')}
+                                                    11th Dec 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white dark:bg-dark-bg text-lg">
@@ -286,9 +287,9 @@ const AdminCohort = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                            {t('Cohort')} 8
+                                                            Cohort 8
                                                             </p>
                                                         </div>
                                                     </div>
@@ -298,17 +299,17 @@ const AdminCohort = () => {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('CoreConcept')}
+                                                    Core Concept
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('1stJan2022')}
+                                                    1st Jan 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('11thDec2022')}
+                                                    11th Dec 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-gray-100 dark:bg-dark-tertiary text-lg">
@@ -318,9 +319,9 @@ const AdminCohort = () => {
                                             <tr>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="flex items-center">
-                                                        <div className="ml-3">
+                                                        <div>
                                                             <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                            {t('Cohort')} 9
+                                                            Cohort 9
                                                             </p>
                                                         </div>
                                                     </div>
@@ -330,17 +331,17 @@ const AdminCohort = () => {
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('CoreConcept')}
+                                                    Core Concept
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('1stJan2022')}
+                                                    1st Jan 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                                    {t('11thDec2022')}
+                                                    11th Dec 2022
                                                     </p>
                                                 </td>
                                                 <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white dark:bg-dark-bg text-lg">

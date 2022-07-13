@@ -16,7 +16,6 @@ const AdminSission = () => {
         let newState = !deleteModel;
         setDeleteModel(newState);
     }
-
     return (
 
         <>
@@ -63,7 +62,7 @@ const AdminSission = () => {
                                 </div>
                             </div>
                             <div className="w-full flex justify-between">
-                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' onClick={(e) => removeModel()}>{t('Cancel')}</button>
+                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' data-testid="remove" onClick={(e) => removeModel()}>{t('Cancel')}</button>
                                 <button id='Add' className='text-white py-2 w-[40%] md:w-1/3 bg-primary rounded'>{t('Add')}</button>
                             </div>
                         </form>
@@ -87,7 +86,7 @@ const AdminSission = () => {
                                 <h2 className='text-base dark:text-white m-4'>{t('suredelete')}</h2>
                             </div>
                             <div className="w-full flex justify-between">
-                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' onClick={(e) => removeDeleteModel()}>{t('Cancel')}</button>
+                                <button className='py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white' data-testid="delete" onClick={(e) => removeDeleteModel()}>{t('Cancel')}</button>
                                 <button className='text-white py-2 w-[40%] md:w-1/3 bg-red-700 rounded'>{t('Delete')}</button>
                             </div>
                         </form>
@@ -157,7 +156,7 @@ const AdminSission = () => {
                                                         <div className='md:grid md:grid-cols-2'>
                                                             <p></p>
                                                             <div className="flex items-left">
-                                                                <span className="hidden md:-ml-20 ml-2 md:inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100">
+                                                                <span className="hidden md:-ml-20 ml-2 md:inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100 dark:bg-dark-tertiary">
                                                                     <svg className="h-full w-full text-gray-300 dark:text-white" fill="currentColor" viewBox="0 0 24 24">
                                                                         <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                                                     </svg>
@@ -171,7 +170,7 @@ const AdminSission = () => {
                                                     </div>
                                                 </td>
                                                 <td className="py-3 px-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                                    <p className="text-green-500 whitespace-no-wrap">{t('Active')}</p>
+                                                    <p className="text-green-500 whitespace-no-wrap">Active</p>
                                                 </td>
                                                 <td className="px-5 py-3 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="whitespace-no-wrap flex justify-left">
@@ -211,7 +210,7 @@ const AdminSission = () => {
                                                     </div>
                                                 </td>
                                                 <td className="py-3 px-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                                                    <p className="text-red-500 whitespace-no-wrap">{t('Inactive')}</p>
+                                                    <p className="text-red-500 whitespace-no-wrap">Inactive</p>
                                                 </td>
                                                 <td className="px-5 py-3 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <div className="whitespace-no-wrap flex justify-left">
@@ -251,7 +250,7 @@ const AdminSission = () => {
                                                     </div>
                                                 </td>
                                                 <td className="py-3 px-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                                    <p className="text-green-500 whitespace-no-wrap">{t('Active')}</p>
+                                                    <p className="text-green-500 whitespace-no-wrap">Active</p>
                                                 </td>
                                                 <td className="px-5 py-3 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                                     <div className="whitespace-no-wrap flex justify-left">
@@ -291,7 +290,7 @@ const AdminSission = () => {
                                                     </div>
                                                 </td>
                                                 <td className="py-3 px-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                                                    <p className="text-green-500 whitespace-no-wrap">{t('Inactive')}</p>
+                                                    <p className="text-green-500 whitespace-no-wrap">Inactive</p>
                                                 </td>
                                                 <td className="px-5 py-3 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
                                                     <div className="whitespace-no-wrap flex justify-left">
