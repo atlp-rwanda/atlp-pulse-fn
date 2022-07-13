@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organization Login Should render 1`] = `
+<div
+  className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans "
+>
+  <div
+    className="max-w-lg w-full mx-auto mt-4 bg-white dark:bg-dark-bg p-14"
+  >
+    <div
+      className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill "
+    >
+      Sign in to your Organization
+    </div>
+    <div
+      className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs"
+    >
+      Enter your organization’s Dev-Pulse URL
+    </div>
+    <form
+      action="#none"
+      className="space-y-6 mt-4"
+    >
+      <div>
+        <input
+          className="w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
+          placeholder="your-organization.pulse.com"
+          type="text"
+        />
+      </div>
+      <div>
+        <a
+          href="/login-admin"
+          onClick={[Function]}
+        >
+          <button
+            className="w-full py-2 px-4 bg-primary hover:bg-cyan-700 rounded-md text-white text-sm"
+            type="button"
+          >
+            Continue
+          </button>
+        </a>
+      </div>
+      <div
+        className="w-full text-sm  text-light-text dark:text-dark-text-fill"
+      >
+        Don’t know your organization URL?
+        <a
+          className="text-primary"
+          href="/find-organization"
+          onClick={[Function]}
+        >
+           
+          Find your organizations
+        </a>
+      </div>
+      <div
+        className="w-full text-sm  text-light-text dark:text-dark-text-fill"
+      >
+        Looking to register an organization instead?
+        <a
+          className="text-primary"
+          href="/register-organization"
+          onClick={[Function]}
+        >
+          Register a new organization
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+`;

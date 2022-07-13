@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NotFound = () => {
+function NotFound() {
   return (
     <div className="notFound dark:bg-dark-frame-bg flex flex-row py-8 px-5  md:flex-row items-center justify-end md:justify-evenly grow h-full w-full ">
-      <div></div>
+      <div />
       <div className="bg-light-bg dark:bg-dark-bg px-4 py-5 rounded-3xl max-w-md flex flex-col h-full">
         <h3 className="text-2xl font-sans font-bold dark:text-dark-text-fill ">
           Ooops... What just happened!?
@@ -24,6 +24,6 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
+}
 
 export default NotFound;

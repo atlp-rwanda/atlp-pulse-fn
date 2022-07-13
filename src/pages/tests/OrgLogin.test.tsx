@@ -1,16 +1,14 @@
-/* eslint-disable */
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import OrgLogin from '../Organization/Orglogin';
 
-import NotFound from '../NotFound';
-
-describe('Not Found', () => {
-  it('Renders the 404 Page', () => {
+describe('Organization Login', () => {
+  it('Should render', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <NotFound />
+          <OrgLogin />
         </MemoryRouter>,
       )
       .toJSON();

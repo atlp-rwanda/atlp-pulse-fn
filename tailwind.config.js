@@ -23,7 +23,10 @@ module.exports = {
         'divider-bg': '#E5E7EB',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        Inria: ['Inria Serif', 'serif'],
+        josefin: ['Josefin Sans', 'sans-serif'],
+        lexend: ['Lexend Deca', 'sans-serif'],
+        sans: ['PT Serif', 'serif'],
       },
       extend: {
         borderRadius: {

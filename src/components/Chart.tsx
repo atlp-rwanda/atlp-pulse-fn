@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -23,7 +24,7 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
-  maintainAspectRatio:false,
+  maintainAspectRatio: false,
   scales: {
     y: {
       title: { display: true, text: 'Organizations' },
