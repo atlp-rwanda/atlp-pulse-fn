@@ -52,6 +52,7 @@ const UpdatedRatingDashboard = () => {
               </div>
               <div className="w-full flex justify-between">
                 <Button
+                  data-testid="removeApproveModel"
                   variant="info"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
@@ -97,6 +98,7 @@ const UpdatedRatingDashboard = () => {
               </div>
               <div className="w-full flex justify-between">
                 <Button
+                  data-testid="removeRejectModel"
                   variant="info"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"

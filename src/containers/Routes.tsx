@@ -10,6 +10,8 @@ import Adminlogin from '../pages/Organization/AdminLogin';
 import NotFound from '../pages/NotFound';
 import PricingForm from '../components/PricingForm';
 import Pricing from '../pages/Pricing';
+import Orggooglelogin from '../pages/Organization/Orggooglelogin';
+import Calendar from '../components/Calendar';
 
 function MainRoutes() {
   return (
@@ -20,9 +22,6 @@ function MainRoutes() {
         <Route path="/register-organization" element={<OrgRegister />} />
         <Route path="/org-login" element={<Orglogin />} />
         <Route path="/login-admin" element={<Adminlogin />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/pricing-form" element={<PricingForm />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>
