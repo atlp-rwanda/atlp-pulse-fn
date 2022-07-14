@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
-import {FiEyeOff} from "react-icons/fi"
+import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -49,7 +49,11 @@ const AdminLogin = () => {
                     className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white"
                   ></input>
                   <div className="text-gray-400 cursor-pointer onClick= {()=> handleShowPassword}">
-                    {passwordShown? <FaRegEye onClick={tooglePassword}/> :<FiEyeOff onClick={tooglePassword} />}
+                    {passwordShown ? (
+                      <FaRegEye onClick={tooglePassword} />
+                    ) : (
+                      <FiEyeOff onClick={tooglePassword} />
+                    )}
                   </div>
                 </div>
                 <div className="flex w-64 justify-between rounded mb-5 mt-5">

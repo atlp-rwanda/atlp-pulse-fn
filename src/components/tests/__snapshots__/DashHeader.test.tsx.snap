@@ -90,7 +90,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
     className="hidden"
   >
     <div
-      className="flex pt-2 h-[92%] flex-col fixed h-[100%] pt-[10vh] bg-white dark:bg-dark-bg border-r p-4"
+      className="flex pt-2 h-[92%] flex-col fixed h-[100%] lg:w-[30vh] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r py-4 pl-4"
     >
       <div
         className="list-none pr-8"

@@ -23,6 +23,7 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  maintainAspectRatio:false,
   scales: {
     y: {
       title: { display: true, text: 'Organizations' },
@@ -59,10 +60,10 @@ export const data = {
 
 const Chart = () => {
   return (
-    <div className="w-[100%] h-[100%] lg:w-[90%] lg:ml-14 lg:mr-2 p-4 mt-8 bottom-0 bg-white dark:bg-dark-bg">
+    <div className="w-[100%] h-[46vh] lg:h-[62vh] pb-20 lg:w-[90%] lg:ml-14 lg:mr-2 p-4 mt-8 bottom-0 bg-white dark:bg-dark-bg">
       <h1 className="mb-2 text-lg dark:text-dark-text-fill">Organizations</h1>
       <h2 className="text-xs mb-6 dark:text-dark-text-fill">
-        As of 7 July 2022, 12:00 PM
+        As of 18 July 2022, 12:00 PM
       </h2>
       <Line options={options} data={data} />
     </div>

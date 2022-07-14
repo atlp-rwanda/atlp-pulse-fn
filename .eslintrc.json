@@ -21,6 +21,10 @@
   "plugins": ["react", "@typescript-eslint"],
   "ignorePatterns": ["/root/webpack.config.js"],
   "rules": {
+    "no-console": "error",
+    "import/extensions": "off",
+    "react/jsx-filename-extension": 0,
+    "import/no-unresolved": 0,
     "react/react-in-jsx-scope": "off",
     "linebreak-style": 0
   }

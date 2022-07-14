@@ -1,6 +1,5 @@
 import React from 'react';
 import PricingCard from '../components/PricingCard';
-import PricingForm from '../components/PricingForm';
 
 export default function Pricing() {
   return (
@@ -18,10 +17,6 @@ export default function Pricing() {
           <PricingCard plan="Premium" />
           <PricingCard plan="Pro" />
         </div>
-
-        {/* <div className="flex flex-col justify-center w-3/4">
-          <PricingForm />
-        </div> */}
       </div>
     </div>
   );

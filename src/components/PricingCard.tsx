@@ -24,9 +24,7 @@ export default function PricingCard(props: any) {
           </div>
         </div>
         <div className="m-4">
-          {/* <button>Get Started</button> */}
           <button className="bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded">
-            {/* Get Started */}
             <Link to="/pricing-form">Get Started</Link>
           </button>
         </div>

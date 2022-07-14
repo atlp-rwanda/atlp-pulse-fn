@@ -6,6 +6,8 @@ const app = express();
 
 app.use(expressStatic(join(resolve(), 'dist')));
 
+app.use(expressStatic(join(resolve(), 'public')));
+
 app.all('*', (_, res) => {
   return res.sendFile(join(resolve(), 'dist/index.html'));
 });
