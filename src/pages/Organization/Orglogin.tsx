@@ -21,7 +21,7 @@ const Orglogin = () => {
           </div>
 
           <div>
-            <Link to="/org-google-login">
+            <Link to="/login-admin">
               <button className="w-full py-2 px-4 bg-primary hover:bg-cyan-700 rounded-md text-white text-sm">
                 Continue
               </button>

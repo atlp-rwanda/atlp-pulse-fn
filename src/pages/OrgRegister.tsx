@@ -18,7 +18,7 @@ export default function OrgRegister() {
             </label>
             <input
               type="text"
-              className="border border-primary w-full p-3 dark:border-white dark:bg-[#1F2A37] rounded mb-4"
+              className="border text-[13px] border-primary w-full p-3 dark:border-white dark:bg-[#1F2A37] rounded mb-4"
               name="email"
               placeholder="Enter the Email of the your Organization"
             />
@@ -28,7 +28,7 @@ export default function OrgRegister() {
             </label>
             <input
               type="text"
-              className="border border-primary w-full p-3 rounded mb-4 dark:border-white dark:bg-[#1F2A37]"
+              className="border border-primary text-[13px] w-full p-3 rounded mb-4 dark:border-white dark:bg-[#1F2A37]"
               name="name"
               placeholder="Enter the name of your organization"
             />
@@ -37,7 +37,7 @@ export default function OrgRegister() {
               Organization Description
             </label>
             <textarea
-              className="border border-primary w-full p-3 rounded mb-4 dark:border-white dark:bg-[#1F2A37]"
+              className="border border-primary text-[13px] w-full p-3 rounded mb-4 dark:border-white dark:bg-[#1F2A37]"
               name="Describe"
               placeholder="Describe your organization"
             ></textarea>
