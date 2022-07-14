@@ -76,12 +76,13 @@ exports[`Trainee Dashboard test  Should render TraineeDashboard 1`] = `
         <h1
           className="mb-2 text-lg dark:text-dark-text-fill"
         >
-          My overall performance
+          Overall performance
         </h1>
         <h2
           className="text-xs mb-6 dark:text-dark-text-fill"
         >
-          As of 18 July 2022, 12:00 PM
+          As of
+           22/07/2022, 12:00 PM
         </h2>
         <canvas
           height={150}

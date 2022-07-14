@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckRoles component should not render the child component 1`] = `null`;
+
+exports[`CheckRoles component should render the the child compoenent 1`] = `<div />`;

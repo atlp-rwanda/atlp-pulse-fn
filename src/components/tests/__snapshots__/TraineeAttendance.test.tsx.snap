@@ -120,7 +120,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm"
                   >
                     <a
-                      href="/dashboard/trainee/attendance-details"
+                      href="/dashboard/attendance-details"
                       onClick={[Function]}
                     >
                       <button
@@ -171,7 +171,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm"
                   >
                     <a
-                      href="/dashboard/trainee/attendance-details"
+                      href="/dashboard/attendance-details"
                       onClick={[Function]}
                     >
                       <button
@@ -222,7 +222,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm"
                   >
                     <a
-                      href="/dashboard/trainee/attendance-details"
+                      href="/dashboard/attendance-details"
                       onClick={[Function]}
                     >
                       <button
@@ -273,7 +273,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm"
                   >
                     <a
-                      href="/dashboard/trainee/attendance-details"
+                      href="/dashboard/attendance-details"
                       onClick={[Function]}
                     >
                       <button
@@ -324,7 +324,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm"
                   >
                     <a
-                      href="/dashboard/trainee/attendance-details"
+                      href="/dashboard/attendance-details"
                       onClick={[Function]}
                     >
                       <button

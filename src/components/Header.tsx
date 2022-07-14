@@ -1,11 +1,13 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
+
 import { MenuIcon, XIcon, SunIcon } from '@heroicons/react/outline';
 import { MoonIcon } from '@heroicons/react/solid';
 import Logo from '../assets/logo.svg';
 import LogoWhite from '../assets/logoWhite.svg';
 import useDarkMode from '../hook/useDarkMode';
+import { UserContext } from '../hook/useAuth';
 
 import WithClickOutside from './WithClickOutside';
 
@@ -13,6 +15,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { t } = useTranslation();
   const [colorTheme, setTheme] = useDarkMode();
   const handleClick = () => setOpen(!open);
+  const { user, logout } = useContext(UserContext);
 
   const handleTheme = () => {
     localStorage.setItem('color-theme', colorTheme);
@@ -83,6 +86,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         <div className="hidden lg:flex lg:w-full justify-end ">
           <button
             type="button"
+            id="theme-switch"
             className="px-4 mt-1 cursor-pointer"
             onClick={() => handleTheme()}
           >
@@ -92,18 +96,33 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               <SunIcon className="w-8 text-dark-text-fill" />
             )}
           </button>
-          <Link
-            to="/org-login"
-            className="border-none w-fit py-2 px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-          >
-            {t('Sign In')}
+          <Link to={user?.auth ? '/dashboard' : '/org-login'}>
+            <button
+              type="button"
+              className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
+            >
+              {!user?.auth ? t('Sign In') : t('Dashboard')}
+            </button>
           </Link>
-          <Link
-            to="/register-organization"
-            className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-          >
-            {t('Register an organization')}
-          </Link>
+          {user?.auth ? (
+            <button
+              type="button"
+              id="logout"
+              onClick={() => logout()}
+              className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-red-700 font-bolf dark:text-dark-text-fill border border-red-600 dark:border-dark-text-fill rounded-md"
+            >
+              {t('Logout')}
+            </button>
+          ) : (
+            <Link to="/register-organization">
+              <button
+                type="button"
+                className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
+              >
+                {t('Register an organization')}
+              </button>
+            </Link>
+          )}
         </div>
         <div className="flex px-5 lg:hidden">
           <button type="button" className="px-3" onClick={() => handleTheme()}>

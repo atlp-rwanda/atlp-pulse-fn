@@ -82,8 +82,7 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
           className="text-xs mb-6 dark:text-dark-text-fill"
         >
           As of
-           
-          22/07/2022, 12:00 PM
+           22/07/2022, 12:00 PM
         </h2>
         <canvas
           height={150}

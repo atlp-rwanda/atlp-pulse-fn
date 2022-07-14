@@ -23,19 +23,6 @@ ChartJS.register(
   Filler,
 );
 
-export const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  scales: {
-    y: {
-      title: { display: true, text: 'Organizations' },
-    },
-    x: {
-      title: { display: true, text: 'Months' },
-    },
-  },
-};
-
 const labels = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18];
 
 export const data = {
@@ -60,21 +47,29 @@ export const data = {
   ],
 };
 
-function Chart() {
+const Chart = ({ title }: any) => {
   const { t } = useTranslation();
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        title: { display: true, text: title },
+      },
+      x: {
+        title: { display: true, text: 'Months' },
+      },
+    },
+  };
   return (
     <div className="w-[100%] h-[46vh] lg:h-[62vh] pb-20 lg:w-[90%] lg:ml-14 lg:mr-2 p-4 mt-8 bottom-0 bg-white dark:bg-dark-bg">
-      <h1 className="mb-2 text-lg dark:text-dark-text-fill">
-        {t('Organizations')}
-      </h1>
+      <h1 className="mb-2 text-lg dark:text-dark-text-fill">{t(title)}</h1>
       <h2 className="text-xs mb-6 dark:text-dark-text-fill">
-        {t('As of')}
-        {' '}
-        22/07/2022, 12:00 PM
+        {t('As of')} 22/07/2022, 12:00 PM
       </h2>
       <Line options={options} data={data} />
     </div>
   );
-}
+};
 
 export default Chart;

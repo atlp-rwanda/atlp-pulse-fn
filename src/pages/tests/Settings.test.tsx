@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom';
 import '../../../test/jest/__mocks__/matchMedia';
 
@@ -22,5 +23,15 @@ describe('Settings page tests', () => {
 
     fireEvent.change(theme, { target: { value: 'light' } });
     expect(theme).toHaveValue('light');
+  });
+  it('changes value after selecting another theme', () => {
+    const elem = renderer
+      .create(
+        <MemoryRouter initialEntries={['/dashboard/settings']}>
+          <Settings />
+        </MemoryRouter>,
+      )
+      .toJSON();
+    expect(elem).toMatchSnapshot();
   });
 });

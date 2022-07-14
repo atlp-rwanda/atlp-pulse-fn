@@ -8,7 +8,7 @@ exports[`Admin Login Should render 1`] = `
     className="md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 mt-16 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8"
   >
     <div
-      className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg dark:rounded-2xl dark:rounded-none"
+      className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg  dark:rounded-none"
     >
       <div
         className="py-10 sm:py-8 "
@@ -57,78 +57,53 @@ exports[`Admin Login Should render 1`] = `
         <div
           className="flex flex-col items-center"
         >
-          <div
-            className="bg-gray-100 w-64 p-2 flex items-center mb-3 dark:bg-dark-bg "
+          <form
+            action="#none"
+            onSubmit={[Function]}
           >
-            <svg
-              className="text-gray-400 mr-2"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              strokeWidth="0"
-              style={
-                Object {
-                  "color": undefined,
-                }
-              }
-              viewBox="0 0 512 512"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"
-              />
-            </svg>
-            <input
-              className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white "
-              name="email"
-              placeholder="Email"
-              type="email"
-            />
-          </div>
-          <div
-            className="bg-gray-100 w-64 p-2 flex items-center rounded mb-3 dark:border-white dark:bg-dark-bg"
-          >
-            <svg
-              className="text-gray-400 mr-2 "
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              strokeWidth="0"
-              style={
-                Object {
-                  "color": undefined,
-                }
-              }
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
-              <path
-                d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z"
-              />
-            </svg>
-            <input
-              className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white"
-              name="password"
-              placeholder="Password"
-              type="password"
-            />
             <div
-              className="text-gray-400 cursor-pointer onClick= {()=> handleShowPassword}"
+              className="bg-gray-100 w-64 p-2 flex items-center mb-2 dark:bg-dark-bg "
             >
               <svg
-                fill="none"
+                className="text-gray-400 mr-2"
+                fill="currentColor"
                 height="1em"
-                onClick={[Function]}
                 stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"
+                />
+              </svg>
+              <input
+                className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white "
+                name="email"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Email"
+                type="email"
+              />
+            </div>
+            <div
+              className="text-left mb-1"
+            />
+            <div
+              className="bg-gray-100 w-64 p-2 flex items-center rounded mb-2 dark:border-white dark:bg-dark-bg"
+            >
+              <svg
+                className="text-gray-400 mr-2 "
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
                 style={
                   Object {
                     "color": undefined,
@@ -139,43 +114,85 @@ exports[`Admin Login Should render 1`] = `
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                  d="M0 0h24v24H0z"
+                  fill="none"
                 />
-                <line
-                  x1="1"
-                  x2="23"
-                  y1="1"
-                  y2="23"
+                <path
+                  d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z"
                 />
               </svg>
-            </div>
-          </div>
-          <div
-            className="flex w-64 justify-between rounded mb-5 mt-5"
-          >
-            <label
-              className="flex items-center text-xs dark:text-dark-text-fill "
-            >
               <input
-                className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
-                name="remember"
-                type="checkbox"
+                className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white"
+                name="password"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Password"
+                type="password"
               />
-              Remember me
-            </label>
-            <a
-              className="text-xs text-primary"
-              href="#link"
+              <div
+                className="text-gray-400 cursor-pointer onClick= {()=> handleShowPassword}"
+              >
+                <svg
+                  fill="none"
+                  height="1em"
+                  onClick={[Function]}
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
+                  }
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                  />
+                  <line
+                    x1="1"
+                    x2="23"
+                    y1="1"
+                    y2="23"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className="text-left mb-1"
+            />
+            <div
+              className="flex w-64 justify-between rounded mb-5 mt-5"
             >
-              Forgot Password?
-            </a>
-          </div>
-          <a
-            className="border-2 border-primary text-primary rounded-full lg:px-12 lg:py-2 inline-block sm:px-4 sm:py-1  md:font-semibold sm:mt-2 sm:font-medium hover:bg-primary hover:text-white  "
-            href="#link"
-          >
-            Sign In
-          </a>
+              <label
+                className="flex items-center text-xs dark:text-dark-text-fill "
+                htmlFor="checkbox"
+              >
+                <input
+                  className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
+                  name="remember"
+                  type="checkbox"
+                />
+                Remember me
+              </label>
+              <a
+                className="text-xs dark:text-dark-text-fill "
+                href="/reset-password"
+                onClick={[Function]}
+              >
+                Forgot Password?
+              </a>
+            </div>
+            <button
+              className="border-2 border-primary text-primary rounded-full lg:px-12 lg:py-2 inline-block sm:px-4 sm:py-1  md:font-semibold sm:mt-2 sm:font-medium hover:bg-primary hover:text-white  "
+              type="submit"
+            >
+              Sign In
+            </button>
+          </form>
         </div>
         <div
           className="md:hidden mt-2 text-xs text-center dark:text-dark-text-fill"
