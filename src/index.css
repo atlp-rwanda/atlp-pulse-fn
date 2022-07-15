@@ -16,3 +16,10 @@
     margin-left: 27%;
   }
 }
+
+.notFound {
+  background-image: url('https://res.cloudinary.com/feyton/image/upload/v1657749735/lost_gxifna.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: left;
+}
