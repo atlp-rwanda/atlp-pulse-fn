@@ -8,6 +8,8 @@ import Orglogin from './pages/Organization/Orglogin';
 import Pricing from './pages/Pricing';
 import PricingForm from './components/PricingForm';
 import AdminLogin from './pages/Organization/AdminLogin';
+// import Orggooglelogin from './pages/Organization/Orggooglelogin';
+import Calendar from './components/Calendar';
 
 function MainRoutes() {
   return (
@@ -21,6 +23,7 @@ function MainRoutes() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/pricing-form" element={<PricingForm />} />
           <Route path="/login-admin" element={<AdminLogin />} />
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
         <Footer />
       </Router>

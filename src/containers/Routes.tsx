@@ -5,8 +5,8 @@ import Home from '../pages/Home';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Orglogin from '../pages/Organization/Orglogin';
-import Adminlogin from"../pages/Organization/AdminLogin"
-
+import Adminlogin from '../pages/Organization/AdminLogin';
+import Calendar from '../components/Calendar';
 
 function MainRoutes() {
   return (
@@ -16,7 +16,8 @@ function MainRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/register-organization" element={<OrgRegister />} />
         <Route path="/org-login" element={<Orglogin />} />
-        <Route path="/login-admin" element={<Adminlogin/>}/>
+        <Route path="/login-admin" element={<Adminlogin />} />
+        <Route path="/calendar" element={<Calendar />} />
       </Routes>
       <Footer />
     </>
