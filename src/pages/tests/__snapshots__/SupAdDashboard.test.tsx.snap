@@ -8,13 +8,13 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
     className="flex flex-row pb-8 justify-center"
   >
     <div
-      className="lg:ml-44 w-[90%] pt-[8vh] h-[100%]"
+      className="lg:ml-44 w-[90%] pt-[4vh] lg:pt-[6vh]"
     >
       <div
-        className="grid grid-cols-2 mb-12 md:mb-24 lg:mb-0 lg:grid-cols-4"
+        className="grid grid-cols-2 lg:grid-cols-4"
       >
         <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[75%] h-24 md:h-32 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
+          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
         >
           <h4
             className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
@@ -28,7 +28,7 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
           </h1>
         </div>
         <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[75%] h-24 md:h-32 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
+          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
         >
           <h4
             className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
@@ -42,7 +42,7 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
           </h1>
         </div>
         <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[75%] h-24 md:h-32 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
+          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
         >
           <h4
             className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
@@ -56,7 +56,7 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
           </h1>
         </div>
         <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[75%] h-24 md:h-32 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
+          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
         >
           <h4
             className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
@@ -71,7 +71,7 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
         </div>
       </div>
       <div
-        className="w-[100%] h-[100%] lg:w-[90%] lg:ml-14 lg:mr-2 p-4 mt-8 bottom-0 bg-white dark:bg-dark-bg"
+        className="w-[100%] h-[46vh] lg:h-[62vh] pb-20 lg:w-[90%] lg:ml-14 lg:mr-2 p-4 mt-8 bottom-0 bg-white dark:bg-dark-bg"
       >
         <h1
           className="mb-2 text-lg dark:text-dark-text-fill"
@@ -81,7 +81,7 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
         <h2
           className="text-xs mb-6 dark:text-dark-text-fill"
         >
-          As of 7 July 2022, 12:00 PM
+          As of 18 July 2022, 12:00 PM
         </h2>
         <canvas
           height={150}
