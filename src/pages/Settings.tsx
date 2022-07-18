@@ -19,6 +19,9 @@ function Settings() {
     setTheme(value);
     localStorage.setItem('color-theme', colorTheme);
   };
+
+  const userLang = window.navigator.language;
+
   const handleLanChange = (e: { target: { value: any } }) => {
     const { value } = e.target;
     i18next.changeLanguage(value);
@@ -81,6 +84,7 @@ function Settings() {
                 </p>
               </div>
               <select
+                defaultValue={userLang}
                 data-testid="lanChange"
                 ref={lanRef}
                 onChange={(e) => handleLanChange(e)}

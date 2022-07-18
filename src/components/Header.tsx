@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 import { MenuIcon, XIcon, SunIcon } from '@heroicons/react/outline';
 import { MoonIcon } from '@heroicons/react/solid';
@@ -9,6 +10,7 @@ import useDarkMode from '../hook/useDarkMode';
 import WithClickOutside from './WithClickOutside';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
+  const { t } = useTranslation();
   const [colorTheme, setTheme] = useDarkMode();
   const handleClick = () => setOpen(!open);
 
@@ -51,7 +53,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                   return '';
                 }}
               >
-                Home
+                {t('Home')}
               </NavLink>
             </li>
             <li className="px-5 text-xl dark:text-dark-text-fill">
@@ -62,7 +64,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 }}
                 to="/pricing"
               >
-                Pricing
+                {t('Pricing')}
               </NavLink>
             </li>
             <li className="px-5 text-xl dark:text-dark-text-fill">
@@ -73,7 +75,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 }}
                 to="/product"
               >
-                Product
+                {t('Product')}
               </NavLink>
             </li>
           </ul>
@@ -94,13 +96,13 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             to="/org-login"
             className="border-none w-fit py-2 px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
           >
-            Sign In
+            {t('Sign In')}
           </Link>
           <Link
             to="/register-organization"
             className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
           >
-            Register an organization
+            {t('Register an organization')}
           </Link>
         </div>
         <div className="flex px-5 lg:hidden">
@@ -129,18 +131,18 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         }
       >
         <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
-          <Link to="/">Home</Link>
+          <Link to="/">{t('Home')}</Link>
         </li>
         <li className="p-2 w-full dark:text-dark-text-fill">
           <Link to="/pricing">Pricing</Link>
         </li>
 
         <li className="p-2 w-full dark:text-dark-text-fill">
-          <Link to="/product">Product</Link>
+          <Link to="/product">{t('Product')}</Link>
         </li>
 
         <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
-          <Link to="/org-login">Sign in</Link>
+          <Link to="/org-login">{t('Sign in')}</Link>
         </li>
 
         <li className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md">

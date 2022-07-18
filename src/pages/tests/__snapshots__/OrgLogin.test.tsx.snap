@@ -2,10 +2,10 @@
 
 exports[`Organization Login Should render 1`] = `
 <div
-  className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans "
+  className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans"
 >
   <div
-    className="max-w-lg w-full mx-auto mt-4 bg-white dark:bg-dark-bg p-14"
+    className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14"
   >
     <div
       className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill "
@@ -47,10 +47,8 @@ exports[`Organization Login Should render 1`] = `
         Don’t know your organization URL?
         <a
           className="text-primary"
-          href="/find-organization"
-          onClick={[Function]}
+          href="#link"
         >
-           
           Find your organizations
         </a>
       </div>
@@ -59,11 +57,15 @@ exports[`Organization Login Should render 1`] = `
       >
         Looking to register an organization instead?
         <a
-          className="text-primary"
           href="/register-organization"
           onClick={[Function]}
         >
-          Register a new organization
+          <a
+            className="text-primary"
+            href="#link"
+          >
+            Register a new organization
+          </a>
         </a>
       </div>
     </form>

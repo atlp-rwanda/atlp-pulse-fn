@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';
 import SupAdDashboard from '../pages/SupAdDashboard';

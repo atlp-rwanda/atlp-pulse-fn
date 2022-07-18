@@ -5,10 +5,10 @@ exports[`Admin Login Should render 1`] = `
   className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center"
 >
   <div
-    className="bg-white md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 mt-16 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl "
+    className="md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 mt-16 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8"
   >
     <div
-      className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg dark:rounded-tl-2xl dark:rounded-none "
+      className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg dark:rounded-2xl dark:rounded-none"
     >
       <div
         className="py-10 sm:py-8 "
@@ -26,8 +26,7 @@ exports[`Admin Login Should render 1`] = `
         >
           <a
             className="border-2 border-gray-200 rounded-full p-3 mx-1"
-            href="/#login/email"
-            onClick={[Function]}
+            href="#link"
           >
             <svg
               className="text-sm dark:text-white"
@@ -83,7 +82,7 @@ exports[`Admin Login Should render 1`] = `
             <input
               className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white "
               name="email"
-              placeholder="Email "
+              placeholder="Email"
               type="email"
             />
           </div>
@@ -116,7 +115,7 @@ exports[`Admin Login Should render 1`] = `
             <input
               className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white"
               name="password"
-              placeholder="Password "
+              placeholder="Password"
               type="password"
             />
             <div
@@ -156,7 +155,6 @@ exports[`Admin Login Should render 1`] = `
           >
             <label
               className="flex items-center text-xs dark:text-dark-text-fill "
-              htmlFor="checkbox"
             >
               <input
                 className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
@@ -166,41 +164,41 @@ exports[`Admin Login Should render 1`] = `
               Remember me
             </label>
             <a
-              className="text-xs dark:text-dark-text-fill "
-              href="/reset-password"
-              onClick={[Function]}
+              className="text-xs text-primary"
+              href="#link"
             >
               Forgot Password?
             </a>
           </div>
-          <button
+          <a
             className="border-2 border-primary text-primary rounded-full lg:px-12 lg:py-2 inline-block sm:px-4 sm:py-1  md:font-semibold sm:mt-2 sm:font-medium hover:bg-primary hover:text-white  "
-            type="submit"
+            href="#link"
           >
             Sign In
-          </button>
+          </a>
         </div>
         <div
-          className="md:hidden mt-2 text-xs text-center"
+          className="md:hidden mt-2 text-xs text-center dark:text-dark-text-fill"
         >
-          <span>
-            First time here?
-          </span>
+          First time here?
           <a
-            className="text-primary"
+            className="mx-1"
             href="/register-organization"
             onClick={[Function]}
           >
-            Register
+            <a
+              className="text-primary"
+              href="#link"
+            >
+              Register
+            </a>
           </a>
-          <span>
-            your organization
-          </span>
+          your organization
         </div>
       </div>
     </div>
     <div
-      className="md:w-2/5 bg-primary text-white  lg:rounded-tr-2xl lg:rounded-br-2xl md:py-36 md:px-12 sm:w-full dark:rounded-none sm:rounded-none sm:px-12 sm:py-4 md:block sm:hidden dark:text-dark-text-fill "
+      className="md:w-2/5 bg-primary text-white  lg:rounded-tr-2xl lg:rounded-br-2xl md:py-36 md:px-12 sm:w-full sm:rounded-none sm:px-12 sm:py-4 md:block sm:hidden dark:text-dark-text-fill "
     >
       <h2
         className="lg:text-3xl md:text-xl md:font-bold md:mb-2 "
@@ -213,14 +211,18 @@ exports[`Admin Login Should render 1`] = `
       <p
         className="lg:mb-10 lg:text-center md:text-medium sm:text-center sm:mb-2 sm:text-sm md:text-justify dark:text-dark-text-fill "
       >
-        Register your organnization and start your journey with us
+        Sign_in_page_paragraph
       </p>
       <a
-        className="border-2 border-white rounded-full lg:px-8 lg:py-2 inline-block lg:font-semibold md:font-xl md:mt-[72px] sm:font-medium sm:px-4 sm:py-1 hover:bg-white hover:text-primary dark:hover:bg-dark-bg dark:hover:text-dark-text-fill "
         href="/register-organization"
         onClick={[Function]}
       >
-        Register
+        <a
+          className="border-2 border-white rounded-full lg:px-8 lg:py-2 inline-block lg:font-semibold md:font-xl md:mt-[72px] sm:font-medium sm:px-4 sm:py-1 hover:bg-white hover:text-primary dark:hover:bg-dark-bg dark:hover:text-dark-text-fill "
+          href="#link"
+        >
+          Register
+        </a>
       </a>
     </div>
   </div>

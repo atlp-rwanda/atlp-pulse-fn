@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useTranslation } from 'react-i18next';
 import '../App';
 import {
   FaFacebook,
@@ -11,35 +11,63 @@ import {
 import LogoFooter from '../assets/logoWhite.svg';
 
 function Footer({ styles }: any) {
+  const { t } = useTranslation();
   return (
-    <div
-      className={`w-full bg-primary dark:bg-dark-bg py-2 text-gray-300  mt-auto ${styles}`}
-    >
-      <div className="px-2 flex max-375-footrt lg:flex justify-between items-center w-full h-full">
-        <div className="flex max-375-footrt-img items-center py-5">
-          <img
-            className="mb-24 mr-2 lg:mb-0 lg:mr-0"
-            src={LogoFooter}
-            alt="logo"
-          />
-          <ul className="lg:flex cursor-pointer">
-            <li className="px-3 text-md font-bold">About us</li>
-            <li className="px-3 text-md font-bold">Contact us</li>
-            <li className="px-3 text-md font-bold">Product</li>
-            <li className="px-3 text-md font-bold">Terms and Conditions</li>
-            <li className="px-3 text-md font-bold">Privacy</li>
-          </ul>
+    <div className={`w-full bg-primary dark:bg-dark-bg text-gray-300 mt-auto ${styles}`}>
+      <div className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full">
+        <div className="flex flex-col lg:flex-row items-center py-5">
+          <div className="flex flex-col mr-12 lg:mr-0">
+            <div className="flex mb-2">
+              <img
+                className="mr-2 lg:mr-0"
+                src={LogoFooter}
+                alt="logo"
+              />
+              <h1 className="text-3xl font-bold text-primary dark:text-dark-text-fill">
+                PULSE
+              </h1>
+            </div>
+            <div className="flex border-none justify-around items-center ml-6 mt-4 cursor-pointer">
+              <FaFacebook className=" fa-xs " />
+              <FaInstagram className=" " />
+              <FaTwitter className="mr-1 " />
+              <FaLinkedin className="mr-1 " />
+              <FaPlayCircle className="" />
+            </div>
+          </div>
+          <div className="flex flex-col py-4 lg:py-0 lg:flex-row">
+            <div className="flex py-4">
+              <ul className="lg:flex lg:flex-col mr-[8vh] md:mr-[16vh] lg:mr-0 lg:ml-28 cursor-pointer">
+                <li className="py-2 text-sm font-bold">{t('Dev Pulse')}</li>
+                <li className="py-2 text-xs">{t('About us')}</li>
+                <li className="py-2 text-xs">{t('Contact us')}</li>
+              </ul>
+              <ul className="lg:flex lg:flex-col ml-[8vh] md:ml-[16vh] lg:ml-28 cursor-pointer">
+                <li className="py-2 text-sm font-bold">{t('Product')}</li>
+                <li className="py-2 text-xs">{t('Features')}</li>
+                <li className="py-2 text-xs">{t('Integrations')}</li>
+              </ul>
+            </div>
+            <div className="flex py-4">
+              <ul className="lg:flex lg:flex-col mr-[8vh] md:mr-[16vh] lg:mr-0 lg:ml-28 cursor-pointer">
+                <li className="py-2 text-sm font-bold">{t('Resources')}</li>
+                <li className="py-2 text-xs">{t('Community')}</li>
+                <li className="py-2 text-xs">{t('Help Center')}</li>
+              </ul>
+              <ul className="lg:flex lg:flex-col ml-[8vh] md:ml-[16vh] lg:ml-28 cursor-pointer">
+                <li className="py-2 text-xs">{t('Terms and conditions')}</li>
+                <li className="py-2 text-xs">{t('Privacy and Policies')}</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div className=" lg:flex">
-          <div className="flex border-none max-375-footrt-icon sm:justify-start p3 justify-around items-center mr-4 cursor-pointer">
-            <FaFacebook className="mr-1 fa-xs " />
-            <FaInstagram className="mr-1 " />
-            <FaTwitter className="mr-1 " />
-            <FaLinkedin className="mr-1 " />
-            <FaPlayCircle className="" />
-          </div>
-          <span className="px-4 py-3 cursor-pointer text-lg font-bold">
-            {`©${new Date().getFullYear()} Pulse Technologies`}
+          <span className="px-4 lg:py-3 cursor-pointer text-lg">
+            ©
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+            Pulse Technologies
           </span>
         </div>
       </div>
