@@ -24,5 +24,17 @@
   "Notifications": "Notifications",
   "Calendar": "Calendar",
   "Docs": "Docs",
-  "Help": "Help"
+  "Help": "Help",
+  "RegisterOrg":"Register your organization",
+  "email":"E-mail",
+  "OrgName":"Organization Name",
+  "OrgDesc":"Organization Description",
+  "agree":"I agree with the Pulse's",
+  "Terms":"Terms & Conditions",
+  "Register":"Register",
+  "started":"GET STARTED",
+  "WelcomePage":"Welcome to the page where your management starts",
+  "organizationDesc":"With your own organization, you get a custom domain where you can manage your trainees/students and you can handle all processes related to your program.",
+  "Explore":"Explore docs",
+  "organizationLink":"Your organization link"
 }

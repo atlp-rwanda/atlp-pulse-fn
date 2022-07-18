@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import OrgRegister from '../pages/OrgRegister';
@@ -9,7 +10,6 @@ import Adminlogin from '../pages/Organization/AdminLogin';
 import NotFound from '../pages/NotFound';
 import PricingForm from '../components/PricingForm';
 import Pricing from '../pages/Pricing';
-import Orggooglelogin from '../pages/Organization/Orggooglelogin';
 
 function MainRoutes() {
   return (
