@@ -10,6 +10,7 @@ import Adminlogin from '../pages/Organization/AdminLogin';
 import NotFound from '../pages/NotFound';
 import PricingForm from '../components/PricingForm';
 import Pricing from '../pages/Pricing';
+import PaymentForm from '../components/PaymentForm';
 
 function MainRoutes() {
   return (
@@ -22,6 +23,7 @@ function MainRoutes() {
         <Route path="/login-admin" element={<Adminlogin />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/pricing-form" element={<PricingForm />} />
+        <Route path="/payment-form" element={<PaymentForm />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

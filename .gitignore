@@ -4,3 +4,4 @@ coverage
 .vscode
 dist
 buildcoverage
+.yarn.lock
