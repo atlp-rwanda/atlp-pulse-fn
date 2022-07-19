@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Orglogin from './pages/Organization/Orglogin';
 import Pricing from './pages/Pricing';
 import PricingForm from './components/PricingForm';
+import PaymentForm from './components/PaymentForm';
 import AdminLogin from './pages/Organization/AdminLogin';
 import Perfomancetraineetable from './components/TraineePerformance';
 import NoRedirect from './pages/Noredirect';
@@ -21,6 +22,7 @@ function MainRoutes() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/pricing-form" element={<PricingForm />} />
           <Route path="/login-admin" element={<AdminLogin />} />
+          <Route path="/payment-form" element={<PaymentForm />} />
           <Route path="/" element={<Perfomancetraineetable />} />
           <Route path="/redirect-info" element={<NoRedirect />} />
         </Routes>

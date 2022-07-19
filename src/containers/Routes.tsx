@@ -11,6 +11,7 @@ import NotFound from '../pages/NotFound';
 import PricingForm from '../components/PricingForm';
 import Pricing from '../pages/Pricing';
 import NoRedirect from '../pages/Noredirect';
+import PaymentForm from '../components/PaymentForm';
 
 function MainRoutes() {
   return (
@@ -24,6 +25,7 @@ function MainRoutes() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/pricing-form" element={<PricingForm />} />
         <Route path="/redirect-info" element={<NoRedirect />} />
+        <Route path="/payment-form" element={<PaymentForm />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
