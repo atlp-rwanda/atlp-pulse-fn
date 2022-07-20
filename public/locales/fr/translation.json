@@ -24,5 +24,20 @@
   "Notifications": "Notifications",
   "Calendar": "Calendrier",
   "Docs": "Documents",
-  "Help": "Aide"
+  "Help": "Aide",
+  "RegisterOrg":"Enregistrez votre organisation",
+  "email":"E-mail",
+  "OrgName":"nom de l'organisation",
+  "OrgDesc":"Description de l'organisation",
+  "agree":"Je suis d'accord avec le Pulse",
+  "Terms":"termes et conditions",
+  "Register":"S'inscrire",
+  "started":"COMMENCER",
+  "WelcomePage":"Bienvenue sur la page où commence votre gestion",
+  "organizationDesc":"Avec votre propre organisation, vous obtenez un domaine personnalisé où vous pouvez gérer vos stagiaires/étudiants et vous pouvez gérer tous les processus liés à votre programme.",
+  "Explore":"Explorer les documents",
+  "organizationLink":"Votre lien d'organisation"
+
+
+
 }
