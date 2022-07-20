@@ -1,9 +1,13 @@
-import React from 'react';
+/* eslint-disable */
+
+import React, { Suspense } from 'react';
 import * as ReactDOMClient from 'react-dom/client';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import './i18n.js';
 import './index.css';
-import App from './App';
+import Skeleton from './components/Skeleton';
+
+const App = React.lazy(() => import('./App'));
 
 const client = new ApolloClient({
   uri: 'http://54.147.153.168',
@@ -15,6 +19,8 @@ const container = document.getElementById('tree')!;
 
 const root = ReactDOMClient.createRoot(container).render(
   <ApolloProvider client={client}>
-    <App />
+    <Suspense fallback={<Skeleton />}>
+      <App />
+    </Suspense>
   </ApolloProvider>,
 );

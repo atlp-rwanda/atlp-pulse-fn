@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { forwardRef } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { MenuIcon, XIcon, SunIcon } from '@heroicons/react/outline';
 import { MoonIcon } from '@heroicons/react/solid';
 import Logo from '../assets/logo.svg';
 import LogoWhite from '../assets/logoWhite.svg';
 import useDarkMode from '../hook/useDarkMode';
-import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+import WithClickOutside from './WithClickOutside';
+
+const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const [colorTheme, setTheme] = useDarkMode();
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
+  const handleClick = () => setOpen(!open);
 
   const handleTheme = () => {
     localStorage.setItem('color-theme', colorTheme);
@@ -18,7 +18,9 @@ const Header = () => {
   };
 
   return (
-    <div className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b">
+    <div
+      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b ${props?.styles}`}
+    >
       <div className="px-3 flex justify-between items-center w-full h-full">
         <div className="flex items-center h-full justify-between lg:w-full">
           <Link to="/" className="flex flex-row lg:px-5">
@@ -30,13 +32,13 @@ const Header = () => {
               />
             ) : (
               <img
-                className="w-full cursor-pointer"
+                className="w-full cursor-pointer mr-2"
                 src={LogoWhite}
                 alt="logoWhite"
               />
             )}
 
-            <h1 className="text-3xl font-bold text-primary dark:text-dark-text-fill">
+            <h1 className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill">
               PULSE
             </h1>
           </Link>
@@ -44,18 +46,20 @@ const Header = () => {
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
                 to="/"
-                className={(navData) =>
-                  navData.isActive ? 'text-primary' : ''
-                }
+                className={(navData) => {
+                  if (navData.isActive) return 'text-primary';
+                  return '';
+                }}
               >
                 Home
               </NavLink>
             </li>
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
-                className={(navData) =>
-                  navData.isActive ? 'text-primary' : ''
-                }
+                className={(navData) => {
+                  if (navData.isActive) return 'text-primary';
+                  return '';
+                }}
                 to="/pricing"
               >
                 Pricing
@@ -63,9 +67,10 @@ const Header = () => {
             </li>
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
-                className={(navData) =>
-                  navData.isActive ? 'text-primary' : ''
-                }
+                className={(navData) => {
+                  if (navData.isActive) return 'text-primary';
+                  return '';
+                }}
                 to="/product"
               >
                 Product
@@ -74,7 +79,8 @@ const Header = () => {
           </ul>
         </div>
         <div className="hidden lg:flex lg:w-full justify-end ">
-          <div
+          <button
+            type="button"
             className="px-4 mt-1 cursor-pointer"
             onClick={() => handleTheme()}
           >
@@ -83,64 +89,66 @@ const Header = () => {
             ) : (
               <SunIcon className="w-8 text-dark-text-fill" />
             )}
-          </div>
-          <Link to="/org-login">
-            <button className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md">
-              Sign In
-            </button>
+          </button>
+          <Link
+            to="/org-login"
+            className="border-none w-fit py-2 px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
+          >
+            Sign In
           </Link>
-          <Link to="/register-organization">
-            <button className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md">
-              Register an organization
-            </button>
+          <Link
+            to="/register-organization"
+            className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
+          >
+            Register an organization
           </Link>
         </div>
         <div className="flex px-5 lg:hidden">
-          <div className="px-3" onClick={() => handleTheme()}>
+          <button type="button" className="px-3" onClick={() => handleTheme()}>
             {colorTheme === 'dark' ? (
               <MoonIcon className="w-6 mr-2" />
             ) : (
               <SunIcon className="w-6 mr-2 text-dark-text-fill" />
             )}
-          </div>
-          <div onClick={handleClick}>
-            {!nav ? (
+          </button>
+          <button type="button" onClick={handleClick}>
+            {!open ? (
               <MenuIcon className="w-7 dark:text-dark-text-fill" />
             ) : (
               <XIcon className="w-7 dark:text-dark-text-fill" />
             )}
-          </div>
+          </button>
         </div>
       </div>
       <ul
+        ref={ref}
         className={
-          !nav
+          !open
             ? 'hidden'
-            : 'absolute bg-white dark:bg-dark-bg w-1/8 justify-end px-8 cursor-pointer m-1 right-0 lg:hidden'
+            : 'absolute bg-white dark:bg-dark-bg w-1/8 justify-end px-8 m-1 right-0 lg:hidden'
         }
       >
-        <Link to="/">
-          <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
-            Home
-          </li>
-        </Link>
-        <Link to="/pricing">
-          <li className="p-2 w-full dark:text-dark-text-fill">Pricing</li>
-        </Link>
-        <li className="p-2 w-full dark:text-dark-text-fill">Product</li>
-        <Link to="/org-login">
-          <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
-            Sign In
-          </li>
-        </Link>
-        <Link to="/register-organization">
-          <li className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md">
-            Register Organization
-          </li>
-        </Link>
+        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="p-2 w-full dark:text-dark-text-fill">
+          <Link to="/pricing">Pricing</Link>
+        </li>
+
+        <li className="p-2 w-full dark:text-dark-text-fill">
+          <Link to="/product">Product</Link>
+        </li>
+
+        <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
+          <Link to="/org-login">Sign in</Link>
+        </li>
+
+        <li className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md">
+          <Link to="/register-organization">Register Organization</Link>
+        </li>
       </ul>
     </div>
   );
-};
+});
 
-export default Header;
+export default WithClickOutside(Header);

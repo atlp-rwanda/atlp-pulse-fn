@@ -7,4 +7,5 @@ module.exports = {
       '<rootDir>/test/jest/__mocks__/fileMock.js',
     '\\.(css|less)$': '<rootDir>/test/jest/__mocks__/styleMock.js',
   },
+  setupFilesAfterEnv: ['<rootDir>/tests/setupTest.tsx'],
 };

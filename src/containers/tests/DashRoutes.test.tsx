@@ -1,16 +1,14 @@
-/* eslint-disable */
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import DashRoutes from '../DashRoutes';
 
-import NotFound from '../NotFound';
-
-describe('Not Found', () => {
-  it('Renders the 404 Page', () => {
+describe('Dashboard Routes', () => {
+  it('Should render', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <NotFound />
+          <DashRoutes />
         </MemoryRouter>,
       )
       .toJSON();
