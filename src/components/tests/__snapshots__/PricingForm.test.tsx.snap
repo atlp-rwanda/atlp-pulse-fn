@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pricing form  test  Should render Pricing form and payment form 1`] = `
+<div
+  className="flex flex-col bg-light-bg dark:bg-dark-frame-bg justify-center mx-auto w-full py-32"
+>
+  <h2
+    className="text-light-text dark:text-dark-text-fill text-4xl font-bold mb-4 mx-auto"
+  >
+    Pro
+  </h2>
+  <h3
+    className="text-light-text dark:text-dark-text-fill text-3xl mb-4 mx-auto"
+  >
+    Fill this form
+  </h3>
+  <div
+    className="w-3/4 md:w-2/4 mx-auto sm:w-full  pl-32"
+  >
+    <form
+      className="items-center"
+    >
+      <div
+        className="mb-4"
+      >
+        <div
+          className="flex flex-row items-center"
+        >
+          <span>
+            <span />
+          </span>
+          <h4
+            className="text-light-text dark:text-dark-text-fill text-xl ml-2"
+          >
+            Organization
+          </h4>
+        </div>
+        <div
+          className="my-2 flex flex-col"
+        >
+          <label
+            className="text-light-text dark:text-dark-text-fill text-lg"
+          >
+            Country
+          </label>
+          <select
+            className="dark:bg-dark-frame-bg  appearance-none border my-1 rounded w-3/4 py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option
+              selected={true}
+            >
+              Select a country
+            </option>
+            <option
+              value="US"
+            >
+              United States
+            </option>
+            <option
+              value="Rw"
+            >
+              Rwanda
+            </option>
+            <option
+              value="BU"
+            >
+              Burundi
+            </option>
+            <option
+              value="TZD"
+            >
+              Tanzania
+            </option>
+            <option
+              value="NGR"
+            >
+              Nigeria
+            </option>
+          </select>
+        </div>
+        <div
+          className="flex flex-col"
+        >
+          <label
+            className="text-light-text dark:text-dark-text-fill text-lg"
+          >
+            Organization Name
+          </label>
+          <input
+            className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-3/4 py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+            id="organizationName"
+            placeholder="Organization name"
+            type="text"
+          />
+        </div>
+        <div
+          className=" flex justify-between align-baseline flex-wrap pl-0 py-2 w-3/4"
+        >
+          <div
+            className="flex flex-col"
+          >
+            <label
+              className="text-light text dark:text-dark-text-fill text-lg"
+            >
+              Street address
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="streetAddress"
+              placeholder="Street address"
+              type="text"
+            />
+          </div>
+          <div
+            className="flex justify-between flex-col"
+          >
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+            >
+              City
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="city"
+              placeholder="City"
+              type="text"
+            />
+          </div>
+        </div>
+        <div
+          className="flex justify-between  flex-wrap pl-0 py-2 w-3/4"
+        >
+          <div
+            className="flex flex-col"
+          >
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+            >
+              Province
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="province"
+              placeholder="Province"
+              type="text"
+            />
+          </div>
+          <div
+            className="flex flex-col"
+          >
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+            >
+              Postal Code
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="pcode"
+              placeholder="Postal code"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="mb-4"
+      >
+        <div
+          className="flex flex-row items-center"
+        >
+          <span>
+            <span />
+          </span>
+          <h4
+            className="text-light-text dark:text-dark-text-fill text-xl ml-2"
+          >
+            Payment method
+          </h4>
+        </div>
+        <div />
+        <div />
+      </div>
+      <div
+        className="flex flex-row  flex-wrap justify-between w-3/4"
+      >
+        <div>
+          <span />
+          <h3
+            className="text-light-text dark:text-dark-text-fill sm:text-sm"
+          >
+            Credit Card
+          </h3>
+        </div>
+        <a
+          href="/redirect-info"
+          onClick={[Function]}
+        >
+          <div>
+            <span />
+            <h3
+              className="text-light-text dark:text-dark-text-fill sm:text-sm"
+            >
+              Apple Pay
+            </h3>
+          </div>
+        </a>
+        <a
+          href="/redirect-info"
+          onClick={[Function]}
+        >
+          <div>
+            <span />
+            <h3
+              className="text-light-text dark:text-dark-text-fill sm:text-sm"
+            >
+              PayPal
+            </h3>
+          </div>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Pricing form Dashboard test  Should render Pricing form and payment form 1`] = `null`;

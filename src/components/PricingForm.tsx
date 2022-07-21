@@ -210,6 +210,5 @@ export default function PricingForm() {
           </button>
         </form>
       </div>
-    </div>
-  );
-}
+    );
+};
