@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
@@ -210,5 +211,7 @@ export default function PricingForm() {
           </button>
         </form>
       </div>
+      </div>
     );
+
 };

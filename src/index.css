@@ -34,7 +34,6 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-}
 
 @keyframes wave {
   0% {
@@ -61,4 +60,8 @@
   100% {
     transform: rotate(0deg);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> fix done on the pricing form

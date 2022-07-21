@@ -15,11 +15,9 @@ exports[`Pricing form  test  Should render Pricing form and payment form 1`] = `
     Fill this form
   </h3>
   <div
-    className="w-3/4 md:w-2/4 mx-auto sm:w-full  pl-32"
+    className="w-3/4 md:w-2/4 mx-auto"
   >
-    <form
-      className="items-center"
-    >
+    <form>
       <div
         className="mb-4"
       >
@@ -40,125 +38,89 @@ exports[`Pricing form  test  Should render Pricing form and payment form 1`] = `
         >
           <label
             className="text-light-text dark:text-dark-text-fill text-lg"
+            htmlFor="country"
           >
             Country
+            <input
+              className="dark:bg-dark-frame-bg appearance-none border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="country"
+              placeholder="Country"
+              type="text"
+            />
           </label>
-          <select
-            className="dark:bg-dark-frame-bg  appearance-none border my-1 rounded w-3/4 py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
-          >
-            <option
-              selected={true}
-            >
-              Select a country
-            </option>
-            <option
-              value="US"
-            >
-              United States
-            </option>
-            <option
-              value="Rw"
-            >
-              Rwanda
-            </option>
-            <option
-              value="BU"
-            >
-              Burundi
-            </option>
-            <option
-              value="TZD"
-            >
-              Tanzania
-            </option>
-            <option
-              value="NGR"
-            >
-              Nigeria
-            </option>
-          </select>
         </div>
-        <div
-          className="flex flex-col"
-        >
+        <div>
           <label
             className="text-light-text dark:text-dark-text-fill text-lg"
+            htmlFor="organizationName"
           >
-            Organization Name
+            Organization name
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="organizationName"
+              placeholder="Organization name"
+              type="text"
+            />
           </label>
-          <input
-            className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-3/4 py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
-            id="organizationName"
-            placeholder="Organization name"
-            type="text"
-          />
         </div>
-        <div
-          className=" flex justify-between align-baseline flex-wrap pl-0 py-2 w-3/4"
-        >
-          <div
-            className="flex flex-col"
-          >
+        <div>
+          <div>
             <label
               className="text-light text dark:text-dark-text-fill text-lg"
+              htmlFor="streetAddress"
             >
               Street address
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="streetAddress"
+                placeholder="Street address"
+                type="text"
+              />
             </label>
-            <input
-              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
-              id="streetAddress"
-              placeholder="Street address"
-              type="text"
-            />
           </div>
-          <div
-            className="flex justify-between flex-col"
-          >
+          <div>
             <label
               className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="city"
             >
               City
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="city"
+                placeholder="City"
+                type="text"
+              />
             </label>
-            <input
-              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
-              id="city"
-              placeholder="City"
-              type="text"
-            />
           </div>
         </div>
-        <div
-          className="flex justify-between  flex-wrap pl-0 py-2 w-3/4"
-        >
-          <div
-            className="flex flex-col"
-          >
+        <div>
+          <div>
             <label
               className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="province"
             >
               Province
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="province"
+                placeholder="Province"
+                type="text"
+              />
             </label>
-            <input
-              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
-              id="province"
-              placeholder="Province"
-              type="text"
-            />
           </div>
-          <div
-            className="flex flex-col"
-          >
+          <div>
             <label
               className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="pcode"
             >
               Postal Code
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="pcode"
+                placeholder="Postal code"
+                type="text"
+              />
             </label>
-            <input
-              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
-              id="pcode"
-              placeholder="Postal code"
-              type="text"
-            />
           </div>
         </div>
       </div>
@@ -181,43 +143,89 @@ exports[`Pricing form  test  Should render Pricing form and payment form 1`] = `
         <div />
       </div>
       <div
-        className="flex flex-row  flex-wrap justify-between w-3/4"
+        className="flex flex-row justify-around"
       >
         <div>
-          <span />
-          <h3
-            className="text-light-text dark:text-dark-text-fill sm:text-sm"
+          <label
+            className="text-light-text dark:text-dark-text-fill text-lg"
+            htmlFor="name"
           >
-            Credit Card
-          </h3>
+            Name
+          </label>
+          <input
+            className="appearance-none border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill dark:bg-dark-frame-bg leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            placeholder="Name"
+            type="text"
+          />
         </div>
-        <a
-          href="/redirect-info"
-          onClick={[Function]}
-        >
+        <div>
           <div>
-            <span />
-            <h3
-              className="text-light-text dark:text-dark-text-fill sm:text-sm"
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="cardNumber"
             >
-              Apple Pay
-            </h3>
+              Card number
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="cardNumber"
+              placeholder="Card number"
+              type="text"
+            />
           </div>
-        </a>
-        <a
-          href="/redirect-info"
-          onClick={[Function]}
-        >
           <div>
-            <span />
-            <h3
-              className="text-light-text dark:text-dark-text-fill sm:text-sm"
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="expiration"
             >
-              PayPal
-            </h3>
+              Expiration
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="expiration"
+              placeholder="Expiration"
+              type="text"
+            />
           </div>
-        </a>
+        </div>
+        <div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="cvv"
+            >
+              CVV
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="cvv"
+              placeholder="CVV"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg "
+              htmlFor="pcode"
+            >
+              Postal code
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="pcode"
+              placeholder="Postal code"
+              type="text"
+            />
+          </div>
+        </div>
       </div>
+      <button
+        className="bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 mb-2 rounded"
+        type="button"
+      >
+        Request
+      </button>
     </form>
   </div>
 </div>
