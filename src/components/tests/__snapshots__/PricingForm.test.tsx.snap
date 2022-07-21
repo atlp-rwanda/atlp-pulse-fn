@@ -222,5 +222,3 @@ exports[`Pricing form  test  Should render Pricing form and payment form 1`] = `
   </div>
 </div>
 `;
-
-exports[`Pricing form Dashboard test  Should render Pricing form and payment form 1`] = `null`;

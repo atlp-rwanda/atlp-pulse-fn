@@ -49,7 +49,11 @@ export default function OrgRegister() {
                     className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
                   />
                 </div>
+<<<<<<< HEAD
                 <div className="-mt-6">
+=======
+                <div className="-mt-6 pr-[65%] md:pr-[45%] lg:pr-[55%]">
+>>>>>>> rebased with develop
                   {errors.email && (
                     <small className="text-red-600">
                       {errors.email.message}
@@ -68,7 +72,11 @@ export default function OrgRegister() {
                     className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white "
                   />
                 </div>
+<<<<<<< HEAD
                 <div className="-mt-6">
+=======
+                <div className="-mt-6 pr-[65%] md:pr-[45%] lg:pr-[55%]">
+>>>>>>> rebased with develop
                   {errors.name && (
                     <small className="text-red-600">
                       {errors.name.message}
@@ -85,9 +93,15 @@ export default function OrgRegister() {
                       required: 'Description is required',
                     })}
                     className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
+<<<<<<< HEAD
                   />
                 </div>
                 <div className="-mt-4">
+=======
+                  ></textarea>
+                </div>
+                <div className="-mt-4 pr-[60%] md:pr-[38%] lg:pr-[50%]">
+>>>>>>> rebased with develop
                   {errors.description && (
                     <small className="text-red-600">
                       {errors.description.message}
@@ -101,6 +115,7 @@ export default function OrgRegister() {
                       name="remember"
                       className="mr-1 dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
                     />
+<<<<<<< HEAD
                     {t('I agree to the')}
                     <span className="text-primary mx-1">
                       {t('Terms & Conditions of')}
@@ -108,6 +123,9 @@ export default function OrgRegister() {
                     </span>
                     {' '}
                     <span>DevPulse</span>
+=======
+                    {t('agree')} <span className="text-primary">{'Terms'}</span>
+>>>>>>> rebased with develop
                   </label>
                 </div>
                 <button
@@ -127,8 +145,16 @@ export default function OrgRegister() {
           <h2 className="text-lg font-bold text-dark-text-fill text-center pb-4 px-2 font-sans">
             {t('Registration_page_heading')}
           </h2>
+<<<<<<< HEAD
           <p className="max-w-[600px] text-left text-white pl-5 pb-6 text-md">
             {t('Registration_page_paragraph')}
+=======
+          <h2 className="text-lg font-bold text-dark-text-fill text-center pb-4 px-2 font-sans">
+            {t('WelcomePage')}
+          </h2>
+          <p className="max-w-[600px] text-left text-white pl-5 pb-6 text-md">
+            {t('organizationDesc')}
+>>>>>>> rebased with develop
             <Link
               to="get-started"
               className="border-b-1 font-bold text-white ml-4 pr-52"
@@ -137,12 +163,18 @@ export default function OrgRegister() {
             </Link>
           </p>
           <h3 className="font-bold text-left text-white text-lg mb-2 px-5">
+<<<<<<< HEAD
             {t("Your organization's link")}
           </h3>
           <button
             type="button"
             className="rounded bg-white text-primary ml-20 px-3 font-bold py-2 mt-3"
           >
+=======
+            {t('organizationLink')}
+          </h3>
+          <button className="rounded bg-white text-primary  px-3 font-bold py-2 mt-3">
+>>>>>>> rebased with develop
             {name.replaceAll(' ', '-').toLowerCase()}
             <span>.pulse.org</span>
           </button>
