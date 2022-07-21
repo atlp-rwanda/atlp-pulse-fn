@@ -593,6 +593,12 @@ exports[`Pricing Page Renders the page with form 1`] = `
             Payment method
           </h4>
         </div>
+        <div />
+        <div />
+      </div>
+      <div
+        className="flex flex-row justify-around"
+      >
         <div>
           <label
             className="text-light-text dark:text-dark-text-fill text-lg"
