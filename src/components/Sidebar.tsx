@@ -11,6 +11,8 @@ import {
   FolderIcon,
   AdjustmentsIcon,
   SupportIcon,
+  TrendingUpIcon,
+  ClipboardCheckIcon,
 } from '@heroicons/react/solid';
 import { CogIcon } from '@heroicons/react/outline';
 
@@ -48,8 +50,22 @@ function Sidebar({ style }: { style: string }) {
         <li className="mb-4 hover:text-primary">
           <NavLink to="#link" className="flex flex-row">
             <GlobeAltIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+            <span className="text-base dark:text-dark-text-fill">Domains</span>
+          </NavLink>
+        </li>
+        <li className="mb-4 hover:text-primary">
+          <NavLink to="trainee/attendance" className="flex flex-row">
+            <ClipboardCheckIcon className="w-5 mr-2 dark:text-dark-text-fill" />
             <span className="text-base dark:text-dark-text-fill">
-              Domains
+              Attendance
+            </span>
+          </NavLink>
+        </li>
+        <li className="mb-4 hover:text-primary">
+          <NavLink to="trainee/performance" className="flex flex-row">
+            <TrendingUpIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+            <span className="text-base dark:text-dark-text-fill">
+              Perfomance
             </span>
           </NavLink>
         </li>
