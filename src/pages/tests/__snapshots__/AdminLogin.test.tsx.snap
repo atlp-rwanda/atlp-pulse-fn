@@ -2,13 +2,13 @@
 
 exports[`Admin Login Should render 1`] = `
 <div
-  className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center"
+  className="w-full py-2 text-center bg-gray-100 md:flex md:flex-col md:items-center md:justify-center grow dark:bg-dark-bg sm:flex sm:flex-row sm:items-center sm:justify-center"
 >
   <div
-    className="md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 mt-16 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8"
+    className="mt-16 mb-8 md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl"
   >
     <div
-      className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg  dark:rounded-none"
+      className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg dark:rounded-none"
     >
       <div
         className="py-10 sm:py-8 "
@@ -19,13 +19,13 @@ exports[`Admin Login Should render 1`] = `
           Sign in using
         </h2>
         <div
-          className="border-2 w-10 bg-primary border-primary inline-block mb-2"
+          className="inline-block w-10 mb-2 border-2 bg-primary border-primary"
         />
         <div
           className="flex justify-center my-2"
         >
           <a
-            className="border-2 border-gray-200 rounded-full p-3 mx-1"
+            className="p-3 mx-1 border-2 border-gray-200 rounded-full"
             href="#link"
           >
             <svg
@@ -50,7 +50,7 @@ exports[`Admin Login Should render 1`] = `
           </a>
         </div>
         <p
-          className="text-gray-400 my-3 dark:text-dark-text-fill "
+          className="my-3 text-gray-400 dark:text-dark-text-fill "
         >
           or use your email account
         </p>
@@ -62,10 +62,10 @@ exports[`Admin Login Should render 1`] = `
             onSubmit={[Function]}
           >
             <div
-              className="bg-gray-100 w-64 p-2 flex items-center mb-2 dark:bg-dark-bg "
+              className="flex items-center w-64 p-2 mb-2 bg-gray-100 dark:bg-dark-bg "
             >
               <svg
-                className="text-gray-400 mr-2"
+                className="mr-2 text-gray-400"
                 fill="currentColor"
                 height="1em"
                 stroke="currentColor"
@@ -84,7 +84,7 @@ exports[`Admin Login Should render 1`] = `
                 />
               </svg>
               <input
-                className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white "
+                className="flex-1 text-sm text-gray-400 bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white "
                 name="email"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -93,13 +93,13 @@ exports[`Admin Login Should render 1`] = `
               />
             </div>
             <div
-              className="text-left mb-1"
+              className="mb-1 text-left"
             />
             <div
-              className="bg-gray-100 w-64 p-2 flex items-center rounded mb-2 dark:border-white dark:bg-dark-bg"
+              className="flex items-center w-64 p-2 mb-2 bg-gray-100 rounded dark:border-white dark:bg-dark-bg"
             >
               <svg
-                className="text-gray-400 mr-2 "
+                className="mr-2 text-gray-400 "
                 fill="currentColor"
                 height="1em"
                 stroke="currentColor"
@@ -122,7 +122,7 @@ exports[`Admin Login Should render 1`] = `
                 />
               </svg>
               <input
-                className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white"
+                className="flex-1 text-sm text-gray-400 bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white"
                 name="password"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -162,17 +162,17 @@ exports[`Admin Login Should render 1`] = `
               </div>
             </div>
             <div
-              className="text-left mb-1"
+              className="mb-1 text-left"
             />
             <div
-              className="flex w-64 justify-between rounded mb-5 mt-5"
+              className="flex justify-between w-64 mt-5 mb-5 rounded"
             >
               <label
                 className="flex items-center text-xs dark:text-dark-text-fill "
                 htmlFor="checkbox"
               >
                 <input
-                  className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
+                  className="mr-1 dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
                   name="remember"
                   type="checkbox"
                 />
@@ -187,7 +187,7 @@ exports[`Admin Login Should render 1`] = `
               </a>
             </div>
             <button
-              className="border-2 border-primary text-primary rounded-full lg:px-12 lg:py-2 inline-block sm:px-4 sm:py-1  md:font-semibold sm:mt-2 sm:font-medium hover:bg-primary hover:text-white  "
+              className="inline-block border-2 rounded-full border-primary text-primary lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:bg-primary hover:text-white "
               type="submit"
             >
               Sign In
@@ -195,7 +195,7 @@ exports[`Admin Login Should render 1`] = `
           </form>
         </div>
         <div
-          className="md:hidden mt-2 text-xs text-center dark:text-dark-text-fill"
+          className="mt-2 text-xs text-center md:hidden dark:text-dark-text-fill"
         >
           First time here?
           <a
@@ -215,7 +215,7 @@ exports[`Admin Login Should render 1`] = `
       </div>
     </div>
     <div
-      className="md:w-2/5 bg-primary text-white  lg:rounded-tr-2xl lg:rounded-br-2xl md:py-36 md:px-12 sm:w-full sm:rounded-none sm:px-12 sm:py-4 md:block sm:hidden dark:text-dark-text-fill "
+      className="text-white md:w-2/5 bg-primary lg:rounded-tr-2xl lg:rounded-br-2xl md:py-36 md:px-12 sm:w-full sm:rounded-none sm:px-12 sm:py-4 md:block sm:hidden dark:text-dark-text-fill "
     >
       <h2
         className="lg:text-3xl md:text-xl md:font-bold md:mb-2 "
@@ -223,7 +223,7 @@ exports[`Admin Login Should render 1`] = `
         Hello, Friend!
       </h2>
       <div
-        className="border-2 w-10 bg-white border-white inline-block mb-2"
+        className="inline-block w-10 mb-2 bg-white border-2 border-white"
       />
       <p
         className="lg:mb-10 lg:text-center md:text-medium sm:text-center sm:mb-2 sm:text-sm md:text-justify dark:text-dark-text-fill "

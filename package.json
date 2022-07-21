@@ -35,6 +35,7 @@
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@babel/preset-react": "^7.18.6",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
     "@iconify/react": "^3.2.2",
