@@ -49,7 +49,7 @@ function Sidebar({ style }: { style: string }) {
           <NavLink to="#link" className="flex flex-row">
             <GlobeAltIcon className="w-5 mr-2 dark:text-dark-text-fill" />
             <span className="text-base dark:text-dark-text-fill">
-              {'Domains'}
+              Domains
             </span>
           </NavLink>
         </li>

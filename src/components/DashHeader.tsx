@@ -8,8 +8,8 @@ import Avatar from '../assets/avatar.png';
 import useDarkMode from '../hook/useDarkMode';
 import Sidebar from './Sidebar';
 
-const DashHeader = () => {
-  const [colorTheme, setTheme] = useDarkMode();
+function DashHeader() {
+  const [colorTheme] = useDarkMode();
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
@@ -68,6 +68,6 @@ const DashHeader = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default DashHeader;

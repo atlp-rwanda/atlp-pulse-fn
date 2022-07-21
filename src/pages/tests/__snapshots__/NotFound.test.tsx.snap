@@ -2,7 +2,7 @@
 
 exports[`Not Found Renders the 404 Page 1`] = `
 <div
-  className="notFound dark:bg-dark-frame-bg flex flex-row py-8 px-5  md:flex-row items-center justify-end md:justify-evenly grow h-full w-full "
+  className="notFound dark:bg-dark-frame-bg flex flex-row py-12 px-5  md:flex-row items-center justify-end md:justify-evenly grow h-full w-full "
 >
   <div />
   <div
@@ -21,7 +21,7 @@ exports[`Not Found Renders the 404 Page 1`] = `
     <p
       className="text-base font-bold dark:text-dark-text-fill whitespace-pre-wrap"
     >
-      You did not break the internet 😱. The page you are looking for does not exists.
+      404_page_paragraph
     </p>
     <a
       className="px-5 py-3 bg-primary font-bold mt-5 rounded-md text-white w-fit"
