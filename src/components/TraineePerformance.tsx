@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const TraineePerfomance = () => {
-  
   return (
     <>
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
@@ -85,7 +84,7 @@ const TraineePerfomance = () => {
                         </td>
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <Link to="/dashboard/trainee/performance-details">
+                          <Link to="/dashboard/performance-details">
                             <button className="px-4 py-0 rounded-md dark:text-dark-text-fill bg-primary text-white text-sm">
                               Details
                             </button>
@@ -123,7 +122,7 @@ const TraineePerfomance = () => {
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <Link to="/dashboard/trainee/performance-details">
+                          <Link to="/dashboard/performance-details">
                             <button className="px-4 py-0 rounded-md dark:text-dark-text-fill bg-primary text-white text-sm">
                               Details
                             </button>
@@ -161,7 +160,7 @@ const TraineePerfomance = () => {
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <Link to="/dashboard/trainee/performance-details">
+                          <Link to="/dashboard/performance-details">
                             <button className="px-4 py-0 rounded-md dark:text-dark-text-fill bg-primary text-white text-sm">
                               Details
                             </button>
@@ -199,7 +198,7 @@ const TraineePerfomance = () => {
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <Link to="/dashboard/trainee/performance-details">
+                          <Link to="/dashboard/performance-details">
                             <button className="px-4 py-0 rounded-md dark:text-dark-text-fill bg-primary text-white text-sm">
                               Details
                             </button>
@@ -237,7 +236,7 @@ const TraineePerfomance = () => {
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <Link to="/dashboard/trainee/performance-details">
+                          <Link to="/dashboard/performance-details">
                             <button className="px-4 py-0 rounded-md dark:text-dark-text-fill bg-primary text-white text-sm">
                               Details
                             </button>
@@ -274,4 +273,4 @@ const TraineePerfomance = () => {
   );
 };
 
-export default TraineePerfomance
+export default TraineePerfomance;

@@ -15,7 +15,7 @@ function SupAdDashboard() {
             <Card text={t('Domains')} number={24} />
             <Card text={t('Income')} number={`$${1000}`} />
           </div>
-          <Chart />
+          <Chart title="Organizations" />
         </div>
       </div>
     </div>

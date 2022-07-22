@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings page tests changes value after selecting another theme 1`] = `
+<div
+  className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg"
+>
+  <div
+    className="flex flex-row justify-center pt-[12vh]"
+  >
+    <div
+      className="rounded-lg w-[95%] lg:w-80vh lg:ml-[32vh] lg:mr-[2vh] lg:mb-10 p-6 bg-white dark:bg-dark-bg"
+    >
+      <h1
+        className="mb-4 font-bold text-xl dark:text-dark-text-fill"
+      >
+        Settings
+      </h1>
+      <div>
+        <li
+          className="flex items-center border-b pt-2 pb-1"
+        >
+          <div
+            className="w-[33vh]"
+          >
+            <h1
+              className="font-bold dark:text-dark-text-fill"
+            >
+              Profile
+            </h1>
+            <p
+              className="text-sm text-gray-600 dark:text-dark-text-fill"
+            >
+              Edit profile, export account data, ...
+            </p>
+          </div>
+          <a
+            className="ml-auto text-gray-600 text-xs md:text-base dark:text-dark-text-fill"
+            href="/dashboard/settings#link"
+            onClick={[Function]}
+          >
+            <h4>
+              Change
+            </h4>
+          </a>
+        </li>
+        <li
+          className="flex items-center border-b pt-2 pb-1"
+        >
+          <div
+            className="w-[33vh]"
+          >
+            <h1
+              className="font-bold dark:text-dark-text-fill"
+            >
+              Appearance
+            </h1>
+            <p
+              className="text-sm text-gray-600 dark:text-dark-text-fill"
+            >
+              Theme preferences
+            </p>
+          </div>
+          <select
+            className="ml-auto bg-white border px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
+            data-testid="themeChange"
+            defaultValue="light"
+            onChange={[Function]}
+          >
+            <option
+              value="light"
+            >
+              Light theme
+            </option>
+            <option
+              value="dark"
+            >
+              Dark theme
+            </option>
+          </select>
+        </li>
+        <li
+          className="flex items-center border-b pt-2 pb-1"
+        >
+          <div
+            className="w-[33vh]"
+          >
+            <h1
+              className="font-bold dark:text-dark-text-fill"
+            >
+              Language
+            </h1>
+            <p
+              className="text-sm text-gray-600 dark:text-dark-text-fill"
+            >
+              Language preferences
+            </p>
+          </div>
+          <select
+            className="ml-auto bg-white border px-2 h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
+            data-testid="lanChange"
+            defaultValue="en-US"
+            onChange={[Function]}
+          >
+            <option
+              value="en"
+            >
+              English
+            </option>
+            <option
+              value="fr"
+            >
+              Français
+            </option>
+            <option
+              value="kn"
+            >
+              Ikinyarwanda
+            </option>
+          </select>
+        </li>
+        <li
+          className="flex items-center border-b pt-2 pb-1"
+        >
+          <div
+            className="w-[33vh]"
+          >
+            <h1
+              className="font-bold dark:text-dark-text-fill"
+            >
+              Email notifications
+            </h1>
+            <p
+              className="text-sm text-gray-600 dark:text-dark-text-fill"
+            >
+              Feedback emails, reminder emails, news emails
+            </p>
+          </div>
+          <button
+            aria-checked={false}
+            className="ml-auto border relative inline-flex h-6 w-12 items-center rounded-full"
+            id="headlessui-switch-:r0:"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            role="switch"
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white"
+            />
+          </button>
+        </li>
+        <li
+          className="flex items-center border-b pt-2 pb-1"
+        >
+          <div
+            className="w-[33vh]"
+          >
+            <h1
+              className="font-bold dark:text-dark-text-fill"
+            >
+              Push notifications
+            </h1>
+            <p
+              className="text-sm text-gray-600 dark:text-dark-text-fill"
+            >
+              Grade updates, session reminders, performance comments
+            </p>
+          </div>
+          <button
+            aria-checked={false}
+            className="ml-auto border relative inline-flex h-6 w-12 items-center rounded-full"
+            id="headlessui-switch-:r1:"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            role="switch"
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white"
+            />
+          </button>
+        </li>
+        <li
+          className="flex items-center border-b pt-2 pb-1"
+        >
+          <div
+            className="w-[33vh]"
+          >
+            <h1
+              className="font-bold dark:text-dark-text-fill"
+            >
+              Privacy and Security
+            </h1>
+            <p
+              className="text-sm text-gray-600 dark:text-dark-text-fill"
+            >
+              Privacy and Security
+            </p>
+          </div>
+          <a
+            className="ml-auto mt-2 text-xs md:text-base text-gray-600 dark:text-dark-text-fill"
+            href="/dashboard/settings#link"
+            onClick={[Function]}
+          >
+            <h4>
+              Change
+            </h4>
+          </a>
+        </li>
+        <li
+          className="flex items-center pt-2 pb-1"
+        >
+          <div
+            className="w-[33vh]"
+          >
+            <h1
+              className="font-bold dark:text-dark-text-fill"
+            >
+              Login Activity
+            </h1>
+            <p
+              className="text-sm text-gray-600 dark:text-dark-text-fill"
+            >
+              History of your login sessions
+            </p>
+          </div>
+          <a
+            className="ml-auto mt-2 text-xs md:text-base text-gray-600 dark:text-dark-text-fill"
+            href="/dashboard/settings#link"
+            onClick={[Function]}
+          >
+            <h4>
+              View
+            </h4>
+          </a>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>
+`;

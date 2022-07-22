@@ -7,8 +7,10 @@ import './i18n.js';
 import './index.css';
 import Skeleton from './components/Skeleton';
 
+import UserProvider from './hook/useAuth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const App = React.lazy(() => import('./App'));
-
 const client = new ApolloClient({
   uri: 'http://54.147.153.168',
   cache: new InMemoryCache(),
@@ -20,7 +22,10 @@ const container = document.getElementById('tree')!;
 const root = ReactDOMClient.createRoot(container).render(
   <ApolloProvider client={client}>
     <Suspense fallback={<Skeleton />}>
-      <App />
+      <UserProvider>
+        <App />
+        <ToastContainer theme="colored" />
+      </UserProvider>
     </Suspense>
   </ApolloProvider>,
 );

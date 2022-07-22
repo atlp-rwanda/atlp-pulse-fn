@@ -76,6 +76,7 @@ exports[`App test  Should render app 1`] = `
         >
           <button
             className="px-4 mt-1 cursor-pointer"
+            id="theme-switch"
             onClick={[Function]}
             type="button"
           >
@@ -92,18 +93,26 @@ exports[`App test  Should render app 1`] = `
             </svg>
           </button>
           <a
-            className="border-none w-fit py-2 px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
             href="/org-login"
             onClick={[Function]}
           >
-            Sign In
+            <button
+              className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
+              type="button"
+            >
+              Sign In
+            </button>
           </a>
           <a
-            className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
             href="/register-organization"
             onClick={[Function]}
           >
-            Register an organization
+            <button
+              className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
+              type="button"
+            >
+              Register an organization
+            </button>
           </a>
         </div>
         <div
@@ -245,12 +254,15 @@ exports[`App test  Should render app 1`] = `
               </b>
             </em>
           </p>
-          <button
-            className="mt-12 lg:mt-8 justify-center items-center py-3 w-fit px-8  text-xl font-bold uppercase my-4 bg-primary text-white rounded-md"
-            type="button"
+          <div
+            className="w-full text-center justify-center items-center"
           >
-            Get Started
-          </button>
+            <button
+              className="mt-12 lg:mt-0 justify-center items-center py-3 w-fit px-8  text-xl font-bold uppercase my-4 bg-primary text-white rounded-md"
+            >
+              Get Started
+            </button>
+          </div>
         </div>
       </div>
     </div>

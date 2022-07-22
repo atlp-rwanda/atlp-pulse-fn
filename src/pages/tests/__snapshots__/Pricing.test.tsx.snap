@@ -1,0 +1,680 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pricing Page Renders the page 1`] = `
+<div
+  className="bg-light-bg dark:bg-dark-frame-bg flex-grow pt-14 md:pt-10"
+>
+  <div
+    className="flex flex-col justify-center items-center mx-auto grow"
+  >
+    <h1
+      className="text-primary text-lg text-center w-3/4 my-3 md:text-4xl flex justify-center md:my-9 mx-auto"
+    >
+      pricing_page_header
+    </h1>
+    <h3
+      className="text-light-text dark:text-dark-text-fill text-sm text-center w-3/4 md:text-2xl flex justify-center"
+    >
+      pricing_page_paragraph
+    </h3>
+    <div
+      className="flex flex-wrap justify-center m-10"
+    >
+      <div
+        className="border-2 w-60 md:w-80 rounded-lg m-10"
+      >
+        <div
+          className="flex flex-col justify-center items-center m-6"
+        >
+          <h2
+            className="text-light-text dark:text-dark-text-fill text-2xl font-bold m-4"
+          >
+            Free
+          </h2>
+          <h2
+            className="text-light-text dark:text-dark-text-fill text-4xl font-bold m-4"
+          >
+            $0
+          </h2>
+          <div
+            className="flex flex-col justify-center items-center"
+          >
+            <h4
+              className="text-light-text text-center dark:text-dark-text-fill text-sm"
+            >
+              $1
+               
+              per month, paid annually
+            </h4>
+            <div
+              className="flex flex-row"
+            >
+              <h4
+                className="text-primary text-sm"
+              >
+                Annual plan
+              </h4>
+               
+              <span>
+                <span />
+              </span>
+            </div>
+          </div>
+          <div
+            className="m-4"
+          >
+            <button
+              className="bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded"
+              type="button"
+            >
+              <a
+                href="/pricing-form"
+                onClick={[Function]}
+              >
+                Get Started
+              </a>
+            </button>
+          </div>
+          <div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="border-2 w-60 md:w-80 rounded-lg m-10"
+      >
+        <div
+          className="flex flex-col justify-center items-center m-6"
+        >
+          <h2
+            className="text-light-text dark:text-dark-text-fill text-2xl font-bold m-4"
+          >
+            Premium
+          </h2>
+          <h2
+            className="text-light-text dark:text-dark-text-fill text-4xl font-bold m-4"
+          >
+            $0
+          </h2>
+          <div
+            className="flex flex-col justify-center items-center"
+          >
+            <h4
+              className="text-light-text text-center dark:text-dark-text-fill text-sm"
+            >
+              $1
+               
+              per month, paid annually
+            </h4>
+            <div
+              className="flex flex-row"
+            >
+              <h4
+                className="text-primary text-sm"
+              >
+                Annual plan
+              </h4>
+               
+              <span>
+                <span />
+              </span>
+            </div>
+          </div>
+          <div
+            className="m-4"
+          >
+            <button
+              className="bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded"
+              type="button"
+            >
+              <a
+                href="/pricing-form"
+                onClick={[Function]}
+              >
+                Get Started
+              </a>
+            </button>
+          </div>
+          <div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="border-2 w-60 md:w-80 rounded-lg m-10"
+      >
+        <div
+          className="flex flex-col justify-center items-center m-6"
+        >
+          <h2
+            className="text-light-text dark:text-dark-text-fill text-2xl font-bold m-4"
+          >
+            Pro
+          </h2>
+          <h2
+            className="text-light-text dark:text-dark-text-fill text-4xl font-bold m-4"
+          >
+            $0
+          </h2>
+          <div
+            className="flex flex-col justify-center items-center"
+          >
+            <h4
+              className="text-light-text text-center dark:text-dark-text-fill text-sm"
+            >
+              $1
+               
+              per month, paid annually
+            </h4>
+            <div
+              className="flex flex-row"
+            >
+              <h4
+                className="text-primary text-sm"
+              >
+                Annual plan
+              </h4>
+               
+              <span>
+                <span />
+              </span>
+            </div>
+          </div>
+          <div
+            className="m-4"
+          >
+            <button
+              className="bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 rounded"
+              type="button"
+            >
+              <a
+                href="/pricing-form"
+                onClick={[Function]}
+              >
+                Get Started
+              </a>
+            </button>
+          </div>
+          <div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <span
+                className="mr-2"
+              >
+                <span />
+              </span>
+              <h4
+                className="text-light-text dark:text-dark-text-fill text-sm"
+              >
+                Comprehensive security
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Pricing Page Renders the page with form 1`] = `
+<div
+  className="flex flex-col bg-light-bg dark:bg-dark-frame-bg justify-center mx-auto w-full py-32"
+>
+  <h2
+    className="text-light-text dark:text-dark-text-fill text-4xl font-bold mb-4 mx-auto"
+  >
+    Pro
+  </h2>
+  <h3
+    className="text-light-text dark:text-dark-text-fill text-3xl mb-4 mx-auto"
+  >
+    Fill this form
+  </h3>
+  <div
+    className="w-3/4 md:w-2/4 mx-auto"
+  >
+    <form>
+      <div
+        className="mb-4"
+      >
+        <div
+          className="flex flex-row items-center"
+        >
+          <span>
+            <span />
+          </span>
+          <h4
+            className="text-light-text dark:text-dark-text-fill text-xl ml-2"
+          >
+            Organization
+          </h4>
+        </div>
+        <div
+          className="my-2 flex flex-col"
+        >
+          <label
+            className="text-light-text dark:text-dark-text-fill text-lg"
+            htmlFor="country"
+          >
+            Country
+            <input
+              className="dark:bg-dark-frame-bg appearance-none border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="country"
+              placeholder="Country"
+              type="text"
+            />
+          </label>
+        </div>
+        <div>
+          <label
+            className="text-light-text dark:text-dark-text-fill text-lg"
+            htmlFor="organizationName"
+          >
+            Organization name
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="organizationName"
+              placeholder="Organization name"
+              type="text"
+            />
+          </label>
+        </div>
+        <div>
+          <div>
+            <label
+              className="text-light text dark:text-dark-text-fill text-lg"
+              htmlFor="streetAddress"
+            >
+              Street address
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="streetAddress"
+                placeholder="Street address"
+                type="text"
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="city"
+            >
+              City
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="city"
+                placeholder="City"
+                type="text"
+              />
+            </label>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="province"
+            >
+              Province
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="province"
+                placeholder="Province"
+                type="text"
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="pcode"
+            >
+              Postal Code
+              <input
+                className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+                id="pcode"
+                placeholder="Postal code"
+                type="text"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      <div
+        className="mb-4"
+      >
+        <div
+          className="flex flex-row items-center"
+        >
+          <span>
+            <span />
+          </span>
+          <h4
+            className="text-light-text dark:text-dark-text-fill text-xl ml-2"
+          >
+            Payment method
+          </h4>
+        </div>
+        <div>
+          <label
+            className="text-light-text dark:text-dark-text-fill text-lg"
+            htmlFor="name"
+          >
+            Name
+          </label>
+          <input
+            className="appearance-none border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill dark:bg-dark-frame-bg leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            placeholder="Name"
+            type="text"
+          />
+        </div>
+        <div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="cardNumber"
+            >
+              Card number
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="cardNumber"
+              placeholder="Card number"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="expiration"
+            >
+              Expiration
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="expiration"
+              placeholder="Expiration"
+              type="text"
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg"
+              htmlFor="cvv"
+            >
+              CVV
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="cvv"
+              placeholder="CVV"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              className="text-light-text dark:text-dark-text-fill text-lg "
+              htmlFor="pcode"
+            >
+              Postal code
+            </label>
+            <input
+              className="appearance-none dark:bg-dark-frame-bg border my-1 rounded w-full py-2 px-3 text-light-text dark:text-dark-text-fill leading-tight focus:outline-none focus:shadow-outline"
+              id="pcode"
+              placeholder="Postal code"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        className="bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 mb-2 rounded"
+        type="button"
+      >
+        Request
+      </button>
+    </form>
+  </div>
+</div>
+`;

@@ -1,8 +1,10 @@
 /* eslint-disable */
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TraineeAttendanceDetails = () => {
+  
   return (
     <div>
       <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center  min-h-screen ">
