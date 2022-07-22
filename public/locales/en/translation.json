@@ -195,5 +195,7 @@
   "Start Date": "Start Date",
   "End Date": "End Date",
   "Start time": "Start time",
-  "End time": "End time"
+  "End time": "End time",
+  "Mark all as read": "Mark all as read",
+  "Notification": "Notification"
 }

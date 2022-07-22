@@ -21,6 +21,8 @@ module.exports = {
         'dark-frame-bg': '#262E3D',
         'dark-tertiary': '#374151',
         'divider-bg': '#E5E7EB',
+        'dark-45': '#00000073',
+        'border-dark': '#5f5b5b80',
       },
       fontFamily: {
         Inria: ['Inria Serif', 'serif'],
