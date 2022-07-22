@@ -1,11 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function TraineeComments() {
+  const { t } = useTranslation();
   return (
     <div className="bg-neutral-100 dark:bg-dark-bg dark:text-white flex flex-col justify-start items-center  lg:ml-[-32px] md:ml-[-44px] sm:ml-[-24px] sm:pb-80 lg:mt-[-200px] sm:mt-[-200px] md:mt-[-550px] md:py-8 h-full">
       <div className="w-7/12 flex flex-col md:py-10 sm:py-12 md:mt-0 lg:ml-0 md:ml-[-120px]  sm:mt-44">
         <div className=" w-7/12 ">
-          <h2 className="font-md">Comments</h2>
+          <h2 className="font-md">{t('Comments')}</h2>
         </div>
         <div className=" mt-4">
           <h2>Kenth Ngabo</h2>

@@ -197,5 +197,27 @@
   "Start time": "Start time",
   "End time": "End time",
   "Mark all as read": "Mark all as read",
-  "Notification": "Notification"
+  "Notification": "Notification",
+  
+
+  "Back": "Back",
+  "Details": "Details",
+  "Average": "Average",
+  "Phase 1": "Phase 1",
+  "Phase 2": "Phase 2",
+  "Phase 3": "Phase 3",
+  "Phase 4": "Phase 4",
+  "Phase 5": "Phase 5",
+  "Sprint 1": "Sprint 1",
+  "Sprint 2": "Sprint 2",
+  "Sprint 3": "Sprint 3",
+  "Sprint 4": "Sprint 4",
+  "Sprint 5": "Sprint 5",
+  "Demo":"Demo",
+  "Record":"Record",
+  "Comment":"Comment",
+  "Metric":"Metric",
+  "Grade":"Grade",
+  "Comments":"Comments",
+  "Reply":"Reply"
 }

@@ -2,8 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Buttons';
+import { useTranslation } from 'react-i18next';
 
 const TraineeAttendance = () => {
+
+  const { t } = useTranslation();
+  
   return (
     <>
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
@@ -12,17 +16,17 @@ const TraineeAttendance = () => {
             <div className="">
               <div className="flex ml-2 items-center justify-between">
                 <h2 className="text-gray-800 dark:text-white font-semibold">
-                  Attendance
+                  {t('Attendance')}
                 </h2>
               </div>
               <div className="flex ml-[-25px] px-7 py-2  mt-4">
                 <select className="flex bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer">
-                  <option>All phases</option>
-                  <option>Phase 1</option>
-                  <option>Phase 2</option>
-                  <option>Phase 3</option>
-                  <option>Phase 4</option>
-                  <option>Phase 5</option>
+                  <option>{t('phases')}</option>
+                  <option>{t('Phase 1')}</option>
+                  <option>{t('Phase 2')}</option>
+                  <option>{t('Phase 3')}</option>
+                  <option>{t('Phase 4')}</option>
+                  <option>{t('Phase 5')}</option>
                 </select>
               </div>
             </div>
@@ -34,15 +38,15 @@ const TraineeAttendance = () => {
                     <tbody>
                       <tr>
                         <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          Sprint
+                          {t('Sprint')}
                         </th>
 
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
-                          Session
+                          {t('Session')}
                         </th>
 
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          Record
+                          {t('Record')}
                         </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider"></th>
                       </tr>
@@ -51,7 +55,7 @@ const TraineeAttendance = () => {
                           <div className="flex justify-center items-center">
                             <div className="">
                               <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                Sprint 1
+                                {t('Sprint 1')}
                               </p>
                             </div>
                           </div>
@@ -59,7 +63,7 @@ const TraineeAttendance = () => {
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
                           <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                            Demo
+                            {t('Demo')}
                           </p>
                         </td>
 
@@ -87,7 +91,7 @@ const TraineeAttendance = () => {
                           <div className="flex justify-center items-center">
                             <div className="">
                               <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                Sprint 2
+                                {t('Sprint 2')}
                               </p>
                             </div>
                           </div>
@@ -95,7 +99,7 @@ const TraineeAttendance = () => {
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm md:table-cell sm:hidden">
                           <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap ">
-                            Standup
+                            {t('Standup')}
                           </p>
                         </td>
 
@@ -122,7 +126,7 @@ const TraineeAttendance = () => {
                           <div className="flex justify-center items-center">
                             <div className="">
                               <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                Sprint 3
+                                {t('Sprint 3')}
                               </p>
                             </div>
                           </div>
@@ -130,7 +134,7 @@ const TraineeAttendance = () => {
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
                           <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                            Demo
+                            {t('Demo')}
                           </p>
                         </td>
 
@@ -157,7 +161,7 @@ const TraineeAttendance = () => {
                           <div className="flex justify-center items-center">
                             <div className="">
                               <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                Sprint 4
+                                {t('Sprint 4')}
                               </p>
                             </div>
                           </div>
@@ -165,7 +169,7 @@ const TraineeAttendance = () => {
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm md:table-cell sm:hidden">
                           <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                            Standup
+                            {t('Standup')}
                           </p>
                         </td>
 
@@ -192,7 +196,7 @@ const TraineeAttendance = () => {
                           <div className="flex justify-center items-center">
                             <div className="">
                               <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                Sprint 5
+                                {t('Sprint 5')}
                               </p>
                             </div>
                           </div>
@@ -200,7 +204,7 @@ const TraineeAttendance = () => {
 
                         <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
                           <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                            Demo
+                            {t('Demo')}
                           </p>
                         </td>
 
