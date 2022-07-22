@@ -12,6 +12,9 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
     >
       <div
         onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
       >
         <svg
           aria-hidden="true"
@@ -73,6 +76,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
       aria-hidden="true"
       className="w-6 cursor-pointer ml-auto dark:text-dark-text-fill"
       fill="currentColor"
+      onClick={[Function]}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >

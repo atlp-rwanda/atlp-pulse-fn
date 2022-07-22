@@ -21,6 +21,7 @@ import SupAdDashboard from '../pages/SupAdDashboard';
 import TraineeDashboard from '../pages/TraineeDashboard';
 
 function DashRoutes() {
+  
   return (
     <PrivateRoute>
       <div className="flex flex-col min-h-screen">
