@@ -12,6 +12,9 @@ import {
   HomeIcon,
   TrendingUpIcon,
   MapIcon,
+  UserGroupIcon,
+  ClipboardIcon,
+  UploadIcon,
 } from '@heroicons/react/solid';
 import {
   AcademicCapIcon,
@@ -59,6 +62,17 @@ function Sidebar({ style }: { style: string }) {
           </SideNavLink>
           <SideNavLink to="/dashboard/session" name="Session">
             <BookOpenIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+        </CheckRole>
+        <CheckRole roles={['admin', 'coordinator']}>
+          <SideNavLink to="/dashboard/trainees" name="Trainee">
+            <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink to="/dashboard/ratings" name="Ratings">
+            <ClipboardIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink to="/dashboard/updated-ratings" name="Updated ratings">
+            <UploadIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
         {/* Shared Links */}

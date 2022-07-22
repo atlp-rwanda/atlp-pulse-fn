@@ -102,5 +102,40 @@
   "Integrations":"Entegarasiyo",
   "Community":"Umuryango",
   "Help Center":"Ubufasha",
-  "Resources":"Ibikoresho"
+  "Resources":"Ibikoresho",
+
+  "Add Trainee": "Ongeraho umunyeshuri",
+  "name": "Amazina",
+  "email": "Email",
+  "cohort": "Icyiciro",
+  "program": "Porogaramu",
+  "cancel": "Guhagarika",
+  "save": "Kwemeza",
+  "register": "Kwandikisha",
+  "Developers Info": "Amakuru y'umunyeshuri",
+  "role": "Icy'ashinzwe",
+
+  "Update Trainee": "Kuvugurura amakuru y'umunyeshuri",
+
+  "Delete Trainee": "Gusiba umunyeshuri",
+  "Are you sure you want to delete this person": "Emeza ko ugiye gusiba umunyeshuri",
+  "Delete": "Gusiba",
+  "Edit": "Guhindura",
+  "phases": "Ibihembwe",
+  "phase": "Igihembwe",
+  "Performance score": "Amanota y'imikorere",
+  "Sprint": "Igice",
+  "Quantity": "Ingano",
+  "Quality": "Ubuziranenge",
+  "Professional skills": "Ubumenyi mukazi",
+  "Actions": "Ibikorwa",
+  "rating": "Igereranya",
+  "Approve updated ratings": "Emeza impinduka y'amanota",
+  "Are you sure you want to approve this updated ratings": "Ugiye kwemeza impinduka z'amanota",
+  "Approve": "Emeza",
+  "Reject Updated ratings": "Hakana Impinduka y'amanota",
+  "Are you sure you want to reject this updated ratings": "Ugiye guhakana impinduka z'amanota",
+  "Reject": "Kwanga",
+  "Updated Ratings": "Impinduka z'amanota"
+
 }

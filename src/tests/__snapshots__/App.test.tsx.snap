@@ -255,10 +255,11 @@ exports[`App test  Should render app 1`] = `
             </em>
           </p>
           <div
-            className="w-full text-center justify-center items-center"
+            className="w-full text-center justify-center items-center mt-8"
           >
             <button
               className="mt-12 lg:mt-0 justify-center items-center py-3 w-fit px-8  text-xl font-bold uppercase my-4 bg-primary text-white rounded-md"
+              type="button"
             >
               Get Started
             </button>
