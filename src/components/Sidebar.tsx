@@ -62,11 +62,41 @@ function Sidebar({ style }: { style: string }) {
           </NavLink>
         </li>
         <li className="mb-4 hover:text-primary">
+          <NavLink to="admin/manage" className="flex flex-row">
+            <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+            <span className="text-base dark:text-dark-text-fill">
+              {t('Manageroles')}
+            </span>
+          </NavLink>
+        </li>
+        <li className="mb-4 hover:text-primary">
+          <NavLink to="admin/cohorts" className="flex flex-row">
+            <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+            <span className="text-base dark:text-dark-text-fill">
+              {t('Cohort')}
+            </span>
+          </NavLink>
+        </li>
+        <li className="mb-4 hover:text-primary">
           <NavLink to="trainee/performance" className="flex flex-row">
             <TrendingUpIcon className="w-5 mr-2 dark:text-dark-text-fill" />
             <span className="text-base dark:text-dark-text-fill">
               Perfomance
             </span>
+          </NavLink>
+        </li>
+        <li className="mb-4 hover:text-primary">
+          <NavLink to="admin/session" className="flex flex-row">
+            <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+            <span className="text-base dark:text-dark-text-fill">
+              {t('Session')}
+            </span>
+          </NavLink>
+        </li>
+        <li className="mb-4 hover:text-primary">
+          <NavLink to="#link" className="flex flex-row">
+            <GlobeAltIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+            <span className="text-base dark:text-dark-text-fill">Domains</span>
           </NavLink>
         </li>
         <li className="mb-4 hover:text-primary">
