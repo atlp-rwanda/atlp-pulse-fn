@@ -5,16 +5,18 @@ import {
   UsersIcon,
   GlobeAltIcon,
   CalendarIcon,
+  ClipboardCheckIcon,
   FolderIcon,
   SupportIcon,
   LogoutIcon,
   BellIcon,
   HomeIcon,
   TrendingUpIcon,
-  MapIcon,
+  ClipboardListIcon,
+  KeyIcon,
+  TemplateIcon,
+  RefreshIcon,
   UserGroupIcon,
-  ClipboardIcon,
-  UploadIcon,
 } from '@heroicons/react/solid';
 import {
   AcademicCapIcon,
@@ -39,9 +41,8 @@ function Sidebar({ style }: { style: string }) {
         </SideNavLink>
 
         {/* FOR SUPER ADMINS */}
-
         <CheckRole roles={['super']}>
-          <SideNavLink to="/dashboard/organizations" name="Organizations">
+          <SideNavLink name="Organizations" to="/dashboard/organizations">
             <HomeIcon className="w-5 mr-2 " />
           </SideNavLink>
 
@@ -52,29 +53,56 @@ function Sidebar({ style }: { style: string }) {
             <GlobeAltIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
-        {/* FOR ADMINS */}
-        <CheckRole roles={['admin']}>
-          <SideNavLink to="/dashboard/manage" name="Manageroles">
-            <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          </SideNavLink>
-          <SideNavLink to="/dashboard/cohorts" name="Cohort">
-            <AcademicCapIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          </SideNavLink>
-          <SideNavLink to="/dashboard/session" name="Session">
-            <BookOpenIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          </SideNavLink>
-        </CheckRole>
+
+        {/* FOR ADMINS & COORDINATORS */}
         <CheckRole roles={['admin', 'coordinator']}>
-          <SideNavLink to="/dashboard/trainees" name="Trainee">
+          <SideNavLink to="/dashboard/trainees" name="Trainees">
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink to="/dashboard/ratings" name="Ratings">
-            <ClipboardIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+        </CheckRole>
+
+        {/* FOR ADMINS */}
+        <CheckRole roles={['admin']}>
+          <SideNavLink to="/dashboard/coordinators" name="Coordinators">
+            <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink to="/dashboard/updated-ratings" name="Updated ratings">
-            <UploadIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          <SideNavLink to="/dashboard/cohorts" name="Cohorts">
+            <AcademicCapIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink to="/dashboard/updated-ratings" name="Updated Ratings">
+            <RefreshIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink to="/dashboard/grading-system" name="Grading System">
+            <TemplateIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink to="/dashboard/manage" name="Roles & Access">
+            <KeyIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
+
+        {/* FOR COORDINATORS */}
+        <CheckRole roles={['coordinator']}>
+          <SideNavLink to="/dashboard/sessions" name="Sessions">
+            <BookOpenIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink to="/dashboard/ratings" name="Ratings">
+            <ClipboardListIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink name="Attendance" to="/dashboard/attendance-rating">
+            <ClipboardCheckIcon className="w-5 mr-2 " />
+          </SideNavLink>
+        </CheckRole>
+
+        {/* FOR TRAINEES */}
+        <CheckRole roles={['trainee']}>
+          <SideNavLink name="Attendance" to="/dashboard/attendance">
+            <ClipboardCheckIcon className="w-5 mr-2 " />
+          </SideNavLink>
+          <SideNavLink name="Performance" to="/dashboard/performance">
+            <TrendingUpIcon className="w-5 mr-2 " />
+          </SideNavLink>
+        </CheckRole>
+
         {/* Shared Links */}
         <SideNavLink name="Notifications" to="/dashboard/notifications">
           <BellIcon className="w-5 mr-2" />
@@ -82,20 +110,12 @@ function Sidebar({ style }: { style: string }) {
         <SideNavLink name="Calendar" to="/dashboard/calendar">
           <CalendarIcon className="w-5 mr-2" />
         </SideNavLink>
-
-        <CheckRole roles={['trainee', 'coordinator']}>
-          <SideNavLink name="Attendance" to="/dashboard/attendance">
-            <FolderIcon className="w-5 mr-2 " />
-          </SideNavLink>
-          <SideNavLink name="Performance" to="/dashboard/performance">
-            <TrendingUpIcon className="w-5 mr-2 " />
-          </SideNavLink>
-        </CheckRole>
-        <CheckRole roles={['admin', 'super']}>
-          <SideNavLink name="Docs" to="/dashboard/docs">
-            <MapIcon className="w-5 mr-2 " />
-          </SideNavLink>
-        </CheckRole>
+        <SideNavLink name="Docs" to="/dashboard/docs">
+          <FolderIcon className="w-5 mr-2 " />
+        </SideNavLink>
+        <SideNavLink name="Settings" to="/dashboard/settings">
+          <CogIcon className="w-5 mr-2 " />
+        </SideNavLink>
         <SideNavLink name="Help" to="/dashboard/support">
           <SupportIcon className="w-5 mr-2 " />
         </SideNavLink>

@@ -146,7 +146,6 @@
   "suredelete":"Êtes-vous sûr de vouloir supprimer ce?",
   "Manageaccess":"Gérer l'accès",
   "All":"Tout",
-  "Trainees":"Stagiaires",
   "Status":"Statut",
   "Role":"Rôle",
   "Remove":"Retirer",
@@ -173,13 +172,21 @@
   "Quality": "Qualité",
   "Professional skills": "Compétences professionnelles",
   "Actions": "Actions",
-
   "Approve updated ratings": "Approuver les notations mises à jour",
   "Are you sure you want to approve this updated ratings": "Êtes-vous sûr de vouloir approuver cette mise à jour des évaluations",
   "Approve": "Approve",
   "Reject Updated ratings": "Reject Updated ratings",
   "Are you sure you want to reject this updated ratings": "Êtes-vous sûr de vouloir rejeter cette notation mise à jour",
   "Reject": "Rejeter",
-  "Updated Ratings": "Classement actualisé"
-  
+  "Updated Ratings": "Notations mises à jour",
+  "Trainees":"Stagiaires",
+  "Coordinators":"Coordinateurs",
+  "Cohorts":"Cohortes",
+  "Grading System":"Système de notation",
+  "Roles & Access":"Rôles et accès",
+  "Sessions":"Sessions",
+  "Ratings":"Notations",
+  "Attendance":"Présence",
+  "Performance":"Performance",
+  "Logout":"Déconnexion"  
 }

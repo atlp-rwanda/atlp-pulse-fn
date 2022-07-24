@@ -19,7 +19,7 @@ exports[`Trainee Dashboard test  Should render TraineeDashboard 1`] = `
           <h4
             className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
           >
-            Cohorts
+            Cohort
           </h4>
           <h1
             className="font-['sans] font-semibold text-4xl mt-2 dark:text-dark-text-fill"

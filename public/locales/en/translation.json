@@ -145,7 +145,6 @@
   "suredelete":"Are you sure you want to delete this?",
   "Manageaccess":"Manage access",
   "All":"All",
-  "Trainees":"Trainees",
   "Status":"Status",
   "Role":"Role",
   "Remove":"Remove",
@@ -161,7 +160,6 @@
   "Developers Info": "Developers Info",
   "role": "Role",
   "rating": "rating",
-
   "Update Trainee": "Update Trainee",
   "Delete Trainee": "Delete Trainee",
   "are should you want to delete this person": "Are you sure you want to delete this person",
@@ -174,14 +172,21 @@
   "Quality": "Quality",
   "Professional skills": "Professional skills",
   "Actions": "Actions",
-
   "Approve updated ratings": "Approve updated ratings",
   "Are you sure you want to approve this updated ratings": "Are you sure you want to approve this updated ratings",
   "Approve": "Approve",
   "Reject Updated ratings": "Reject Updated ratings",
   "Are you sure want to reject this updated ratings": "Are you sure you want to reject this updated ratings",
   "Reject": "Reject",
-  "Updated Ratings": "Updated Ratings"
-
-
+  "Updated Ratings": "Updated Ratings",
+  "Trainees":"Trainees",
+  "Coordinators":"Coordinators",
+  "Cohorts":"Cohorts",
+  "Grading System":"Grading System",
+  "Roles & Access":"Roles & Access",
+  "Sessions":"Sessions",
+  "Ratings":"Ratings",
+  "Attendance":"Attendance",
+  "Performance":"Performance",
+  "Logout":"Logout"  
 }

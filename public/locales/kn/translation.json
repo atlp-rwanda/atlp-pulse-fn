@@ -114,9 +114,7 @@
   "register": "Kwandikisha",
   "Developers Info": "Amakuru y'umunyeshuri",
   "role": "Icy'ashinzwe",
-
   "Update Trainee": "Kuvugurura amakuru y'umunyeshuri",
-
   "Delete Trainee": "Gusiba umunyeshuri",
   "Are you sure you want to delete this person": "Emeza ko ugiye gusiba umunyeshuri",
   "Delete": "Gusiba",
@@ -136,6 +134,15 @@
   "Reject Updated ratings": "Hakana Impinduka y'amanota",
   "Are you sure you want to reject this updated ratings": "Ugiye guhakana impinduka z'amanota",
   "Reject": "Kwanga",
-  "Updated Ratings": "Impinduka z'amanota"
-
+  "Updated Ratings": "Amanota mashya",
+  "Trainees":"Abahugurwa",
+  "Coordinators":"Abahuzabikorwa",
+  "Cohorts":"Itsinda",
+  "Grading System":"Sisitemu y'amanota",
+  "Roles & Access":"Uburenganzira",
+  "Sessions":"Sesiyo",
+  "Ratings":"Amanota",
+  "Attendance":"Ubwitabire",
+  "Performance":"Uko witwaye",
+  "Logout":"Gusohoka"
 }
