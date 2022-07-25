@@ -10,6 +10,9 @@ import Adminlogin from '../pages/Organization/AdminLogin';
 import NotFound from '../pages/NotFound';
 import PricingForm from '../components/PricingForm';
 import Pricing from '../pages/Pricing';
+import NoRedirect from '../pages/Noredirect';
+import Pay from '../components/Pay';
+
 
 function MainRoutes() {
   return (
@@ -22,7 +25,10 @@ function MainRoutes() {
         <Route path="/login-admin" element={<Adminlogin />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/pricing-form" element={<PricingForm />} />
+        <Route path="/redirect-info" element={<NoRedirect />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/pay" element={<Pay />} />
+
       </Routes>
       <Footer />
     </div>

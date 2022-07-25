@@ -1,6 +1,8 @@
+/* eslint-disable */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 export default function PricingForm() {
   const { t } = useTranslation();
@@ -121,6 +123,11 @@ export default function PricingForm() {
                 {t('Payment method')}
               </h4>
             </div>
+
+            <div />
+            <div />
+          </div>
+          <div className="flex flex-row justify-around">
             <div>
               <label
                 htmlFor="name"
@@ -204,6 +211,7 @@ export default function PricingForm() {
           </button>
         </form>
       </div>
-    </div>
-  );
-}
+      </div>
+    );
+
+};
