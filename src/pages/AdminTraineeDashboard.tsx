@@ -2,26 +2,20 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useTranslation } from 'react-i18next';
-import developers from '../dummyData/developers2.json'
-
+import developers from '../dummyData/developers2.json';
+import Button from './../components/Buttons';
 
 const AdminTraineeDashboard = () => {
   const { t } = useTranslation();
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
-  const [ findFilter, setFindFilter] = useState('')
-  const [formData, setFormData] = useState([])
+  const [findFilter, setFindFilter] = useState('');
+  const [formData, setFormData] = useState([]);
 
   const removeModel = () => {
     let newState = !registerTraineeModel;
     setRegisterTraineeModel(newState);
   };
 
-
-
-
-
-
-  
   return (
     <>
       {/* =========================== Start::  RegisterTraineeModel =============================== */}
@@ -45,7 +39,7 @@ const AdminTraineeDashboard = () => {
                     type="text"
                     name="name"
                     className="border-gray-300 dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
-                    placeholder= {t('name')}
+                    placeholder={t('name')}
                   />
                 </div>
               </div>
@@ -82,15 +76,23 @@ const AdminTraineeDashboard = () => {
               </div>
 
               <div className="w-full flex justify-between">
-                <button
-                  className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
-                  onClick={(e) => removeModel()}
+                <Button
+                  variant="info"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => removeModel()}
                 >
-                  {t('cancel')}
-                </button>
-                <button className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded">
-                {t('save')}
-                </button>
+                  {' '}
+                  {t('Cancel')}{' '}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                >
+                  {' '}
+                  {t('Save')}{' '}
+                </Button>
               </div>
             </form>
           </div>
@@ -106,12 +108,10 @@ const AdminTraineeDashboard = () => {
               <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
                 <div className="flex items-left px-10 lg:px-60 pt-24 pb-8">
                   <div className="space-x-8">
-                    <button
-                      className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-                      onClick={removeModel}
-                    >
-                      {t('register')} +
-                    </button>
+                    <Button variant="primary" size="lg" onClick={removeModel}>
+                      {' '}
+                      {t('register')} +{' '}
+                    </Button>
                   </div>
                 </div>
                 <div className="px-3 md:px-8">
@@ -119,10 +119,15 @@ const AdminTraineeDashboard = () => {
                     <div className=" flex items-center justify-between pb-6">
                       <div>
                         <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
-                        {t('Developers Info')}
+                          {t('Developers Info')}
                         </h2>
                         {/* <span className="text-xs text-gray-600">Current cohort</span> */}
-                        <input value={findFilter}  placeholder="Filter by cohort, program, and rating"  className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96" onChange={(e) => setFindFilter(e.target.value)}/>
+                        <input
+                          value={findFilter}
+                          placeholder="Filter by cohort, program, and rating"
+                          className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+                          onChange={(e) => setFindFilter(e.target.value)}
+                        />
                       </div>
                     </div>
                     <div>
@@ -132,38 +137,42 @@ const AdminTraineeDashboard = () => {
                             <thead className=" w-full">
                               <tr>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                                {t('name')}
+                                  {t('name')}
                                 </th>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                {t('email')}
+                                  {t('email')}
                                 </th>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                {t('rating')}
+                                  {t('rating')}
                                 </th>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                {t('cohort')}
+                                  {t('cohort')}
                                 </th>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                {t('program')}
+                                  {t('program')}
                                 </th>
                               </tr>
                             </thead>
                             <tbody>
                               {developers.map((developer: any, index: any) => {
-
                                 let rowTheme =
                                   index % 2 !== 0
                                     ? 'bg-light-bg dark:bg-dark-tertiary'
                                     : 'bg-white dark:bg-dark-bg';
-        
-                                    
-                                    let developer1
-                                    if(findFilter.toLowerCase() == developer.cohort.toLowerCase() || findFilter.length == 0 || findFilter.toLowerCase() == developer.program.toLowerCase()){
-                                      developer1 = developer
-                                      developer = developer1
-                                    }else{
-                                      return
-                                    }
+
+                                let developer1;
+                                if (
+                                  findFilter.toLowerCase() ==
+                                    developer.cohort.toLowerCase() ||
+                                  findFilter.length == 0 ||
+                                  findFilter.toLowerCase() ==
+                                    developer.program.toLowerCase()
+                                ) {
+                                  developer1 = developer;
+                                  developer = developer1;
+                                } else {
+                                  return;
+                                }
 
                                 return (
                                   <tr className={`${rowTheme} `} key={index}>
@@ -188,7 +197,7 @@ const AdminTraineeDashboard = () => {
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
                                       <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                      {developer.cohort}
+                                        {developer.cohort}
                                       </p>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">

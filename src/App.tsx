@@ -6,7 +6,6 @@ import './index.css';
 import ScrollToTop from './components/ScrollToTop';
 import LandingPage from './pages/Home';
 
-
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen ">
@@ -21,6 +20,6 @@ const App = () => {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

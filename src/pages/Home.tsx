@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { UserContext } from '../hook/useAuth';
+import Button from '../components/Buttons';
 
 function LandingPage() {
   const { t } = useTranslation();
@@ -43,12 +44,15 @@ function LandingPage() {
               </em>
             </p>
             <div className="w-full text-center justify-center items-center mt-8">
-              <button
-                type="button"
-                className="mt-12 lg:mt-0 justify-center items-center py-3 w-fit px-8  text-xl font-bold uppercase my-4 bg-primary text-white rounded-md"
+              <Button
+                variant="primary"
+                size="lg"
+                style="mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
               >
+                {' '}
                 {user?.auth ? 'Continue' : t('Get Started')}
-              </button>
+                {' '}
+              </Button>
             </div>
           </div>
         </div>

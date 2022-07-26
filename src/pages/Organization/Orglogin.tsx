@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import Button from '../../components/Buttons';
 
 function Orglogin() {
   const { t } = useTranslation();
@@ -24,12 +25,15 @@ function Orglogin() {
 
           <div>
             <Link to="/login-admin">
-              <button
-                type="button"
-                className="w-full py-2 px-4 bg-primary hover:bg-cyan-700 rounded-md text-white text-sm"
+              <Button
+                variant="primary"
+                size="lg"
+                style="w-full ml-0 hover:bg-cyan-700 text-sm"
               >
+                {' '}
                 {t('Continue')}
-              </button>
+                {' '}
+              </Button>
             </Link>
           </div>
           <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">

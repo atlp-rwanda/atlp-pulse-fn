@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from './Buttons';
 
 const TraineeAttendanceDetails = () => {
-  
   return (
     <div>
       <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center  min-h-screen ">
@@ -34,9 +34,10 @@ const TraineeAttendanceDetails = () => {
               </td>
 
               <td className="py-3 px-8">
-                <button className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
-                  Reply
-                </button>
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                  {' '}
+                  Reply{' '}
+                </Button>
               </td>
             </tr>
             <tr className="text-black dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary ">
@@ -48,9 +49,10 @@ const TraineeAttendanceDetails = () => {
                 enim ad minim veniam
               </td>
               <td className="py-3 ">
-                <button className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
-                  Reply
-                </button>
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                  {' '}
+                  Reply{' '}
+                </Button>
               </td>
             </tr>
           </tbody>

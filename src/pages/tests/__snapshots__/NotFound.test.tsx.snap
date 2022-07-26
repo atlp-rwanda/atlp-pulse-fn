@@ -24,7 +24,7 @@ exports[`Not Found Renders the 404 Page 1`] = `
       404_page_paragraph
     </p>
     <a
-      className="px-5 py-3 bg-primary font-bold mt-5 rounded-md text-white w-fit"
+      className="px-5 py-2 bg-primary font-bold mt-5 rounded-md text-white w-fit"
       href="/"
       onClick={[Function]}
     >

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
+import Button from './Buttons';
 
 export default function PricingForm() {
   const { t } = useTranslation();
@@ -196,12 +197,11 @@ export default function PricingForm() {
               </div>
             </div>
           </div>
-          <button
-            type="button"
-            className="bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 mb-2 rounded"
-          >
+          <Button variant="primary" size="lg">
+            {' '}
             {t('Request')}
-          </button>
+            {' '}
+          </Button>
         </form>
       </div>
     </div>

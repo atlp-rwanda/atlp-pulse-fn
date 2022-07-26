@@ -18,7 +18,7 @@ function NotFound() {
         </p>
 
         <Link
-          className="px-5 py-3 bg-primary font-bold mt-5 rounded-md text-white w-fit"
+          className="px-5 py-2 bg-primary font-bold mt-5 rounded-md text-white w-fit"
           to="/dashboard"
         >
           Back Home

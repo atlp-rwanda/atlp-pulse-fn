@@ -91,10 +91,11 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         <button
-          className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-          type="button"
+          className="btn primary lg undefined"
         >
+           
           Sign In
+           
         </button>
       </a>
       <a
@@ -102,10 +103,11 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         <button
-          className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-          type="button"
+          className="btn transparentbtn lg mr-8"
         >
+           
           Register an organization
+           
         </button>
       </a>
     </div>
@@ -298,10 +300,11 @@ exports[`Header Tests Should render the header with no active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-          type="button"
+          className="btn primary lg undefined"
         >
+           
           Sign In
+           
         </button>
       </a>
       <a
@@ -309,10 +312,11 @@ exports[`Header Tests Should render the header with no active 1`] = `
         onClick={[Function]}
       >
         <button
-          className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-          type="button"
+          className="btn transparentbtn lg mr-8"
         >
+           
           Register an organization
+           
         </button>
       </a>
     </div>
@@ -505,19 +509,20 @@ exports[`Header Tests Should render the header with no active 2`] = `
         onClick={[Function]}
       >
         <button
-          className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-          type="button"
+          className="btn primary lg undefined"
         >
+           
           Dashboard
+           
         </button>
       </a>
       <button
-        className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-red-700 font-bolf dark:text-dark-text-fill border border-red-600 dark:border-dark-text-fill rounded-md"
-        id="logout"
+        className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
         onClick={[Function]}
-        type="button"
       >
+         
         Logout
+         
       </button>
     </div>
     <div
@@ -710,10 +715,11 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         <button
-          className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-          type="button"
+          className="btn primary lg undefined"
         >
+           
           Sign In
+           
         </button>
       </a>
       <a
@@ -721,10 +727,11 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         <button
-          className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-          type="button"
+          className="btn transparentbtn lg mr-8"
         >
+           
           Register an organization
+           
         </button>
       </a>
     </div>
@@ -918,10 +925,11 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-          type="button"
+          className="btn primary lg undefined"
         >
+           
           Sign In
+           
         </button>
       </a>
       <a
@@ -929,10 +937,11 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         <button
-          className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-          type="button"
+          className="btn transparentbtn lg mr-8"
         >
+           
           Register an organization
+           
         </button>
       </a>
     </div>
@@ -1126,10 +1135,11 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-          type="button"
+          className="btn primary lg undefined"
         >
+           
           Sign In
+           
         </button>
       </a>
       <a
@@ -1137,10 +1147,11 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         <button
-          className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-          type="button"
+          className="btn transparentbtn lg mr-8"
         >
+           
           Register an organization
+           
         </button>
       </a>
     </div>

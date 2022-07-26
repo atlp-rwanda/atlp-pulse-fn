@@ -13,16 +13,14 @@ import LogoFooter from '../assets/logoWhite.svg';
 function Footer({ styles }: any) {
   const { t } = useTranslation();
   return (
-    <div className={`w-full bg-primary dark:bg-dark-bg text-gray-300 mt-auto ${styles}`}>
+    <div
+      className={`w-full bg-primary dark:bg-dark-bg text-gray-300 mt-auto ${styles}`}
+    >
       <div className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full">
         <div className="flex flex-col lg:flex-row items-center py-5">
           <div className="flex flex-col mr-12 lg:mr-0">
             <div className="flex mb-2">
-              <img
-                className="mr-2 lg:mr-0"
-                src={LogoFooter}
-                alt="logo"
-              />
+              <img className="mr-2 lg:mr-0" src={LogoFooter} alt="logo" />
               <h1 className="text-3xl font-bold text-primary dark:text-dark-text-fill">
                 PULSE
               </h1>
@@ -63,11 +61,7 @@ function Footer({ styles }: any) {
         </div>
         <div className=" lg:flex">
           <span className="px-4 lg:py-3 cursor-pointer text-lg">
-            ©
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-            Pulse Technologies
+            © {new Date().getFullYear()} Pulse Technologies
           </span>
         </div>
       </div>
