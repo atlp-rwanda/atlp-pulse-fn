@@ -40,7 +40,7 @@ function DashRoutes() {
           <Route path="/attendance" element={<TraineeAttendance />} />
           <Route path="/attendance-details" element={<AttendanceDetails />} />
           <Route path="/cohorts" element={<AdminCohorts />} />
-          <Route path="/session" element={<AdminSession />} />
+          <Route path="/sessions" element={<AdminSession />} />
           <Route path="/manage" element={<AdminManageRoles />} />
           <Route path="/performance-details" element={<PerformanceDetails />} />
           <Route path="*" element={<NotFound />} />
