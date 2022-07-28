@@ -37,7 +37,4 @@ describe('Admin dashboard page', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-
 });
-
-

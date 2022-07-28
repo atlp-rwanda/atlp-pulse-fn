@@ -94,10 +94,11 @@ exports[`Main Routes Should render 1`] = `
           onClick={[Function]}
         >
           <button
-            className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-            type="button"
+            className="btn primary lg undefined"
           >
+             
             Sign In
+             
           </button>
         </a>
         <a
@@ -105,10 +106,11 @@ exports[`Main Routes Should render 1`] = `
           onClick={[Function]}
         >
           <button
-            className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-            type="button"
+            className="btn transparentbtn lg mr-8"
           >
+             
             Register an organization
+             
           </button>
         </a>
       </div>
@@ -302,10 +304,11 @@ exports[`Main Routes Should render 1`] = `
             onClick={[Function]}
           >
             <button
-              className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-              type="button"
+              className="btn primary lg undefined"
             >
+               
               Sign In
+               
             </button>
           </a>
           <a
@@ -313,10 +316,11 @@ exports[`Main Routes Should render 1`] = `
             onClick={[Function]}
           >
             <button
-              className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-              type="button"
+              className="btn transparentbtn lg mr-8"
             >
+               
               Register an organization
+               
             </button>
           </a>
         </div>
@@ -463,10 +467,11 @@ exports[`Main Routes Should render 1`] = `
             className="w-full text-center justify-center items-center mt-8"
           >
             <button
-              className="mt-12 lg:mt-0 justify-center items-center py-3 w-fit px-8  text-xl font-bold uppercase my-4 bg-primary text-white rounded-md"
-              type="button"
+              className="btn primary lg mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
             >
+               
               Get Started
+               
             </button>
           </div>
         </div>
@@ -687,11 +692,9 @@ exports[`Main Routes Should render 1`] = `
           <span
             className="px-4 lg:py-3 cursor-pointer text-lg"
           >
-            ©
-             
+            © 
             2022
-             
-            Pulse Technologies
+             Pulse Technologies
           </span>
         </div>
       </div>
@@ -912,11 +915,9 @@ exports[`Main Routes Should render 1`] = `
         <span
           className="px-4 lg:py-3 cursor-pointer text-lg"
         >
-          ©
-           
+          © 
           2022
-           
-          Pulse Technologies
+           Pulse Technologies
         </span>
       </div>
     </div>

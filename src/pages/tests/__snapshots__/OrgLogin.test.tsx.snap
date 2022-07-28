@@ -34,10 +34,11 @@ exports[`Organization Login Should render 1`] = `
           onClick={[Function]}
         >
           <button
-            className="w-full py-2 px-4 bg-primary hover:bg-cyan-700 rounded-md text-white text-sm"
-            type="button"
+            className="btn primary lg w-full ml-0 hover:bg-cyan-700 text-sm"
           >
+             
             Continue
+             
           </button>
         </a>
       </div>

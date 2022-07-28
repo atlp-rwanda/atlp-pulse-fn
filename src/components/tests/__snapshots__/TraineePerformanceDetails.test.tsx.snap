@@ -57,9 +57,11 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
             className="py-3 px-8"
           >
             <button
-              className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
+              className="btn primary sm px-4 py-0 text-sm"
             >
+               
               Reply
+               
             </button>
           </td>
         </tr>
@@ -85,9 +87,11 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
             className="py-3 "
           >
             <button
-              className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
+              className="btn primary sm px-4 py-0 text-sm"
             >
+               
               Reply
+               
             </button>
           </td>
         </tr>
@@ -113,9 +117,11 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
             className="py-3"
           >
             <button
-              className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
+              className="btn primary sm px-4 py-0 text-sm"
             >
+               
               Reply
+               
             </button>
           </td>
         </tr>

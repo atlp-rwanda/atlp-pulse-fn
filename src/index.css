@@ -35,3 +35,64 @@
   flex-direction: column;
   flex-grow: 1;
 }
+
+@layer components {
+  .btn {
+    @apply font-bold py-2 px-4 m-2 rounded-md;
+  }
+  .sm {
+    @apply px-2;
+  }
+
+  .md {
+    @apply px-4;
+  }
+
+  .lg {
+    @apply px-6;
+  }
+
+  .xl {
+    @apply px-16;
+  }
+
+  /*button colors: primary, info, success, danger, dark */
+
+  .primary {
+    @apply bg-primary text-white font-semibold;
+  }
+  .primary:hover {
+    @apply bg-primary text-white font-semibold;
+  }
+
+  .transparentbtn {
+    @apply bg-transparent text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill;
+  }
+
+  .success {
+    @apply bg-green-500 text-white;
+  }
+  .success:hover {
+    @apply bg-green-600 text-white;
+  }
+
+  .info {
+    @apply bg-gray-400 text-white;
+  }
+  .info:hover {
+    @apply bg-gray-500 text-white;
+  }
+  .danger {
+    @apply bg-red-500 text-white;
+  }
+  .danger:hover {
+    @apply bg-red-600 text-white;
+  }
+
+  .dark {
+    @apply bg-primary text-white;
+  }
+  .dark:hover {
+    @apply bg-primary text-white;
+  }
+}

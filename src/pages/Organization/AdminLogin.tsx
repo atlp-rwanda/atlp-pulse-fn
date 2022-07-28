@@ -8,6 +8,7 @@ import { MdLockOutline } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContext } from '../../hook/useAuth';
+import Button from '../../components/Buttons';
 
 function AdminLogin() {
   const { t } = useTranslation();
@@ -117,12 +118,14 @@ function AdminLogin() {
                     {t('Forgot Password?')}
                   </Link>
                 </div>
-                <button
-                  type="submit"
-                  className="border-2 border-primary text-primary rounded-full lg:px-12 lg:py-2 inline-block sm:px-4 sm:py-1  md:font-semibold sm:mt-2 sm:font-medium hover:bg-primary hover:text-white  "
+                <Button
+                  variant="transparentbtn"
+                  size="md"
+                  style="border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white"
                 >
-                  Sign In
-                </button>
+                  {' '}
+                  Sign In{' '}
+                </Button>
               </form>
             </div>
             <div className="md:hidden mt-2 text-xs text-center dark:text-dark-text-fill">

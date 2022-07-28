@@ -9,9 +9,7 @@ interface Props {
   // any props that come into the component
 }
 
-export default function SideNavLink({
-  to, name, children, ...props
-}: Props) {
+export default function SideNavLink({ to, name, children, ...props }: Props) {
   const { t } = useTranslation();
   return (
     <li

@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import React from 'react';
+import Button from './Buttons';
 
 const TraineePerfomanceDetails = () => {
   return (
@@ -32,9 +33,10 @@ const TraineePerfomanceDetails = () => {
               </td>
 
               <td className="py-3 px-8">
-                <button className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
-                  Reply
-                </button>
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                  {' '}
+                  Reply{' '}
+                </Button>
               </td>
             </tr>
             <tr className="text-black dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary ">
@@ -46,9 +48,10 @@ const TraineePerfomanceDetails = () => {
                 enim ad minim veniam
               </td>
               <td className="py-3 ">
-                <button className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
-                  Reply
-                </button>
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                  {' '}
+                  Reply{' '}
+                </Button>
               </td>
             </tr>
             <tr className="text-black dark:text-dark-text-fill bg-light-bg dark:bg-dark-bg ">
@@ -60,9 +63,10 @@ const TraineePerfomanceDetails = () => {
                 enim ad minim veniam
               </td>
               <td className="py-3">
-                <button className="px-4 py-0 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
-                  Reply
-                </button>
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                  {' '}
+                  Reply{' '}
+                </Button>
               </td>
             </tr>
           </tbody>

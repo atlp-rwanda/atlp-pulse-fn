@@ -162,10 +162,11 @@ exports[`Register an Organization Renders the register Page 1`] = `
               </label>
             </div>
             <button
-              className="w-1/4 text-center mx-[20%] py-2 rounded-lg bg-primary text-white hover:bg-green-dark focus:outline-none"
-              type="submit"
+              className="btn primary lg w-1/4 mx-[20%]"
             >
+               
               Register
+               
             </button>
           </div>
         </form>

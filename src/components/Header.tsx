@@ -10,6 +10,7 @@ import useDarkMode from '../hook/useDarkMode';
 import { UserContext } from '../hook/useAuth';
 
 import WithClickOutside from './WithClickOutside';
+import Button from './Buttons';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { t } = useTranslation();
@@ -97,30 +98,30 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             )}
           </button>
           <Link to={user?.auth ? '/dashboard' : '/org-login'}>
-            <button
-              type="button"
-              className="border-none w-fit px-8 h-full mr-4 cursor-pointer bg-primary text-white rounded-md"
-            >
+            <Button variant="primary" size="lg">
+              {' '}
               {!user?.auth ? t('Sign In') : t('Dashboard')}
-            </button>
+              {' '}
+            </Button>
           </Link>
           {user?.auth ? (
-            <button
-              type="button"
-              id="logout"
+            <Button
+              variant="transparentbtn"
+              size="lg"
               onClick={() => logout()}
-              className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-red-700 font-bolf dark:text-dark-text-fill border border-red-600 dark:border-dark-text-fill rounded-md"
+              style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
             >
+              {' '}
               {t('Logout')}
-            </button>
+              {' '}
+            </Button>
           ) : (
             <Link to="/register-organization">
-              <button
-                type="button"
-                className=" py-2 mr-8 h-full w-fit px-8 bg-transparent cursor-pointer text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill rounded-md"
-              >
+              <Button variant="transparentbtn" size="lg" style="mr-8">
+                {' '}
                 {t('Register an organization')}
-              </button>
+                {' '}
+              </Button>
             </Link>
           )}
         </div>

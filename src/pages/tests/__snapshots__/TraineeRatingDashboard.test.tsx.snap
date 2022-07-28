@@ -445,28 +445,36 @@ Array [
                 className="space-x-8 flex flex-row"
               >
                 <button
-                  className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
+                  className="btn primary lg font-semibold flex flex-row"
                   onClick={[Function]}
                 >
+                   
                   <div>
                     cohort
                   </div>
                    
-                  <div>
+                  <div
+                    className="mt-1"
+                  >
                     <span />
                   </div>
+                   
                 </button>
                 <button
-                  className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
+                  className="btn primary lg font-semibold flex flex-row"
                   onClick={[Function]}
                 >
+                   
                   <div>
                     phases
                   </div>
                    
-                  <div>
+                  <div
+                    className="mt-1"
+                  >
                     <span />
                   </div>
+                   
                 </button>
               </div>
             </div>

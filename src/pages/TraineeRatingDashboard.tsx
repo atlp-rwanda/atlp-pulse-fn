@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import developers from '../dummyData/developers3.json';
+import Button from './../components/Buttons';
 
 const TraineeRatingDashboard = () => {
   const { t } = useTranslation();
@@ -170,7 +171,22 @@ const TraineeRatingDashboard = () => {
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
                 <div className="flex flex-col relative items-left px-10 lg:px-60 pt-24 pb-8">
                   <div className="space-x-8 flex flex-row">
-                    <button
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      onClick={handleShowCohorts}
+                      style="font-semibold flex flex-row"
+                    >
+                      {' '}
+                      <div>{t('cohort')}</div>{' '}
+                      <div className="mt-1">
+                        <Icon
+                          icon="ic:baseline-arrow-drop-down"
+                          color="#f9f9fb"
+                        />
+                      </div>{' '}
+                    </Button>
+                    {/* <button
                       className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
                       onClick={handleShowCohorts}
                     >
@@ -181,8 +197,23 @@ const TraineeRatingDashboard = () => {
                           color="#f9f9fb"
                         />
                       </div>
-                    </button>
-                    <button
+                    </button> */}
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      onClick={handleShowPhases}
+                      style="font-semibold flex flex-row"
+                    >
+                      {' '}
+                      <div>{t('phases')}</div>{' '}
+                      <div className="mt-1">
+                        <Icon
+                          icon="ic:baseline-arrow-drop-down"
+                          color="#f9f9fb"
+                        />
+                      </div>{' '}
+                    </Button>
+                    {/* <button
                       className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
                       onClick={handleShowPhases}
                     >
@@ -193,7 +224,7 @@ const TraineeRatingDashboard = () => {
                           color="#f9f9fb"
                         />
                       </div>
-                    </button>
+                    </button> */}
                   </div>
                   {showCohorts ? (
                     <div className="bg-primary h-40 w-32 mt-10 absolute rounded flex justify-center items-center">
@@ -222,7 +253,7 @@ const TraineeRatingDashboard = () => {
                   )}
 
                   {showPhases ? (
-                    <div className="bg-primary h-40 w-32 mt-10 ml-32 absolute rounded flex justify-center items-center">
+                    <div className="bg-primary h-40 w-32 mt-10 ml-40 absolute rounded flex justify-center items-center">
                       <div className="text-white">
                         <ul>
                           <li>

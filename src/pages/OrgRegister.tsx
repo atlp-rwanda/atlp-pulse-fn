@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaRegUser, FaRegEnvelope, FaPen } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import Button from '../components/Buttons';
 
 export default function OrgRegister() {
   const { t } = useTranslation();
@@ -110,12 +111,11 @@ export default function OrgRegister() {
                     <span>DevPulse</span>
                   </label>
                 </div>
-                <button
-                  type="submit"
-                  className="w-1/4 text-center mx-[20%] py-2 rounded-lg bg-primary text-white hover:bg-green-dark focus:outline-none"
-                >
+                <Button variant="primary" size="lg" style="w-1/4 mx-[20%]">
+                  {' '}
                   {t('Register')}
-                </button>
+                  {' '}
+                </Button>
               </div>
             </form>
           </div>

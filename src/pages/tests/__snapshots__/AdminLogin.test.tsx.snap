@@ -187,10 +187,11 @@ exports[`Admin Login Should render 1`] = `
               </a>
             </div>
             <button
-              className="border-2 border-primary text-primary rounded-full lg:px-12 lg:py-2 inline-block sm:px-4 sm:py-1  md:font-semibold sm:mt-2 sm:font-medium hover:bg-primary hover:text-white  "
-              type="submit"
+              className="btn transparentbtn md border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white"
             >
+               
               Sign In
+               
             </button>
           </form>
         </div>

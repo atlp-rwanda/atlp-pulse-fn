@@ -9,8 +9,9 @@ interface Props {
 
 const CheckRole = ({ children, roles, ...props }: Props) => {
   const { user } = useContext(UserContext);
-  if (roles?.includes(user?.role)) return <React.Fragment {...props}>{children}</React.Fragment>;
-  return  <React.Fragment {...props}></React.Fragment>;
+  if (roles?.includes(user?.role))
+    return <React.Fragment {...props}>{children}</React.Fragment>;
+  return <React.Fragment {...props}></React.Fragment>;
 };
 
 export default CheckRole;
