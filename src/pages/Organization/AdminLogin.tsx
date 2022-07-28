@@ -42,7 +42,7 @@ function AdminLogin() {
 
   return (
     <div className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center">
-      <div className="md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 mt-16 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
+      <div className="md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 mt-20 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
         <div className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg  dark:rounded-none">
           <div className="py-10 sm:py-8 ">
             {state ? (
@@ -133,7 +133,7 @@ function AdminLogin() {
                       name="remember"
                       className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
                     />
-                    Remember me
+                    {t('Remember me')}
                   </label>
                   <Link
                     to="/reset-password"
@@ -147,8 +147,7 @@ function AdminLogin() {
                   size="md"
                   style="border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white"
                 >
-                  {' '}
-                  Sign In{' '}
+                  {t('Sign In')}
                 </Button>
               </form>
             </div>

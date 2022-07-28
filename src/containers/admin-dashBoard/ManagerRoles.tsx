@@ -138,7 +138,7 @@ const AdminSission = () => {
 
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
         <div className="px-3 md:px-8">
-          <div className="bg-white dark:bg-dark-bg shadow-lg lg:px-5 pt-6 md:pb-6 mt-20 lg:mt-28 rounded-md w-full lg:w-[80%] lg:ml-52 ">
+          <div className="bg-white dark:bg-dark-bg shadow-lg lg:px-5 pt-6 md:pb-6 mt-20 lg:mt-28 rounded-md w-full lg:w-[80%] lg:ml-60">
             <div className=" flex items-center justify-between pb-6">
               <div>
                 <h2 className="text-gray-800 dark:text-white font-semibold mb-3 px-2">

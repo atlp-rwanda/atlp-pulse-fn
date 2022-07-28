@@ -20,13 +20,13 @@ const AdminTraineeDashboard = () => {
     <>
       {/* =========================== Start::  RegisterTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           registerTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
+        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12">
+            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
               {t('Add Trainee')}
             </h3>
             <hr className=" bg-primary border-b my-3 w-full" />
@@ -82,16 +82,14 @@ const AdminTraineeDashboard = () => {
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => removeModel()}
                 >
-                  {' '}
-                  {t('Cancel')}{' '}
+                  {t('Cancel')}
                 </Button>
                 <Button
                   variant="primary"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                 >
-                  {' '}
-                  {t('Save')}{' '}
+                  {t('Save')}
                 </Button>
               </div>
             </form>
@@ -107,7 +105,7 @@ const AdminTraineeDashboard = () => {
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
                 <div className="flex items-left px-10 lg:px-60 pt-24 pb-8">
-                  <div className="space-x-8">
+                  <div className="space-x-8 lg:ml-7">
                     <Button variant="primary" size="lg" onClick={removeModel}>
                       {' '}
                       {t('register')} +{' '}
@@ -115,7 +113,7 @@ const AdminTraineeDashboard = () => {
                   </div>
                 </div>
                 <div className="px-3 md:px-8">
-                  <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-52 mb-10">
+                  <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
                     <div className=" flex items-center justify-between pb-6">
                       <div>
                         <h2 className="text-gray-800 dark:text-white font-semibold text-xl">

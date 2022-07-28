@@ -5,7 +5,6 @@ import Button from './Buttons';
 import { useTranslation } from 'react-i18next';
 
 const TraineeAttendance = () => {
-
   const { t } = useTranslation();
   
   return (
@@ -80,8 +79,7 @@ const TraineeAttendance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -115,8 +113,7 @@ const TraineeAttendance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -150,8 +147,7 @@ const TraineeAttendance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -185,8 +181,7 @@ const TraineeAttendance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -220,8 +215,7 @@ const TraineeAttendance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>

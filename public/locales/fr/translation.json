@@ -146,7 +146,6 @@
   "suredelete": "Êtes-vous sûr de vouloir supprimer ce?",
   "Manageaccess": "Gérer l'accès",
   "All": "Tout",
-  "Trainees": "Stagiaires",
   "Status": "Statut",
   "Role": "Rôle",
   "Remove": "Retirer",
@@ -198,6 +197,7 @@
   "End time": "Heure de fin",
   "Notification": "Notification",
   "Mark all as read": "marquer tout comme lu",
+  "Trainees":"stagiaires",
 
   "Back": "Retour",
   "Details": "Details",
@@ -219,5 +219,7 @@
   "Metric": "métrique",
   "Grade": "Le grade",
   "Comments": "commentaires",
+  "Sign in":"S'identifier",
   "Reply": "Reponde"
+  
 }

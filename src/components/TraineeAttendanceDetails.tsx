@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Button from './Buttons';
 
 const TraineeAttendanceDetails = () => {
+  
   const {t} = useTranslation();
   return (
     <div>
@@ -26,7 +27,9 @@ const TraineeAttendanceDetails = () => {
           </thead>
           <tbody className=" text-center ">
             <tr className="text-light-text dark:text-dark-text-fill bg-light-bg dark:bg-dark-bg ">
-              <td className="lg:py-10 md:py-0 px-10 text-left  ">{t('Demo')}</td>
+              <td className="lg:py-10 md:py-0 px-10 text-left  ">
+                {t('Demo')}
+              </td>
               <td className="py-3 ">1</td>
               <td className="lg:py-6 md:py-3 text-start lg:text-sm">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -36,8 +39,7 @@ const TraineeAttendanceDetails = () => {
 
               <td className="py-3 px-8">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
-                  {' '}
-                  Reply{' '}
+                  {t('Reply')}
                 </Button>
               </td>
             </tr>
@@ -51,8 +53,7 @@ const TraineeAttendanceDetails = () => {
               </td>
               <td className="py-3 ">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
-                  {' '}
-                  Reply{' '}
+                  {t('Reply')}
                 </Button>
               </td>
             </tr>

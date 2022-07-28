@@ -26,7 +26,9 @@ const TraineePerfomanceDetails = () => {
           </thead>
           <tbody className=" text-center ">
             <tr className="text-light-text dark:text-dark-text-fill bg-light-bg dark:bg-dark-bg ">
-              <td className="lg:py-10 md:py-0 px-10 text-left  ">{t('Quantity')}</td>
+              <td className="lg:py-10 md:py-0 px-10 text-left  ">
+                {t('Quantity')}
+              </td>
               <td className="py-3 ">1</td>
               <td className="lg:py-6 md:py-3 text-start lg:text-sm">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -36,8 +38,7 @@ const TraineePerfomanceDetails = () => {
 
               <td className="py-3 px-8">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
-                  {' '}
-                  Reply{' '}
+                  {t('Reply')}
                 </Button>
               </td>
             </tr>
@@ -51,13 +52,14 @@ const TraineePerfomanceDetails = () => {
               </td>
               <td className="py-3 ">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
-                  {' '}
-                  Reply{' '}
+                  {t('Reply')}
                 </Button>
               </td>
             </tr>
             <tr className="text-black dark:text-dark-text-fill bg-light-bg dark:bg-dark-bg ">
-              <td className="py-10 px-10 text-left">{t('Professional skills')}</td>
+              <td className="py-10 px-10 text-left">
+                {t('Professional skills')}
+              </td>
               <td className="py-3 ">1</td>
               <td className="py-3  text-start text-sm">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -66,8 +68,7 @@ const TraineePerfomanceDetails = () => {
               </td>
               <td className="py-3">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
-                  {' '}
-                  Reply{' '}
+                  {t('Reply')}
                 </Button>
               </td>
             </tr>
@@ -95,7 +96,7 @@ const TraineePerfomanceDetails = () => {
             </thead>
             <tbody className=" text-center">
               <tr className="text-light-text bg-light-bg dark:bg-dark-bg dark:text-dark-text-fill  ">
-                <td className="py-3 px-10">{('Grade')}</td>
+                <td className="py-3 px-10">{'Grade'}</td>
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">

@@ -8,7 +8,7 @@ const TraineePerfomance = () => {
   const {t} = useTranslation();
   return (
     <>
-      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
+    <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
         <div className="px-3 md:px-8">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px]">
             <div className="">
@@ -51,7 +51,8 @@ const TraineePerfomance = () => {
                         </th>
 
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                  {t('Average')}</th>
+                          {t('Average')}
+                        </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider"></th>
                       </tr>
                       <tr>
@@ -92,8 +93,7 @@ const TraineePerfomance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -103,7 +103,7 @@ const TraineePerfomance = () => {
                           <div className="flex justify-center items-center">
                             <div className="">
                               <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                {('Sprint 2')}
+                                {'Sprint 2'}
                               </p>
                             </div>
                           </div>
@@ -135,8 +135,7 @@ const TraineePerfomance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -178,8 +177,7 @@ const TraineePerfomance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -221,8 +219,7 @@ const TraineePerfomance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>
@@ -264,8 +261,7 @@ const TraineePerfomance = () => {
                               size="sm"
                               style="px-4 py-0 text-sm"
                             >
-                              {' '}
-                              Details{' '}
+                              {t('Details')}
                             </Button>
                           </Link>
                         </td>

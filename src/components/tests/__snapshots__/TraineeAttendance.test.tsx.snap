@@ -29,7 +29,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
             className="flex bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer"
           >
             <option>
-              All phases
+              phases
             </option>
             <option>
               Phase 1
@@ -126,9 +126,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -179,9 +177,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -232,9 +228,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -285,9 +279,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -338,9 +330,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>

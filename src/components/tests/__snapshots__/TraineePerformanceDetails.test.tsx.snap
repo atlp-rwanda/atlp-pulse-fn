@@ -59,9 +59,7 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
             <button
               className="btn primary sm px-4 py-0 text-sm"
             >
-               
               Reply
-               
             </button>
           </td>
         </tr>
@@ -89,9 +87,7 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
             <button
               className="btn primary sm px-4 py-0 text-sm"
             >
-               
               Reply
-               
             </button>
           </td>
         </tr>
@@ -101,7 +97,7 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
           <td
             className="py-10 px-10 text-left"
           >
-            Professionalism
+            Professional skills
           </td>
           <td
             className="py-3 "
@@ -119,9 +115,7 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
             <button
               className="btn primary sm px-4 py-0 text-sm"
             >
-               
               Reply
-               
             </button>
           </td>
         </tr>
@@ -137,7 +131,8 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
       <h2
         className="font-semibold mt-12 "
       >
-         Sprint 1
+         
+        Sprint 1
       </h2>
       <h3
         className="font-medium text-left text-[#6B7280] dark:text-white "

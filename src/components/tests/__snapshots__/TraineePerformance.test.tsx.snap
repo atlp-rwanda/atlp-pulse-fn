@@ -19,7 +19,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
           <h2
             className="text-gray-800 dark:text-white font-semibold"
           >
-            Performance
+            Performance score
           </h2>
         </div>
         <div
@@ -29,7 +29,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
             className="flex bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer"
           >
             <option>
-              All phases
+              phases
             </option>
             <option>
               Phase 1
@@ -157,9 +157,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -228,9 +226,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -299,9 +295,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -370,9 +364,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>
@@ -441,9 +433,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
                       >
-                         
                         Details
-                         
                       </button>
                     </a>
                   </td>

@@ -17,9 +17,6 @@ import {
   TemplateIcon,
   RefreshIcon,
   UserGroupIcon,
-  MapIcon,
-  ClipboardIcon,
-  UploadIcon,
 } from '@heroicons/react/solid';
 import {
   AcademicCapIcon,
@@ -36,7 +33,7 @@ function Sidebar({ style }: { style: string }) {
 
   return (
     <div
-      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-4`}
+      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
     >
       <div className="list-none pr-8">
         <SideNavLink name="Dashboard" to="/dashboard/">
@@ -95,24 +92,6 @@ function Sidebar({ style }: { style: string }) {
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
-        <CheckRole roles={['admin', 'coordinator']}>
-          <SideNavLink to="/dashboard/trainees" name="Trainee">
-            <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          </SideNavLink>
-          <SideNavLink to="/dashboard/ratings" name="Ratings">
-            <ClipboardIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          </SideNavLink>
-          <SideNavLink to="/dashboard/updated-ratings" name="Updated ratings">
-            <UploadIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          </SideNavLink>
-        </CheckRole>
-        {/* Shared Links */}
-        <SideNavLink name="Notifications" to="/dashboard/notifications">
-          <BellIcon className="w-5 mr-2" />
-        </SideNavLink>
-        <SideNavLink name="Calendar" to="/dashboard/calendar">
-          <CalendarIcon className="w-5 mr-2" />
-        </SideNavLink>
 
         {/* FOR TRAINEES */}
         <CheckRole roles={['trainee']}>
