@@ -195,5 +195,7 @@
   "Logout": "Déconnexion",
   "End Date": "Date de fin",
   "Start time": "Heure de début",
-  "End time": "Heure de fin"
+  "End time": "Heure de fin",
+  "Notification": "Notification",
+  "Mark all as read": "marquer tout comme lu"
 }

@@ -5,6 +5,7 @@ on:
       - opened
       - reopened
       - synchronize
+  workflow_dispatch:
 
 # SEE: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
 permissions:
