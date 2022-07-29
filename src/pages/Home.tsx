@@ -20,27 +20,15 @@ function LandingPage() {
             <p className="text-2xl md:text-4xl lg:text-3xl mt-8 md:mt-8 lg:mt-8 w-full sm:w-3/4 md:w-4/5 lg:w-full md:px-0 lg:px-8 text-white dark:text-dark-text-fill font-sans text-center">
               {t('The number one platform for')}
               <em>
-                <b>
-                  {' '}
-                  {t('managing trainees')}
-                  {' '}
-                </b>
+                <b> {t('managing trainees')} </b>
               </em>
               {t('or')}
               <em>
-                <b>
-                  {' '}
-                  {t('students')}
-                  {' '}
-                </b>
+                <b> {t('students')} </b>
               </em>
               {t('in any')}
               <em>
-                <b>
-                  {' '}
-                  {t('ed-tech organization')}
-                  {' '}
-                </b>
+                <b> {t('ed-tech organization')} </b>
               </em>
             </p>
             <div className="w-full text-center justify-center items-center mt-8">

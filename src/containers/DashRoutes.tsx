@@ -19,6 +19,7 @@ import TraineeRatingDashboard from '../pages/TraineeRatingDashboard';
 import UpdatedRatingDashboard from '../pages/UpdatedRatingDashboard';
 import SupAdDashboard from '../pages/SupAdDashboard';
 import TraineeDashboard from '../pages/TraineeDashboard';
+import Calendar from '../components/Calendar';
 
 function DashRoutes() {
   return (
@@ -40,6 +41,9 @@ function DashRoutes() {
           <Route path="/manage" element={<AdminManageRoles />} />
           <Route path="/performance-details" element={<PerformanceDetails />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/super-admin" element={<SupAdDashboard />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </div>
     </PrivateRoute>
