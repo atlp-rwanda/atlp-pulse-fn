@@ -59,6 +59,7 @@ exports[`Admin Login Should render 1`] = `
         >
           <form
             action="#none"
+            data-testid="loginForm"
             onSubmit={[Function]}
           >
             <div
@@ -85,6 +86,7 @@ exports[`Admin Login Should render 1`] = `
               </svg>
               <input
                 className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white "
+                data-testid="email"
                 name="email"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -123,6 +125,7 @@ exports[`Admin Login Should render 1`] = `
               </svg>
               <input
                 className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white"
+                data-testid="password"
                 name="password"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -200,16 +203,11 @@ exports[`Admin Login Should render 1`] = `
         >
           First time here?
           <a
-            className="mx-1"
+            className="mx-1 text-primary"
             href="/register-organization"
             onClick={[Function]}
           >
-            <a
-              className="text-primary"
-              href="#link"
-            >
-              Register
-            </a>
+            Register
           </a>
           your organization
         </div>
@@ -232,15 +230,11 @@ exports[`Admin Login Should render 1`] = `
         Sign_in_page_paragraph
       </p>
       <a
+        className="border-2 border-white rounded-full lg:px-8 lg:py-2 inline-block lg:font-semibold md:font-xl md:mt-[72px] sm:font-medium sm:px-4 sm:py-1 hover:bg-white hover:text-primary dark:hover:bg-dark-bg dark:hover:text-dark-text-fill "
         href="/register-organization"
         onClick={[Function]}
       >
-        <a
-          className="border-2 border-white rounded-full lg:px-8 lg:py-2 inline-block lg:font-semibold md:font-xl md:mt-[72px] sm:font-medium sm:px-4 sm:py-1 hover:bg-white hover:text-primary dark:hover:bg-dark-bg dark:hover:text-dark-text-fill "
-          href="#link"
-        >
-          Register
-        </a>
+        Register
       </a>
     </div>
   </div>
