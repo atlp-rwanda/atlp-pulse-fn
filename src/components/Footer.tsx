@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import '../App';
 import {
@@ -8,10 +8,25 @@ import {
   FaLinkedin,
   FaPlayCircle,
 } from 'react-icons/fa';
+import i18next from 'i18next';
 import LogoFooter from '../assets/logoWhite.svg';
+import getLanguage from '../utils/getLanguage';
 
 function Footer({ styles }: any) {
   const { t } = useTranslation();
+  const lan = getLanguage();
+  const userLang = window.navigator.language;
+  const changeLan = (e: { target: { value: string } }) => {
+    const { value } = e.target;
+    i18next.changeLanguage(value);
+  };
+  const lanRef = useRef<any>();
+
+  useEffect(() => {
+    if (lanRef.current) {
+      lanRef.current.value = lan;
+    }
+  }, []);
   return (
     <div
       className={`w-full bg-primary dark:bg-dark-bg text-gray-300 mt-auto ${styles}`}
@@ -55,13 +70,31 @@ function Footer({ styles }: any) {
               <ul className="lg:flex lg:flex-col ml-[8vh] md:ml-[16vh] lg:ml-28 cursor-pointer">
                 <li className="py-2 text-xs">{t('Terms and conditions')}</li>
                 <li className="py-2 text-xs">{t('Privacy and Policies')}</li>
+                <select
+                  name="language"
+                  defaultValue={userLang}
+                  data-testid="lanChange"
+                  ref={lanRef}
+                  onChange={(e) => {
+                    changeLan(e);
+                  }}
+                  className="bg-dark-bg mt-2 outline rounded-md px-2 py-1 text-white dark:text-dark-text-fill dark:bg-dark-bg "
+                >
+                  <option value="en">English</option>
+                  <option value="kn">Kinyarwanda</option>
+                  <option value="fr">Français</option>
+                </select>
               </ul>
             </div>
           </div>
         </div>
         <div className=" lg:flex">
           <span className="px-4 lg:py-3 cursor-pointer text-lg">
-            © {new Date().getFullYear()} Pulse Technologies
+            ©
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+            Pulse Technologies
           </span>
         </div>
       </div>
