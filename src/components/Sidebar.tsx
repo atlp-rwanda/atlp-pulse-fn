@@ -72,7 +72,7 @@ function Sidebar({ style }: { style: string }) {
           <SideNavLink to="/dashboard/updated-ratings" name="Updated Ratings">
             <RefreshIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink to="/dashboard/grading-system" name="Grading System">
+          <SideNavLink to="/dashboard/grading" name="Grading System">
             <TemplateIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink to="/dashboard/manage" name="Roles & Access">

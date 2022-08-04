@@ -198,8 +198,6 @@
   "End time": "End time",
   "Mark all as read": "Mark all as read",
   "Notification": "Notification",
-  
-
   "Back": "Back",
   "Details": "Details",
   "Average": "Average",
@@ -222,5 +220,16 @@
   "Sign in":"Sign in",
   "Reply":"Reply",
   "Wednesday": "Wednesday",
-  "Replies": "Replies"
+  "Replies": "Replies",
+  "grade":"Grade",
+  "Gradedefition":"Grade defition",
+  "ApproximatePercentage":"Approximate Percentage",
+  "GradePointAverage":"Grade Point Average",
+  "LetterGrading":"Letter Grading",
+  "ATLPGradingSystem":"ATLP Grading System",
+  "Custom":"Custom",
+  "Add Grading System": "Add Grading System",
+  "Label. eg:GPA": "Label. eg:GPA",
+  "Definition": "Definition",
+  "Percentage": "Percentage"
 }

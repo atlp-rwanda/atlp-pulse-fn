@@ -156,8 +156,6 @@
   "End time": "Amasaha yo gusoza",
   "Notification": "Amamenyesha",
   "Mark all as read": "Soma byose",
-  
-
   "Back": "Gusubira inyuma",
   "Details": "Ibirambuye",
   "Average": "Ijanisha",
@@ -183,6 +181,12 @@
   "Sign in":"Injira",
   "Reply": "Gusubiza",
   "Wednesday": "Kuwa Gatatu",
-  "Replies": "Ibitekerezo"
-  
+  "Replies": "Ibitekerezo",
+  "grade":"amanota",
+  "Gradedefition":"Ibisobanuro",
+  "ApproximatePercentage":"Ijanisha rigereranijwe",
+  "Add Grading System": "Ongeraho ibarura manota",
+  "Label. eg:GPA": "ikirango urugero: GPA",
+  "Definition": "Ubusobanuro",
+  "Percentage": "Ijanisha" 
 }
