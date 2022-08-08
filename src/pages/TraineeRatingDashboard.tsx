@@ -170,7 +170,7 @@ const TraineeRatingDashboard = () => {
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
                 <div className="flex flex-col relative items-left px-10 lg:px-60 pt-24 pb-8">
-                  <div className="space-x-8 flex flex-row">
+                  <div className="space-x-8 flex flex-row ">
                     <Button
                       variant="primary"
                       size="lg"

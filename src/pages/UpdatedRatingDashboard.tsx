@@ -66,8 +66,7 @@ const UpdatedRatingDashboard = () => {
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                 >
-                  {' '}
-                  {t('Approve')}{' '}
+                  {t('Approve')}
                 </Button>
               </div>
             </form>
@@ -104,16 +103,15 @@ const UpdatedRatingDashboard = () => {
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => removeRejectModel()}
                 >
-                  {' '}
-                  {t('Cancel')}{' '}
+                  
+                  {t('Cancel')}
                 </Button>
                 <Button
                   variant="danger"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                 >
-                  {' '}
-                  {t('Reject')}{' '}
+                  {t('Reject')}
                 </Button>
               </div>
             </form>
@@ -129,13 +127,13 @@ const UpdatedRatingDashboard = () => {
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
                 <div className="px-3 md:px-8 mt-20">
-                  <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-52 mb-10">
+                  <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
                     <div className=" flex items-center justify-between pb-6">
                       <div>
                         <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
                           {t('Updated Ratings')}
                         </h2>
-                        {/* <span className="text-xs text-gray-600">Current cohort</span> */}
+                       
                       </div>
                     </div>
                     <div>

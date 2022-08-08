@@ -114,7 +114,9 @@
   "register": "Kwandikisha",
   "Developers Info": "Amakuru y'umunyeshuri",
   "role": "Icy'ashinzwe",
+
   "Update Trainee": "Kuvugurura amakuru y'umunyeshuri",
+
   "Delete Trainee": "Gusiba umunyeshuri",
   "Are you sure you want to delete this person": "Emeza ko ugiye gusiba umunyeshuri",
   "Delete": "Gusiba",
@@ -153,5 +155,32 @@
   "Start time": "Amasaha yo kutangira",
   "End time": "Amasaha yo gusoza",
   "Notification": "Amamenyesha",
-  "Mark all as read": "Soma byose"
+  "Mark all as read": "Soma byose",
+  
+
+  "Back": "Gusubira inyuma",
+  "Details": "Ibirambuye",
+  "Average": "Ijanisha",
+  "All Phases": "Etape zose",
+  "Phase 1": "Igihembwe cya mbere",
+  "Phase 2": "igihembwe cya kabiri",
+  "Phase 3": "igihembwe cya gatatu",
+  "Phase 4": "igihembwe cya kane",
+  "Phase 5": "igihembwe cya gatanu",
+  "Sprint 1": "Igice cya 1",
+  "Sprint 2": "Igice cya 2",
+  "Sprint 3": "Igice cya 3",
+  "Sprint 4": "Igice cya 4",
+  "Sprint 5": "Igice cya 5",
+  "Session": "Sesiyo",
+  "Demo": "Demo",
+  "Standup": "Gutanga amakuru y'ibyakozwe",
+  "Record": "Amanota",
+  "Comment": "Ubusobanuro",
+  "Metric": "Ibice",
+  "Grade": "Amanota",
+  "Comments": "Ubusobanuro",
+  "Sign in":"Injira",
+  "Reply": "Gusubiza"
+  
 }

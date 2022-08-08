@@ -168,7 +168,7 @@ const AdminCohort = () => {
 
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
         <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
-          <div className="space-x-8">
+          <div className="space-x-8 lg:ml-10">
             <Button
               variant="primary"
               size="lg"
@@ -181,7 +181,7 @@ const AdminCohort = () => {
           </div>
         </div>
         <div className="px-3 md:px-8">
-          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-52">
+          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-64">
             <div className=" flex items-center justify-between pb-6">
               <div>
                 <h2 className="text-gray-800 dark:text-white font-semibold">

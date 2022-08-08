@@ -33,7 +33,7 @@ function Sidebar({ style }: { style: string }) {
 
   return (
     <div
-      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-4`}
+      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
     >
       <div className="list-none pr-8">
         <SideNavLink name="Dashboard" to="/dashboard/">

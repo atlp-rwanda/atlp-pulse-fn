@@ -34,7 +34,7 @@ function Settings() {
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
       <div className="flex flex-row justify-center pt-[12vh]">
-        <div className="rounded-lg w-[95%] lg:w-80vh lg:ml-[32vh] lg:mr-[2vh] lg:mb-10 p-6 bg-white dark:bg-dark-bg">
+        <div className="rounded-lg w-[90%] lg:w-80vh lg:ml-[38vh] lg:mr-[2vh] lg:mb-10 p-6 bg-white dark:bg-dark-bg">
           <h1 className="mb-4 font-bold text-xl dark:text-dark-text-fill">
             {t('Settings')}
           </h1>

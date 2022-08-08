@@ -154,7 +154,7 @@ Array [
       className="px-3 md:px-8"
     >
       <div
-        className="bg-white dark:bg-dark-bg shadow-lg lg:px-5 pt-6 md:pb-6 mt-20 lg:mt-28 rounded-md w-full lg:w-[80%] lg:ml-52 "
+        className="bg-white dark:bg-dark-bg shadow-lg lg:px-5 pt-6 md:pb-6 mt-20 lg:mt-28 rounded-md w-full lg:w-[80%] lg:ml-60"
       >
         <div
           className=" flex items-center justify-between pb-6"
@@ -1633,7 +1633,7 @@ Array [
       className="flex items-left px-7 lg:px-60 pt-24 pb-8"
     >
       <div
-        className="space-x-8"
+        className="space-x-8 lg:ml-10"
       >
         <button
           className="btn primary lg undefined"
@@ -1651,7 +1651,7 @@ Array [
       className="px-3 md:px-8"
     >
       <div
-        className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-52"
+        className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-64"
       >
         <div
           className=" flex items-center justify-between pb-6"
