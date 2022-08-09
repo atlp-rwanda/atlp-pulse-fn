@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export default function CommentCard({comment}: any) {
+export default function CommentCard({ comment }: any) {
   const { t } = useTranslation();
 
   return (
@@ -21,9 +21,7 @@ export default function CommentCard({comment}: any) {
             <div className="text-gray-400">{comment.createdAt}</div>
           </div>
           <div className="my-2">
-            <p className='text-sm'>
-              {comment.comment}
-            </p>
+            <p className="text-sm">{comment.comment}</p>
           </div>
           <div className="flex flex-row">
             <div className="flex flex-row">
@@ -39,7 +37,9 @@ export default function CommentCard({comment}: any) {
               />
             </div>
             <div className="ml-6 text-primary cursor-pointer">
-              <h3>{comment.replies.length} {t('Replies')}</h3>
+              <h3>
+                {comment.replies.length} {t('Replies')}
+              </h3>
             </div>
             <div className="ml-2 text-gray-400">
               <h3>Last reply {comment.replies[0].createdAt}</h3>

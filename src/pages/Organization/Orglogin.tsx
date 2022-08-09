@@ -31,8 +31,7 @@ function Orglogin() {
                 style="w-full ml-0 hover:bg-cyan-700 text-sm"
               >
                 {' '}
-                {t('Continue')}
-                {' '}
+                {t('Continue')}{' '}
               </Button>
             </Link>
           </div>

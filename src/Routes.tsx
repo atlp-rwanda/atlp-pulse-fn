@@ -8,6 +8,7 @@ import Pricing from './pages/Pricing';
 import PricingForm from './components/PricingForm';
 import AdminLogin from './pages/Organization/AdminLogin';
 import Perfomancetraineetable from './components/TraineePerformance';
+import Error from './pages/Error';
 
 function MainRoutes() {
   return (
@@ -23,6 +24,7 @@ function MainRoutes() {
           <Route path="/" element={<Perfomancetraineetable />} />
           <Route path="/register-organization" element={<OrgRegister />} />
           <Route path="/org-login" element={<Orglogin />} />
+          <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
       </Router>

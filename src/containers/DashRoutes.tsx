@@ -12,7 +12,7 @@ import AttendanceDetails from '../containers/Trainee/AttendanceDetails';
 import AdminCohorts from './admin-dashBoard/Cohorts';
 import AdminSession from './admin-dashBoard/Sessions';
 import AdminManageRoles from './admin-dashBoard/ManagerRoles';
-import NotFound from '../pages/NotFoundDashboard';
+import Error from '../pages/Error';
 import PrivateRoute from '../utils/PrivateRoute';
 import AdminTraineeDashboard from '../pages/AdminTraineeDashboard';
 import TraineeRatingDashboard from '../pages/TraineeRatingDashboard';
@@ -46,7 +46,7 @@ function DashRoutes() {
           <Route path="/performance-details" element={<PerformanceDetails />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Error />} />
           <Route path="/super-admin" element={<SupAdDashboard />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/calendar" element={<Calendar />} />

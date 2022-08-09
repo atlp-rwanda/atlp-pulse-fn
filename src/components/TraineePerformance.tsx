@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import Button from './Buttons';
 
 const TraineePerfomance = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
-    <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
+      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
         <div className="px-3 md:px-8">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px]">
             <div className="">

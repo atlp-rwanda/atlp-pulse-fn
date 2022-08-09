@@ -5,8 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Button from './Buttons';
 
 const TraineeAttendanceDetails = () => {
-  
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
       <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center  min-h-screen ">

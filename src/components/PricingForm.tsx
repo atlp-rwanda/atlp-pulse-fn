@@ -199,8 +199,7 @@ export default function PricingForm() {
           </div>
           <Button variant="primary" size="lg">
             {' '}
-            {t('Request')}
-            {' '}
+            {t('Request')}{' '}
           </Button>
         </form>
       </div>

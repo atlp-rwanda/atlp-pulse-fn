@@ -3,14 +3,14 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import NotFound from '../NotFound';
+import Error from '../Error';
 
-describe('Not Found', () => {
+describe('Page Not Found', () => {
   it('Renders the 404 Page', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <NotFound />
+          <Error />
         </MemoryRouter>,
       )
       .toJSON();

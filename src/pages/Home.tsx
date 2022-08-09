@@ -50,8 +50,7 @@ function LandingPage() {
                 style="mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
               >
                 {' '}
-                {user?.auth ? 'Continue' : t('Get Started')}
-                {' '}
+                {user?.auth ? 'Continue' : t('Get Started')}{' '}
               </Button>
             </div>
           </div>

@@ -103,7 +103,6 @@ const UpdatedRatingDashboard = () => {
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => removeRejectModel()}
                 >
-                  
                   {t('Cancel')}
                 </Button>
                 <Button
@@ -133,7 +132,6 @@ const UpdatedRatingDashboard = () => {
                         <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
                           {t('Updated Ratings')}
                         </h2>
-                       
                       </div>
                     </div>
                     <div>

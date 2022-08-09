@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page Not Found Renders the 404 Page 1`] = `
+<div
+  className="errorImg flex items-center justify-center h-screen w-screen text-center"
+>
+  <div>
+    <img
+      alt="404"
+      className="max-w-36 max-h-32 md:max-w-44 md:max-h-40 lg:max-w-52 lg:max-h-48 xl:max-w-2xl xl:max-h-96"
+      src={Object {}}
+    />
+  </div>
+  <div
+    className="max-w-screen-md mt-5 text-white"
+  >
+    <h1
+      className="font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+    >
+      PAGE NOT FOUND
+    </h1>
+    <p
+      className="my-3 px-8 md:px-14 lg:px-0"
+    >
+      error_page_paragraph
+    </p>
+    <button
+      className="btn primary lg mt-2 lg:mt-5 px-8 text-xl font-bold"
+      onClick={[Function]}
+    >
+      Back Home
+    </button>
+  </div>
+</div>
+`;

@@ -3,128 +3,128 @@
     "grade": "4.0",
     "definition": "Exceptional",
     "percentage": "85 - 100",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "4.0",
     "definition": "Exceptional",
     "percentage": "85 - 100",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "3.7",
     "definition": "Excellent",
     "percentage": "80 - 84",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "3.3",
     "definition": "Very Good",
     "percentage": "75 - 79",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "3.0",
     "definition": "Good",
     "percentage": "70 - 74",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "2.7",
     "definition": "Satisfactory",
     "percentage": "65 - 69",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "2.3",
     "definition": "Adequate",
     "percentage": "60 - 64",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "2.0",
     "definition": "Marginal",
     "percentage": "50 - 59",
-    "label":"gpa"
+    "label": "gpa"
   },
   {
     "grade": "below 2.0",
     "definition": "Failure",
     "percentage": "0 - 49",
-    "label":"gpa"
+    "label": "gpa"
   },
 
   {
     "grade": "A",
     "definition": "Excellent",
     "percentage": "90 - 100",
-    "label":"letter"
+    "label": "letter"
   },
   {
     "grade": "B",
     "definition": "Very Good",
     "percentage": "80 - 89",
-    "label":"letter"
+    "label": "letter"
   },
   {
     "grade": "C",
     "definition": "Good",
     "percentage": "70 - 79",
-    "label":"letter"
+    "label": "letter"
   },
   {
     "grade": "D",
     "definition": "Satisfactory",
     "percentage": "60 - 69",
-    "label":"letter"
+    "label": "letter"
   },
   {
     "grade": "E",
     "definition": "Adequate",
     "percentage": "50 - 59",
-    "label":"letter"
+    "label": "letter"
   },
   {
     "grade": "F",
     "definition": "Failure",
     "percentage": "0 - 49",
-    "label":"letter"
+    "label": "letter"
   },
   {
     "grade": "2",
     "definition": "Excellent",
     "percentage": "70 - 100",
-    "label":"atlp"
+    "label": "atlp"
   },
   {
     "grade": "1",
     "definition": "Good",
     "percentage": "50 - 69",
-    "label":"atlp"
+    "label": "atlp"
   },
   {
     "grade": "0",
     "definition": "Failure",
     "percentage": "0 - 49",
-    "label":"atlp"
+    "label": "atlp"
   },
 
   {
     "grade": "0",
     "definition": "Exceptional",
     "percentage": "85 - 100",
-    "label":"percent"
+    "label": "percent"
   },
   {
     "grade": "1",
     "definition": "Exceptional",
     "percentage": "85 - 10",
-    "label":"percent"
+    "label": "percent"
   },
   {
     "grade": "2",
     "definition": "Excellent",
     "percentage": "80 - 84",
-    "label":"percent"
+    "label": "percent"
   }
 ]
