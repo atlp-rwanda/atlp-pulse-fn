@@ -1,58 +1,64 @@
+/* eslint-disable */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
+import { IoIosArrowBack } from 'react-icons/io';
+import { Icon } from '@iconify/react';
+import CommentCard from '../components/CommentCard';
+import comments from '../dummyData/comments.json';
 
 function TraineeComments() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
-    <div className="bg-neutral-100 dark:bg-dark-bg dark:text-white flex flex-col justify-start items-center  lg:ml-[-32px] md:ml-[-44px] sm:ml-[-24px] sm:pb-80 lg:mt-[-200px] sm:mt-[-200px] md:mt-[-550px] md:py-8 h-full">
-      <div className="w-7/12 flex flex-col md:py-10 sm:py-12 md:mt-0 lg:ml-0 md:ml-[-120px]  sm:mt-44">
-        <div className=" w-7/12 ">
+    <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[70%] lg:ml-60 mb-10 mt-10">
+      <div className="w-full flex flex-col md:py-10 md:px-20 sm:py-2 md:mt-0 lg:ml-0  sm:mt-2">
+        <div className=" ">
           <h2 className="font-md">{t('Comments')}</h2>
         </div>
-        <div className=" mt-4">
-          <h2>Kenth Ngabo</h2>
-          <p className="text-[#6B7280] dark:text-dark-text-fill">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam
-          </p>
-        </div>
-
-        <div className=" mt-4 ml-24">
-          <h2> John Doe</h2>
-          <p className="text-[#6B7280] dark:text-dark-text-fill ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          </p>
-          <div>
-            <input
-              className="bg-neutral-100 border-b border-gray-400   dark:bg-dark-bg outline-none"
-              type="text"
-              placeholder="Reply..."
-            />
-          </div>
-        </div>
-        <div>
-          <div className="mt-4 ">
-            <h2> John Doe</h2>
-            <p className="text-[#6B7280] dark:text-dark-text-fill">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </p>
-
-            <div className="ml-24 ">
-              <input
-                className="bg-neutral-100 border-b border-gray-400 dark:bg-dark-bg outline-none"
-                type="text"
-                placeholder="Reply..."
-              />
+        <div className="w-full">
+          {comments.map((comment: any, index: any) => (
+            <div key={index}>
+              <CommentCard comment={comment} />
+            </div>
+          ))}
+          <div className="w-full flex flex-col border border-gray-400">
+            <div className="m-4">
+              <div className="">
+                <input
+                  className="w-full bg-inherit px-2 outline-0"
+                  type="text"
+                  placeholder="Start typing ..."
+                />
+              </div>
+            </div>
+            <div className="flex justify-between px-4 py-2 border-t">
+              <div className="flex flex-row">
+                <div>
+                  <Icon icon="ant-design:paper-clip-outlined" color="#9297a3" />
+                </div>
+                <div className="mx-2">
+                  <Icon icon="akar-icons:link-chain" color="#9297a3" />
+                </div>
+                <div>
+                  <Icon icon="ep:document-add" color="#9297a3" />
+                </div>
+              </div>
+              <div>
+                <Icon icon="octicon:paper-airplane-16" color="#9297a3" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="mt-4 ">
-          <input
-            className="bg-neutral-100 border-b border-gray-400 dark:bg-dark-bg outline-none"
-            type="text"
-            placeholder="New comments..."
-          />
+
+          <div className="bg-white dark:bg-dark-bg">
+            <button
+              onClick={() => navigate(-1)}
+              className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 md:mt-3 rounded-md text-white font-semibold cursor-pointer"
+            >
+              <IoIosArrowBack className="mt-1 mr-1" />
+              {t('Back')}
+            </button>
+          </div>
         </div>
       </div>
     </div>
