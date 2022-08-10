@@ -475,6 +475,29 @@ exports[`App test  Should render app 1`] = `
                 >
                   Privacy and Policies
                 </li>
+                <select
+                  className="bg-dark-bg mt-2 outline rounded-md px-2 py-1 text-white dark:text-dark-text-fill dark:bg-dark-bg "
+                  data-testid="lanChange"
+                  defaultValue="en-US"
+                  name="language"
+                  onChange={[Function]}
+                >
+                  <option
+                    value="en"
+                  >
+                    English
+                  </option>
+                  <option
+                    value="kn"
+                  >
+                    Kinyarwanda
+                  </option>
+                  <option
+                    value="fr"
+                  >
+                    Français
+                  </option>
+                </select>
               </ul>
             </div>
           </div>
@@ -485,9 +508,11 @@ exports[`App test  Should render app 1`] = `
           <span
             className="px-4 lg:py-3 cursor-pointer text-lg"
           >
-            © 
+            ©
+             
             2022
-             Pulse Technologies
+             
+            Pulse Technologies
           </span>
         </div>
       </div>
