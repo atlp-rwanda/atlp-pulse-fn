@@ -5,11 +5,11 @@ import Sidebar from '../Sidebar';
 import SideNavLink from '../SideNavLink';
 
 describe('DashHeader test ', () => {
-  it('Should render navlink witthout active indicator', () => {
+  it('Should render navlink witthout active indicator', (onClick) => {
     const elem = renderer
       .create(
         <BrowserRouter>
-          <SideNavLink to="/main" name="main">
+          <SideNavLink onClick={onClick} to="/main" name="main">
             <div />
           </SideNavLink>
         </BrowserRouter>,
@@ -17,11 +17,11 @@ describe('DashHeader test ', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-  it('Should render with an active style', () => {
+  it('Should render with an active style', (onClick) => {
     const elem = renderer
       .create(
         <MemoryRouter initialEntries={['/main']}>
-          <SideNavLink to="/main" name="main">
+          <SideNavLink onClick={onClick} to="/main" name="main">
             <div />
           </SideNavLink>
         </MemoryRouter>,
@@ -29,11 +29,11 @@ describe('DashHeader test ', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-  it('Should render the sidebar with setings as active', () => {
+  it('Should render the sidebar with setings as active', (handleClick) => {
     const elem = renderer
       .create(
         <MemoryRouter initialEntries={['/dashboard/settings']}>
-          <Sidebar style="" />
+          <Sidebar toggle={handleClick} style="" />
         </MemoryRouter>,
       )
       .toJSON();

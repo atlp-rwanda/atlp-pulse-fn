@@ -15,6 +15,8 @@ const AdminTraineeDashboard = () => {
     let newState = !registerTraineeModel;
     setRegisterTraineeModel(newState);
   };
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
 
   return (
     <>
@@ -38,7 +40,7 @@ const AdminTraineeDashboard = () => {
                   <input
                     type="text"
                     name="name"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className=" dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('name')}
                   />
                 </div>
@@ -48,7 +50,7 @@ const AdminTraineeDashboard = () => {
                   <input
                     type="email"
                     name="email"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('email')}
                   />
                 </div>
@@ -58,7 +60,7 @@ const AdminTraineeDashboard = () => {
                   <input
                     type="text"
                     name="cohort"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('cohort')}
                   />
                 </div>
@@ -69,7 +71,7 @@ const AdminTraineeDashboard = () => {
                   <input
                     type="text"
                     name="program"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className="dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('program')}
                   />
                 </div>
@@ -100,7 +102,7 @@ const AdminTraineeDashboard = () => {
 
       <div className="flex flex-col h-screen">
         <div className="flex flex-row">
-          <Sidebar style="hidden lg:flex" />
+          <Sidebar toggle={handleClick}  style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">

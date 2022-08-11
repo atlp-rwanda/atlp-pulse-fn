@@ -1,5 +1,9 @@
 /* eslint-disable */
+<<<<<<< HEAD
 import React, { Suspense } from 'react';
+=======
+import React,{useState} from 'react';
+>>>>>>> 419a7e3 (fix: Menu close on mobile)
 import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';
@@ -44,10 +48,13 @@ const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
 import Skeleton from '../components/Skeleton';
 
 function DashRoutes() {
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
   return (
     <PrivateRoute>
       <div className="flex flex-col min-h-screen">
         <DashHeader />
+<<<<<<< HEAD
         <Sidebar style="hidden lg:flex" />
         <Suspense fallback={<Skeleton />}>
           <Routes>
@@ -78,6 +85,30 @@ function DashRoutes() {
             <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </Suspense>
+=======
+        <Sidebar toggle={handleClick} style="hidden lg:flex" />
+        <Routes>
+          <Route path="" element={<Dashboard />} />
+          <Route path="/trainees" element={<AdminTraineeDashboard />} />
+          <Route path="/ratings" element={<TraineeRatingDashboard />} />
+          <Route path="/updated-ratings" element={<UpdatedRatingDashboard />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/performance" element={<TraineePerfomance />} />
+          <Route path="/attendance" element={<TraineeAttendance />} />
+          <Route path="/attendance-details" element={<AttendanceDetails />} />
+          <Route path="/cohorts" element={<AdminCohorts />} />
+          <Route path="/sessions" element={<AdminSession />} />
+          <Route path="/manage" element={<AdminManageRoles />} />
+          <Route path="/grading" element={<GradingSystem />} />
+          <Route path="/performance-details" element={<PerformanceDetails />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/super-admin" element={<SupAdDashboard />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/calendar" element={<Calendar />} />
+        </Routes>
+>>>>>>> 419a7e3 (fix: Menu close on mobile)
       </div>
     </PrivateRoute>
   );

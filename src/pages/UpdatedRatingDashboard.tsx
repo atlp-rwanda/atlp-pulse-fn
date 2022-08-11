@@ -27,6 +27,8 @@ const UpdatedRatingDashboard = () => {
     let newState = !rejectModel;
     setRejectModel(newState);
   };
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
 
   return (
     <>
@@ -121,7 +123,7 @@ const UpdatedRatingDashboard = () => {
 
       <div className="flex flex-col h-screen bg-light-bg">
         <div className="flex flex-row">
-          <Sidebar style="hidden lg:flex" />
+          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
@@ -152,7 +154,7 @@ const UpdatedRatingDashboard = () => {
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                   {t('Quality')}
                                 </th>
-                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider text-center">
+                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-xs font-semibold text-gray-600 uppercase tracking-wider text-center">
                                   {t('Professional skills')}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
