@@ -72,7 +72,7 @@ function Sidebar({ style, toggle }: { style: string, toggle: ()=> void}) {
           <SideNavLink onClick={toggle} to="/dashboard/updated-ratings" name="Updated Ratings">
             <RefreshIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/grading-system" name="Grading System">
+          <SideNavLink onClick={toggle} to="/dashboard/grading" name="Grading System">
             <TemplateIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink onClick={toggle} to="/dashboard/manage" name="Roles & Access">

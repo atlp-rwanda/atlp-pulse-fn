@@ -61,7 +61,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className=" bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                className="bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                 name="cohort"
                 placeholder="cohort"
                 type="text"
