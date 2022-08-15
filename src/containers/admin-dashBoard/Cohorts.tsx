@@ -24,7 +24,7 @@ const AdminCohort = () => {
     let newState = !deleteCohortModel;
     setDeleteCohortModel(newState);
   };
-  
+
   return (
     <>
       {/* =========================== Start:: CreateCohortModel =============================== */}

@@ -10,7 +10,6 @@ describe('Trainee Viewing Detailed Attendance Rating', () => {
       .create(
         <MemoryRouter>
           <TraineeAttendanceDetails />
-          
         </MemoryRouter>,
       )
       .toJSON();

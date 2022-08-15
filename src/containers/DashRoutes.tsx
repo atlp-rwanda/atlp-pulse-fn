@@ -20,7 +20,9 @@ import UpdatedRatingDashboard from '../pages/UpdatedRatingDashboard';
 import SupAdDashboard from '../pages/SupAdDashboard';
 import TraineeDashboard from '../pages/TraineeDashboard';
 import Calendar from '../components/Calendar';
-import GradingSystem from '../pages/GradingSystem'
+import GradingSystem from '../pages/GradingSystem';
+import Profile from '../pages/Profile';
+import EditProfile from '../pages/ProfileEdit';
 
 function DashRoutes() {
   return (
@@ -42,6 +44,8 @@ function DashRoutes() {
           <Route path="/manage" element={<AdminManageRoles />} />
           <Route path="/grading" element={<GradingSystem />} />
           <Route path="/performance-details" element={<PerformanceDetails />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/super-admin" element={<SupAdDashboard />} />
           <Route path="/settings" element={<Settings />} />

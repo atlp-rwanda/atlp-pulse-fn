@@ -52,7 +52,9 @@ function Settings() {
                 className="ml-auto text-gray-600 text-xs md:text-base dark:text-dark-text-fill"
                 to="#link"
               >
-                <h4>{t('Change')}</h4>
+                <h4>
+                  <Link to="/dashboard/profile">{t('Change')}</Link>
+                </h4>
               </Link>
             </li>
             <li className="flex items-center border-b pt-2 pb-1">
