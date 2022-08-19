@@ -175,13 +175,13 @@
   "Metric": "Ibice",
   "Grade": "Amanota",
   "Comments": "Ubusobanuro",
-  "Sign in": "Injira",
+  "Sign in":  "Injira",
   "Reply": "Gusubiza",
   "Wednesday": "Kuwa Gatatu",
   "Replies": "Ibitekerezo",
-  "grade": "amanota",
-  "Gradedefition": "Ibisobanuro",
-  "ApproximatePercentage": "Ijanisha rigereranijwe",
+  "grade":  "amanota",
+  "Gradedefition":  "Ibisobanuro",
+  "ApproximatePercentage":  "Ijanisha rigereranijwe",
   "Add Grading System": "Ongeraho ibarura manota",
   "Label. eg:GPA": "ikirango urugero: GPA",
   "Definition": "Ubusobanuro",
@@ -224,5 +224,8 @@
   "New password is required": "Ijambobanga rishya riracyenewe",
   "Current password is required": "Ijambobanga ryubu riracyenewe",
   "Back to Profile": "Subira Ku mwirondoro",
-  "error_page_paragraph": "Urupapuro urimo gushaka rushobora kuba rwaravanyweho, izina ryarahinduwe cyangwa ntirishoboke kuboneka."
+  "error_page_paragraph": "Urupapuro urimo gushaka rushobora kuba rwaravanyweho, izina ryarahinduwe cyangwa ntirishoboke kuboneka.",
+  "Privacy": "Amabanga",
+  "Sign out": "Gusohoka",
+  "Preference": "Ibyishimirwa"
 }

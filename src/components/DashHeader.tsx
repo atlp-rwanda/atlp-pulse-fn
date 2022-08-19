@@ -8,21 +8,26 @@ import Avatar from '../assets/avatar.png';
 import useDarkMode from '../hook/useDarkMode';
 import Sidebar from './Sidebar';
 import Notification from './Notification';
+import ProfileDropdown from './ProfileDropdown';
 
 function DashHeader() {
   const [showNotification, setShowNotification] = useState(false);
+  const [showProfileDropdown, setShowprofileDropdown] = useState(false);
 
   const [colorTheme] = useDarkMode();
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleShowNotification = () => setShowNotification(!showNotification);
+  const handleShowProfileDropdown = () => setShowprofileDropdown(!showProfileDropdown);
 
   return (
     <>
       {showNotification && (
         <Notification handleShowNotification={handleShowNotification} />
       )}
-
+      {showProfileDropdown && (
+        <ProfileDropdown handleShowProfileDropdown={handleShowProfileDropdown} />
+      )}
       <div className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b">
         <div className="px-3 flex items-center w-full h-full">
           <div className="flex px-5 lg:hidden">
@@ -70,11 +75,13 @@ function DashHeader() {
             className="w-6 cursor-pointer ml-auto dark:text-dark-text-fill"
             onClick={handleShowNotification}
           />
-          <img
-            className="w-6 cursor-pointer ml-4 mr-8"
-            src={Avatar}
-            alt="avatar"
-          />
+          <div onClick={handleShowProfileDropdown}>
+            <img
+              className="w-6 cursor-pointer ml-4 mr-8"
+              src={Avatar}
+              alt="avatar"
+            />
+          </div>
         </div>
         <ul
           className={
