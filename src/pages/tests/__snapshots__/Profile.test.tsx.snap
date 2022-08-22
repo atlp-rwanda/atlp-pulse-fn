@@ -1,0 +1,1421 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile Page Renders the edit profile page 1`] = `
+<div
+  className="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
+>
+  <div
+    className=" mt-[4.4rem] bg-[url('https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80')] bg-cover bg-no-repeat bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center"
+  >
+    <img
+      alt="profile-avatar"
+      className="w-20 md:w-28 h-20 md:h-28 m-4 relative ml-6 md:ml-20 mt-36 md:mt-12"
+      src={Object {}}
+    />
+    <div
+      className="flex h-full items-center justify-center bg-grey-lighter  -ml-10 md:-ml-12 mt-36 md:mt-20 z-0 mr-auto"
+    >
+      <label
+        className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1"
+      >
+        <svg
+          aria-hidden="true"
+          className="w-5 md:w-3 mr-1 mt-0 dark:text-dark-text-fill"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+          />
+          <path
+            clipRule="evenodd"
+            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+            fillRule="evenodd"
+          />
+        </svg>
+        <span
+          className="text-lg md:text-sm dark:text-dark-text-fill"
+        >
+          <span
+            className="hidden md:block"
+          >
+            Edit
+             
+          </span>
+        </span>
+        <input
+          className="hidden"
+          type="file"
+        />
+      </label>
+    </div>
+    <div
+      className="flex w-full h-screen items-center justify-center bg-grey-lighter  ml-auto  mt-24"
+    >
+      <label
+        className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-2"
+      >
+        <svg
+          aria-hidden="true"
+          className="w-6 mr-1 mt-0  dark:text-dark-text-fill"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span
+          className=" dark:text-dark-text-fill"
+        >
+          <span
+            className="hidden md:block"
+          >
+            Change Picture
+             
+          </span>
+        </span>
+        <input
+          className="hidden"
+          type="file"
+        />
+      </label>
+    </div>
+  </div>
+  <div
+    className="flex flex-wrap ml-4 lg:ml-64"
+  >
+    <div
+      className="lg:w-[25vw] mt-3"
+    >
+      <ul
+        className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
+        role="tablist"
+      >
+        <li
+          className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+        >
+          <span
+            className="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal border-b-4 border-b-primary "
+          >
+            Editing Profile
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className=" lg:px-4 border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg"
+  >
+    <div
+      className="px-4"
+    >
+      <button
+        className="btn default md text-center mb-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1 mt-4"
+      >
+         
+        <a
+          className="flex flex-row"
+          href="/dashboard/profile"
+          onClick={[Function]}
+        >
+          <svg
+            aria-hidden="true"
+            className="w-6 mr-1 md:mr-2 dark:text-dark-text-fill p-1"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+              fillRule="evenodd"
+            />
+          </svg>
+          Back to Profile
+        </a>
+      </button>
+      <form
+        className="mt-12 grid md:grid-cols-2 grid-cols-1 gap-4"
+        onSubmit={[Function]}
+      >
+        <div
+          className="flex flex-col justify-start items-start"
+        >
+          <label
+            className="font-semibold mb-2"
+            htmlFor="first-name"
+          >
+            First Name
+          </label>
+          <input
+            className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+            id="firstname"
+            name="firstname"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Enter your First Name"
+            type="text"
+          />
+          <div
+            className=""
+          >
+            <small
+              className="text-red-600"
+            />
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-start items-start"
+        >
+          <label
+            className="font-semibold mb-2"
+            htmlFor="lastname"
+          >
+            Last Name
+          </label>
+          <input
+            className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+            id="lastname"
+            name="lastname"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Enter your Last Name"
+            type="text"
+          />
+          <div
+            className=""
+          >
+            <small
+              className="text-red-600"
+            />
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-start items-start"
+        >
+          <label
+            className="font-semibold mb-2"
+            htmlFor="address"
+          >
+            Address
+          </label>
+          <input
+            className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+            id="address"
+            name="address"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Enter your address"
+            type="text"
+          />
+          <div
+            className=""
+          >
+            <small
+              className="text-red-600"
+            />
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-start items-start"
+        >
+          <label
+            className="font-semibold mb-2"
+            htmlFor="city"
+          >
+            City
+          </label>
+          <input
+            className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+            id="city"
+            name="city"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Enter the City where you live"
+            type="text"
+          />
+          <div
+            className=""
+          >
+            <small
+              className="text-red-600"
+            />
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-start items-start"
+        >
+          <label
+            className="font-semibold mb-2"
+            htmlFor="telephone"
+          >
+            Telephone
+          </label>
+          <input
+            className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+            id="telephone"
+            name="telephone"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Your Telephone Number"
+            type="phone"
+          />
+          <div
+            className=""
+          >
+            <small
+              className="text-red-600"
+            />
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-start items-start mt-auto"
+        >
+          <label
+            className="font-semibold mb-2"
+            htmlFor="Country"
+          >
+            Country
+          </label>
+          <div
+            className="w-full"
+          >
+            <div
+              data-testid="countries"
+            >
+              <div
+                className="relative"
+              >
+                <button
+                  aria-expanded="true"
+                  aria-haspopup="listbox"
+                  aria-labelledby="listbox-label"
+                  className="bg-white  dark:bg-dark-bg relative w-full border border-gray-300  rounded-md shadow-sm pl-2 pr-1 py-2 text-left cursor-default focus:outline-none focus:ring-1  focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  darksm:text-sm"
+                  data-testid="country-selector-button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <span
+                    className="truncate flex items-center"
+                    data-testid="country-selector-title"
+                  >
+                    <img
+                      alt="RW"
+                      className="inline mr-2 h-4 rounded-sm"
+                      data-testid="country-selector-flag"
+                      src="https://purecatamphetamine.github.io/country-flag-icons/3x2/RW.svg"
+                    />
+                    Rwanda
+                  </span>
+                  <span
+                    className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="h-5 w-5 text-gray-400 "
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clipRule="evenodd"
+                        d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="flex flex-col justify-start items-start md:col-span-2"
+        >
+          <label
+            className="font-semibold mb-2"
+            htmlFor="Biography"
+          >
+            Biography
+          </label>
+          <textarea
+            className="rounded-md w-full border p-2 dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
+            cols={20}
+            id=""
+            name="bio"
+            rows={5}
+          >
+            Lorem ipsum dollores is here ro staye Lorem ipsum dollores is here ro staye Lorem ipsum dollores is here ro staye Lorem
+          </textarea>
+        </div>
+        <button
+          className="group relative my-4 md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+          onSubmit={[Function]}
+          type="submit"
+        >
+          Update Profile
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Profile Page Renders the profile tabs 1`] = `
+<div
+  className="flex flex-wrap lg:ml-60 lg:mr-8"
+>
+  <div
+    className="lg:w-[40vw]"
+  >
+    <ul
+      className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
+      role="tablist"
+    >
+      <li
+        className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+      >
+        <a
+          className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal bg-white dark:bg-dark-bg border-b-4 border-b-primary "
+          data-testid="tab-link"
+          data-toggle="tab"
+          href="#link1"
+          onClick={[Function]}
+          role="tablist"
+        >
+          About
+        </a>
+      </li>
+      <li
+        className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+      >
+        <a
+          className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+          data-testid="tab-link"
+          data-toggle="tab"
+          href="#link1"
+          onClick={[Function]}
+          role="tablist"
+        >
+          Organizations
+        </a>
+      </li>
+      <li
+        className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+      >
+        <a
+          className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+          data-testid="tab-link"
+          data-toggle="tab"
+          href="#link1"
+          onClick={[Function]}
+          role="tablist"
+        >
+          Account
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="relative flex flex-col min-w-0 break-words text-light-text dark:text-dark-text-fill  w-full rounded"
+  >
+    <div
+      className="py-2 flex-auto"
+    >
+      <div
+        className="tab-content tab-space"
+      >
+        <div
+          className="block"
+          id="link1"
+        >
+          <div
+            className="grid md:grid-cols-5 gap-4 md:gap-6 "
+          >
+            <div
+              className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+            >
+              <h3
+                className="text-2xl font-bold m-2  mb-4"
+              >
+                John Doe 
+              </h3>
+              <div
+                className="py-4 flex  justify-center"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  />
+                  <path
+                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  />
+                </svg>
+                johndoe@gmail.com
+              </div>
+              <div
+                className="flex"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                  />
+                </svg>
+                (+250) 787 241 457
+              </div>
+              <div
+                className="py-4 flex "
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                  />
+                </svg>
+                Kimironko, Kigali
+              </div>
+            </div>
+            <div
+              className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+            >
+              <h2
+                className="text-xl font-bold m-2  mb-4"
+              >
+                Biography
+              </h2>
+              <p>
+                Lorem ipsum dollores is here ro staye Lorem ipsum dollores  is here ro staye Lorem ipsum dollores is here ro staye Lorem
+              </p>
+            </div>
+          </div>
+          <div
+            className="grid m-1 p-2 -ml-2 -mr-2 relative"
+          >
+            <div
+              className="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+            >
+              <img
+                alt="logo"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                src={Object {}}
+              />
+              <div
+                className="flex flex-col justify-start items-start ml-36"
+              >
+                <h2
+                  className="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
+                >
+                  Andela
+                </h2>
+                <h3
+                  className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                >
+                  https://andela.pusle.com
+                </h3>
+              </div>
+            </div>
+            <div
+              className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+            >
+              <h3
+                className="text-2xl font-bold m-2  mb-4"
+              >
+                You in the organization
+              </h3>
+              <div
+                className="py-4 flex  justify-center"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Joined
+                  :
+                </h4>
+                18/07/2022
+              </div>
+              <div
+                className="flex"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  role
+                  :
+                </h4>
+                Trainee
+              </div>
+              <div
+                className="py-4 flex "
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Team
+                  :
+                </h4>
+                Codebandits
+              </div>
+            </div>
+            <div
+              className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+            >
+              <h3
+                className="text-2xl font-bold m-2  mb-4"
+              >
+                Management
+              </h3>
+              <div
+                className="py-4 flex  justify-center"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  program
+                  :
+                </h4>
+                ATLP
+              </div>
+              <div
+                className="flex"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Stage(current)
+                  : Core Concepts
+                </h4>
+              </div>
+              <div
+                className="py-4 flex "
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Manager
+                  :
+                </h4>
+                Mukunzi Dodo
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="hidden"
+          id="link3"
+        >
+          <div
+            className="grid m-1 p-2 -ml-2 -mr-2 relative"
+          >
+            <div
+              className="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+            >
+              <img
+                alt="logo"
+                className="w-12 h-12 md:w-16 md:h-16 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                src={Object {}}
+              />
+              <div
+                className="flex flex-col justify-start items-start ml-36"
+              >
+                <h2
+                  className="font-bold text-dark-text-fill text-center text-lg md:text-xl"
+                >
+                  Andela
+                </h2>
+                <h3
+                  className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                >
+                  https://andela.pusle.com
+                </h3>
+              </div>
+            </div>
+            <div
+              className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+            >
+              <h3
+                className="text-2xl font-bold m-2  mb-4"
+              >
+                You in the organization
+              </h3>
+              <div
+                className="py-4 flex  justify-center"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Joined
+                  :
+                </h4>
+                18/07/2022
+              </div>
+              <div
+                className="flex"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Role
+                  :
+                </h4>
+                Trainee
+              </div>
+              <div
+                className="py-4 flex "
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Team
+                  :
+                </h4>
+                Codebandits
+              </div>
+            </div>
+            <div
+              className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+            >
+              <h3
+                className="text-2xl font-bold m-2  mb-4"
+              >
+                Management
+              </h3>
+              <div
+                className="py-4 flex  justify-center"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Program
+                  :
+                </h4>
+                ATLP
+              </div>
+              <div
+                className="flex"
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Stage(current)
+                  : Core Concepts
+                </h4>
+              </div>
+              <div
+                className="py-4 flex "
+              >
+                <h4
+                  className="font-bold text-base mr-4"
+                >
+                  Manager
+                  :
+                </h4>
+                Mukunzi Dodo
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="hidden"
+          id="link2"
+        >
+          <div
+            className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
+          >
+            <div
+              className="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-4 mb-6 lg:-ml-8 rounded-lg"
+            >
+              <div
+                className="px-4"
+              >
+                <form
+                  className="mt-12 grid grid-cols-1 gap-4"
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="flex flex-col justify-start items-start"
+                  >
+                    <label
+                      className="font-semibold mb-2"
+                      htmlFor="current-password"
+                    >
+                      Current Password
+                    </label>
+                    <input
+                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                      id="current-password"
+                      name="current-password"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      placeholder="Enter your current password"
+                      type="passsword"
+                    />
+                    <div
+                      className=""
+                    >
+                      <small
+                        className="text-red-600"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-col justify-start items-start"
+                  >
+                    <label
+                      className="font-semibold mb-2"
+                      htmlFor="new-password"
+                    >
+                      New Password
+                    </label>
+                    <input
+                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                      id="new-password"
+                      name="new-password"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      placeholder="Enter new password"
+                      type="password"
+                    />
+                    <div
+                      className=""
+                    >
+                      <small
+                        className="text-red-600"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-col justify-start items-start"
+                  >
+                    <label
+                      className="font-semibold mb-2"
+                      htmlFor="confirm-password"
+                    >
+                      Confirm Password
+                    </label>
+                    <input
+                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                      id="confirm-password"
+                      name="confirm-password"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      placeholder="Re-enter the new password"
+                      type="password"
+                    />
+                    <div
+                      className=""
+                    >
+                      <small
+                        className="text-red-600"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                    onClick={[Function]}
+                  >
+                    Change Password
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Profile Page Renders the whole profile page 1`] = `
+<div
+  className="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
+>
+  <div
+    className=" mt-[4.4rem] bg-[url('https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80')] bg-cover bg-no-repeat bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center"
+  >
+    <img
+      alt="profile-avatar"
+      className="w-20 md:w-28 h-20 md:h-28 m-4 relative ml-6 md:ml-20 mt-36 md:mt-12"
+      src={Object {}}
+    />
+    <div
+      className="flex h-full items-center justify-center bg-grey-lighter  -ml-10 md:-ml-12 mt-36 md:mt-20 z-0 mr-auto"
+    >
+      <label
+        className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1"
+      >
+        <svg
+          aria-hidden="true"
+          className="w-5 md:w-3 mr-1 mt-0 dark:text-dark-text-fill"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+          />
+          <path
+            clipRule="evenodd"
+            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+            fillRule="evenodd"
+          />
+        </svg>
+        <span
+          className="text-lg md:text-sm dark:text-dark-text-fill"
+        >
+          <span
+            className="hidden md:block"
+          >
+            Edit
+             
+          </span>
+        </span>
+        <input
+          className="hidden"
+          type="file"
+        />
+      </label>
+    </div>
+    <button
+      className="btn default md text-center ml-auto mr-4 mt-40 md:mt-24  rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1 md:p-2"
+    >
+      <a
+        className="flex flex-row"
+        href="/edit"
+        onClick={[Function]}
+      >
+        <svg
+          aria-hidden="true"
+          className="w-6 mr-1 md:mr-2 dark:text-dark-text-fill "
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+          />
+        </svg>
+        <span
+          className="hidden md:block"
+        >
+           
+          Edit Profile
+           
+        </span>
+      </a>
+    </button>
+  </div>
+  <div
+    className="mt-2 p-6"
+  >
+    <div
+      className="flex flex-wrap lg:ml-60 lg:mr-8"
+    >
+      <div
+        className="lg:w-[40vw]"
+      >
+        <ul
+          className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
+          role="tablist"
+        >
+          <li
+            className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+          >
+            <a
+              className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal bg-white dark:bg-dark-bg border-b-4 border-b-primary "
+              data-testid="tab-link"
+              data-toggle="tab"
+              href="#link1"
+              onClick={[Function]}
+              role="tablist"
+            >
+              About
+            </a>
+          </li>
+          <li
+            className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+          >
+            <a
+              className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+              data-testid="tab-link"
+              data-toggle="tab"
+              href="#link1"
+              onClick={[Function]}
+              role="tablist"
+            >
+              Organizations
+            </a>
+          </li>
+          <li
+            className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+          >
+            <a
+              className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+              data-testid="tab-link"
+              data-toggle="tab"
+              href="#link1"
+              onClick={[Function]}
+              role="tablist"
+            >
+              Account
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="relative flex flex-col min-w-0 break-words text-light-text dark:text-dark-text-fill  w-full rounded"
+      >
+        <div
+          className="py-2 flex-auto"
+        >
+          <div
+            className="tab-content tab-space"
+          >
+            <div
+              className="block"
+              id="link1"
+            >
+              <div
+                className="grid md:grid-cols-5 gap-4 md:gap-6 "
+              >
+                <div
+                  className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    className="text-2xl font-bold m-2  mb-4"
+                  >
+                    John Doe 
+                  </h3>
+                  <div
+                    className="py-4 flex  justify-center"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="w-6 mr-2 dark:text-dark-text-fill"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                      />
+                      <path
+                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                      />
+                    </svg>
+                    johndoe@gmail.com
+                  </div>
+                  <div
+                    className="flex"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="w-6 mr-2 dark:text-dark-text-fill"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                      />
+                    </svg>
+                    (+250) 787 241 457
+                  </div>
+                  <div
+                    className="py-4 flex "
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="w-6 mr-2 dark:text-dark-text-fill"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                      />
+                    </svg>
+                    Kimironko, Kigali
+                  </div>
+                </div>
+                <div
+                  className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+                >
+                  <h2
+                    className="text-xl font-bold m-2  mb-4"
+                  >
+                    Biography
+                  </h2>
+                  <p>
+                    Lorem ipsum dollores is here ro staye Lorem ipsum dollores  is here ro staye Lorem ipsum dollores is here ro staye Lorem
+                  </p>
+                </div>
+              </div>
+              <div
+                className="grid m-1 p-2 -ml-2 -mr-2 relative"
+              >
+                <div
+                  className="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+                >
+                  <img
+                    alt="logo"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                    src={Object {}}
+                  />
+                  <div
+                    className="flex flex-col justify-start items-start ml-36"
+                  >
+                    <h2
+                      className="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
+                    >
+                      Andela
+                    </h2>
+                    <h3
+                      className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                    >
+                      https://andela.pusle.com
+                    </h3>
+                  </div>
+                </div>
+                <div
+                  className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    className="text-2xl font-bold m-2  mb-4"
+                  >
+                    You in the organization
+                  </h3>
+                  <div
+                    className="py-4 flex  justify-center"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Joined
+                      :
+                    </h4>
+                    18/07/2022
+                  </div>
+                  <div
+                    className="flex"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      role
+                      :
+                    </h4>
+                    Trainee
+                  </div>
+                  <div
+                    className="py-4 flex "
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Team
+                      :
+                    </h4>
+                    Codebandits
+                  </div>
+                </div>
+                <div
+                  className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    className="text-2xl font-bold m-2  mb-4"
+                  >
+                    Management
+                  </h3>
+                  <div
+                    className="py-4 flex  justify-center"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      program
+                      :
+                    </h4>
+                    ATLP
+                  </div>
+                  <div
+                    className="flex"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Stage(current)
+                      : Core Concepts
+                    </h4>
+                  </div>
+                  <div
+                    className="py-4 flex "
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Manager
+                      :
+                    </h4>
+                    Mukunzi Dodo
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="hidden"
+              id="link3"
+            >
+              <div
+                className="grid m-1 p-2 -ml-2 -mr-2 relative"
+              >
+                <div
+                  className="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+                >
+                  <img
+                    alt="logo"
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                    src={Object {}}
+                  />
+                  <div
+                    className="flex flex-col justify-start items-start ml-36"
+                  >
+                    <h2
+                      className="font-bold text-dark-text-fill text-center text-lg md:text-xl"
+                    >
+                      Andela
+                    </h2>
+                    <h3
+                      className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                    >
+                      https://andela.pusle.com
+                    </h3>
+                  </div>
+                </div>
+                <div
+                  className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    className="text-2xl font-bold m-2  mb-4"
+                  >
+                    You in the organization
+                  </h3>
+                  <div
+                    className="py-4 flex  justify-center"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Joined
+                      :
+                    </h4>
+                    18/07/2022
+                  </div>
+                  <div
+                    className="flex"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Role
+                      :
+                    </h4>
+                    Trainee
+                  </div>
+                  <div
+                    className="py-4 flex "
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Team
+                      :
+                    </h4>
+                    Codebandits
+                  </div>
+                </div>
+                <div
+                  className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    className="text-2xl font-bold m-2  mb-4"
+                  >
+                    Management
+                  </h3>
+                  <div
+                    className="py-4 flex  justify-center"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Program
+                      :
+                    </h4>
+                    ATLP
+                  </div>
+                  <div
+                    className="flex"
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Stage(current)
+                      : Core Concepts
+                    </h4>
+                  </div>
+                  <div
+                    className="py-4 flex "
+                  >
+                    <h4
+                      className="font-bold text-base mr-4"
+                    >
+                      Manager
+                      :
+                    </h4>
+                    Mukunzi Dodo
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="hidden"
+              id="link2"
+            >
+              <div
+                className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
+              >
+                <div
+                  className="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-4 mb-6 lg:-ml-8 rounded-lg"
+                >
+                  <div
+                    className="px-4"
+                  >
+                    <form
+                      className="mt-12 grid grid-cols-1 gap-4"
+                      onSubmit={[Function]}
+                    >
+                      <div
+                        className="flex flex-col justify-start items-start"
+                      >
+                        <label
+                          className="font-semibold mb-2"
+                          htmlFor="current-password"
+                        >
+                          Current Password
+                        </label>
+                        <input
+                          className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                          id="current-password"
+                          name="current-password"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          placeholder="Enter your current password"
+                          type="passsword"
+                        />
+                        <div
+                          className=""
+                        >
+                          <small
+                            className="text-red-600"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className="flex flex-col justify-start items-start"
+                      >
+                        <label
+                          className="font-semibold mb-2"
+                          htmlFor="new-password"
+                        >
+                          New Password
+                        </label>
+                        <input
+                          className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                          id="new-password"
+                          name="new-password"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          placeholder="Enter new password"
+                          type="password"
+                        />
+                        <div
+                          className=""
+                        >
+                          <small
+                            className="text-red-600"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className="flex flex-col justify-start items-start"
+                      >
+                        <label
+                          className="font-semibold mb-2"
+                          htmlFor="confirm-password"
+                        >
+                          Confirm Password
+                        </label>
+                        <input
+                          className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                          id="confirm-password"
+                          name="confirm-password"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          placeholder="Re-enter the new password"
+                          type="password"
+                        />
+                        <div
+                          className=""
+                        >
+                          <small
+                            className="text-red-600"
+                          />
+                        </div>
+                      </div>
+                      <button
+                        className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                        onClick={[Function]}
+                      >
+                        Change Password
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -39,7 +39,12 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
             onClick={[Function]}
           >
             <h4>
-              Change
+              <a
+                href="/dashboard/profile"
+                onClick={[Function]}
+              >
+                Change
+              </a>
             </h4>
           </a>
         </li>

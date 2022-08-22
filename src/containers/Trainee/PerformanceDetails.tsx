@@ -7,10 +7,10 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { useTranslation } from 'react-i18next';
 
 function PerformanceDetails() {
-  const{t} = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className='bg-neutral-100 dark:bg-dark-frame-bg'>
+    <div className="bg-neutral-100 dark:bg-dark-frame-bg">
       <TraineePerformanceDetails />
       <TraineeComments />
       {/* <div className="bg-neutral-100 dark:bg-dark-frame-bg">

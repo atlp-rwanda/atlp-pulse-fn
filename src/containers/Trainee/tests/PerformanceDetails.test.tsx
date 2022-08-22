@@ -9,7 +9,7 @@ describe('Detailed Peformance page', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <PerformanceDetails/>
+          <PerformanceDetails />
         </MemoryRouter>,
       )
       .toJSON();

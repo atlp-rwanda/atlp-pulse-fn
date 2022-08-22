@@ -10,7 +10,7 @@ function AttendanceDetails() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className='bg-neutral-100 dark:bg-dark-frame-bg'>
+    <div className="bg-neutral-100 dark:bg-dark-frame-bg">
       <TraineeAttendaceDetails />
       <TraineeComments />
       {/* <div className="bg-neutral-100 dark:bg-dark-frame-bg">

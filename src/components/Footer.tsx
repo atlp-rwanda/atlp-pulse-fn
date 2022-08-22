@@ -90,11 +90,7 @@ function Footer({ styles }: any) {
         </div>
         <div className=" lg:flex">
           <span className="px-4 lg:py-3 cursor-pointer text-lg">
-            ©
-            {' '}
-            {new Date().getFullYear()}
-            {' '}
-            Pulse Technologies
+            © {new Date().getFullYear()} Pulse Technologies
           </span>
         </div>
       </div>
