@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const TraineeAttendance = () => {
   const { t } = useTranslation();
-  
+
   return (
     <>
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">

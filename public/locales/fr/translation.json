@@ -102,7 +102,7 @@
   "Expiration": "Expiration",
   "CVV": "CVV",
   "Ooops... What just happened!?": "Ooops... Qu'est-ce qui vient de se passer !?",
-  "NOT FOUND": "NON TROUVÉ",
+  "PAGE NOT FOUND": "PAGE NON TROUVÉE",
   "404_page_paragraph": "Vous n'avez pas cassé Internet 😱. La page que vous recherchez n'existe pas.",
   "Back Home": "Retourner a l'Accueil",
   "All Organizations": "Tous les Organisations",
@@ -269,5 +269,6 @@
   "Confirm password is required": "Confirmez d'abord le mot de passe",
   "New password is required": "Un nouveau mot de passe est requis",
   "Current password is required": "Le mot de passe actuel est requis",
-  "Back to Profile": "Retour au profil"
+  "Back to Profile": "Retour au profil",
+  "error_page_paragraph": "La page que vous recherchez a peut-être été supprimée, a changé de nom ou est temporairement indisponible"
 }

@@ -5,7 +5,7 @@ import React from 'react';
 import Button from './Buttons';
 
 const TraineePerfomanceDetails = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div>
       <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">

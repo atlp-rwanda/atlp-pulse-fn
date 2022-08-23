@@ -21,7 +21,7 @@ describe('Register an Organization', () => {
     const removeModelMck = jest.fn();
     const { getByTestId } = render(
       <MemoryRouter>
-       <Grading />
+        <Grading />
       </MemoryRouter>,
     );
     const removeModel = getByTestId('removeModel');
