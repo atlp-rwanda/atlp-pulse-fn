@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Button from '../components/Buttons';
 import NotFoundImg from '../assets/NotFoundImg.svg';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 function Error() {
+  useDocumentTitle('Page not found');
   const { t } = useTranslation();
   const navigate = useNavigate();
 

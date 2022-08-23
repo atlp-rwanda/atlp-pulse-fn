@@ -2,8 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Chart from '../components/Chart';
 import Card from '../components/Card';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 function SupAdDashboard() {
+  useDocumentTitle('Dashboard');
   const { t } = useTranslation();
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">

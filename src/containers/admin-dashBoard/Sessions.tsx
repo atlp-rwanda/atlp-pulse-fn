@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import Button from './../../components/Buttons';
+import useDocumentTitle from '../../hook/useDocumentTitle';
 
 const AdminSission = () => {
+  useDocumentTitle("Sessions")
   const { t } = useTranslation();
 
   const [deleteSessionModel, setDeleteSessionModel] = useState(false);

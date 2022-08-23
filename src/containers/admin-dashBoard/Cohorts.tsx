@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import Button from './../../components/Buttons';
+import useDocumentTitle from '../../hook/useDocumentTitle';
 
 const AdminCohort = () => {
   const { t } = useTranslation();
@@ -10,6 +11,7 @@ const AdminCohort = () => {
   const [createCohortModel, setCreateCohortModel] = useState(false);
   const [deleteCohortModel, setDeleteCohortModel] = useState(false);
   const [showActions, setShowActions] = useState(false);
+  useDocumentTitle("Cohorts");
 
   const removeModel = () => {
     let newState = !createCohortModel;

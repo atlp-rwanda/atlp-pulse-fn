@@ -7,6 +7,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReactTooltip from 'react-tooltip';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 const initialData: EventInput[] = [
   {
@@ -36,6 +37,7 @@ const initialData: EventInput[] = [
 ];
 
 const Calendar = () => {
+  useDocumentTitle("Calendar")
   const [addEventModel, setAddEventModel] = useState(false);
   const [newEvent, setNewEvent] = useState({
     title: '',

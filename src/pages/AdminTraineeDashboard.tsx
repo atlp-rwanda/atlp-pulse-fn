@@ -4,8 +4,10 @@ import Sidebar from '../components/Sidebar';
 import { useTranslation } from 'react-i18next';
 import developers from '../dummyData/developers2.json';
 import Button from './../components/Buttons';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 const AdminTraineeDashboard = () => {
+  useDocumentTitle("Trainees")
   const { t } = useTranslation();
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [findFilter, setFindFilter] = useState('');

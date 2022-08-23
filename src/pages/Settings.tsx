@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { Switch } from '@headlessui/react';
 import useDarkMode from '../hook/useDarkMode';
 import getLanguage from '../utils/getLanguage';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 function Settings() {
+  useDocumentTitle('Settings');
   const { t } = useTranslation();
   const lanRef = useRef<any>();
   const lan = getLanguage();

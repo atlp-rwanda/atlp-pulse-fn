@@ -3,8 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Buttons';
 import { useTranslation } from 'react-i18next';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 const TraineeAttendance = () => {
+  useDocumentTitle("Attendance")
   const { t } = useTranslation();
 
   return (

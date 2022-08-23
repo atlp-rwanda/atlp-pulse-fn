@@ -1,8 +1,10 @@
 import React from 'react';
 import Chart from '../components/Chart';
 import Card from '../components/Card';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 function SupAdDashboard() {
+  useDocumentTitle('Dashboard');
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
       <div className="flex flex-row pb-8 justify-center">
