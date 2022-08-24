@@ -117,7 +117,7 @@ const Calendar = () => {
                     type="text"
                     data-testid="setNewEvent"
                     name="eventTitle"
-                    className="border-gray-300 dark:bg-dark-tertiary border dark:text-white border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className=" dark:bg-dark-tertiary border dark:text-white border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('Event title')}
                     value={newEvent.title}
                     // eslint-disable-next-line prettier/prettier
@@ -133,7 +133,7 @@ const Calendar = () => {
                   <input
                     type="text"
                     name="hostName"
-                    className="border-gray-300 dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className=" dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('Host name')}
                     value={newEvent.hostName}
                     onChange={(e) =>
@@ -146,7 +146,7 @@ const Calendar = () => {
               <div className="input my-3 h-9 ">
                 <div className="grouped-input flex items-center h-full w-full rounded-md">
                   <DatePicker
-                    className="border-gray-300 dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className=" dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholderText={t('Start Date')}
                     style={{ marginRight: '10px' }}
                     selected={newEvent.start}
