@@ -44,6 +44,8 @@ const TraineeRatingDashboard = () => {
     let newState = !deleteTraineeModel;
     setDeleteTraineeModel(newState);
   };
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
 
   return (
     <>
@@ -67,7 +69,7 @@ const TraineeRatingDashboard = () => {
                   <input
                     type="text"
                     name="name"
-                    className="border border-primary border-gray-300 bg-dark-tertiary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className="border border-primary  bg-dark-tertiary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('name')}
                   />
                 </div>
@@ -77,7 +79,7 @@ const TraineeRatingDashboard = () => {
                   <input
                     type="email"
                     name="email"
-                    className="border-gray-300 bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className="bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('email')}
                   />
                 </div>
@@ -87,7 +89,7 @@ const TraineeRatingDashboard = () => {
                   <input
                     type="text"
                     name="cohort"
-                    className="border-gray-300 bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className="bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('cohort')}
                   />
                 </div>
@@ -98,7 +100,7 @@ const TraineeRatingDashboard = () => {
                   <input
                     type="text"
                     name="program"
-                    className="border-gray-300 bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className=" bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('program')}
                   />
                 </div>
@@ -165,7 +167,7 @@ const TraineeRatingDashboard = () => {
         onClick={handleCloseDropdown}
       >
         <div className="flex flex-row">
-          <Sidebar style="hidden lg:flex" />
+          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">

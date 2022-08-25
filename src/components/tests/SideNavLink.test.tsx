@@ -6,10 +6,11 @@ import SideNavLink from '../SideNavLink';
 
 describe('DashHeader test ', () => {
   it('Should render navlink witthout active indicator', () => {
+    const toggle = jest.fn();
     const elem = renderer
       .create(
         <BrowserRouter>
-          <SideNavLink to="/main" name="main">
+          <SideNavLink to="/main" name="main" onClick={toggle}>
             <div />
           </SideNavLink>
         </BrowserRouter>,
@@ -18,10 +19,11 @@ describe('DashHeader test ', () => {
     expect(elem).toMatchSnapshot();
   });
   it('Should render with an active style', () => {
+    const toggle = jest.fn();
     const elem = renderer
       .create(
         <MemoryRouter initialEntries={['/main']}>
-          <SideNavLink to="/main" name="main">
+          <SideNavLink to="/main" name="main" onClick={toggle}>
             <div />
           </SideNavLink>
         </MemoryRouter>,
@@ -30,14 +32,14 @@ describe('DashHeader test ', () => {
     expect(elem).toMatchSnapshot();
   });
   it('Should render the sidebar with setings as active', () => {
+    const toggle = jest.fn();
     const elem = renderer
       .create(
         <MemoryRouter initialEntries={['/dashboard/settings']}>
-          <Sidebar style="" />
+          <Sidebar style="" toggle={toggle} />
         </MemoryRouter>,
       )
       .toJSON();
-
     expect(elem).toMatchSnapshot();
   });
 });

@@ -11,6 +11,7 @@ function LandingPage() {
   return (
     <div className="hero">
       <Header styles="bg-opacity-50 dark:bg-opacity-50" />
+
       <div className="hero w-full min-h-full flex flex-col justify-center grow items-center py-20">
         <div className="grid h-full lg:grid-cols-2 w-full justify-around content-center pb-6">
           <div className="flex h-full flex-col items-center justify-start  w-full px-4 py-2">

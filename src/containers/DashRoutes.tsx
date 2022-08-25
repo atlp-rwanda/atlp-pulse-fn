@@ -1,5 +1,6 @@
 /* eslint-disable */
-import React, { Suspense } from 'react';
+
+import React, { Suspense,useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';
@@ -44,11 +45,13 @@ const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
 import Skeleton from '../components/Skeleton';
 
 function DashRoutes() {
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
   return (
     <PrivateRoute>
       <div className="flex flex-col min-h-screen">
         <DashHeader />
-        <Sidebar style="hidden lg:flex" />
+        <Sidebar toggle={handleClick} style="hidden lg:flex" />
         <Suspense fallback={<Skeleton />}>
           <Routes>
             <Route path="" element={<Dashboard />} />

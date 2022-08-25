@@ -33,7 +33,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border-gray-300 dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                className=" dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                 name="name"
                 placeholder="name"
                 type="text"
@@ -47,7 +47,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                 name="email"
                 placeholder="email"
                 type="email"
@@ -61,7 +61,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                 name="cohort"
                 placeholder="cohort"
                 type="text"
@@ -75,7 +75,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                className="dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                 name="program"
                 placeholder="program"
                 type="text"

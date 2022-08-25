@@ -23,7 +23,6 @@ function MainRoutes() {
           <Route path="*" element={<Error />} />
         </Routes>
       </Suspense>
-
       <Footer />
     </div>
   );

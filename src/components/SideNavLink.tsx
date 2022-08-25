@@ -6,10 +6,13 @@ interface Props {
   to: string;
   name: string;
   children: ReactNode;
+  onClick: ()=> void;
   // any props that come into the component
 }
 
-export default function SideNavLink({ to, name, children, ...props }: Props) {
+export default function SideNavLink({
+  to, name, onClick, children, ...props
+}: Props) {
   const { t } = useTranslation();
   return (
     <li
@@ -17,6 +20,7 @@ export default function SideNavLink({ to, name, children, ...props }: Props) {
       {...props}
     >
       <NavLink
+        onClick={onClick}
         to={to}
         className={(navData) => {
           if (navData.isActive) {

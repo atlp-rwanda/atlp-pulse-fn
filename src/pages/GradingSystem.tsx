@@ -9,6 +9,8 @@ const GradingSystem = () => {
   const [addGradingSystemModel, setAddGradingSystemModel] = useState(false);
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
 
   let fileteredData;
   const [formData, setFormData] = useState({
@@ -49,8 +51,8 @@ const GradingSystem = () => {
 
   return (
     <>
-      {/* =========================== Start::  GradingSystemModel =============================== */}
-      <div
+     {/* =========================== Start::  GradingSystemModel =============================== */}
+     <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           addGradingSystemModel === true ? 'block' : 'hidden'
         }`}
@@ -69,7 +71,7 @@ const GradingSystem = () => {
                   <input
                     type="text"
                     name="gpa"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className=" dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('Label. eg:GPA')}
                   />
                 </div>
@@ -79,8 +81,8 @@ const GradingSystem = () => {
                   <input
                     type="text"
                     name="definition"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                    placeholder={t('Definition')}
+                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    placeholder={t("Definition")}
                   />
                 </div>
               </div>
@@ -89,8 +91,8 @@ const GradingSystem = () => {
                   <input
                     type="text"
                     name="percentage"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                    placeholder={t('Percentage')}
+                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    placeholder={t("Percentage")}
                   />
                 </div>
               </div>
@@ -100,8 +102,8 @@ const GradingSystem = () => {
                   <input
                     type="text"
                     name="grade"
-                    className="border-gray-300 dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                    placeholder={t('Grade')}
+                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    placeholder={t("Grade")}
                   />
                 </div>
               </div>
@@ -129,113 +131,112 @@ const GradingSystem = () => {
         </div>
       </div>
       {/* =========================== End::  GradingSystemModel =============================== */}
-      <div className="flex flex-col h-screen">
-        <div className="flex flex-row">
-          <Sidebar style="hidden lg:flex" />
-          <div className="w-full">
-            <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
-                <div className="flex items-left px-7 lg:px-64 pt-24">
-                  <div className="flex px-5 py-2 pb-8 w-fit">
-                    <select
-                      className="flex bg-primary rounded-md py-2 px-1 text-white font-medium cursor-pointer"
-                      value={formData.label}
-                      onChange={(event) =>
-                        setFormData({
-                          ...formData,
-                          label: event.target.value,
-                        })
-                      }
-                    >
-                      <option selected value="">
-                        {' '}
-                        ---Select---{' '}
-                      </option>
-                      <option value="gpa">
-                        {' '}
-                        {t('GradePointAverage')} (GPA){' '}
-                      </option>
-                      <option value="letter">
-                        {' '}
-                        {t('LetterGrading')} (A - F){' '}
-                      </option>
-                      <option value="atlp">
-                        {' '}
-                        {t('ATLPGradingSystem')} (0 - 2){' '}
-                      </option>
-                      <option value="custom"> {t('Custom')} </option>
-                    </select>
-                  </div>
+    <div className="flex flex-col h-screen">
+      <div className="flex flex-row">
+        <Sidebar toggle={handleClick} style="hidden lg:flex" />
+        <div className="w-full">
+          <div>
+            <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
+              <div className="flex items-left px-7 lg:px-64 pt-24">
+                <div className="flex px-5 py-2 pb-8 w-fit">
+                  <select
+                    className="flex bg-primary rounded-md py-2 px-1 text-white font-medium cursor-pointer"
+                    value={formData.label}
+                    onChange={(event) =>
+                      setFormData({
+                        ...formData,
+                        label: event.target.value,
+                      })
+                    }
+                  >
+                    <option selected value="">
+                      {' '}
+                      ---Select---{' '}
+                    </option>
+                    <option value="gpa">
+                      {' '}
+                      {t('GradePointAverage')} (GPA){' '}
+                    </option>
+                    <option value="letter">
+                      {' '}
+                      {t('LetterGrading')} (A - F){' '}
+                    </option>
+                    <option value="atlp">
+                      {' '}
+                      {t('ATLPGradingSystem')} (0 - 2){' '}
+                    </option>
+                    <option value="custom"> {t('Custom')} </option>
+                  </select>
                 </div>
-                <div className="px-3 md:px-8">
-                  <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
-                    <div className=" flex items-center justify-between pb-6">
-                      <div>
-                        <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
-                          {title}
-                        </h2>
-                      </div>
-                    </div>
+              </div>
+              <div className="px-3 md:px-8">
+                <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
+                  <div className=" flex items-center justify-between pb-6">
                     <div>
-                      <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                        <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
-                          <table className="min-w-full leading-normal">
-                            <thead className=" w-full px-32">
-                              <tr>
-                                <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                                  {t('grade')}
-                                </th>
+                      <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
+                        {title}
+                      </h2>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                      <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
+                        <table className="min-w-full leading-normal">
+                          <thead className=" w-full px-32">
+                            <tr>
+                              <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                {t('grade')}
+                              </th>
 
-                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell tracking-wider">
-                                  {t('Gradedefition')}
-                                </th>
+                              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell tracking-wider">
+                                {t('Gradedefition')}
+                              </th>
 
-                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                                  {t('ApproximatePercentage')}
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {fileteredData?.map((item: any, index: any) => {
-                                let rowTheme =
-                                  index % 2 !== 0
-                                    ? 'bg-light-bg dark:bg-dark-tertiary'
-                                    : 'bg-white dark:bg-dark-bg';
-                                return (
-                                  <tr className={`${rowTheme} `} key={index}>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <div className="flex sm:justify-center items-center">
-                                        <div className="">
-                                          <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                            {item.grade}
-                                          </p>
-                                        </div>
+                              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                {t('ApproximatePercentage')}
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {fileteredData?.map((item: any, index: any) => {
+                              let rowTheme =
+                                index % 2 !== 0
+                                  ? 'bg-light-bg dark:bg-dark-tertiary'
+                                  : 'bg-white dark:bg-dark-bg';
+                              return (
+                                <tr className={`${rowTheme} `} key={index}>
+                                  <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
+                                    <div className="flex sm:justify-center items-center">
+                                      <div className="">
+                                        <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
+                                          {item.grade}
+                                        </p>
                                       </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <div className="flex sm:justify-center items-center">
-                                        <div className="">
-                                          <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                            {item.definition}
-                                          </p>
-                                        </div>
+                                    </div>
+                                  </td>
+                                  <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
+                                    <div className="flex sm:justify-center items-center">
+                                      <div className="">
+                                        <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
+                                          {item.definition}
+                                        </p>
                                       </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <div className="flex sm:justify-center items-center">
-                                        <div className="">
-                                          <p className="text-gray-900 items-center dark:text-white whitespace-no-wrap">
-                                            {item.percentage}
-                                          </p>
-                                        </div>
+                                    </div>
+                                  </td>
+                                  <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
+                                    <div className="flex sm:justify-center items-center">
+                                      <div className="">
+                                        <p className="text-gray-900 items-center dark:text-white whitespace-no-wrap">
+                                          {item.percentage}
+                                        </p>
                                       </div>
-                                    </td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
@@ -245,6 +246,7 @@ const GradingSystem = () => {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 };

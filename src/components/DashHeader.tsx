@@ -90,7 +90,7 @@ function DashHeader() {
               : 'bg-white dark:bg-dark-bg cursor-pointer lg:hidden'
           }
         >
-          <Sidebar style="flex pt-2 h-[92%]" />
+          <Sidebar toggle={handleClick} style="flex pt-2 h-[92%]" />
         </ul>
       </div>
     </>
