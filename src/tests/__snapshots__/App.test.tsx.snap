@@ -5,7 +5,7 @@ exports[`App test  Should render app 1`] = `
   className="flex flex-col min-h-screen "
 >
   <div
-    className="border-2 p-2 md:p-4 min-h-screen min-w-full flex flex-col"
+    className="border-2 p-2 md:p-4 min-h-screen min-w-full flex flex-col bg-white"
   >
     <div
       className="flex flex-row justify-between"

@@ -32,7 +32,7 @@ export default function OrgRegister() {
               {t('Register your organization')}
             </h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col items-left">
+              <div className="flex flex-col items-left" data-testid="dataid">
                 <label className="tracking-wide text-gray-700 dark:text-white font-normal">
                   {t('Email')}
                 </label>
@@ -64,6 +64,7 @@ export default function OrgRegister() {
                   <FaRegUser className="text-gray-400 mr-2" />
                   <input
                     type="text"
+                    data-testid="input1"
                     {...register('name', { required: 'Name is required' })}
                     onChange={(e) => handleChange(e.target.value)}
                     className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white "
@@ -104,10 +105,8 @@ export default function OrgRegister() {
                     />
                     {t('I agree to the')}
                     <span className="text-primary mx-1">
-                      {t('Terms & Conditions of')}
-                      {' '}
-                    </span>
-                    {' '}
+                      {t('Terms & Conditions of')}{' '}
+                    </span>{' '}
                     <span>DevPulse</span>
                   </label>
                 </div>

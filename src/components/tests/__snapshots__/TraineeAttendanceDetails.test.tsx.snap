@@ -58,6 +58,7 @@ exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee A
           >
             <button
               className="btn primary sm px-4 py-0 text-sm"
+              type="button"
             >
               Reply
             </button>
@@ -86,6 +87,7 @@ exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee A
           >
             <button
               className="btn primary sm px-4 py-0 text-sm"
+              type="button"
             >
               Reply
             </button>

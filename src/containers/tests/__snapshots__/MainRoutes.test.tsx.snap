@@ -95,6 +95,7 @@ exports[`Main Routes Should render 1`] = `
         >
           <button
             className="btn primary lg undefined"
+            type="button"
           >
              
             Sign In
@@ -107,6 +108,7 @@ exports[`Main Routes Should render 1`] = `
         >
           <button
             className="btn transparentbtn lg mr-8"
+            type="button"
           >
              
             Register an organization
@@ -305,6 +307,7 @@ exports[`Main Routes Should render 1`] = `
           >
             <button
               className="btn primary lg undefined"
+              type="button"
             >
                
               Sign In
@@ -317,6 +320,7 @@ exports[`Main Routes Should render 1`] = `
           >
             <button
               className="btn transparentbtn lg mr-8"
+              type="button"
             >
                
               Register an organization
@@ -468,6 +472,7 @@ exports[`Main Routes Should render 1`] = `
           >
             <button
               className="btn primary lg mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
+              type="button"
             >
                
               Get Started
@@ -499,6 +504,7 @@ exports[`Main Routes Should render 1`] = `
               />
               <h1
                 className="text-3xl font-bold text-primary dark:text-dark-text-fill"
+                data-testid="pulse"
               >
                 PULSE
               </h1>
@@ -745,6 +751,7 @@ exports[`Main Routes Should render 1`] = `
             />
             <h1
               className="text-3xl font-bold text-primary dark:text-dark-text-fill"
+              data-testid="pulse"
             >
               PULSE
             </h1>

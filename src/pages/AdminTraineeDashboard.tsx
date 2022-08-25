@@ -102,7 +102,7 @@ const AdminTraineeDashboard = () => {
 
       <div className="flex flex-col h-screen">
         <div className="flex flex-row">
-          <Sidebar toggle={handleClick}  style="hidden lg:flex" />
+          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">

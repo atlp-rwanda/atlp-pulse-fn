@@ -28,7 +28,7 @@ import { UserContext } from '../hook/useAuth';
 import CheckRole from '../utils/CheckRoles';
 import SideNavLink from './SideNavLink';
 
-function Sidebar({ style, toggle }: { style: string, toggle: ()=> void}) {
+function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   const { logout } = useContext(UserContext);
 
   return (
@@ -42,7 +42,11 @@ function Sidebar({ style, toggle }: { style: string, toggle: ()=> void}) {
 
         {/* FOR SUPER ADMINS */}
         <CheckRole roles={['super']}>
-          <SideNavLink onClick={toggle} name="Organizations" to="/dashboard/organizations">
+          <SideNavLink
+            onClick={toggle}
+            name="Organizations"
+            to="/dashboard/organizations"
+          >
             <HomeIcon className="w-5 mr-2 " />
           </SideNavLink>
 
@@ -56,55 +60,95 @@ function Sidebar({ style, toggle }: { style: string, toggle: ()=> void}) {
 
         {/* FOR ADMINS & COORDINATORS */}
         <CheckRole roles={['admin', 'coordinator']}>
-          <SideNavLink onClick={toggle} to="/dashboard/trainees" name="Trainees">
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/trainees"
+            name="Trainees"
+          >
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
 
         {/* FOR ADMINS */}
         <CheckRole roles={['admin']}>
-          <SideNavLink onClick={toggle} to="/dashboard/coordinators" name="Coordinators">
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/coordinators"
+            name="Coordinators"
+          >
             <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink onClick={toggle} to="/dashboard/cohorts" name="Cohorts">
             <AcademicCapIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/updated-ratings" name="Updated Ratings">
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/updated-ratings"
+            name="Updated Ratings"
+          >
             <RefreshIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/grading" name="Grading System">
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/grading"
+            name="Grading System"
+          >
             <TemplateIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/manage" name="Roles & Access">
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/manage"
+            name="Roles & Access"
+          >
             <KeyIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
 
         {/* FOR COORDINATORS */}
         <CheckRole roles={['coordinator']}>
-          <SideNavLink onClick={toggle} to="/dashboard/sessions" name="Sessions">
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/sessions"
+            name="Sessions"
+          >
             <BookOpenIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink onClick={toggle} to="/dashboard/ratings" name="Ratings">
             <ClipboardListIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} name="Attendance" to="/dashboard/attendance-rating">
+          <SideNavLink
+            onClick={toggle}
+            name="Attendance"
+            to="/dashboard/attendance-rating"
+          >
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
 
         {/* FOR TRAINEES */}
         <CheckRole roles={['trainee']}>
-          <SideNavLink onClick={toggle} name="Attendance" to="/dashboard/attendance">
+          <SideNavLink
+            onClick={toggle}
+            name="Attendance"
+            to="/dashboard/attendance"
+          >
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
-          <SideNavLink onClick={toggle} name="Performance" to="/dashboard/performance">
+          <SideNavLink
+            onClick={toggle}
+            name="Performance"
+            to="/dashboard/performance"
+          >
             <TrendingUpIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
 
         {/* Shared Links */}
-        <SideNavLink onClick={toggle} name="Notifications" to="/dashboard/notifications">
+        <SideNavLink
+          onClick={toggle}
+          name="Notifications"
+          to="/dashboard/notifications"
+        >
           <BellIcon className="w-5 mr-2" />
         </SideNavLink>
         <SideNavLink onClick={toggle} name="Calendar" to="/dashboard/calendar">

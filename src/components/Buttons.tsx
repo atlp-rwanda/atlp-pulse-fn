@@ -7,6 +7,7 @@ interface Props {
   onClick?: () => void;
   variant: string;
   size: string;
+  type?: any;
 }
 const Button: React.FC<Props> = ({
   children,
@@ -14,9 +15,11 @@ const Button: React.FC<Props> = ({
   onClick,
   variant = 'default',
   size = 'md',
+  type = 'button',
   ...rest
 }) => (
   <button
+    type={type}
     className={`btn ${variant} ${size} ${style}`}
     onClick={onClick}
     {...rest}

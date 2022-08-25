@@ -130,6 +130,7 @@ function AdminLogin() {
                   </Link>
                 </div>
                 <Button
+                  type="submit"
                   variant="transparentbtn"
                   size="md"
                   style="border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white"

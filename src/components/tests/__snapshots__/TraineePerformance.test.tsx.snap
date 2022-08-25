@@ -156,6 +156,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        type="button"
                       >
                         Details
                       </button>
@@ -225,6 +226,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        type="button"
                       >
                         Details
                       </button>
@@ -294,6 +296,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        type="button"
                       >
                         Details
                       </button>
@@ -363,6 +366,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        type="button"
                       >
                         Details
                       </button>
@@ -432,6 +436,7 @@ exports[`View overall performance Renders the Trainee Performance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        type="button"
                       >
                         Details
                       </button>

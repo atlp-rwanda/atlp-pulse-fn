@@ -18,7 +18,8 @@ function DashHeader() {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleShowNotification = () => setShowNotification(!showNotification);
-  const handleShowProfileDropdown = () => setShowprofileDropdown(!showProfileDropdown);
+  const handleShowProfileDropdown = () =>
+    setShowprofileDropdown(!showProfileDropdown);
 
   return (
     <>
@@ -26,7 +27,9 @@ function DashHeader() {
         <Notification handleShowNotification={handleShowNotification} />
       )}
       {showProfileDropdown && (
-        <ProfileDropdown handleShowProfileDropdown={handleShowProfileDropdown} />
+        <ProfileDropdown
+          handleShowProfileDropdown={handleShowProfileDropdown}
+        />
       )}
       <div className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b">
         <div className="px-3 flex items-center w-full h-full">

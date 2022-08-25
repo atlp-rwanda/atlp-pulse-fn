@@ -17,7 +17,6 @@ const TraineeAttendance = () => {
                 <h2 className="text-gray-800 dark:text-white font-semibold">
                   {t('Attendance')}
                 </h2>
-                
               </div>
               <div className="flex ml-[-25px] px-7 py-2  mt-4">
                 <select className="flex bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer">
@@ -30,7 +29,7 @@ const TraineeAttendance = () => {
                 </select>
               </div>
             </div>
-             <div>
+            <div>
               <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
                 <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
                   <table className="min-w-full leading-normal">

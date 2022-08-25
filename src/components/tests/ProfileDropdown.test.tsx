@@ -9,7 +9,9 @@ describe('<ProfileDropdown/>', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <ProfileDropdown handleShowProfileDropdown={handleShowProfileDropdownMock} />
+          <ProfileDropdown
+            handleShowProfileDropdown={handleShowProfileDropdownMock}
+          />
         </MemoryRouter>,
       )
       .toJSON();

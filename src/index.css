@@ -55,6 +55,10 @@
   flex-grow: 1;
 }
 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
 @layer components {
   .btn {
     @apply font-bold py-2 px-4 m-2 rounded-md;

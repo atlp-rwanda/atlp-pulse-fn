@@ -447,6 +447,7 @@ Array [
                 <button
                   className="btn primary lg font-semibold flex flex-row"
                   onClick={[Function]}
+                  type="button"
                 >
                    
                   <div>
@@ -463,6 +464,7 @@ Array [
                 <button
                   className="btn primary lg font-semibold flex flex-row"
                   onClick={[Function]}
+                  type="button"
                 >
                    
                   <div>

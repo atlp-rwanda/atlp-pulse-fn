@@ -58,6 +58,7 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
           >
             <button
               className="btn primary sm px-4 py-0 text-sm"
+              type="button"
             >
               Reply
             </button>
@@ -86,6 +87,7 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
           >
             <button
               className="btn primary sm px-4 py-0 text-sm"
+              type="button"
             >
               Reply
             </button>
@@ -114,6 +116,7 @@ exports[`Trainee Viewing Detailed performance Rating Renders a Detailed Trainee 
           >
             <button
               className="btn primary sm px-4 py-0 text-sm"
+              type="button"
             >
               Reply
             </button>
