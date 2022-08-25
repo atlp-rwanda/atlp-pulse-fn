@@ -45,19 +45,6 @@ function AdminLogin() {
       <div className="md:rounded-2xl md:shadow-2xl md:flex md:w-2/3 mt-20 md:max-w-4xl sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
         <div className="md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-frame-bg  dark:rounded-none">
           <div className="py-10 sm:py-8 ">
-            {state ? (
-              <>
-                <h3 className="text-md font-bold text-gray-400 my-2 dark:text-red-400 ">
-                  Login is required to access
-                </h3>
-                <p className="text-md font-bold  text-gray-400 mb-3 dark:text-dark-text-fill ">
-                  <em>{`${state}`}</em>
-                </p>
-              </>
-            ) : (
-              ''
-            )}
-
             <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
               {t('Sign in using')}
             </h2>
