@@ -1,13 +1,14 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import useDocumentTitle from '../../hook/useDocumentTitle';
 import Button from './../../components/Buttons';
 import rolemanagement from '../../dummyData/rolemanagement.json';
 import Pagination from '../../components/Pagination';
 
 const AdminSission = () => {
   const { t } = useTranslation();
-
+  useDocumentTitle("Roles & Access");
   const [addMemberModel, setAddMemberModel] = useState(false);
   const [deleteModel, setDeleteModel] = useState(false);
 

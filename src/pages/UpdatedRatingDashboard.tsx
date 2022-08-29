@@ -5,8 +5,10 @@ import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import developers from '../dummyData/developers.json';
 import Button from './../components/Buttons';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 const UpdatedRatingDashboard = () => {
+  useDocumentTitle("Updated Ratings")
   const { t } = useTranslation();
   const [rowId, setRowId] = useState('');
   const [showActions, setShowActions] = useState(false);

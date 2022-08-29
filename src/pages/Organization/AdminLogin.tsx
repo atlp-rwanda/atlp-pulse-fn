@@ -9,8 +9,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContext } from '../../hook/useAuth';
 import Button from '../../components/Buttons';
+import useDocumentTitle from '../../hook/useDocumentTitle';
 
 function AdminLogin() {
+  useDocumentTitle("Login")
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
   const tooglePassword = () => {

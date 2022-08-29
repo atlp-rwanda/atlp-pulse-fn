@@ -2,8 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Buttons';
+import useDocumentTitle from '../../hook/useDocumentTitle';
 
 function Orglogin() {
+  useDocumentTitle('Login');
   const { t } = useTranslation();
   return (
     <div className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans">
@@ -31,7 +33,8 @@ function Orglogin() {
                 style="w-full ml-0 hover:bg-cyan-700 text-sm"
               >
                 {' '}
-                {t('Continue')}{' '}
+                {t('Continue')}
+                {' '}
               </Button>
             </Link>
           </div>

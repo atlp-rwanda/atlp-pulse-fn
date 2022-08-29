@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { FaRegUser, FaRegEnvelope, FaPen } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import Button from '../components/Buttons';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 export default function OrgRegister() {
+  useDocumentTitle('Register organization');
   const { t } = useTranslation();
   const [name, setName] = useState('');
 
@@ -112,7 +114,8 @@ export default function OrgRegister() {
                 </div>
                 <Button variant="primary" size="lg" style="w-1/4 mx-[20%]">
                   {' '}
-                  {t('Register')}{' '}
+                  {t('Register')}
+                  {' '}
                 </Button>
               </div>
             </form>

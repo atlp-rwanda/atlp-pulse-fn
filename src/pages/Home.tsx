@@ -3,11 +3,14 @@ import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { UserContext } from '../hook/useAuth';
+import useDocumentTitle from '../hook/useDocumentTitle';
+
 import Button from '../components/Buttons';
 
 function LandingPage() {
   const { t } = useTranslation();
   const { user } = useContext(UserContext);
+  useDocumentTitle('Welcome');
   return (
     <div className="hero">
       <Header styles="bg-opacity-50 dark:bg-opacity-50" />
@@ -39,7 +42,8 @@ function LandingPage() {
                 style="mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
               >
                 {' '}
-                {user?.auth ? 'Continue' : t('Get Started')}{' '}
+                {user?.auth ? 'Continue' : t('Get Started')}
+                {' '}
               </Button>
             </div>
           </div>

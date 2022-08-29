@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 
+import useDocumentTitle from '../hook/useDocumentTitle';
 import Input from '../components/Input';
 import ProfileCoverpage from '../components/ProfileCoverpage';
 import CountrySelector from '../components/CountrySelector';
@@ -33,6 +34,7 @@ function EditProfile() {
 
   const { t } = useTranslation();
 
+  useDocumentTitle('Edit Profile');
   const {
     register,
     handleSubmit,

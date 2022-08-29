@@ -1,8 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import PricingCard from '../components/PricingCard';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 export default function Pricing() {
+  useDocumentTitle('Pricing');
   const { t } = useTranslation();
   return (
     <div className="bg-light-bg dark:bg-dark-frame-bg flex-grow pt-14 md:pt-10">

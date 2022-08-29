@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useTranslation } from 'react-i18next';
+import useDocumentTitle from '../hook/useDocumentTitle';
+
 import grade from '../dummyData/gradingSystem.json';
 import Button from '../components/Buttons';
 
@@ -11,7 +13,8 @@ const GradingSystem = () => {
   const [title, setTitle] = useState('');
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-
+  useDocumentTitle("Grading System");
+  
   let fileteredData;
   const [formData, setFormData] = useState({
     label: '',

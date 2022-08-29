@@ -5,8 +5,10 @@ import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import developers from '../dummyData/developers3.json';
 import Button from './../components/Buttons';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 const TraineeRatingDashboard = () => {
+  useDocumentTitle("Ratings")
   const { t } = useTranslation();
   const [showCohorts, setShowCohorts] = useState(false);
   const [showPhases, setShowPhases] = useState(false);
