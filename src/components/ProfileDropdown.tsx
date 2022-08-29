@@ -50,11 +50,12 @@ function ProfileDropdown({
               </div>
             </div>
           </div>
-          <div className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100 " onClick={logout}>
+          <div
+            className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100 "
+            onClick={logout}
+          >
             <LogoutIcon className="w-4 h-4 mt-1 cursor-pointer " />
-            <p className="font-boldml-1 cursor-pointer">
-              {t('Sign out')}
-            </p>
+            <p className="font-boldml-1 cursor-pointer">{t('Sign out')}</p>
           </div>
         </div>
       </div>

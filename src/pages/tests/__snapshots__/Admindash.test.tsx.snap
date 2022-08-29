@@ -88,6 +88,7 @@ Array [
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -95,6 +96,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
                
               Save
@@ -143,6 +145,7 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="delete"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -150,6 +153,7 @@ Array [
             </button>
             <button
               className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
                
               Delete
@@ -243,6 +247,7 @@ Array [
           </div>
           <button
             className="btn primary lg px-2"
+            type="button"
           >
              
             AddMember
@@ -1095,6 +1100,7 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="remove"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -1102,6 +1108,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
                
               Save
@@ -1150,6 +1157,7 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="delete"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -1157,6 +1165,7 @@ Array [
             </button>
             <button
               className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
                
               Delete
@@ -1267,6 +1276,7 @@ Array [
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -1274,6 +1284,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
                
               Save
@@ -1296,6 +1307,7 @@ Array [
         <button
           className="btn primary lg undefined"
           onClick={[Function]}
+          type="button"
         >
            
           Session
@@ -1864,6 +1876,7 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="remove"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -1871,6 +1884,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
                
               Save
@@ -1919,6 +1933,7 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="delete"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -1926,6 +1941,7 @@ Array [
             </button>
             <button
               className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
                
               Delete
@@ -1949,6 +1965,7 @@ Array [
           className="btn primary lg undefined"
           data-testid="removeModel"
           onClick={[Function]}
+          type="button"
         >
            
           Cohort

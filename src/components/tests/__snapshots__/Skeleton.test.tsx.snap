@@ -2,7 +2,7 @@
 
 exports[`Skeleton UI Should render 1`] = `
 <div
-  className="border-2 p-2 md:p-4 min-h-screen min-w-full flex flex-col"
+  className="border-2 p-2 md:p-4 min-h-screen min-w-full flex flex-col bg-white"
 >
   <div
     className="flex flex-row justify-between"

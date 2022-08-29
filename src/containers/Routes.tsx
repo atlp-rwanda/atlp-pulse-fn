@@ -9,6 +9,9 @@ import Skeleton from '../components/Skeleton';
 const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
 const Orglogin = React.lazy(() => import('../pages/Organization/Orglogin'));
 const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
+const Pricing = React.lazy(() => import('../pages/Pricing'));
+const Pay = React.lazy(() => import('../components/Payment'));
+import Noredirect from '../pages/Noredirect';
 
 function MainRoutes() {
   return (
@@ -20,6 +23,9 @@ function MainRoutes() {
           <Route path="/register-organization" element={<OrgRegister />} />
           <Route path="/org-login" element={<Orglogin />} />
           <Route path="/login-admin" element={<Adminlogin />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/noredirect" element={<Noredirect />} />
+          <Route path="/pricing-form" element={<Pay />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Suspense>

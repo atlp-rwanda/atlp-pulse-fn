@@ -23,6 +23,7 @@ exports[`<Footer/> Renders Header 1`] = `
           />
           <h1
             className="text-3xl font-bold text-primary dark:text-dark-text-fill"
+            data-testid="pulse"
           >
             PULSE
           </h1>

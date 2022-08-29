@@ -26,7 +26,9 @@ exports[`Page Not Found Renders the 404 Page 1`] = `
     </p>
     <button
       className="btn primary lg mt-2 lg:mt-5 px-8 text-xl font-bold"
+      data-testid="button-back"
       onClick={[Function]}
+      type="button"
     >
       Back Home
     </button>

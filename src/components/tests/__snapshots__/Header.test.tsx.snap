@@ -92,6 +92,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          type="button"
         >
            
           Sign In
@@ -104,6 +105,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          type="button"
         >
            
           Register an organization
@@ -301,6 +303,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          type="button"
         >
            
           Sign In
@@ -313,6 +316,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          type="button"
         >
            
           Register an organization
@@ -510,6 +514,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       >
         <button
           className="btn primary lg undefined"
+          type="button"
         >
            
           Dashboard
@@ -519,6 +524,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       <button
         className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
         onClick={[Function]}
+        type="button"
       >
          
         Logout
@@ -716,6 +722,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       >
         <button
           className="btn primary lg undefined"
+          type="button"
         >
            
           Sign In
@@ -728,6 +735,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          type="button"
         >
            
           Register an organization
@@ -926,6 +934,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          type="button"
         >
            
           Sign In
@@ -938,6 +947,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          type="button"
         >
            
           Register an organization
@@ -1136,6 +1146,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          type="button"
         >
            
           Sign In
@@ -1148,6 +1159,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          type="button"
         >
            
           Register an organization

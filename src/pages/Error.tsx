@@ -32,6 +32,7 @@ function Error() {
           onClick={navigateHome}
           variant="primary"
           size="lg"
+          data-testid="button-back"
           style="mt-2 lg:mt-5 px-8 text-xl font-bold"
         >
           {t('Back Home')}

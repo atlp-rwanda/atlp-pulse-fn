@@ -88,11 +88,13 @@ Array [
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               onClick={[Function]}
+              type="button"
             >
               Cancel
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
               Save
             </button>
@@ -393,6 +395,7 @@ Array [
                 <button
                   className="btn primary lg undefined"
                   onClick={[Function]}
+                  type="button"
                 >
                    
                   register

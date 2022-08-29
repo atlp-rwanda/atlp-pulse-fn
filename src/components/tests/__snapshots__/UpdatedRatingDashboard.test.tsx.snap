@@ -41,6 +41,7 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="removeApproveModel"
               onClick={[Function]}
+              type="button"
             >
                
               Cancel
@@ -48,6 +49,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
               Approve
             </button>
@@ -95,11 +97,13 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="removeRejectModel"
               onClick={[Function]}
+              type="button"
             >
               Cancel
             </button>
             <button
               className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
               Reject
             </button>

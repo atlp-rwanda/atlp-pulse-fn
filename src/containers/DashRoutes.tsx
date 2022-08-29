@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { Suspense,useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';

@@ -89,11 +89,13 @@ Array [
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="removeModel"
               onClick={[Function]}
+              type="button"
             >
               Cancel
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              type="button"
             >
               Save
             </button>
