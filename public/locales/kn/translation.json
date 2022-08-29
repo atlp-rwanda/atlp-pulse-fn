@@ -226,7 +226,7 @@
   "error_page_paragraph": "Urupapuro urimo gushaka rushobora kuba rwaravanyweho, izina ryarahinduwe cyangwa ntirishoboke kuboneka.",
   "Privacy": "Amabanga",
   "Sign out": "Gusohoka",
-  "Preference": "Ibyishimirwa",
+  "Preferences": "ibyifuzo",
   "Next": "Komeza",
   "Confirm": "Kwemeza",
   "Card holder name": "Izina ry'abafite ikarita",
@@ -256,5 +256,7 @@
   "Welcome": "Murakaza Neza",
   "Login": "Kwinjira",
   "Page not found": "Paje ntibonetse",
-  "Register organization": "Kwandikisha kompanyi"
+  "Register organization": "Kwandikisha kompanyi",
+  "Privacy & Preferences": "Amabanga n' ibyishimirwa"
+
 }
