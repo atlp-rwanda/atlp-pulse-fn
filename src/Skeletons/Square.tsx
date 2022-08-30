@@ -17,7 +17,6 @@ export default function Square() {
         <div className="items-center px-4 ">
           <div className="w-[100%] h-[46vh] lg:h-[62vh] pb-14 lg:w-[84%] mx-auto lg:ml-52 lg:mr-2  mt-8 bottom-0 bg-gray-300 dark:bg-gray-600 rounded-lg animate-pulse" />
         </div>
-
       </div>
     </div>
   );

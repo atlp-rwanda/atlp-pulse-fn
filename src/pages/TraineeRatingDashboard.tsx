@@ -1,10 +1,9 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import Sidebar from '../components/Sidebar';
-import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
+import DataTable from '../components/DataTable';
+import Sidebar from '../components/Sidebar';
 import developers from '../dummyData/developers3.json';
-import Button from './../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
 const TraineeRatingDashboard = () => {
@@ -17,24 +16,11 @@ const TraineeRatingDashboard = () => {
   const [updateTraineeModel, setUpdateTraineeModel] = useState(false);
   const [deleteTraineeModel, setDeleteTraineeModel] = useState(false);
 
-  const handleShowCohorts = () => {
-    setShowCohorts(!showCohorts);
-  };
-
-  const handleShowPhases = () => {
-    setShowPhases(!showPhases);
-  };
-
   const handleCloseDropdown = () => {
     if (showCohorts || showPhases) {
       setShowCohorts(false);
       setShowPhases(false);
     }
-  };
-
-  const handleShowActions = (index: any) => {
-    setRowId(index);
-    setShowActions(!showActions);
   };
 
   const removeModel = () => {
@@ -48,6 +34,15 @@ const TraineeRatingDashboard = () => {
   };
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
+
+  const data = developers;
+  const columns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Sprint', accessor: 'sprint' },
+    { Header: 'Quantity', accessor: 'quantity' },
+    { Header: 'Quality', accessor: 'quality' },
+    { Header: 'Professional skills', accessor: 'professionalSkills' },
+  ];
 
   return (
     <>
@@ -166,204 +161,21 @@ const TraineeRatingDashboard = () => {
 
       <div
         className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg"
+        data-testid="close"
         onClick={handleCloseDropdown}
       >
-        <div className="flex flex-row">
-          <Sidebar toggle={handleClick} style="hidden lg:flex" />
-          <div className="w-full">
-            <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
-                <div className="flex flex-col relative items-left px-10 lg:px-60 pt-24 pb-8">
-                  <div className="space-x-8 flex flex-row ">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      onClick={handleShowCohorts}
-                      style="font-semibold flex flex-row"
-                    >
-                      {' '}
-                      <div>{t('cohort')}</div>{' '}
-                      <div className="mt-1">
-                        <Icon
-                          icon="ic:baseline-arrow-drop-down"
-                          color="#f9f9fb"
-                        />
-                      </div>{' '}
-                    </Button>
-                    {/* <button
-                      className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
-                      onClick={handleShowCohorts}
-                    >
-                      <div>{t('cohort')}</div>{' '}
-                      <div>
-                        <Icon
-                          icon="ic:baseline-arrow-drop-down"
-                          color="#f9f9fb"
-                        />
-                      </div>
-                    </button> */}
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      onClick={handleShowPhases}
-                      style="font-semibold flex flex-row"
-                    >
-                      {' '}
-                      <div>{t('phases')}</div>{' '}
-                      <div className="mt-1">
-                        <Icon
-                          icon="ic:baseline-arrow-drop-down"
-                          color="#f9f9fb"
-                        />
-                      </div>{' '}
-                    </Button>
-                    {/* <button
-                      className="bg-primary px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer flex flex-row"
-                      onClick={handleShowPhases}
-                    >
-                      <div>{t('phases')}</div>{' '}
-                      <div>
-                        <Icon
-                          icon="ic:baseline-arrow-drop-down"
-                          color="#f9f9fb"
-                        />
-                      </div>
-                    </button> */}
-                  </div>
-                  {showCohorts ? (
-                    <div className="bg-primary h-40 w-32 mt-10 absolute rounded flex justify-center items-center">
-                      <div className="text-white">
-                        <ul>
-                          <li>
-                            <div>{t('cohort')} 5</div>
-                          </li>
-                          <li>
-                            <div>{t('cohort')} 6</div>
-                          </li>
-                          <li>
-                            <div>{t('cohort')} 7</div>
-                          </li>
-                          <li>
-                            <div>{t('cohort')} 8</div>
-                          </li>
-                          <li>
-                            <div>{t('cohort')} 9</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-
-                  {showPhases ? (
-                    <div className="bg-primary h-40 w-32 mt-10 ml-40 absolute rounded flex justify-center items-center">
-                      <div className="text-white">
-                        <ul>
-                          <li>
-                            <div>{t('phase')} 1</div>
-                          </li>
-                          <li>
-                            <div>{t('phase')} 2</div>
-                          </li>
-                          <li>
-                            <div>{t('phase')} 3</div>
-                          </li>
-                          <li>
-                            <div>{t('phase')} 4</div>
-                          </li>
-                          <li>
-                            <div>{t('phase')} 5</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                </div>
-                <div className="px-3 md:px-8">
-                  <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-52 mb-10">
-                    <div className=" flex items-center justify-between pb-6">
-                      <div>
-                        <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
-                          {t('Performance score')}
-                        </h2>
-                        {/* <span className="text-xs text-gray-600">Current cohort</span> */}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                        <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
-                          <table className="min-w-full leading-normal">
-                            <thead>
-                              <tr>
-                                <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('name')}
-                                </th>
-                                <th className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('Sprint')}
-                                </th>
-                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('Quantity')}
-                                </th>
-                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('Quality')}
-                                </th>
-                                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('Professional skills')}
-                                </th>
-                                {/* <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('Actions')}
-                                </th> */}
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {developers.map((developer: any, index: any) => {
-                                let rowTheme =
-                                  index % 2 !== 0
-                                    ? 'bg-light-bg dark:bg-dark-tertiary'
-                                    : 'bg-white dark:bg-dark-bg';
-
-                                return (
-                                  <tr className={`${rowTheme}`}>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <div className="flex items-center">
-                                        <div className="ml-3">
-                                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                            {developer.name}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.sprint}
-                                      </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.quantity}
-                                      </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.quality}
-                                      </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.professionalSkills}
-                                      </p>
-                                    </td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
+        <div className="flex flex-col h-screen bg-light-bg">
+          <div className="flex flex-row">
+            <Sidebar toggle={handleClick} style="hidden lg:flex" />
+            <div className="w-full">
+              <div>
+                <div className="flex flex-col h-screen bg-light-bg">
+                  <div className="px-3 md:px-8 mt-20">
+                    <DataTable
+                      data={data}
+                      columns={columns}
+                      title="Performance score"
+                    />
                   </div>
                 </div>
               </div>

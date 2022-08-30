@@ -22,8 +22,22 @@ function MainRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register-organization" element={<OrgRegister />} />
-          <Route path="/org-login" element={<ProtectedRoutes ><Orglogin /></ProtectedRoutes>}  />
-          <Route path="/login-admin" element={<ProtectedRoutes ><Adminlogin /></ProtectedRoutes>} />
+          <Route
+            path="/org-login"
+            element={
+              <ProtectedRoutes>
+                <Orglogin />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/login-admin"
+            element={
+              <ProtectedRoutes>
+                <Adminlogin />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/noredirect" element={<Noredirect />} />
           <Route path="/pricing-form" element={<Pay />} />

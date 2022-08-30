@@ -43,7 +43,7 @@ const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
 import Skeleton from '../components/Skeleton';
-import Square from "../Skeletons/Square"
+import Square from '../Skeletons/Square';
 
 function DashRoutes() {
   const [nav, setNav] = useState(false);

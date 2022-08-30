@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { ChevronDoubleDownIcon } from '@heroicons/react/solid';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import DataTable from '../components/DataTable';
 import Sidebar from '../components/Sidebar';
 import devs from '../dummyData/developers2.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
@@ -12,7 +12,6 @@ const AdminTraineeDashboard = () => {
   const { t } = useTranslation();
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [findFilter, setFindFilter] = useState('');
-  const [formData, setFormData] = useState([]);
   const [developers, setDevelopers] = useState(devs);
 
   const removeModel = () => {
@@ -21,34 +20,15 @@ const AdminTraineeDashboard = () => {
   };
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-  const [sortBy, setSort] = useState({ state: 'up', term: '' });
-  
-  useEffect(() => {
-    const filtered = devs.filter(
-      (developer: any) =>
-        developer.cohort.toLowerCase().includes(findFilter.toLowerCase()) ||
-        developer.program.toLowerCase().includes(findFilter.toLowerCase()) ||
-        developer.name.toLowerCase().includes(findFilter.toLowerCase()) ||
-        developer.email.toLowerCase().includes(findFilter.toLowerCase()) ||
-        developer.rating.toLowerCase().includes(findFilter.toLowerCase()),
-    );
-    setDevelopers(filtered);
-  }, [findFilter]);
 
-  const handleSort = (term: any) => {
-    const sorted = developers
-      .slice()
-      .sort((a: any, b: any) =>
-        b[term].localeCompare(a, 'en', { sensitivity: 'base' }),
-      );
-    if (sortBy.state === 'up') {
-      setDevelopers(sorted);
-      setSort({ state: 'down', term });
-    } else {
-      setDevelopers(sorted.reverse());
-      setSort({ state: 'up', term });
-    }
-  };
+  const columns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Email', accessor: 'email' },
+    { Header: 'Rating', accessor: 'rating' },
+    { Header: 'Cohort', accessor: 'cohort' },
+    { Header: 'Program', accessor: 'program' },
+  ];
+  const data = devs;
 
   return (
     <>
@@ -141,120 +121,23 @@ const AdminTraineeDashboard = () => {
               <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
                 <div className="flex items-left px-10 lg:px-60 pt-24 pb-8">
                   <div className="space-x-8 lg:ml-7">
-                    <Button variant="primary" size="lg" onClick={removeModel}>
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      data-testid="registerModel"
+                      onClick={removeModel}
+                    >
                       {' '}
                       {t('register')} +{' '}
                     </Button>
                   </div>
                 </div>
                 <div className="px-3 md:px-8">
-                  <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
-                    <div className=" flex items-center justify-between pb-6">
-                      <div>
-                        <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
-                          {t('Developers Info')}
-                        </h2>
-                        {/* <span className="text-xs text-gray-600">Current cohort</span> */}
-                        <input
-                          value={findFilter}
-                          placeholder="Filter by cohort, program, and rating"
-                          className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
-                          onChange={(e) => setFindFilter(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                        <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
-                          <table className="min-w-full leading-normal">
-                            <thead className=" w-full">
-                              <tr>
-                                <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                                  <div
-                                    data-testid="handleSort"
-                                    className="flex flex-row items-center gap-3 "
-                                    onClick={() => handleSort('name')}
-                                  >
-                                    <span> {t('name')}</span>
-                                    <span className='cursor-pointer'>
-                                      {
-                                        <ChevronDoubleDownIcon className="w-3 mr-2 " />
-                                      }
-                                    </span>
-                                  </div>
-                                </th>
-                                <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  <div
-                                    data-testid="handleSort2"
-                                    className="flex flex-row items-center gap-3 "
-                                    onClick={() => handleSort('email')}
-                                  >
-                                    <span> {t('email')}</span>
-                                    <span className='cursor-pointer'>
-                                      {
-                                        <ChevronDoubleDownIcon className="w-3 mr-2 " />
-                                      }
-                                    </span>
-                                  </div>
-                                </th>
-                                <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('rating')}
-                                </th>
-                                <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('cohort')}
-                                </th>
-                                <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('program')}
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {developers.map((developer: any, index: any) => {
-                                let rowTheme =
-                                  index % 2 !== 0
-                                    ? 'bg-light-bg dark:bg-dark-tertiary'
-                                    : 'bg-white dark:bg-dark-bg';
-
-                                return (
-                                  <tr className={`${rowTheme} `} key={index}>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <div className="flex items-center">
-                                        <div className="ml-3">
-                                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                            {developer.name}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.email}
-                                      </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.rating}
-                                      </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.cohort}
-                                      </p>
-                                    </td>
-                                    <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                      <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                        {developer.program}
-                                      </p>
-                                    </td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <DataTable
+                    data={data}
+                    columns={columns}
+                    title="Developers list"
+                  />
                 </div>
               </div>
             </div>

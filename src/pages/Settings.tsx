@@ -112,7 +112,9 @@ function Settings() {
                 checked={emailEnabled}
                 data-testid="emailChange"
                 onChange={setEmailEnabled}
-                className={`ml-auto border ${emailEnabled ? 'dark:border-primary' : ''} relative inline-flex h-6 w-12 items-center rounded-full`}
+                className={`ml-auto border ${
+                  emailEnabled ? 'dark:border-primary' : ''
+                } relative inline-flex h-6 w-12 items-center rounded-full`}
               >
                 <span
                   className={`${
@@ -136,7 +138,9 @@ function Settings() {
                 checked={pushEnabled}
                 data-testid="pushChange"
                 onChange={setPushEnabled}
-                className={` ml-auto border ${pushEnabled ? 'dark:border-primary' : ''} relative inline-flex h-6 w-12 items-center rounded-full`}
+                className={` ml-auto border ${
+                  pushEnabled ? 'dark:border-primary' : ''
+                } relative inline-flex h-6 w-12 items-center rounded-full`}
               >
                 <span
                   className={`${

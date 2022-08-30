@@ -395,6 +395,7 @@ Array [
               >
                 <button
                   className="btn primary lg undefined"
+                  data-testid="registerModel"
                   onClick={[Function]}
                   type="button"
                 >
@@ -418,683 +419,422 @@ Array [
                     <h2
                       className="text-gray-800 dark:text-white font-semibold text-xl"
                     >
-                      Developers Info
+                      Developers list
                     </h2>
                     <input
                       className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+                      defaultValue=""
                       onChange={[Function]}
                       placeholder="Filter by cohort, program, and rating"
-                      value=""
                     />
                   </div>
                 </div>
                 <div>
-                  <div
-                    className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto"
+                  <table
+                    className="min-w-full leading-normal"
+                    role="table"
                   >
-                    <div
-                      className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden"
-                    >
-                      <table
-                        className="min-w-full leading-normal"
+                    <thead>
+                      <tr
+                        role="row"
                       >
-                        <thead
-                          className=" w-full"
+                        <th
+                          className=" thead"
+                          colSpan={1}
+                          onClick={[Function]}
+                          role="columnheader"
+                          style={
+                            Object {
+                              "cursor": "pointer",
+                            }
+                          }
+                          title="Toggle SortBy"
                         >
-                          <tr>
-                            <th
-                              className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider"
+                          Name
+                        </th>
+                        <th
+                          className=" thead"
+                          colSpan={1}
+                          onClick={[Function]}
+                          role="columnheader"
+                          style={
+                            Object {
+                              "cursor": "pointer",
+                            }
+                          }
+                          title="Toggle SortBy"
+                        >
+                          Email
+                        </th>
+                        <th
+                          className=" thead"
+                          colSpan={1}
+                          onClick={[Function]}
+                          role="columnheader"
+                          style={
+                            Object {
+                              "cursor": "pointer",
+                            }
+                          }
+                          title="Toggle SortBy"
+                        >
+                          Rating
+                        </th>
+                        <th
+                          className=" thead"
+                          colSpan={1}
+                          onClick={[Function]}
+                          role="columnheader"
+                          style={
+                            Object {
+                              "cursor": "pointer",
+                            }
+                          }
+                          title="Toggle SortBy"
+                        >
+                          Cohort
+                        </th>
+                        <th
+                          className=" thead"
+                          colSpan={1}
+                          onClick={[Function]}
+                          role="columnheader"
+                          style={
+                            Object {
+                              "cursor": "pointer",
+                            }
+                          }
+                          title="Toggle SortBy"
+                        >
+                          Program
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      role="rowgroup"
+                    >
+                      <tr
+                        className=" bg-white dark:bg-dark-bg} "
+                        role="row"
+                      >
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Kevin Shema
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          keshem5@gmail.com
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          1
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          1
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Core concept
+                        </td>
+                      </tr>
+                      <tr
+                        className=" bg-light-bg dark:bg-dark-tertiary} "
+                        role="row"
+                      >
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Muneza John
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          John@gmail.com
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          2
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          1
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Apprenticeship
+                        </td>
+                      </tr>
+                      <tr
+                        className=" bg-white dark:bg-dark-bg} "
+                        role="row"
+                      >
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Gatare Olivier
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          gatareo@gmail.com
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          0
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          2
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Team project
+                        </td>
+                      </tr>
+                      <tr
+                        className=" bg-light-bg dark:bg-dark-tertiary} "
+                        role="row"
+                      >
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Kevin Uwitonze
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          keuwit@gmail.com
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          1
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          2
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Apprenticeship
+                        </td>
+                      </tr>
+                      <tr
+                        className=" bg-white dark:bg-dark-bg} "
+                        role="row"
+                      >
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Nsabimana Blaise
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          blaise@gmail.com
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          2
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          3
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          Core concept
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div>
+                    <table
+                      className="w-full mt-2"
+                    >
+                      <tfoot
+                        className="w-full py-2"
+                      >
+                        <tr
+                          className="w-full py-2"
+                        >
+                          <td
+                            colSpan={5}
+                          >
+                            <div
+                              className="w-full justify-center flex mx-auto flex-row items-center overflow-x-scroll"
                             >
-                              <div
-                                className="flex flex-row items-center gap-3 "
-                                data-testid="handleSort"
+                              <button
+                                className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                                disabled={true}
                                 onClick={[Function]}
+                                type="button"
                               >
-                                <span>
+                                <svg
+                                  aria-hidden="true"
+                                  className="w-5"
+                                  fill="none"
+                                  fontSize="sm"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </button>
+                               
+                              <button
+                                className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                                disabled={false}
+                                onClick={[Function]}
+                                type="button"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="w-5"
+                                  fill="none"
+                                  fontSize="sm"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                  viewBox="0 0 24 24"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </button>
+                               
+                              <div
+                                className="flex flex-row justify-center w-full"
+                              >
+                                <span
+                                  className="inline-block mx-2"
+                                >
+                                  Page
                                    
-                                  name
+                                  <strong>
+                                    1
+                                     
+                                    of
+                                     2
+                                  </strong>
+                                   
                                 </span>
                                 <span
-                                  className="cursor-pointer"
+                                  className="inline-block mx-2"
                                 >
-                                  <svg
-                                    aria-hidden="true"
-                                    className="w-3 mr-2 "
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      clipRule="evenodd"
-                                      d="M15.707 4.293a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L10 8.586l4.293-4.293a1 1 0 011.414 0zm0 6a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 14.586l4.293-4.293a1 1 0 011.414 0z"
-                                      fillRule="evenodd"
-                                    />
-                                  </svg>
-                                </span>
-                              </div>
-                            </th>
-                            <th
-                              className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                            >
-                              <div
-                                className="flex flex-row items-center gap-3 "
-                                data-testid="handleSort2"
-                                onClick={[Function]}
-                              >
-                                <span>
+                                  | Go to page:
                                    
-                                  email
+                                  <input
+                                    className=" pl-2 outline-none border rounded-md appearance-none border-primary"
+                                    defaultValue={1}
+                                    onChange={[Function]}
+                                    style={
+                                      Object {
+                                        "width": "50px",
+                                      }
+                                    }
+                                    type="number"
+                                  />
                                 </span>
-                                <span
-                                  className="cursor-pointer"
+                                 
+                                <select
+                                  className="px-1/2 md:px-2 font-raleway rounded-md border border-primary"
+                                  onChange={[Function]}
+                                  value={5}
                                 >
-                                  <svg
-                                    aria-hidden="true"
-                                    className="w-3 mr-2 "
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                  <option
+                                    value={5}
                                   >
-                                    <path
-                                      clipRule="evenodd"
-                                      d="M15.707 4.293a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L10 8.586l4.293-4.293a1 1 0 011.414 0zm0 6a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 14.586l4.293-4.293a1 1 0 011.414 0z"
-                                      fillRule="evenodd"
-                                    />
-                                  </svg>
-                                </span>
-                              </div>
-                            </th>
-                            <th
-                              className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                            >
-                              rating
-                            </th>
-                            <th
-                              className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                            >
-                              cohort
-                            </th>
-                            <th
-                              className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                            >
-                              program
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr
-                            className="bg-white dark:bg-dark-bg "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
+                                    Show
+                                     
+                                    5
+                                  </option>
+                                  <option
+                                    value={10}
                                   >
-                                    Kevin Shema
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                keshem5@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                1
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                1
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Core concept
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-light-bg dark:bg-dark-tertiary "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
+                                    Show
+                                     
+                                    10
+                                  </option>
+                                  <option
+                                    value={25}
                                   >
-                                    Muneza John
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                John@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                1
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Apprenticeship
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-white dark:bg-dark-bg "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
+                                    Show
+                                     
+                                    25
+                                  </option>
+                                  <option
+                                    value={50}
                                   >
-                                    Gatare Olivier
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                gatareo@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                0
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Team project
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-light-bg dark:bg-dark-tertiary "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
+                                    Show
+                                     
+                                    50
+                                  </option>
+                                  <option
+                                    value={100}
                                   >
-                                    Kevin Uwitonze
-                                  </p>
-                                </div>
+                                    Show
+                                     
+                                    100
+                                  </option>
+                                </select>
                               </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                keuwit@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                1
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Apprenticeship
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-white dark:bg-dark-bg "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Nsabimana Blaise
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                blaise@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                3
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Core concept
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-light-bg dark:bg-dark-tertiary "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Damascene Kaneza
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                damkan@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                3
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Team project
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-white dark:bg-dark-bg "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Umutoni Alice
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                ali@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                0
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                4
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Team project
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-light-bg dark:bg-dark-tertiary "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Ange Ishimwe
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                ishange@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                1
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                4
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Core concept
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-white dark:bg-dark-bg "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Keza Belinda
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                kezabe5@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                1
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                5
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Apprenticeship
-                              </p>
-                            </td>
-                          </tr>
-                          <tr
-                            className="bg-light-bg dark:bg-dark-tertiary "
-                          >
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <div
-                                className="flex items-center"
-                              >
-                                <div
-                                  className="ml-3"
-                                >
-                                  <p
-                                    className="text-gray-900 dark:text-white whitespace-no-wrap"
-                                  >
-                                    Bwiza Gisele
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                bwiza@gmail.com
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                2
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                5
-                              </p>
-                            </td>
-                            <td
-                              className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm"
-                            >
-                              <p
-                                className="text-gray-900 dark:text-white whitespace-no-wrap"
-                              >
-                                Team project
-                              </p>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
                   </div>
                 </div>
               </div>

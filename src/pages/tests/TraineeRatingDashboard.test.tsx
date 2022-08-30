@@ -1,6 +1,6 @@
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 
 import TraineeRatingDashboard from '../TraineeRatingDashboard';
@@ -19,6 +19,7 @@ describe('TraineeRatingDashboard Tests', () => {
 
   it('should update trainee model', () => {
     const removeModelMck = jest.fn();
+
     const { getByTestId } = render(
       <MemoryRouter>
         <TraineeRatingDashboard />

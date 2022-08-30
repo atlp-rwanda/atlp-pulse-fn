@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "name": "Cohort 5",
+    "coordinator": "john doe",
+    "phase": "Core Concept",
+    "startDate": "1st Jan 2022",
+    "closeDate": "11th Dec 2022"
+  },
+  {
+    "id": "2",
+    "name": "Cohort 6",
+    "coordinator": "john doe",
+    "phase": "Team Project",
+    "startDate": "1st Jan 2022",
+    "closeDate": "11th Dec 2022"
+  },
+  {
+    "id": "3",
+    "name": "Cohort 7",
+    "coordinator": "john doe",
+    "phase": "Core Concept",
+    "startDate": "1st Jan 2022",
+    "closeDate": "11th Dec 2022"
+  },
+  {
+    "id": "4",
+    "name": "Cohort 8",
+    "coordinator": "john doe",
+    "phase": "Core Concept",
+    "startDate": "1st Jan 2022",
+    "closeDate": "11th Dec 2022"
+  },
+  {
+    "id": "5",
+    "name": "Cohort 9",
+    "coordinator": "john doe",
+    "phase": "Team project",
+    "startDate": "1st Jan 2022",
+    "closeDate": "11th Dec 2022"
+  }
+]
