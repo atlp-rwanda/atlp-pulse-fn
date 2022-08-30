@@ -11,6 +11,10 @@ describe('session page tests', () => {
   it('Removes the model on click', () => {
     const removeSessionModel = jest.fn();
     const deleteSessionModel = jest.fn();
+    const PreMck = jest.fn();
+    const NexMck = jest.fn();
+    const setPageMck = jest.fn();
+    const MckPage = jest.fn();
     const { getByTestId } = render(
       <BrowserRouter>
         <Sessions />
@@ -19,6 +23,7 @@ describe('session page tests', () => {
     let removeSession = getByTestId('remove');
     fireEvent.click(removeSession);
     expect(removeSessionModel).toHaveBeenCalledTimes(0);
+
 
     let deleteSession = getByTestId('delete');
     fireEvent.click(deleteSession);

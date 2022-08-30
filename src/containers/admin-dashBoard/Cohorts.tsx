@@ -1,9 +1,11 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import { FaEllipsisV } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import Button from './../../components/Buttons';
+import { FaEllipsisV } from 'react-icons/fa';
+import DataTable from '../../components/DataTable';
+import CohortData from '../../dummyData/cohort.json';
 import useDocumentTitle from '../../hook/useDocumentTitle';
+import Button from './../../components/Buttons';
 
 const AdminCohort = () => {
   const { t } = useTranslation();
@@ -26,6 +28,28 @@ const AdminCohort = () => {
     let newState = !deleteCohortModel;
     setDeleteCohortModel(newState);
   };
+
+  const columns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Coordinator', accessor: 'coordinator' },
+    { Header: 'Phase', accessor: 'phase' },
+    { Header: 'StartingDate', accessor: 'startDate' },
+    { Header: 'ClosingDate', accessor: 'closeDate' },
+    {
+      Header: 'Action',
+      accessor: '',
+      Cell: () => (
+        <div>
+          <div className="flex relative flex-row ">
+            <div className="cursor-pointer">
+              <FaEllipsisV />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+  ];
+  const data = CohortData;
 
   return (
     <>
@@ -183,245 +207,7 @@ const AdminCohort = () => {
           </div>
         </div>
         <div className="px-3 md:px-8">
-          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-64">
-            <div className=" flex items-center justify-between pb-6">
-              <div>
-                <h2 className="text-gray-800 dark:text-white font-semibold">
-                  {t('CohortList')}
-                </h2>
-              </div>
-            </div>
-            <div>
-              <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
-                  <table className="min-w-full leading-normal">
-                    <thead>
-                      <tr>
-                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('name')}
-                        </th>
-                        <th className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('Coordinator')}
-                        </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('Phase')}
-                        </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('StartingDate')}
-                        </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('ClosingDate')}
-                        </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('Action')}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <div className="flex items-center">
-                            <div>
-                              <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                Cohort 5
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            john doe
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            Core Concept
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            1st Jan 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            11th Dec 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white dark:bg-dark-bg text-lg">
-                          <div className="flex relative flex-row ">
-                            <div
-                              className="cursor-pointer"
-                              onClick={() => {
-                                handleShowActions();
-                              }}
-                            >
-                              <FaEllipsisV />
-                            </div>
-                            {showActions ? (
-                              <div className="absolute top-0 bg-white z-20 dark:bg-dark-bg text-gray-500 dark:text-white ml-4 flex justify-center items-center border rounded dark:border-white">
-                                <div className=" px-3 cursor-pointer">
-                                  <ul>
-                                    <li className="hover:text-primary">
-                                      {t('Edit')}
-                                    </li>
-                                    <li
-                                      className="hover:text-primary"
-                                      onClick={() => removeDeleteModel()}
-                                    >
-                                      {t('Delete')}
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            ) : (
-                              ''
-                            )}
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <div className="flex items-center">
-                            <div>
-                              <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                Cohort 6
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            john doe
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            Core Concept
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            1st Jan 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            11th Dec 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-gray-100 dark:bg-dark-tertiary text-lg">
-                          <FaEllipsisV />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <div className="flex items-center">
-                            <div>
-                              <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                Cohort 7
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            john doe
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            Core Concept
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            1st Jan 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            11th Dec 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white dark:bg-dark-bg text-lg">
-                          <FaEllipsisV />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <div className="flex items-center">
-                            <div>
-                              <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                Cohort 8
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            john doe
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            Core Concept
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            1st Jan 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            11th Dec 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-gray-100 dark:bg-dark-tertiary text-lg">
-                          <FaEllipsisV />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <div className="flex items-center">
-                            <div>
-                              <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                Cohort 9
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            john doe
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            Core Concept
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            1st Jan 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                          <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                            11th Dec 2022
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 text-gray-500 cursor-pointer bg-white dark:bg-dark-bg text-lg">
-                          <FaEllipsisV />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
+          <DataTable data={data} columns={columns} title="CohortList" />
         </div>
       </div>
     </>

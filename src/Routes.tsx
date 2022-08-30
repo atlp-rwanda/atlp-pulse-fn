@@ -19,11 +19,25 @@ function MainRoutes() {
         <Header />
         <Routes>
           <Route path="/register-organization" element={<OrgRegister />} />
-          <Route path="/org-login" element={<ProtectedRoutes><Orglogin /></ProtectedRoutes>} />
+          <Route
+            path="/org-login"
+            element={(
+              <ProtectedRoutes>
+                <Orglogin />
+              </ProtectedRoutes>
+            )}
+          />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="/pricing-form" element={<Pay />} />
-          <Route path="/login-admin" element={<ProtectedRoutes><AdminLogin /></ProtectedRoutes>} />
+          <Route
+            path="/login-admin"
+            element={(
+              <ProtectedRoutes>
+                <AdminLogin />
+              </ProtectedRoutes>
+            )}
+          />
           <Route path="/" element={<Perfomancetraineetable />} />
           <Route path="/register-organization" element={<OrgRegister />} />
           <Route path="/org-login" element={<Orglogin />} />

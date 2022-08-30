@@ -1,7 +1,8 @@
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
+import '../../../test/jest/__mocks__/matchMedia';
 
 import UpdatedRatingDashboard from '../../pages/UpdatedRatingDashboard';
 
@@ -19,6 +20,7 @@ describe('<UpdatedRatingDashboard />', () => {
 
   it('should remove approve model', () => {
     const removeApproveModelMck = jest.fn();
+
     const { getByTestId } = render(
       <MemoryRouter>
         <UpdatedRatingDashboard />

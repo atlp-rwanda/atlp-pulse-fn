@@ -1,8 +1,8 @@
 /* eslint-disable */
-import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
+import { fireEvent, render } from '@testing-library/react';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import '../../../../test/jest/__mocks__/matchMedia';
 
 import Cohorts from '../Cohorts';
@@ -12,6 +12,7 @@ describe('Cohorts page tests', () => {
     const removeCohortModel = jest.fn();
     const deleteCohortModel = jest.fn();
     const removeModelMck = jest.fn();
+
     const { getByTestId } = render(
       <BrowserRouter>
         <Cohorts />

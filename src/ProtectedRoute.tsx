@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Notify from './components/Notify';
+import { UserContext } from './hook/useAuth';
 
 interface SomeType {
-  children: any,
+  children: any;
 }
 // eslint-disable-next-line react/prop-types
 export default function ProtectedRoutes(obj: SomeType) {
-  const token = localStorage.getItem('auth');
-  if (!token) {
+  const { user } = useContext(UserContext);
+  if (!user?.auth) {
     return obj.children;
   }
   return <Notify />;

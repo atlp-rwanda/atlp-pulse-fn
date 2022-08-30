@@ -37,10 +37,18 @@ function ProfileDropdown({
             <div className="w-full border-border-dark dark:border-white border-b-[0.5px]">
               <div className="flex flex-row justify-between align-center gap-x-[20px] ">
                 <div className="flex flex-col w-full gap-[5px] cursor-pointer">
-                  <Link onClick={handleShowProfileDropdown} to="/dashboard/profile" className="font-semibold text-gray-600 dark:text-white px-4 py-2 hover:bg-gray-600 hover:text-gray-200 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+                  <Link
+                    onClick={handleShowProfileDropdown}
+                    to="/dashboard/profile"
+                    className="font-semibold text-gray-600 dark:text-white px-4 py-2 hover:bg-gray-600 hover:text-gray-200 dark:hover:bg-gray-300 dark:hover:text-gray-900"
+                  >
                     {t('Profile')}
                   </Link>
-                  <Link onClick={handleShowProfileDropdown} to="settings" className="font-semibold text-gray-600 dark:text-white px-4 py-2 pb-4 hover:bg-gray-600 hover:text-gray-200 dark:hover:bg-gray-300 dark:hover:text-gray-900">
+                  <Link
+                    onClick={handleShowProfileDropdown}
+                    to="settings"
+                    className="font-semibold text-gray-600 dark:text-white px-4 py-2 pb-4 hover:bg-gray-600 hover:text-gray-200 dark:hover:bg-gray-300 dark:hover:text-gray-900"
+                  >
                     {t('Preferences')}
                   </Link>
                 </div>

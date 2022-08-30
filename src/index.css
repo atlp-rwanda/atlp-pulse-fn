@@ -118,49 +118,31 @@ input[type='number']::-webkit-outer-spin-button {
   .dark:hover {
     @apply bg-primary text-white;
   }
-}
-
-.required::after {
-  content: '*';
-  color: rgb(201, 35, 35);
-  font-weight: bold;
-}
-
-@keyframes loader {
-  0% {
-    transform: rotate(0deg);
+  .thead {
+    @apply p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider;
   }
-
-  100% {
-    transform: rotate(360deg);
+  .data-cell {
+    @apply px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm;
   }
 }
-
-.loader {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  max-width: 100%;
-  max-height: 100%;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.loader:after {
-  content: ' ';
-  display: block;
-  width: 24px;
-  height: 24px;
-  margin: 4px;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: loader 2s linear infinite;
+.page {
+  border: solid 0.1rem #4aa5be;
+  border-radius: 0.5rem;
 }
-@keyframes loader {
-  0% {
-    transform: rotate(0deg);
-  }
 
-  100% {
-    transform: rotate(360deg);
-  }
+.page.active,
+.page:hover {
+  background-color: #4aa5be;
+}
+
+.page.disabled {
+  background-color: transparent !important;
+  cursor: not-allowed;
+  opacity: 0.5;
 }

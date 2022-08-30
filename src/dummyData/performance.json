@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "sprint": "Sprint 1",
+    "quantity": "2",
+    "quality": "2",
+    "skills": "1",
+    "average": "2"
+  },
+  {
+    "id": "2",
+    "sprint": "Sprint 2",
+    "quantity": "2",
+    "quality": "1",
+    "skills": "1",
+    "average": "1"
+  },
+  {
+    "id": "3",
+    "sprint": "Sprint 3",
+    "quantity": "2",
+    "quality": "1",
+    "skills": "2",
+    "average": "1"
+  },
+  {
+    "id": "4",
+    "sprint": "Sprint 4",
+    "quantity": "1",
+    "quality": "1",
+    "skills": "1",
+    "average": "2"
+  },
+  {
+    "id": "5",
+    "sprint": "Sprint 5",
+    "quantity": "1",
+    "quality": "2",
+    "skills": "1",
+    "average": "2"
+  },
+  {
+    "id": "6",
+    "sprint": "Average",
+    "quantity": "1.5",
+    "quality": "1.7",
+    "skills": "1.8",
+    "average": "1.4"
+  }
+]

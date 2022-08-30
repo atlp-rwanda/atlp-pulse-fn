@@ -31,7 +31,6 @@ describe('Settings page tests', () => {
     let email = getByTestId('emailChange');
     fireEvent.click(email);
     expect(email).toBeChecked();
-
   });
   it('changes value after selecting another theme', () => {
     const elem = renderer
