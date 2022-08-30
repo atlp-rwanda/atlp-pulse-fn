@@ -1,8 +1,9 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import { ChevronDoubleDownIcon } from '@heroicons/react/solid';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Sidebar from '../components/Sidebar';
-import developers from '../dummyData/developers2.json';
+import devs from '../dummyData/developers2.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './../components/Buttons';
 
@@ -12,6 +13,7 @@ const AdminTraineeDashboard = () => {
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [findFilter, setFindFilter] = useState('');
   const [formData, setFormData] = useState([]);
+  const [developers, setDevelopers] = useState(devs);
 
   const removeModel = () => {
     let newState = !registerTraineeModel;
@@ -19,6 +21,34 @@ const AdminTraineeDashboard = () => {
   };
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
+  const [sortBy, setSort] = useState({ state: 'up', term: '' });
+  
+  useEffect(() => {
+    const filtered = devs.filter(
+      (developer: any) =>
+        developer.cohort.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.program.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.name.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.email.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.rating.toLowerCase().includes(findFilter.toLowerCase()),
+    );
+    setDevelopers(filtered);
+  }, [findFilter]);
+
+  const handleSort = (term: any) => {
+    const sorted = developers
+      .slice()
+      .sort((a: any, b: any) =>
+        b[term].localeCompare(a, 'en', { sensitivity: 'base' }),
+      );
+    if (sortBy.state === 'up') {
+      setDevelopers(sorted);
+      setSort({ state: 'down', term });
+    } else {
+      setDevelopers(sorted.reverse());
+      setSort({ state: 'up', term });
+    }
+  };
 
   return (
     <>
@@ -81,6 +111,7 @@ const AdminTraineeDashboard = () => {
 
               <div className="w-full flex justify-between">
                 <Button
+                  data-testid="removeModel"
                   variant="info"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
@@ -139,10 +170,32 @@ const AdminTraineeDashboard = () => {
                             <thead className=" w-full">
                               <tr>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                                  {t('name')}
+                                  <div
+                                    data-testid="handleSort"
+                                    className="flex flex-row items-center gap-3 "
+                                    onClick={() => handleSort('name')}
+                                  >
+                                    <span> {t('name')}</span>
+                                    <span className='cursor-pointer'>
+                                      {
+                                        <ChevronDoubleDownIcon className="w-3 mr-2 " />
+                                      }
+                                    </span>
+                                  </div>
                                 </th>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                  {t('email')}
+                                  <div
+                                    data-testid="handleSort2"
+                                    className="flex flex-row items-center gap-3 "
+                                    onClick={() => handleSort('email')}
+                                  >
+                                    <span> {t('email')}</span>
+                                    <span className='cursor-pointer'>
+                                      {
+                                        <ChevronDoubleDownIcon className="w-3 mr-2 " />
+                                      }
+                                    </span>
+                                  </div>
                                 </th>
                                 <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary dark:text-white text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                   {t('rating')}
@@ -161,20 +214,6 @@ const AdminTraineeDashboard = () => {
                                   index % 2 !== 0
                                     ? 'bg-light-bg dark:bg-dark-tertiary'
                                     : 'bg-white dark:bg-dark-bg';
-
-                                let developer1;
-                                if (
-                                  findFilter.toLowerCase() ==
-                                    developer.cohort.toLowerCase() ||
-                                  findFilter.length == 0 ||
-                                  findFilter.toLowerCase() ==
-                                    developer.program.toLowerCase()
-                                ) {
-                                  developer1 = developer;
-                                  developer = developer1;
-                                } else {
-                                  return;
-                                }
 
                                 return (
                                   <tr className={`${rowTheme} `} key={index}>

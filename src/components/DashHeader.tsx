@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
@@ -62,17 +63,10 @@ function DashHeader() {
                   alt="logoWhite"
                 />
               )}
+              <h1 className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill">
+                PULSE
+              </h1>
             </Link>
-            <div className="relative">
-              <SearchIcon className="hidden lg:flex w-5 absolute lg:ml-6 lg:mt-2 text-gray-400" />
-              <input
-                type="text"
-                name="Search"
-                placeholder="Search"
-                id="search"
-                className="hidden lg:flex text-gray-400 dark:text-dark-text-fill dark:bg-dark-bg border border-gray-600 rounded-md w-72 ml-4 pl-8 py-1"
-              />
-            </div>
           </div>
           <BellIcon
             className="w-6 cursor-pointer ml-auto dark:text-dark-text-fill"

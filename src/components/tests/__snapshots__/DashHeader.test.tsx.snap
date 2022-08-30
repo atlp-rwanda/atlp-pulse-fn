@@ -46,31 +46,12 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
           className="w-full cursor-pointer mr-2"
           src={Object {}}
         />
-      </a>
-      <div
-        className="relative"
-      >
-        <svg
-          aria-hidden="true"
-          className="hidden lg:flex w-5 absolute lg:ml-6 lg:mt-2 text-gray-400"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
+        <h1
+          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
         >
-          <path
-            clipRule="evenodd"
-            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-            fillRule="evenodd"
-          />
-        </svg>
-        <input
-          className="hidden lg:flex text-gray-400 dark:text-dark-text-fill dark:bg-dark-bg border border-gray-600 rounded-md w-72 ml-4 pl-8 py-1"
-          id="search"
-          name="Search"
-          placeholder="Search"
-          type="text"
-        />
-      </div>
+          PULSE
+        </h1>
+      </a>
     </div>
     <svg
       aria-hidden="true"

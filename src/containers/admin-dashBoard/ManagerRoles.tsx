@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import Button from './../../components/Buttons';
-import rolemanagement from '../../dummyData/rolemanagement.json';
+import devs from '../../dummyData/rolemanagement.json';
 import Pagination from '../../components/Pagination';
 
 const AdminSission = () => {
@@ -11,9 +11,9 @@ const AdminSission = () => {
   useDocumentTitle('Roles & Access');
   const [addMemberModel, setAddMemberModel] = useState(false);
   const [deleteModel, setDeleteModel] = useState(false);
+  const [developers, setDevelopers] = useState(devs);
 
   const [tabName, setTabName] = useState('all');
-  const [data, setData] = useState(rolemanagement);
 
   const [findFilter, setFindFilter] = useState('');
 
@@ -39,13 +39,18 @@ const AdminSission = () => {
     let newState = !deleteModel;
     setDeleteModel(newState);
   };
+
   useEffect(() => {
-    if (tabName === 'all') {
-      setData(rolemanagement);
-    } else {
-      setData(rolemanagement.filter((item: any) => item.role === tabName));
-    }
-  }, [tabName]);
+    const filtered = devs.filter(
+      (developer: any) =>
+        developer.value.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.email.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.name.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.role.toLowerCase().includes(findFilter.toLowerCase()) ||
+        developer.status.toLowerCase().includes(findFilter.toLowerCase()),
+    );
+    setDevelopers(filtered);
+  }, [findFilter]);
 
   return (
     <>
@@ -264,23 +269,11 @@ const AdminSission = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.map((item: any, index: any) => {
+                      {developers.map((developer: any, index: any) => {
                         let rowTheme =
                           index % 2 !== 0
                             ? 'bg-light-bg dark:bg-dark-tertiary'
                             : 'bg-white dark:bg-dark-bg';
-
-                        let Data;
-                        if (
-                          findFilter.toLowerCase() == item.name.toLowerCase() ||
-                          findFilter.length == 0 ||
-                          findFilter.toLowerCase() == item.status.toLowerCase()
-                        ) {
-                          Data = item;
-                          item = Data;
-                        } else {
-                          return;
-                        }
 
                         return (
                           <tr className={`${rowTheme}`} key={index}>
@@ -297,22 +290,22 @@ const AdminSission = () => {
                                 </span>
                                 <div className="flex flex-col  leading-4 px-3 py-2">
                                   <h3 className="dark:text-white sm:text-xs">
-                                    {item.name}
+                                    {developer.name}
                                   </h3>
                                   <p className="text-sm sm:text-xs text-gray-400 dark:text-white">
-                                    {item.email}
+                                    {developer.email}
                                   </p>
                                 </div>
                               </div>
                             </td>
                             <td className="py-3 px-5 border-b border-gray-200  text-sm sm:text-xs">
                               <p className="text-green-500 whitespace-no-wrap">
-                                {item.status}
+                                {developer.status}
                               </p>
                             </td>
                             <td className="px-5 py-3 border-b border-gray-200  text-sm">
                               <div className="whitespace-no-wrap flex justify-left">
-                                <div className="xl:w-24">{item.role}</div>
+                                <div className="xl:w-24">{developer.role}</div>
                               </div>
                             </td>
                             <td className="px-5 py-3 border-b border-gray-200  text-[9px] md:text-sm">
