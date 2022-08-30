@@ -8,7 +8,7 @@ import Button from './../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
 const UpdatedRatingDashboard = () => {
-  useDocumentTitle("Updated Ratings")
+  useDocumentTitle('Updated Ratings');
   const { t } = useTranslation();
   const [rowId, setRowId] = useState('');
   const [showActions, setShowActions] = useState(false);

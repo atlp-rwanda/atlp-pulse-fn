@@ -8,7 +8,7 @@ import Pagination from '../../components/Pagination';
 
 const AdminSission = () => {
   const { t } = useTranslation();
-  useDocumentTitle("Roles & Access");
+  useDocumentTitle('Roles & Access');
   const [addMemberModel, setAddMemberModel] = useState(false);
   const [deleteModel, setDeleteModel] = useState(false);
 
@@ -29,12 +29,12 @@ const AdminSission = () => {
   const handletrainee = () => {
     setTabName('trainee');
   };
-  
+
   const removeModel = () => {
     let newState = !addMemberModel;
     setAddMemberModel(newState);
   };
-  const removeDeleteModel = (e:any) => {
+  const removeDeleteModel = (e: any) => {
     e.preventDefault();
     let newState = !deleteModel;
     setDeleteModel(newState);
@@ -157,7 +157,7 @@ const AdminSission = () => {
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   data-testid="delete"
-                  onClick={(e:void) => removeDeleteModel(e)}
+                  onClick={(e: void) => removeDeleteModel(e)}
                 >
                   {' '}
                   {t('Cancel')}{' '}
@@ -318,7 +318,7 @@ const AdminSission = () => {
                             <td className="px-5 py-3 border-b border-gray-200  text-[9px] md:text-sm">
                               <p
                                 className="text-red-500 whitespace-no-wrap cursor-pointer"
-                                onClick={(e:any) => removeDeleteModel(e)}
+                                onClick={(e: any) => removeDeleteModel(e)}
                               >
                                 {t('Remove')}
                               </p>

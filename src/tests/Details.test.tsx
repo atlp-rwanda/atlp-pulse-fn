@@ -39,9 +39,9 @@ describe('<Details />', () => {
   it('should setCurrent step', () => {
     const setCurrentMck = jest.fn();
     const { getByTestId } = renderWithReactHookForm(
-    <FormProvider>
-      <Details />
-    </FormProvider>,
+      <FormProvider>
+        <Details />
+      </FormProvider>,
     );
     const setCurrent = getByTestId('btn-2');
     fireEvent.click(setCurrent);

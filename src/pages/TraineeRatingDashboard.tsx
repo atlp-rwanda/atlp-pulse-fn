@@ -8,7 +8,7 @@ import Button from './../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
 const TraineeRatingDashboard = () => {
-  useDocumentTitle("Ratings")
+  useDocumentTitle('Ratings');
   const { t } = useTranslation();
   const [showCohorts, setShowCohorts] = useState(false);
   const [showPhases, setShowPhases] = useState(false);

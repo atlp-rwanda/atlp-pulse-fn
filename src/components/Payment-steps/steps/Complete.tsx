@@ -17,7 +17,12 @@ export default function Final() {
           {t('Your Payment is successfully done!!')}
         </div>
         <div className="my-4">
-          <Button variant="primary" size="lg" data-testid="link1" onClick={() => setCurrentStep(2)}>
+          <Button
+            variant="primary"
+            size="lg"
+            data-testid="link1"
+            onClick={() => setCurrentStep(2)}
+          >
             {t('Back')}
           </Button>
           <Link to="/register-organization">

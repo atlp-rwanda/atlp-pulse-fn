@@ -11,7 +11,7 @@ const AdminCohort = () => {
   const [createCohortModel, setCreateCohortModel] = useState(false);
   const [deleteCohortModel, setDeleteCohortModel] = useState(false);
   const [showActions, setShowActions] = useState(false);
-  useDocumentTitle("Cohorts");
+  useDocumentTitle('Cohorts');
 
   const removeModel = () => {
     let newState = !createCohortModel;

@@ -37,7 +37,7 @@ const initialData: EventInput[] = [
 ];
 
 const Calendar = () => {
-  useDocumentTitle("Calendar")
+  useDocumentTitle('Calendar');
   const [addEventModel, setAddEventModel] = useState(false);
   const [newEvent, setNewEvent] = useState({
     title: '',

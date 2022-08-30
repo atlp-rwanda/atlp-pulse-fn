@@ -90,7 +90,9 @@ const Account = () => {
                 <Controller
                   name="mm"
                   control={control}
-                  rules={{ required: `${t('The expiration date is required')}` }}
+                  rules={{
+                    required: `${t('The expiration date is required')}`,
+                  }}
                   render={({
                     field: { onChange, onBlur, value, name, ref },
                   }) => (
@@ -148,7 +150,12 @@ const Account = () => {
           </div>
         </div>
         <div className="container flex justify-around mt-4 mb-8">
-          <Button variant="primary" size="lg" data-testid="btn-2" onClick={() => setCurrentStep(1)}>
+          <Button
+            variant="primary"
+            size="lg"
+            data-testid="btn-2"
+            onClick={() => setCurrentStep(1)}
+          >
             Back
           </Button>
           <Button variant="primary" size="lg" type={'submit'}>

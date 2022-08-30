@@ -1,18 +1,21 @@
 /* eslint-disable */
+import { useMutation } from '@apollo/client';
 import React, { useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
 import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { UserContext } from '../../hook/useAuth';
+import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';
+import { UserContext } from '../../hook/useAuth';
 import useDocumentTitle from '../../hook/useDocumentTitle';
+import LOGIN_MUTATION from './LoginMutation';
 
 function AdminLogin() {
-  useDocumentTitle("Login")
+  useDocumentTitle('Login');
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
   const tooglePassword = () => {
@@ -22,24 +25,32 @@ function AdminLogin() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   }: any = useForm();
   const { login } = useContext(UserContext);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const onSubmit = (data: any) => {
-    const role = data?.email.split('@')[0];
-    const validRoles = ['admin', 'trainee', 'coordinator', 'user', 'super'];
-    if (!validRoles.includes(role)) {
-      return toast.error(`Only these roles are accepted: ${validRoles}`);
+  const [LoginUser, { loading }] = useMutation(LOGIN_MUTATION);
+  const onSubmit = async (userInput: any) => {
+    try {
+      const { data }: any = await LoginUser({
+        variables: { loginInput: userInput },
+      });
+      login(data.loginUser);
+      toast.success(`Welcome`);
+      if (state) {
+        navigate(`${state}`);
+      } else {
+        navigate('/dashboard/');
+      }
+      return;
+    } catch (error) {
+      setError('password', {
+        type: 'custom',
+        message: t('Invalid credentials'),
+      });
+      setError('email', { type: 'custom', message: t('Invalid credentials') });
     }
-    login({ ...data, name: role.toUpperCase(), role });
-    if (state) {
-      navigate(`${state}`);
-    } else {
-      navigate('/dashboard/');
-    }
-
-    return;
   };
 
   return (
@@ -78,7 +89,7 @@ function AdminLogin() {
                     className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white "
                   />
                 </div>
-                <div className="text-left mb-1">
+                <div className="text-left mb-1 pl-4">
                   {errors.email && (
                     <small className="text-red-600">
                       {errors.email.message}
@@ -105,11 +116,13 @@ function AdminLogin() {
                     )}
                   </div>
                 </div>
-                <div className="text-left mb-1">
-                  {errors.password && (
+                <div className="text-left mb-1 pl-4">
+                  {errors.password ? (
                     <small className="text-red-600">
                       {errors.password.message}
                     </small>
+                  ) : (
+                    ''
                   )}
                 </div>
                 <div className="flex w-64 justify-between rounded mb-5 mt-5">
@@ -131,14 +144,20 @@ function AdminLogin() {
                     {t('Forgot Password?')}
                   </Link>
                 </div>
-                <Button
-                  type="submit"
-                  variant="transparentbtn"
-                  size="md"
-                  style="border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white"
-                >
-                  {t('Sign In')}
-                </Button>
+                <div className="w-full justify-center">
+                  {loading ? (
+                    <ButtonLoading style={'rounded-full inline-block'} />
+                  ) : (
+                    <Button
+                      type="submit"
+                      variant="transparentbtn"
+                      size="md"
+                      style="border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white"
+                    >
+                      {t('Sign In')}
+                    </Button>
+                  )}
+                </div>
               </form>
             </div>
             <div className="md:hidden mt-2 text-xs text-center dark:text-dark-text-fill">

@@ -114,8 +114,7 @@ export default function OrgRegister() {
                 </div>
                 <Button variant="primary" size="lg" style="w-1/4 mx-[20%]">
                   {' '}
-                  {t('Register')}
-                  {' '}
+                  {t('Register')}{' '}
                 </Button>
               </div>
             </form>
