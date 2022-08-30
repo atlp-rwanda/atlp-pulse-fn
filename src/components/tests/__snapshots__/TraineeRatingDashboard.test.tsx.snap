@@ -654,76 +654,6 @@ Array [
                             2
                           </td>
                         </tr>
-                        <tr
-                          className=" bg-light-bg dark:bg-dark-tertiary} "
-                          role="row"
-                        >
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            Keza Alice
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            1
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            2
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            0
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            2
-                          </td>
-                        </tr>
-                        <tr
-                          className=" bg-white dark:bg-dark-bg} "
-                          role="row"
-                        >
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            Keza Alice
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            1
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            2
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            0
-                          </td>
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            2
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                     <div>
@@ -802,7 +732,7 @@ Array [
                                       1
                                        
                                       of
-                                       2
+                                       4
                                     </strong>
                                      
                                   </span>
@@ -812,7 +742,7 @@ Array [
                                     | Go to page:
                                      
                                     <input
-                                      className=" pl-2 outline-none border rounded-md appearance-none border-primary"
+                                      className=" pl-2 outline-none border rounded-md appearance-none border-primary dark:bg-primary"
                                       defaultValue={1}
                                       onChange={[Function]}
                                       style={
@@ -825,10 +755,17 @@ Array [
                                   </span>
                                    
                                   <select
-                                    className="px-1/2 md:px-2 font-raleway rounded-md border border-primary"
+                                    className="px-1/2 md:px-2 font-raleway rounded-md border border-primary dark:bg-primary"
                                     onChange={[Function]}
-                                    value={5}
+                                    value={3}
                                   >
+                                    <option
+                                      value={3}
+                                    >
+                                      Show
+                                       
+                                      3
+                                    </option>
                                     <option
                                       value={5}
                                     >

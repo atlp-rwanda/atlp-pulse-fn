@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 import AdminCohort from '../../containers/admin-dashBoard/Cohorts';
 import AdminManage from '../../containers/admin-dashBoard/ManagerRoles';
 import AdminSession from '../../containers/admin-dashBoard/Sessions';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 
 describe('Admin dashboard page', () => {
   it('Renders cohort Page', () => {
@@ -21,7 +22,9 @@ describe('Admin dashboard page', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <AdminManage />
+          <ApolloProvider>
+            <AdminManage />
+          </ApolloProvider>
         </MemoryRouter>,
       )
       .toJSON();
