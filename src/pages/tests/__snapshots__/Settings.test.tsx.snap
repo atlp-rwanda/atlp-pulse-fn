@@ -68,7 +68,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           <select
             className="ml-auto bg-white border px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
             data-testid="themeChange"
-            defaultValue="light"
+            defaultValue="dark"
             onChange={[Function]}
           >
             <option
@@ -142,7 +142,8 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           </div>
           <button
             aria-checked={false}
-            className="ml-auto border relative inline-flex h-6 w-12 items-center rounded-full"
+            className="ml-auto border  relative inline-flex h-6 w-12 items-center rounded-full"
+            data-testid="emailChange"
             id="headlessui-switch-:r0:"
             onClick={[Function]}
             onKeyPress={[Function]}
@@ -152,7 +153,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
             type="button"
           >
             <span
-              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white"
+              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full"
             />
           </button>
         </li>
@@ -175,7 +176,8 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           </div>
           <button
             aria-checked={false}
-            className="ml-auto border relative inline-flex h-6 w-12 items-center rounded-full"
+            className=" ml-auto border  relative inline-flex h-6 w-12 items-center rounded-full"
+            data-testid="pushChange"
             id="headlessui-switch-:r1:"
             onClick={[Function]}
             onKeyPress={[Function]}
@@ -185,7 +187,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
             type="button"
           >
             <span
-              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white"
+              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full "
             />
           </button>
         </li>

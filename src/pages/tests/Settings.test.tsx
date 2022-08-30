@@ -16,13 +16,22 @@ describe('Settings page tests', () => {
       </BrowserRouter>,
     );
     let theme = getByTestId('themeChange');
-    expect(theme).toHaveValue('light');
+    expect(theme).toHaveValue('dark');
 
     fireEvent.change(theme, { target: { value: 'dark' } });
     expect(theme).toHaveValue('dark');
 
     fireEvent.change(theme, { target: { value: 'light' } });
     expect(theme).toHaveValue('light');
+
+    let push = getByTestId('pushChange');
+    fireEvent.click(push);
+    expect(push).toBeChecked();
+
+    let email = getByTestId('emailChange');
+    fireEvent.click(email);
+    expect(email).toBeChecked();
+
   });
   it('changes value after selecting another theme', () => {
     const elem = renderer

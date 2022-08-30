@@ -12,7 +12,6 @@ function Settings() {
   const { t } = useTranslation();
   const lanRef = useRef<any>();
   const lan = getLanguage();
-  const theme = window.localStorage.getItem('color-theme');
   const [colorTheme, setTheme] = useDarkMode();
   const [emailEnabled, setEmailEnabled] = useState(false);
   const [pushEnabled, setPushEnabled] = useState(false);
@@ -33,6 +32,7 @@ function Settings() {
       lanRef.current.value = lan;
     }
   }, []);
+
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
       <div className="flex flex-row justify-center pt-[12vh]">
@@ -69,7 +69,7 @@ function Settings() {
                 </p>
               </div>
               <select
-                defaultValue={theme!}
+                defaultValue="dark"
                 data-testid="themeChange"
                 onChange={(e) => handleThemeChange(e)}
                 className="ml-auto bg-white border px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
@@ -110,15 +110,16 @@ function Settings() {
               </div>
               <Switch
                 checked={emailEnabled}
+                data-testid="emailChange"
                 onChange={setEmailEnabled}
-                className="ml-auto border relative inline-flex h-6 w-12 items-center rounded-full"
+                className={`ml-auto border ${emailEnabled ? 'dark:border-primary' : ''} relative inline-flex h-6 w-12 items-center rounded-full`}
               >
                 <span
                   className={`${
                     emailEnabled
-                      ? 'bg-primary translate-x-6'
+                      ? 'bg-primary   translate-x-6'
                       : 'bg-gray-300 translate-x-1'
-                  } inline-block h-4 w-4 transform rounded-full bg-white`}
+                  } inline-block h-4 w-4 transform rounded-full`}
                 />
               </Switch>
             </li>
@@ -133,15 +134,16 @@ function Settings() {
               </div>
               <Switch
                 checked={pushEnabled}
+                data-testid="pushChange"
                 onChange={setPushEnabled}
-                className="ml-auto border relative inline-flex h-6 w-12 items-center rounded-full"
+                className={` ml-auto border ${pushEnabled ? 'dark:border-primary' : ''} relative inline-flex h-6 w-12 items-center rounded-full`}
               >
                 <span
                   className={`${
                     pushEnabled
-                      ? 'bg-primary translate-x-6'
+                      ? 'bg-primary   translate-x-6'
                       : 'bg-gray-300 translate-x-1'
-                  } inline-block h-4 w-4 transform rounded-full bg-white`}
+                  } inline-block h-4 w-4 transform rounded-full `}
                 />
               </Switch>
             </li>
