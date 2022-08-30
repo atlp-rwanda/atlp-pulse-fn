@@ -24,7 +24,6 @@ describe('session page tests', () => {
     fireEvent.click(removeSession);
     expect(removeSessionModel).toHaveBeenCalledTimes(0);
 
-
     let deleteSession = getByTestId('delete');
     fireEvent.click(deleteSession);
     expect(deleteSessionModel).toHaveBeenCalledTimes(0);

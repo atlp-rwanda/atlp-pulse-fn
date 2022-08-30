@@ -41,9 +41,9 @@ const Pagination = ({
     if (page === 1) {
       paginationGroup = pagesInBetween.slice(0, 3);
     } else if (
-      page === pageCount
-      || page === pageCount - 1
-      || page === pageCount - 2
+      page === pageCount ||
+      page === pageCount - 1 ||
+      page === pageCount - 2
     ) {
       paginationGroup = pagesInBetween.slice(-3, pageCount);
     } else if (page === 2) {

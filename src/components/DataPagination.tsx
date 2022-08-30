@@ -31,8 +31,7 @@ function DataPagination({
                     disabled={!canPreviousPage}
                   >
                     <ArrowCircleLeftIcon className="w-5" fontSize="sm" />
-                  </button>
-                  {' '}
+                  </button>{' '}
                   <button
                     type="button"
                     onClick={() => nextPage()}
@@ -40,26 +39,20 @@ function DataPagination({
                     className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
                   >
                     <ArrowCircleRightIcon className="w-5" fontSize="sm" />
-                  </button>
-                  {' '}
+                  </button>{' '}
                   <div className="flex flex-row justify-center w-full">
                     <span className="inline-block mx-2">
-                      Page
-                      {' '}
+                      Page{' '}
                       <strong>
-                        {pageIndex + 1}
-                        {' '}
-                        of
+                        {pageIndex + 1} of
                         {` ${pageOptions.length}`}
-                      </strong>
-                      {' '}
+                      </strong>{' '}
                     </span>
                     <span className="inline-block mx-2">
-                      | Go to page:
-                      {' '}
+                      | Go to page:{' '}
                       <input
                         type="number"
-                        className=" pl-2 outline-none border rounded-md appearance-none border-primary"
+                        className=" pl-2 outline-none border rounded-md appearance-none border-primary dark:bg-primary"
                         defaultValue={pageIndex + 1}
                         onChange={(e) => {
                           const pageNumber = e.target.value
@@ -69,18 +62,15 @@ function DataPagination({
                         }}
                         style={{ width: '50px' }}
                       />
-                    </span>
-                    {' '}
+                    </span>{' '}
                     <select
-                      className="px-1/2 md:px-2 font-raleway rounded-md border border-primary"
+                      className="px-1/2 md:px-2 font-raleway rounded-md border border-primary dark:bg-primary"
                       value={pageSize}
                       onChange={(e) => setPageSize(Number(e.target.value))}
                     >
-                      {[5, 10, 25, 50, 100].map((pgSize) => (
+                      {[3, 5, 10, 25, 50, 100].map((pgSize) => (
                         <option key={pgSize} value={pgSize}>
-                          Show
-                          {' '}
-                          {pgSize}
+                          Show {pgSize}
                         </option>
                       ))}
                     </select>

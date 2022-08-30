@@ -143,6 +143,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           <button
             aria-checked={false}
             className="ml-auto border  relative inline-flex h-6 w-12 items-center rounded-full"
+            data-headlessui-state=""
             data-testid="emailChange"
             id="headlessui-switch-:r0:"
             onClick={[Function]}
@@ -177,6 +178,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           <button
             aria-checked={false}
             className=" ml-auto border  relative inline-flex h-6 w-12 items-center rounded-full"
+            data-headlessui-state=""
             data-testid="pushChange"
             id="headlessui-switch-:r1:"
             onClick={[Function]}
