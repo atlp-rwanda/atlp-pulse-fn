@@ -235,5 +235,7 @@
   "Comments": "Comments",
   "Sign in": "Sign in",
   "Reply": "Reply",
-  "error_page_paragraph": "The page you are looking for might have been removed, had its name changed or is temporarily unavailable."
+  "error_page_paragraph": "The page you are looking for might have been removed, had its name changed or is temporarily unavailable.",
+  "Invalid credentials": "Invalid credentials"
+
 }

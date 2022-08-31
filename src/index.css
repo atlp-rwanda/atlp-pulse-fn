@@ -119,3 +119,48 @@ input[type='number']::-webkit-outer-spin-button {
     @apply bg-primary text-white;
   }
 }
+
+.required::after {
+  content: '*';
+  color: rgb(201, 35, 35);
+  font-weight: bold;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.loader:after {
+  content: ' ';
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: loader 2s linear infinite;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

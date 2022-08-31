@@ -13,8 +13,8 @@ const GradingSystem = () => {
   const [title, setTitle] = useState('');
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-  useDocumentTitle("Grading System");
-  
+  useDocumentTitle('Grading System');
+
   let fileteredData;
   const [formData, setFormData] = useState({
     label: '',

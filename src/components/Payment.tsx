@@ -24,7 +24,9 @@ function Pay() {
       setCurrentStep(2);
     } else if (currentStep === 2) {
       setCurrentStep(3);
-      toast.success(`${t('The payment from')} ${data.cardName} ${t('has been logged')}`);
+      toast.success(
+        `${t('The payment from')} ${data.cardName} ${t('has been logged')}`,
+      );
     }
   };
 

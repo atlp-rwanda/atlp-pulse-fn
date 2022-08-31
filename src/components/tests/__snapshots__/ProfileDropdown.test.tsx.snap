@@ -24,14 +24,10 @@ exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
       >
         <p
           className="font-bold dark:text-white"
-        >
-          John Doe
-        </p>
+        />
         <p
           className="font-bold text-sm text-gray-700 dark:text-gray-300"
-        >
-          Johndoe@gmail.com
-        </p>
+        />
       </div>
       <div
         className="flex flex-col w-full overflow-auto"

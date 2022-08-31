@@ -6,7 +6,7 @@ import Button from './../../components/Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 
 const AdminSission = () => {
-  useDocumentTitle("Sessions")
+  useDocumentTitle('Sessions');
   const { t } = useTranslation();
 
   const [deleteSessionModel, setDeleteSessionModel] = useState(false);

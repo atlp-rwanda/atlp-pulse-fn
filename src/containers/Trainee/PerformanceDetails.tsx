@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 
 function PerformanceDetails() {
-  useDocumentTitle("Performance details")
+  useDocumentTitle('Performance details');
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (

@@ -211,7 +211,7 @@ const Account = () => {
         )}
       </div>
       <div className="container flex justify-end mt-4 mb-8">
-        <Button  variant="primary" size="lg" type={'submit'}>
+        <Button variant="primary" size="lg" type={'submit'}>
           {t('Next')}
         </Button>
       </div>

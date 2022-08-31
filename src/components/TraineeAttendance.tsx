@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
 const TraineeAttendance = () => {
-  useDocumentTitle("Attendance")
+  useDocumentTitle('Attendance');
   const { t } = useTranslation();
 
   return (

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import useDocumentTitle from '../hook/useDocumentTitle';
+import CountrySelector from '../components/CountrySelector';
 import Input from '../components/Input';
 import ProfileCoverpage from '../components/ProfileCoverpage';
-import CountrySelector from '../components/CountrySelector';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
-import profileFields from '../constants/formFields';
-import { COUNTRIES, SelectMenuOption } from '../constants/countries';
 import Button from '../components/Buttons';
+import { COUNTRIES, SelectMenuOption } from '../constants/countries';
+import profileFields from '../constants/formFields';
 
 type fields = {
   [key: string]: string | number;

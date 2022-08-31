@@ -307,5 +307,6 @@
   "Welcome": "Bienvenue",
   "Login": "S'identifier",
   "Register organization": "Enregistrer l'organisation",
-  "Privacy & Preferences": "Confidentialité & Préférences"
+  "Privacy & Preferences": "Confidentialité & Préférences",
+  "Invalid credentials": "Information invalides"
 }

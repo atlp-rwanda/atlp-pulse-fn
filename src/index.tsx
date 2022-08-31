@@ -1,18 +1,39 @@
 /* eslint-disable */
 
+import {
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import React, { Suspense } from 'react';
 import * as ReactDOMClient from 'react-dom/client';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import './i18n.js';
-import './index.css';
 import Skeleton from './components/Skeleton';
+import './i18n.ts';
+import './index.css';
 
-import UserProvider from './hook/useAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserProvider from './hook/useAuth';
 const App = React.lazy(() => import('./App'));
+
+const httpLink = createHttpLink({
+  uri: 'https://atlp-bn.herokuapp.com/',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('auth_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  uri: 'http://54.147.153.168',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

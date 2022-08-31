@@ -1,70 +1,65 @@
 [
-    {
-      "name": "Keza Alice",
-      "email":"keza@gmail.com",
-      "value":"1",
-      "role":"admin",
-      "status":"Active" 
-    },
-    {
-        "name": "cyifuzo Didider",
-        "email":"cyifuzo@gmail.com",
-        "value":"2",
-        "role":"admin",
-        "status":"Active"
-    
-      },
-      {
-        "name": "Kaka Makombe",
-        "email":"kaka@gmail.com",
-        "value":"3",
-        "role":"coordinator",
-        "status":"Active" 
-      },
-      {
-        "name": "Keza Alice",
-        "email":"keza@gmail.com",
-        "value":"1",
-        "role":"trainee",
-        "status":"Active"   
-      },
-      {
-          "name": "Ella Didider",
-          "email":"kdidier@gmail.com",
-          "value":"2",
-          "role":"trainee",
-          "status":"Active" 
-      
-        },
-        {
-          "name": "Kaka Makombe",
-          "email":"kaka@gmail.com",
-          "value":"3",
-          "role":"coordinator",
-          "status":"Active" 
-        },
-        {
-            "name": "Keza Alice",
-            "email":"keza@gmail.com",
-            "value":"1",
-            "role":"admin",
-            "status":"Active" 
-          },
-          {
-              "name": "Kamanzi Didider",
-              "email":"kdidier@gmail.com",
-              "value":"2",
-              "role":"trainee",
-              "status":"Active" 
-          
-            },
-            {
-              "name": "cyifuzo Makombe",
-              "email":"kaka@gmail.com",
-              "value":"3",
-              "role":"coordinator",
-              "status":"Active" 
-            }
-   
-  ]
-  
+  {
+    "name": "Keza Alice",
+    "email": "keza@gmail.com",
+    "value": "1",
+    "role": "admin",
+    "status": "Active"
+  },
+  {
+    "name": "cyifuzo Didider",
+    "email": "cyifuzo@gmail.com",
+    "value": "2",
+    "role": "admin",
+    "status": "Active"
+  },
+  {
+    "name": "Kaka Makombe",
+    "email": "kaka@gmail.com",
+    "value": "3",
+    "role": "coordinator",
+    "status": "Active"
+  },
+  {
+    "name": "Keza Alice",
+    "email": "keza@gmail.com",
+    "value": "1",
+    "role": "trainee",
+    "status": "Active"
+  },
+  {
+    "name": "Ella Didider",
+    "email": "kdidier@gmail.com",
+    "value": "2",
+    "role": "trainee",
+    "status": "Active"
+  },
+  {
+    "name": "Kaka Makombe",
+    "email": "kaka@gmail.com",
+    "value": "3",
+    "role": "coordinator",
+    "status": "Active"
+  },
+  {
+    "name": "Keza Alice",
+    "email": "keza@gmail.com",
+    "value": "1",
+    "role": "admin",
+    "status": "Active"
+  },
+  {
+    "name": "Kamanzi Didider",
+    "email": "kdidier@gmail.com",
+    "value": "2",
+    "role": "trainee",
+    "status": "Active"
+  },
+  {
+    "name": "cyifuzo Makombe",
+    "email": "kaka@gmail.com",
+    "value": "3",
+    "role": "coordinator",
+    "status": "Active"
+  }
+]

@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import Sidebar from '../components/Sidebar';
 import { useTranslation } from 'react-i18next';
+import Sidebar from '../components/Sidebar';
 import developers from '../dummyData/developers2.json';
-import Button from './../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import Button from './../components/Buttons';
 
 const AdminTraineeDashboard = () => {
-  useDocumentTitle("Trainees")
+  useDocumentTitle('Trainees');
   const { t } = useTranslation();
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [findFilter, setFindFilter] = useState('');
