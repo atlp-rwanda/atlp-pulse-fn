@@ -100,7 +100,8 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           <Link to={user?.auth ? '/dashboard' : '/org-login'}>
             <Button variant="primary" size="lg">
               {' '}
-              {!user?.auth ? t('Sign In') : t('Dashboard')}{' '}
+              {!user?.auth ? t('Sign In') : t('Dashboard')}
+              {' '}
             </Button>
           </Link>
           {user?.auth ? (
@@ -111,13 +112,15 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
             >
               {' '}
-              {t('Logout')}{' '}
+              {t('Logout')}
+              {' '}
             </Button>
           ) : (
             <Link to="/register-organization">
               <Button variant="transparentbtn" size="lg" style="mr-8">
                 {' '}
-                {t('Register an organization')}{' '}
+                {t('Register an organization')}
+                {' '}
               </Button>
             </Link>
           )}

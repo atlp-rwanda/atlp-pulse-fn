@@ -43,6 +43,7 @@ const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
 import Skeleton from '../components/Skeleton';
+import Square from "../Skeletons/Square"
 
 function DashRoutes() {
   const [nav, setNav] = useState(false);
@@ -52,7 +53,7 @@ function DashRoutes() {
       <div className="flex flex-col min-h-screen">
         <DashHeader />
         <Sidebar toggle={handleClick} style="hidden lg:flex" />
-        <Suspense fallback={<Skeleton />}>
+        <Suspense fallback={<Square />}>
           <Routes>
             <Route path="" element={<Dashboard />} />
             <Route path="/trainees" element={<AdminTraineeDashboard />} />

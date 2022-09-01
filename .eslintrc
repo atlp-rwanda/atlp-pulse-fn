@@ -16,7 +16,7 @@
   "plugins": ["react", "@typescript-eslint"],
   "ignorePatterns": ["/root/webpack.config.js"],
   "rules": {
-    "no-console": "error",
+    "no-console": ["error"],
     "import/extensions": "off",
     "react/jsx-filename-extension": 0,
     "import/no-unresolved": 0,
@@ -29,6 +29,7 @@
     "no-confusing-arrow": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/destructuring-assignment": "off",
-    "react/jsx-props-no-spreading":"off"
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-useless-fragment": "off"
   }
 }

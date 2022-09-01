@@ -12,7 +12,7 @@
     "build": "webpack",
     "test": "npx jest",
     "coverage": "jest --coverage --silent",
-    "lint": "eslint .",
+    "lint": "npx eslint src/**/*.{tsx,ts} --fix",
     "lint-staged": "eslint --fix",
     "format": "npx pretty-quick",
     "prepare": "husky install"

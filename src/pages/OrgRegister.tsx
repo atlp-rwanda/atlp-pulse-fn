@@ -107,14 +107,17 @@ export default function OrgRegister() {
                     />
                     {t('I agree to the')}
                     <span className="text-primary mx-1">
-                      {t('Terms & Conditions of')}{' '}
-                    </span>{' '}
+                      {t('Terms & Conditions of')}
+                      {' '}
+                    </span>
+                    {' '}
                     <span>DevPulse</span>
                   </label>
                 </div>
                 <Button variant="primary" size="lg" style="w-1/4 mx-[20%]">
                   {' '}
-                  {t('Register')}{' '}
+                  {t('Register')}
+                  {' '}
                 </Button>
               </div>
             </form>
