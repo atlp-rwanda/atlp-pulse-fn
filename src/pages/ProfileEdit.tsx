@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { gql, useMutation } from '@apollo/client';
 
 import CountrySelector from '../components/CountrySelector';
 import Input from '../components/Input';
@@ -12,6 +13,7 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
 import { COUNTRIES, SelectMenuOption } from '../constants/countries';
 import profileFields from '../constants/formFields';
+import { toast } from 'react-toastify';
 
 type fields = {
   [key: string]: string | number;
@@ -21,6 +23,33 @@ const fieldState: fields = {};
 profileFields.forEach((field) => {
   fieldState[field.id as keyof typeof fieldState] = '';
 });
+
+const UPDATE_PROFILE = gql`
+  mutation {
+    updateProfile(
+      id: String
+      firstName: String
+      lastName: String
+      address: String
+      city: String
+      country: String
+      phoneNumber: String
+      biography: String
+      fileName: String
+      cover: String
+    ) {
+      firstName
+      lastName
+      address
+      city
+      country
+      phoneNumber
+      biography
+      avatar
+      coverImage
+    }
+  }
+`;
 
 function EditProfile() {
   // eslint-disable-next-line  operator-linebreak
@@ -41,10 +70,19 @@ function EditProfile() {
     formState: { errors },
     reset,
   }: any = useForm();
-
-  const onSubmit = () => {
-    reset();
+ const [UpdateProfile, { loading }] = useMutation(UPDATE_PROFILE);
+  const onSubmit = async(data:any) => {
+    console.log(data)
+    try {
+      const {data:profileData} = await UpdateProfile({variables:data})
+      console.log(profileData)
+      toast.success("Profile has been updated")
+    } catch (error) {
+      
+    }
   };
+
+ 
 
   return (
     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">

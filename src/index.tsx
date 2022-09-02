@@ -19,7 +19,7 @@ import UserProvider from './hook/useAuth';
 const App = React.lazy(() => import('./App'));
 
 const httpLink = createHttpLink({
-  uri: 'https://atlp-bn.herokuapp.com/',
+  uri: 'http://localhost:4000/',
 });
 
 const authLink = setContext((_, { headers }) => {

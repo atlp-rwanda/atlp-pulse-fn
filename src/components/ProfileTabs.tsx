@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useQuery, useMutation, gql, useLazyQuery } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { PhoneIcon, MailIcon, HomeIcon } from '@heroicons/react/solid';
@@ -7,6 +8,9 @@ import Button from '../components/Buttons';
 import Input from '../components/Input';
 import Logo from '../assets/logo.svg';
 import { passwordFields } from '../constants/formFields';
+import { UserContext } from '../hook/useAuth';
+import { toast } from 'react-toastify';
+import Square from "../Skeletons/Square"
 
 export function EditPassword() {
   type fields = {
@@ -76,13 +80,46 @@ export function EditPassword() {
   );
 }
 
+const GET_PROFILE = gql`
+  query {
+    getProfile {
+      firstName,
+      lastName,
+      phoneNumber,
+      address,
+      city,
+      country,
+      avatar,
+      coverImage
+    }
+  }
+`
+
+
 export default function ProfileTabs() {
   const [openTab, setOpenTab] = React.useState('About');
   const { t } = useTranslation();
-  const tabs: Array<string> = ['About', 'Organizations', 'Account'];
+  const tabs: Array<string> = ['About', 'Organizations', 'Account'];  
+const {user} = useContext(UserContext)
+const [getProfile, {loading}] = useLazyQuery(GET_PROFILE)
+const [data, setData] = useState<any>()  
+useEffect(()=>{
+  const fetchData = async ()=>{
+    try {
+      const {data} = await getProfile()
+      setData(data)
+    } catch (error) {
+      toast.error("Something went wrong")
+    }
+  }
+  fetchData()
+}, [])
+console.log(data)
   return (
     <div className="flex flex-wrap lg:ml-60 lg:mr-8">
-      <div className="lg:w-[40vw]">
+      {data ? (
+        <>
+        <div className="lg:w-[40vw]">
         {/* Profile tabs option start */}
         <ul
           className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
@@ -128,20 +165,20 @@ export default function ProfileTabs() {
                   <h3 className="text-2xl font-bold m-2  mb-4">John Doe </h3>
                   <div className="py-4 flex  justify-center">
                     <MailIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                    johndoe@gmail.com
+                    {user.email}
                   </div>
                   <div className="flex">
                     <PhoneIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                    (+250) 787 241 457
+                    {data.getProfile?.phoneNumber}
                   </div>
                   <div className="py-4 flex ">
                     <HomeIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                    Kimironko, Kigali
+                    {data.getProfile?.city}, {data.getProfile?.country}
                   </div>
                 </div>
                 <div className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow">
                   <h2 className="text-xl font-bold m-2  mb-4">
-                    {t('Biography')}
+                  {data.getProfile?.biography}
                   </h2>
                   <p>
                     {t(
@@ -178,11 +215,8 @@ export default function ProfileTabs() {
                     18/07/2022
                   </div>
                   <div className="flex">
-                    <h4 className="font-bold text-base mr-4">
-                      {t('role')}
-                      :
-                    </h4>
-                    {t('Trainee')}
+                    <h4 className="font-bold text-base mr-4">{t('role')}:</h4>
+                    {user.role}
                   </div>
                   <div className="py-4 flex ">
                     <h4 className="font-bold text-base mr-4">
@@ -304,6 +338,11 @@ export default function ProfileTabs() {
           </div>
         </div>
       </div>
+        </>
+      ):(
+<Square/>
+      )}
+      
     </div>
   );
 }
