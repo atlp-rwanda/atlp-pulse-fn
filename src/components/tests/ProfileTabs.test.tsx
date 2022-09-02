@@ -1,13 +1,13 @@
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
 import ProfileTabs from '../ProfileTabs';
 
 describe('<ProfileTabs/>', () => {
   it('Renders Profile Tabs', () => {
     const { getByText } = render(
       <MemoryRouter>
-        <ProfileTabs />
+        <ProfileTabs data={{ name: 'Fabrice' }} />
       </MemoryRouter>,
     );
 

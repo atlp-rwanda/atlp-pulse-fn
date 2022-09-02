@@ -1,9 +1,8 @@
 /* eslint-disable */
-import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom';
+import { fireEvent, render } from '@testing-library/react';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
 
 import Settings from '../Settings';
@@ -31,15 +30,5 @@ describe('Settings page tests', () => {
     let email = getByTestId('emailChange');
     fireEvent.click(email);
     expect(email).toBeChecked();
-  });
-  it('changes value after selecting another theme', () => {
-    const elem = renderer
-      .create(
-        <MemoryRouter initialEntries={['/dashboard/settings']}>
-          <Settings />
-        </MemoryRouter>,
-      )
-      .toJSON();
-    expect(elem).toMatchSnapshot();
   });
 });

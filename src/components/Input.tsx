@@ -12,7 +12,6 @@ const inputDefaultProps = {
 type inputProps = {
   // eslint-disable-next-line  no-unused-vars
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string | number;
   labelText: string;
   labelFor: string;
   id: string;

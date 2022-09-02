@@ -182,6 +182,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="p-2 w-full dark:text-dark-text-fill"
     >
       <a
+        className="w-full"
         href="/product"
         onClick={[Function]}
       >
@@ -192,22 +193,27 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
+        className="w-full"
         href="/org-login"
         onClick={[Function]}
       >
-        Sign in
+         
+        Sign In
       </a>
     </li>
-    <li
-      className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md"
+    <a
+      href="/register-organization"
+      onClick={[Function]}
     >
-      <a
-        href="/register-organization"
-        onClick={[Function]}
+      <button
+        className="btn transparentbtn lg mr-8"
+        type="button"
       >
-        Register Organization
-      </a>
-    </li>
+         
+        Register an organization
+         
+      </button>
+    </a>
   </ul>
 </div>
 `;
@@ -393,6 +399,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="p-2 w-full dark:text-dark-text-fill"
     >
       <a
+        className="w-full"
         href="/product"
         onClick={[Function]}
       >
@@ -403,22 +410,27 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
+        className="w-full"
         href="/org-login"
         onClick={[Function]}
       >
-        Sign in
+         
+        Sign In
       </a>
     </li>
-    <li
-      className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md"
+    <a
+      href="/register-organization"
+      onClick={[Function]}
     >
-      <a
-        href="/register-organization"
-        onClick={[Function]}
+      <button
+        className="btn transparentbtn lg mr-8"
+        type="button"
       >
-        Register Organization
-      </a>
-    </li>
+         
+        Register an organization
+         
+      </button>
+    </a>
   </ul>
 </div>
 `;
@@ -600,6 +612,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="p-2 w-full dark:text-dark-text-fill"
     >
       <a
+        className="w-full"
         href="/product"
         onClick={[Function]}
       >
@@ -610,22 +623,23 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
-        href="/org-login"
+        className="w-full"
+        href="/dashboard"
         onClick={[Function]}
       >
-        Sign in
+         
+        Dashboard
       </a>
     </li>
-    <li
-      className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md"
+    <button
+      className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+      onClick={[Function]}
+      type="button"
     >
-      <a
-        href="/register-organization"
-        onClick={[Function]}
-      >
-        Register Organization
-      </a>
-    </li>
+       
+      Logout
+       
+    </button>
   </ul>
 </div>
 `;
@@ -812,6 +826,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="p-2 w-full dark:text-dark-text-fill"
     >
       <a
+        className="w-full"
         href="/product"
         onClick={[Function]}
       >
@@ -822,22 +837,27 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
+        className="w-full"
         href="/org-login"
         onClick={[Function]}
       >
-        Sign in
+         
+        Sign In
       </a>
     </li>
-    <li
-      className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md"
+    <a
+      href="/register-organization"
+      onClick={[Function]}
     >
-      <a
-        href="/register-organization"
-        onClick={[Function]}
+      <button
+        className="btn transparentbtn lg mr-8"
+        type="button"
       >
-        Register Organization
-      </a>
-    </li>
+         
+        Register an organization
+         
+      </button>
+    </a>
   </ul>
 </div>
 `;
@@ -1024,6 +1044,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="p-2 w-full dark:text-dark-text-fill"
     >
       <a
+        className="w-full"
         href="/product"
         onClick={[Function]}
       >
@@ -1034,22 +1055,27 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
+        className="w-full"
         href="/org-login"
         onClick={[Function]}
       >
-        Sign in
+         
+        Sign In
       </a>
     </li>
-    <li
-      className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md"
+    <a
+      href="/register-organization"
+      onClick={[Function]}
     >
-      <a
-        href="/register-organization"
-        onClick={[Function]}
+      <button
+        className="btn transparentbtn lg mr-8"
+        type="button"
       >
-        Register Organization
-      </a>
-    </li>
+         
+        Register an organization
+         
+      </button>
+    </a>
   </ul>
 </div>
 `;
@@ -1236,6 +1262,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="p-2 w-full dark:text-dark-text-fill"
     >
       <a
+        className="w-full"
         href="/product"
         onClick={[Function]}
       >
@@ -1246,22 +1273,27 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
+        className="w-full"
         href="/org-login"
         onClick={[Function]}
       >
-        Sign in
+         
+        Sign In
       </a>
     </li>
-    <li
-      className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md"
+    <a
+      href="/register-organization"
+      onClick={[Function]}
     >
-      <a
-        href="/register-organization"
-        onClick={[Function]}
+      <button
+        className="btn transparentbtn lg mr-8"
+        type="button"
       >
-        Register Organization
-      </a>
-    </li>
+         
+        Register an organization
+         
+      </button>
+    </a>
   </ul>
 </div>
 `;

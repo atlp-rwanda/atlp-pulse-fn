@@ -1,4 +1,6 @@
-import React, { createContext, ReactNode, useMemo, useState } from 'react';
+import React, {
+  createContext, ReactNode, useMemo, useState,
+} from 'react';
 
 const getInitialState = () => {
   if (window && window.localStorage) {
@@ -33,6 +35,7 @@ function UserProvider({ children, ...props }: Props) {
       role: data.user.role,
       email: data.user.email,
       firstName: data.user?.profile?.firstName,
+      id: data.user?.profile?.id,
     }));
   };
   const logout = () => {

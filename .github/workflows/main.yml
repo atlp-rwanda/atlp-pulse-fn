@@ -13,6 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     concurrency: test_environment
+    env:
+      BACKEND_URL: http://localhost:4000
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

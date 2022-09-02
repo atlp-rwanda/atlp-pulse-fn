@@ -9,6 +9,7 @@ const LOGIN_MUTATION = gql`
         role
         email
         profile {
+          id
           firstName
           lastName
           name

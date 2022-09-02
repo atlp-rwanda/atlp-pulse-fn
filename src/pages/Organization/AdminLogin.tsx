@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useMutation } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -31,12 +31,14 @@ function AdminLogin() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [LoginUser, { loading }] = useMutation(LOGIN_MUTATION);
+  const client = useApolloClient();
   const onSubmit = async (userInput: any) => {
     try {
       const { data }: any = await LoginUser({
         variables: { loginInput: userInput },
       });
       login(data.loginUser);
+      await client.resetStore();
       toast.success(`Welcome`);
       if (state) {
         navigate(`${state}`);
@@ -44,12 +46,15 @@ function AdminLogin() {
         navigate('/dashboard/');
       }
       return;
-    } catch (error) {
+    } catch (error: any) {
       setError('password', {
         type: 'custom',
         message: t('Invalid credentials'),
       });
-      setError('email', { type: 'custom', message: t('Invalid credentials') });
+      setError('email', {
+        type: 'custom',
+        message: t('Invalid credentials'),
+      });
     }
   };
 

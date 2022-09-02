@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BACKEND_URL: http://localhost:4000
     steps:
       - uses: actions/checkout@v2
       # setup the node development environment

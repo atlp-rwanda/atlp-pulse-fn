@@ -9,4 +9,3 @@ npx lint-staged || (
   false;
 )
 git add .
-

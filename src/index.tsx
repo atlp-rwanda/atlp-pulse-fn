@@ -4,6 +4,7 @@ import {
   ApolloClient,
   ApolloProvider,
   createHttpLink,
+  from,
   InMemoryCache,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -13,13 +14,29 @@ import Skeleton from './components/Skeleton';
 import './i18n.ts';
 import './index.css';
 
-import { ToastContainer } from 'react-toastify';
+import { onError } from '@apollo/client/link/error';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserProvider from './hook/useAuth';
 const App = React.lazy(() => import('./App'));
 
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path, extensions }) => {
+      if (extensions?.code === 'JWT_EXPIRED') {
+        window.location.pathname = '/login';
+        window.localStorage.clear();
+        toast.error('You have not been using the website for a while');
+        return;
+      }
+    });
+  }
+
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
+
 const httpLink = createHttpLink({
-  uri: process.env.BACKEND_URL,
+  uri: process.env.BACKEND_URL || 'http://localhost:4000',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -33,7 +50,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: from([errorLink, authLink.concat(httpLink)]),
   cache: new InMemoryCache(),
 });
 
