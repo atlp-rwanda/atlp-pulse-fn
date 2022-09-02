@@ -2,15 +2,15 @@ import React, { forwardRef, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 
-import { MenuIcon, XIcon, SunIcon } from '@heroicons/react/outline';
+import { MenuIcon, SunIcon, XIcon } from '@heroicons/react/outline';
 import { MoonIcon } from '@heroicons/react/solid';
 import Logo from '../assets/logo.svg';
 import LogoWhite from '../assets/logoWhite.svg';
-import useDarkMode from '../hook/useDarkMode';
 import { UserContext } from '../hook/useAuth';
+import useDarkMode from '../hook/useDarkMode';
 
-import WithClickOutside from './WithClickOutside';
 import Button from './Buttons';
+import WithClickOutside from './WithClickOutside';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { t } = useTranslation();
@@ -100,7 +100,8 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           <Link to={user?.auth ? '/dashboard' : '/org-login'}>
             <Button variant="primary" size="lg">
               {' '}
-              {!user?.auth ? t('Sign In') : t('Dashboard')}{' '}
+              {!user?.auth ? t('Sign In') : t('Dashboard')}
+              {' '}
             </Button>
           </Link>
           {user?.auth ? (
@@ -111,13 +112,15 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
             >
               {' '}
-              {t('Logout')}{' '}
+              {t('Logout')}
+              {' '}
             </Button>
           ) : (
             <Link to="/register-organization">
               <Button variant="transparentbtn" size="lg" style="mr-8">
                 {' '}
-                {t('Register an organization')}{' '}
+                {t('Register an organization')}
+                {' '}
               </Button>
             </Link>
           )}
@@ -155,16 +158,40 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         </li>
 
         <li className="p-2 w-full dark:text-dark-text-fill">
-          <Link to="/product">{t('Product')}</Link>
+          <Link to="/product" className="w-full">
+            {t('Product')}
+          </Link>
         </li>
 
         <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
-          <Link to="/org-login">{t('Sign in')}</Link>
+          <Link
+            to={user?.auth ? '/dashboard' : '/org-login'}
+            className="w-full"
+          >
+            {' '}
+            {!user?.auth ? t('Sign In') : t('Dashboard')}
+          </Link>
         </li>
-
-        <li className="p-2 w-full mb-4 dark:text-dark-text-fill bg-transparent border border-primary dark:border-dark-text-fill rounded-md">
-          <Link to="/register-organization">Register Organization</Link>
-        </li>
+        {user?.auth ? (
+          <Button
+            variant="transparentbtn"
+            size="lg"
+            onClick={() => logout()}
+            style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+          >
+            {' '}
+            {t('Logout')}
+            {' '}
+          </Button>
+        ) : (
+          <Link to="/register-organization">
+            <Button variant="transparentbtn" size="lg" style="mr-8">
+              {' '}
+              {t('Register an organization')}
+              {' '}
+            </Button>
+          </Link>
+        )}
       </ul>
     </div>
   );

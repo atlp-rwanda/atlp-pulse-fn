@@ -1,28 +1,54 @@
-import React from 'react';
+import { MockedProvider } from '@apollo/client/testing';
 import { fireEvent, render } from '@testing-library/react';
-import renderer from 'react-test-renderer';
+import React from 'react';
+
+import * as ReactRouter from 'react-router';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+import ProfileTabs from '../../components/ProfileTabs';
 import Profile from '../Profile';
 import EditProfile from '../ProfileEdit';
-import ProfileTabs from '../../components/ProfileTabs';
+
+// eslint-disable-next-line no-import-assign
+Object.defineProperty(ReactRouter, 'useLocation', {
+  value: jest.fn(),
+  configurable: true,
+  writable: true,
+});
+
+const mockedUseLocationValue = {
+  pathname: '/dashboard/profile',
+  search: '',
+  key: '',
+  hash: '',
+  state: {
+    profile: {
+      lastName: 'Doe',
+      firstName: 'John',
+      country: 'AD',
+    },
+  },
+};
 
 describe('Profile Page', () => {
   it('Renders the whole profile page', () => {
-    const elem = renderer
-      .create(
-        <MemoryRouter>
+    jest
+      .spyOn(ReactRouter, 'useLocation')
+      .mockReturnValue(mockedUseLocationValue);
+    const elem = render(
+      <MemoryRouter>
+        <MockedProvider mocks={[]}>
           <Profile />
-        </MemoryRouter>,
-      )
-      .toJSON();
-
+        </MockedProvider>
+      </MemoryRouter>,
+    );
     expect(elem).toMatchSnapshot();
   });
   it('Renders the profile tabs', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <ProfileTabs />
+          <ProfileTabs data={{ name: 'Fabrice' }} />
         </MemoryRouter>,
       )
       .toJSON();
@@ -31,21 +57,28 @@ describe('Profile Page', () => {
   });
 
   it('Renders the edit profile page', () => {
-    const elem = renderer
-      .create(
-        <MemoryRouter>
+    jest
+      .spyOn(ReactRouter, 'useLocation')
+      .mockReturnValue(mockedUseLocationValue);
+    const elem = render(
+      <MemoryRouter>
+        <MockedProvider>
           <EditProfile />
-        </MemoryRouter>,
-      )
-      .toJSON();
-
+        </MockedProvider>
+      </MemoryRouter>,
+    );
     expect(elem).toMatchSnapshot();
   });
 
   it('Renders the country selector', () => {
+    jest
+      .spyOn(ReactRouter, 'useLocation')
+      .mockReturnValue(mockedUseLocationValue);
     const { getByTestId } = render(
       <MemoryRouter>
-        <EditProfile />
+        <MockedProvider>
+          <EditProfile />
+        </MockedProvider>
       </MemoryRouter>,
     );
 
