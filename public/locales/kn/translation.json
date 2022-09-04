@@ -281,5 +281,22 @@
   "Program list": "Urutonde rw'amakompanyi",
   "Admin": "Umuyobozi",
   "Action": "Ibikorwa",
-  "Number of Cohorts": "Umubare w'ibyiciro"
+  "Number of Cohorts": "Umubare w'ibyiciro",
+  "Performance Ratings": "igipimo cyimikorere",
+  "No updated ratings found":"Nta amanota agezweho yabonetse",
+  "Save":"Bika",
+  "Professionalism":"Ubunyamwuga",
+  "Select rating":"Hitamo urutonde",
+  "Add New Rating":"Ongeraho amanota mashya",
+  "Add New Trainee Rating":"Ongeraho amanota mashya y'abahugurwa",
+  "Select Trainee":"Hitamo abahugurwa",
+  "No trainee found.": "Nta munyeshuri wabonetse.",
+  "Cohort":"Cohort",
+  "Update rating":"Kuvugurura urutonde",
+  "Save ratings": "Bika amanota",
+  "Professional rating remark":"Ijambo",
+  "Quality ratings remark":"Ijambo",
+  "Qantity rating remark":"Ijambo",
+  "Are you sure you want to approve this updated ratings ?":"Uzi neza ko ushaka kwemeza ibipimo byavuguruwe?"
+
 }

@@ -3,15 +3,19 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import '../../../test/jest/__mocks__/matchMedia';
-
+// import { ApolloProvider } from '@apollo/client';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import UpdatedRatingDashboard from '../../pages/UpdatedRatingDashboard';
+import { client } from '../../index';
 
 describe('<UpdatedRatingDashboard />', () => {
-  it('Renders UpdatedRatingDashboard', () => {
+  it('Renders updatedRating', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <UpdatedRatingDashboard />
+          <ApolloProvider>
+            <UpdatedRatingDashboard />
+          </ApolloProvider>
         </MemoryRouter>,
       )
       .toJSON();
@@ -23,7 +27,9 @@ describe('<UpdatedRatingDashboard />', () => {
 
     const { getByTestId } = render(
       <MemoryRouter>
-        <UpdatedRatingDashboard />
+        <ApolloProvider>
+          <UpdatedRatingDashboard />
+        </ApolloProvider>
       </MemoryRouter>,
     );
     const removeApproveModel = getByTestId('removeApproveModel');
@@ -35,7 +41,9 @@ describe('<UpdatedRatingDashboard />', () => {
     const removeRejectModelMck = jest.fn();
     const { getByTestId } = render(
       <MemoryRouter>
-        <UpdatedRatingDashboard />
+        <ApolloProvider>
+          <UpdatedRatingDashboard />
+        </ApolloProvider>
       </MemoryRouter>,
     );
     const removeRejectModel = getByTestId('removeRejectModel');

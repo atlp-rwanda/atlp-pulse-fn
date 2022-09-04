@@ -1,44 +1,55 @@
-import { fireEvent, render } from '@testing-library/react';
+// @ts-nocheck
 import React from 'react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-
+import userEvent from '@testing-library/user-event';
+// import { ApolloProvider } from '@apollo/client';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import TraineeRatingDashboard from '../TraineeRatingDashboard';
+import { client } from '../../index';
 
 describe('TraineeRatingDashboard Tests', () => {
+  const observe = jest.fn();
+  const disconnect = jest.fn();
+  window.IntersectionObserver = jest.fn(function () {
+    this.observe = observe;
+    this.disconnect = disconnect;
+  });
+
   it('Renders TraineeRatingDashboard', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <TraineeRatingDashboard />
+          <ApolloProvider>
+            <TraineeRatingDashboard />
+          </ApolloProvider>
         </MemoryRouter>,
       )
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-
-  it('should update trainee model', () => {
-    const removeModelMck = jest.fn();
-
-    const { getByTestId } = render(
+  it('Updates state', async () => {
+    render(
       <MemoryRouter>
-        <TraineeRatingDashboard />
+        <ApolloProvider>
+          <TraineeRatingDashboard />
+        </ApolloProvider>
       </MemoryRouter>,
     );
-    const removeModel = getByTestId('removeModel');
-    fireEvent.click(removeModel);
-    expect(removeModelMck).toBeCalledTimes(0);
-  });
 
-  it('should delete trainee model', () => {
-    const removeDeleteModelMck = jest.fn();
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <TraineeRatingDashboard />
-      </MemoryRouter>,
-    );
-    const removeDeleteModel = getByTestId('removeDeleteModel');
-    fireEvent.click(removeDeleteModel);
-    expect(removeDeleteModelMck).toBeCalledTimes(0);
+    const addRatingBtn = screen.getByTestId('addRatingButton');
+    fireEvent.click(addRatingBtn);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    const traineeComboInput = screen.getByTestId('traineeComboInput');
+    expect(traineeComboInput).toBeInTheDocument();
+    fireEvent.change(traineeComboInput, {
+      target: { value: 'Bad trainee name' },
+    });
+    expect(screen.getByTestId('notFoundDiv')).toBeInTheDocument();
+
+    fireEvent.click(await screen.findByTestId('sprintList'));
+    fireEvent.click(await screen.findByTestId('traineeList'));
   });
 });
