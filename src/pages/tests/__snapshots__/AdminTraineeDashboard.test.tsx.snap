@@ -287,6 +287,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="removeMemberFromCohort"
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -548,6 +549,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="saveButton"
               disabled={false}
               onClick={[Function]}
               type="button"

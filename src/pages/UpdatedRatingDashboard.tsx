@@ -1,24 +1,50 @@
 /* eslint-disable */
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../components/DataTable';
 import Sidebar from '../components/Sidebar';
-import developers from '../dummyData/developers.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './../components/Buttons';
+import { REJECT_RATING, APPROVE_RATING } from '../Mutations/Ratings';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { toast } from 'react-toastify';
 
+const organizationToken = localStorage.getItem('orgToken');
 const UpdatedRatingDashboard = () => {
   useDocumentTitle('Updated Ratings');
   const { t } = useTranslation();
-  const [rowId, setRowId] = useState('');
-  const [showActions, setShowActions] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const [approveModel, setApproveModel] = useState(false);
   const [rejectModel, setRejectModel] = useState(false);
+  const [ratings, setRatings] = useState<any>([]);
+  const [rows, setRows] = useState({
+    user: '',
+    id: '',
+    sprint: ''
+  });
+  const GET_USERS = gql`
+  query Query($orgToken: String) {
+    fetchRatingsForAdmin(orgToken: $orgToken) {
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+      user {
+        id
+        role
+        email
+      }
+    }
+  }
+  `;
 
-  const handleShowActions = (index: any) => {
-    setRowId(index);
-    setShowActions(!showActions);
+  const handleToggle = () => {
+    setToggle(!toggle);
   };
 
   const removeApproveModel = () => {
@@ -32,60 +58,111 @@ const UpdatedRatingDashboard = () => {
   };
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-
-  const data = developers;
+  const data = ratings;
   const columns = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Sprint', accessor: 'sprint' },
-    { Header: 'Quantity', accessor: 'quantity' },
-    { Header: 'Quality', accessor: 'quality' },
-    { Header: 'Professional skills', accessor: 'professionalSkills' },
+    { Header: `${t('Name')}`, accessor: 'user[email]' },
+    { Header: `${t('Sprint')}`, accessor: 'sprint' },
+    { Header: `${t('Quantity')}`, accessor: 'quantity' },
+    { Header: `${t('Quality')}`, accessor: 'quality' },
+    { Header: `${t('Professional skills')}`, accessor: 'professional_Skills' },
     {
-      Header: 'Actions',
+      Header: `${t('Actions')}`,
       accessor: '',
       Cell: ({ row }: any) => (
-        <div className="flex flex-row">
-          <div
-            className="cursor-pointer"
-            onClick={() => {
-              handleShowActions(row.index.toString());
-            }}
-          >
-            <Icon icon="entypo:dots-three-vertical" color="#148fb6" />
+        <div className="flex flex-row justify-around">
+          <div className="cursor-pointer my-auto">
+            <Icon
+              icon="teenyicons:tick-circle-solid"
+              color="#8EB95D"
+              width="20"
+              height="20"
+              onClick={() => {
+                setRows({
+                  ...rows,
+                  user: row.original.user.email,
+                  id: row.original.user.id,
+                  sprint: row.original.sprint
+                });
+                setApproveModel(!approveModel);
+              }}
+            />
           </div>
-          {rowId == row.index.toString() && showActions ? (
-            <div className="absolute bg-white z-20 dark:bg-dark-bg text-gray-500 dark:text-white ml-4 flex justify-center items-center border rounded dark:border-white">
-              <div className=" p-3">
-                <ul>
-                  <li
-                    className="hover:text-primary"
-                    onClick={() => removeRejectModel()}
-                  >
-                    {t('Reject')}
-                  </li>
-                  <li
-                    className="hover:text-primary"
-                    onClick={() => removeApproveModel()}
-                  >
-                    {t('Approve')}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          ) : (
-            ''
-          )}
+          <div className="cursor-pointer">
+            <Icon
+              icon="ic:sharp-cancel"
+              color="#F08080"
+              width="24"
+              height="24"
+              onClick={() => {
+                setRows({
+                  ...rows,
+                  user: row.original.user.email,
+                  id: row.original.user.id,
+                  sprint: row.original.sprint
+                });
+                setRejectModel(!rejectModel);
+              }}
+            />
+          </div>
         </div>
       ),
     },
   ];
 
+  const [getRatings] = useLazyQuery(GET_USERS, {
+    variables: {
+      orgToken: organizationToken,
+    },
+  });
+  const [approveRating] = useMutation(APPROVE_RATING, {
+    variables: {
+      user: rows.id,
+      sprint: rows.sprint
+    },
+    onError: (err) => {
+      toast.error('something went wrong');
+      removeApproveModel();
+    },
+    onCompleted: (data) => {
+      toast.success('Successfully approved');
+      removeApproveModel();
+      handleToggle();
+    },
+  });
+  const [rejectRating] = useMutation(REJECT_RATING, {
+    variables: {
+      user: rows.id,
+      sprint: rows.sprint
+    },
+    onError: (err) => {
+      toast.error('something went wrong');
+      removeRejectModel();
+    },
+    onCompleted: (data) => {
+      toast.success('Successfully rejected!');
+      removeRejectModel();
+      handleToggle();
+    },
+  });
+  useEffect(() => {
+    getRatings({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        setRatings(data.fetchRatingsForAdmin);
+        handleToggle()
+      },
+      onError: (error) => {
+        toast.error(error?.message || 'Something went wrong');
+      },
+    });
+  }, [toggle]);
+
   return (
     <>
       {/* =========================== Start::  approveModel =============================== */}
       <div
-        className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
-          approveModel === true ? 'block' : 'hidden'
+        className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 ${
+          approveModel ? 'block' : 'hidden'
         }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
@@ -99,7 +176,7 @@ const UpdatedRatingDashboard = () => {
             <form className=" py-3 px-8">
               <div>
                 <h2 className="text-base dark:text-white m-4">
-                  {t('Are you sure you want to approve this updated ratings')} ?
+                  {t('Are you sure you want to approve this updated ratings ?')} ?
                 </h2>
               </div>
               <div className="w-full flex justify-between">
@@ -117,6 +194,7 @@ const UpdatedRatingDashboard = () => {
                   variant="primary"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => approveRating()}
                 >
                   {t('Approve')}
                 </Button>
@@ -161,6 +239,7 @@ const UpdatedRatingDashboard = () => {
                   variant="danger"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => rejectRating()}
                 >
                   {t('Reject')}
                 </Button>
@@ -178,11 +257,17 @@ const UpdatedRatingDashboard = () => {
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
                 <div className="px-3 md:px-8 mt-20">
-                  <DataTable
-                    data={data}
-                    columns={columns}
-                    title="Updated ratings"
-                  />
+                  {data?.length !== 0 ? (
+                    <DataTable
+                      data={data}
+                      columns={columns}
+                      title={t("Performance Ratings")}
+                    />
+                  ) : (
+                    <div className='text-center mt-7 text-lg uppercase'>
+                      <p> {t('No updated ratings found')}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

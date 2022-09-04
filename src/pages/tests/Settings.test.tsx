@@ -5,7 +5,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
-
 import Settings from '../Settings';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 

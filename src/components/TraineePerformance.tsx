@@ -1,14 +1,18 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Button from './Buttons';
 import PerformanceData from '../dummyData/performance.json';
 import Pagination from '../components/Pagination';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { TRAINEE_RATING } from '../Mutations/Ratings';
+import { toast } from 'react-toastify';
 
 const TraineePerfomance = () => {
+  const [ratings, setRatings] = useState<any>([]);
+  const [toggle, setToggle] = useState(false);
   const { t } = useTranslation();
-
   const {
     firstContentIndex,
     lastContentIndex,
@@ -22,6 +26,21 @@ const TraineePerfomance = () => {
     contentPerPage: 3,
     count: PerformanceData.length,
   });
+
+  const [getRatings] = useLazyQuery(TRAINEE_RATING, {});
+  useEffect(() => {
+    getRatings({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        setRatings(data?.fetchRatingsTrainee);
+        sessionStorage.removeItem('data');
+      },
+      onError: (error) => {
+        toast.error(error?.message || 'Something went wrong');
+      },
+    });
+  }, [toggle]);
+
   return (
     <>
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8 pb-10">
@@ -70,54 +89,73 @@ const TraineePerfomance = () => {
                         </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider"></th>
                       </tr>
-                      {PerformanceData.slice(
-                        firstContentIndex,
-                        lastContentIndex,
-                      ).map((item: any) => (
-                        <tr key={item.id}>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <div className="flex justify-center items-center">
-                              <div className="">
-                                <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                  {item.sprint}
-                                </p>
+                      {ratings
+                        ?.slice(firstContentIndex, lastContentIndex)
+                        .map((item: any) => (
+                          <tr key={item.id}>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                              <div className="flex justify-center items-center">
+                                <div className="">
+                                  <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
+                                    {item.sprint}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                          </td>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
-                            <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                              {item.quantity}
-                            </p>
-                          </td>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
-                            <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                              {item.quality}
-                            </p>
-                          </td>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
-                            <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                              {item.skills}
-                            </p>
-                          </td>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                              {item.average}
-                            </p>
-                          </td>
+                            </td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
+                              <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                {item.quantity}
+                              </p>
+                            </td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
+                              <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
+                                {item.quality}
+                              </p>
+                            </td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
+                              <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
+                                {item.professional_Skills}
+                              </p>
+                            </td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                              <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                {Math.round(
+                                  (parseInt(item.quantity) +
+                                    parseInt(item.quality) +
+                                    parseInt(item.professional_Skills)) /
+                                    3,
+                                )}
+                              </p>
+                            </td>
 
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <Link to="/dashboard/performance-details">
-                              <Button
-                                variant="primary"
-                                size="sm"
-                                style="px-4 py-0 text-sm"
-                              >
-                                {t('Details')}
-                              </Button>
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                              <Link to="/dashboard/performance-details">
+                                <Button
+                                  variant="primary"
+                                  size="sm"
+                                  style="px-4 py-0 text-sm"
+                                  onClick={() => {
+                                    setToggle(!toggle);
+                                    sessionStorage.setItem(
+                                      'data',
+                                      JSON.stringify({
+                                        quantity_remark: item?.quantityRemark,
+                                        quality_remark: item?.qualityRemark,
+                                        professional_remark:
+                                          item?.professionalRemark,
+                                        quality: item?.quality,
+                                        quantity: item?.quantity,
+                                        professional: item?.professional_Skills,
+                                      }),
+                                    );
+                                  }}
+                                >
+                                  {t('Details')}
+                                </Button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>

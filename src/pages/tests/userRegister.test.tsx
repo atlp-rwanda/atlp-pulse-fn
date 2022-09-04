@@ -4,10 +4,10 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import userEvent from '@testing-library/user-event';
-// import { ApolloProvider } from '@apollo/client';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import TraineeRatingDashboard from '../TraineeRatingDashboard';
 import { client } from '../../index';
+import UserRegister from '../Organization/UserRegister';
 
 describe('TraineeRatingDashboard Tests', () => {
   const observe = jest.fn();
@@ -22,7 +22,7 @@ describe('TraineeRatingDashboard Tests', () => {
       .create(
         <MemoryRouter>
           <ApolloProvider>
-            <TraineeRatingDashboard />
+            <UserRegister />
           </ApolloProvider>
         </MemoryRouter>,
       )
@@ -33,23 +33,9 @@ describe('TraineeRatingDashboard Tests', () => {
     render(
       <MemoryRouter>
         <ApolloProvider>
-          <TraineeRatingDashboard />
+          <UserRegister />
         </ApolloProvider>
       </MemoryRouter>,
     );
-
-    const addRatingBtn = screen.getByTestId('addRatingButton');
-    fireEvent.click(addRatingBtn);
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-    const traineeComboInput = screen.getByTestId('traineeComboInput');
-    expect(traineeComboInput).toBeInTheDocument();
-    fireEvent.change(traineeComboInput, {
-      target: { value: 'Bad trainee name' },
-    });
-    expect(screen.getByTestId('notFoundDiv')).toBeInTheDocument();
-
-    fireEvent.click(await screen.findByTestId('sprintList'));
-    fireEvent.click(await screen.findByTestId('traineeList'));
   });
 });
