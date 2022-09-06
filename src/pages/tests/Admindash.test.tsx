@@ -12,7 +12,9 @@ describe('Admin dashboard page', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <AdminCohort />
+          <ApolloProvider>
+            <AdminCohort />
+          </ApolloProvider>
         </MemoryRouter>,
       )
       .toJSON();
@@ -34,7 +36,9 @@ describe('Admin dashboard page', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <AdminSession />
+          <ApolloProvider>
+            <AdminSession />
+          </ApolloProvider>
         </MemoryRouter>,
       )
       .toJSON();

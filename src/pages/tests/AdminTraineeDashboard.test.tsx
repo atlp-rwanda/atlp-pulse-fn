@@ -1,4 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
@@ -9,8 +10,11 @@ describe('AdminTraineeDashboard Tests', () => {
   it('Renders AdminTraineeDashboard', () => {
     const elem = renderer
       .create(
+
         <MemoryRouter>
-          <AdminTraineeDashboard />
+          <ApolloProvider>
+            <AdminTraineeDashboard />
+          </ApolloProvider>
         </MemoryRouter>,
       )
       .toJSON();
@@ -23,7 +27,9 @@ describe('AdminTraineeDashboard Tests', () => {
 
     const { getByTestId } = render(
       <MemoryRouter>
-        <AdminTraineeDashboard />
+        <ApolloProvider>
+          <AdminTraineeDashboard />
+        </ApolloProvider>
       </MemoryRouter>,
     );
     const removeModel = getByTestId('removeModel');

@@ -422,7 +422,13 @@ Array [
                     />
                   </div>
                 </div>
-                <div>
+                <div
+                  style={
+                    Object {
+                      "overflowX": "auto",
+                    }
+                  }
+                >
                   <table
                     className="min-w-full leading-normal"
                     role="table"

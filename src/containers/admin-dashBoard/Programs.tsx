@@ -1,46 +1,46 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import { Icon } from '@iconify/react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../../components/DataTable';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import CreateCohortModal from './CreateCohortModal';
-import { gql, useQuery } from '@apollo/client';
-import { Icon } from '@iconify/react';
-import Button from '../../components/Buttons';
+import Button from './../../components/Buttons';
+import CreateProgramModal from './CreateProgramModal';
 
-export interface Cohort {
+export interface Program {
   id: string;
   name: string;
-  phase: string;
-  coordinator: {
+  description: string;
+  manager: {
     email: string;
   };
-  program: {
+  organization: {
     name: string;
   };
-  startDate: string | Date;
-  endDate: string | Date;
+  cohorts: [{ name: string }];
 }
 
-export const getAllCohorts = gql`
-  query GetAllCohorts($orgToken: String) {
-    getAllCohorts(orgToken: $orgToken) {
+export const getAllPrograms = gql`
+  query GetAllPrograms($orgToken: String) {
+    getAllPrograms(orgToken: $orgToken) {
       id
       name
-      phase
-      coordinator {
-        email
-      }
-      program {
+      cohorts {
         name
       }
-      startDate
-      endDate
+      manager {
+        email
+      }
+      organization {
+        name
+      }
+      description
     }
   }
 `;
 
-const AdminCohort = () => {
+const AdminPrograms = () => {
   const { t } = useTranslation();
 
   const {
@@ -50,38 +50,28 @@ const AdminCohort = () => {
     refetch: getRefetch,
   }: {
     data?: {
-      getAllCohorts: Cohort[];
+      getAllPrograms: Program[];
     };
     loading: boolean;
     error?: any;
     refetch: Function;
-  } = useQuery(getAllCohorts, {
+  } = useQuery(getAllPrograms, {
     variables: {
       orgToken: localStorage.getItem('orgToken'),
     },
   });
 
-  const [createCohortModel, setCreateCohortModel] = useState(false);
-  const [deleteCohortModel, setDeleteCohortModel] = useState(false);
+  const [createProgramModel, setCreateProgramModel] = useState(false);
+  const [deleteProgramModel, setDeleteProgramModel] = useState(false);
   const [showActions, setShowActions] = useState(false);
-  useDocumentTitle('Cohorts');
+  useDocumentTitle('Programs');
 
-  const handleShowActions = () => {
-    setShowActions(!showActions);
-  };
-
-  const removeDeleteModel = () => {
-    let newState = !deleteCohortModel;
-    setDeleteCohortModel(newState);
-  };
-
-  const cohortColumns = [
+  const programListColumns = [
     { Header: 'Name', accessor: 'name' },
-    { Header: 'Phase', accessor: 'phase' },
-    { Header: 'Coordinator', accessor: 'coordinator' },
-    { Header: 'Program', accessor: 'program' },
-    { Header: 'StartingDate', accessor: 'startDate' },
-    { Header: 'ClosingDate', accessor: 'endDate' },
+    { Header: 'Number of Cohorts', accessor: 'numberOfCohorts' },
+    { Header: 'Manager', accessor: 'manager' },
+    { Header: 'Organization', accessor: 'organization' },
+    { Header: 'Description', accessor: 'description' },
     {
       Header: 'Action',
       accessor: '',
@@ -106,49 +96,59 @@ const AdminCohort = () => {
       ),
     },
   ];
-  const cohortData = getData?.getAllCohorts.map(
-    ({
-      name,
-      phase,
-      coordinator: { email: coordinatorEmail },
-      program: { name: programName },
-      startDate,
-      endDate,
-    }) => ({
-      name,
-      phase,
-      coordinator: coordinatorEmail,
-      program: programName,
-      startDate,
-      endDate,
-    }),
-  );
+
+  const programListData = getData
+    ? getData.getAllPrograms.map(
+        ({
+          name,
+          cohorts,
+          manager: { email: managerEmail },
+          organization: { name: orgName },
+          description,
+        }) => ({
+          name,
+          numberOfCohorts: cohorts.length,
+          manager: managerEmail,
+          organization: orgName,
+          description,
+        }),
+      )
+    : [{}];
+
+  const handleShowActions = () => {
+    setShowActions(!showActions);
+  };
+
+  const removeDeleteModel = () => {
+    let newState = !deleteProgramModel;
+    setDeleteProgramModel(newState);
+  };
 
   const removeModel = () => {
-    const newState = !createCohortModel;
-    setCreateCohortModel(newState);
+    const newState = !createProgramModel;
+    setCreateProgramModel(newState);
   };
 
   return (
     <>
-      {/* =========================== Start:: CreateCohortModel =============================== */}
-      <CreateCohortModal
-        createCohortModel={createCohortModel}
+      {/* =========================== Start:: CreateProgramModel =============================== */}
+      <CreateProgramModal
+        createProgramModel={createProgramModel}
         removeModel={removeModel}
         refetch={getRefetch}
       />
-      {/* =========================== End::  CreateCohortModel =============================== */}
+      {/* =========================== End::  CreateProgramModel =============================== */}
 
       {/* =========================== Start::  delete Session Model =============================== */}
       <div
         className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
-          deleteCohortModel === true ? 'block' : 'hidden'
+          deleteProgramModel === true ? 'block' : 'hidden'
         }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
             <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
-              {t('DeleteCohort')}
+              {t('DeleteProgram')}
             </h3>
             <hr className=" bg-primary border-b my-3 w-full" />
           </div>
@@ -156,7 +156,7 @@ const AdminCohort = () => {
             <form className=" py-3 px-8">
               <div>
                 <h2 className="text-base dark:text-white text-center m-4">
-                  {t('reallyRemoveCohort')}
+                  {t('reallyRemoveProgram')}
                 </h2>
               </div>
               <div className="w-full flex justify-between">
@@ -195,16 +195,16 @@ const AdminCohort = () => {
               data-testid="removeModel"
             >
               {' '}
-              {t('Cohort')} +{' '}
+              {t('Program')} +{' '}
             </Button>
           </div>
         </div>
-        <div className="px-3 m d:px-8 w-screen overflow-x-auto">
+        <div className="px-3 md:px-8">
           {!getLoading && (
             <DataTable
-              columns={cohortColumns}
-              data={cohortData as [any]}
-              title="CohortList"
+              data={programListData as [any]}
+              columns={programListColumns}
+              title="Program list"
             />
           )}
         </div>
@@ -213,4 +213,4 @@ const AdminCohort = () => {
   );
 };
 
-export default AdminCohort;
+export default AdminPrograms;

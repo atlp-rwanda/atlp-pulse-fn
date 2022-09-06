@@ -4,13 +4,16 @@ import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import Register from './../OrgRegister';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 
-describe.skip('Register an Organization', () => {
+describe('Register an Organization', () => {
   test('Renders the register Page', () => {
     act(() => {
       render(
         <MemoryRouter>
-          <Register />
+          <ApolloProvider>
+            <Register />
+          </ApolloProvider>
         </MemoryRouter>,
       );
     });

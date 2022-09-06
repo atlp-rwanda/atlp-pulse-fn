@@ -672,7 +672,13 @@ Array [
                     />
                   </div>
                 </div>
-                <div>
+                <div
+                  style={
+                    Object {
+                      "overflowX": "auto",
+                    }
+                  }
+                >
                   <table
                     className="min-w-full leading-normal"
                     role="table"
@@ -1086,7 +1092,7 @@ Array [
           className=" py-3 px-8"
         >
           <div
-            className="input my-3 h-9 "
+            className="input my-5 h-9 "
           >
             <div
               className="grouped-input flex items-center h-full w-full rounded-md"
@@ -1094,62 +1100,88 @@ Array [
               <input
                 className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
                 name="name"
+                onBlur={[Function]}
+                onChange={[Function]}
                 placeholder="name"
                 type="text"
               />
             </div>
           </div>
           <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="name"
-                placeholder="Coordinator"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
+            className="input my-5 h-9 "
           >
             <div
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
                 className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="name"
+                name="phase"
+                onBlur={[Function]}
+                onChange={[Function]}
                 placeholder="Phase"
                 type="text"
               />
             </div>
           </div>
           <div
-            className="input my-3 h-9 "
+            className="input my-5 h-9 "
           >
             <div
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
                 className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="name"
+                name="coordinatorEmail"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Coordinator Email"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="programName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Program Name"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="startDate"
+                onBlur={[Function]}
+                onChange={[Function]}
                 placeholder="StartingDate"
                 type="date"
               />
             </div>
           </div>
           <div
-            className="input my-3 h-9 "
+            className="input my-5 h-9 "
           >
             <div
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
                 className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="name"
+                name="endDate"
+                onBlur={[Function]}
+                onChange={[Function]}
                 placeholder="ClosingDate"
                 type="date"
               />
@@ -1167,16 +1199,15 @@ Array [
             >
                
               Cancel
-               
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0"
               disabled={false}
+              onClick={[Function]}
               type="button"
             >
                
               Save
-               
             </button>
           </div>
         </form>
@@ -1266,488 +1297,8 @@ Array [
       </div>
     </div>
     <div
-      className="px-3 md:px-8"
-    >
-      <div
-        className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
-      >
-        <div
-          className=" flex items-center justify-between pb-6"
-        >
-          <div>
-            <h2
-              className="text-gray-800 dark:text-white font-semibold text-xl"
-            >
-              CohortList
-            </h2>
-            <input
-              className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
-              defaultValue=""
-              onChange={[Function]}
-              placeholder="Filter by cohort, program, and rating"
-            />
-          </div>
-        </div>
-        <div>
-          <table
-            className="min-w-full leading-normal"
-            role="table"
-          >
-            <thead>
-              <tr
-                role="row"
-              >
-                <th
-                  className=" thead"
-                  colSpan={1}
-                  onClick={[Function]}
-                  role="columnheader"
-                  style={
-                    Object {
-                      "cursor": "pointer",
-                    }
-                  }
-                  title="Toggle SortBy"
-                >
-                  Name
-                </th>
-                <th
-                  className=" thead"
-                  colSpan={1}
-                  onClick={[Function]}
-                  role="columnheader"
-                  style={
-                    Object {
-                      "cursor": "pointer",
-                    }
-                  }
-                  title="Toggle SortBy"
-                >
-                  Coordinator
-                </th>
-                <th
-                  className=" thead"
-                  colSpan={1}
-                  onClick={[Function]}
-                  role="columnheader"
-                  style={
-                    Object {
-                      "cursor": "pointer",
-                    }
-                  }
-                  title="Toggle SortBy"
-                >
-                  Phase
-                </th>
-                <th
-                  className=" thead"
-                  colSpan={1}
-                  onClick={[Function]}
-                  role="columnheader"
-                  style={
-                    Object {
-                      "cursor": "pointer",
-                    }
-                  }
-                  title="Toggle SortBy"
-                >
-                  StartingDate
-                </th>
-                <th
-                  className=" thead"
-                  colSpan={1}
-                  onClick={[Function]}
-                  role="columnheader"
-                  style={
-                    Object {
-                      "cursor": "pointer",
-                    }
-                  }
-                  title="Toggle SortBy"
-                >
-                  ClosingDate
-                </th>
-                <th
-                  className=" thead"
-                  colSpan={1}
-                  onClick={[Function]}
-                  role="columnheader"
-                  style={
-                    Object {
-                      "cursor": "pointer",
-                    }
-                  }
-                  title="Toggle SortBy"
-                >
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              role="rowgroup"
-            >
-              <tr
-                className=" bg-white dark:bg-dark-bg} "
-                role="row"
-              >
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  Cohort 5
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  john doe
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  Core Concept
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  1st Jan 2022
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  11th Dec 2022
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  <div>
-                    <div
-                      className="flex relative flex-row "
-                    >
-                      <div
-                        className="cursor-pointer"
-                      >
-                        <svg
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          strokeWidth="0"
-                          style={
-                            Object {
-                              "color": undefined,
-                            }
-                          }
-                          viewBox="0 0 192 512"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className=" bg-light-bg dark:bg-dark-tertiary} "
-                role="row"
-              >
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  Cohort 6
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  john doe
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  Team Project
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  1st Jan 2022
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  11th Dec 2022
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  <div>
-                    <div
-                      className="flex relative flex-row "
-                    >
-                      <div
-                        className="cursor-pointer"
-                      >
-                        <svg
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          strokeWidth="0"
-                          style={
-                            Object {
-                              "color": undefined,
-                            }
-                          }
-                          viewBox="0 0 192 512"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className=" bg-white dark:bg-dark-bg} "
-                role="row"
-              >
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  Cohort 7
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  john doe
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  Core Concept
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  1st Jan 2022
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  11th Dec 2022
-                </td>
-                <td
-                  className="data-cell"
-                  role="cell"
-                >
-                  <div>
-                    <div
-                      className="flex relative flex-row "
-                    >
-                      <div
-                        className="cursor-pointer"
-                      >
-                        <svg
-                          fill="currentColor"
-                          height="1em"
-                          stroke="currentColor"
-                          strokeWidth="0"
-                          style={
-                            Object {
-                              "color": undefined,
-                            }
-                          }
-                          viewBox="0 0 192 512"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div>
-            <table
-              className="w-full mt-2"
-            >
-              <tfoot
-                className="w-full py-2"
-              >
-                <tr
-                  className="w-full py-2"
-                >
-                  <td
-                    colSpan={6}
-                  >
-                    <div
-                      className="w-full justify-center flex mx-auto flex-row items-center overflow-x-scroll"
-                    >
-                      <button
-                        className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
-                        disabled={true}
-                        onClick={[Function]}
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="w-5"
-                          fill="none"
-                          fontSize="sm"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
-                       
-                      <button
-                        className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
-                        disabled={false}
-                        onClick={[Function]}
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="w-5"
-                          fill="none"
-                          fontSize="sm"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
-                       
-                      <div
-                        className="flex flex-row justify-center w-full"
-                      >
-                        <span
-                          className="inline-block mx-2"
-                        >
-                          Page
-                           
-                          <strong>
-                            1
-                             
-                            of
-                             2
-                          </strong>
-                           
-                        </span>
-                        <span
-                          className="inline-block mx-2"
-                        >
-                          | Go to page:
-                           
-                          <input
-                            className=" pl-2 outline-none border rounded-md appearance-none border-primary dark:bg-primary"
-                            defaultValue={1}
-                            onChange={[Function]}
-                            style={
-                              Object {
-                                "width": "50px",
-                              }
-                            }
-                            type="number"
-                          />
-                        </span>
-                         
-                        <select
-                          className="px-1/2 md:px-2 font-raleway rounded-md border border-primary dark:bg-primary"
-                          onChange={[Function]}
-                          value={3}
-                        >
-                          <option
-                            value={3}
-                          >
-                            Show
-                             
-                            3
-                          </option>
-                          <option
-                            value={5}
-                          >
-                            Show
-                             
-                            5
-                          </option>
-                          <option
-                            value={10}
-                          >
-                            Show
-                             
-                            10
-                          </option>
-                          <option
-                            value={25}
-                          >
-                            Show
-                             
-                            25
-                          </option>
-                          <option
-                            value={50}
-                          >
-                            Show
-                             
-                            50
-                          </option>
-                          <option
-                            value={100}
-                          >
-                            Show
-                             
-                            100
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+      className="px-3 m d:px-8 w-screen overflow-x-auto"
+    />
   </div>,
 ]
 `;

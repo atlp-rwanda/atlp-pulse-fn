@@ -2,16 +2,20 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
 
 import Settings from '../Settings';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 
 describe('Settings page tests', () => {
   it('changes value after selecting another theme', () => {
     const { getByTestId } = render(
       <BrowserRouter>
-        <Settings />
+        <ApolloProvider>
+          <Settings />
+        </ApolloProvider>
       </BrowserRouter>,
     );
     let theme = getByTestId('themeChange');
@@ -30,5 +34,17 @@ describe('Settings page tests', () => {
     let email = getByTestId('emailChange');
     fireEvent.click(email);
     expect(email).toBeChecked();
+  });
+  it('changes value after selecting another theme', () => {
+    const elem = renderer
+      .create(
+        <MemoryRouter initialEntries={['/dashboard/settings']}>
+          <ApolloProvider>
+            <Settings />
+          </ApolloProvider>
+        </MemoryRouter>,
+      )
+      .toJSON();
+    expect(elem).toMatchSnapshot();
   });
 });
