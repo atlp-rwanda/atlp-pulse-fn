@@ -10,6 +10,7 @@ import Perfomancetraineetable from './components/TraineePerformance';
 import Error from './pages/Error';
 import Noredirect from './pages/Noredirect';
 import Pay from './components/Payment';
+import ProtectedRoutes from './ProtectedRoute';
 
 function MainRoutes() {
   return (
@@ -18,10 +19,11 @@ function MainRoutes() {
         <Header />
         <Routes>
           <Route path="/register-organization" element={<OrgRegister />} />
-          <Route path="/org-login" element={<Orglogin />} />
+          <Route path="/org-login" element={<ProtectedRoutes><Orglogin /></ProtectedRoutes>} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/pricing-form" element={<Pay />} />
-          <Route path="/login-admin" element={<AdminLogin />} />
+          <Route path="/pricing-form" element={<Pay />} />
+          <Route path="/login-admin" element={<ProtectedRoutes><AdminLogin /></ProtectedRoutes>} />
           <Route path="/" element={<Perfomancetraineetable />} />
           <Route path="/register-organization" element={<OrgRegister />} />
           <Route path="/org-login" element={<Orglogin />} />
