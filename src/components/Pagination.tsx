@@ -27,6 +27,7 @@ const Pagination = ({
   const [pagesInBetween, setPagesInBetween] = useState<number[]>([]);
 
   useEffect(() => {
+    /* istanbul ignore next */
     if (pageCount > 2) {
       const temp = new Array(pageCount - 2).fill(1).map((_, i) => i + 2);
       setPagesInBetween(temp);
@@ -55,6 +56,7 @@ const Pagination = ({
       paginationGroup = [page - 1, page, page + 1];
     }
     if (pageCount <= 5) {
+      /* istanbul ignore next */
       before = false;
       after = false;
     } else {

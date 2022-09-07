@@ -16,8 +16,9 @@ export default function ProfileCoverpage({
 }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  /* istanbul ignore next */
   const handleEdit = () => {
+    /* istanbul ignore next */
     navigate('edit', {
       state: {
         profile: data,

@@ -12,6 +12,7 @@ import Notification from './Notification';
 import ProfileDropdown from './ProfileDropdown';
 
 function DashHeader() {
+  /* istanbul ignore next */
   const [showNotification, setShowNotification] = useState(false);
   const [showProfileDropdown, setShowprofileDropdown] = useState(false);
 
