@@ -10,6 +10,7 @@ const WithClickOutside = (WrappedComponent: any) => {
     const ref = useRef<any>(null);
 
     const clickOutside = () => {
+      /* istanbul ignore next */
       const handleClickOutside = (event: any) => {
         if (ref.current && !ref.current.contains(event.target)) {
           setOpen(false);
@@ -24,6 +25,7 @@ const WithClickOutside = (WrappedComponent: any) => {
     }, []);
 
     useEffect(() => {
+      /* istanbul ignore next */
       if (open) setOpen(false);
     }, [location.key]);
     const [newRef] = setRef();

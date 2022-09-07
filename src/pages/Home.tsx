@@ -8,6 +8,7 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
 
 function LandingPage() {
+  /* istanbul ignore next */
   const { t } = useTranslation();
   const { user } = useContext(UserContext);
   useDocumentTitle('Welcome');

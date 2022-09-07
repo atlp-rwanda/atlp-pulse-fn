@@ -20,8 +20,8 @@ function AdminLogin() {
   useDocumentTitle('Login');
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
+  /* istanbul ignore next */
   const tooglePassword = () => {
-    /* istanbul ignore next */
     setPasswordShown(!passwordShown);
   };
   const {
@@ -40,8 +40,9 @@ function AdminLogin() {
     try {
       const { data }: any = await LoginUser({
         variables: { loginInput: userInput },
-        /* istanbul ignore next */
+        
         onCompleted: async (data) => {
+          /* istanbul ignore next */
           toast.success(data.addMemberToCohort);
           login(data.loginUser);
           await client.resetStore();

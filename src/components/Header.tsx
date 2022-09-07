@@ -15,10 +15,12 @@ import WithClickOutside from './WithClickOutside';
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { t } = useTranslation();
   const [colorTheme, setTheme] = useDarkMode();
+  /* istanbul ignore next */
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
 
   const handleTheme = () => {
+    /* istanbul ignore next */
     localStorage.setItem('color-theme', colorTheme);
     setTheme(colorTheme);
   };

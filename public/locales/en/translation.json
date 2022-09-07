@@ -126,6 +126,7 @@
   "ClosingDate": "Closing date",
   "DeleteCohort": "Delete a Cohort",
   "reallyRemoveCohort": "do you really want to remove this Cohort?",
+  "reallyRemoveGrading": "do you really want to remove this Grading?",
   "reallyRemoveProgram": "do you really want to remove this Program?",
   "Cancel": "Cancel",
   "Cohort": "Cohort",

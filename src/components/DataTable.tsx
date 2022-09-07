@@ -62,6 +62,7 @@ function DataTable({ data, columns, title }: TableData) {
             defaultValue={globalFilter || ''}
             placeholder="Filter"
             className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+            /* istanbul ignore next */
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
         </div>
