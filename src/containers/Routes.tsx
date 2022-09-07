@@ -22,7 +22,7 @@ function MainRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/register-organization" element={<OrgRegister />} />
           <Route path="/org-login" element={<Orglogin />} />
-          <Route path="/login-admin" element={<Adminlogin />} />
+          <Route path="/signin" element={<Adminlogin />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/noredirect" element={<Noredirect />} />
           <Route path="/pricing-form" element={<Pay />} />

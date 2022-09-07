@@ -21,10 +21,10 @@ function MainRoutes() {
           <Route path="/org-login" element={<Orglogin />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/pricing-form" element={<Pay />} />
-          <Route path="/login-admin" element={<AdminLogin />} />
+          <Route path="/signin" element={<AdminLogin />} />
           <Route path="/" element={<Perfomancetraineetable />} />
-          <Route path="/register-organization" element={<OrgRegister />} />
-          <Route path="/org-login" element={<Orglogin />} />
+          {/* <Route path="/register-organization" element={<OrgRegister />} /> */}
+          {/* <Route path="/org-login" element={<Orglogin />} /> */}
           <Route path="*" element={<Error />} />
           <Route path="/noredirect" element={<Noredirect />} />
         </Routes>

@@ -11,7 +11,7 @@ function CheckRole({ children, ...props }: Props) {
   const { user } = useContext(UserContext);
   const location = useLocation();
   if (user?.auth) return <React.Fragment {...props}>{children}</React.Fragment>;
-  return <Navigate {...props} to="/login-admin" state={location.pathname} />;
+  return <Navigate {...props} to="/signin" state={location.pathname} />;
 }
 
 export default CheckRole;
