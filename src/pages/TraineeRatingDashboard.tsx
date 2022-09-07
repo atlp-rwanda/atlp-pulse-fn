@@ -21,6 +21,7 @@ import { Icon } from '@iconify/react';
 import { gql } from '@apollo/client';
 
 function classNames(...classes: any) {
+  /* istanbul ignore next */
   return classes.filter(Boolean).join(' ');
 }
 const TraineeRatingDashboard = () => {

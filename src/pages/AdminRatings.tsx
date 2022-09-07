@@ -12,6 +12,7 @@ import { Icon } from '@iconify/react';
 import { Listbox, Combobox, Transition, Dialog } from '@headlessui/react';
 
 function classNames(...classes: any) {
+  /* istanbul ignore next */
   return classes.filter(Boolean).join(' ');
 }
 const TraineeRatingDashboard = () => {

@@ -18,8 +18,9 @@ function Pay() {
     `${t('Complete')}`,
   ];
   const methods: any = useForm<any>({ mode: 'all' });
-
+  /* istanbul ignore next */
   const onSubmit = async (data: any) => {
+    /* istanbul ignore next */
     if (currentStep == 1) {
       setCurrentStep(2);
     } else if (currentStep === 2) {
