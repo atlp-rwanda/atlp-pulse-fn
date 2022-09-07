@@ -31,7 +31,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
     >
       <a
         className="flex flex-row dark:text-dark-text-fill"
-        href="/dashboard/"
+        href="/dashboard"
         onClick={[Function]}
       >
         <svg
@@ -60,7 +60,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
     >
       <a
         className="flex flex-row dark:text-dark-text-fill"
-        href="/dashboard/notifications"
+        href="/notifications"
         onClick={[Function]}
       >
         <svg
@@ -86,7 +86,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
     >
       <a
         className="flex flex-row dark:text-dark-text-fill"
-        href="/dashboard/calendar"
+        href="/calendar"
         onClick={[Function]}
       >
         <svg
@@ -114,7 +114,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
     >
       <a
         className="flex flex-row dark:text-dark-text-fill"
-        href="/dashboard/docs"
+        href="/docs"
         onClick={[Function]}
       >
         <svg
@@ -141,7 +141,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
       <a
         aria-current="page"
         className="flex flex-row font-bold text-primary dark:text-primary"
-        href="/dashboard/settings"
+        href="/settings"
         onClick={[Function]}
       >
         <svg
@@ -176,7 +176,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
     >
       <a
         className="flex flex-row dark:text-dark-text-fill"
-        href="/dashboard/support"
+        href="/support"
         onClick={[Function]}
       >
         <svg
@@ -209,7 +209,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
       <a
         aria-current="page"
         className="active"
-        href="/dashboard/settings#link"
+        href="/settings#link"
         onClick={[Function]}
       >
         <div
@@ -249,7 +249,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
       <a
         aria-current="page"
         className="flex flex-row font-bold text-primary dark:text-primary"
-        href="/dashboard/settings"
+        href="/settings"
         onClick={[Function]}
       >
         <div

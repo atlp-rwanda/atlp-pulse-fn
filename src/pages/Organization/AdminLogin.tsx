@@ -43,7 +43,7 @@ function AdminLogin() {
       if (state) {
         navigate(`${state}`);
       } else {
-        navigate('/dashboard/');
+        navigate('/');
       }
       return;
     } catch (error: any) {

@@ -38,7 +38,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
     >
       <a
         className="flex flex-row lg:px-5"
-        href="/dashboard/super-admin"
+        href="/super-admin"
         onClick={[Function]}
       >
         <img
@@ -89,7 +89,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         >
           <a
             className="flex flex-row dark:text-dark-text-fill"
-            href="/dashboard/"
+            href="/dashboard"
             onClick={[Function]}
           >
             <svg
@@ -118,7 +118,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         >
           <a
             className="flex flex-row dark:text-dark-text-fill"
-            href="/dashboard/notifications"
+            href="/notifications"
             onClick={[Function]}
           >
             <svg
@@ -144,7 +144,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         >
           <a
             className="flex flex-row dark:text-dark-text-fill"
-            href="/dashboard/calendar"
+            href="/calendar"
             onClick={[Function]}
           >
             <svg
@@ -172,7 +172,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         >
           <a
             className="flex flex-row dark:text-dark-text-fill"
-            href="/dashboard/docs"
+            href="/docs"
             onClick={[Function]}
           >
             <svg
@@ -198,7 +198,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         >
           <a
             className="flex flex-row dark:text-dark-text-fill"
-            href="/dashboard/settings"
+            href="/settings"
             onClick={[Function]}
           >
             <svg
@@ -233,7 +233,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         >
           <a
             className="flex flex-row dark:text-dark-text-fill"
-            href="/dashboard/support"
+            href="/support"
             onClick={[Function]}
           >
             <svg
@@ -305,7 +305,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         >
           <a
             className="flex flex-row dark:text-dark-text-fill"
-            href="/dashboard/settings"
+            href="/settings"
             onClick={[Function]}
           >
             <div

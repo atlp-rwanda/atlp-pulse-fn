@@ -136,7 +136,7 @@ Object {
                
               <a
                 class="flex flex-row"
-                href="/dashboard/profile"
+                href="/profile"
               >
                 <svg
                   aria-hidden="true"
@@ -499,7 +499,7 @@ Object {
              
             <a
               class="flex flex-row"
-              href="/dashboard/profile"
+              href="/profile"
             >
               <svg
                 aria-hidden="true"

@@ -106,7 +106,7 @@ const TraineePerfomance = () => {
                           </td>
 
                           <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <Link to="/dashboard/performance-details">
+                            <Link to="/performance-details">
                               <Button
                                 variant="primary"
                                 size="sm"

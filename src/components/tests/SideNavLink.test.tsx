@@ -35,7 +35,7 @@ describe('DashHeader test ', () => {
     const toggle = jest.fn();
     const elem = renderer
       .create(
-        <MemoryRouter initialEntries={['/dashboard/settings']}>
+        <MemoryRouter initialEntries={['/settings']}>
           <Sidebar style="" toggle={toggle} />
         </MemoryRouter>,
       )

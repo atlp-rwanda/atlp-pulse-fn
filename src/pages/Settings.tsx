@@ -55,7 +55,7 @@ function Settings() {
                 to="#link"
               >
                 <h4>
-                  <Link to="/dashboard/profile">{t('Change')}</Link>
+                  <Link to="/profile">{t('Change')}</Link>
                 </h4>
               </Link>
             </li>

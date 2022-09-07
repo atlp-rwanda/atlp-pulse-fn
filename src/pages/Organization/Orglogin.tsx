@@ -26,7 +26,7 @@ function Orglogin() {
           </div>
 
           <div>
-            <Link to="/login-admin">
+            <Link to="/login">
               <Button
                 variant="primary"
                 size="lg"

@@ -36,7 +36,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
       className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
     >
       <div className="list-none pr-8">
-        <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard/">
+        <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard">
           <ChartPieIcon className="w-5 mr-2 " />
         </SideNavLink>
 
@@ -45,81 +45,61 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           <SideNavLink
             onClick={toggle}
             name="Organizations"
-            to="/dashboard/organizations"
+            to="/organizations"
           >
             <HomeIcon className="w-5 mr-2 " />
           </SideNavLink>
 
-          <SideNavLink onClick={toggle} name="Admins" to="/dashboard/admins">
+          <SideNavLink onClick={toggle} name="Admins" to="/admins">
             <UsersIcon className="w-5 mr-2 " />
           </SideNavLink>
-          <SideNavLink onClick={toggle} name="Domains" to="/dashboard/domains">
+          <SideNavLink onClick={toggle} name="Domains" to="/domains">
             <GlobeAltIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
 
         {/* FOR ADMINS & COORDINATORS */}
         <CheckRole roles={['admin', 'coordinator']}>
-          <SideNavLink
-            onClick={toggle}
-            to="/dashboard/trainees"
-            name="Trainees"
-          >
+          <SideNavLink onClick={toggle} to="/trainees" name="Trainees">
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
 
         {/* FOR ADMINS */}
         <CheckRole roles={['admin']}>
-          <SideNavLink
-            onClick={toggle}
-            to="/dashboard/coordinators"
-            name="Coordinators"
-          >
+          <SideNavLink onClick={toggle} to="/coordinators" name="Coordinators">
             <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/cohorts" name="Cohorts">
+          <SideNavLink onClick={toggle} to="/cohorts" name="Cohorts">
             <AcademicCapIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/updated-ratings"
+            to="/updated-ratings"
             name="Updated Ratings"
           >
             <RefreshIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink
-            onClick={toggle}
-            to="/dashboard/grading"
-            name="Grading System"
-          >
+          <SideNavLink onClick={toggle} to="/grading" name="Grading System">
             <TemplateIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink
-            onClick={toggle}
-            to="/dashboard/manage"
-            name="Roles & Access"
-          >
+          <SideNavLink onClick={toggle} to="/manage" name="Roles & Access">
             <KeyIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
 
         {/* FOR COORDINATORS */}
         <CheckRole roles={['coordinator']}>
-          <SideNavLink
-            onClick={toggle}
-            to="/dashboard/sessions"
-            name="Sessions"
-          >
+          <SideNavLink onClick={toggle} to="/sessions" name="Sessions">
             <BookOpenIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/ratings" name="Ratings">
+          <SideNavLink onClick={toggle} to="/ratings" name="Ratings">
             <ClipboardListIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
             name="Attendance"
-            to="/dashboard/attendance-rating"
+            to="/attendance-rating"
           >
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
@@ -127,40 +107,28 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
 
         {/* FOR TRAINEES */}
         <CheckRole roles={['trainee']}>
-          <SideNavLink
-            onClick={toggle}
-            name="Attendance"
-            to="/dashboard/attendance"
-          >
+          <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
-          <SideNavLink
-            onClick={toggle}
-            name="Performance"
-            to="/dashboard/performance"
-          >
+          <SideNavLink onClick={toggle} name="Performance" to="/performance">
             <TrendingUpIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
 
         {/* Shared Links */}
-        <SideNavLink
-          onClick={toggle}
-          name="Notifications"
-          to="/dashboard/notifications"
-        >
+        <SideNavLink onClick={toggle} name="Notifications" to="/notifications">
           <BellIcon className="w-5 mr-2" />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Calendar" to="/dashboard/calendar">
+        <SideNavLink onClick={toggle} name="Calendar" to="/calendar">
           <CalendarIcon className="w-5 mr-2" />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Docs" to="/dashboard/docs">
+        <SideNavLink onClick={toggle} name="Docs" to="/docs">
           <FolderIcon className="w-5 mr-2 " />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Settings" to="/dashboard/settings">
+        <SideNavLink onClick={toggle} name="Settings" to="/settings">
           <CogIcon className="w-5 mr-2 " />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Help" to="/dashboard/support">
+        <SideNavLink onClick={toggle} name="Help" to="/support">
           <SupportIcon className="w-5 mr-2 " />
         </SideNavLink>
       </div>
@@ -177,7 +145,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
         </li>
         <li className="px-2">
           <NavLink
-            to="/dashboard/settings"
+            to="/settings"
             className={(navData) => {
               if (navData.isActive) {
                 return 'flex flex-row font-bold text-primary dark:text-primary';

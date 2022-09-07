@@ -93,7 +93,7 @@ const TraineeAttendance = () => {
                             </p>
                           </td>
                           <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <Link to="/dashboard/attendance-details">
+                            <Link to="/attendance-details">
                               <Button
                                 variant="primary"
                                 size="sm"

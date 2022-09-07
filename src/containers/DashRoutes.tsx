@@ -55,7 +55,7 @@ function DashRoutes() {
         <Sidebar toggle={handleClick} style="hidden lg:flex" />
         <Suspense fallback={<Square />}>
           <Routes>
-            <Route path="" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/trainees" element={<AdminTraineeDashboard />} />
             <Route path="/ratings" element={<TraineeRatingDashboard />} />
             <Route

@@ -45,7 +45,7 @@ const mockUseLocationValue = {
   pathname: '/testroute',
   search: '',
   hash: '',
-  state: '/dashboard/trainee',
+  state: '/trainee',
 };
 
 describe('Admin Login', () => {

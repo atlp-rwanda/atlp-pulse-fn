@@ -124,7 +124,7 @@ function EditProfile() {
             style="text-center mb-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1 mt-4"
           >
             {' '}
-            <Link to="/dashboard/profile" className="flex flex-row">
+            <Link to="/profile" className="flex flex-row">
               <ArrowLeftIcon className="w-6 mr-1 md:mr-2 dark:text-dark-text-fill p-1" />
               {t('Back to Profile')}
             </Link>

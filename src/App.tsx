@@ -17,7 +17,7 @@ function App() {
             <Suspense fallback={<Skeleton />}>
               <Routes>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/dashboard/*" element={<DashRoutes />} />
+                <Route path="/*" element={<DashRoutes />} />
                 <Route path="/*" element={<MainRoutes />} />
               </Routes>
             </Suspense>

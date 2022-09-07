@@ -121,7 +121,7 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/"
+              href="/dashboard"
               onClick={[Function]}
             >
               <svg
@@ -150,7 +150,7 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/notifications"
+              href="/notifications"
               onClick={[Function]}
             >
               <svg
@@ -176,7 +176,7 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/calendar"
+              href="/calendar"
               onClick={[Function]}
             >
               <svg
@@ -204,7 +204,7 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/docs"
+              href="/docs"
               onClick={[Function]}
             >
               <svg
@@ -230,7 +230,7 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/settings"
+              href="/settings"
               onClick={[Function]}
             >
               <svg
@@ -265,7 +265,7 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/support"
+              href="/support"
               onClick={[Function]}
             >
               <svg
@@ -337,7 +337,7 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/settings"
+              href="/settings"
               onClick={[Function]}
             >
               <div
