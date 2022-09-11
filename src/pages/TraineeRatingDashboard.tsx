@@ -1,10 +1,12 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../components/DataTable';
 import Sidebar from '../components/Sidebar';
 import developers from '../dummyData/developers3.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import RATING_MUTATION from './TraineeRatingMutation';
 
 const TraineeRatingDashboard = () => {
   useDocumentTitle('Ratings');
@@ -13,8 +15,11 @@ const TraineeRatingDashboard = () => {
   const [showPhases, setShowPhases] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [rowId, setRowId] = useState('');
+  const [ratings, setRatings] = useState<any>([]);
   const [updateTraineeModel, setUpdateTraineeModel] = useState(false);
   const [deleteTraineeModel, setDeleteTraineeModel] = useState(false);
+
+console.log("heloo...........")
 
   const handleCloseDropdown = () => {
     if (showCohorts || showPhases) {
@@ -35,18 +40,36 @@ const TraineeRatingDashboard = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
-  const data = developers;
+  const data = ratings;
   const columns = [
-    { Header: 'Name', accessor: 'name' },
+    { Header: 'Name', accessor: 'user' },
     { Header: 'Sprint', accessor: 'sprint' },
     { Header: 'Quantity', accessor: 'quantity' },
     { Header: 'Quality', accessor: 'quality' },
-    { Header: 'Professional skills', accessor: 'professionalSkills' },
+    { Header: 'Professional skills', accessor: 'professional_Skills' },
   ];
 
+  const [getRatings, {loading}] = useLazyQuery(RATING_MUTATION)
+
+
+  useEffect(()=>{
+ const fetchRatings = async() => {
+   try {
+     const { data } = await getRatings();
+      setRatings(data.fetchRatings);   
+   } catch (error) {
+     console.log(error)
+   }
+ }
+ fetchRatings();
+  },[])
+
+  // console.log(data)
+  // console.log(developers)
   return (
     <>
       {/* =========================== Start::  updateTraineeModel =============================== */}
+      
       <div
         className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
           updateTraineeModel === true ? 'block' : 'hidden'
@@ -171,6 +194,8 @@ const TraineeRatingDashboard = () => {
               <div>
                 <div className="flex flex-col h-screen bg-light-bg">
                   <div className="px-3 md:px-8 mt-20">
+                    <div>
+                    </div>
                     <DataTable
                       data={data}
                       columns={columns}

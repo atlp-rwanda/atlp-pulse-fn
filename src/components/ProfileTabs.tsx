@@ -171,15 +171,24 @@ export default function ProfileTabs() {
                     {t('You in the organization')}
                   </h3>
                   <div className="py-4 flex  justify-center">
-                    <h4 className="font-bold text-base mr-4">{t('Joined')}:</h4>
+                    <h4 className="font-bold text-base mr-4">
+                      {t('Joined')}
+                      :
+                    </h4>
                     18/07/2022
                   </div>
                   <div className="flex">
-                    <h4 className="font-bold text-base mr-4">{t('role')}:</h4>
+                    <h4 className="font-bold text-base mr-4">
+                      {t('role')}
+                      :
+                    </h4>
                     {t('Trainee')}
                   </div>
                   <div className="py-4 flex ">
-                    <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
+                    <h4 className="font-bold text-base mr-4">
+                      {t('Team')}
+                      :
+                    </h4>
                     Codebandits
                   </div>
                 </div>
@@ -189,18 +198,21 @@ export default function ProfileTabs() {
                   </h3>
                   <div className="py-4 flex  justify-center">
                     <h4 className="font-bold text-base mr-4">
-                      {t('program')}:
+                      {t('program')}
+                      :
                     </h4>
                     ATLP
                   </div>
                   <div className="flex">
                     <h4 className="font-bold text-base mr-4">
-                      {t('Stage(current)')}: Core Concepts
+                      {t('Stage(current)')}
+                      : Core Concepts
                     </h4>
                   </div>
                   <div className="py-4 flex ">
                     <h4 className="font-bold text-base mr-4">
-                      {t('Manager')}:
+                      {t('Manager')}
+                      :
                     </h4>
                     Mukunzi Dodo
                   </div>
@@ -233,15 +245,24 @@ export default function ProfileTabs() {
                     {t('You in the organization')}
                   </h3>
                   <div className="py-4 flex  justify-center">
-                    <h4 className="font-bold text-base mr-4">{t('Joined')}:</h4>
+                    <h4 className="font-bold text-base mr-4">
+                      {t('Joined')}
+                      :
+                    </h4>
                     18/07/2022
                   </div>
                   <div className="flex">
-                    <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
+                    <h4 className="font-bold text-base mr-4">
+                      {t('Role')}
+                      :
+                    </h4>
                     {t('Trainee')}
                   </div>
                   <div className="py-4 flex ">
-                    <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
+                    <h4 className="font-bold text-base mr-4">
+                      {t('Team')}
+                      :
+                    </h4>
                     Codebandits
                   </div>
                 </div>
@@ -251,18 +272,21 @@ export default function ProfileTabs() {
                   </h3>
                   <div className="py-4 flex  justify-center">
                     <h4 className="font-bold text-base mr-4">
-                      {t('Program')}:
+                      {t('Program')}
+                      :
                     </h4>
                     ATLP
                   </div>
                   <div className="flex">
                     <h4 className="font-bold text-base mr-4">
-                      {t('Stage(current)')}: Core Concepts
+                      {t('Stage(current)')}
+                      : Core Concepts
                     </h4>
                   </div>
                   <div className="py-4 flex ">
                     <h4 className="font-bold text-base mr-4">
-                      {t('Manager')}:
+                      {t('Manager')}
+                      :
                     </h4>
                     Mukunzi Dodo
                   </div>

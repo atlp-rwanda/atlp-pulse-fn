@@ -1,4 +1,6 @@
-import React, { createContext, ReactNode, useMemo, useState } from 'react';
+import React, {
+  createContext, ReactNode, useMemo, useState,
+} from 'react';
 
 const getInitialState = () => {
   if (window && window.localStorage) {
