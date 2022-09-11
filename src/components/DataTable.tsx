@@ -16,8 +16,8 @@ interface TableData {
 }
 
 function DataTable({ data, columns, title }: TableData) {
-  const sortedData = React.useMemo(() => [...data], []);
-  const sortedColumns = React.useMemo(() => [...columns], []);
+  const sortedData = data;
+  const sortedColumns = columns;
   const TableInstance = useTable(
     { data: sortedData, columns: sortedColumns, initialState: { pageSize: 3 } },
 
@@ -84,9 +84,10 @@ function DataTable({ data, columns, title }: TableData) {
             {page.map((row) => {
               prepareRow(row);
 
-              const rowTheme = row.index % 2 !== 0
-                ? 'bg-light-bg dark:bg-dark-tertiary'
-                : 'bg-white dark:bg-dark-bg';
+              const rowTheme =
+                row.index % 2 !== 0
+                  ? 'bg-light-bg dark:bg-dark-tertiary'
+                  : 'bg-white dark:bg-dark-bg';
 
               return (
                 <tr className={` ${rowTheme}} `} {...row.getRowProps()}>

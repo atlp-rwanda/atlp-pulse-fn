@@ -124,6 +124,39 @@ input[type='number']::-webkit-outer-spin-button {
   .data-cell {
     @apply px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm;
   }
+  /* .my-react-select-container {
+  } */
+  .my-react-select-container .my-react-select__control {
+    @apply bg-white dark:bg-dark-tertiary border-2 border-primary dark:border-primary hover:border-dark-tertiary dark:hover:border-dark-tertiary;
+  }
+
+  .my-react-select-container .my-react-select__control--is-focused {
+    @apply border-primary hover:border-neutral-500 dark:border-primary dark:hover:border-neutral-400 shadow-none;
+  }
+
+  .my-react-select-container .my-react-select__menu {
+    @apply bg-neutral-100 dark:bg-dark-tertiary border-2 border-neutral-300 dark:border-primary;
+  }
+
+  .my-react-select-container .my-react-select__option {
+    @apply text-neutral-600 dark:text-neutral-200 bg-neutral-100 hover:bg-neutral-200 dark:bg-dark-tertiary dark:hover:bg-neutral-800;
+  }
+  /* .my-react-select-container .my-react-select__option--is-focused {
+    @apply bg-neutral-200 dark:bg-neutral-800;
+  } */
+
+  .my-react-select-container .my-react-select__indicator-separator {
+    @apply bg-neutral-400;
+  }
+
+  .my-react-select-container .my-react-select__input-container,
+  .my-react-select-container .my-react-select__placeholder,
+  .my-react-select-container .my-react-select__single-value {
+    @apply text-neutral-600 dark:text-neutral-200;
+  }
+  .my-react-select-container .my-react-select__placeholder {
+    @apply dark:bg-dark-tertiary;
+  }
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

@@ -55,8 +55,7 @@ describe('Admin Login', () => {
         <MemoryRouter>
           <ApolloProvider addTypename={false} mocks={mocks}>
             <AdminLogin />
-          </ApolloProvider>
-          {' '}
+          </ApolloProvider>{' '}
         </MemoryRouter>,
       )
       .toJSON();
