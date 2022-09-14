@@ -3,26 +3,48 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaRegUser, FaRegEnvelope, FaPen } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import { useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 import Button from '../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import REGISTER_ORGANIZATION_REQUEST from './RegisterOrgMutation';
 
 export default function OrgRegister() {
   useDocumentTitle('Register organization');
   const { t } = useTranslation();
+  const [addOrganization, { loading }] = useMutation(
+    REGISTER_ORGANIZATION_REQUEST,
+  );
   const [name, setName] = useState('');
 
-  const handleChange = (value: string) => {
-    setName(value);
-  };
-
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    setError,
   }: any = useForm();
-  const onSubmit = () => {
-    reset();
+
+  const onSubmit = async (organizationInput: any) => {
+    try {
+      await addOrganization({
+        variables: { organizationInput },
+        onError(error) {
+          toast.error(error.message);
+        },
+        onCompleted(data) {
+          setName('');
+          reset();
+          toast.success(data.requestOrganization);
+        },
+      });
+    } catch (error: any) {
+      setError('name', {
+        type: 'custom',
+        message: t('Organisation Name already exist'),
+      });
+    }
   };
 
   return (
@@ -68,8 +90,11 @@ export default function OrgRegister() {
                     type="text"
                     data-testid="input1"
                     {...register('name', { required: 'Name is required' })}
-                    onChange={(e) => handleChange(e.target.value)}
-                    className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white "
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                    className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
                   />
                 </div>
                 <div className="-mt-6">
@@ -108,16 +133,19 @@ export default function OrgRegister() {
                     {t('I agree to the')}
                     <span className="text-primary mx-1">
                       {t('Terms & Conditions of')}
-                      {' '}
                     </span>
-                    {' '}
                     <span>DevPulse</span>
                   </label>
                 </div>
-                <Button variant="primary" size="lg" style="w-1/4 mx-[20%]">
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  style="w-1/4 mx-[20%]"
+                  loading={loading}
+                >
                   {' '}
                   {t('Register')}
-                  {' '}
                 </Button>
               </div>
             </form>
@@ -146,7 +174,7 @@ export default function OrgRegister() {
             type="button"
             className="rounded bg-white text-primary ml-20 px-3 font-bold py-2 mt-3"
           >
-            {name.replaceAll(' ', '-').toLowerCase()}
+            {name.replace(/ /gi, '').toLowerCase()}
             <span>.pulse.org</span>
           </button>
         </div>

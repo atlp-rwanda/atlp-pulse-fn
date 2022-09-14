@@ -64,6 +64,7 @@ exports[`<Pricing /> Renders Pricing 1`] = `
           >
             <button
               className="btn primary lg undefined"
+              disabled={false}
               type="button"
             >
                
@@ -208,6 +209,7 @@ exports[`<Pricing /> Renders Pricing 1`] = `
           >
             <button
               className="btn primary lg undefined"
+              disabled={false}
               type="button"
             >
                
@@ -352,6 +354,7 @@ exports[`<Pricing /> Renders Pricing 1`] = `
           >
             <button
               className="btn primary lg undefined"
+              disabled={false}
               type="button"
             >
                

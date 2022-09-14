@@ -92,6 +92,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          disabled={false}
           type="button"
         >
            
@@ -105,6 +106,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          disabled={false}
           type="button"
         >
            
@@ -207,6 +209,7 @@ exports[`Header Tests Should render the header with home 1`] = `
     >
       <button
         className="btn transparentbtn lg mr-8"
+        disabled={false}
         type="button"
       >
          
@@ -309,6 +312,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          disabled={false}
           type="button"
         >
            
@@ -322,6 +326,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          disabled={false}
           type="button"
         >
            
@@ -424,6 +429,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
     >
       <button
         className="btn transparentbtn lg mr-8"
+        disabled={false}
         type="button"
       >
          
@@ -526,6 +532,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       >
         <button
           className="btn primary lg undefined"
+          disabled={false}
           type="button"
         >
            
@@ -535,6 +542,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       </a>
       <button
         className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+        disabled={false}
         onClick={[Function]}
         type="button"
       >
@@ -633,6 +641,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
     </li>
     <button
       className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
@@ -736,6 +745,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       >
         <button
           className="btn primary lg undefined"
+          disabled={false}
           type="button"
         >
            
@@ -749,6 +759,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          disabled={false}
           type="button"
         >
            
@@ -851,6 +862,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
     >
       <button
         className="btn transparentbtn lg mr-8"
+        disabled={false}
         type="button"
       >
          
@@ -954,6 +966,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          disabled={false}
           type="button"
         >
            
@@ -967,6 +980,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          disabled={false}
           type="button"
         >
            
@@ -1069,6 +1083,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
     >
       <button
         className="btn transparentbtn lg mr-8"
+        disabled={false}
         type="button"
       >
          
@@ -1172,6 +1187,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       >
         <button
           className="btn primary lg undefined"
+          disabled={false}
           type="button"
         >
            
@@ -1185,6 +1201,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          disabled={false}
           type="button"
         >
            
@@ -1287,6 +1304,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
     >
       <button
         className="btn transparentbtn lg mr-8"
+        disabled={false}
         type="button"
       >
          

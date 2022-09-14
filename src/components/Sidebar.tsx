@@ -41,7 +41,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
         </SideNavLink>
 
         {/* FOR SUPER ADMINS */}
-        <CheckRole roles={['super']}>
+        <CheckRole roles={['superAdmin']}>
           <SideNavLink
             onClick={toggle}
             name="Organizations"

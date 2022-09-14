@@ -125,6 +125,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        disabled={false}
                         type="button"
                       >
                         Details
@@ -177,6 +178,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        disabled={false}
                         type="button"
                       >
                         Details
@@ -229,6 +231,7 @@ exports[`Trainee Attendance page Renders the Trainee Attendance Page  1`] = `
                     >
                       <button
                         className="btn primary sm px-4 py-0 text-sm"
+                        disabled={false}
                         type="button"
                       >
                         Details

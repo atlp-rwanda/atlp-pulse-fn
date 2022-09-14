@@ -88,6 +88,7 @@ Array [
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="removeModel"
+              disabled={false}
               onClick={[Function]}
               type="button"
             >
@@ -95,6 +96,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              disabled={false}
               type="button"
             >
               Save
@@ -396,6 +398,7 @@ Array [
                 <button
                   className="btn primary lg undefined"
                   data-testid="registerModel"
+                  disabled={false}
                   onClick={[Function]}
                   type="button"
                 >
@@ -694,8 +697,7 @@ Array [
                                    
                                   <strong>
                                     1
-                                     
-                                    of
+                                     of
                                      4
                                   </strong>
                                    
@@ -726,43 +728,37 @@ Array [
                                   <option
                                     value={3}
                                   >
-                                    Show
-                                     
+                                    Show 
                                     3
                                   </option>
                                   <option
                                     value={5}
                                   >
-                                    Show
-                                     
+                                    Show 
                                     5
                                   </option>
                                   <option
                                     value={10}
                                   >
-                                    Show
-                                     
+                                    Show 
                                     10
                                   </option>
                                   <option
                                     value={25}
                                   >
-                                    Show
-                                     
+                                    Show 
                                     25
                                   </option>
                                   <option
                                     value={50}
                                   >
-                                    Show
-                                     
+                                    Show 
                                     50
                                   </option>
                                   <option
                                     value={100}
                                   >
-                                    Show
-                                     
+                                    Show 
                                     100
                                   </option>
                                 </select>
