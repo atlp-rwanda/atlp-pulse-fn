@@ -29,6 +29,9 @@ function ProfileDropdown({
             <p className="font-bold text-sm text-gray-700 dark:text-gray-300">
               {user?.email}
             </p>
+            <p className="font-bold text-sm text-gray-700 dark:text-gray-300">
+              {user?.role}
+            </p>
           </div>
           <div
             className="flex flex-col w-full overflow-auto"
