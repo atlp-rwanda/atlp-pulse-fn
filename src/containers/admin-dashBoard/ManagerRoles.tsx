@@ -11,12 +11,13 @@ import USER_QUERY from '../admin-dashBoard/UserMutation';
 import CREATE_ROLE_MUTATION from '../admin-dashBoard/createRoleMutation';
 import GET_ROLE_QUERY from '../admin-dashBoard/GetRolesQuery';
 import ASSIGN_ROLE_MUTATION from '../admin-dashBoard/AssignRolesMutation';
-import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import { useApolloClient, useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import roles from '../../dummyData/roles.json';
 import Square from '../../Skeletons/Square';
 
 const AdminSission = () => {
   const { t } = useTranslation();
+  const client = useApolloClient();
   useDocumentTitle('Roles & Access');
   const [addMemberModel, setAddMemberModel] = useState(false);
   const [deleteModel, setDeleteModel] = useState(false);
@@ -37,6 +38,7 @@ const AdminSission = () => {
   const [updateUserRole] = useMutation(ASSIGN_ROLE_MUTATION);
   const [findFilter, setFindFilter] = useState('');
   const [allRoles, setallRoles] = useState<any>();
+  let newUsers: any = [];
 
   const handleAll = () => {
     setTabName('all');
@@ -81,48 +83,121 @@ const AdminSission = () => {
     else setSubTitle('Manage Roles');
   };
 
-  const handleCreateRole = async () => {
-    try {
-      const { data }: any = await createUserRole({
-        variables: { name: roleName },
-      });
+  // const handleCreateRole = async () => {
+  //   // e.preventDefault();
+  //   try {
+  //     const { data }: any = await createUserRole({
+  //       variables: { name: roleName },
+  //     });
+  //     let newState = !addMemberModel;
+  //     setTimeout(() => {
+  //       setAddMemberModel(newState);
+  //     }, 1000);
+      
+  //   } catch (error) {}
+  // };
+
+  const[handleCreateRole] = useMutation(CREATE_ROLE_MUTATION, {
+    variables: { name: roleName },
+    onCompleted: (data) => {
+      setToggle(!toggle)
       let newState = !addMemberModel;
       setTimeout(() => {
         setAddMemberModel(newState);
       }, 1000);
-    } catch (error) {}
-  };
+    },
+    onError: (err) => {
+      console.log("Error ", err)
+    }
+  })
+
 
   const handleSelectRole = (e: any, name: any) => {
     e.preventDefault();
     setSelectedRole(name);
   };
 
-  const handleAssignRole = async () => {
-    try {
-      const { data }: any = await updateUserRole({
-        variables: { updateUserRoleId: userId, name: selectedRole },
-      });
+  const [toggle, setToggle] = useState(false)
+
+
+
+  // const handleAssignRole = async () => {
+  //   // e.preventDefault()
+  //   try {
+  //     const { data }: any = await updateUserRole({
+  //       variables: { updateUserRoleId: userId, name: selectedRole },
+  //     });
+  //     console.log('data ', data.updateUserRole)
+  //     console.log('users ', users)
+    
+  //   // setUsers(rolemanagement)
+  //   setToggle(!toggle)
+  //     console.log("Toggle ", toggle)
+
+  //   await client.resetStore();
+  //     let newState = !deleteModel;
+  //     setTimeout(() => {
+  //       setDeleteModel(newState);
+  //     }, 1000);
+  //   } catch (error) {}
+  // };
+
+  const[handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
+    variables: { updateUserRoleId: userId, name: selectedRole },
+    onCompleted: (data) => {
+      console.log("Data from mutation ", data)
+      setToggle(!toggle)
       let newState = !deleteModel;
       setTimeout(() => {
         setDeleteModel(newState);
       }, 1000);
-    } catch (error) {}
-  };
+    },
+    onError: (err) => {
+      console.log("Error ", err)
+    }
+  })
+
+  const[fetchData2] = useLazyQuery(GET_ROLE_QUERY, {
+    
+  })
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await GetAllRoles();
-        console.log(data);
-        setUsers(data.getAllUsers);
-        setallRoles(data.getAllRoles);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
+    // const fetchData = async () => {
+    //   try {
+    //     const { data } = await GetAllRoles();
+    //     console.log("Runned==")
+    //     setUsers(data?.getAllUsers);
+    //     console.log("Users ** ", users)
+        
+    //     setallRoles(data?.getAllRoles);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+
+    fetchData2({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        console.log("data: ", data.getAllUsers)
+        setUsers(data?.getAllUsers);
+        data.getAllUsers.map((user: any, index: any) => {
+          newUsers[index] = {}
+          newUsers[index].role = user.role
+          newUsers[index].email = user.email
+          newUsers[index].id = user.id
+        })
+        console.log("newUsers ", newUsers)
+        setallRoles(data?.getAllRoles);
+      },
+      onError: (error) => {
+        console.log(error, 'error');
+      },
+    });
+
+
+
+    // fetchData();
+  }, [handleAssignRole2, toggle]);
 
   const columns = [
     {
@@ -155,7 +230,10 @@ const AdminSission = () => {
       Cell: ({ row }: any) => (
         <p
           className="text-red-500 whitespace-no-wrap cursor-pointer"
-          onClick={() => removeAssignModel(row.original.id)}
+          onClick={() => {
+            removeAssignModel(row.original.id)
+            
+          }}
         >
           {t('Assign')}
         </p>
@@ -208,7 +286,9 @@ const AdminSission = () => {
                       variant="primary"
                       size="sm"
                       style="w-[30%] md:w-1/4 text-sm font-sans"
-                      onClick={handleCreateRole}
+                      onClick={() => 
+                        handleCreateRole()
+                      }
                     >
                       {' '}
                       {t('Save')}{' '}
@@ -245,7 +325,7 @@ const AdminSission = () => {
                             onClick={(e) => handleSelectRole(e, obj.name)}
                             className="border-solid active:bg-sky-500 rounded-xl border-2 border-sky-500 flex justify-center cursor-pointer m-2 "
                           >
-                            <div className="p-2">{obj.name}</div>
+                            <button type='button' className="p-2  hover:bg-sky-500 focus:bg-sky-500 focus:ring-4 focus:ring-sky-700 focus:outline-none rounded-lg">{obj.name}</button>
                           </div>
                         ))}
                       </div>
@@ -266,7 +346,7 @@ const AdminSission = () => {
                       variant="primary"
                       size="sm"
                       style="w-[30%] md:w-1/4 text-sm font-sans"
-                      onClick={() => handleAssignRole()}
+                      onClick={() => handleAssignRole2()}
                     >
                       {t('Assign')}
                     </Button>
@@ -291,7 +371,7 @@ const AdminSission = () => {
               </div>
             </div>
             <div className="px-3 md:px-8">
-              <DataTable data={users} columns={columns} title="Manageaccess" />
+              <DataTable data={newUsers.length > 0 ? newUsers : users } columns={columns} title="Manageaccess" />
             </div>
           </div>
         </>
