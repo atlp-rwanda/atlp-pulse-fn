@@ -16,8 +16,12 @@ interface TableData {
 }
 
 function DataTable({ data, columns, title }: TableData) {
-  const sortedData = React.useMemo(() => [...data], []);
-  const sortedColumns = React.useMemo(() => [...columns], []);
+  // const sortedData = React.useMemo(() => [...data], []);
+  const sortedData = data;
+
+  // const sortedColumns = React.useMemo(() => [...columns], []);
+  const sortedColumns = columns;
+
   const TableInstance = useTable(
     { data: sortedData, columns: sortedColumns, initialState: { pageSize: 3 } },
 
