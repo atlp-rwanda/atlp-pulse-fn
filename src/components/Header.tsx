@@ -97,7 +97,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               <SunIcon className="w-8 text-dark-text-fill" />
             )}
           </button>
-          <Link to={user?.auth ? '/dashboard' : '/org-login'}>
+          <Link to={user?.auth ? '/dashboard' : '/organization-login'}>
             <Button variant="primary" size="lg">
               {' '}
               {!user?.auth ? t('Sign In') : t('Dashboard')}
@@ -165,7 +165,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
 
         <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
           <Link
-            to={user?.auth ? '/dashboard' : '/org-login'}
+            to={user?.auth ? '/dashboard' : '/organization-login'}
             className="w-full"
           >
             {' '}

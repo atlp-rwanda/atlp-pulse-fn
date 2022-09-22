@@ -28,7 +28,7 @@ function Orglogin() {
       onCompleted({ loginOrg }) {
         localStorage.setItem('orgToken', loginOrg.token);
         toast.success('WelCome! Sign in to Continue');
-        navigate('/login-admin/');
+        navigate('/login/');
       },
       onError() {
         setError('name', {
@@ -64,7 +64,7 @@ function Orglogin() {
             )}
           </div>
           <div>
-            <Link to="/login-admin">
+            <Link to="/login">
               <Button
                 onClick={handleSubmit(onSubmit)}
                 variant="primary"
