@@ -95,6 +95,7 @@ exports[`Main Routes Should render 1`] = `
         >
           <button
             className="btn primary lg undefined"
+            disabled={false}
             type="button"
           >
              
@@ -108,6 +109,7 @@ exports[`Main Routes Should render 1`] = `
         >
           <button
             className="btn transparentbtn lg mr-8"
+            disabled={false}
             type="button"
           >
              
@@ -210,6 +212,7 @@ exports[`Main Routes Should render 1`] = `
       >
         <button
           className="btn transparentbtn lg mr-8"
+          disabled={false}
           type="button"
         >
            
@@ -313,6 +316,7 @@ exports[`Main Routes Should render 1`] = `
           >
             <button
               className="btn primary lg undefined"
+              disabled={false}
               type="button"
             >
                
@@ -326,6 +330,7 @@ exports[`Main Routes Should render 1`] = `
           >
             <button
               className="btn transparentbtn lg mr-8"
+              disabled={false}
               type="button"
             >
                
@@ -428,6 +433,7 @@ exports[`Main Routes Should render 1`] = `
         >
           <button
             className="btn transparentbtn lg mr-8"
+            disabled={false}
             type="button"
           >
              
@@ -484,6 +490,7 @@ exports[`Main Routes Should render 1`] = `
           >
             <button
               className="btn primary lg mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
+              disabled={false}
               type="button"
             >
                
@@ -733,11 +740,9 @@ exports[`Main Routes Should render 1`] = `
           <span
             className="px-4 lg:py-3 cursor-pointer text-lg"
           >
-            ©
-             
+            © 
             2022
-             
-            Pulse Technologies
+             Pulse Technologies
           </span>
         </div>
       </div>
@@ -982,11 +987,9 @@ exports[`Main Routes Should render 1`] = `
         <span
           className="px-4 lg:py-3 cursor-pointer text-lg"
         >
-          ©
-           
+          © 
           2022
-           
-          Pulse Technologies
+           Pulse Technologies
         </span>
       </div>
     </div>

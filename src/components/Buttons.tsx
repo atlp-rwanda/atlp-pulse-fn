@@ -8,6 +8,8 @@ interface Props {
   variant: string;
   size: string;
   type?: any;
+  disabled?: boolean;
+  loading?: boolean;
 }
 const Button: React.FC<Props> = ({
   children,
@@ -16,15 +18,18 @@ const Button: React.FC<Props> = ({
   variant = 'default',
   size = 'md',
   type = 'button',
+  disabled = false,
+  loading = false,
   ...rest
 }) => (
   <button
     type={type}
     className={`btn ${variant} ${size} ${style}`}
     onClick={onClick}
+    disabled={disabled ? disabled : loading}
     {...rest}
   >
-    {children}
+    {loading ? <div className="loader mr-1" /> : children}
   </button>
 );
 

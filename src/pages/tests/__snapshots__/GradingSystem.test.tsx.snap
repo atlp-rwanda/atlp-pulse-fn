@@ -88,6 +88,7 @@ Array [
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
               data-testid="removeModel"
+              disabled={false}
               onClick={[Function]}
               type="button"
             >
@@ -95,6 +96,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              disabled={false}
               type="button"
             >
               Save

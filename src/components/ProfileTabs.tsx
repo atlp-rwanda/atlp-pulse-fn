@@ -145,7 +145,9 @@ export default function ProfileTabs({ data }: any) {
                       <HomeIcon className="w-6 mr-2 dark:text-dark-text-fill" />
                       {data?.city}
                       ,
-                      {data?.country && <CountryComponent country={data.country} />}
+                      {data?.country && (
+                      <CountryComponent country={data.country} />
+                      )}
                     </div>
                   </div>
                   <div className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow">

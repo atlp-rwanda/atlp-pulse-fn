@@ -54,12 +54,12 @@ const CountrySelector = React.forwardRef<
             data-testid="country-selector-title"
           >
             <img
-              alt={`${props.selectedValue?.value|| ""}`}
+              alt={`${props.selectedValue?.value || ''}`}
               data-testid="country-selector-flag"
               src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${props.selectedValue?.value}.svg`}
               className={'inline mr-2 h-4 rounded-sm'}
             />
-            {props.selectedValue?.title || "Select a country"}
+            {props.selectedValue?.title || 'Select a country'}
           </span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <svg

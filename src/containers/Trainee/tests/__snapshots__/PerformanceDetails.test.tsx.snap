@@ -61,6 +61,7 @@ exports[`Detailed Peformance page Renders a detailed performance Page  1`] = `
             >
               <button
                 className="btn primary sm px-4 py-0 text-sm"
+                disabled={false}
                 type="button"
               >
                 Reply
@@ -90,6 +91,7 @@ exports[`Detailed Peformance page Renders a detailed performance Page  1`] = `
             >
               <button
                 className="btn primary sm px-4 py-0 text-sm"
+                disabled={false}
                 type="button"
               >
                 Reply
@@ -119,6 +121,7 @@ exports[`Detailed Peformance page Renders a detailed performance Page  1`] = `
             >
               <button
                 className="btn primary sm px-4 py-0 text-sm"
+                disabled={false}
                 type="button"
               >
                 Reply

@@ -42,6 +42,7 @@ const Calendar = React.lazy(() => import('../components/Calendar'));
 const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
+const Organizations = React.lazy(() => import('../components/Organizations'));
 import Skeleton from '../components/Skeleton';
 import Square from '../Skeletons/Square';
 
@@ -80,6 +81,7 @@ function DashRoutes() {
             <Route path="/super-admin" element={<SupAdDashboard />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/organizations" element={<Organizations />} />
           </Routes>
         </Suspense>
       </div>

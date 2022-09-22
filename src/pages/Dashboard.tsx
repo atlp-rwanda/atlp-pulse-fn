@@ -7,7 +7,7 @@ import TraineeDashboard from './TraineeDashboard';
 export function Dashboard() {
   return (
     <>
-      <CheckRole roles={['super']}>
+      <CheckRole roles={['superAdmin']}>
         <SupAdDashboard />
       </CheckRole>
       <CheckRole roles={['admin']}>
