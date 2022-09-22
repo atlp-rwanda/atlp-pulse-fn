@@ -228,7 +228,7 @@ Array [
           First time here?
           <a
             className="mx-1 text-primary"
-            href="/register-organization"
+            href="/signup/org"
             onClick={[Function]}
           >
             Register
