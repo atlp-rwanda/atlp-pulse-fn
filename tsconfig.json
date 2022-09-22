@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "sourceMap": true,
+    "target": "esnext"
+  },
+  "include": [
+    "src/components",
+    "custom.d.ts",
+    "src/context/ThemeContextWrapper.tsx",
+    "src/pages/tests/TraineeRatingDashboard.test.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

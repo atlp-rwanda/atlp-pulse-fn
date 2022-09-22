@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "session": "Demo",
+    "desc": "Join on time",
+    "place": "Zoom",
+    "duration": "11am - 12am",
+    "organizer": "John deo"
+  },
+  {
+    "id": "2",
+    "session": "Stand up",
+    "desc": "Join on time",
+    "place": "Zoom",
+    "duration": "11am - 12am",
+    "organizer": "John deo"
+  },
+  {
+    "id": "3",
+    "session": "E-level up",
+    "desc": "Join on time",
+    "place": "Zoom",
+    "duration": "11am - 12am",
+    "organizer": "John deo"
+  },
+  {
+    "id": "4",
+    "session": "Code review",
+    "desc": "Join on time",
+    "place": "Zoom",
+    "duration": "11am - 12am",
+    "organizer": "John deo"
+  },
+  {
+    "id": "5",
+    "session": "Professional skills",
+    "desc": "Join on time",
+    "place": "Zoom",
+    "duration": "11am - 12am",
+    "organizer": "John deo"
+  }
+]

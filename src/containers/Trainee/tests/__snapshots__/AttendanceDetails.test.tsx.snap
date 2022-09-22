@@ -1,0 +1,577 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Attendance Detailed page Renders the Attendance Detailed Page  1`] = `
+<div
+  className="bg-neutral-100 dark:bg-dark-frame-bg"
+>
+  <div>
+    <div
+      className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center  min-h-screen "
+    >
+      <table
+        className="lg:w-9/12 md:w-11/12 lg:h-[70%] md:h-[60%] md:ml-0 lg:ml-32 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 mb-[-120px]"
+      >
+        <thead>
+          <tr
+            className="text-gray-300  bg-gray-100  dark:bg-dark-tertiary"
+          >
+            <th
+              className="lg:py-3 md:py-2 lg:px-3 md:px-2  text-left  text-[#6B7280] dark:text-dark-text-fill "
+            >
+              Session
+            </th>
+            <th
+              className="lg:py-3 md:py-2 lg:px-10 md:px-7 text-center text-[#6B7280] dark:text-dark-text-fill"
+            >
+              Record
+            </th>
+            <th
+              className="lg:py-3 md:py-2 text-left text-[#6B7280] dark:text-dark-text-fill"
+            >
+              Comment
+            </th>
+            <th
+              className="lg:py-3 md:py-2"
+            />
+          </tr>
+        </thead>
+        <tbody
+          className=" text-center "
+        >
+          <tr
+            className="text-light-text dark:text-dark-text-fill bg-light-bg dark:bg-dark-bg "
+          >
+            <td
+              className="lg:py-10 md:py-0 px-10 text-left  "
+            >
+              Demo
+            </td>
+            <td
+              className="py-3 "
+            >
+              1
+            </td>
+            <td
+              className="lg:py-6 md:py-3 text-start lg:text-sm"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+            </td>
+            <td
+              className="py-3 px-8"
+            >
+              <button
+                className="btn primary sm px-4 py-0 text-sm"
+                type="button"
+              >
+                Reply
+              </button>
+            </td>
+          </tr>
+          <tr
+            className="text-black dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary "
+          >
+            <td
+              className="py-10 px-10 text-left"
+            >
+              Standup
+            </td>
+            <td
+              className="py-3 "
+            >
+              1
+            </td>
+            <td
+              className="py-3  text-start text-sm"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+            </td>
+            <td
+              className="py-3 "
+            >
+              <button
+                className="btn primary sm px-4 py-0 text-sm"
+                type="button"
+              >
+                Reply
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      className="sm:flex sm:flex-col md:hidden justify-center items-center bg-light-bg dark:bg-dark-frame-bg dark:text-white  text-black"
+    >
+      <div
+        className="flex flex-col justify-center items-start w-full py-4 px-4 ml-4 mt-4"
+      >
+        <h2
+          className="font-semibold mt-12 "
+        >
+           
+          Sprint 1
+        </h2>
+        <h3
+          className="font-medium text-left text-[#6B7280] dark:text-white "
+        >
+          June 20, 2022 - June 24, 2022
+        </h3>
+      </div>
+      <div
+        className="flex flex-col justify-center items-center w-11/12 border shadow rounded-lg dark:border-dark-frame-bg bg-white  dark:bg-dark-bg pb-4 mt-4 pt-16"
+      >
+        <table
+          className=" rounded-lg w-7/12 h-[70%] overflow-hidden  md:shadow mt-[-40px]"
+        >
+          <thead>
+            <tr
+              className="text-gray-300 dark:text-white  bg-gray-100 dark:bg-dark-tertiary "
+            >
+              <th
+                className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill "
+              >
+                Session
+              </th>
+              <th
+                className="py-2 px-10 text-center text-[#6B7280] dark:text-dark-text-fill"
+              >
+                Demo
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className=" text-center"
+          >
+            <tr
+              className="text-light-text bg-light-bg dark:bg-dark-bg dark:text-dark-text-fill  "
+            >
+              <td
+                className="py-3 px-10"
+              >
+                Record
+              </td>
+              <td
+                className=" "
+              >
+                1
+              </td>
+            </tr>
+            <tr
+              className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  "
+            >
+              <td
+                className="py-10 px-10 text-left"
+              >
+                Comments
+              </td>
+              <td
+                className="py-3  text-start text-sm"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button
+          className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
+        >
+          Reply
+        </button>
+      </div>
+      <div
+        className="flex flex-col justify-center items-center w-11/12 border shadow rounded-lg dark:border-dark-frame-bg bg-white dark:bg-dark-bg  pb-4 mt-4 pt-16"
+      >
+        <table
+          className=" rounded-lg w-7/12 h-[70%] overflow-hidden  md:shadow mt-[-40px]"
+        >
+          <thead>
+            <tr
+              className="text-gray-300 dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary"
+            >
+              <th
+                className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill  "
+              >
+                Session
+              </th>
+              <th
+                className="py-2 px-10 text-center text-[#6B7280] dark:text-dark-text-fill"
+              >
+                Standup
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className=" text-center"
+          >
+            <tr
+              className="text-light-text bg-light-bg dark:bg-dark-bg dark:text-dark-text-fill "
+            >
+              <td
+                className="py-3 px-10"
+              >
+                Record
+              </td>
+              <td
+                className=" "
+              >
+                1
+              </td>
+            </tr>
+            <tr
+              className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  "
+            >
+              <td
+                className="py-10 px-10 text-left"
+              >
+                Comments
+              </td>
+              <td
+                className="py-3  text-start text-sm"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button
+          className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
+        >
+          Reply
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[70%] lg:ml-60 mb-10 mt-10"
+  >
+    <div
+      className="w-full flex flex-col md:py-10 md:px-20 sm:py-2 md:mt-0 lg:ml-0  sm:mt-2"
+    >
+      <div
+        className=" "
+      >
+        <h2
+          className="font-md"
+        >
+          Comments
+        </h2>
+      </div>
+      <div
+        className="w-full"
+      >
+        <div>
+          <div
+            className="bg-white text-sm md:text-base dark:bg-dark-bg w-full border rounded-md border-gray-300 dark:border-white my-5"
+          >
+            <div
+              className="flex flex-col md:flex-row  p-5 w-full"
+            >
+              <div
+                className="w-1/6 md:w-2/6 lg:w-1/6 m-2 md:mr-2"
+              >
+                <img
+                  alt="Profile"
+                  className="w-10 h-10 md:w-14 md:h-14 rounded-full"
+                  src="https://cdn.pixabay.com/photo/2018/04/18/11/21/people-3330157_1280.jpg"
+                />
+              </div>
+              <div
+                className="flex flex-col"
+              >
+                <div
+                  className="flex flex-row"
+                >
+                  <div
+                    className="mr-2"
+                  >
+                    Kenneth Ngabo
+                  </div>
+                  <div
+                    className="text-gray-400"
+                  >
+                    Tuesday, 20:04
+                  </div>
+                </div>
+                <div
+                  className="my-2"
+                >
+                  <p
+                    className="text-sm"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                  </p>
+                </div>
+                <div
+                  className="flex flex-row"
+                >
+                  <div
+                    className="flex flex-row"
+                  >
+                    <img
+                      alt="Comment profile"
+                      className="relative rounded-full w-7 h-7"
+                      src="https://cdn.pixabay.com/photo/2018/02/16/14/38/portrait-3157821_1280.jpg"
+                    />
+                    <img
+                      alt="Comment profile"
+                      className="absolute ml-4 rounded-full w-7 h-7"
+                      src="https://cdn.pixabay.com/photo/2016/11/22/21/42/woman-1850703_1280.jpg"
+                    />
+                  </div>
+                  <div
+                    className="ml-6 text-primary cursor-pointer"
+                  >
+                    <h3>
+                      2
+                       
+                      Replies
+                    </h3>
+                  </div>
+                  <div
+                    className="ml-2 text-gray-400"
+                  >
+                    <h3>
+                      Last reply 
+                      Friday, 30th
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className="bg-white text-sm md:text-base dark:bg-dark-bg w-full border rounded-md border-gray-300 dark:border-white my-5"
+          >
+            <div
+              className="flex flex-col md:flex-row  p-5 w-full"
+            >
+              <div
+                className="w-1/6 md:w-2/6 lg:w-1/6 m-2 md:mr-2"
+              >
+                <img
+                  alt="Profile"
+                  className="w-10 h-10 md:w-14 md:h-14 rounded-full"
+                  src="https://cdn.pixabay.com/photo/2019/04/18/10/49/africa-4136601_1280.jpg"
+                />
+              </div>
+              <div
+                className="flex flex-col"
+              >
+                <div
+                  className="flex flex-row"
+                >
+                  <div
+                    className="mr-2"
+                  >
+                    Kenneth Ngabo2
+                  </div>
+                  <div
+                    className="text-gray-400"
+                  >
+                    Wednesday, 16:21
+                  </div>
+                </div>
+                <div
+                  className="my-2"
+                >
+                  <p
+                    className="text-sm"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                  </p>
+                </div>
+                <div
+                  className="flex flex-row"
+                >
+                  <div
+                    className="flex flex-row"
+                  >
+                    <img
+                      alt="Comment profile"
+                      className="relative rounded-full w-7 h-7"
+                      src="https://cdn.pixabay.com/photo/2018/02/16/14/38/portrait-3157821_1280.jpg"
+                    />
+                    <img
+                      alt="Comment profile"
+                      className="absolute ml-4 rounded-full w-7 h-7"
+                      src="https://cdn.pixabay.com/photo/2016/11/22/21/42/woman-1850703_1280.jpg"
+                    />
+                  </div>
+                  <div
+                    className="ml-6 text-primary cursor-pointer"
+                  >
+                    <h3>
+                      2
+                       
+                      Replies
+                    </h3>
+                  </div>
+                  <div
+                    className="ml-2 text-gray-400"
+                  >
+                    <h3>
+                      Last reply 
+                      Monday, 27th
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className="bg-white text-sm md:text-base dark:bg-dark-bg w-full border rounded-md border-gray-300 dark:border-white my-5"
+          >
+            <div
+              className="flex flex-col md:flex-row  p-5 w-full"
+            >
+              <div
+                className="w-1/6 md:w-2/6 lg:w-1/6 m-2 md:mr-2"
+              >
+                <img
+                  alt="Profile"
+                  className="w-10 h-10 md:w-14 md:h-14 rounded-full"
+                  src="https://cdn.pixabay.com/photo/2019/11/11/04/33/child-4617142_1280.jpg"
+                />
+              </div>
+              <div
+                className="flex flex-col"
+              >
+                <div
+                  className="flex flex-row"
+                >
+                  <div
+                    className="mr-2"
+                  >
+                    Kenneth Ngabo3
+                  </div>
+                  <div
+                    className="text-gray-400"
+                  >
+                    Monday, 02:30
+                  </div>
+                </div>
+                <div
+                  className="my-2"
+                >
+                  <p
+                    className="text-sm"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                  </p>
+                </div>
+                <div
+                  className="flex flex-row"
+                >
+                  <div
+                    className="flex flex-row"
+                  >
+                    <img
+                      alt="Comment profile"
+                      className="relative rounded-full w-7 h-7"
+                      src="https://cdn.pixabay.com/photo/2018/02/16/14/38/portrait-3157821_1280.jpg"
+                    />
+                    <img
+                      alt="Comment profile"
+                      className="absolute ml-4 rounded-full w-7 h-7"
+                      src="https://cdn.pixabay.com/photo/2016/11/22/21/42/woman-1850703_1280.jpg"
+                    />
+                  </div>
+                  <div
+                    className="ml-6 text-primary cursor-pointer"
+                  >
+                    <h3>
+                      2
+                       
+                      Replies
+                    </h3>
+                  </div>
+                  <div
+                    className="ml-2 text-gray-400"
+                  >
+                    <h3>
+                      Last reply 
+                      Thursday, 2nd
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="w-full flex flex-col border border-gray-400"
+        >
+          <div
+            className="m-4"
+          >
+            <div
+              className=""
+            >
+              <input
+                className="w-full bg-inherit px-2 outline-0"
+                placeholder="Start typing ..."
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="flex justify-between px-4 py-2 border-t"
+          >
+            <div
+              className="flex flex-row"
+            >
+              <div>
+                <span />
+              </div>
+              <div
+                className="mx-2"
+              >
+                <span />
+              </div>
+              <div>
+                <span />
+              </div>
+            </div>
+            <div>
+              <span />
+            </div>
+          </div>
+        </div>
+        <div
+          className="bg-white dark:bg-dark-bg"
+        >
+          <button
+            className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 md:mt-3 rounded-md text-white font-semibold cursor-pointer"
+            onClick={[Function]}
+          >
+            <svg
+              className="mt-1 mr-1"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z"
+              />
+            </svg>
+            Back
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
