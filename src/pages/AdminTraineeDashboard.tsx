@@ -4,6 +4,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Draggable from 'react-draggable';
 import DataTable from '../components/DataTable';
 import Sidebar from '../components/Sidebar';
 import devs from '../dummyData/developers2.json';
@@ -11,10 +17,13 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './../components/Buttons';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
+import Avatar from '../assets/avatar.png';
+
 import {
   GET_USERS_QUERY,
   GET_TRAINEES_QUERY,
   GET_COHORTS_QUERY,
+  GET_TRAINEE_PROFILE,
   ADD_MEMBER_TO_COHORT_MUTATION,
   REMOVE_MEMBER_FROM_COHORT_MUTATION,
   EDIT_MEMBER_MUTATION,
@@ -23,6 +32,7 @@ import {
 import { useLazyQuery, useMutation } from '@apollo/client';
 import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
+import { height } from '@mui/system';
 const organizationToken = localStorage.getItem('orgToken');
 
 const AdminTraineeDashboard = () => {
@@ -38,6 +48,7 @@ const AdminTraineeDashboard = () => {
   const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
   const [email, setEmail] = useState<any[]>([]);
+  const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
   const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
@@ -49,10 +60,35 @@ const AdminTraineeDashboard = () => {
   const [toggle, setToggle] = useState(false);
   const options: any = [];
   const traineeOptions: any = [];
+  let traineeDat: any = [];
+
+  function PaperComponent(props: PaperProps) {
+    return (
+      <Draggable
+        handle="#draggable-dialog-title"
+        cancel={'[class*="MuiDialogContent-root"]'}
+
+      >
+        <Paper {...props} />
+      </Draggable>
+    );
+  }
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (rowData: any) => {
+    const filteredUser = traineeData.filter((item) => item.email == rowData);
+    setTraineeDetails(filteredUser[0]);
+
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   /* istanbul ignore next */
   const removeTraineeMod = () => {
-    /* istanbul ignore next */
     let newState = !removeTraineeModel;
     setRemoveTraineeModel(newState);
   };
@@ -64,7 +100,6 @@ const AdminTraineeDashboard = () => {
 
   /* istanbul ignore next */
   const removeEditModel = () => {
-    /* istanbul ignore next */
     let newState = !editTraineeModel;
     setEditTraineeModel(newState);
   };
@@ -106,6 +141,7 @@ const AdminTraineeDashboard = () => {
       return { ...provided, opacity, transition };
     },
   };
+
   const columns = [
     { Header: t('name'), accessor: 'name' },
     { Header: t('email'), accessor: 'email' },
@@ -131,7 +167,6 @@ const AdminTraineeDashboard = () => {
             test-Id=""
             /* istanbul ignore next */
             onClick={() => {
-              /* istanbul ignore next */
               removeEditModel();
               setEditEmail(row.original.email);
               setEditCohort(row.original.cohort);
@@ -145,16 +180,27 @@ const AdminTraineeDashboard = () => {
             color="#148fb6"
             /* istanbul ignore next */
             onClick={() => {
-              /* istanbul ignore next */
               removeTraineeMod();
               setDeleteEmail(row.original.email);
               setDeleteFromCohort(row.original.cohort);
+              console.log(traineeData)
             }}
+          />
+
+          <Icon
+            icon="flat-color-icons:view-details"
+            width="30"
+            height="30"
+            cursor="pointer"
+            color="#148fb6"
+            onClick={() => handleClickOpen(row.original.email)}
+
           />
         </div>
       ),
     },
   ];
+
   const data = devs;
   let datum: any = [];
   const [getUsers] = useLazyQuery(GET_USERS_QUERY, {
@@ -173,8 +219,8 @@ const AdminTraineeDashboard = () => {
     },
   });
   /* istanbul ignore if */
+
   if (traineeData && traineeData.length > 0) {
-    /* istanbul ignore next */
     traineeData?.map((data: any, index: number) => {
       datum[index] = {};
       datum[index].name = data.profile ? data.profile.name : 'undefined';
@@ -193,7 +239,6 @@ const AdminTraineeDashboard = () => {
     },
     /* istanbul ignore next */
     onCompleted: (data) => {
-      /* istanbul ignore next */
       setTimeout(() => {
         setButtonLoading(false);
         toast.success(data.addMemberToCohort);
@@ -216,7 +261,6 @@ const AdminTraineeDashboard = () => {
       email: editEmail,
       orgToken: organizationToken,
     },
-    /* istanbul ignore next */
     onCompleted: (data) => {
       handleToggle();
 
@@ -281,7 +325,6 @@ const AdminTraineeDashboard = () => {
     getUsers({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        /* istanbul ignore next */
         setAllUserEmail(data.getUsers);
       },
       onError: (error) => {
@@ -294,8 +337,8 @@ const AdminTraineeDashboard = () => {
       onCompleted: (data) => {
         setTraineeData(data.getTrainees);
       },
+
       onError: (error) => {
-        /* istanbul ignore next */
         toast.error(error.message);
       },
     });
@@ -303,7 +346,6 @@ const AdminTraineeDashboard = () => {
     getCohortsQuery({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        /* istanbul ignore next */
         setCohorts(data.getCohorts);
       },
       onError: (error) => {
@@ -313,7 +355,6 @@ const AdminTraineeDashboard = () => {
   }, [registerTraineeModel, removeTraineeModel, toggle]);
   /* istanbul ignore if */
   if (allUserEmail.length > 0) {
-    /* istanbul ignore next */
     allUserEmail.map((trainee: any, index: any) => {
       traineeOptions[index] = {};
       traineeOptions[index].value = trainee.email;
@@ -322,7 +363,6 @@ const AdminTraineeDashboard = () => {
   }
   /* istanbul ignore if */
   if (cohorts.length > 0) {
-    /* istanbul ignore next */
     cohorts.map((cohort: any, index: any) => {
       options[index] = {};
       options[index].value = cohort.name;
@@ -333,11 +373,106 @@ const AdminTraineeDashboard = () => {
   return (
     <>
       {/* =========================== Start::  InviteTraineeModel =============================== */}
+      <div className=" dark:bg-dark-bg rounded-lg">
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          PaperComponent={PaperComponent}
+          aria-labelledby="draggable-dialog-title"
+          className="rounded-lg"
+          fullWidth
+
+        >
+
+          <DialogContent className="dark:bg-dark-bg font-sans">
+            <DialogContentText className=" dark:bg-dark-bg font-sans">
+
+              <div className="font-bold text-sm dark:text-white text-center  dark:bg-dark-bg font-sans" >
+                <div className='bg-[#4aa5be] h-[150px]'>
+                  <img className='absolute top-[80px] left-[40px] border-4 border-white font-sans' style={{ margin: '0 auto', borderRadius: '50%', marginBottom: '20px', width: '150px', height: '150px' }} src={traineeDetails &&
+                    traineeDetails.profile &&
+                    traineeDetails.profile.avatar
+                    ? traineeDetails.profile.avatar
+                    : Avatar} alt="Logo"/>
+                </div>
+
+                <h2 className="font-bold text-[20px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans" style={{ cursor: 'move', fontWeight: 'bold' }} id="draggable-dialog-title">
+                  {traineeDetails && traineeDetails.profile
+                    ? traineeDetails.profile.name
+                    : 'Un availabe'}
+                </h2>
+                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginTop: '30px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>COUNTRY</b> </h3>
+                  <p>
+                    {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.profile.country
+                      : 'Un availabe'}
+                  </p>
+                </div>
+                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>CITY</b> </h3>
+                  <p>
+                    <i>{traineeDetails && traineeDetails.profile
+                      ? traineeDetails.profile.city
+                      : 'Un availabe'}</i>
+                  </p>
+                </div>
+                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>PHONE NUMBER</b> </h3>
+                  <p>
+                    <i> {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.profile.phoneNumber
+                      : 'Un availabe'}</i>
+                  </p>
+                </div>
+
+                <div  className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>EMAIL</b> </h3>
+                  <p>
+                    <i> {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.email
+                      : 'Un availabe'}</i>
+                  </p>
+                </div>
+
+                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginBottom: '20px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>BIOGRAPHY</b> </h3>
+                  <p>
+                    <i> {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.profile.biography
+                      : 'Un availabe'}</i>
+                  </p>
+                </div>
+
+               <Button
+                data-testid="removeInviteModel"
+                variant="info"
+                size="sm"
+                style="w-[20%] md:w-1/4 text-sm font-sans"
+                onClick={() => handleClose()}
+              >
+                {t('Close')}
+              </Button>
+              </div>
+             
+              
+        
+            </DialogContentText>
+
+          </DialogContent>
+         
+        </Dialog>
+      </div>
+      {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          inviteTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -379,6 +514,7 @@ const AdminTraineeDashboard = () => {
                 >
                   {t('Cancel')}
                 </Button>
+
                 <Button
                   variant="primary"
                   size="sm"
@@ -401,9 +537,8 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          editTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${editTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -476,9 +611,8 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          removeTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${removeTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -534,9 +668,8 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          registerTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${registerTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -562,16 +695,6 @@ const AdminTraineeDashboard = () => {
                     options={traineeOptions}
                     isSearchable
                   />
-                  {/* <input
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    type="email"
-                    name="email"
-                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                    placeholder={t('email')}
-                  /> */}
                 </div>
               </div>
 
