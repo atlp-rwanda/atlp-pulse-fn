@@ -1,60 +1,66 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Draggable from 'react-draggable';
+import image from '../assets/jest.config.png';
 
-import { useLazyQuery } from '@apollo/client';
-import { toast } from 'react-toastify';
-import ProfileCoverPage from '../components/ProfileCoverpage';
-import ProfileTabs from '../components/ProfileTabs';
-import { COUNTRIES } from '../constants/countries';
-import useDocumentTitle from '../hook/useDocumentTitle';
-import { GET_PROFILE } from '../Mutations/User';
-import Square from '../Skeletons/Square';
-
-export function CountryComponents({ country }: any) {
-  const userCountry: any = COUNTRIES.filter((c) => c.value === country)[0];
+function PaperComponent(props: PaperProps) {
   return (
-    <span
-      className="truncate flex items-center"
-      data-testid="country-selector-title"
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
     >
-      <img
-        alt={`${userCountry?.value}`}
-        data-testid="country-selector-flag"
-        src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${userCountry?.value}.svg`}
-        className="inline mx-2 h-4 rounded-sm "
-      />
-      {' '}
-      {userCountry?.title}
-    </span>
+      <Paper {...props} />
+    </Draggable>
   );
 }
 
-export default function Profile() {
-  useDocumentTitle('Profile');
-  const [data, setData] = useState<any>();
-  const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await getProfile();
-        setData(data);
-      } catch (error: any) {
-        toast.error(error?.message || 'Something went wrong');
-      }
-    };
-    fetchData();
-  }, []);
+export default function traineeDetails() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
-      {data ? (
-        <>
-          <ProfileCoverPage data={data?.getProfile} currentPage="viewProfile" />
-          <div className="mt-2 p-6">
-            <ProfileTabs data={data?.getProfile} />
-          </div>
-        </>
-      ) : (
-        <Square />
-      )}
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Trainee Details
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperComponent={PaperComponent}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+          Ishimwe eliab cohort 8
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {/* <img src="https://img.icons8.com/ultraviolet/40/000000/user.png" /> */}
+            <img src={image} alt="Logo" />
+            ;
+            <h3>country:Rwanda</h3>
+            <h3>name:ishimweeliab</h3>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Cancel
+          </Button>
+
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
