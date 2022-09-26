@@ -68,7 +68,7 @@ function DataTable({ data, columns, title }: TableData) {
           />
         </div>
       </div>
-      <div>
+      <div style={{ overflowX: 'auto' }}>
         <table className="min-w-full leading-normal" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -88,9 +88,11 @@ function DataTable({ data, columns, title }: TableData) {
             {page.map((row) => {
               prepareRow(row);
 
-              const rowTheme = row.index % 2 !== 0
-                ? 'bg-light-bg dark:bg-dark-tertiary'
-                : 'bg-white dark:bg-dark-bg';
+              // eslint-disable-next-line operator-linebreak
+              const rowTheme =
+                row.index % 2 !== 0
+                  ? 'bg-light-bg dark:bg-dark-tertiary'
+                  : 'bg-white dark:bg-dark-bg';
 
               return (
                 <tr className={` ${rowTheme}} `} {...row.getRowProps()}>

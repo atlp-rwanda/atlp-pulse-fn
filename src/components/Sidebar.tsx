@@ -23,6 +23,7 @@ import {
   BookOpenIcon,
   CogIcon,
 } from '@heroicons/react/outline';
+import ProgramIcon from './ProgramIcon';
 import Tooltip from './ToolTip';
 import { UserContext } from '../hook/useAuth';
 import CheckRole from '../utils/CheckRoles';
@@ -80,6 +81,13 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </SideNavLink>
           <SideNavLink onClick={toggle} to="/dashboard/cohorts" name="Cohorts">
             <AcademicCapIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/programs"
+            name="Programs"
+          >
+            <ProgramIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}

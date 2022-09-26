@@ -20,6 +20,7 @@ const AttendanceDetails = React.lazy(
   () => import('../containers/Trainee/AttendanceDetails'),
 );
 const AdminCohorts = React.lazy(() => import('./admin-dashBoard/Cohorts'));
+const AdminPrograms = React.lazy(() => import('./admin-dashBoard/Programs'));
 const AdminSession = React.lazy(() => import('./admin-dashBoard/Sessions'));
 const AdminManageRoles = React.lazy(
   () => import('./admin-dashBoard/ManagerRoles'),
@@ -68,6 +69,7 @@ function DashRoutes() {
             <Route path="/attendance" element={<TraineeAttendance />} />
             <Route path="/attendance-details" element={<AttendanceDetails />} />
             <Route path="/cohorts" element={<AdminCohorts />} />
+            <Route path="/programs" element={<AdminPrograms />} />
             <Route path="/sessions" element={<AdminSession />} />
             <Route path="/manage" element={<AdminManageRoles />} />
             <Route path="/grading" element={<GradingSystem />} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import renderer from 'react-test-renderer';
 import AdminTraineeDashboard from '../../pages/AdminTraineeDashboard';
 
@@ -8,7 +9,10 @@ describe('<AdminTraineeDashboard />', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <AdminTraineeDashboard />
+          <ApolloProvider>
+            <AdminTraineeDashboard />
+          </ApolloProvider>
+
         </MemoryRouter>,
       )
       .toJSON();
