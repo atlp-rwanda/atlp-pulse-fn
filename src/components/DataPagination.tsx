@@ -18,7 +18,7 @@ function DataPagination({
 }: any) {
   return (
     <div>
-      {pageOptions.length > 1 && (
+      {pageOptions.length >= 0 && (
         <table className="w-full mt-2">
           <tfoot className="w-full py-2">
             <tr className="w-full py-2">
@@ -42,7 +42,7 @@ function DataPagination({
                     <ArrowCircleRightIcon className="w-5" fontSize="sm" />
                   </button>
                   {' '}
-                  <div className="flex flex-row justify-center w-full">
+                  <div className="flex flex-row justify-center w-full sm:text-[12px] items-center ">
                     <span className="inline-block mx-2">
                       Page
                       {' '}
@@ -72,7 +72,7 @@ function DataPagination({
                     </span>
                     {' '}
                     <select
-                      className="px-1/2 md:px-2 font-raleway rounded-md border border-primary dark:bg-primary"
+                      className="px-1/2 md:px-2 sm:px-0 sm:py-2 font-raleway rounded-md border border-primary dark:bg-primary"
                       value={pageSize}
                       onChange={(e) => setPageSize(Number(e.target.value))}
                     >
