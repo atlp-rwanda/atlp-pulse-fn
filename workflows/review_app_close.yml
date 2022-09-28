@@ -45,5 +45,5 @@ jobs:
         uses: thollander/actions-comment-pull-request@v1
         if: env.HEROKU_APP_EXISTS == 'true'
         with:
-          message: ":warning: The Heroku Review App **${{ env.HEROKU_APP_NAME }}** has been destroyed."
+          message: ':warning: The Heroku Review App **${{ env.HEROKU_APP_NAME }}** has been destroyed.'
           GITHUB_TOKEN: ${{ github.token }}

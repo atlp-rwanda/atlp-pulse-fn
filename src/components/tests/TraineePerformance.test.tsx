@@ -1,8 +1,8 @@
 /* eslint-disable */
-import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
+import { fireEvent, render } from '@testing-library/react';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
 import TraineePerfomance from '../TraineePerformance';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';

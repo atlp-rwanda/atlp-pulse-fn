@@ -1,6 +1,6 @@
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
 import Calendar from '../Calendar';
 
 describe('Calendar Tests', () => {

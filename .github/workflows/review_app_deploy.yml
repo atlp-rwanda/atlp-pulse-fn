@@ -73,7 +73,7 @@ jobs:
           --app=${{ env.HEROKU_APP_NAME }}
           NODE_ENV=production
           MODE=review
-          BACKEND_URL=${{ secrets.BACKEND_URL }}
+          BACKEND_URL=https://devpulse-bn-review-app-41.herokuapp.com
 
       - name: Add Heroku Review App to pipeline
         if: steps.heroku_review_app_create.outcome == 'success'
@@ -102,7 +102,7 @@ jobs:
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-          COMMENT_IDENTIFIER: "Deploy"
+          COMMENT_IDENTIFIER: 'Deploy'
           message: |
             I deployed a review app for you to try out this pull request 👇🏽
 

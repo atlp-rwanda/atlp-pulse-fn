@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { FormContext } from './contexts/StepperContex';
 
 const Stepper = ({ steps }: any) => {

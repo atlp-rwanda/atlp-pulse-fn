@@ -1,6 +1,6 @@
 import {
   ArrowCircleLeftIcon,
-  ArrowCircleRightIcon,
+  ArrowCircleRightIcon
 } from '@heroicons/react/outline';
 import React from 'react';
 
@@ -23,7 +23,7 @@ function DataPagination({
           <tfoot className="w-full py-2">
             <tr className="w-full py-2">
               <td colSpan={columnLength}>
-                <div className="w-full justify-center flex mx-auto flex-row items-center overflow-x-scroll">
+                <div className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto">
                   <button
                     type="button"
                     className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
@@ -31,8 +31,7 @@ function DataPagination({
                     disabled={!canPreviousPage}
                   >
                     <ArrowCircleLeftIcon className="w-5" fontSize="sm" />
-                  </button>
-                  {' '}
+                  </button>{' '}
                   <button
                     type="button"
                     onClick={() => nextPage()}
@@ -44,19 +43,14 @@ function DataPagination({
                   {' '}
                   <div className="flex flex-row justify-center w-full sm:text-[12px] items-center ">
                     <span className="inline-block mx-2">
-                      Page
-                      {' '}
+                      Page{' '}
                       <strong>
-                        {pageIndex + 1}
-                        {' '}
-                        of
+                        {pageIndex + 1} of
                         {` ${pageOptions.length}`}
-                      </strong>
-                      {' '}
+                      </strong>{' '}
                     </span>
                     <span className="inline-block mx-2">
-                      | Go to page:
-                      {' '}
+                      | Go to page:{' '}
                       <input
                         type="number"
                         className=" outline-none border rounded-md appearance-none border-primary dark:bg-primary pl-1"
@@ -74,8 +68,7 @@ function DataPagination({
                           paddingLeft: '1.2rem',
                         }}
                       />
-                    </span>
-                    {' '}
+                    </span>{' '}
                     <select
                       className="px-1/2 font-raleway rounded-md border border-primary dark:bg-primary"
                       value={pageSize}
@@ -84,9 +77,7 @@ function DataPagination({
                     >
                       {[3, 5, 10, 25, 50, 100].map((pgSize) => (
                         <option key={pgSize} value={pgSize}>
-                          Show
-                          {' '}
-                          {pgSize}
+                          Show {pgSize}
                         </option>
                       ))}
                     </select>

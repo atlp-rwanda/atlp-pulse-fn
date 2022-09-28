@@ -1,10 +1,12 @@
-/* eslint-disable no-console */
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import { gql, useMutation } from '@apollo/client';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
+import ControlledSelect from '../../components/ControlledSelect';
+import { PartialUser } from './Cohorts';
+import { Program } from './Programs';
 
 export const AddProgram = gql`
   mutation AddProgram(
@@ -25,10 +27,15 @@ export const AddProgram = gql`
 `;
 
 export default function CreateProgramModal({
+  data,
   createProgramModel,
   removeModel,
   refetch,
 }: {
+  data?: {
+    getAllPrograms: Program[];
+    getAllUsers: PartialUser[];
+  };
   createProgramModel: boolean;
   removeModel: Function;
   refetch: Function;
@@ -39,6 +46,7 @@ export default function CreateProgramModal({
     formState: { errors },
     reset,
     register,
+    control,
   } = useForm();
   const [addProgramMutation, { loading }] = useMutation(AddProgram, {
     onError(error) {
@@ -50,9 +58,21 @@ export default function CreateProgramModal({
     },
   });
 
+  const managers = data?.getAllUsers?.filter((user) => user.role === 'manager');
+
   async function addProgram(data: any) {
+    const newData = { ...data };
+
+    newData.managerEmail && (newData.managerEmail = newData.managerEmail.value);
+
+    Object.keys(newData).forEach((field) => {
+      if (!newData[field] || newData[field] === '') {
+        delete newData[field];
+      }
+    });
+
     await addProgramMutation({
-      variables: { orgToken: localStorage.getItem('orgToken'), ...data },
+      variables: { orgToken: localStorage.getItem('orgToken'), ...newData },
     });
   }
 
@@ -90,13 +110,19 @@ export default function CreateProgramModal({
             </div>
             <div className="input my-5 h-9 ">
               <div className="grouped-input flex items-center h-full w-full rounded-md">
-                <input
-                  type="text"
-                  className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
+                <ControlledSelect
                   placeholder={t('Manager Email')}
-                  {...register('managerEmail', {
-                    required: `${t('The Manager email is required')}`,
-                  })}
+                  register={{
+                    control,
+                    name: 'managerEmail',
+                    rules: {
+                      required: `${t('The Manager email is required')}`,
+                    },
+                  }}
+                  options={managers?.map(({ email }) => ({
+                    value: email,
+                    label: email,
+                  }))}
                 />
               </div>
               {errors?.managerEmail && (

@@ -19,6 +19,7 @@ import {
   INVITE_USER_MUTATION,
 } from '../Mutations/manageStudentMutations';
 import { useLazyQuery, useMutation } from '@apollo/client';
+import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -26,7 +27,7 @@ const AdminTraineeDashboard = () => {
   useDocumentTitle('Trainees');
   const { t }: any = useTranslation();
   const { user } = useContext(UserContext);
-  
+
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [removeTraineeModel, setRemoveTraineeModel] = useState(false);
   const [editTraineeModel, setEditTraineeModel] = useState(false);
@@ -404,19 +405,17 @@ const AdminTraineeDashboard = () => {
 
               <div className="text-white input my-3 h-9 ">
                 <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
-                  <Select
+                  <ControlledSelect
                     placeholder={t('Select cohort')}
-                    className="my-react-select-container"
-                    classNamePrefix="my-react-select"
-                    styles={customStyles}
                     defaultValue={selectedOption2}
-                    onChange={(e: any) => {
-                      setSelectedOption2(e);
+                    noRegister={{
+                      onChange: (e) => {
+                        setSelectedOption2(e);
+                      },
                     }}
                     options={options.filter((option: any) => {
                       return option.value !== editCohort;
                     })}
-                    isSearchable
                   />
                 </div>
               </div>
@@ -559,17 +558,15 @@ const AdminTraineeDashboard = () => {
 
               <div className="text-white input my-3 h-9 ">
                 <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
-                  <Select
+                  <ControlledSelect
                     placeholder={t('Select cohort')}
-                    className="my-react-select-container"
-                    classNamePrefix="my-react-select"
-                    styles={customStyles}
                     defaultValue={selectedOption}
-                    onChange={(e: any) => {
-                      setSelectedOption(e);
+                    noRegister={{
+                      onChange: (e) => {
+                        setSelectedOption(e);
+                      },
                     }}
                     options={options}
-                    isSearchable
                   />
                 </div>
               </div>
@@ -636,7 +633,7 @@ const AdminTraineeDashboard = () => {
                     </Button>
                      }
 
-                   
+
                   </div>
                 </div>
                 <div className="px-3 md:px-8">

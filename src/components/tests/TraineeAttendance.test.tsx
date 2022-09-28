@@ -1,8 +1,8 @@
 /* eslint-disable */
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import { fireEvent, render } from '@testing-library/react';
 import TraineeAttendance from '../TraineeAttendance';
 
 describe('Trainee Attendance page', () => {
