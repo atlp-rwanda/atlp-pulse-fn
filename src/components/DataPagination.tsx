@@ -59,7 +59,7 @@ function DataPagination({
                       {' '}
                       <input
                         type="number"
-                        className=" pl-2 outline-none border rounded-md appearance-none border-primary dark:bg-primary"
+                        className=" outline-none border rounded-md appearance-none border-primary dark:bg-primary pl-1"
                         defaultValue={pageIndex + 1}
                         onChange={(e) => {
                           const pageNumber = e.target.value
@@ -67,14 +67,20 @@ function DataPagination({
                             : 0;
                           gotoPage(pageNumber);
                         }}
-                        style={{ width: '50px' }}
+                        style={{
+                          width: '50px',
+                          height: '30px',
+                          border: 'solid 0.1rem #4aa5be',
+                          paddingLeft: '1.2rem',
+                        }}
                       />
                     </span>
                     {' '}
                     <select
-                      className="px-1/2 md:px-2 sm:px-0 sm:py-2 font-raleway rounded-md border border-primary dark:bg-primary"
+                      className="px-1/2 font-raleway rounded-md border border-primary dark:bg-primary"
                       value={pageSize}
                       onChange={(e) => setPageSize(Number(e.target.value))}
+                      style={{ height: '30px', border: 'solid 0.1rem #4aa5be' }}
                     >
                       {[3, 5, 10, 25, 50, 100].map((pgSize) => (
                         <option key={pgSize} value={pgSize}>

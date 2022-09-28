@@ -292,7 +292,7 @@ const AdminTraineeDashboard = () => {
                     classNamePrefix="my-react-select"
                     styles={customStyles}
                     defaultValue={selectedOption2}
-                    onChange={(e: React.SetStateAction<any[]>) => {
+                    onChange={(e) => {
                       setSelectedOption2(e);
                     }}
                     options={options.filter((option: any) => {
@@ -433,7 +433,7 @@ const AdminTraineeDashboard = () => {
                     classNamePrefix="my-react-select"
                     styles={customStyles}
                     defaultValue={selectedOption}
-                    onChange={(e: React.SetStateAction<any[]>) => {
+                    onChange={(e) => {
                       setSelectedOption(e);
                     }}
                     options={options}
