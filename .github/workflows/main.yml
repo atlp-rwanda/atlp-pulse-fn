@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency: test_environment
     env:
-      BACKEND_URL: http://localhost:4000
+      BACKEND_URL: ${{secrets.BACKEND_URL}}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
