@@ -19,7 +19,7 @@ const TraineePerfomanceDetails = () => {
                 {t('Grade')}
               </th>
               <th className="lg:py-3 md:py-2 text-left text-[#6B7280] dark:text-dark-text-fill">
-                {t('Comment')}
+                {t('Remarks')}
               </th>
               <th className="lg:py-3 md:py-2"></th>
             </tr>
@@ -31,9 +31,7 @@ const TraineePerfomanceDetails = () => {
               </td>
               <td className="py-3 ">1</td>
               <td className="lg:py-6 md:py-3 text-start lg:text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam
+                This is remarks on quantity perfomance of this trainee
               </td>
 
               <td className="py-3 px-8">
@@ -46,9 +44,7 @@ const TraineePerfomanceDetails = () => {
               <td className="py-10 px-10 text-left">{t('Quality')}</td>
               <td className="py-3 ">1</td>
               <td className="py-3  text-start text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam
+              This is remarks on quality perfomance of this trainee
               </td>
               <td className="py-3 ">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
@@ -62,9 +58,7 @@ const TraineePerfomanceDetails = () => {
               </td>
               <td className="py-3 ">1</td>
               <td className="py-3  text-start text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam
+              This is remarks on Professional skills perfomance of this trainee
               </td>
               <td className="py-3">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
@@ -100,9 +94,9 @@ const TraineePerfomanceDetails = () => {
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
-                <td className="py-10 px-10 text-left">{t('Comments')}</td>
+                <td className="py-10 px-10 text-left">{t('Remarks')}</td>
                 <td className="py-3  text-start text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                This is remarks on quantity perfomance of this trainee
                 </td>
               </tr>
             </tbody>
@@ -129,9 +123,9 @@ const TraineePerfomanceDetails = () => {
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
-                <td className="py-10 px-10 text-left">{t('Comments')}</td>
+                <td className="py-10 px-10 text-left">{t('Remarks')}</td>
                 <td className="py-3  text-start text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                This is remarks on quality perfomance of this trainee
                 </td>
               </tr>
             </tbody>
@@ -158,9 +152,9 @@ const TraineePerfomanceDetails = () => {
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill ">
-                <td className="py-10 px-10 text-left">{t('Comments')}</td>
+                <td className="py-10 px-10 text-left">{t('Remarks')}</td>
                 <td className="py-3  text-start text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                This is remarks on Professional skills perfomance of this trainee
                 </td>
               </tr>
             </tbody>
