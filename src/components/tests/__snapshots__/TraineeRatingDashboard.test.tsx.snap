@@ -1,5 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+<<<<<<< HEAD
 exports[`<TraineeRatingDashboard /> Renders TraineeRatingDashboard 1`] = `
 Array [
   <div
@@ -826,3 +827,6 @@ Array [
   </div>,
 ]
 `;
+=======
+exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `null`;
+>>>>>>> 0892d7e94fc378817a4400024857ca780c02174c
