@@ -3,7 +3,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { IoIosArrowBack } from 'react-icons/io';
-import { Icon } from '@iconify/react';
 
 function TraineeComments() {
   const { t } = useTranslation();
@@ -18,12 +17,23 @@ function TraineeComments() {
               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, sit dicta.
                 Temporibus minus totam cumque itaque doloribus ipsum placeat porro.</p>
             </div>
+            <div className='ml-9 text-primary'>
+              <h3>
+                1/1/2022
+              </h3>
+            </div>
           </div>
 
           <div className="w-2/3 flex flex-col border border-gray-400 mb-12 float-right rounded-tl-lg rounded-br-lg">
             <div className="m-8">
               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus, sit dicta.
                 Temporibus minus totam cumque itaque doloribus ipsum placeat porro.</p>
+            </div>
+
+            <div className="ml-9 text-primary">
+              <h3>
+                1/1/2022
+              </h3>
             </div>
           </div>
 
@@ -44,9 +54,9 @@ function TraineeComments() {
               <div className="flex flex-row">
                 
               </div>
-              <div><button >
-                <Icon icon="octicon:paper-airplane-16" color="#9297a3" />
-                </button>
+              <div><button
+              className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 rounded-tl-lg rounded-br-lg md:mt-3 text-white font-semibold cursor-pointer"
+            >Send</button>
               </div>
             </div>
           </div>
