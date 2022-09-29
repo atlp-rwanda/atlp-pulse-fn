@@ -31,7 +31,7 @@ const TraineePerfomanceDetails = () => {
               </td>
               <td className="py-3 ">1</td>
               <td className="lg:py-6 md:py-3 text-start lg:text-sm">
-                This is remarks on quantity perfomance of this trainee
+                The first remarks for quantity performance of the trainee
               </td>
 
               <td className="py-3 px-8">
@@ -44,7 +44,7 @@ const TraineePerfomanceDetails = () => {
               <td className="py-10 px-10 text-left">{t('Quality')}</td>
               <td className="py-3 ">1</td>
               <td className="py-3  text-start text-sm">
-              This is remarks on quality perfomance of this trainee
+              The second remarks for quality performance of the trainee
               </td>
               <td className="py-3 ">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
@@ -58,7 +58,7 @@ const TraineePerfomanceDetails = () => {
               </td>
               <td className="py-3 ">1</td>
               <td className="py-3  text-start text-sm">
-              This is remarks on Professional skills perfomance of this trainee
+              The third remarks for professional skills performance of the trainee
               </td>
               <td className="py-3">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
@@ -94,9 +94,9 @@ const TraineePerfomanceDetails = () => {
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
-                <td className="py-10 px-10 text-left">{t('Remarks')}</td>
+                <td className="py-10 px-10 text-left">{t('Comments')}</td>
                 <td className="py-3  text-start text-sm">
-                This is remarks on quantity perfomance of this trainee
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 </td>
               </tr>
             </tbody>
@@ -123,9 +123,9 @@ const TraineePerfomanceDetails = () => {
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
-                <td className="py-10 px-10 text-left">{t('Remarks')}</td>
+                <td className="py-10 px-10 text-left">{t('Comments')}</td>
                 <td className="py-3  text-start text-sm">
-                This is remarks on quality perfomance of this trainee
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 </td>
               </tr>
             </tbody>
@@ -152,9 +152,9 @@ const TraineePerfomanceDetails = () => {
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill ">
-                <td className="py-10 px-10 text-left">{t('Remarks')}</td>
+                <td className="py-10 px-10 text-left">{t('Comments')}</td>
                 <td className="py-3  text-start text-sm">
-                This is remarks on Professional skills perfomance of this trainee
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 </td>
               </tr>
             </tbody>

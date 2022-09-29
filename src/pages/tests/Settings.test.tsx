@@ -5,9 +5,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
-
+import renderer from 'react-test-renderer';
 import Settings from '../Settings';
+<<<<<<< HEAD
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
+=======
+import { MemoryRouter } from 'react-router';
+>>>>>>> 0892d7e94fc378817a4400024857ca780c02174c
 
 describe('Settings page tests', () => {
   it('changes value after selecting another theme', () => {
@@ -39,9 +43,13 @@ describe('Settings page tests', () => {
     const elem = renderer
       .create(
         <MemoryRouter initialEntries={['/dashboard/settings']}>
+<<<<<<< HEAD
           <ApolloProvider>
             <Settings />
           </ApolloProvider>
+=======
+          <Settings />
+>>>>>>> 0892d7e94fc378817a4400024857ca780c02174c
         </MemoryRouter>,
       )
       .toJSON();

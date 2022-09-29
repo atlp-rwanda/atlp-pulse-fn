@@ -4,7 +4,15 @@ import renderer from 'react-test-renderer';
 
 import TraineeRatingDashboard from '../../pages/TraineeRatingDashboard';
 
-describe('<TraineeRatingDashboard />', () => {
+jest.mock('../../pages/TraineeRatingDashboard');
+
+describe('TraineeRatingDashboard Tests', () => {
+  jest.mock('react-dom', () => ({
+    ...jest.requireActual('react-dom'),
+    // @ts-ignore
+    createPortal: (node) => node,
+  }));
+
   it('Renders TraineeRatingDashboard', () => {
     const elem = renderer
       .create(

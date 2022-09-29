@@ -1,18 +1,37 @@
 import { gql } from '@apollo/client';
 
 const LOGIN_MUTATION = gql`
-  mutation LoginUser($loginInput: LoginInput) {
+  mutation Mutation($loginInput: LoginInput) {
     loginUser(loginInput: $loginInput) {
       token
       user {
         id
         role
         email
+        password
         profile {
           id
           firstName
           lastName
-          name
+          user {
+            id
+            role
+            email
+            password
+            profile {
+              id
+              firstName
+              lastName
+              name
+              address
+              city
+              country
+              phoneNumber
+              biography
+              avatar
+              coverImage
+            }
+          }
         }
       }
     }
