@@ -39,7 +39,7 @@ function Orglogin() {
   };
   return (
     <div className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans">
-      <div className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14">
+      <div className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none dark:shadow-2xl md:rounded-xl sm:rounded-none">
         <div className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill ">
           {t('Sign in to your Organization')}
         </div>
