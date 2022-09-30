@@ -1,11 +1,47 @@
 /* eslint-disable */
 
 import { useTranslation } from 'react-i18next';
-import React from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import Button from './Buttons';
+import { toast } from 'react-toastify';
+import { Transition, Dialog } from '@headlessui/react';
 
 const TraineePerfomanceDetails = () => {
   const { t } = useTranslation();
+const [nav, setNav ] = useState();
+
+
+let [isOpen, setIsOpen] = useState(false);
+const [showActions, setShowActions] = useState(false);
+const [toggle, setToggle] =useState(false);
+
+
+
+
+const closeModel = () => {
+  setIsOpen(false);
+  setShowActions(false);
+};
+
+const openModal = () => {
+  setIsOpen(true);
+};
+
+const handleClick = () => setNav(nav)
+  const handleToggle = () => {
+    setToggle(!toggle)
+
+}
+
+const handleSubmit = (e: any) => {
+  e.preventDefault();
+  handleToggle();
+  closeModel();
+}
+
+
+
+
   return (
     <div>
       <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">
@@ -35,7 +71,9 @@ const TraineePerfomanceDetails = () => {
               </td>
 
               <td className="py-3 px-8">
-                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm"
+                onClick={openModal}
+                >
                   {t('Reply')}
                 </Button>
               </td>
@@ -47,7 +85,9 @@ const TraineePerfomanceDetails = () => {
               The second remarks for quality performance of the trainee
               </td>
               <td className="py-3 ">
-                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm"
+                onClick={openModal}
+                >
                   {t('Reply')}
                 </Button>
               </td>
@@ -61,7 +101,9 @@ const TraineePerfomanceDetails = () => {
               The third remarks for professional skills performance of the trainee
               </td>
               <td className="py-3">
-                <Button variant="primary" size="sm" style="px-4 py-0 text-sm">
+                <Button variant="primary" size="sm" style="px-4 py-0 text-sm"
+                onClick={openModal}
+                >
                   {t('Reply')}
                 </Button>
               </td>
@@ -69,6 +111,91 @@ const TraineePerfomanceDetails = () => {
           </tbody>
         </table>
       </div>
+      {/* This is my modal */}
+      <Transition
+        appear
+        show={isOpen}
+        as={Fragment}
+        data-testid="modalTransistion"
+      >
+        <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={closeModel}
+      >
+      <Transition.Child
+      as={Fragment}
+      enter="ease-out duration-300"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="ease-in duration-200"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+     >
+    <div className="fixed inset-0 bg-black bg-opacity-50" /> 
+      </Transition.Child>
+      <div className="fixed inset-0 overflow-y-auto">
+      <div className="flex min-h-full  items-center justify-center p-4 text-center">
+      <Transition.Child
+        as={Fragment}
+        enter="ease-out duration-300"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="ease-in duration-200"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
+      >
+      <Dialog.Panel className=" bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[65%] lg:ml-90 mb-10 mt-10">
+      <form onSubmit={handleSubmit}>
+   <Dialog.Title
+       as="h3"
+       className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"
+     >
+      {t('Reply on Quantity Remarks')}
+     </Dialog.Title>
+     <div className="mt-4 md:mt-8">
+     <div className="w-2/3 flex flex-col border border-gray-200 mb-4 float-left rounded-tr-lg rounded-bl-lg">
+            <div className="m-8">
+              <p>This is the first  remark testing, You may reply on it once there is any misunderstood</p>
+            </div>
+            <div className='ml-9 text-primary '>
+              <h3 className='float-left'>
+                30/09/2022
+              </h3>
+            </div>
+          </div>
+     <div className="w-full flex flex-col border border-gray-400 rounded-md">
+            <div className='m-4'>
+            <div className=" ">
+                <input
+                  className="w-full bg-inherit px-2 outline-0"
+                  type="text"
+                  placeholder="Type a reply ..."
+                />
+                <button
+              className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 rounded-tl-lg rounded-br-lg md:mt-3 text-white font-semibold cursor-pointer float-right"
+            >Send</button>
+            </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-dark-bg">
+            <button
+              onClick={closeModel}
+              className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 md:mt-3 rounded-md text-white font-semibold cursor-pointer"
+            >
+              {t('Close')}
+            </button>
+          </div>
+      </div>
+      </form>
+      </Dialog.Panel>
+        </Transition.Child> 
+        </div>
+        </div>
+      </Dialog>
+      </Transition>
+      {/* The end of my modal */}
       <div className="sm:flex sm:flex-col md:hidden justify-center items-center bg-light-bg dark:bg-dark-frame-bg dark:text-white  text-black">
         <div className="flex flex-col justify-center items-start w-full py-4 px-4 ml-4 mt-4">
           <h2 className="font-semibold mt-12 "> {t('Sprint 1')}</h2>
@@ -101,7 +228,9 @@ const TraineePerfomanceDetails = () => {
               </tr>
             </tbody>
           </table>
-          <button className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
+          <button className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
+          onClick={openModal}
+          >
             {t('Reply')}
           </button>
         </div>
