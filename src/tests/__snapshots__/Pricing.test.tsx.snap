@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Pricing /> Renders Pricing 1`] = `
+<div
+  className="flex items-center justify-center h-screen bg-light-bg dark:bg-dark-frame-bg md:-mt-16 md:-mb-44"
+>
+  <div
+    className="dark:bg-dark-bg bg-gray-100 rounded-lg shadow-lg p-5 md:p-20 mx-2"
+  >
+    <div
+      className="text-center"
+    >
+      <h2
+        className="text-4xl tracking-tight leading-10 font-extrabold text-light-text dark:text-dark-text-fill sm:text-5xl sm:leading-none md:text-6xl"
+      >
+        Pricing page
+      </h2>
+      <h3
+        className="text-xl text-light-text dark:text-dark-text-fill md:text-3xl mt-10"
+      >
+        Coming Soon
+      </h3>
+      <p
+        className="text-md md:text-xl mt-10 text-light-text dark:text-dark-text-fill"
+      >
+        Something new is coming
+      </p>
+    </div>
+  </div>
+</div>
+`;

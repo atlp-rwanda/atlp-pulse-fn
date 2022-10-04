@@ -1,0 +1,828 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
+Array [
+  <div
+    className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12"
+        >
+          Update Trainee
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary  bg-dark-tertiary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                name="name"
+                placeholder="name"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="email"
+                placeholder="email"
+                type="email"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="cohort"
+                placeholder="cohort"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="program"
+                placeholder="program"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
+              data-testid="removeModel"
+              onClick={[Function]}
+            >
+              cancel
+            </button>
+            <button
+              className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
+            >
+              save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12"
+        >
+          Delete Trainee
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div>
+            <h2
+              className="text-base dark:text-white m-4"
+            >
+              Are you sure you want to delete this person
+               ?
+            </h2>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
+              data-testid="removeDeleteModel"
+              onClick={[Function]}
+            >
+              cancel
+            </button>
+            <button
+              className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
+            >
+              supprimer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg"
+    data-testid="close"
+    onClick={[Function]}
+  >
+    <div
+      className="flex flex-col h-screen bg-light-bg"
+    >
+      <div
+        className="flex flex-row"
+      >
+        <div
+          className="hidden lg:flex flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2"
+        >
+          <div
+            className="list-none pr-8"
+          >
+            <li
+              className="mb-4 hover:text-primary transition-all group-hover:transition-all"
+            >
+              <a
+                className="flex flex-row dark:text-dark-text-fill"
+                href="/dashboard/"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 mr-2 "
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"
+                  />
+                  <path
+                    d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
+                  />
+                </svg>
+                <span
+                  className="text-base "
+                >
+                  Dashboard
+                </span>
+              </a>
+            </li>
+            <li
+              className="mb-4 hover:text-primary transition-all group-hover:transition-all"
+            >
+              <a
+                className="flex flex-row dark:text-dark-text-fill"
+                href="/dashboard/notifications"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+                  />
+                </svg>
+                <span
+                  className="text-base "
+                >
+                  Notifications
+                </span>
+              </a>
+            </li>
+            <li
+              className="mb-4 hover:text-primary transition-all group-hover:transition-all"
+            >
+              <a
+                className="flex flex-row dark:text-dark-text-fill"
+                href="/dashboard/calendar"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+                <span
+                  className="text-base "
+                >
+                  Calendar
+                </span>
+              </a>
+            </li>
+            <li
+              className="mb-4 hover:text-primary transition-all group-hover:transition-all"
+            >
+              <a
+                className="flex flex-row dark:text-dark-text-fill"
+                href="/dashboard/docs"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 mr-2 "
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                  />
+                </svg>
+                <span
+                  className="text-base "
+                >
+                  Docs
+                </span>
+              </a>
+            </li>
+            <li
+              className="mb-4 hover:text-primary transition-all group-hover:transition-all"
+            >
+              <a
+                className="flex flex-row dark:text-dark-text-fill"
+                href="/dashboard/settings"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 mr-2 "
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span
+                  className="text-base "
+                >
+                  Settings
+                </span>
+              </a>
+            </li>
+            <li
+              className="mb-4 hover:text-primary transition-all group-hover:transition-all"
+            >
+              <a
+                className="flex flex-row dark:text-dark-text-fill"
+                href="/dashboard/support"
+                onClick={[Function]}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-5 mr-2 "
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    fillRule="evenodd"
+                  />
+                </svg>
+                <span
+                  className="text-base "
+                >
+                  Help
+                </span>
+              </a>
+            </li>
+          </div>
+          <div
+            className="flex flex-row ml-10 mt-auto list-none"
+          >
+            <li
+              className="px-2"
+            >
+              <a
+                aria-current="page"
+                className="active"
+                href="/#link"
+                onClick={[Function]}
+              >
+                <div
+                  className="relative flex flex-col items-center group"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 text-red-700 dark:text-red-600 hover:text-red-900"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clipRule="evenodd"
+                      d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                  <div
+                    className="absolute bottom-0 hidden flex-col items-center mb-6 group-hover:flex"
+                  >
+                    <span
+                      className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-gray-600 shadow-lg rounded-md"
+                    >
+                      Logout
+                    </span>
+                    <div
+                      className="w-3 h-3 -mt-2 rotate-45 bg-gray-600"
+                    />
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li
+              className="px-2"
+            >
+              <a
+                className="flex flex-row dark:text-dark-text-fill"
+                href="/dashboard/settings"
+                onClick={[Function]}
+              >
+                <div
+                  className="relative flex flex-col items-center group"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 hover:text-primary "
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <div
+                    className="absolute bottom-0 hidden flex-col items-center mb-6 group-hover:flex"
+                  >
+                    <span
+                      className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-gray-600 shadow-lg rounded-md"
+                    >
+                      Settings
+                    </span>
+                    <div
+                      className="w-3 h-3 -mt-2 rotate-45 bg-gray-600"
+                    />
+                  </div>
+                </div>
+              </a>
+            </li>
+          </div>
+        </div>
+        <div
+          className="w-full"
+        >
+          <div>
+            <div
+              className="flex flex-col h-screen bg-light-bg"
+            >
+              <div
+                className="px-3 md:px-8 mt-20"
+              >
+                <div
+                  className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
+                >
+                  <div
+                    className=" flex items-center justify-between pb-6"
+                  >
+                    <div>
+                      <h2
+                        className="text-gray-800 dark:text-white font-semibold text-xl"
+                      >
+                        Performance score
+                      </h2>
+                      <input
+                        className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+                        defaultValue=""
+                        onChange={[Function]}
+                        placeholder="Filter by cohort, program, and rating"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "overflowX": "auto",
+                      }
+                    }
+                  >
+                    <table
+                      className="min-w-full leading-normal"
+                      role="table"
+                    >
+                      <thead>
+                        <tr
+                          role="row"
+                        >
+                          <th
+                            className=" thead"
+                            colSpan={1}
+                            onClick={[Function]}
+                            role="columnheader"
+                            style={
+                              Object {
+                                "cursor": "pointer",
+                              }
+                            }
+                            title="Toggle SortBy"
+                          >
+                            Name
+                          </th>
+                          <th
+                            className=" thead"
+                            colSpan={1}
+                            onClick={[Function]}
+                            role="columnheader"
+                            style={
+                              Object {
+                                "cursor": "pointer",
+                              }
+                            }
+                            title="Toggle SortBy"
+                          >
+                            Sprint
+                          </th>
+                          <th
+                            className=" thead"
+                            colSpan={1}
+                            onClick={[Function]}
+                            role="columnheader"
+                            style={
+                              Object {
+                                "cursor": "pointer",
+                              }
+                            }
+                            title="Toggle SortBy"
+                          >
+                            Quantity
+                          </th>
+                          <th
+                            className=" thead"
+                            colSpan={1}
+                            onClick={[Function]}
+                            role="columnheader"
+                            style={
+                              Object {
+                                "cursor": "pointer",
+                              }
+                            }
+                            title="Toggle SortBy"
+                          >
+                            Quality
+                          </th>
+                          <th
+                            className=" thead"
+                            colSpan={1}
+                            onClick={[Function]}
+                            role="columnheader"
+                            style={
+                              Object {
+                                "cursor": "pointer",
+                              }
+                            }
+                            title="Toggle SortBy"
+                          >
+                            Professional skills
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        role="rowgroup"
+                      >
+                        <tr
+                          className=" bg-white dark:bg-dark-bg} "
+                          role="row"
+                        >
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            Keza Alice
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            1
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            2
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            0
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            2
+                          </td>
+                        </tr>
+                        <tr
+                          className=" bg-light-bg dark:bg-dark-tertiary} "
+                          role="row"
+                        >
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            Keza Alice
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            1
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            2
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            0
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            2
+                          </td>
+                        </tr>
+                        <tr
+                          className=" bg-white dark:bg-dark-bg} "
+                          role="row"
+                        >
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            Keza Alice
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            1
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            2
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            0
+                          </td>
+                          <td
+                            className="data-cell"
+                            role="cell"
+                          >
+                            2
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <table
+                        className="w-full mt-2"
+                      >
+                        <tfoot
+                          className="w-full py-2"
+                        >
+                          <tr
+                            className="w-full py-2"
+                          >
+                            <td
+                              colSpan={5}
+                            >
+                              <div
+                                className="w-full justify-center flex mx-auto flex-row items-center overflow-x-scroll"
+                              >
+                                <button
+                                  className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                                  disabled={true}
+                                  onClick={[Function]}
+                                  type="button"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className="w-5"
+                                    fill="none"
+                                    fontSize="sm"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    />
+                                  </svg>
+                                </button>
+                                 
+                                <button
+                                  className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                  type="button"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className="w-5"
+                                    fill="none"
+                                    fontSize="sm"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    />
+                                  </svg>
+                                </button>
+                                 
+                                <div
+                                  className="flex flex-row justify-center w-full"
+                                >
+                                  <span
+                                    className="inline-block mx-2"
+                                  >
+                                    Page
+                                     
+                                    <strong>
+                                      1
+                                       
+                                      of
+                                       4
+                                    </strong>
+                                     
+                                  </span>
+                                  <span
+                                    className="inline-block mx-2"
+                                  >
+                                    | Go to page:
+                                     
+                                    <input
+                                      className=" pl-2 outline-none border rounded-md appearance-none border-primary dark:bg-primary"
+                                      defaultValue={1}
+                                      onChange={[Function]}
+                                      style={
+                                        Object {
+                                          "width": "50px",
+                                        }
+                                      }
+                                      type="number"
+                                    />
+                                  </span>
+                                   
+                                  <select
+                                    className="px-1/2 md:px-2 font-raleway rounded-md border border-primary dark:bg-primary"
+                                    onChange={[Function]}
+                                    value={3}
+                                  >
+                                    <option
+                                      value={3}
+                                    >
+                                      Show
+                                       
+                                      3
+                                    </option>
+                                    <option
+                                      value={5}
+                                    >
+                                      Show
+                                       
+                                      5
+                                    </option>
+                                    <option
+                                      value={10}
+                                    >
+                                      Show
+                                       
+                                      10
+                                    </option>
+                                    <option
+                                      value={25}
+                                    >
+                                      Show
+                                       
+                                      25
+                                    </option>
+                                    <option
+                                      value={50}
+                                    >
+                                      Show
+                                       
+                                      50
+                                    </option>
+                                    <option
+                                      value={100}
+                                    >
+                                      Show
+                                       
+                                      100
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
