@@ -3,7 +3,6 @@ name: Publish production app image to Docker hub
 on:
   push:
   # Triggered on pull request against the main branch
-  pull_request:
     branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
