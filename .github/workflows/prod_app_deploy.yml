@@ -26,9 +26,14 @@ jobs:
         - run: npm install
         - run: npm run build    
         - name: Build and publish Docker Image
+          uses: docker/build-push-action@v3
+          with:
+            context: .
+            platforms: linux/amd64,linux/arm64
+            tags: docker.io/devpulse/atlp-pulse-fn
           uses: mr-smithers-excellent/docker-build-push@v5
           with:
-            image: procech20/atlp-pulse-fn
+            image: devpulse/atlp-pulse-fn
             registry: docker.io
             username: ${{ secrets.DOCKER_HUB_USERNAME }}
             password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
