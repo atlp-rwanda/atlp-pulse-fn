@@ -11,6 +11,7 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { toast } from 'react-toastify';
 
+const organizationToken = localStorage.getItem('orgToken');
 const UpdatedRatingDashboard = () => {
   useDocumentTitle('Updated Ratings');
   const { t } = useTranslation();
@@ -24,8 +25,13 @@ const UpdatedRatingDashboard = () => {
     sprint: ''
   });
   const GET_USERS = gql`
+<<<<<<< HEAD
   query Query {
     fetchRatingsForAdmin {
+=======
+  query Query($orgToken: String) {
+    fetchRatingsForAdmin(orgToken: $orgToken) {
+>>>>>>> 8396879171a87dbd0d120ad1cdf5690496019848
       sprint
       quantity
       quantityRemark
@@ -108,7 +114,15 @@ const UpdatedRatingDashboard = () => {
     },
   ];
 
+<<<<<<< HEAD
   const [getRatings] = useLazyQuery(GET_USERS, {});
+=======
+  const [getRatings] = useLazyQuery(GET_USERS, {
+    variables: {
+      orgToken: organizationToken,
+    },
+  });
+>>>>>>> 8396879171a87dbd0d120ad1cdf5690496019848
   const [approveRating] = useMutation(APPROVE_RATING, {
     variables: {
       user: rows.id,

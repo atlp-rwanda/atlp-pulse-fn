@@ -48,14 +48,10 @@ exports[`Detailed Peformance page Renders a detailed performance Page  1`] = `
             </td>
             <td
               className="py-3 "
-            >
-              1
-            </td>
+            />
             <td
               className="lg:py-6 md:py-3 text-start lg:text-sm"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-            </td>
+            />
             <td
               className="py-3 px-8"
             >
@@ -78,14 +74,10 @@ exports[`Detailed Peformance page Renders a detailed performance Page  1`] = `
             </td>
             <td
               className="py-3 "
-            >
-              1
-            </td>
+            />
             <td
               className="py-3  text-start text-sm"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-            </td>
+            />
             <td
               className="py-3 "
             >
@@ -108,14 +100,10 @@ exports[`Detailed Peformance page Renders a detailed performance Page  1`] = `
             </td>
             <td
               className="py-3 "
-            >
-              1
-            </td>
+            />
             <td
               className="py-3  text-start text-sm"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-            </td>
+            />
             <td
               className="py-3"
             >
@@ -306,9 +294,7 @@ exports[`Detailed Peformance page Renders a detailed performance Page  1`] = `
               </td>
               <td
                 className=" "
-              >
-                1
-              </td>
+              />
             </tr>
             <tr
               className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill "

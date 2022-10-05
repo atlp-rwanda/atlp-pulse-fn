@@ -3,7 +3,6 @@ import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-
 import AdminTraineeDashboard from '../AdminTraineeDashboard';
 
 describe('AdminTraineeDashboard Tests', () => {

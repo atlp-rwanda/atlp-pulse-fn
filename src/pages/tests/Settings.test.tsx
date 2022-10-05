@@ -5,7 +5,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
+<<<<<<< HEAD
 import renderer from 'react-test-renderer';
+=======
+>>>>>>> 8396879171a87dbd0d120ad1cdf5690496019848
 import Settings from '../Settings';
 <<<<<<< HEAD
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';

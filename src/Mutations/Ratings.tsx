@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_RATINGS = gql`
-query FetchTrainees {
-  fetchRatings {
+query FetchRatings($orgToken: String) {
+  fetchRatings(orgToken: $orgToken) {
     user {
       id
       email
@@ -14,13 +14,19 @@ query FetchTrainees {
     qualityRemark
     professional_Skills
     professionalRemark
+    coordinator
   }
 }
 `;
 
 export const ADD_RATING = gql`
+<<<<<<< HEAD
 mutation Mutation($user: String!, $sprint: Int!, $quantity: String!, $quality: String!, $professionalSkills: String!, $quantityRemark: String, $qualityRemark: String, $professionalRemark: String) {
   addRatings(user: $user, sprint: $sprint, quantity: $quantity, quality: $quality, professional_Skills: $professionalSkills, quantityRemark: $quantityRemark, qualityRemark: $qualityRemark, professionalRemark: $professionalRemark) {
+=======
+mutation Mutation($user: String!, $sprint: Int!, $quantity: String!, $quality: String!, $professionalSkills: String!, $orgToken: String!, $qualityRemark: String, $professionalRemark: String, $quantityRemark: String) {
+  addRatings(user: $user, sprint: $sprint, quantity: $quantity, quality: $quality, professional_Skills: $professionalSkills, orgToken: $orgToken, qualityRemark: $qualityRemark, professionalRemark: $professionalRemark, quantityRemark: $quantityRemark) {
+>>>>>>> 8396879171a87dbd0d120ad1cdf5690496019848
     user
     sprint
     quantity
@@ -34,37 +40,96 @@ mutation Mutation($user: String!, $sprint: Int!, $quantity: String!, $quality: S
 `;
 
 export const UPDATE_RATING = gql`
-mutation Mutation($user: String!, $sprint: Int!, $quantity: [String], $quantityRemark: [String], $quality: [String], $qualityRemark: [String], $professionalSkills: [String], $professionalRemark: [String]) {
-  updateRating(user: $user, sprint: $sprint, quantity: $quantity, quantityRemark: $quantityRemark, quality: $quality, qualityRemark: $qualityRemark, professional_Skills: $professionalSkills, professionalRemark: $professionalRemark) {
-    user
-    sprint
-    quantity
-    quantityRemark
-    quality
-    qualityRemark
-    professional_Skills
-    professionalRemark
+  mutation Mutation(
+    $user: String!
+    $sprint: Int!
+    $quantity: [String]
+    $quantityRemark: [String]
+    $quality: [String]
+    $qualityRemark: [String]
+    $professionalSkills: [String]
+    $professionalRemark: [String]
+    $orgToken: String!
+  ) {
+    updateRating(
+      user: $user
+      sprint: $sprint
+      quantity: $quantity
+      quantityRemark: $quantityRemark
+      quality: $quality
+      qualityRemark: $qualityRemark
+      professional_Skills: $professionalSkills
+      professionalRemark: $professionalRemark
+      orgToken: $orgToken
+    ) {
+      user
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+    }
   }
-}
 `;
 
 export const APPROVE_RATING = gql`
-mutation Mutation($user: String!, $sprint: Int!) {
-  approveRating(user: $user, sprint: $sprint) {
-    user
-    sprint
-    quantity
-    quantityRemark
-    qualityRemark
-    professionalRemark
-    professional_Skills
-    approved
-    quality
+  mutation Mutation($user: String!, $sprint: Int!) {
+    approveRating(user: $user, sprint: $sprint) {
+      user
+      sprint
+      quantity
+      quantityRemark
+      qualityRemark
+      professionalRemark
+      professional_Skills
+      approved
+      quality
+    }
   }
-}
 `;
 
 export const REJECT_RATING = gql`
-mutation Mutation($user: String!, $sprint: Int!) {
-  rejectRating(user: $user, sprint: $sprint)
-}`;
+  mutation Mutation($user: String!, $sprint: Int!) {
+    rejectRating(user: $user, sprint: $sprint)
+  }
+`;
+
+export const TRAINEE_RATING = gql`
+  query Query {
+    fetchRatingsTrainee {
+      user {
+        id
+      }
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+    }
+  }
+`;
+
+export const GET_USERS = gql`
+  query GetAllUsers($cohortName: ID!) {
+    fetchCohortsCoordinator(cohortName: $cohortName) {
+      name
+      phase
+      coordinator {
+        id
+      }
+      members {
+        id
+        role
+        email
+      }
+      program {
+        name
+      }
+      id
+    }
+  }
+`;

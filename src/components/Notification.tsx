@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
-import { GET_REPLIES } from '../Mutations/replyMutation';
 import notificationDummy from '../dummyData/notificationDummy';
 
 function markRead(
