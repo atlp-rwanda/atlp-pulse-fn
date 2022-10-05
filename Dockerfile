@@ -1,8 +1,11 @@
 # Using node:16-alpine base image
-FROM node:16-alpine 
+FROM node:16-alpine AS builder
 
 # Set the default work directory
-WORKDIR /usr/src/app
+WORKDIR /app
+
+# Add the backend application in environment variables
+ENV BACKEND_URL=https://devpulse-backend.devpulse.co
 
 # copy package.json to the working directory for packages installation
 COPY package*.json ./
@@ -16,8 +19,10 @@ COPY . .
 # Build your project
 RUN npm run build
 
-# Expose the port of your application to bind with the host port
-EXPOSE 3000
+# Fetching the latest nginx image
+FROM nginx
 
-# run your app
-CMD ["node", "dist/index.js"]
+# Copying built assets from builder
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+CMD [ "nginx", "-g", "daemon off;" ]
