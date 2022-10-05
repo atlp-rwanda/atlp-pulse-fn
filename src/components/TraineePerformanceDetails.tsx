@@ -3,14 +3,38 @@
 import { useTranslation } from 'react-i18next';
 import React, {useState, Fragment, useEffect} from 'react';
 import Button from './Buttons';
+import { useNavigate } from 'react-router';
+import { IoIosArrowBack } from 'react-icons/io';
+import { ADD_REPLY, GET_REPLIES, REMOVE_REPLY } from '../Mutations/replyMutation';
+import { phase, cohort, sprint, people as trainee } from '../dummyData/ratings';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Transition, Dialog } from '@headlessui/react';
-
+import { gql } from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
 const TraineePerfomanceDetails = () => {
-  const { t } = useTranslation();
+
+
+
+const navigate = useNavigate();
+
+const [replyData, setReplyData] = useState({
+  userEmail: '', 
+  body: '',
+})
+const [rows, setRows] =useState({
+  user: '',
+  body: '',
+})
+
+
+const [trainee, setTrainee] = useState<any>([]);
+const [selectedTrainee, setSelectedTrainee] = useState(trainee[0]);
+
+
+
+const { t } = useTranslation();
 const [nav, setNav ] = useState();
-
-
 let [isOpen, setIsOpen] = useState(false);
 const [showActions, setShowActions] = useState(false);
 const [toggle, setToggle] =useState(false);
@@ -35,10 +59,24 @@ const handleClick = () => setNav(nav)
 
 const handleSubmit = (e: any) => {
   e.preventDefault();
+  createReply();
   handleToggle();
   closeModel();
 }
 
+const [createReply] = useMutation(ADD_REPLY, {
+variables: {
+  user: replyData.userEmail,
+  body: replyData.body,
+},
+onError: (err) => {
+  toast.error('Unable to procced')
+},
+onCompleted: ({ createReply }) => {
+  handleToggle()
+  toast.success('Procced successfully')
+}
+})
 
 
 
@@ -103,6 +141,7 @@ const handleSubmit = (e: any) => {
               <td className="py-3">
                 <Button variant="primary" size="sm" style="px-4 py-0 text-sm"
                 onClick={openModal}
+                
                 >
                   {t('Reply')}
                 </Button>
@@ -111,6 +150,7 @@ const handleSubmit = (e: any) => {
           </tbody>
         </table>
       </div>
+      
       {/* This is my modal */}
       <Transition
         appear
@@ -146,7 +186,7 @@ const handleSubmit = (e: any) => {
         leaveTo="opacity-0 scale-95"
       >
       <Dialog.Panel className=" bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[65%] lg:ml-90 mb-10 mt-10">
-      <form onSubmit={handleSubmit}>
+      <form>
    <Dialog.Title
        as="h3"
        className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"
@@ -168,12 +208,20 @@ const handleSubmit = (e: any) => {
             <div className='m-4'>
             <div className=" ">
                 <input
+                 value={rows.body}
+                 onChange={(e) =>
+                   setRows({
+                     ...rows,
+                     body: e.target.value,
+                   })
+                 }
                   className="w-full bg-inherit px-2 outline-0"
                   type="text"
                   placeholder="Type a reply ..."
                 />
                 <button
               className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 rounded-tl-lg rounded-br-lg md:mt-3 text-white font-semibold cursor-pointer float-right"
+              onClick={handleSubmit}
             >Send</button>
             </div>
             </div>
@@ -198,10 +246,7 @@ const handleSubmit = (e: any) => {
       {/* The end of my modal */}
       <div className="sm:flex sm:flex-col md:hidden justify-center items-center bg-light-bg dark:bg-dark-frame-bg dark:text-white  text-black">
         <div className="flex flex-col justify-center items-start w-full py-4 px-4 ml-4 mt-4">
-          <h2 className="font-semibold mt-12 "> {t('Sprint 1')}</h2>
-          <h3 className="font-medium text-left text-[#6B7280] dark:text-white ">
-            June 20, 2022 - June 24, 2022
-          </h3>
+          <h2 className="font-semibold mt-12 text-center text-[#6B7280]">Trainee Performance</h2>
         </div>
         <div className="flex flex-col justify-center items-center w-11/12 border shadow rounded-lg dark:border-dark-frame-bg bg-white  dark:bg-dark-bg pb-4 mt-4 pt-16">
           <table className=" rounded-lg w-7/12 h-[70%] overflow-hidden  md:shadow mt-[-40px]">
@@ -223,7 +268,7 @@ const handleSubmit = (e: any) => {
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
                 <td className="py-10 px-10 text-left">{t('Comments')}</td>
                 <td className="py-3  text-start text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                The first remarks for quantity performance of the trainee
                 </td>
               </tr>
             </tbody>
@@ -254,12 +299,12 @@ const handleSubmit = (e: any) => {
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
                 <td className="py-10 px-10 text-left">{t('Comments')}</td>
                 <td className="py-3  text-start text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                The second remarks for quality performance of the trainee
                 </td>
               </tr>
             </tbody>
           </table>
-          <button className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
+          <button className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm" onClick={openModal}>
             {t('Reply')}
           </button>
         </div>
@@ -283,12 +328,12 @@ const handleSubmit = (e: any) => {
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill ">
                 <td className="py-10 px-10 text-left">{t('Comments')}</td>
                 <td className="py-3  text-start text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                The third remarks for professional skills performance of the trainee
                 </td>
               </tr>
             </tbody>
           </table>
-          <button className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm">
+          <button className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm" onClick={openModal}>
             {t('Reply')}
           </button>
         </div>
