@@ -22,30 +22,25 @@ const UpdatedRatingDashboard = () => {
   const [rows, setRows] = useState({
     user: '',
     id: '',
-    sprint: ''
+    sprint: '',
   });
   const GET_USERS = gql`
-<<<<<<< HEAD
-  query Query {
-    fetchRatingsForAdmin {
-=======
-  query Query($orgToken: String) {
-    fetchRatingsForAdmin(orgToken: $orgToken) {
->>>>>>> 8396879171a87dbd0d120ad1cdf5690496019848
-      sprint
-      quantity
-      quantityRemark
-      quality
-      qualityRemark
-      professional_Skills
-      professionalRemark
-      user {
-        id
-        role
-        email
+    query Query($orgToken: String) {
+      fetchRatingsForAdmin(orgToken: $orgToken) {
+        sprint
+        quantity
+        quantityRemark
+        quality
+        qualityRemark
+        professional_Skills
+        professionalRemark
+        user {
+          id
+          role
+          email
+        }
       }
     }
-  }
   `;
 
   const handleToggle = () => {
@@ -86,7 +81,7 @@ const UpdatedRatingDashboard = () => {
                   ...rows,
                   user: row.original.user.email,
                   id: row.original.user.id,
-                  sprint: row.original.sprint
+                  sprint: row.original.sprint,
                 });
                 setApproveModel(!approveModel);
               }}
@@ -103,7 +98,7 @@ const UpdatedRatingDashboard = () => {
                   ...rows,
                   user: row.original.user.email,
                   id: row.original.user.id,
-                  sprint: row.original.sprint
+                  sprint: row.original.sprint,
                 });
                 setRejectModel(!rejectModel);
               }}
@@ -114,19 +109,15 @@ const UpdatedRatingDashboard = () => {
     },
   ];
 
-<<<<<<< HEAD
-  const [getRatings] = useLazyQuery(GET_USERS, {});
-=======
   const [getRatings] = useLazyQuery(GET_USERS, {
     variables: {
       orgToken: organizationToken,
     },
   });
->>>>>>> 8396879171a87dbd0d120ad1cdf5690496019848
   const [approveRating] = useMutation(APPROVE_RATING, {
     variables: {
       user: rows.id,
-      sprint: rows.sprint
+      sprint: rows.sprint,
     },
     onError: (err) => {
       toast.error('something went wrong');
@@ -141,7 +132,7 @@ const UpdatedRatingDashboard = () => {
   const [rejectRating] = useMutation(REJECT_RATING, {
     variables: {
       user: rows.id,
-      sprint: rows.sprint
+      sprint: rows.sprint,
     },
     onError: (err) => {
       toast.error('something went wrong');
@@ -158,7 +149,7 @@ const UpdatedRatingDashboard = () => {
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
         setRatings(data.fetchRatingsForAdmin);
-        handleToggle()
+        handleToggle();
       },
       onError: (error) => {
         toast.error(error?.message || 'Something went wrong');
@@ -185,7 +176,8 @@ const UpdatedRatingDashboard = () => {
             <form className=" py-3 px-8">
               <div>
                 <h2 className="text-base dark:text-white m-4">
-                  {t('Are you sure you want to approve this updated ratings ?')} ?
+                  {t('Are you sure you want to approve this updated ratings ?')}{' '}
+                  ?
                 </h2>
               </div>
               <div className="w-full flex justify-between">
@@ -270,10 +262,10 @@ const UpdatedRatingDashboard = () => {
                     <DataTable
                       data={data}
                       columns={columns}
-                      title={t("Performance Ratings")}
+                      title={t('Performance Ratings')}
                     />
                   ) : (
-                    <div className='text-center mt-7 text-lg uppercase'>
+                    <div className="text-center mt-7 text-lg uppercase">
                       <p> {t('No updated ratings found')}</p>
                     </div>
                   )}
