@@ -10,6 +10,7 @@ const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
 const Orglogin = React.lazy(() => import('../pages/Organization/Orglogin'));
 const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
 const Pricing = React.lazy(() => import('../pages/Pricing'));
+const Product = React.lazy(() => import('../pages/Comingsoon'));
 const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
@@ -39,6 +40,7 @@ function MainRoutes() {
             }
           />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/product" element={<Product />} />
           <Route path="/noredirect" element={<Noredirect />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="*" element={<Error />} />
