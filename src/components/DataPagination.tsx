@@ -16,6 +16,7 @@ function DataPagination({
   nextPage,
   pageIndex,
 }: any) {
+  /* istanbul ignore next */
   return (
     <div>
       {pageOptions.length >= 0 && (

@@ -8,11 +8,17 @@ import Error from './../pages/Error';
 import Skeleton from '../components/Skeleton';
 import UserRegister from '../pages/Organization/UserRegister';
 import Message from '../pages/Organization/Message';
+/* istanbul ignore next */
 const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
+/* istanbul ignore next */
 const Orglogin = React.lazy(() => import('../pages/Organization/Orglogin'));
+/* istanbul ignore next */
 const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
+/* istanbul ignore next */
 const Pricing = React.lazy(() => import('../pages/Pricing'));
+/* istanbul ignore next */
 const Product = React.lazy(() => import('../pages/Comingsoon'));
+/* istanbul ignore next */
 const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';

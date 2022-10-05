@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* istanbul ignore next */
 import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,6 +27,7 @@ function Signup() {
   const [passwordShown, setPasswordShown] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const tooglePassword = () => {
+    /* istanbul ignore next */
     setPasswordShown(!passwordShown);
   };
   const {
@@ -48,6 +50,7 @@ function Signup() {
     },
 
     onError: (err) => {
+      /* istanbul ignore next */
       if (err.message === 'expired organization token') {
         toast.error('Your signup link has expired');
         navigate('/');
@@ -57,6 +60,7 @@ function Signup() {
     },
   });
   const [SignupUser] = useMutation(SIGN_UP_MUTATION, {
+    /* istanbul ignore next */
     onCompleted: (data) => {
       setTimeout(() => {
         setButtonLoading(false);
@@ -71,7 +75,7 @@ function Signup() {
       }, 1000);
     },
   });
-
+  /* istanbul ignore next */
   const onSubmit = async (userInput: any) => {
     setButtonLoading(true);
     setTimeout(async () => {
@@ -94,7 +98,7 @@ function Signup() {
       }
     }, 2000);
   };
-
+  /* istanbul ignore next */
   const customStyles = {
     option: (provided: any, state: any) => ({
       ...provided,

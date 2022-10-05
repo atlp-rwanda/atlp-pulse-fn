@@ -27,6 +27,7 @@ export default function OrgRegister() {
   }: any = useForm();
 
   const onSubmit = async (organizationInput: any) => {
+    /* istanbul ignore next */
     try {
       await addOrganization({
         variables: { organizationInput },

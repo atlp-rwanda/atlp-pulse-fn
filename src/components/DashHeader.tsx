@@ -19,6 +19,7 @@ function DashHeader() {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleShowNotification = () => setShowNotification(!showNotification);
+  /* istanbul ignore next */
   const handleShowProfileDropdown = () =>
     setShowprofileDropdown(!showProfileDropdown);
 

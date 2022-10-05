@@ -10,6 +10,7 @@ import { GET_PROFILE } from '../Mutations/User';
 import Square from '../Skeletons/Square';
 
 export function CountryComponent({ country }: any) {
+  /* istanbul ignore next */
   const userCountry: any = COUNTRIES.filter((c) => c.value === country)[0];
   return (
     <span
@@ -34,6 +35,7 @@ export default function Profile() {
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
   useEffect(() => {
     const fetchData = async () => {
+      /* istanbul ignore next */
       try {
         const { data } = await getProfile();
         setData(data);
