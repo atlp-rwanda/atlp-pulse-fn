@@ -727,7 +727,7 @@ Array [
                                 </button>
                                  
                                 <div
-                                  className="flex flex-row justify-center w-full"
+                                  className="flex flex-row justify-center w-full sm:text-[12px] items-center "
                                 >
                                   <span
                                     className="inline-block mx-2"
@@ -748,11 +748,14 @@ Array [
                                     | Go to page:
                                      
                                     <input
-                                      className=" pl-2 outline-none border rounded-md appearance-none border-primary dark:bg-primary"
+                                      className=" outline-none border rounded-md appearance-none border-primary dark:bg-primary pl-1"
                                       defaultValue={1}
                                       onChange={[Function]}
                                       style={
                                         Object {
+                                          "border": "solid 0.1rem #4aa5be",
+                                          "height": "30px",
+                                          "paddingLeft": "1.2rem",
                                           "width": "50px",
                                         }
                                       }
@@ -761,8 +764,14 @@ Array [
                                   </span>
                                    
                                   <select
-                                    className="px-1/2 md:px-2 font-raleway rounded-md border border-primary dark:bg-primary"
+                                    className="px-1/2 font-raleway rounded-md border border-primary dark:bg-primary"
                                     onChange={[Function]}
+                                    style={
+                                      Object {
+                                        "border": "solid 0.1rem #4aa5be",
+                                        "height": "30px",
+                                      }
+                                    }
                                     value={3}
                                   >
                                     <option
