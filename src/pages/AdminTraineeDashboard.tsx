@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../components/DataTable';
@@ -31,7 +31,7 @@ const AdminTraineeDashboard = () => {
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [removeTraineeModel, setRemoveTraineeModel] = useState(false);
   const [editTraineeModel, setEditTraineeModel] = useState(false);
-  const [inviteTraineeModel,setInviteTraineeModel] = useState(false);
+  const [inviteTraineeModel, setInviteTraineeModel] = useState(false);
   const [traineeData, setTraineeData] = useState<any[]>([]);
   const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
@@ -63,10 +63,10 @@ const AdminTraineeDashboard = () => {
     setEditTraineeModel(newState);
   };
 
-  const inviteModel = () =>{
+  const inviteModel = () => {
     let newState = !inviteTraineeModel;
     setInviteTraineeModel(newState);
-  }
+  };
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -239,16 +239,16 @@ const AdminTraineeDashboard = () => {
     },
   );
 
-  const [inviteUser] = useMutation (INVITE_USER_MUTATION,{
-    variables:{
-      email:inviteEmail,
-      orgToken:organizationToken
+  const [inviteUser] = useMutation(INVITE_USER_MUTATION, {
+    variables: {
+      email: inviteEmail,
+      orgToken: organizationToken,
     },
     onCompleted: (data) => {
       setTimeout(() => {
         setButtonLoading(false);
         toast.success(data.inviteUser);
-        inviteModel()
+        inviteModel();
       }, 1000);
     },
     onError: (err) => {
@@ -257,9 +257,8 @@ const AdminTraineeDashboard = () => {
         toast.error(err.message);
       }, 1000);
     },
-  })
+  });
   useEffect(() => {
-
     getUsers({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
@@ -309,10 +308,9 @@ const AdminTraineeDashboard = () => {
 
   return (
     <>
+      {/* =========================== Start::  InviteTraineeModel =============================== */}
 
-     {/* =========================== Start::  InviteTraineeModel =============================== */}
-
-     <div
+      <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           inviteTraineeModel === true ? 'block' : 'hidden'
         }`}
@@ -328,15 +326,13 @@ const AdminTraineeDashboard = () => {
             <form className=" py-3 px-8">
               <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
                 <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
-                  {t(
-                    'Fill in the email to invite a user to DevPulse.',
-                  )}
+                  {t('Fill in the email to invite a user to DevPulse.')}
                 </h3>
               </div>
 
               <div className="text-white input my-3 h-9 ">
                 <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
-                <input
+                  <input
                     value={inviteEmail}
                     onChange={(e) => {
                       setInviteEmail(e.target.value);
@@ -377,7 +373,6 @@ const AdminTraineeDashboard = () => {
         </div>
       </div>
       {/* =========================== End::  InviteTraineeModel =============================== */}
-
 
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
@@ -512,7 +507,7 @@ const AdminTraineeDashboard = () => {
       </div>
       {/* =========================== End::  RemoveTraineeModel =============================== */}
 
-      {/* =========================== Start::  RegisterTraineeModel =============================== */}
+      {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
@@ -599,7 +594,7 @@ const AdminTraineeDashboard = () => {
           </div>
         </div>
       </div>
-      {/* =========================== End::  RegisterTraineeModel =============================== */}
+      {/* =========================== End::  AddTraineeModel =============================== */}
 
       <div className="flex flex-col h-screen">
         <div className="flex flex-row">
@@ -619,21 +614,18 @@ const AdminTraineeDashboard = () => {
                       {t('add')} +{' '}
                     </Button>
 
-                    {user?.role === 'coordinator' || undefined
-                    ?
-                    ''
-                    :
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      data-testid="inviteModel"
-                      onClick={inviteModel}
-                    >
-                      {t('Invite')}
-                    </Button>
-                     }
-
-
+                    {user?.role === 'coordinator' || undefined ? (
+                      ''
+                    ) : (
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        data-testid="inviteModel"
+                        onClick={inviteModel}
+                      >
+                        {t('Invite')}
+                      </Button>
+                    )}
                   </div>
                 </div>
                 <div className="px-3 md:px-8">

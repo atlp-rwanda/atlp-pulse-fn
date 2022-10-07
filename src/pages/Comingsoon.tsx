@@ -12,8 +12,12 @@ export default function Comingsoon() {
           <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-light-text dark:text-dark-text-fill sm:text-5xl sm:leading-none md:text-6xl">
             {t('Productpage')}
           </h2>
-          <h3 className="text-xl text-light-text dark:text-dark-text-fill md:text-3xl mt-10">{t('comingsoon')}</h3>
-          <p className="text-md md:text-xl mt-10 text-light-text dark:text-dark-text-fill">{t('Somethingnewiscoming')}</p>
+          <h3 className="text-xl text-light-text dark:text-dark-text-fill md:text-3xl mt-10">
+            {t('comingsoon')}
+          </h3>
+          <p className="text-md md:text-xl mt-10 text-light-text dark:text-dark-text-fill">
+            {t('Somethingnewiscoming')}
+          </p>
         </div>
       </div>
     </div>

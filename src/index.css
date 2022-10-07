@@ -55,10 +55,10 @@
   flex-grow: 1;
 }
 
-input[type='number']::-webkit-inner-spin-button,
+/* input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
-}
+} */
 @layer components {
   .btn {
     @apply font-bold py-2 px-4 m-2 rounded-md;
@@ -128,22 +128,32 @@ input[type='number']::-webkit-outer-spin-button {
     width: 100%;
   }
   .my-react-select-container .my-react-select__control {
-    @apply border border-primary bg-white dark:border-primary pl-2  dark:bg-dark-frame-bg dark:text-white rounded outline-none font-sans text-xs w-full;
+    @apply border border-primary dark:border-primary pl-2 bg-white dark:bg-dark-bg dark:text-white rounded outline-none font-sans text-xs w-full;
   }
   .my-react-select-container .my-react-select__control--is-focused {
-    @apply shadow-none;
+    @apply shadow-none dark:bg-dark-bg;
   }
 
   .my-react-select-container .my-react-select__menu {
-    @apply bg-neutral-100 dark:bg-dark-tertiary dark:border-2 dark:border-primary;
+    @apply bg-neutral-100  dark:bg-dark-bg border-2 border-neutral-300 dark:border-primary;
   }
 
   .my-react-select-container .my-react-select__option {
-    @apply text-neutral-600 dark:text-neutral-200 bg-white hover:bg-neutral-200 dark:bg-dark-tertiary dark:hover:bg-neutral-800;
+    @apply text-neutral-600 dark:text-neutral-200 bg-neutral-100 hover:bg-neutral-200 dark:bg-dark-bg dark:hover:bg-neutral-800;
   }
 
   .my-react-select-container .my-react-select__indicator-separator {
-    @apply bg-neutral-400;
+    @apply bg-neutral-400 dark:bg-dark-bg;
+  }
+
+  input[type='date']::before {
+    content: attr(data-placeholder);
+    width: 100%;
+  }
+
+  input[type='date']:focus::before,
+  input[type='date']:valid::before {
+    display: none;
   }
 
   .my-react-select-container .my-react-select__input-container,
@@ -153,6 +163,7 @@ input[type='number']::-webkit-outer-spin-button {
   }
   .my-react-select-container .my-react-select__placeholder {
     @apply text-[#9ca3af] dark:text-[#9ca3af];
+    @apply bg-white dark:bg-dark-bg;
   }
 }
 input::-webkit-outer-spin-button,
