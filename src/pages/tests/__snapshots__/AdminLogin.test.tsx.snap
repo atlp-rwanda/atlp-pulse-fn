@@ -3,7 +3,7 @@
 exports[`Admin Login Should render 1`] = `
 Array [
   <div
-    className="w-full text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:items-center sm:justify-center"
+    className="w-full text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:items-center sm:justify-center h-full"
   >
     <div
       className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8"
@@ -63,7 +63,7 @@ Array [
               className="text-left mb-1 pl-4"
             />
             <div
-              className="md:w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center rounded mb-2 dark:border-white dark:bg-dark-bg"
+              className="md:w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center  mb-2 dark:border-white dark:bg-dark-bg"
             >
               <svg
                 className="text-gray-400 mr-2 "

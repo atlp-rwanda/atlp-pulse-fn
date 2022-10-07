@@ -10,7 +10,7 @@ const MainRoutes = React.lazy(() => import('./containers/Routes'));
 const LandingPage = React.lazy(() => import('./pages/Home'));
 function App() {
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col h-screen ">
       <FormProvider>
         <Router>
           <ScrollToTop>

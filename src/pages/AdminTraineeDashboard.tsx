@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../components/DataTable';
@@ -10,34 +10,42 @@ import Button from './../components/Buttons';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
 import {
+  GET_USERS_QUERY,
   GET_TRAINEES_QUERY,
-  GET_COORDINATOR_COHORTS_QUERY,
+  GET_COHORTS_QUERY,
   ADD_MEMBER_TO_COHORT_MUTATION,
   REMOVE_MEMBER_FROM_COHORT_MUTATION,
   EDIT_MEMBER_MUTATION,
+  INVITE_USER_MUTATION,
 } from '../Mutations/manageStudentMutations';
 import { useLazyQuery, useMutation } from '@apollo/client';
-
+import { UserContext } from '../hook/useAuth';
 const organizationToken = localStorage.getItem('orgToken');
+
 const AdminTraineeDashboard = () => {
   useDocumentTitle('Trainees');
   const { t }: any = useTranslation();
-
+  const { user } = useContext(UserContext);
+  
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [removeTraineeModel, setRemoveTraineeModel] = useState(false);
   const [editTraineeModel, setEditTraineeModel] = useState(false);
+  const [inviteTraineeModel,setInviteTraineeModel] = useState(false);
   const [traineeData, setTraineeData] = useState<any[]>([]);
+  const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<any[]>([]);
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
   const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
   const [deleteFromCohort, setDeleteFromCohort] = useState('');
   const [editEmail, setEditEmail] = useState('');
   const [editCohort, setEditCohort] = useState('');
+  const [inviteEmail, setInviteEmail] = useState('');
   const [buttonLoading, setButtonLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
   const options: any = [];
+  const traineeOptions: any = [];
 
   const removeTraineeMod = () => {
     let newState = !removeTraineeModel;
@@ -53,6 +61,11 @@ const AdminTraineeDashboard = () => {
     let newState = !editTraineeModel;
     setEditTraineeModel(newState);
   };
+
+  const inviteModel = () =>{
+    let newState = !inviteTraineeModel;
+    setInviteTraineeModel(newState);
+  }
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -132,12 +145,13 @@ const AdminTraineeDashboard = () => {
   ];
   const data = devs;
   let datum: any = [];
-  const [getTrainees] = useLazyQuery(GET_TRAINEES_QUERY, {
+  const [getUsers] = useLazyQuery(GET_USERS_QUERY, {});
+  const [getTraineesQuery] = useLazyQuery(GET_TRAINEES_QUERY, {
     variables: {
       orgToken: organizationToken,
     },
   });
-  const [getCohorts] = useLazyQuery(GET_COORDINATOR_COHORTS_QUERY, {
+  const [getCohortsQuery] = useLazyQuery(GET_COHORTS_QUERY, {
     variables: {
       orgToken: organizationToken,
     },
@@ -146,18 +160,18 @@ const AdminTraineeDashboard = () => {
   if (traineeData && traineeData.length > 0) {
     traineeData?.map((data: any, index: number) => {
       datum[index] = {};
-      datum[index].name = data.profile.name;
+      datum[index].name = data.profile ? data.profile.name : 'undefined';
       datum[index].email = data.email;
       datum[index].rating = '2';
       datum[index].cohort = data.cohort.name;
-      datum[index].program = data.cohort.phase;
+      datum[index].program = data.cohort.program.name;
     });
   }
 
   const [addMemberToCohort] = useMutation(ADD_MEMBER_TO_COHORT_MUTATION, {
     variables: {
       cohortName: Object.values(selectedOption)[0],
-      email: email,
+      email: Object.values(email)[1],
       orgToken: organizationToken,
     },
     onCompleted: (data) => {
@@ -165,7 +179,7 @@ const AdminTraineeDashboard = () => {
         setButtonLoading(false);
         toast.success(data.addMemberToCohort);
         removeModel();
-      }, 2000);
+      }, 500);
     },
     onError: (err) => {
       setTimeout(() => {
@@ -189,7 +203,7 @@ const AdminTraineeDashboard = () => {
         setButtonLoading(false);
         toast.success("Edit trainee's cohort successfully done!");
         removeEditModel();
-      }, 2000);
+      }, 500);
     },
     onError: (err) => {
       console.log(err);
@@ -213,42 +227,76 @@ const AdminTraineeDashboard = () => {
           setButtonLoading(false);
           toast.success(data.removeMemberFromCohort);
           removeTraineeMod();
-        }, 3000);
+        }, 1000);
       },
       onError: (err) => {
         setTimeout(() => {
           setButtonLoading(false);
           toast.error(err.message);
-        }, 2000);
+        }, 500);
       },
     },
   );
+
+  const [inviteUser] = useMutation (INVITE_USER_MUTATION,{
+    variables:{
+      email:inviteEmail,
+      orgToken:organizationToken
+    },
+    onCompleted: (data) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.success(data.inviteUser);
+        inviteModel()
+      }, 1000);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.error(err.message);
+      }, 1000);
+    },
+  })
   useEffect(() => {
-    getTrainees({
+
+    getUsers({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        setTraineeData(data.getCoordinatorTrainees);
+        setAllUserEmail(data.getUsers);
       },
       onError: (error) => {
         console.log(error);
       },
     });
 
-    getCohorts({
+    getTraineesQuery({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        setCohorts(data.getCoordinatorCohorts);
-        data.getAllCohorts.map((cohort: any, index: any) => {
-          options[index] = {};
-          options[index].value = cohort.name;
-          options[index].label = cohort.name;
-        });
+        setTraineeData(data.getTrainees);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+
+    getCohortsQuery({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        setCohorts(data.getCohorts);
       },
       onError: (error) => {
         console.log(error);
       },
     });
   }, [registerTraineeModel, removeTraineeModel, toggle]);
+
+  if (allUserEmail.length > 0) {
+    allUserEmail.map((trainee: any, index: any) => {
+      traineeOptions[index] = {};
+      traineeOptions[index].value = trainee.email;
+      traineeOptions[index].label = trainee.email;
+    });
+  }
 
   if (cohorts.length > 0) {
     cohorts.map((cohort: any, index: any) => {
@@ -260,6 +308,76 @@ const AdminTraineeDashboard = () => {
 
   return (
     <>
+
+     {/* =========================== Start::  InviteTraineeModel =============================== */}
+
+     <div
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          inviteTraineeModel === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
+          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
+            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+              {t('Send Invitation')}
+            </h3>
+            <hr className=" bg-primary border-b my-3 w-full" />
+          </div>
+          <div className="card-body">
+            <form className=" py-3 px-8">
+              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
+                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+                  {t(
+                    'Fill in the email to invite a user to DevPulse.',
+                  )}
+                </h3>
+              </div>
+
+              <div className="text-white input my-3 h-9 ">
+                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+                <input
+                    value={inviteEmail}
+                    onChange={(e) => {
+                      setInviteEmail(e.target.value);
+                    }}
+                    type="email"
+                    name="email"
+                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    placeholder={t('email')}
+                  />
+                </div>
+              </div>
+
+              <div className="w-full flex justify-between">
+                <Button
+                  data-testid="removeInviteModel"
+                  variant="info"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => inviteModel()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    setButtonLoading(true);
+                    inviteUser();
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('Invite')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {/* =========================== End::  InviteTraineeModel =============================== */}
+
+
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
@@ -412,7 +530,20 @@ const AdminTraineeDashboard = () => {
             <form className=" py-3 px-8">
               <div className="input my-3 h-9 ">
                 <div className="grouped-input flex items-center h-full w-full rounded-md">
-                  <input
+                  <Select
+                    placeholder={t('choose trainee')}
+                    className="my-react-select-container"
+                    classNamePrefix="my-react-select"
+                    styles={customStyles}
+                    defaultValue={email}
+                    onChange={(e) => {
+                      setEmail(e);
+                      // setSelectedOption2(e);
+                    }}
+                    options={traineeOptions}
+                    isSearchable
+                  />
+                  {/* <input
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
@@ -421,7 +552,7 @@ const AdminTraineeDashboard = () => {
                     name="email"
                     className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('email')}
-                  />
+                  /> */}
                 </div>
               </div>
 
@@ -486,8 +617,24 @@ const AdminTraineeDashboard = () => {
                       onClick={removeModel}
                     >
                       {' '}
-                      {t('register')} +{' '}
+                      {t('add')} +{' '}
                     </Button>
+
+                    {user?.role === 'coordinator' || undefined
+                    ?
+                    ''
+                    :
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      data-testid="inviteModel"
+                      onClick={inviteModel}
+                    >
+                      {t('Invite')}
+                    </Button>
+                     }
+
+                   
                   </div>
                 </div>
                 <div className="px-3 md:px-8">

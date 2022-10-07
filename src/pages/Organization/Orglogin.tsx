@@ -27,7 +27,7 @@ function Orglogin() {
       variables: { orgInput },
       onCompleted({ loginOrg }) {
         localStorage.setItem('orgToken', loginOrg.token);
-        toast.success('WelCome! Sign in to Continue');
+        toast.success('Welcome! Sign in to Continue');
         navigate('/login-admin/');
       },
       onError() {
@@ -39,7 +39,7 @@ function Orglogin() {
   };
   return (
     <div className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans">
-      <div className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none dark:shadow-2xl md:rounded-xl sm:rounded-none">
+      <div className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none">
         <div className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill ">
           {t('Sign in to your Organization')}
         </div>
@@ -77,6 +77,16 @@ function Orglogin() {
               </Button>
             </Link>
           </div>
+
+          <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
+            {t('New to DevPulse?')}
+            <Link to="/register">
+              <a href="#link" className="text-primary">
+                {t('Sign Up')}
+              </a>
+            </Link>
+          </div>
+
           <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
             {t('Don’t know your organization URL?')}
             <a href="#link" className="text-primary">

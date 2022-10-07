@@ -16,6 +16,7 @@ import useDocumentTitle from '../../hook/useDocumentTitle';
 import LOGIN_MUTATION from './LoginMutation'; 
 
 function AdminLogin() {
+  const orgToken:any = localStorage.getItem('orgToken');
   useDocumentTitle('Login');
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
@@ -34,19 +35,39 @@ function AdminLogin() {
   const [LoginUser, { loading }] = useMutation(LOGIN_MUTATION);
   const client = useApolloClient();
   const onSubmit = async (userInput: any) => {
+    userInput.orgToken = orgToken;
     try {
       const { data }: any = await LoginUser({
         variables: { loginInput: userInput },
+        onCompleted: async (data) => {
+            toast.success(data.addMemberToCohort);
+            login(data.loginUser);
+            await client.resetStore();
+            toast.success(`Welcome`);
+            if (state) {
+              navigate(`${state}`);
+            } else {
+              navigate('/dashboard/');
+            }
+            return;
+     
+        },
+        onError: (err) => {
+            if(err.message.toLowerCase() !== 'invalid credential'){
+
+              toast.error(err.message);
+            }else{
+              setError('password', {
+                type: 'custom',
+                message: t('Invalid credentials'),
+              });
+              setError('email', {
+                type: 'custom',
+                message: t('Invalid credentials'),
+              });
+            }
+        },
       });
-      login(data.loginUser);
-      await client.resetStore();
-      toast.success(`Welcome`);
-      if (state) {
-        navigate(`${state}`);
-      } else {
-        navigate('/dashboard/');
-      }
-      return;
     } catch (error: any) {
       setError('password', {
         type: 'custom',
@@ -60,7 +81,7 @@ function AdminLogin() {
   };
 
   return (
-    <div className="w-full text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:items-center sm:justify-center">
+    <div className="w-full text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:items-center sm:justify-center h-full">
       <div className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
           <div className="py-10 sm:py-8 ">
             <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
@@ -92,7 +113,7 @@ function AdminLogin() {
                   )}
                 </div>
 
-                <div className="md:w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center rounded mb-2 dark:border-white dark:bg-dark-bg">
+                <div className="md:w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center  mb-2 dark:border-white dark:bg-dark-bg">
                   <MdLockOutline className="text-gray-400 mr-2 " />
                   <input
                     data-testid="password"

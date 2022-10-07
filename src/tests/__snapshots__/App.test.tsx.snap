@@ -2,7 +2,7 @@
 
 exports[`App test  Should render app 1`] = `
 <div
-  className="flex flex-col min-h-screen "
+  className="flex flex-col h-screen "
 >
   <div
     className="border-2 p-2 md:p-4 min-h-screen min-w-full flex flex-col bg-white"

@@ -14,6 +14,80 @@ Array [
         <h3
           className="font-bold text-sm dark:text-white text-center w-11/12 "
         >
+          Send Invitation
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="card-title w-full flex  flex-wrap justify-center items-center  "
+          >
+            <h3
+              className="font-bold text-sm dark:text-white text-center w-11/12 "
+            >
+              Fill in the email to invite a user to DevPulse.
+            </h3>
+          </div>
+          <div
+            className="text-white input my-3 h-9 "
+          >
+            <div
+              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="email"
+                onChange={[Function]}
+                placeholder="email"
+                type="email"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="removeInviteModel"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Invite
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 "
+        >
           Edit Trainee
         </h3>
         <hr
@@ -254,22 +328,6 @@ Array [
             <div
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
-              <input
-                className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                name="email"
-                onChange={[Function]}
-                placeholder="email"
-                type="email"
-                value=""
-              />
-            </div>
-          </div>
-          <div
-            className="text-white input my-3 h-9 "
-          >
-            <div
-              className="text-white grouped-input flex items-center h-full w-full rounded-md"
-            >
               <div
                 className="my-react-select-container css-b62m3t-container"
                 onKeyDown={[Function]}
@@ -296,7 +354,7 @@ Array [
                       className="my-react-select__placeholder css-14el2xx-placeholder"
                       id="react-select-3-placeholder"
                     >
-                      Select cohort
+                      choose trainee
                     </div>
                     <div
                       className="my-react-select__input-container css-6j8wv5-Input"
@@ -313,6 +371,112 @@ Array [
                         className="my-react-select__input"
                         disabled={false}
                         id="react-select-3-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        role="combobox"
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "color": "inherit",
+                            "font": "inherit",
+                            "gridArea": "1 / 2",
+                            "label": "input",
+                            "margin": 0,
+                            "minWidth": "2px",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "100%",
+                          }
+                        }
+                        tabIndex={0}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                  >
+                    <span
+                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      onMouseDown={[Function]}
+                      onTouchEnd={[Function]}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="css-tj5bde-Svg"
+                        focusable="false"
+                        height={20}
+                        viewBox="0 0 20 20"
+                        width={20}
+                      >
+                        <path
+                          d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="text-white input my-3 h-9 "
+          >
+            <div
+              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <div
+                className="my-react-select-container css-b62m3t-container"
+                onKeyDown={[Function]}
+              >
+                <span
+                  className="css-1f43avz-a11yText-A11yText"
+                  id="react-select-4-live-region"
+                />
+                <span
+                  aria-atomic="false"
+                  aria-live="polite"
+                  aria-relevant="additions text"
+                  className="css-1f43avz-a11yText-A11yText"
+                />
+                <div
+                  className="my-react-select__control css-w7xt41-control"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <div
+                    className="my-react-select__value-container css-319lph-ValueContainer"
+                  >
+                    <div
+                      className="my-react-select__placeholder css-14el2xx-placeholder"
+                      id="react-select-4-placeholder"
+                    >
+                      Select cohort
+                    </div>
+                    <div
+                      className="my-react-select__input-container css-6j8wv5-Input"
+                      data-value=""
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        aria-describedby="react-select-4-placeholder"
+                        aria-expanded={false}
+                        aria-haspopup={true}
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="my-react-select__input"
+                        disabled={false}
+                        id="react-select-4-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -692,9 +856,18 @@ Array [
                   type="button"
                 >
                    
-                  register
+                  add
                    +
                    
+                </button>
+                <button
+                  className="btn primary lg undefined"
+                  data-testid="inviteModel"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Invite
                 </button>
               </div>
             </div>
