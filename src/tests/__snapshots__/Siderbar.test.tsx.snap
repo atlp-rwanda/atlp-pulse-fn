@@ -90,7 +90,7 @@ exports[`<Home /> Renders Home 1`] = `
           </svg>
         </button>
         <a
-          href="/org-login"
+          href="/login/org"
           onClick={[Function]}
         >
           <button
@@ -104,7 +104,7 @@ exports[`<Home /> Renders Home 1`] = `
           </button>
         </a>
         <a
-          href="/register-organization"
+          href="/signup/org"
           onClick={[Function]}
         >
           <button
@@ -199,7 +199,7 @@ exports[`<Home /> Renders Home 1`] = `
       >
         <a
           className="w-full"
-          href="/org-login"
+          href="/login/org"
           onClick={[Function]}
         >
            
@@ -207,7 +207,7 @@ exports[`<Home /> Renders Home 1`] = `
         </a>
       </li>
       <a
-        href="/register-organization"
+        href="/signup/org"
         onClick={[Function]}
       >
         <button

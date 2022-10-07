@@ -183,7 +183,7 @@ function Signup() {
             </div>
             <div className="md:hidden mt-2 text-xs text-center dark:text-dark-text-fill">
               {t('First time here?')}
-              <Link to="/register-organization" className="mx-1 text-primary">
+              <Link to="/signup/org" className="mx-1 text-primary">
                 {t('Register')}
               </Link>
               {t('your organization')}

@@ -27,9 +27,9 @@ function MainRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<UserRegister />} />
           <Route path="/register-successful" element={<Message />} />
-          <Route path="/register-organization" element={<OrgRegister />} />
+          <Route path="/signup/org" element={<OrgRegister />} />
           <Route
-            path="/org-login"
+            path="/login/org"
             element={
               <ProtectedRoutes>
                 <Orglogin />
@@ -37,7 +37,7 @@ function MainRoutes() {
             }
           />
           <Route
-            path="/login-admin"
+            path="/login"
             element={
               <ProtectedRoutes>
                 <Adminlogin />

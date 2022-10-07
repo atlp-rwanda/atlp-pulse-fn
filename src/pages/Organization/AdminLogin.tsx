@@ -198,7 +198,7 @@ function AdminLogin() {
 
             <div className="my-4 text-sm text-center dark:text-dark-text-fill">
               {t('First time here?')}
-              <Link to="/register-organization" className="mx-1 text-primary">
+              <Link to="/signup/org" className="mx-1 text-primary">
                 {t('Register')}
               </Link>
               {t('your organization')}

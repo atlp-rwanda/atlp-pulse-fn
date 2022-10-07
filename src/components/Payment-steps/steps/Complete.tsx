@@ -25,7 +25,7 @@ export default function Final() {
           >
             {t('Back')}
           </Button>
-          <Link to="/register-organization">
+          <Link to="/signup/org">
             <Button variant="primary" size="lg" data-testid="link">
               {t('Continue registration')}
             </Button>
