@@ -67,6 +67,7 @@ export function EditPassword() {
               size="md"
               style="group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
               onClick={() => {}}
+              data-testid="change_password"
             >
               {t('Change Password')}
             </Button>
@@ -165,7 +166,7 @@ export default function ProfileTabs({ data }: any) {
                         Andela
                       </h2>
                       <h3 className="font-bold text-dark-text-fill text-center text-sm md:text-lg ">
-                        https://andela.pusle.com
+                        https://andela.pulse.com
                       </h3>
                     </div>
                   </div>

@@ -34,6 +34,7 @@ function UserProvider({ children, ...props }: Props) {
       email: data.user.email,
       firstName: data.user?.profile?.firstName,
       id: data.user?.profile?.id,
+      profileImage: data.user?.profile?.avatar
     }));
   };
   const logout = () => {
@@ -44,11 +45,14 @@ function UserProvider({ children, ...props }: Props) {
   const setName = (name: string) => {
     setUser({ ...user, name });
   };
-
+const setProfileImage = (profileImage: string) => {
+  setUser({ ...user, profileImage });
+}
   const value = useMemo(
     () => ({
       user,
       setName,
+      setProfileImage,
       login,
       logout,
     }),

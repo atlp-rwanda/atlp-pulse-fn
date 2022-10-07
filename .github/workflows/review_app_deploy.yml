@@ -72,7 +72,8 @@ jobs:
           --app=${{ env.HEROKU_APP_NAME }}
           NODE_ENV=production
           MODE=review
-          BACKEND_URL=https://devpulse-bn-review-app-44.herokuapp.com
+          BACKEND_URL=https://devpulse-bn-review-app-27.herokuapp.com
+
       - name: Add Heroku Review App to pipeline
         if: steps.heroku_review_app_create.outcome == 'success'
         run: heroku pipelines:add ${{ env.HEROKU_PIPELINE_NAME }} --app=${{ env.HEROKU_APP_NAME }} --stage=development

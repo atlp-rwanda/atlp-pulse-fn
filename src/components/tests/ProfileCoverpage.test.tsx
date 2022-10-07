@@ -1,0 +1,47 @@
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import renderer from 'react-test-renderer';
+import ProfileCoverpage from '../ProfileCoverpage';
+import { fireEvent, render, screen } from '@testing-library/react';
+
+
+const client = new ApolloClient({ cache: new InMemoryCache() });
+
+describe('<ProfileTabs/>', () => {
+  it('Renders Profile Tabs', () => {
+    const elem = renderer
+      .create(
+        <ApolloProvider client={client}>
+          <MemoryRouter>
+            <ProfileCoverpage
+              data={{ name: 'Fabrice' }}
+              currentPage="editProfile"
+            />
+          </MemoryRouter>
+        </ApolloProvider>,
+      )
+      .toJSON();
+
+    expect(elem).toMatchSnapshot();
+  });
+  
+  it('should update trainee model', () => {
+    const updateImageMck = jest.fn();
+
+    const { getByTestId } = render(
+
+        <ApolloProvider client={client}>
+           <MemoryRouter>
+          <ProfileCoverpage 
+                        data={{ name: 'Fabrice' }}
+                        currentPage="editProfile"/>
+          </MemoryRouter>
+        </ApolloProvider>
+,
+    );
+    const updateImage = getByTestId('upload-image');
+    fireEvent.change(updateImage);
+    expect(updateImageMck).toBeCalledTimes(0);
+  });
+});

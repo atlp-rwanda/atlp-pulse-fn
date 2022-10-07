@@ -29,7 +29,7 @@ const LOGIN_MUTATION = gql`
               phoneNumber
               biography
               avatar
-              coverImage
+              cover
             }
           }
         }
