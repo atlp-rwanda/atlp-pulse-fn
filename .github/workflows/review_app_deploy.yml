@@ -42,7 +42,6 @@ jobs:
       - name: Set exists ENV vars
         run: |
           echo HEROKU_APP_EXISTS="${{ steps.heroku_apps_info.outcome == 'success' }}" >> $GITHUB_ENV
-
       - name: Check out PR code from GitHub
         uses: actions/checkout@v3
         with:
@@ -73,8 +72,7 @@ jobs:
           --app=${{ env.HEROKU_APP_NAME }}
           NODE_ENV=production
           MODE=review
-          BACKEND_URL=https://devpulse-bn-review-app-41.herokuapp.com
-
+          BACKEND_URL=https://devpulse-bn-review-app-42.herokuapp.com
       - name: Add Heroku Review App to pipeline
         if: steps.heroku_review_app_create.outcome == 'success'
         run: heroku pipelines:add ${{ env.HEROKU_PIPELINE_NAME }} --app=${{ env.HEROKU_APP_NAME }} --stage=development
@@ -105,5 +103,4 @@ jobs:
           COMMENT_IDENTIFIER: 'Deploy'
           message: |
             I deployed a review app for you to try out this pull request 👇🏽
-
             Heroku App: https://${{ env.HEROKU_APP_NAME }}.herokuapp.com/

@@ -17,7 +17,6 @@ const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
 
-
 function MainRoutes() {
   return (
     <div className="flex flex-col min-h-screen">

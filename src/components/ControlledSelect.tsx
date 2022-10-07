@@ -21,6 +21,7 @@ const customStyles = {
   control: (styles: any) => ({
     ...styles,
     height: 20,
+    // height: '30px',
     width: '100%',
     backgroundColor: '#374151',
     borderColor: 'rgb(20 143 182)',
