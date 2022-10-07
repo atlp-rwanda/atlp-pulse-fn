@@ -1,18 +1,20 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import renderer from 'react-test-renderer';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import OrgLogin from '../Organization/Orglogin';
+
+const client = new ApolloClient({ cache: new InMemoryCache() });
 
 describe('Organization Login', () => {
   it('Should render', () => {
     const elem = renderer
       .create(
-        <MemoryRouter>
-          <ApolloProvider>
+        <ApolloProvider client={client}>
+          <MemoryRouter>
             <OrgLogin />
-          </ApolloProvider>
-        </MemoryRouter>,
+          </MemoryRouter>
+        </ApolloProvider>,
       )
       .toJSON();
     expect(elem).toMatchSnapshot();
