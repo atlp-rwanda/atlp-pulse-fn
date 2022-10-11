@@ -13,6 +13,7 @@ import {
   GET_USERS,
 } from '../Mutations/Ratings';
 import { GET_COORDINATOR_COHORTS_QUERY } from '../Mutations/manageStudentMutations';
+import { GET_REPLIES } from '../Mutations/replyMutation';
 import { REMOVE_REPLY } from '../Mutations/replyMutation'
 import { phase, sprint } from '../dummyData/ratings';
 import DataTable from '../components/DataTable';
@@ -223,6 +224,7 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
   });
+  
 
   const [getCohorts] = useLazyQuery(GET_COORDINATOR_COHORTS_QUERY, {
     variables: {
@@ -236,16 +238,40 @@ const TraineeRatingDashboard = () => {
     },
   });
 
+  const [getReplies] = useLazyQuery(GET_REPLIES, {
+    variables: {
+      sprint: rows.sprint,
+      coordinator: rows.id,
+
+    }
+  });
+
+
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        setRatings(data?.fetchRatings);
+        setRatings(data?.fetchReplies);
       },
       onError: (error) => {
         toast.error(error?.message || 'Something went wrong');
       },
     });
+
+
+
+      getReplies({
+        fetchPolicy: 'network-only',
+        onCompleted: (data) => {
+          setRatings(data?.getReplies);
+        },
+        onError: (error) => {
+          toast.error(error?.message || 'Something went wrong');
+        },
+      });
+
+
+
 
     getCohorts({
       fetchPolicy: 'network-only',

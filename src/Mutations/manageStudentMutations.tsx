@@ -1,23 +1,34 @@
 import { gql } from '@apollo/client';
 
+export const GET_USERS_QUERY = gql`
+query GetUsers {
+  getUsers {
+    email
+    id
+  }
+}
+`;
+
 export const GET_TRAINEES_QUERY = gql`
-  query GetCoordinatorTrainees($orgToken: String) {
-    getCoordinatorTrainees(orgToken: $orgToken) {
+  query GetTrainees($orgToken: String) {
+    getTrainees(orgToken: $orgToken) {
       profile {
         name
       }
       email
       cohort {
         name
-        phase
+        program{
+          name
+        }
       }
     }
   }
 `;
 
 export const GET_COORDINATOR_COHORTS_QUERY = gql`
-  query GetCoordinatorCohorts($orgToken: String) {
-    getCoordinatorCohorts(orgToken: $orgToken) {
+  query GetCohorts($orgToken: String) {
+    getCohorts(orgToken: $orgToken) {
       name
       id
     }
@@ -66,4 +77,10 @@ export const EDIT_MEMBER_MUTATION = gql`
       orgToken: $orgToken
     )
   }
+`;
+
+export const INVITE_USER_MUTATION = gql`
+mutation InviteUser($email: String!, $orgToken: String!) {
+  inviteUser(email: $email, orgToken: $orgToken)
+}
 `;
