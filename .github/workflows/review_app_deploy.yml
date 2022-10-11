@@ -73,6 +73,7 @@ jobs:
           --app=${{ env.HEROKU_APP_NAME }}
           NODE_ENV=production
           MODE=review
+          BACKEND_URL=${{ secrets.BACKEND_URL }}
 
       - name: Add Heroku Review App to pipeline
         if: steps.heroku_review_app_create.outcome == 'success'
