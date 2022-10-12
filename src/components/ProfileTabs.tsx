@@ -81,7 +81,7 @@ export default function ProfileTabs({ data }: any) {
   const [openTab, setOpenTab] = React.useState('About');
   const { t } = useTranslation();
   const tabs: Array<string> = ['About', 'Organizations', 'Account'];
-  const { user } = useContext(UserContext);
+  const { user, setName } = useContext(UserContext);
 
   return (
     <div className="flex flex-wrap lg:ml-60 lg:mr-8">

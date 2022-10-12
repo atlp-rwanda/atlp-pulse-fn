@@ -162,7 +162,7 @@ const Calendar = () => {
               <div className="input my-3 h-9 ">
                 <div className="grouped-input flex items-center h-full w-full rounded-md">
                   <DatePicker
-                    className="border-gray-300 dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className="dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholderText={t('End Date')}
                     style={{ marginRight: '10px' }}
                     selected={newEvent.end}
@@ -176,7 +176,7 @@ const Calendar = () => {
                   <input
                     type="time"
                     name="hostName"
-                    className="border-gray-300 dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className= "dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('Start time')}
                     value={newEvent.timeToStart}
                     onChange={(e) =>
@@ -191,7 +191,7 @@ const Calendar = () => {
                   <input
                     type="time"
                     name="hostName"
-                    className="border-gray-300 dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className="dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('End time')}
                     value={newEvent.timeToFinish}
                     onChange={(e) =>
@@ -219,7 +219,7 @@ const Calendar = () => {
       </div>
       {/* =========================== End::  RegisterTraineeModel =============================== */}
 
-      <div className="pt-24 px-4 md:px-40 md:pl-80 pb-20 min-h-screen w-full dark:bg-dark-frame-bg dark:text-white">
+      <div className="pt-24 px-4 md:px-40 md:pl-80 pb-20  w-full dark:bg-dark-frame-bg dark:text-white h-full overflow-y-scroll">
         <div className="w-full flex justify-center text-xl md:text-4xl dark:text-primary mb-10">
           <h2>{t('Calendar')}</h2>
         </div>

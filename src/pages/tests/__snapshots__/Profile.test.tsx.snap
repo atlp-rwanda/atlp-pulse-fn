@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
+        class="bg-light-bg dark:bg-dark-frame-bg h-full overflow-y-scroll"
       >
         <div
           class=" mt-[4.4rem] bg-[url('https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80')] bg-cover bg-no-repeat bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center"
@@ -369,7 +369,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
+      class="bg-light-bg dark:bg-dark-frame-bg h-full overflow-y-scroll"
     >
       <div
         class=" mt-[4.4rem] bg-[url('https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80')] bg-cover bg-no-repeat bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center"
@@ -1271,7 +1271,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
+        class="bg-light-bg dark:bg-dark-frame-bg overflow-y-scroll"
       >
         <div
           class="w-full overflow-hidden h-full grow flex flex-col"
@@ -1317,7 +1317,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
+      class="bg-light-bg dark:bg-dark-frame-bg overflow-y-scroll"
     >
       <div
         class="w-full overflow-hidden h-full grow flex flex-col"

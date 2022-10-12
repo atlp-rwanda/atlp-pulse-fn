@@ -37,7 +37,7 @@ function MainRoutes() {
             }
           />
           <Route
-            path="/login"
+            path="/users/login"
             element={
               <ProtectedRoutes>
                 <Adminlogin />
