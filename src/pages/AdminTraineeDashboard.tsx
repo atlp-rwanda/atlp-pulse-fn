@@ -121,6 +121,7 @@ const AdminTraineeDashboard = () => {
             height="25"
             cursor="pointer"
             color="#148fb6"
+            test-Id=""
             onClick={() => {
               removeEditModel();
               setEditEmail(row.original.email);
@@ -206,7 +207,6 @@ const AdminTraineeDashboard = () => {
       }, 500);
     },
     onError: (err) => {
-      console.log(err);
       setTimeout(() => {
         setButtonLoading(false);
         toast.error(err.message);
@@ -265,7 +265,7 @@ const AdminTraineeDashboard = () => {
         setAllUserEmail(data.getUsers);
       },
       onError: (error) => {
-        console.log(error);
+        toast.error(error.message);
       },
     });
 
@@ -275,7 +275,7 @@ const AdminTraineeDashboard = () => {
         setTraineeData(data.getTrainees);
       },
       onError: (error) => {
-        console.log(error);
+        toast.error(error.message);
       },
     });
 
@@ -285,7 +285,7 @@ const AdminTraineeDashboard = () => {
         setCohorts(data.getCohorts);
       },
       onError: (error) => {
-        console.log(error);
+        toast.error(error.message);
       },
     });
   }, [registerTraineeModel, removeTraineeModel, toggle]);
@@ -410,7 +410,7 @@ const AdminTraineeDashboard = () => {
                     classNamePrefix="my-react-select"
                     styles={customStyles}
                     defaultValue={selectedOption2}
-                    onChange={(e) => {
+                    onChange={(e: any) => {
                       setSelectedOption2(e);
                     }}
                     options={options.filter((option: any) => {
@@ -492,6 +492,7 @@ const AdminTraineeDashboard = () => {
                 <Button
                   variant="primary"
                   size="sm"
+                  data-testid="removeMemberFromCohort"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     setButtonLoading(true);
@@ -564,7 +565,7 @@ const AdminTraineeDashboard = () => {
                     classNamePrefix="my-react-select"
                     styles={customStyles}
                     defaultValue={selectedOption}
-                    onChange={(e) => {
+                    onChange={(e: any) => {
                       setSelectedOption(e);
                     }}
                     options={options}
@@ -586,6 +587,7 @@ const AdminTraineeDashboard = () => {
                 <Button
                   variant="primary"
                   size="sm"
+                  data-testid="saveButton"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     setButtonLoading(true);

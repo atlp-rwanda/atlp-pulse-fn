@@ -34,7 +34,7 @@ export function EditPassword() {
   const [passwordFieldState, setPasswordField] = useState<fields>(fieldState);
   return (
     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
-      <div className="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-4 mb-6 lg:-ml-8 rounded-lg">
+      <div className="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg">
         <div className="px-4">
           <form
             className="mt-12 grid grid-cols-1 gap-4"

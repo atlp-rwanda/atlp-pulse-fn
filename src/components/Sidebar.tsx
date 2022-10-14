@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   ChartPieIcon,
@@ -31,7 +31,8 @@ import SideNavLink from './SideNavLink';
 
 function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   const { logout } = useContext(UserContext);
-
+  const [togglei, setTogglei] = useState(false);
+  useEffect(() => {}, [togglei]);
   return (
     <div
       className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
@@ -143,7 +144,10 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
           <SideNavLink
-            onClick={toggle}
+            onClick={() => {
+              toggle();
+              setTogglei(true);
+            }}
             name="Performance"
             to="/dashboard/performance"
           >

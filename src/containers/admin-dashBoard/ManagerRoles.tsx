@@ -128,7 +128,6 @@ const AdminSission = () => {
   const [handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
     variables: { updateUserRoleId: userId, name: selectedRole },
     onCompleted: (data) => {
-      console.log('Data from mutation ', data);
       setToggle(!toggle);
       let newState = !deleteModel;
       setTimeout(() => {
@@ -143,23 +142,10 @@ const AdminSission = () => {
   const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {});
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const { data } = await GetAllRoles();
-    //     console.log("Runned==")
-    //     setUsers(data?.getAllUsers);
-    //     console.log("Users ** ", users)
-
-    //     setallRoles(data?.getAllRoles);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
 
     fetchData2({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        console.log('data: ', data.getAllUsers);
         setUsers(data?.getAllUsers);
         data.getAllUsers.map((user: any, index: any) => {
           newUsers[index] = {};
@@ -167,7 +153,6 @@ const AdminSission = () => {
           newUsers[index].email = user.email;
           newUsers[index].id = user.id;
         });
-        console.log('newUsers ', newUsers);
         setallRoles(data?.getAllRoles);
       },
       onError: (error) => {

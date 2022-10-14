@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import '../../../test/jest/__mocks__/matchMedia';
 import TraineePerfomance from '../TraineePerformance';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 
 describe('View overall performance', () => {
   it('Renders a Detailed Trainee Performance Page ', () => {
@@ -14,7 +15,9 @@ describe('View overall performance', () => {
     const MckPage = jest.fn();
     const { getByTestId } = render(
       <BrowserRouter>
-        <TraineePerfomance />
+        <ApolloProvider>
+          <TraineePerfomance />
+        </ApolloProvider>
       </BrowserRouter>,
     );
 
