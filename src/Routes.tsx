@@ -18,9 +18,9 @@ function MainRoutes() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/register-organization" element={<OrgRegister />} />
+          <Route path="signup/org" element={<OrgRegister />} />
           <Route
-            path="/org-login"
+            path="/login/org"
             element={(
               <ProtectedRoutes>
                 <Orglogin />
@@ -31,7 +31,7 @@ function MainRoutes() {
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route
-            path="/login-admin"
+            path="/login"
             element={(
               <ProtectedRoutes>
                 <AdminLogin />
@@ -39,8 +39,8 @@ function MainRoutes() {
             )}
           />
           <Route path="/" element={<Perfomancetraineetable />} />
-          <Route path="/register-organization" element={<OrgRegister />} />
-          <Route path="/org-login" element={<Orglogin />} />
+          <Route path="/signup/org" element={<OrgRegister />} />
+          <Route path="/login/org" element={<Orglogin />} />
           <Route path="*" element={<Error />} />
           <Route path="/noredirect" element={<Noredirect />} />
         </Routes>

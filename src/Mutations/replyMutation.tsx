@@ -9,27 +9,29 @@ query Query {
     quantityRemark
     qualityRemark
     professionalRemark
-    body
-    coordinator
+    bodyQuantity
+    bodyQuality
+    bodyProfessional
     createdAt
   }
 }
 `;
 
 export const ADD_REPLY = gql`
-mutation AddReply($coordinator: String!, $sprint: Int!, $body: String!) {
-    addReply(coordinator: $coordinator, sprint: $sprint, body: $body) {
-      id
-      user
-      sprint
-      quantityRemark
-      qualityRemark
-      professionalRemark
-      body
-      coordinator
-      createdAt
-    }
+mutation AddReply($sprint: Int!, $bodyQuantity: String, $bodyQuality: String, $bodyProfessional: String) {
+  addReply(sprint: $sprint, bodyQuantity: $bodyQuantity, bodyQuality: $bodyQuality, bodyProfessional: $bodyProfessional) {
+    id
+    user
+    sprint
+    quantityRemark
+    qualityRemark
+    professionalRemark
+    bodyQuantity
+    bodyQuality
+    bodyProfessional
+    createdAt
   }
+}
 `;
 
 export const REMOVE_REPLY = gql`

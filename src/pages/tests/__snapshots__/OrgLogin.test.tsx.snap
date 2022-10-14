@@ -5,7 +5,7 @@ exports[`Organization Login Should render 1`] = `
   className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans"
 >
   <div
-    className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14"
+    className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
   >
     <div
       className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill "
@@ -37,7 +37,7 @@ exports[`Organization Login Should render 1`] = `
       />
       <div>
         <a
-          href="/login-admin"
+          href="/login"
           onClick={[Function]}
         >
           <button
@@ -50,6 +50,22 @@ exports[`Organization Login Should render 1`] = `
              
             Continue
           </button>
+        </a>
+      </div>
+      <div
+        className="w-full text-sm  text-light-text dark:text-dark-text-fill"
+      >
+        New to DevPulse?
+        <a
+          href="/register"
+          onClick={[Function]}
+        >
+          <a
+            className="text-primary"
+            href="#link"
+          >
+            Sign Up
+          </a>
         </a>
       </div>
       <div
@@ -68,7 +84,7 @@ exports[`Organization Login Should render 1`] = `
       >
         Looking to register an organization instead?
         <a
-          href="/register-organization"
+          href="/signup/org"
           onClick={[Function]}
         >
           <a

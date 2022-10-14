@@ -1,171 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Admin dashboard page Renders Manage role Page 1`] = `
-<div
-  className="w-full overflow-hidden h-full grow flex flex-col"
->
-  <div
-    className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg overflow-hidden px-4"
-  >
-    <div
-      className="flex flex-row pb-8 justify-center"
-    >
-      <div
-        className="lg:ml-44 w-[90%] pt-[4vh] lg:pt-[6vh]"
-      >
-        <div
-          className="grid grid-cols-2 lg:grid-cols-4 px-4"
-        >
-          <div
-            className=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
-          />
-          <div
-            className=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
-          />
-          <div
-            className=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
-          />
-          <div
-            className=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      className="items-center px-4 "
-    >
-      <div
-        className="w-[100%] h-[46vh] lg:h-[62vh] pb-14 lg:w-[84%] mx-auto lg:ml-52 lg:mr-2  mt-8 bottom-0 bg-gray-300 dark:bg-gray-600 rounded-lg animate-pulse"
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Admin dashboard page Renders Session Page 1`] = `
+exports[`<UpdatedRatingDashboard /> Renders UpdatedRatingDashboard 1`] = `
 Array [
-  <div
-    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
-  >
-    <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
-    >
-      <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
-      >
-        <h3
-          className="font-bold text-sm text-gray-700 text-center w-11/12 uppercase"
-        >
-          AddSession
-        </h3>
-        <hr
-          className=" bg-primary border-b my-3 w-full"
-        />
-      </div>
-      <div
-        className="card-body"
-      >
-        <form
-          className=" py-3 px-8"
-        >
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary rounded outline-none px-5 font-sans dark:bg-dark-frame-bg dark:text-white text-xs py-2 w-full"
-                name="name"
-                placeholder="SessionName"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className=" border border-primary py-2 rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs w-full"
-                name="name"
-                placeholder="Description"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 rounded dark:bg-dark-frame-bg dark:text-white outline-none px-5 font-sans text-xs w-full"
-                name="name"
-                placeholder="Platform"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="name"
-                placeholder="Duration"
-                type="time"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="name"
-                placeholder="Organizer"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="w-full flex justify-between"
-          >
-            <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
-              data-testid="remove"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-               
-              Cancel
-               
-            </button>
-            <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
-              disabled={false}
-              type="button"
-            >
-               
-              Save
-               
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>,
   <div
     className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
   >
@@ -176,9 +12,9 @@ Array [
         className="card-title w-full flex  flex-wrap justify-center items-center  "
       >
         <h3
-          className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12"
+          className="font-bold text-sm dark:text-white text-center w-11/12"
         >
-          DeleteSession
+          Approve updated ratings
         </h3>
         <hr
           className=" bg-primary border-b my-3 w-full"
@@ -192,9 +28,10 @@ Array [
         >
           <div>
             <h2
-              className="text-base dark:text-white text-center m-4"
+              className="text-base dark:text-white m-4"
             >
-              reallydeleteSession
+              Are you sure you want to approve this updated ratings
+               ?
             </h2>
           </div>
           <div
@@ -202,7 +39,7 @@ Array [
           >
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
-              data-testid="delete"
+              data-testid="removeApproveModel"
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -212,13 +49,11 @@ Array [
                
             </button>
             <button
-              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
               disabled={false}
               type="button"
             >
-               
-              Delete
-               
+              Approve
             </button>
           </div>
         </form>
@@ -235,9 +70,9 @@ Array [
         className="card-title w-full flex  flex-wrap justify-center items-center  "
       >
         <h3
-          className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12"
+          className="font-bold text-sm dark:text-white text-center w-11/12"
         >
-          UpdateSession
+          Reject Updated ratings
         </h3>
         <hr
           className=" bg-primary border-b my-3 w-full"
@@ -249,97 +84,32 @@ Array [
         <form
           className=" py-3 px-8"
         >
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+          <div>
+            <h2
+              className="text-base dark:text-white m-4"
             >
-              <input
-                className="border border-primary rounded outline-none dark:bg-dark-frame-bg dark:text-white px-5 font-sans text-xs py-2 w-full"
-                defaultValue="demo"
-                name="name"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className=" border border-primary py-2 rounded dark:bg-dark-frame-bg dark:text-white outline-none px-5 font-sans text-xs w-full"
-                defaultValue="Jointime"
-                name="desc"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 rounded dark:bg-dark-frame-bg dark:text-white outline-none px-5 font-sans text-xs w-full"
-                defaultValue="Zoom"
-                name="place"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 rounded outline-none dark:bg-dark-frame-bg dark:text-white px-5 font-sans text-xs w-full"
-                defaultValue="11am-12am"
-                name="duration"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs w-full"
-                defaultValue="John deo"
-                name="organizer"
-                type="text"
-              />
-            </div>
+              Are you sure you want to reject this updated ratings
+               ?
+            </h2>
           </div>
           <div
             className="w-full flex justify-between"
           >
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="removeRejectModel"
               disabled={false}
               onClick={[Function]}
               type="button"
             >
-               
               Cancel
-               
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
               disabled={false}
               type="button"
             >
-               
-              Save
-               
+              Reject
             </button>
           </div>
         </form>
@@ -347,7 +117,7 @@ Array [
     </div>
   </div>,
   <div
-    className="flex flex-col h-screen"
+    className="flex flex-col h-screen bg-light-bg"
   >
     <div
       className="flex flex-row"
@@ -627,30 +397,10 @@ Array [
       >
         <div>
           <div
-            className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden"
+            className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden"
           >
             <div
-              className="flex items-left px-10 lg:px-60 pt-24 pb-8"
-            >
-              <div
-                className="space-x-8 lg:ml-7"
-              >
-                <button
-                  className="btn primary lg undefined"
-                  data-testid="registerModel"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                   
-                  register
-                   +
-                   
-                </button>
-              </div>
-            </div>
-            <div
-              className="px-3 md:px-8"
+              className="px-3 md:px-8 mt-20"
             >
               <div
                 className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
@@ -662,7 +412,7 @@ Array [
                     <h2
                       className="text-gray-800 dark:text-white font-semibold text-xl"
                     >
-                      Developers list
+                      Updated ratings
                     </h2>
                     <input
                       className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
@@ -699,7 +449,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Session
+                          Name
                         </th>
                         <th
                           className=" thead"
@@ -713,7 +463,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Description
+                          Sprint
                         </th>
                         <th
                           className=" thead"
@@ -727,7 +477,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Platform
+                          Quantity
                         </th>
                         <th
                           className=" thead"
@@ -741,7 +491,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Duration
+                          Quality
                         </th>
                         <th
                           className=" thead"
@@ -755,7 +505,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Organizer
+                          Professional skills
                         </th>
                         <th
                           className=" thead"
@@ -769,7 +519,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Action
+                          Actions
                         </th>
                       </tr>
                     </thead>
@@ -784,37 +534,46 @@ Array [
                           className="data-cell"
                           role="cell"
                         >
-                          Demo
+                          Keza Alice
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          Join on time
+                          1
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          Zoom
+                          2
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          11am - 12am
+                          0
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          John deo
+                          2
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          <span />
+                          <div
+                            className="flex flex-row"
+                          >
+                            <div
+                              className="cursor-pointer"
+                              onClick={[Function]}
+                            >
+                              <span />
+                            </div>
+                          </div>
                         </td>
                       </tr>
                       <tr
@@ -825,37 +584,46 @@ Array [
                           className="data-cell"
                           role="cell"
                         >
-                          Stand up
+                          Shema alain
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          Join on time
+                          5
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          Zoom
+                          2
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          11am - 12am
+                          0
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          John deo
+                          2
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          <span />
+                          <div
+                            className="flex flex-row"
+                          >
+                            <div
+                              className="cursor-pointer"
+                              onClick={[Function]}
+                            >
+                              <span />
+                            </div>
+                          </div>
                         </td>
                       </tr>
                       <tr
@@ -866,37 +634,46 @@ Array [
                           className="data-cell"
                           role="cell"
                         >
-                          E-level up
+                          Muneza James
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          Join on time
+                          3
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          Zoom
+                          2
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          11am - 12am
+                          0
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          John deo
+                          2
                         </td>
                         <td
                           className="data-cell"
                           role="cell"
                         >
-                          <span />
+                          <div
+                            className="flex flex-row"
+                          >
+                            <div
+                              className="cursor-pointer"
+                              onClick={[Function]}
+                            >
+                              <span />
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -977,7 +754,7 @@ Array [
                                     1
                                      
                                     of
-                                     2
+                                     4
                                   </strong>
                                    
                                 </span>
@@ -1070,244 +847,6 @@ Array [
         </div>
       </div>
     </div>
-  </div>,
-]
-`;
-
-exports[`Admin dashboard page Renders cohort Page 1`] = `
-Array [
-  <div
-    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
-  >
-    <div
-      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
-    >
-      <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
-      >
-        <h3
-          className="font-bold text-sm dark:text-white text-center w-11/12 uppercase"
-        >
-          AddCohort
-        </h3>
-        <hr
-          className=" bg-primary border-b my-3 w-full"
-        />
-      </div>
-      <div
-        className="card-body"
-      >
-        <form
-          className=" py-3 px-8"
-        >
-          <div
-            className="input my-5 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
-                name="name"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="name"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-5 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="phase"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Phase"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-5 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="coordinatorEmail"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Coordinator Email"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-5 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="programName"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Program Name"
-                type="text"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-5 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="startDate"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="StartingDate"
-                type="date"
-              />
-            </div>
-          </div>
-          <div
-            className="input my-5 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
-            >
-              <input
-                className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                name="endDate"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="ClosingDate"
-                type="date"
-              />
-            </div>
-          </div>
-          <div
-            className="w-full flex justify-between"
-          >
-            <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
-              data-testid="remove"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-               
-              Cancel
-            </button>
-            <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-               
-              Save
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>,
-  <div
-    className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
-  >
-    <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
-    >
-      <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
-      >
-        <h3
-          className="font-bold text-xl dark:text-white text-center w-11/12"
-        >
-          DeleteCohort
-        </h3>
-        <hr
-          className=" bg-primary border-b my-3 w-full"
-        />
-      </div>
-      <div
-        className="card-body"
-      >
-        <form
-          className=" py-3 px-8"
-        >
-          <div>
-            <h2
-              className="text-base dark:text-white text-center m-4"
-            >
-              reallyRemoveCohort
-            </h2>
-          </div>
-          <div
-            className="w-full flex justify-between"
-          >
-            <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
-              data-testid="delete"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-               
-              Cancel
-               
-            </button>
-            <button
-              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
-              disabled={false}
-              type="button"
-            >
-               
-              Delete
-               
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>,
-  <div
-    className="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
-  >
-    <div
-      className="flex items-left px-7 lg:px-60 pt-24 pb-8"
-    >
-      <div
-        className="space-x-8 lg:ml-10"
-      >
-        <button
-          className="btn primary lg undefined"
-          data-testid="removeModel"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-           
-          Cohort
-           +
-           
-        </button>
-      </div>
-    </div>
-    <div
-      className="px-3 m d:px-8 w-screen overflow-x-auto"
-    />
   </div>,
 ]
 `;

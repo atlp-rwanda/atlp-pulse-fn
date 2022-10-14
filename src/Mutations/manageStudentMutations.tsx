@@ -34,6 +34,14 @@ export const GET_COORDINATOR_COHORTS_QUERY = gql`
     }
   }
 `;
+export const GET_COHORTS_QUERY = gql`
+  query GetCohorts($orgToken: String) {
+    getCohorts(orgToken: $orgToken) {
+      name
+      id
+    }
+  }
+`;
 
 export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
   mutation AddMemberToCohort(

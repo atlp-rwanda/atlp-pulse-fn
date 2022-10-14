@@ -13,7 +13,7 @@ import {
   GET_USERS,
 } from '../Mutations/Ratings';
 import { GET_COORDINATOR_COHORTS_QUERY } from '../Mutations/manageStudentMutations';
-import { GET_REPLIES } from '../Mutations/replyMutation';
+import { ADD_REPLY, GET_REPLIES } from '../Mutations/replyMutation';
 import { REMOVE_REPLY } from '../Mutations/replyMutation'
 import { phase, sprint } from '../dummyData/ratings';
 import DataTable from '../components/DataTable';
@@ -21,6 +21,8 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
 import { gql } from '@apollo/client';
+import { id } from 'date-fns/locale';
+import e from 'express';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -58,10 +60,19 @@ const TraineeRatingDashboard = () => {
     user: '',
     id: '',
   });
+  const [replyData, setReplyData] = useState({
+    bodyQuantity: '',
+    bodyQuality: '',
+    bodyProfessional: '',
+    sprint: '0',
+    user: '',
+    id: '', 
+  });
   let [isOpen, setIsOpen] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [removeModel, setRemoveModel] = useState(false);
   const [ratings, setRatings] = useState<any>([]);
+  const [replies, setReplies] = useState<any>([]);
   const [selectedTrainee, setSelectedTrainee] = useState(trainee[0]);
   const [query, setQuery] = useState('');
   const [toggle, setToggle] = useState(false);
@@ -88,7 +99,6 @@ const TraineeRatingDashboard = () => {
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, '')),
         );
-
   const closeModal = () => {
     setIsOpen(false);
     setShowActions(false);
@@ -104,6 +114,7 @@ const TraineeRatingDashboard = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     createRatings();
+    createReply();
     handleToggle();
     closeModal();
   };
@@ -121,7 +132,7 @@ const TraineeRatingDashboard = () => {
         [e.target.name]: e.target.value,
       };
     });
-  };
+  }; 
 
   const data = ratings;
   const columns = [
@@ -141,6 +152,13 @@ const TraineeRatingDashboard = () => {
               color="#148fb6"
               onClick={() => {
                 setShowActions(!showActions);
+                setReplyData({
+                  ...replyData,
+                  bodyQuality: row.original.bodyQuality,
+                  bodyQuantity: row.original.bodyQuantity,
+                  bodyProfessional: row.original.bodyProfessional,
+                  id: row.original.user.id
+                }),
                 setRows({
                   ...rows,
                   quality: row.original.quality,
@@ -152,6 +170,7 @@ const TraineeRatingDashboard = () => {
                   sprint: row.original.sprint,
                   user: row.original.user.email,
                   id: row.original.user.id,
+
                 });
               }}
             />
@@ -160,7 +179,7 @@ const TraineeRatingDashboard = () => {
       ),
     },
   ];
-
+ 
   const [createRatings] = useMutation(ADD_RATING, {
     variables: {
       user: ratingData.userEmail,
@@ -182,6 +201,25 @@ const TraineeRatingDashboard = () => {
       toast.success('Successfully done');
     },
   });
+  const [createReply] = useMutation(ADD_REPLY, {
+    variables: {
+      user: replyData.id,
+      sprint: selectedSprint.name,
+      bodyQuantity: replyData?.bodyQuantity,
+      bodyQuality: replyData?.bodyQuality,
+      bodyProfessional: replyData?.bodyProfessional,
+      orgToken: organizationToken,
+    }, 
+    onError: (err) => {
+      toast.error('something went wrong');
+      createReply();
+    },
+    onCompleted: (reply) => {
+      toast.success('Well done!');
+      createReply();
+      handleToggle();
+    },
+  })
   const [removereply] = useMutation(REMOVE_REPLY, {
     variables: {
       user: rows.id,
@@ -191,7 +229,7 @@ const TraineeRatingDashboard = () => {
       toast.error('something went wrong');
       removeReply();
     },
-    onCompleted: (data) => {
+    onCompleted: (reply) => {
       toast.success('Successfully deleted!');
       removeReply();
       handleToggle();
@@ -224,7 +262,6 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
   });
-  
 
   const [getCohorts] = useLazyQuery(GET_COORDINATOR_COHORTS_QUERY, {
     variables: {
@@ -237,40 +274,37 @@ const TraineeRatingDashboard = () => {
       cohortName: cohortName,
     },
   });
+const [getReplies] = useLazyQuery(GET_REPLIES, {
+  variables: {
+    orgToken: organizationToken,
+  },
 
-  const [getReplies] = useLazyQuery(GET_REPLIES, {
-    variables: {
-      sprint: rows.sprint,
-      coordinator: rows.id,
+});
 
-    }
+useEffect(() => {
+  getReplies({
+    fetchPolicy: 'network-only',
+    onCompleted: (reply) => {
+      setReplies(reply?.getReplies);
+      // console.log("Honore", reply);
+    },
+    onError: (error) => {
+      toast.error(error?.message || 'Something went wrong');
+    },
   });
-
+}, [toggle]);
 
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        setRatings(data?.fetchReplies);
+        setRatings(data?.fetchRatings);
+        
       },
       onError: (error) => {
         toast.error(error?.message || 'Something went wrong');
       },
     });
-
-
-
-      getReplies({
-        fetchPolicy: 'network-only',
-        onCompleted: (data) => {
-          setRatings(data?.getReplies);
-        },
-        onError: (error) => {
-          toast.error(error?.message || 'Something went wrong');
-        },
-      });
-
-
 
 
     getCohorts({
@@ -921,25 +955,40 @@ const TraineeRatingDashboard = () => {
                                       data-testid="qualityDescriptionTextArea"
                                     />
 
-                                   <div className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
-                                  Quantity reply
-                                  </div>
-                               <Button
-                                      variant="default"
-                                      size="md"
-                                      style="{text-center w-1/2 rounded-md  bg-red-700 text-white width: 200"
-                                      onClick={() => {
+<div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
+                                   <textarea className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                 
+                                 
+                                  value={replyData.bodyQuality}
+                                   onChange={(e) =>
+                                  setReplyData({
+                                    ...replyData,
+                                    bodyQuality: e.target.value,
+                                  })
+                                  }
+
+
+
+
+                                   rows={2}
+                                   placeholder='No reply here'
+                                   >
+                                   
+                                    </textarea>
+                                    <Icon
+                                       icon="mdi:close-circle-outline"
+                                       width="30"
+                                       onClick={() => {
                                         setRows({
                                           ...rows,
                                         });
                                         setRemoveModel(!removeModel);
                                       }}
-                                    >
-                                      {t('delete')}
-                                    </Button>
-
-
-
+                                       height="30"
+                                       cursor="pointer"
+                                       color="#ff0000"
+                                       className='absolute bottom-1.5 right-1.5'
+            /></div>
                                   </div>
                                   <div className="mx-0 md:mx-2  my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <Button
@@ -986,23 +1035,33 @@ const TraineeRatingDashboard = () => {
                                       className="rounded-md w-full  my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
                                       placeholder="Qantity rating remark"
                                     />
-
-                                   <div className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
-                                  Quality reply
-                                   </div>
-                                   <Button
-                                      variant="default"
-                                      size="md"
-                                      style="text-center w-1/2 rounded-md  bg-red-700 text-white width: 200"
-                                      onClick={() => {
+                                  <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
+                                   <textarea className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                  value={replyData.bodyQuantity}
+                                  onChange={(e) =>
+                                  setReplyData({
+                                    ...replyData,
+                                    bodyQuantity: e.target.value
+                                  })
+                                  }
+                                  rows={2}
+                                  placeholder="No reply here"
+                                   />
+                                   <Icon
+                                       icon="mdi:close-circle-outline"
+                                       width="30"
+                                       onClick={() => {
                                         setRows({
                                           ...rows,
                                         });
                                         setRemoveModel(!removeModel);
                                       }}
-                                    >
-                                      {t('delete')}
-                                    </Button>
+                                       height="30"
+                                       cursor="pointer"
+                                       color="#ff0000"
+                                       className='absolute bottom-1.5 right-1.5'
+            />
+            </div>
                                   </div>
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <Button
@@ -1050,24 +1109,42 @@ const TraineeRatingDashboard = () => {
                                       placeholder="Professional rating remark"
                                     />
 
-                                   <div className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
-                                  Professional reply
-                                   </div>
-                                   <Button
-                                      variant="default"
-                                      size="md"
-                                      style="text-center w-1/2 rounded-md bg-red-700 text-white width: 200"
-                                      onClick={() => {
+                                    <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                  > 
+                                   <textarea
+                                   value={replyData.bodyProfessional}
+                                  onChange={(event) =>
+                                    setReplyData({
+                                      ...replyData,
+                                      bodyProfessional: event.target.value,
+                                    })
+
+                                  }
+                                   placeholder="No reply here"
+
+                                   className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                   rows={2}
+                                   
+                                   >
+                                    </textarea>
+                                    <Icon
+                                       icon="mdi:close-circle-outline"
+                                       width="30"
+                                       onClick={() => {
                                         setRows({
                                           ...rows,
                                         });
                                         setRemoveModel(!removeModel);
                                       }}
-                                    >
-                                      {t('delete')}
-                                    </Button>
+                                       height="30"
+                                       cursor="pointer"
+                                       color="#ff0000"
+                                       className='absolute bottom-1.5 right-1.5'
+            />
+                                    </div>
+                                  
+                                   </div>
                                   </div>
-                                </div>
                                 <div className="mt-4 md:mt-8">
                                   <button
                                     type="submit"

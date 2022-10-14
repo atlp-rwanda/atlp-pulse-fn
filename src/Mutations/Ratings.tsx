@@ -124,10 +124,12 @@ export const TRAINEE_RATING = gql`
       qualityRemark
       professional_Skills
       professionalRemark
+      
+
     }
   }
 `;
-
+// createdAt
 export const GET_USERS = gql`
   query GetAllUsers($cohortName: ID!) {
     fetchCohortsCoordinator(cohortName: $cohortName) {

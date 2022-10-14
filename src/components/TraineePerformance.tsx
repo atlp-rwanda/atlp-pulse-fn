@@ -142,6 +142,7 @@ const TraineePerfomance = () => {
                                     sessionStorage.setItem(
                                       'data',
                                       JSON.stringify({
+                                        user_sprint: item?.sprint,
                                         quantity_remark: item?.quantityRemark,
                                         quality_remark: item?.qualityRemark,
                                         professional_remark:

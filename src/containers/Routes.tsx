@@ -6,13 +6,17 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Error from './../pages/Error';
 import Skeleton from '../components/Skeleton';
+import UserRegister from '../pages/Organization/UserRegister';
+import Message from '../pages/Organization/Message';
 const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
 const Orglogin = React.lazy(() => import('../pages/Organization/Orglogin'));
 const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
 const Pricing = React.lazy(() => import('../pages/Pricing'));
+const Product = React.lazy(() => import('../pages/Comingsoon'));
 const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
+
 
 function MainRoutes() {
   return (
@@ -21,9 +25,11 @@ function MainRoutes() {
       <Suspense fallback={<Skeleton />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register-organization" element={<OrgRegister />} />
+          <Route path="/register" element={<UserRegister />} />
+          <Route path="/register-successful" element={<Message />} />
+          <Route path="/signup/org" element={<OrgRegister />} />
           <Route
-            path="/org-login"
+            path="/login/org"
             element={
               <ProtectedRoutes>
                 <Orglogin />
@@ -31,7 +37,7 @@ function MainRoutes() {
             }
           />
           <Route
-            path="/login-admin"
+            path="/login"
             element={
               <ProtectedRoutes>
                 <Adminlogin />
@@ -39,6 +45,7 @@ function MainRoutes() {
             }
           />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/product" element={<Product />} />
           <Route path="/noredirect" element={<Noredirect />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="*" element={<Error />} />

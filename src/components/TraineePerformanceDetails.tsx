@@ -20,11 +20,15 @@ const navigate = useNavigate();
 
 const [replyData, setReplyData] = useState({
   userEmail: '', 
-  body: '',
+  bodyQuantity: '',
+  bodyQuality: '',
+  bodyProfessional: '',
 })
 const [rows, setRows] =useState({
   user: '',
-  body: '',
+  bodyQuantity: '',
+  bodyQuality: '',
+  bodyProfessional: '',
 })
 
 
@@ -40,6 +44,13 @@ let [isOpen3, setIsOpen3] = useState(false);
 const [showActions, setShowActions] = useState(false);
 const [toggle, setToggle] =useState(false);
 
+const [ratings, setRatings] = useState<any>([]);
+useEffect(() => {
+  const data: any = sessionStorage.getItem('data');
+  const getData = JSON.parse(data);
+  setRatings(getData);
+  console.log(data);
+}, []);
 
 
 
@@ -74,9 +85,10 @@ const handleSubmit = (e: any) => {
 const [createReply] = useMutation(ADD_REPLY, {
 variables: {
   user: replyData.userEmail,
-  sprint: 2,
-  coordinator: "coordinator@pulse.com",
-  body: rows.body.toString(),
+  sprint:ratings.user_sprint,
+  bodyQuantity: rows.bodyQuantity.toString(),
+  bodyQuality: rows.bodyQuality.toString(),
+  bodyProfessional: rows.bodyProfessional.toString(),
 },
 onError: (err) => {
   toast.error('Unable to procced')
@@ -95,13 +107,7 @@ const [getUsers] = useLazyQuery(GET_USERS, {
 
 
 
-  const [ratings, setRatings] = useState<any>([]);
-  useEffect(() => {
-    const data: any = sessionStorage.getItem('data');
-    const getData = JSON.parse(data);
-    setRatings(getData);
-    console.log(ratings);
-  }, []);
+
   const { t } = useTranslation();
   return (
     <div>
@@ -223,7 +229,7 @@ const [getUsers] = useLazyQuery(GET_USERS, {
             </div>
             <div className='ml-9 text-primary '>
               <h3 className='float-left'>
-                30/09/2022
+                {/* 30/09/2022 */}
               </h3>
             </div>
           </div>
@@ -231,11 +237,11 @@ const [getUsers] = useLazyQuery(GET_USERS, {
             <div className='m-4'>
             <div className=" ">
                 <input
-                 value={rows.body}
+                 value={rows.bodyQuantity}
                  onChange={(e) =>
                    setRows({
                      ...rows,
-                     body: e.target.value,
+                     bodyQuantity: e.target.value,
                    })
                  }
                   className="w-full bg-inherit px-2 outline-0"
@@ -317,7 +323,7 @@ const [getUsers] = useLazyQuery(GET_USERS, {
             </div>
             <div className='ml-9 text-primary '>
               <h3 className='float-left'>
-                30/09/2022
+              {/* {ratings?.createdAt} */}
               </h3>
             </div>
           </div>
@@ -325,11 +331,11 @@ const [getUsers] = useLazyQuery(GET_USERS, {
             <div className='m-4'>
             <div className=" ">
                 <input
-                 value={rows.body}
+                 value={rows.bodyQuality}
                  onChange={(e) =>
                    setRows({
                      ...rows,
-                     body: e.target.value,
+                     bodyQuality: e.target.value,
                    })
                  }
                   className="w-full bg-inherit px-2 outline-0"
@@ -411,7 +417,7 @@ const [getUsers] = useLazyQuery(GET_USERS, {
             </div>
             <div className='ml-9 text-primary '>
               <h3 className='float-left'>
-                30/09/2022
+                {/* 30/09/2022 */}
               </h3>
             </div>
           </div>
@@ -419,11 +425,11 @@ const [getUsers] = useLazyQuery(GET_USERS, {
             <div className='m-4'>
             <div className=" ">
                 <input
-                 value={rows.body}
+                 value={rows.bodyProfessional}
                  onChange={(e) =>
                    setRows({
                      ...rows,
-                     body: e.target.value,
+                     bodyProfessional: e.target.value,
                    })
                  }
                   className="w-full bg-inherit px-2 outline-0"

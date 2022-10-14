@@ -33,7 +33,7 @@
   "First time here?": "First time here?",
   "your organization": "your organization",
   "Hello, Friend!": "Hello, Friend!",
-  "Sign_in_page_paragraph": "Register your organization and start your journey with us",
+  "Sign_in_page_paragraph": "Create an account and start your journey with us",
   "Register": "Register",
   "Register your organization": "Register your organization",
   "Name of your Organization": "Name of your organization",
@@ -257,5 +257,9 @@
   "Add Program": "AddProgram",
   "Program list": "Program list",
   "Admin": "Admin",
-  "Number of Cohorts": "Number of Cohorts"
+  "Number of Cohorts": "Number of Cohorts",
+  "Productpage":"Product page",
+  "comingsoon":"coming soon",
+  "Somethingnewiscoming":"Something new is coming",
+  "Sign up using":"Sign up using"
 }

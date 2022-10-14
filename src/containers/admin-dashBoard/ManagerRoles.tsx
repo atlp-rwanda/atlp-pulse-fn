@@ -123,26 +123,7 @@ const AdminSission = () => {
 
   const [toggle, setToggle] = useState(false);
 
-  // const handleAssignRole = async () => {
-  //   // e.preventDefault()
-  //   try {
-  //     const { data }: any = await updateUserRole({
-  //       variables: { updateUserRoleId: userId, name: selectedRole },
-  //     });
-  //     console.log('data ', data.updateUserRole)
-  //     console.log('users ', users)
-
-  //   // setUsers(rolemanagement)
-  //   setToggle(!toggle)
-  //     console.log("Toggle ", toggle)
-
-  //   await client.resetStore();
-  //     let newState = !deleteModel;
-  //     setTimeout(() => {
-  //       setDeleteModel(newState);
-  //     }, 1000);
-  //   } catch (error) {}
-  // };
+ 
 
   const [handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
     variables: { updateUserRoleId: userId, name: selectedRole },
