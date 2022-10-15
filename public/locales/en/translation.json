@@ -126,6 +126,7 @@
   "ClosingDate": "Closing date",
   "DeleteCohort": "Delete a Cohort",
   "reallyRemoveCohort": "do you really want to remove this Cohort?",
+  "reallyRemoveProgram": "do you really want to remove this Program?",
   "Cancel": "Cancel",
   "Cohort": "Cohort",
   "CohortList": "Cohorts list",
@@ -254,12 +255,12 @@
   "The ClosingDate is required": "The ClosingDate is required",
   "The Program is required": "The Program is required",
   "Choose Admin": "Choose Admin",
-  "Add Program": "AddProgram",
+  "Add Program": "Add Program",
   "Program list": "Program list",
   "Admin": "Admin",
   "Number of Cohorts": "Number of Cohorts",
-  "Productpage":"Product page",
-  "comingsoon":"coming soon",
-  "Somethingnewiscoming":"Something new is coming",
-  "Sign up using":"Sign up using"
+  "Productpage": "Product page",
+  "comingsoon": "coming soon",
+  "Somethingnewiscoming": "Something new is coming",
+  "Sign up using": "Sign up using"
 }

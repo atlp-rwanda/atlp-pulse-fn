@@ -101,7 +101,7 @@ jobs:
         uses: phulsechinmay/rewritable-pr-comment@v0.2.1
         with:
           GITHUB_TOKEN: ${{ secrets.PAT }}
-          COMMENT_IDENTIFIER: "Deploy"
+          COMMENT_IDENTIFIER: 'Deploy'
           message: |
             I deployed a review app for you to try out this pull request 👇🏽
 

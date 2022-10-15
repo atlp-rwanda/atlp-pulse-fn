@@ -21,8 +21,7 @@ export function CountryComponent({ country }: any) {
         data-testid="country-selector-flag"
         src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${userCountry?.value}.svg`}
         className="inline mx-2 h-4 rounded-sm "
-      />
-      {' '}
+      />{' '}
       {userCountry?.title}
     </span>
   );

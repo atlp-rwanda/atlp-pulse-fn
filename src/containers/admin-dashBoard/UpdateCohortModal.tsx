@@ -1,47 +1,38 @@
 import { gql, useMutation } from '@apollo/client';
-import React from 'react';
+import { format } from 'date-fns';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
-import ControlledSelect from '../../components/ControlledSelect';
 import { Cohort, PartialProgram, PartialUser } from './Cohorts';
 
-export const AddCohort = gql`
-  mutation AddCohort(
-    $name: String!
-    $phase: String!
-    $coordinatorEmail: String!
-    $programName: String!
-    $startDate: DateTime!
+export const UpdateCohort = gql`
+  mutation UpdateCohort(
+    $updateCohortId: ID!
+    $name: String
+    $orgToken: String
+    $phase: String
+    $startDate: DateTime
     $endDate: DateTime
   ) {
-    addCohort(
+    updateCohort(
+      id: $updateCohortId
       name: $name
+      orgToken: $orgToken
       phase: $phase
-      coordinatorEmail: $coordinatorEmail
-      programName: $programName
       startDate: $startDate
       endDate: $endDate
     ) {
       id
-      name
-      phase
-      coordinator {
-        email
-      }
-      program {
-        name
-      }
-      startDate
-      endDate
     }
   }
 `;
 
-export default function CreateCohortModal({
+export default function UpdateCohortModal({
   data,
-  createCohortModel,
+  updateCohortModal,
+  currentCohort,
   removeModel,
   refetch,
 }: {
@@ -50,7 +41,8 @@ export default function CreateCohortModal({
     getAllUsers: PartialUser[];
     getAllPrograms: PartialProgram[];
   };
-  createCohortModel: boolean;
+  updateCohortModal: boolean;
+  currentCohort: Cohort | undefined;
   removeModel: Function;
   refetch: Function;
 }) {
@@ -62,8 +54,9 @@ export default function CreateCohortModal({
     reset,
     register,
     control,
+    setValue,
   } = useForm();
-  const [addCohortMutation, { loading }] = useMutation(AddCohort, {
+  const [updateCohortMutation, { loading }] = useMutation(UpdateCohort, {
     onError(error) {
       toast.error(error.message.toString());
     },
@@ -77,9 +70,10 @@ export default function CreateCohortModal({
     (user) => user.role === 'coordinator',
   );
   const programs = data?.getAllPrograms;
+  const orgToken = localStorage.getItem('orgToken');
 
-  async function addCohort(data: any) {
-    const newData = { ...data };
+  async function updateCohort(data: any) {
+    const newData: any = { ...data };
 
     newData.coordinatorEmail &&
       (newData.coordinatorEmail = newData.coordinatorEmail.value);
@@ -91,19 +85,40 @@ export default function CreateCohortModal({
       }
     });
 
-    await addCohortMutation({ variables: newData });
+    newData.updateCohortId = currentCohort?.id;
+    orgToken && (newData.orgToken = orgToken);
+
+    await updateCohortMutation({ variables: newData });
   }
+
+  useEffect(() => {
+    setValue('name', currentCohort?.name);
+    setValue('phase', currentCohort?.phase);
+    if (currentCohort?.startDate) {
+      setValue(
+        'startDate',
+        format(new Date(currentCohort?.startDate as string), 'yyyy-MM-dd'),
+      );
+    }
+    if (currentCohort?.endDate) {
+      setValue(
+        'endDate',
+        format(new Date(currentCohort?.endDate as string), 'yyyy-MM-dd'),
+      );
+    }
+  }, [currentCohort]);
 
   return (
     <div
-      className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
-        createCohortModel === true ? 'block' : 'hidden'
+      className={`h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 ${
+        updateCohortModal === true ? 'block' : 'hidden'
       }`}
+      data-testid="updateCohortModal"
     >
       <div className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
         <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
           <h3 className="font-bold text-sm dark:text-white text-center w-11/12 uppercase">
-            {t('Add Cohort')}
+            {t('Update Cohort')}
           </h3>
           <hr className=" bg-primary border-b my-3 w-full" />
         </div>
@@ -115,9 +130,7 @@ export default function CreateCohortModal({
                   type="text"
                   className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
                   placeholder={t('name')}
-                  {...register('name', {
-                    required: `${t('The Cohort name is required')}`,
-                  })}
+                  {...register('name')}
                 />
               </div>
               {errors?.name && (
@@ -132,56 +145,12 @@ export default function CreateCohortModal({
                   type="text"
                   className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
                   placeholder={t('Phase')}
-                  {...register('phase', {
-                    required: `${t('The Phase is required')}`,
-                  })}
+                  {...register('phase')}
                 />
               </div>
               {errors?.phase && (
                 <p className="font-thin text-[12px] text-red-300">
                   {errors?.phase?.message?.toString()}
-                </p>
-              )}
-            </div>
-            <div className="input my-5 h-9 ">
-              <div className="grouped-input flex items-center h-full w-full rounded-md">
-                <ControlledSelect
-                  placeholder={t('Select Coordinator')}
-                  register={{
-                    control,
-                    name: 'coordinatorEmail',
-                    rules: {
-                      required: `${t('The Coordinator Email is required')}`,
-                    },
-                  }}
-                  options={coordinators?.map(({ email }) => ({
-                    value: email,
-                    label: email,
-                  }))}
-                />
-              </div>
-              {errors?.coordinatorEmail && (
-                <p className="font-thin text-[12px] text-red-300">
-                  {errors?.coordinatorEmail?.message?.toString()}
-                </p>
-              )}
-            </div>
-            <div className="input my-5 h-9 ">
-              <ControlledSelect
-                placeholder={t('Program Name')}
-                register={{
-                  control,
-                  name: 'programName',
-                  rules: { required: `${t('The Program Name is required')}` },
-                }}
-                options={programs?.map(({ name }) => ({
-                  value: name,
-                  label: name,
-                }))}
-              />
-              {errors?.programName && (
-                <p className="font-thin text-[12px] text-red-300">
-                  {errors?.programName?.message?.toString()}
                 </p>
               )}
             </div>
@@ -192,9 +161,7 @@ export default function CreateCohortModal({
                   type="date"
                   className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
                   placeholder={t('StartingDate')}
-                  {...register('startDate', {
-                    required: `${t('The StartingDate is required')}`,
-                  })}
+                  {...register('startDate')}
                 />
               </div>
               {errors?.startDate && (
@@ -238,8 +205,9 @@ export default function CreateCohortModal({
                 variant="primary"
                 size="sm"
                 style="w-[30%] md:w-1/4 text-sm font-sans p-0"
-                onClick={handleSubmit(addCohort)}
+                onClick={handleSubmit(updateCohort)}
                 loading={loading}
+                data-testid="confirmUpdateBtn"
               >
                 {' '}
                 {t('Save')}

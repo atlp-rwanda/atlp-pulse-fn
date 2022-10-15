@@ -1,9 +1,9 @@
 /* eslint-disable */
+import { Icon } from '@iconify/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
 import { IoIosArrowBack } from 'react-icons/io';
-import { Icon } from '@iconify/react';
+import { useNavigate } from 'react-router';
 import CommentCard from '../components/CommentCard';
 import comments from '../dummyData/comments.json';
 

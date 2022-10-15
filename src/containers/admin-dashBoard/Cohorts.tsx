@@ -1,12 +1,14 @@
-/* eslint-disable */
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import DataTable from '../../components/DataTable';
-import useDocumentTitle from '../../hook/useDocumentTitle';
-import CreateCohortModal from './CreateCohortModal';
 import { gql, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Button from '../../components/Buttons';
+import DataTable from '../../components/DataTable';
+import useDocumentTitle from '../../hook/useDocumentTitle';
+import formatDate from '../../utils/formatDate';
+import CreateCohortModal from './CreateCohortModal';
+import DeleteCohortModal from './DeleteCohortModal';
+import UpdateCohortModal from './UpdateCohortModal';
 
 export interface Cohort {
   id: string;
@@ -20,6 +22,15 @@ export interface Cohort {
   };
   startDate: string | Date;
   endDate: string | Date;
+}
+export interface PartialUser {
+  id: string;
+  email: string;
+  role: string;
+}
+export interface PartialProgram {
+  id: string;
+  name: string;
 }
 
 export const getAllCohorts = gql`
@@ -37,10 +48,64 @@ export const getAllCohorts = gql`
       startDate
       endDate
     }
+    getAllUsers {
+      id
+      email
+      role
+    }
+    getAllPrograms(orgToken: $orgToken) {
+      id
+      name
+    }
   }
 `;
 
-const AdminCohort = () => {
+function ActionButtons({
+  getData,
+  setCurrentCohort,
+  setUpdateCohortModal,
+  setDeleteCohortModal,
+  ...props
+}: any) {
+  return (
+    <div className="flex relative flex-row align-middle justify-center items-center">
+      <div
+        data-testid="updateIcon"
+        onClick={() => {
+          setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+          setUpdateCohortModal(true);
+        }}
+      >
+        <Icon
+          icon="el:file-edit-alt"
+          className="mr-2"
+          width="25"
+          height="25"
+          cursor="pointer"
+          color="#148fb6"
+        />
+      </div>
+
+      <div
+        data-testid="deleteIcon"
+        onClick={() => {
+          setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+          setDeleteCohortModal(true);
+        }}
+      >
+        <Icon
+          icon="mdi:close-circle-outline"
+          width="30"
+          height="30"
+          cursor="pointer"
+          color="#148fb6"
+        />
+      </div>
+    </div>
+  );
+}
+
+function AdminCohort() {
   const { t } = useTranslation();
 
   const {
@@ -51,6 +116,8 @@ const AdminCohort = () => {
   }: {
     data?: {
       getAllCohorts: Cohort[];
+      getAllUsers: PartialUser[];
+      getAllPrograms: PartialProgram[];
     };
     loading: boolean;
     error?: any;
@@ -61,18 +128,22 @@ const AdminCohort = () => {
     },
   });
 
-  const [createCohortModel, setCreateCohortModel] = useState(false);
-  const [deleteCohortModel, setDeleteCohortModel] = useState(false);
-  const [showActions, setShowActions] = useState(false);
+  const [createCohortModal, setCreateCohortModal] = useState(false);
+  const [updateCohortModal, setUpdateCohortModal] = useState(false);
+  const [currentCohort, setCurrentCohort] = useState<Cohort | undefined>(
+    undefined,
+  );
+  const [deleteCohortModal, setDeleteCohortModal] = useState(false);
   useDocumentTitle('Cohorts');
 
-  const handleShowActions = () => {
-    setShowActions(!showActions);
+  const removeDeleteModel = () => {
+    const newState = !deleteCohortModal;
+    setDeleteCohortModal(newState);
   };
 
-  const removeDeleteModel = () => {
-    let newState = !deleteCohortModel;
-    setDeleteCohortModel(newState);
+  const removeModel = () => {
+    const newState = !createCohortModal;
+    setCreateCohortModal(newState);
   };
 
   const cohortColumns = [
@@ -80,30 +151,19 @@ const AdminCohort = () => {
     { Header: 'Phase', accessor: 'phase' },
     { Header: 'Coordinator', accessor: 'coordinator' },
     { Header: 'Program', accessor: 'program' },
-    { Header: 'StartingDate', accessor: 'startDate' },
-    { Header: 'ClosingDate', accessor: 'endDate' },
+    { Header: 'Starting Date', accessor: 'startDate' },
+    { Header: 'Closing Date', accessor: 'endDate' },
     {
-      Header: 'Action',
+      Header: 'Actions',
       accessor: '',
-      Cell: () => (
-        <div className="flex relative flex-row align-middle justify-center items-center">
-          <Icon
-            icon="el:file-edit-alt"
-            className="mr-2"
-            width="25"
-            height="25"
-            cursor="pointer"
-            color="#148fb6"
-          />
-          <Icon
-            icon="mdi:close-circle-outline"
-            width="30"
-            height="30"
-            cursor="pointer"
-            color="#148fb6"
-          />
-        </div>
-      ),
+      Cell: (props: any) =>
+        ActionButtons({
+          getData,
+          setCurrentCohort,
+          setUpdateCohortModal,
+          setDeleteCohortModal,
+          ...props,
+        }),
     },
   ];
   const cohortData = getData?.getAllCohorts.map(
@@ -119,71 +179,37 @@ const AdminCohort = () => {
       phase,
       coordinator: coordinatorEmail,
       program: programName,
-      startDate,
-      endDate,
+      startDate: formatDate(startDate),
+      endDate: formatDate(endDate),
     }),
   );
-
-  const removeModel = () => {
-    const newState = !createCohortModel;
-    setCreateCohortModel(newState);
-  };
 
   return (
     <>
       {/* =========================== Start:: CreateCohortModel =============================== */}
       <CreateCohortModal
-        createCohortModel={createCohortModel}
+        data={getData}
+        createCohortModel={createCohortModal}
         removeModel={removeModel}
         refetch={getRefetch}
       />
-      {/* =========================== End::  CreateCohortModel =============================== */}
+      <UpdateCohortModal
+        data={getData}
+        updateCohortModal={updateCohortModal}
+        currentCohort={currentCohort}
+        refetch={getRefetch}
+        removeModel={() => {
+          setUpdateCohortModal(false);
+        }}
+      />
+      <DeleteCohortModal
+        deleteCohortModal={deleteCohortModal}
+        currentCohort={currentCohort}
+        removeModel={removeDeleteModel}
+        refetch={getRefetch}
+      />
 
-      {/* =========================== Start::  delete Session Model =============================== */}
-      <div
-        className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
-          deleteCohortModel === true ? 'block' : 'hidden'
-        }`}
-      >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
-              {t('DeleteCohort')}
-            </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
-          </div>
-          <div className="card-body">
-            <form className=" py-3 px-8">
-              <div>
-                <h2 className="text-base dark:text-white text-center m-4">
-                  {t('reallyRemoveCohort')}
-                </h2>
-              </div>
-              <div className="w-full flex justify-between">
-                <Button
-                  variant="info"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  data-testid="delete"
-                  onClick={() => removeDeleteModel()}
-                >
-                  {' '}
-                  {t('Cancel')}{' '}
-                </Button>
-                <Button
-                  variant="danger"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                >
-                  {' '}
-                  {t('Delete')}{' '}
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {/* =========================== End::  delete Session Model =============================== */}
+      {/* =========================== End::  CreateCohortModel =============================== */}
 
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
         <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
@@ -195,7 +221,7 @@ const AdminCohort = () => {
               data-testid="removeModel"
             >
               {' '}
-              {t('Cohort')} +{' '}
+              {t('Cohort')} +
             </Button>
           </div>
         </div>
@@ -203,7 +229,7 @@ const AdminCohort = () => {
           {!getLoading && (
             <DataTable
               columns={cohortColumns}
-              data={cohortData as [any]}
+              data={cohortData ? (cohortData as [any]) : [{}]}
               title="CohortList"
             />
           )}
@@ -211,6 +237,6 @@ const AdminCohort = () => {
       </div>
     </>
   );
-};
+}
 
 export default AdminCohort;

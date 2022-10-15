@@ -17,7 +17,7 @@ interface TableData {
 
 function DataTable({ data, columns, title }: TableData) {
   // const sortedData = React.useMemo(() => [...data], []);
-  const sortedColumns = React.useMemo(() => [...columns], []);
+  const sortedColumns = React.useMemo(() => [...columns], [columns]);
   const sortedData = data;
   // const sortedColumns = columns;
   const TableInstance = useTable(
@@ -60,7 +60,7 @@ function DataTable({ data, columns, title }: TableData) {
           {/* <span className="text-xs text-gray-600">Current cohort</span> */}
           <input
             defaultValue={globalFilter || ''}
-            placeholder="Filter by cohort, program, and rating"
+            placeholder="Filter"
             className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
             onChange={(e) => setGlobalFilter(e.target.value)}
           />

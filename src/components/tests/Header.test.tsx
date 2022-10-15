@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import Header from '../Header';
 import UserProvider, { UserContext } from '../../hook/useAuth';
+import Header from '../Header';
 
 describe('Header Tests', () => {
   it('Should render the header with pricing active', () => {

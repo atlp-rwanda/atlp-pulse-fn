@@ -130,8 +130,7 @@ export default function ProfileTabs({ data }: any) {
                 <div className="grid md:grid-cols-5 gap-4 md:gap-6 ">
                   <div className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
-                      {data?.name}
-                      {' '}
+                      {data?.name}{' '}
                     </h3>
                     <div className="py-4 flex  justify-center">
                       <MailIcon className="w-6 mr-2 dark:text-dark-text-fill" />
@@ -143,10 +142,9 @@ export default function ProfileTabs({ data }: any) {
                     </div>
                     <div className="py-4 flex ">
                       <HomeIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {data?.city}
-                      ,
+                      {data?.city},
                       {data?.country && (
-                      <CountryComponent country={data.country} />
+                        <CountryComponent country={data.country} />
                       )}
                     </div>
                   </div>
@@ -177,23 +175,16 @@ export default function ProfileTabs({ data }: any) {
                     </h3>
                     <div className="py-4 flex  justify-center">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Joined')}
-                        :
+                        {t('Joined')}:
                       </h4>
                       18/07/2022
                     </div>
                     <div className="flex">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('role')}
-                        :
-                      </h4>
+                      <h4 className="font-bold text-base mr-4">{t('role')}:</h4>
                       {user?.role}
                     </div>
                     <div className="py-4 flex ">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Team')}
-                        :
-                      </h4>
+                      <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
                       Codebandits
                     </div>
                   </div>
@@ -203,21 +194,18 @@ export default function ProfileTabs({ data }: any) {
                     </h3>
                     <div className="py-4 flex  justify-center">
                       <h4 className="font-bold text-base mr-4">
-                        {t('program')}
-                        :
+                        {t('program')}:
                       </h4>
                       ATLP
                     </div>
                     <div className="flex">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Stage(current)')}
-                        : Core Concepts
+                        {t('Stage(current)')}: Core Concepts
                       </h4>
                     </div>
                     <div className="py-4 flex ">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Manager')}
-                        :
+                        {t('Manager')}:
                       </h4>
                       Mukunzi Dodo
                     </div>
@@ -251,23 +239,16 @@ export default function ProfileTabs({ data }: any) {
                     </h3>
                     <div className="py-4 flex  justify-center">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Joined')}
-                        :
+                        {t('Joined')}:
                       </h4>
                       18/07/2022
                     </div>
                     <div className="flex">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Role')}
-                        :
-                      </h4>
+                      <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
                       {t('Trainee')}
                     </div>
                     <div className="py-4 flex ">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Team')}
-                        :
-                      </h4>
+                      <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
                       Codebandits
                     </div>
                   </div>
@@ -277,21 +258,18 @@ export default function ProfileTabs({ data }: any) {
                     </h3>
                     <div className="py-4 flex  justify-center">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Program')}
-                        :
+                        {t('Program')}:
                       </h4>
                       ATLP
                     </div>
                     <div className="flex">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Stage(current)')}
-                        : Core Concepts
+                        {t('Stage(current)')}: Core Concepts
                       </h4>
                     </div>
                     <div className="py-4 flex ">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Manager')}
-                        :
+                        {t('Manager')}:
                       </h4>
                       Mukunzi Dodo
                     </div>

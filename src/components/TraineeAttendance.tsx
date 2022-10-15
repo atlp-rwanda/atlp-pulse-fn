@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from './Buttons';
 import { useTranslation } from 'react-i18next';
-import useDocumentTitle from '../hook/useDocumentTitle';
-import AttendanceData from '../dummyData/attendance.json';
+import { Link } from 'react-router-dom';
 import Pagination from '../components/Pagination';
+import AttendanceData from '../dummyData/attendance.json';
+import useDocumentTitle from '../hook/useDocumentTitle';
+import Button from './Buttons';
 
 const TraineeAttendance = () => {
   useDocumentTitle('Attendance');

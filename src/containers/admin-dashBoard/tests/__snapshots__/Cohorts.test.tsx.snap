@@ -1,0 +1,529 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cohorts tests Snapshots Cohorts Page 1`] = `
+Array [
+  <div
+    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 uppercase"
+        >
+          Add Cohort
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
+                name="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="name"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="phase"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Phase"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <div
+                className="my-react-select-container css-b62m3t-container"
+                onKeyDown={[Function]}
+              >
+                <span
+                  className="css-1f43avz-a11yText-A11yText"
+                  id="react-select-2-live-region"
+                />
+                <span
+                  aria-atomic="false"
+                  aria-live="polite"
+                  aria-relevant="additions text"
+                  className="css-1f43avz-a11yText-A11yText"
+                />
+                <div
+                  className="my-react-select__control css-6zplfg-control"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <div
+                    className="my-react-select__value-container css-319lph-ValueContainer"
+                  >
+                    <div
+                      className="my-react-select__placeholder css-14el2xx-placeholder"
+                      id="react-select-2-placeholder"
+                    >
+                      Select Coordinator
+                    </div>
+                    <div
+                      className="my-react-select__input-container css-6j8wv5-Input"
+                      data-value=""
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        aria-describedby="react-select-2-placeholder"
+                        aria-expanded={false}
+                        aria-haspopup={true}
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="my-react-select__input"
+                        disabled={false}
+                        id="react-select-2-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        role="combobox"
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "color": "inherit",
+                            "font": "inherit",
+                            "gridArea": "1 / 2",
+                            "label": "input",
+                            "margin": 0,
+                            "minWidth": "2px",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "100%",
+                          }
+                        }
+                        tabIndex={0}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                  >
+                    <span
+                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      onMouseDown={[Function]}
+                      onTouchEnd={[Function]}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="css-tj5bde-Svg"
+                        focusable="false"
+                        height={20}
+                        viewBox="0 0 20 20"
+                        width={20}
+                      >
+                        <path
+                          d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="my-react-select-container css-b62m3t-container"
+              onKeyDown={[Function]}
+            >
+              <span
+                className="css-1f43avz-a11yText-A11yText"
+                id="react-select-3-live-region"
+              />
+              <span
+                aria-atomic="false"
+                aria-live="polite"
+                aria-relevant="additions text"
+                className="css-1f43avz-a11yText-A11yText"
+              />
+              <div
+                className="my-react-select__control css-6zplfg-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+              >
+                <div
+                  className="my-react-select__value-container css-319lph-ValueContainer"
+                >
+                  <div
+                    className="my-react-select__placeholder css-14el2xx-placeholder"
+                    id="react-select-3-placeholder"
+                  >
+                    Program Name
+                  </div>
+                  <div
+                    className="my-react-select__input-container css-6j8wv5-Input"
+                    data-value=""
+                  >
+                    <input
+                      aria-autocomplete="list"
+                      aria-describedby="react-select-3-placeholder"
+                      aria-expanded={false}
+                      aria-haspopup={true}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      className="my-react-select__input"
+                      disabled={false}
+                      id="react-select-3-input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      role="combobox"
+                      spellCheck="false"
+                      style={
+                        Object {
+                          "background": 0,
+                          "border": 0,
+                          "color": "inherit",
+                          "font": "inherit",
+                          "gridArea": "1 / 2",
+                          "label": "input",
+                          "margin": 0,
+                          "minWidth": "2px",
+                          "opacity": 1,
+                          "outline": 0,
+                          "padding": 0,
+                          "width": "100%",
+                        }
+                      }
+                      tabIndex={0}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                >
+                  <span
+                    className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="css-tj5bde-Svg"
+                      focusable="false"
+                      height={20}
+                      viewBox="0 0 20 20"
+                      width={20}
+                    >
+                      <path
+                        d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="startDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="StartingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="endDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="ClosingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="remove"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
+    data-testid="updateCohortModal"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 uppercase"
+        >
+          Update Cohort
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
+                name="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="name"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="phase"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Phase"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="startDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="StartingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="endDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="ClosingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="remove"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0"
+              data-testid="confirmUpdateBtn"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-xl dark:text-white text-center w-11/12"
+        >
+          Delete Cohort
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div>
+            <h2
+              className="text-base dark:text-white text-center m-4"
+            >
+              reallyRemoveCohort
+            </h2>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="delete"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="confirmDeleteBtn"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Delete
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="bg-light-bg dark:bg-dark-frame-bg min-h-screen"
+  >
+    <div
+      className="flex items-left px-7 lg:px-60 pt-24 pb-8"
+    >
+      <div
+        className="space-x-8 lg:ml-10"
+      >
+        <button
+          className="btn primary lg undefined"
+          data-testid="removeModel"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+           
+          Cohort
+           +
+        </button>
+      </div>
+    </div>
+    <div
+      className="px-3 m d:px-8 w-screen overflow-x-auto"
+    />
+  </div>,
+]
+`;

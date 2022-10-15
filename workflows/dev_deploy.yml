@@ -16,9 +16,9 @@ jobs:
       # setup the node development environment
       - uses: actions/setup-node@v2
         with:
-          node-version: "16.x"
+          node-version: '16.x'
       - name: Install all dependencies
-        run: npm install 
+        run: npm install
       # to added after the merge of test PR
       - name: Run tests and generate coverage
         run: npm run coverage
@@ -28,7 +28,7 @@ jobs:
         run: npm run build
   deploy:
     # deploy to heroku dev pipeline
-    concurrency: 
+    concurrency:
       group: heroku_deployment
       cancel-in-progress: false
     runs-on: ubuntu-latest
@@ -39,5 +39,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "devpulse-staging"
-          heroku_email: "${{secrets.HEROKU_EMAIL}}"
+          heroku_app_name: 'devpulse-staging'
+          heroku_email: '${{secrets.HEROKU_EMAIL}}'

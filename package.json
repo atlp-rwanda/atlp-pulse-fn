@@ -11,10 +11,9 @@
     "dev": "webpack server",
     "build": "webpack",
     "test": "npx jest",
-    "coverage": "jest --coverage --silent",
+    "coverage": "jest --collect-coverage --silent",
     "lint": "npx eslint src/**/*.{tsx,ts} --fix",
-    "lint-staged": "eslint --fix",
-    "format": "npx pretty-quick",
+    "format": "npx pretty-quick --staged",
     "prepare": "husky install"
   },
   "repository": {
@@ -72,6 +71,7 @@
     "react-table": "^7.8.0",
     "react-toastify": "^9.0.8",
     "react-tooltip": "^4.2.21",
+    "sinon": "^14.0.1",
     "react-widgets": "^5.8.4",
     "tailwindcss": "^3.1.4"
   },
@@ -91,6 +91,7 @@
     "@types/react-table": "^7.7.12",
     "@types/react-test-renderer": "^18.0.0",
     "@types/react-toastify": "^4.1.0",
+    "@types/sinon": "^10.0.13",
     "@typescript-eslint/eslint-plugin": "^5.30.4",
     "@typescript-eslint/parser": "^5.30.4",
     "autoprefixer": "^10.4.7",
@@ -119,7 +120,7 @@
     "npm": "^8.13.2",
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.0",
-    "prettier": "^2.7.1",
+    "prettier": "2.7.1",
     "pretty-quick": "^3.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

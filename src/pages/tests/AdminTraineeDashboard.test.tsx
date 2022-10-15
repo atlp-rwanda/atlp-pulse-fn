@@ -9,7 +9,6 @@ describe('AdminTraineeDashboard Tests', () => {
   it('Renders AdminTraineeDashboard', () => {
     const elem = renderer
       .create(
-
         <MemoryRouter>
           <ApolloProvider>
             <AdminTraineeDashboard />

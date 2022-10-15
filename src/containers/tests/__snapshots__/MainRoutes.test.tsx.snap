@@ -740,11 +740,9 @@ exports[`Main Routes Should render 1`] = `
           <span
             className="px-4 lg:py-3 cursor-pointer text-lg"
           >
-            ©
-             
+            © 
             2022
-             
-            Pulse Technologies
+             Pulse Technologies
           </span>
         </div>
       </div>
@@ -989,11 +987,9 @@ exports[`Main Routes Should render 1`] = `
         <span
           className="px-4 lg:py-3 cursor-pointer text-lg"
         >
-          ©
-           
+          © 
           2022
-           
-          Pulse Technologies
+           Pulse Technologies
         </span>
       </div>
     </div>

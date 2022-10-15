@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Button from './Buttons';
 import PerformanceData from '../dummyData/performance.json';
-import Pagination from '../components/Pagination';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { TRAINEE_RATING } from '../Mutations/Ratings';
 import { toast } from 'react-toastify';
+import Pagination from './Pagination';
 
 const TraineePerfomance = () => {
   const [ratings, setRatings] = useState<any>([]);

@@ -1,12 +1,14 @@
-/* eslint-disable */
 import { gql, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Button from '../../components/Buttons';
 import DataTable from '../../components/DataTable';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import Button from './../../components/Buttons';
+import { PartialUser } from './Cohorts';
 import CreateProgramModal from './CreateProgramModal';
+import DeleteProgramModal from './DeleteProgramModal';
+import UpdateProgramModal from './UpdateProgramModal';
 
 export interface Program {
   id: string;
@@ -37,20 +39,71 @@ export const getAllPrograms = gql`
       }
       description
     }
+    getAllUsers {
+      id
+      email
+      role
+    }
   }
 `;
 
-const AdminPrograms = () => {
+function ActionButtons({
+  getData,
+  setCurrentProgram,
+  setUpdateProgramModal,
+  setDeleteProgramModal,
+  ...props
+}: any) {
+  return (
+    <div className="flex relative flex-row align-middle justify-center items-center">
+      <div
+        data-testid="updateIcon"
+        onClick={() => {
+          const program = getData?.getAllPrograms[props.row.index];
+          setCurrentProgram(program);
+          setUpdateProgramModal(true);
+        }}
+      >
+        <Icon
+          icon="el:file-edit-alt"
+          className="mr-2"
+          width="25"
+          height="25"
+          cursor="pointer"
+          color="#148fb6"
+        />
+      </div>
+      <div
+        data-testid="deleteIcon"
+        onClick={() => {
+          const program = getData?.getAllPrograms[props.row.index];
+          setCurrentProgram(program);
+          setDeleteProgramModal(true);
+        }}
+      >
+        <Icon
+          icon="mdi:close-circle-outline"
+          width="30"
+          height="30"
+          cursor="pointer"
+          color="#148fb6"
+        />
+      </div>
+    </div>
+  );
+}
+
+function AdminPrograms() {
   const { t } = useTranslation();
 
   const {
     data: getData,
     loading: getLoading,
-    error: getError,
     refetch: getRefetch,
   }: {
     data?: {
       getAllPrograms: Program[];
+      getAllUsers: PartialUser[];
     };
     loading: boolean;
     error?: any;
@@ -62,8 +115,11 @@ const AdminPrograms = () => {
   });
 
   const [createProgramModel, setCreateProgramModel] = useState(false);
-  const [deleteProgramModel, setDeleteProgramModel] = useState(false);
-  const [showActions, setShowActions] = useState(false);
+  const [updateProgramModal, setUpdateProgramModal] = useState(false);
+  const [deleteProgramModal, setDeleteProgramModal] = useState(false);
+  const [currentProgram, setCurrentProgram] = useState<Program | undefined>(
+    undefined,
+  );
   useDocumentTitle('Programs');
 
   const programListColumns = [
@@ -73,27 +129,16 @@ const AdminPrograms = () => {
     { Header: 'Organization', accessor: 'organization' },
     { Header: 'Description', accessor: 'description' },
     {
-      Header: 'Action',
+      Header: 'Actions',
       accessor: '',
-      Cell: () => (
-        <div className="flex relative flex-row align-middle justify-center items-center">
-          <Icon
-            icon="el:file-edit-alt"
-            className="mr-2"
-            width="25"
-            height="25"
-            cursor="pointer"
-            color="#148fb6"
-          />
-          <Icon
-            icon="mdi:close-circle-outline"
-            width="30"
-            height="30"
-            cursor="pointer"
-            color="#148fb6"
-          />
-        </div>
-      ),
+      Cell: (props: any) =>
+        ActionButtons({
+          getData,
+          setCurrentProgram,
+          setUpdateProgramModal,
+          setDeleteProgramModal,
+          ...props,
+        }),
     },
   ];
 
@@ -115,15 +160,6 @@ const AdminPrograms = () => {
       )
     : [{}];
 
-  const handleShowActions = () => {
-    setShowActions(!showActions);
-  };
-
-  const removeDeleteModel = () => {
-    let newState = !deleteProgramModel;
-    setDeleteProgramModel(newState);
-  };
-
   const removeModel = () => {
     const newState = !createProgramModel;
     setCreateProgramModel(newState);
@@ -133,57 +169,28 @@ const AdminPrograms = () => {
     <>
       {/* =========================== Start:: CreateProgramModel =============================== */}
       <CreateProgramModal
+        data={getData}
         createProgramModel={createProgramModel}
         removeModel={removeModel}
         refetch={getRefetch}
       />
+      <UpdateProgramModal
+        updateProgramModal={updateProgramModal}
+        currentProgram={currentProgram}
+        removeModel={() => {
+          setUpdateProgramModal(false);
+        }}
+        refetch={getRefetch}
+      />
+      <DeleteProgramModal
+        deleteProgramModal={deleteProgramModal}
+        currentProgram={currentProgram}
+        removeModel={() => {
+          setDeleteProgramModal(false);
+        }}
+        refetch={getRefetch}
+      />
       {/* =========================== End::  CreateProgramModel =============================== */}
-
-      {/* =========================== Start::  delete Session Model =============================== */}
-      <div
-        className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
-          deleteProgramModel === true ? 'block' : 'hidden'
-        }`}
-      >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
-              {t('DeleteProgram')}
-            </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
-          </div>
-          <div className="card-body">
-            <form className=" py-3 px-8">
-              <div>
-                <h2 className="text-base dark:text-white text-center m-4">
-                  {t('reallyRemoveProgram')}
-                </h2>
-              </div>
-              <div className="w-full flex justify-between">
-                <Button
-                  variant="info"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  data-testid="delete"
-                  onClick={() => removeDeleteModel()}
-                >
-                  {' '}
-                  {t('Cancel')}{' '}
-                </Button>
-                <Button
-                  variant="danger"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                >
-                  {' '}
-                  {t('Delete')}{' '}
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {/* =========================== End::  delete Session Model =============================== */}
 
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
         <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
@@ -195,7 +202,7 @@ const AdminPrograms = () => {
               data-testid="removeModel"
             >
               {' '}
-              {t('Program')} +{' '}
+              {t('Program')} {'  '}+
             </Button>
           </div>
         </div>
@@ -211,6 +218,6 @@ const AdminPrograms = () => {
       </div>
     </>
   );
-};
+}
 
 export default AdminPrograms;
