@@ -31,7 +31,8 @@ Array [
               className="text-base dark:text-white m-4"
             >
               Are you sure you want to approve this updated ratings ?
-               ?
+               
+              ?
             </h2>
           </div>
           <div
@@ -371,7 +372,7 @@ Array [
               className="px-3 md:px-8 mt-20"
             >
               <div
-                className="text-center mt-7 text-lg uppercase"
+                className="text-center mt-48 text-lg uppercase"
               >
                 <p>
                    

@@ -24,7 +24,6 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 const TraineeRatingDashboard = () => {
-
   const organizationToken = localStorage.getItem('orgToken');
 
   useDocumentTitle('Ratings');
@@ -32,10 +31,10 @@ const TraineeRatingDashboard = () => {
   const [nav, setNav] = useState(false);
   const [trainee, setTrainee] = useState<any>([]);
   const [cohorts, setCohorts] = useState<any>([]);
-  const [selectedPhase, setselectedPhase] = useState(phase[0]);
   const [selectedCohort, setSelectedCohort] = useState(cohorts[0]);
   const [selectedSprint, setSelectedSprint] = useState(sprint[0]);
   const [cohortName, setCohortName] = useState({ cohortName: '' });
+  const [disable, setDisable] = useState(true);
   const [ratingData, setRatingData] = useState({
     quality: '0',
     qualityRemark: '',
@@ -118,7 +117,8 @@ const TraineeRatingDashboard = () => {
 
   const data = ratings;
   const columns = [
-    { Header: `${t('Name')}`, accessor: 'user[email]' },
+    { Header: `${t('Email')}`, accessor: 'user[email]' },
+    { Header: `${t('Cohort')}`, accessor: 'cohort[name]' },
     { Header: `${t('Sprint')}`, accessor: 'sprint' },
     { Header: `${t('Quantity')}`, accessor: 'quantity' },
     { Header: `${t('Quality')}`, accessor: 'quality' },
@@ -164,10 +164,10 @@ const TraineeRatingDashboard = () => {
       qualityRemark: ratingData.qualityRemark.toString(),
       professionalSkills: ratingData.professional.toString(),
       professionalRemark: ratingData.professionalRemark.toString(),
-      orgToken: organizationToken
+      orgToken: organizationToken,
     },
     onError: (err) => {
-      toast.error('something went wrong');
+      toast.error(err.message || 'Something went wrong');
       openModal();
     },
     onCompleted: ({ createRatings }) => {
@@ -189,11 +189,11 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
     onError: (err) => {
-      toast.error('something went wrong');
-      openModal();
+      toast.error(err.message || 'something went wrong');
+      setShowActions(true);
     },
     onCompleted: (data) => {
-      toast.success('Successfully sent to Admin');
+      toast.success('Successfully updated!');
     },
   });
 
@@ -222,7 +222,7 @@ const TraineeRatingDashboard = () => {
         setRatings(data?.fetchRatings);
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(error?.message || 'Failed to load the data');
       },
     });
 
@@ -235,10 +235,10 @@ const TraineeRatingDashboard = () => {
           : setCohorts(cohorts);
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(error?.message || 'Failed to load the data');
       },
     });
-  }, [toggle]);
+  }, [toggle, updateRatings]);
 
   return (
     <>
@@ -250,12 +250,13 @@ const TraineeRatingDashboard = () => {
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
                 <div className="flex flex-col w-3/5 mx-auto md:flex-row relative  justify-between px-2 md:px-5 lg:px-10 pt-24 pb-8 mt-4">
                   {/* SELECT COHORT DROPDOWN START */}
-                 <div className="flex flex-col md:ml-a w-40">
+                  <div className="flex flex-col md:ml-a w-40">
                     <Listbox
                       value={selectedCohort}
                       onChange={(e) => {
                         setSelectedCohort(e);
                         setCohortName(e.name);
+                        setDisable(false);
                         getUsers({
                           fetchPolicy: 'network-only',
                           onCompleted: (data) => {
@@ -770,6 +771,7 @@ const TraineeRatingDashboard = () => {
                                     type="submit"
                                     className="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                                     onClick={closeModal}
+                                    disabled={disable}
                                   >
                                     {t('Save ratings')}
                                   </button>
@@ -782,7 +784,7 @@ const TraineeRatingDashboard = () => {
                     </Dialog>
                   </Transition>
                   {/* ADD NEW RATING MODAL END */}
-                  
+
                   {/* UPDATE MODAL START */}
                   <Transition
                     appear
