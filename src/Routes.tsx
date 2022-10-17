@@ -31,7 +31,7 @@ function MainRoutes() {
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route
-            path="/login"
+            path="/users/login"
             element={(
               <ProtectedRoutes>
                 <AdminLogin />

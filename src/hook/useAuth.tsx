@@ -41,9 +41,14 @@ function UserProvider({ children, ...props }: Props) {
     localStorage.removeItem('auth_token');
     setUser(() => ({ name: '', role: 'user', auth: false }));
   };
+  const setName = (name: string) => {
+    setUser({ ...user, name });
+  };
+
   const value = useMemo(
     () => ({
       user,
+      setName,
       login,
       logout,
     }),

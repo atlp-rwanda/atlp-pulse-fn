@@ -1,12 +1,12 @@
 import { gql, useApolloClient, useMutation } from '@apollo/client';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { useLocation } from 'react-router';
 import { toast } from 'react-toastify';
+import { UserContext } from '../hook/useAuth';
 import CountrySelector from '../components/CountrySelector';
 import Input from '../components/Input';
 import ProfileCoverpage from '../components/ProfileCoverpage';
@@ -62,8 +62,8 @@ const UPDATE_PROFILE = gql`
 
 function EditProfile() {
   // eslint-disable-next-line  operator-linebreak
-  const [profileFieldState, setProfileFieldState] =
-    useState<fields>(fieldState);
+  const { setName } = useContext(UserContext);
+  const [profileFieldState, setProfileFieldState] = useState<fields>(fieldState);
 
   const myRef = React.createRef<HTMLDivElement>();
 
@@ -94,13 +94,14 @@ function EditProfile() {
         variables: { ...data },
       });
       await client.resetStore();
+
       toast.success('Profile has been updated');
       navigate('/dashboard/profile');
     } catch (error) {}
   };
 
   return (
-    <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
+    <div className="bg-light-bg dark:bg-dark-frame-bg h-full overflow-y-scroll">
       <ProfileCoverpage data={profile} currentPage="editProfile" />
       <div className="flex flex-wrap ml-4 lg:ml-64">
         <div className="lg:w-[25vw] mt-3">

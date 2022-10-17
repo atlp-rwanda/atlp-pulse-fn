@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState, useContext } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
+import { UserContext } from '../hook/useAuth';
 import ProfileCoverPage from '../components/ProfileCoverpage';
 import ProfileTabs from '../components/ProfileTabs';
 import { COUNTRIES } from '../constants/countries';
@@ -28,6 +28,7 @@ export function CountryComponent({ country }: any) {
 }
 
 export default function Profile() {
+  const { setName } = useContext(UserContext);
   useDocumentTitle('Profile');
   const [data, setData] = useState<any>();
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
@@ -36,6 +37,7 @@ export default function Profile() {
       try {
         const { data } = await getProfile();
         setData(data);
+        setName(data.getProfile.name);
       } catch (error: any) {
         toast.error(error?.message || 'Something went wrong');
       }
@@ -43,11 +45,11 @@ export default function Profile() {
     fetchData();
   }, []);
   return (
-    <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
+    <div className="bg-light-bg dark:bg-dark-frame-bg overflow-y-scroll">
       {data ? (
         <>
           <ProfileCoverPage data={data?.getProfile} currentPage="viewProfile" />
-          <div className="mt-2 p-6">
+          <div className="mt-2 p-6 h-full">
             <ProfileTabs data={data?.getProfile} />
           </div>
         </>
