@@ -13,7 +13,7 @@ import {
   GET_USERS,
 } from '../Mutations/Ratings';
 import { GET_COORDINATOR_COHORTS_QUERY } from '../Mutations/manageStudentMutations';
-import { ADD_REPLY, GET_REPLIES } from '../Mutations/replyMutation';
+import { ADD_REPLY, GET_REPLIES, GET_REPLIES_BY_USER } from '../Mutations/replyMutation';
 import { REMOVE_REPLY } from '../Mutations/replyMutation'
 import { phase, sprint } from '../dummyData/ratings';
 import DataTable from '../components/DataTable';
@@ -23,6 +23,8 @@ import { Icon } from '@iconify/react';
 import { gql } from '@apollo/client';
 import { id } from 'date-fns/locale';
 import e from 'express';
+import { identity } from '@fullcalendar/react';
+import { MdCropOriginal } from 'react-icons/md';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -45,34 +47,46 @@ const TraineeRatingDashboard = () => {
     qualityRemark: '',
     quantity: '0',
     quantityRemark: '',
+    bodyProfessional: '',
     professional: '0',
     professionalRemark: '',
     userEmail: '',
   });
+
+  const [selectedUser, setSelectedUser] = useState({
+
+      user: '',
+      bodyQuantity: '',
+      bodyQuality: '',
+      bodyProfessional: '',
+      id: '',
+      createdAt: '',
+      professionalRemark: '',
+      qualityRemark: '',
+      quantityRemark: '',
+      sprint: '0',
+  })
   const [rows, setRows] = useState({
     quality: '0',
     qualityremark: '',
     quantity: '0',
     quantityremark: '',
+    bodyQuantity: '',
+    bodyQuality: '',
     professional: '0',
+    bodyProfessional: '',
     professionalRemark: '',
     sprint: '0',
     user: '',
     id: '',
   });
-  const [replyData, setReplyData] = useState({
-    bodyQuantity: '',
-    bodyQuality: '',
-    bodyProfessional: '',
-    sprint: '0',
-    user: '',
-    id: '', 
-  });
+  const [replies, setReplies] = useState<any>();
+  const [replyByUser, setReplyByUser] = useState<any>([]);
   let [isOpen, setIsOpen] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [removeModel, setRemoveModel] = useState(false);
   const [ratings, setRatings] = useState<any>([]);
-  const [replies, setReplies] = useState<any>([]);
+  const [reply, setReply] = useState<any>([]);
   const [selectedTrainee, setSelectedTrainee] = useState(trainee[0]);
   const [query, setQuery] = useState('');
   const [toggle, setToggle] = useState(false);
@@ -114,7 +128,6 @@ const TraineeRatingDashboard = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     createRatings();
-    createReply();
     handleToggle();
     closeModal();
   };
@@ -122,6 +135,7 @@ const TraineeRatingDashboard = () => {
   const handleUpdate = (e: any) => {
     e.preventDefault();
     updateRatings();
+    createReply();
     handleToggle();
     closeModal();
   };
@@ -133,8 +147,8 @@ const TraineeRatingDashboard = () => {
       };
     });
   }; 
-
-  const data = ratings;
+  
+  const data = [ratings, replyByUser];
   const columns = [
     { Header: `${t('Name')}`, accessor: 'user[email]' },
     { Header: `${t('Sprint')}`, accessor: 'sprint' },
@@ -152,13 +166,18 @@ const TraineeRatingDashboard = () => {
               color="#148fb6"
               onClick={() => {
                 setShowActions(!showActions);
-                setReplyData({
-                  ...replyData,
-                  bodyQuality: row.original.bodyQuality,
+                setSelectedUser({
+                  ...selectedUser,
+                  user: row.original.user.email,
+                  id: row.original.user.id,
                   bodyQuantity: row.original.bodyQuantity,
                   bodyProfessional: row.original.bodyProfessional,
-                  id: row.original.user.id
                 }),
+                
+                
+      console.log("The result", row.original.reply);
+      
+                
                 setRows({
                   ...rows,
                   quality: row.original.quality,
@@ -170,10 +189,19 @@ const TraineeRatingDashboard = () => {
                   sprint: row.original.sprint,
                   user: row.original.user.email,
                   id: row.original.user.id,
+                  bodyQuality: row.original.reply.bodyQuality,
+                  bodyProfessional: row.original.reply.bodyProfessional,
+                  bodyQuantity: row.original.reply.bodyQuantity,
+
+                  
+                  
 
                 });
+                
+                
               }}
             />
+            
           </div>
         </div>
       ),
@@ -203,11 +231,11 @@ const TraineeRatingDashboard = () => {
   });
   const [createReply] = useMutation(ADD_REPLY, {
     variables: {
-      user: replyData.id,
-      sprint: selectedSprint.name,
-      bodyQuantity: replyData?.bodyQuantity,
-      bodyQuality: replyData?.bodyQuality,
-      bodyProfessional: replyData?.bodyProfessional,
+      // user: replies.id,
+      // sprint: replies.sprint,
+      // bodyQuantity: replies?.bodyQuantity,
+      // bodyQuality: replies?.bodyQuality,
+      bodyProfessional: selectedUser?.bodyProfessional,
       orgToken: organizationToken,
     }, 
     onError: (err) => {
@@ -222,16 +250,15 @@ const TraineeRatingDashboard = () => {
   })
   const [removereply] = useMutation(REMOVE_REPLY, {
     variables: {
-      user: rows.id,
-      sprint: rows.sprint,
+      deleteReplyId: "634d27f400966024888bcbb7",
     },
     onError: (err) => {
       toast.error('something went wrong');
-      removeReply();
+      removereply();
     },
     onCompleted: (reply) => {
       toast.success('Successfully deleted!');
-      removeReply();
+      removereply();
       handleToggle();
     },
   });
@@ -274,25 +301,52 @@ const TraineeRatingDashboard = () => {
       cohortName: cohortName,
     },
   });
-const [getReplies] = useLazyQuery(GET_REPLIES, {
+// console.log('id',selectedUser.id);
+
+const [getRepliesByUser] = useLazyQuery(GET_REPLIES_BY_USER, {
   variables: {
-    orgToken: organizationToken,
-  },
-
+    userId: "634d0e75d746439fdd355e11",
+  }
 });
-
+const [getReplyData, { refetch }] = useLazyQuery(GET_REPLIES);
 useEffect(() => {
-  getReplies({
-    fetchPolicy: 'network-only',
-    onCompleted: (reply) => {
-      setReplies(reply?.getReplies);
-      // console.log("Honore", reply);
-    },
-    onError: (error) => {
+  const fetchData = async () => {
+    try {
+      const { data } = await getReplyData();
+      setReplies(data);
+    } catch (error: any) {
       toast.error(error?.message || 'Something went wrong');
-    },
-  });
-}, [toggle]);
+    }
+  };
+
+  fetchData();
+
+  const getRepliesUser = async () => {
+    try{
+      const { data } = await getRepliesByUser();
+      setSelectedUser(data);
+      
+      // console.log('this data', typeof(selectedUser));
+      
+    } catch (error: any) {
+      toast.error(error?.message || 'Something went wrong');
+    }
+  }
+  getRepliesUser();
+  
+}, []);
+
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     getRatings({
@@ -323,6 +377,7 @@ useEffect(() => {
 
   return (
     <>
+    
       <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row">
           <Sidebar toggle={handleClick} style="hidden lg:flex" />
@@ -864,6 +919,24 @@ useEffect(() => {
                   </Transition>
                   {/* ADD NEW RATING MODAL END */}
                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                   {/* UPDATE MODAL START */}
                   <Transition
                     appear
@@ -906,7 +979,9 @@ useEffect(() => {
                                   className="text-lg font-medium leading-6 text-gray-900 dark:text-dark-text-fill"
                                 >
                                   {t('Update rating')}
+                                
                                 </Dialog.Title>
+                                
                                 <div className="bg-gray-100 dark:bg-dark-frame-bg rounded-md p-2 my-2 mt-6 md:mt-8 flex flex-col md:flex-row">
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <Button
@@ -916,6 +991,7 @@ useEffect(() => {
                                     >
                                       {t('Quality')}
                                     </Button>
+                                    
                                     <div className="flex flex-col justify-start items-start w-full my-0 md:my-2">
                                       <select
                                         name="quality"
@@ -940,11 +1016,11 @@ useEffect(() => {
                                       </select>
                                     </div>
                                     <textarea
-                                      value={rows.qualityremark}
+                                      value={rows.bodyQuality}
                                       onChange={(e) =>
                                         setRows({
                                           ...rows,
-                                          qualityremark: e.target.value,
+                                          bodyQuality: e.target.value,
                                         })
                                       }
                                       id=""
@@ -956,25 +1032,20 @@ useEffect(() => {
                                     />
 
 <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
+
+                                
+                                
                                    <textarea className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
-                                 
-                                 
-                                  value={replyData.bodyQuality}
-                                   onChange={(e) =>
-                                  setReplyData({
-                                    ...replyData,
-                                    bodyQuality: e.target.value,
-                                  })
-                                  }
-
-
-
-
                                    rows={2}
                                    placeholder='No reply here'
-                                   >
-                                   
-                                    </textarea>
+                                  value={selectedUser.bodyQuantity}
+                                  onChange={(e) =>
+                                    setSelectedUser({
+                                    ...selectedUser,
+                                    bodyQuantity: e.target.value,
+                                    }
+                                    )}
+                                   />
                                     <Icon
                                        icon="mdi:close-circle-outline"
                                        width="30"
@@ -1037,13 +1108,14 @@ useEffect(() => {
                                     />
                                   <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
                                    <textarea className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
-                                  value={replyData.bodyQuantity}
-                                  onChange={(e) =>
-                                  setReplyData({
-                                    ...replyData,
-                                    bodyQuantity: e.target.value
-                                  })
-                                  }
+                                 
+                                 value={rows.bodyQuantity}
+                                        onChange={(e) =>
+                                          setRows({
+                                            ...rows,
+                                            bodyQuantity: e.target.value,
+                                          })
+                                        }
                                   rows={2}
                                   placeholder="No reply here"
                                    />
@@ -1097,13 +1169,7 @@ useEffect(() => {
                                     <textarea
                                       name="proffessionalDescription"
                                       id=""
-                                      value={rows.professionalRemark}
-                                      onChange={(e) =>
-                                        setRows({
-                                          ...rows,
-                                          professionalRemark: e.target.value,
-                                        })
-                                      }
+                                     
                                       rows={5}
                                       className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
                                       placeholder="Professional rating remark"
@@ -1112,21 +1178,21 @@ useEffect(() => {
                                     <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
                                   > 
                                    <textarea
-                                   value={replyData.bodyProfessional}
-                                  onChange={(event) =>
-                                    setReplyData({
-                                      ...replyData,
-                                      bodyProfessional: event.target.value,
-                                    })
+                                 value={rows.bodyProfessional}
+                                 onChange={(e) =>
+                                   setRows({
+                                     ...rows,
+                                     bodyProfessional: e.target.value,
+                                   })
+                                 }
 
-                                  }
+                                  
                                    placeholder="No reply here"
 
                                    className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
                                    rows={2}
                                    
-                                   >
-                                    </textarea>
+                                   />
                                     <Icon
                                        icon="mdi:close-circle-outline"
                                        width="30"
@@ -1145,6 +1211,8 @@ useEffect(() => {
                                   
                                    </div>
                                   </div>
+
+
                                 <div className="mt-4 md:mt-8">
                                   <button
                                     type="submit"
@@ -1213,23 +1281,49 @@ useEffect(() => {
                     </Dialog>
                   </Transition>
                   {/* UPDATE MODAL END */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
                 
                 <div className="w-full">
                   <div>
                     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
+
                       <div className="px-3 md:px-8 mt-10">
-                        {data.length !== 0 ? (
+                        
+                        {data[0].length !== 0 ? (
                           <DataTable
-                            data={data}
+                            data={data[0]}
+                            
                             columns={columns}
                             title={t('Performance Ratings')}
                           />
-                        ) : (
+                          
+                         ) : ( 
                           <div className="text-center mt-7 text-lg uppercase">
                             <p> {t('No updated ratings found')}</p>
                           </div>
-                        )}
+                          
+                         )} 
                       </div>
                     </div>
                   </div>

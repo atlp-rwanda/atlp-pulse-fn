@@ -1,22 +1,36 @@
 import { gql } from '@apollo/client';
 
 export const GET_RATINGS = gql`
-  query FetchRatings($orgToken: String) {
-    fetchRatings(orgToken: $orgToken) {
-      user {
-        id
-        email
-      }
-      sprint
-      quantity
-      quantityRemark
-      quality
-      qualityRemark
-      professional_Skills
-      professionalRemark
-      coordinator
+query FetchRatings($orgToken: String) {
+  fetchRatings(orgToken: $orgToken) {
+    id
+    user {
+      id
+      email
     }
+    sprint
+    reply {
+      id
+      user
+      sprint
+      quantityRemark
+      qualityRemark
+      professionalRemark
+      bodyQuantity
+      bodyQuality
+      bodyProfessional
+      createdAt
+    }
+    quantity
+    quantityRemark
+    quality
+    qualityRemark
+    professional_Skills
+    professionalRemark
+    approved
+    coordinator
   }
+}
 `;
 
 export const ADD_RATING = gql`
