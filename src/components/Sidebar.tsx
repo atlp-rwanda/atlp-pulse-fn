@@ -169,39 +169,37 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
         <SideNavLink onClick={toggle} name="Docs" to="/dashboard/docs">
           <FolderIcon className="w-5 mr-2 " />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Settings" to="/dashboard/settings">
-          <CogIcon className="w-5 mr-2 " />
-        </SideNavLink>
         <SideNavLink onClick={toggle} name="Help" to="/dashboard/support">
           <SupportIcon className="w-5 mr-2 " />
         </SideNavLink>
-      </div>
-      <div className="flex flex-row ml-10 mt-auto list-none">
-        <li className="px-2">
-          <NavLink to="#link">
-            <Tooltip message="Logout">
-              <LogoutIcon
-                onClick={logout}
-                className="w-5 text-red-700 dark:text-red-600 hover:text-red-900"
-              />
-            </Tooltip>
-          </NavLink>
-        </li>
-        <li className="px-2">
-          <NavLink
-            to="/dashboard/settings"
-            className={(navData) => {
-              if (navData.isActive) {
-                return 'flex flex-row font-bold text-primary dark:text-primary';
-              }
-              return 'flex flex-row dark:text-dark-text-fill';
-            }}
-          >
-            <Tooltip message="Settings">
-              <CogIcon className="w-5 hover:text-primary " />
-            </Tooltip>
-          </NavLink>
-        </li>
+        {/* Add icons */}
+        <div className="flex flex-row ml-10 mt-auto list-none">
+          <li className="px-2">
+            <NavLink to="#link">
+              <Tooltip message="Logout">
+                <LogoutIcon
+                  onClick={logout}
+                  className="w-5 text-red-700 dark:text-red-600 hover:text-red-900"
+                />
+              </Tooltip>
+            </NavLink>
+          </li>
+          <li className="px-2">
+            <NavLink
+              to="/dashboard/settings"
+              className={(navData) => {
+                if (navData.isActive) {
+                  return 'flex flex-row font-bold text-primary dark:text-primary';
+                }
+                return 'flex flex-row dark:text-dark-text-fill';
+              }}
+            >
+              <Tooltip message="Settings">
+                <CogIcon className="w-5 hover:text-primary " onClick={toggle} />
+              </Tooltip>
+            </NavLink>
+          </li>
+        </div>
       </div>
     </div>
   );
