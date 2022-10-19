@@ -123,8 +123,6 @@ const AdminSission = () => {
 
   const [toggle, setToggle] = useState(false);
 
- 
-
   const [handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
     variables: { updateUserRoleId: userId, name: selectedRole },
     onCompleted: (data) => {

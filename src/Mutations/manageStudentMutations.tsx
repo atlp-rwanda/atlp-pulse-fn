@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client';
 
 export const GET_USERS_QUERY = gql`
-query GetUsers {
-  getUsers {
-    email
-    id
+  query GetUsers {
+    getUsers {
+      email
+      id
+    }
   }
-}
 `;
 
 export const GET_TRAINEES_QUERY = gql`
@@ -18,7 +18,7 @@ export const GET_TRAINEES_QUERY = gql`
       email
       cohort {
         name
-        program{
+        program {
           name
         }
       }
@@ -80,7 +80,7 @@ export const EDIT_MEMBER_MUTATION = gql`
 `;
 
 export const INVITE_USER_MUTATION = gql`
-mutation InviteUser($email: String!, $orgToken: String!) {
-  inviteUser(email: $email, orgToken: $orgToken)
-}
+  mutation InviteUser($email: String!, $orgToken: String!) {
+    inviteUser(email: $email, orgToken: $orgToken)
+  }
 `;
