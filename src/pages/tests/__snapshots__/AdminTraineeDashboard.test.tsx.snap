@@ -947,20 +947,6 @@ Array [
                         >
                           Program
                         </th>
-                        <th
-                          className=" thead"
-                          colSpan={1}
-                          onClick={[Function]}
-                          role="columnheader"
-                          style={
-                            Object {
-                              "cursor": "pointer",
-                            }
-                          }
-                          title="Toggle SortBy"
-                        >
-                          Action
-                        </th>
                       </tr>
                     </thead>
                     <tbody
@@ -990,17 +976,6 @@ Array [
                           className="data-cell"
                           role="cell"
                         />
-                        <td
-                          className="data-cell"
-                          role="cell"
-                        >
-                          <div
-                            className=" items-center hidden"
-                          >
-                            <span />
-                            <span />
-                          </div>
-                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -1015,7 +990,7 @@ Array [
                           className="w-full py-2"
                         >
                           <td
-                            colSpan={6}
+                            colSpan={5}
                           >
                             <div
                               className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto"

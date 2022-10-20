@@ -106,44 +106,6 @@ const AdminTraineeDashboard = () => {
     { Header: 'Rating', accessor: 'rating' },
     { Header: 'Cohort', accessor: 'cohort' },
     { Header: 'Program', accessor: 'program' },
-    {
-      Header: 'Action',
-      accessor: '',
-      Cell: ({ row }: any) => (
-        <div
-          className={
-            ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
-          }
-        >
-          <Icon
-            icon="el:file-edit-alt"
-            className="mr-2"
-            width="25"
-            height="25"
-            cursor="pointer"
-            color="#148fb6"
-            test-Id=""
-            onClick={() => {
-              removeEditModel();
-              setEditEmail(row.original.email);
-              setEditCohort(row.original.cohort);
-            }}
-          />
-          <Icon
-            icon="mdi:close-circle-outline"
-            width="30"
-            height="30"
-            cursor="pointer"
-            color="#148fb6"
-            onClick={() => {
-              removeTraineeMod();
-              setDeleteEmail(row.original.email);
-              setDeleteFromCohort(row.original.cohort);
-            }}
-          />
-        </div>
-      ),
-    },
   ];
   const data = devs;
   let datum: any = [];

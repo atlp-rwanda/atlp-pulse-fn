@@ -8,11 +8,12 @@ import { useNavigate } from 'react-router';
 import Button from '../../components/Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import LOGIN_ORGANIZATION_MUTATION from './LoginOrganisationMutation';
+import ButtonLoading from '../../components/ButtonLoading';
 
 function Orglogin() {
   useDocumentTitle('Login');
   const { t } = useTranslation();
-  const [OrgLogin] = useMutation(LOGIN_ORGANIZATION_MUTATION);
+  const [OrgLogin, { loading }] = useMutation(LOGIN_ORGANIZATION_MUTATION);
 
   const {
     register,
@@ -64,7 +65,9 @@ function Orglogin() {
             )}
           </div>
           <div>
-            <Link to="users/login">
+            {loading ? (
+              <ButtonLoading style="rounded-full inline-block" />
+            ) : (
               <Button
                 onClick={handleSubmit(onSubmit)}
                 variant="primary"
@@ -75,7 +78,7 @@ function Orglogin() {
                 {' '}
                 {t('Continue')}
               </Button>
-            </Link>
+            )}
           </div>
 
           <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">

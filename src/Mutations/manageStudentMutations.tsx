@@ -25,6 +25,22 @@ export const GET_TRAINEES_QUERY = gql`
     }
   }
 `;
+export const GET_COHORT_TRAINEES_QUERY = gql`
+  query GetCohortTrainees($cohort: String, $orgToken: String) {
+    getCohortTrainees(cohort: $cohort, orgToken: $orgToken) {
+      profile {
+        name
+      }
+      email
+      cohort {
+        name
+        program {
+          name
+        }
+      }
+    }
+  }
+`;
 
 export const GET_COHORTS_QUERY = gql`
   query GetCohorts($orgToken: String) {
