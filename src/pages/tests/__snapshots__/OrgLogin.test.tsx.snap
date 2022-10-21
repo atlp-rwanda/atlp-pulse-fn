@@ -55,22 +55,6 @@ exports[`Organization Login Should render 1`] = `
       <div
         className="w-full text-sm  text-light-text dark:text-dark-text-fill"
       >
-        New to DevPulse?
-        <a
-          href="/register"
-          onClick={[Function]}
-        >
-          <a
-            className="text-primary"
-            href="#link"
-          >
-            Sign Up
-          </a>
-        </a>
-      </div>
-      <div
-        className="w-full text-sm  text-light-text dark:text-dark-text-fill"
-      >
         Don’t know your organization URL?
         <a
           className="text-primary"

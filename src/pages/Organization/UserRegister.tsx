@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { useApolloClient, useMutation } from '@apollo/client';
-import React, { useContext, useState } from 'react';
+import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
+import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
@@ -12,12 +12,16 @@ import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';
 import { UserContext } from '../../hook/useAuth';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import SIGN_UP_MUTATION from './Mutations';
-import Select from 'react-select';
+import { SIGN_UP_MUTATION, GET_SIGNUP_ORGANIZATION } from './Mutations';
 import ControlledSelect from '../../components/ControlledSelect';
 
 function Signup() {
+  const token: any = window.location.href.substring(
+    window.location.href.lastIndexOf('/') + 1,
+  );
+  const originalToken: any = token.replaceAll('*', '.');
   useDocumentTitle('Login');
+
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
@@ -38,6 +42,20 @@ function Signup() {
   const { state } = useLocation();
   const [Signup, { loading }] = useMutation(SIGN_UP_MUTATION);
 
+  const [getOrganizationName] = useLazyQuery(GET_SIGNUP_ORGANIZATION, {
+    variables: {
+      orgToken: originalToken,
+    },
+
+    onError: (err) => {
+      if (err.message === 'expired organization token') {
+        toast.error('Your signup link has expired');
+        navigate('/');
+      } else {
+        navigate('/pageNotFound');
+      }
+    },
+  });
   const [SignupUser] = useMutation(SIGN_UP_MUTATION, {
     onCompleted: (data) => {
       setTimeout(() => {
@@ -55,7 +73,6 @@ function Signup() {
   });
 
   const onSubmit = async (userInput: any) => {
-    console.log(userInput, 'userInput here');
     setButtonLoading(true);
     setTimeout(async () => {
       try {
@@ -67,19 +84,13 @@ function Signup() {
             lastName: userInput.lastName,
             dateOfBirth: userInput.dateOfBirth,
             gender: userInput.gender.value,
+            orgToken: originalToken,
           },
         });
 
         return;
       } catch (error: any) {
-        setError('password', {
-          type: 'custom',
-          message: t('Invalid credentials'),
-        });
-        setError('email', {
-          type: 'custom',
-          message: t('Invalid credentials'),
-        });
+        toast.error(error.message);
       }
     }, 2000);
   };
@@ -113,6 +124,10 @@ function Signup() {
     { value: 'male', label: 'male' },
     { value: 'female', label: 'female' },
   ];
+
+  useEffect(() => {
+    getOrganizationName();
+  }, []);
 
   return (
     <div className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center">

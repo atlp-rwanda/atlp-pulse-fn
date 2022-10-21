@@ -24,7 +24,7 @@ function MainRoutes() {
       <Suspense fallback={<Skeleton />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<UserRegister />} />
+          <Route path="/register/:token" element={<UserRegister />} />
           <Route path="/register-successful" element={<Message />} />
           <Route path="/signup/org" element={<OrgRegister />} />
           <Route

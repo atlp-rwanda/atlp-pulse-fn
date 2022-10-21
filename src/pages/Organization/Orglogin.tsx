@@ -79,15 +79,6 @@ function Orglogin() {
           </div>
 
           <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
-            {t('New to DevPulse?')}
-            <Link to="/register">
-              <a href="#link" className="text-primary">
-                {t('Sign Up')}
-              </a>
-            </Link>
-          </div>
-
-          <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
             {t('Don’t know your organization URL?')}
             <a href="#link" className="text-primary">
               {t('Find your organizations')}

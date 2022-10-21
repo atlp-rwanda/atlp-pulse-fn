@@ -1,13 +1,14 @@
 import { gql } from '@apollo/client';
 
-const SIGN_UP_MUTATION = gql`
-  mutation CreateUser(
+export const SIGN_UP_MUTATION = gql`
+  mutation Mutation(
     $firstName: String!
     $lastName: String!
     $dateOfBirth: DateTime!
     $gender: String!
     $email: String!
     $password: String!
+    $orgToken: String!
   ) {
     createUser(
       firstName: $firstName
@@ -16,6 +17,7 @@ const SIGN_UP_MUTATION = gql`
       gender: $gender
       email: $email
       password: $password
+      orgToken: $orgToken
     ) {
       user {
         profile {
@@ -25,4 +27,11 @@ const SIGN_UP_MUTATION = gql`
     }
   }
 `;
-export default SIGN_UP_MUTATION;
+
+export const GET_SIGNUP_ORGANIZATION = gql`
+  query GetSignupOrganization($orgToken: String!) {
+    getSignupOrganization(orgToken: $orgToken) {
+      name
+    }
+  }
+`;
