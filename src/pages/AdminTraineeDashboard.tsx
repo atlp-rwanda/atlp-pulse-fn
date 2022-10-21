@@ -147,7 +147,11 @@ const AdminTraineeDashboard = () => {
   ];
   const data = devs;
   let datum: any = [];
-  const [getUsers] = useLazyQuery(GET_USERS_QUERY, {});
+  const [getUsers] = useLazyQuery(GET_USERS_QUERY, {
+    variables: {
+      orgToken: organizationToken,
+    },
+  });
   const [getTraineesQuery] = useLazyQuery(GET_TRAINEES_QUERY, {
     variables: {
       orgToken: organizationToken,
