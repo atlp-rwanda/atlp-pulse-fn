@@ -2,6 +2,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
+// import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Draggable from 'react-draggable';
 import DataTable from '../components/DataTable';
 import Sidebar from '../components/Sidebar';
 import devs from '../dummyData/developers2.json';
@@ -9,10 +17,13 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './../components/Buttons';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
+import image from '../assets/jest.config.png';
+
 import {
   GET_USERS_QUERY,
   GET_TRAINEES_QUERY,
   GET_COHORTS_QUERY,
+  GET_TRAINEE_PROFILE,
   ADD_MEMBER_TO_COHORT_MUTATION,
   REMOVE_MEMBER_FROM_COHORT_MUTATION,
   EDIT_MEMBER_MUTATION,
@@ -22,6 +33,7 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
 const organizationToken = localStorage.getItem('orgToken');
+
 
 const AdminTraineeDashboard = () => {
   useDocumentTitle('Trainees');
@@ -36,6 +48,7 @@ const AdminTraineeDashboard = () => {
   const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
   const [email, setEmail] = useState<any[]>([]);
+   const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
   const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
@@ -47,6 +60,34 @@ const AdminTraineeDashboard = () => {
   const [toggle, setToggle] = useState(false);
   const options: any = [];
   const traineeOptions: any = [];
+  let traineeDat: any=[];
+
+
+  function PaperComponent(props: PaperProps) {
+  return (
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
+      <Paper {...props} />
+    </Draggable>
+  );
+}
+ const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = (rowData:any) => {
+    const filteredUser=traineeData.filter(item=>item.email==rowData)
+    setTraineeDetails(filteredUser[0])
+
+    
+    setOpen(true);
+    
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   const removeTraineeMod = () => {
     let newState = !removeTraineeModel;
@@ -100,6 +141,8 @@ const AdminTraineeDashboard = () => {
       return { ...provided, opacity, transition };
     },
   };
+
+
   const columns = [
     { Header: 'Name', accessor: 'name' },
     { Header: 'Email', accessor: 'email' },
@@ -127,6 +170,7 @@ const AdminTraineeDashboard = () => {
               removeEditModel();
               setEditEmail(row.original.email);
               setEditCohort(row.original.cohort);
+               
             }}
           />
           <Icon
@@ -141,10 +185,29 @@ const AdminTraineeDashboard = () => {
               setDeleteFromCohort(row.original.cohort);
             }}
           />
+
+      
+      
+
+<Icon
+            icon="flat-color-icons:view-details"
+            width="30"
+            height="30"
+            cursor="pointer"
+            color="#148fb6"
+           
+            onClick={()=>handleClickOpen(row.original.email)}
+          />
+      
+     
+        
         </div>
+
+        
       ),
     },
   ];
+  
   const data = devs;
   let datum: any = [];
   const [getUsers] = useLazyQuery(GET_USERS_QUERY, {
@@ -163,6 +226,8 @@ const AdminTraineeDashboard = () => {
     },
   });
 
+
+
   if (traineeData && traineeData.length > 0) {
     traineeData?.map((data: any, index: number) => {
       datum[index] = {};
@@ -173,7 +238,7 @@ const AdminTraineeDashboard = () => {
       datum[index].program = data.cohort.program.name;
     });
   }
-
+ 
   const [addMemberToCohort] = useMutation(ADD_MEMBER_TO_COHORT_MUTATION, {
     variables: {
       cohortName: Object.values(selectedOption)[0],
@@ -278,6 +343,7 @@ const AdminTraineeDashboard = () => {
       onCompleted: (data) => {
         setTraineeData(data.getTrainees);
       },
+      
       onError: (error) => {
         toast.error(error.message);
       },
@@ -292,6 +358,8 @@ const AdminTraineeDashboard = () => {
         toast.error(error.message);
       },
     });
+  
+
   }, [registerTraineeModel, removeTraineeModel, toggle]);
 
   if (allUserEmail.length > 0) {
@@ -310,6 +378,7 @@ const AdminTraineeDashboard = () => {
     });
   }
 
+ 
   return (
     <>
       {/* =========================== Start::  InviteTraineeModel =============================== */}
@@ -542,16 +611,7 @@ const AdminTraineeDashboard = () => {
                     options={traineeOptions}
                     isSearchable
                   />
-                  {/* <input
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    type="email"
-                    name="email"
-                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                    placeholder={t('email')}
-                  /> */}
+            
                 </div>
               </div>
 

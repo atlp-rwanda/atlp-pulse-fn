@@ -45,6 +45,7 @@
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
     "@iconify/react": "^3.2.2",
+    "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.6",
     "@mui/styled-engine": "^5.10.6",
     "@mui/x-data-grid": "^5.17.4",

@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router';
 import Button from '../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import REGISTER_ORGANIZATION_REQUEST from './RegisterOrgMutation';
-import TraineeDetails from './Trainee.details';
 
 export default function OrgRegister() {
   useDocumentTitle('Register organization');
@@ -182,7 +181,7 @@ export default function OrgRegister() {
           </button>
         </div>
       </div>
-      <TraineeDetails />
+
     </div>
   );
 }
