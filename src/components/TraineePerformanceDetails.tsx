@@ -56,6 +56,8 @@ const TraineePerfomanceDetails = () => {
 
   const closeModel = () => {
     setIsOpen(false);
+    setIsOpen2(false);
+    setIsOpen3(false);
     setShowActions(false);
   };
 
@@ -69,6 +71,18 @@ const TraineePerfomanceDetails = () => {
     setIsOpen3(true);
   };
   const handleUpdate = (e: any) => {
+    e.preventDefault();
+    updateToReply();
+    handleToggle();
+    closeModel();
+  };
+  const handleUpdateRow = (e: any) => {
+    e.preventDefault();
+    updateToReply();
+    handleToggle();
+    closeModel();
+  };
+  const handleUpdateColumn = (e: any) => {
     e.preventDefault();
     updateToReply();
     handleToggle();
@@ -97,6 +111,8 @@ const TraineePerfomanceDetails = () => {
     onError: (err) => {
       toast.error('Unable to proceed');
       openModal();
+      openModalQuality();
+      openModalProfessional();
     },
     onCompleted: ({ updateToReply }) => {
       handleToggle();
@@ -333,30 +349,28 @@ const TraineePerfomanceDetails = () => {
                       as="h3"
                       className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"
                     >
-                      {t('Reply on Quality Remarks')}
+                      {t('Reply on Quantity Remarks')}
                     </Dialog.Title>
                     <div className="mt-4 md:mt-8">
                       <div className="w-2/3 flex flex-col border border-gray-200 mb-4 float-left rounded-tr-lg rounded-bl-lg">
                         <div className="m-8">
                           <p className="float-left">
-                            {ratings?.quality_remark}
+                            {ratings?.quantity_remark}
                           </p>
                         </div>
                         <div className="ml-9 text-primary ">
-                          <h3 className="float-left">
-                            {/* {ratings?.createdAt} */}
-                          </h3>
+                          <h3 className="float-left">{/* 30/09/2022 */}</h3>
                         </div>
                       </div>
                       <div className="w-full flex flex-col border border-gray-400 rounded-md">
                         <div className="m-4">
                           <div className=" ">
                             <input
-                              value={rows.bodyQuality}
+                              value={rows.bodyQuantity}
                               onChange={(e) =>
                                 setRows({
                                   ...rows,
-                                  bodyQuality: e.target.value,
+                                  bodyQuantity: e.target.value,
                                 })
                               }
                               className="w-full bg-inherit px-2 outline-0"
@@ -422,7 +436,7 @@ const TraineePerfomanceDetails = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className=" bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[65%] lg:ml-90 mb-10 mt-10">
-                  <form onSubmit={handleUpdate}>
+                  <form onSubmit={handleUpdateColumn}>
                     <Dialog.Title
                       as="h3"
                       className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"

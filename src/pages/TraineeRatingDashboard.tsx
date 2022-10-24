@@ -1127,12 +1127,6 @@ const TraineeRatingDashboard = () => {
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <textarea
                                       value={rows.qualityremark}
-                                      onChange={(e) =>
-                                        setRows({
-                                          ...rows,
-                                          qualityremark: e.target.value,
-                                        })
-                                      }
                                       id=""
                                       rows={5}
                                       className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
@@ -1155,12 +1149,6 @@ const TraineeRatingDashboard = () => {
                                       name="quantityDescription"
                                       id=""
                                       value={rows.quantityremark}
-                                      onChange={(e) =>
-                                        setRows({
-                                          ...rows,
-                                          quantityremark: e.target.value,
-                                        })
-                                      }
                                       rows={5}
                                       className="rounded-md w-full  my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
                                       placeholder=" No quantity rating remark"
@@ -1179,12 +1167,6 @@ const TraineeRatingDashboard = () => {
                                       name="proffessionalDescription"
                                       id=""
                                       value={rows.professionalRemark}
-                                      onChange={(e) =>
-                                        setRows({
-                                          ...rows,
-                                          professionalRemark: e.target.value,
-                                        })
-                                      }
                                       rows={5}
                                       className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
                                       placeholder="No professional rating remark"
