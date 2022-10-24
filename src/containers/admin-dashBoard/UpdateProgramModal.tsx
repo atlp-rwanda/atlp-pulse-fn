@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
+import ControlledSelect from '../../components/ControlledSelect';
+import { PartialUser } from './Cohorts';
 import { Program } from './Programs';
 
 export const UpdateProgram = gql`
@@ -12,12 +14,14 @@ export const UpdateProgram = gql`
     $orgToken: String
     $name: String
     $description: String
+    $managerEmail: String!
   ) {
     updateProgram(
       id: $updateProgramId
       name: $name
       description: $description
       orgToken: $orgToken
+      managerEmail: $managerEmail
     ) {
       id
     }
@@ -25,11 +29,16 @@ export const UpdateProgram = gql`
 `;
 
 export default function UpdateProgramModal({
+  data,
   updateProgramModal,
   currentProgram,
   removeModel,
   refetch,
 }: {
+  data?: {
+    getAllPrograms: Program[];
+    getAllUsers: PartialUser[];
+  };
   updateProgramModal: boolean;
   currentProgram: Program | undefined;
   removeModel: Function;
@@ -40,6 +49,7 @@ export default function UpdateProgramModal({
     handleSubmit,
     formState: { errors },
     reset,
+    control,
     register,
     setValue,
   } = useForm();
@@ -52,10 +62,14 @@ export default function UpdateProgramModal({
       removeModel();
     },
   });
+
   const orgToken = localStorage.getItem('orgToken');
+  const managers = data?.getAllUsers?.filter((user) => user.role === 'manager');
 
   async function updateProgram(data: any) {
     const newData = { ...data };
+
+    newData.managerEmail && (newData.managerEmail = newData.managerEmail.value);
 
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {
@@ -71,8 +85,12 @@ export default function UpdateProgramModal({
 
   useEffect(() => {
     setValue('name', currentProgram?.name);
+    setValue('managerEmail', {
+      value: currentProgram?.manager.email,
+      label: currentProgram?.manager.email,
+    });
     setValue('description', currentProgram?.description);
-  }, [currentProgram]);
+  }, [currentProgram, updateProgramModal]);
 
   return (
     <div
@@ -101,6 +119,29 @@ export default function UpdateProgramModal({
               {errors?.name && (
                 <p className="font-thin text-[12px] text-red-300">
                   {errors?.name?.message?.toString()}
+                </p>
+              )}
+            </div>
+            <div className="input my-5 h-9 ">
+              <div className="grouped-input flex items-center h-full w-full rounded-md">
+                <ControlledSelect
+                  placeholder={t('Manager Email')}
+                  register={{
+                    control,
+                    name: 'managerEmail',
+                    rules: {
+                      required: `${t('The Manager email is required')}`,
+                    },
+                  }}
+                  options={managers?.map(({ email }) => ({
+                    value: email,
+                    label: email,
+                  }))}
+                />
+              </div>
+              {errors?.managerEmail && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.managerEmail?.message?.toString()}
                 </p>
               )}
             </div>

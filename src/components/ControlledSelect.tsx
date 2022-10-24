@@ -45,6 +45,7 @@ function CustomSelect({
 }: any) {
   return (
     <Select
+      value={value}
       className="my-react-select-container"
       classNamePrefix="my-react-select"
       styles={customStyles}

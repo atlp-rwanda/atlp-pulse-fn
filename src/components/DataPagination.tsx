@@ -1,6 +1,6 @@
 import {
   ArrowCircleLeftIcon,
-  ArrowCircleRightIcon
+  ArrowCircleRightIcon,
 } from '@heroicons/react/outline';
 import React from 'react';
 
@@ -39,8 +39,7 @@ function DataPagination({
                     className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
                   >
                     <ArrowCircleRightIcon className="w-5" fontSize="sm" />
-                  </button>
-                  {' '}
+                  </button>{' '}
                   <div className="flex flex-row justify-center w-full sm:text-[12px] items-center ">
                     <span className="inline-block mx-2">
                       Page{' '}

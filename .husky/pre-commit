@@ -5,5 +5,5 @@ npm run lint || (
   echo 'Check for linting errors';
   false;
 )
-npm run format
 git add .
+npx pretty-quick --staged

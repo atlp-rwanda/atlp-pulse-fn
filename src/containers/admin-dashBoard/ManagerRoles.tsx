@@ -140,7 +140,6 @@ const AdminSission = () => {
   const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {});
 
   useEffect(() => {
-
     fetchData2({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
