@@ -92,6 +92,13 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
+            to="/dashboard/admin/ratings"
+            name="Ratings"
+          >
+            <ClipboardListIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink
+            onClick={toggle}
             to="/dashboard/updated-ratings"
             name="Updated Ratings"
           >

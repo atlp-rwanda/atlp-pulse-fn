@@ -37,16 +37,11 @@ const TraineeRatingDashboard = () => {
   const [nav, setNav] = useState(false);
   const [trainee, setTrainee] = useState<any>([]);
   const [cohorts, setCohorts] = useState<any>([]);
-  const [removeModel, setRemoveModel] = useState(false);
-  const [selectedPhase, setselectedPhase] = useState(phase[0]);
   const [selectedCohort, setSelectedCohort] = useState(cohorts[0]);
   const [selectedUser, setSelectedUser] = useState<any>([]);
   const [selectedSprint, setSelectedSprint] = useState(sprint[0]);
   const [cohortName, setCohortName] = useState({ cohortName: '' });
-  const removeReply = () => {
-    let thisState = !removeModel;
-    setRemoveModel(thisState);
-  };
+  const [disable, setDisable] = useState(true);
   const [ratingData, setRatingData] = useState({
     quality: '0',
     qualityRemark: '',
@@ -160,7 +155,8 @@ const TraineeRatingDashboard = () => {
   });
   const data = ratings;
   const columns = [
-    { Header: `${t('Name')}`, accessor: 'user[email]' },
+    { Header: `${t('Email')}`, accessor: 'user[email]' },
+    { Header: `${t('Cohort')}`, accessor: 'cohort[name]' },
     { Header: `${t('Sprint')}`, accessor: 'sprint' },
     { Header: `${t('Quantity')}`, accessor: 'quantity' },
     { Header: `${t('Quality')}`, accessor: 'quality' },
@@ -244,7 +240,7 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
     onError: (err) => {
-      toast.error('something went wrong');
+      toast.error(err.message || 'Something went wrong');
       openModal();
     },
     onCompleted: ({ createRatings }) => {
@@ -266,11 +262,11 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
     onError: (err) => {
-      toast.error('something went wrong');
-      openModal();
+      toast.error(err.message || 'something went wrong');
+      setShowActions(true);
     },
     onCompleted: (data) => {
-      toast.success('Successfully sent to Admin');
+      toast.success('Successfully updated!');
     },
   });
 
@@ -304,7 +300,7 @@ const TraineeRatingDashboard = () => {
         setRatings(data?.fetchRatings);
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(error?.message || 'Failed to load the data');
       },
     });
 
@@ -317,19 +313,10 @@ const TraineeRatingDashboard = () => {
           : setCohorts(cohorts);
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(error?.message || 'Failed to load the data');
       },
     });
-    showReplyByUser({
-      fetchPolicy: 'network-only',
-      onCompleted: (reply) => {
-        setSelectedUser(reply);
-      },
-      onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
-      },
-    });
-  }, [toggle]);
+  }, [toggle, updateRatings]);
 
   return (
     <>
@@ -347,6 +334,7 @@ const TraineeRatingDashboard = () => {
                       onChange={(e) => {
                         setSelectedCohort(e);
                         setCohortName(e.name);
+                        setDisable(false);
                         getUsers({
                           fetchPolicy: 'network-only',
                           onCompleted: (data) => {
@@ -861,6 +849,7 @@ const TraineeRatingDashboard = () => {
                                     type="submit"
                                     className="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                                     onClick={closeModal}
+                                    disabled={disable}
                                   >
                                     {t('Save ratings')}
                                   </button>
