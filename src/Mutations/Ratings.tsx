@@ -1,37 +1,82 @@
 import { gql } from '@apollo/client';
 
 export const GET_RATINGS = gql`
-query FetchRatings($orgToken: String) {
-  fetchRatings(orgToken: $orgToken) {
-    user {
-      id
-      email
+  query Query($orgToken: String) {
+    fetchRatings(orgToken: $orgToken) {
+      user {
+        id
+        email
+      }
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+      coordinator
+      cohort {
+        name
+      }
     }
-    sprint
-    quantity
-    quantityRemark
-    quality
-    qualityRemark
-    professional_Skills
-    professionalRemark
-    coordinator
   }
-}
+`;
+
+export const FETCH_ALL_RATINGS = gql`
+  query FetchAllRatings($orgToken: String) {
+    fetchAllRatings(orgToken: $orgToken) {
+      user {
+        id
+        email
+      }
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+      cohort {
+        name
+      }
+      coordinator
+    }
+  }
 `;
 
 export const ADD_RATING = gql`
-mutation Mutation($user: String!, $sprint: Int!, $quantity: String!, $quality: String!, $professionalSkills: String!, $orgToken: String!, $qualityRemark: String, $professionalRemark: String, $quantityRemark: String) {
-  addRatings(user: $user, sprint: $sprint, quantity: $quantity, quality: $quality, professional_Skills: $professionalSkills, orgToken: $orgToken, qualityRemark: $qualityRemark, professionalRemark: $professionalRemark, quantityRemark: $quantityRemark) {
-    user
-    sprint
-    quantity
-    quantityRemark
-    quality
-    qualityRemark
-    professional_Skills
-    professionalRemark
+  mutation Mutation(
+    $user: String!
+    $sprint: Int!
+    $quantity: String!
+    $quality: String!
+    $professionalSkills: String!
+    $orgToken: String!
+    $qualityRemark: String
+    $professionalRemark: String
+    $quantityRemark: String
+  ) {
+    addRatings(
+      user: $user
+      sprint: $sprint
+      quantity: $quantity
+      quality: $quality
+      professional_Skills: $professionalSkills
+      orgToken: $orgToken
+      qualityRemark: $qualityRemark
+      professionalRemark: $professionalRemark
+      quantityRemark: $quantityRemark
+    ) {
+      user
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+    }
   }
-}
 `;
 
 export const UPDATE_RATING = gql`

@@ -341,9 +341,9 @@
   "Quality ratings remark": "Remarque sur les cotes de qualité",
   "Qantity rating remark": "Remarque sur la cote de quantité",
   "No updated ratings found": "Aucune note mise à jour trouvée",
-  "Reject":"Rejeter",
-  "Approve":"Approuver",
-  "Are you sure you want to approve this updated ratings ?":"Êtes-vous sûr de vouloir approuver cette note mise à jour ?",
+  "Reject": "Rejeter",
+  "Approve": "Approuver",
+  "Are you sure you want to approve this updated ratings ?": "Êtes-vous sûr de vouloir approuver cette note mise à jour ?",
   "Approve updated ratings": "Approuver les évaluations mises à jour",
   "Productpage": "Fiche produit",
   "comingsoon": "Bientôt disponible",
@@ -358,5 +358,12 @@
   "We are delighted to have you with us. Soon you shall be receiving an email that contains an organization you will be part of.": "Nous sommes ravis de vous avoir avec nous. Bientôt, vous recevrez un e-mail contenant une organisation dont vous ferez partie.",
   "Already have an account?": "Vous avez déjà un compte?",
   "Log in": "Connectez",
-  "Sign up using": "Inscrivez-vous en utilisant"
+  "Sign up using": "Inscrivez-vous en utilisant",
+  "Detailed performance Ratings of Trainee": "Évaluations détaillées des performances du stagiaire",
+  "User email": "Courriel de l'utilisateur",
+  "Quantity Ratings": "Évaluations quantitatives",
+  "Quantity Remarks": "Quantité Remarques",
+  "Quality Ratings": "Notes de qualité",
+  "Quality Remarks": "Remarques sur la qualité",
+  "Professionalism Remarks": "Professionnalisme Remarques"
 }

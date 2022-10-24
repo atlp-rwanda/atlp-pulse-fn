@@ -296,10 +296,10 @@
   "Cohort": "Cohort",
   "Update rating": "Kuvugurura urutonde",
   "Save ratings": "Bika amanota",
-  "Professional rating remark":"Ijambo",
-  "Quality ratings remark":"Ijambo",
-  "Qantity rating remark":"Ijambo",
-  "Are you sure you want to approve this updated ratings ?":"Uzi neza ko ushaka kwemeza ibipimo byavuguruwe?",
+  "Professional rating remark": "Ijambo",
+  "Quality ratings remark": "Ijambo",
+  "Qantity rating remark": "Ijambo",
+  "Are you sure you want to approve this updated ratings ?": "Uzi neza ko ushaka kwemeza ibipimo byavuguruwe?",
   "Somethingnewiscoming": "Ikintu gishya kirimo kuza",
   "New to DevPulse?": "Uri mushya kuri DevPulse?",
   "Sign Up": "Iyandikishe",
@@ -311,5 +311,12 @@
   "We are delighted to have you with us. Soon you shall be receiving an email that contains an organization you will be part of.": "Twishimiye kubana nawe. Mu gihe kitarambiranye urabona imeri ikubwira Kompanyi uzaba uherereyemo.",
   "Already have an account?": "Ufite konti?",
   "Log in": "Injira",
-  "Sign up using": "Iyandikishe ukoresheje"
+  "Sign up using": "Iyandikishe ukoresheje",
+  "Detailed performance Ratings of Trainee": "Imikorere irambuye Urutonde rwabatoza",
+  "User email": "Imeri",
+  "Quantity Ratings": "Ibipimo by'umubare",
+  "Quantity Remarks": "Ijambo ryinshi",
+  "Quality Ratings": "Ibipimo byiza",
+  "Quality Remarks": "Ijambo ryiza",
+  "Professionalism Remarks": "Ijambo ry'umwuga"
 }
