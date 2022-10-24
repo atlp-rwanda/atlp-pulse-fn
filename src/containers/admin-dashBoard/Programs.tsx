@@ -175,6 +175,7 @@ function AdminPrograms() {
         refetch={getRefetch}
       />
       <UpdateProgramModal
+        data={getData}
         updateProgramModal={updateProgramModal}
         currentProgram={currentProgram}
         removeModel={() => {

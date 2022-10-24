@@ -28,9 +28,7 @@ function ProfileDropdown({
       <div className="absolute top-[60px] right-0 left-0 ml-auto px-2 md:mx-0 md:left-auto md:right-[10px] z-2  w-full max-w-[220px] h-[calc(100%-70px)]">
         <div className="flex flex-col flex-nowrap w-full h-max max-h-full bg-white shadow-xl border  dark:border-0 dark:bg-dark-tertiary rounded-[20px]">
           <div className="flex flex-col w-full p-3 border-border-dark dark:border-white border-b-[0.5px]">
-            <p className="font-bold dark:text-white">
-              {user?.name}
-            </p>
+            <p className="font-bold dark:text-white">{user?.name}</p>
             <p className="font-bold text-sm text-gray-700 dark:text-gray-300">
               {user?.email}
             </p>

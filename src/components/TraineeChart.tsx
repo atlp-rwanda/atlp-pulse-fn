@@ -1,7 +1,13 @@
 /* eslint-disable */
 import {
-    CategoryScale, Chart as ChartJS, Filler, LinearScale, LineElement, PointElement, Title,
-    Tooltip
+  CategoryScale,
+  Chart as ChartJS,
+  Filler,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
 } from 'chart.js';
 import React from 'react';
 import { Line } from 'react-chartjs-2';
