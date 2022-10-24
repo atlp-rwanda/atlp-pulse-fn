@@ -324,7 +324,6 @@ const TraineeRatingDashboard = () => {
       fetchPolicy: 'network-only',
       onCompleted: (reply) => {
         setSelectedUser(reply);
-        // console.log('show me', reply);
       },
       onError: (error) => {
         toast.error(error?.message || 'Something went wrong');
@@ -1149,20 +1148,6 @@ const TraineeRatingDashboard = () => {
                                         placeholder="No reply here"
                                         value={rows.bodyQuality}
                                       />
-                                      <Icon
-                                        icon="mdi:close-circle-outline"
-                                        width="30"
-                                        onClick={() => {
-                                          setRows({
-                                            ...rows,
-                                          });
-                                          setRemoveModel(!removeModel);
-                                        }}
-                                        height="30"
-                                        cursor="pointer"
-                                        color="#ff0000"
-                                        className="absolute bottom-1.5 right-1.5"
-                                      />
                                     </div>
                                   </div>
                                   <div className="mx-0 md:mx-2  my-1 w-full flex flex-col md:flex-col justify-start items-center ">
@@ -1186,20 +1171,6 @@ const TraineeRatingDashboard = () => {
                                         value={rows.bodyQuantity}
                                         rows={2}
                                         placeholder="No reply here"
-                                      />
-                                      <Icon
-                                        icon="mdi:close-circle-outline"
-                                        width="30"
-                                        onClick={() => {
-                                          setRows({
-                                            ...rows,
-                                          });
-                                          setRemoveModel(!removeModel);
-                                        }}
-                                        height="30"
-                                        cursor="pointer"
-                                        color="#ff0000"
-                                        className="absolute bottom-1.5 right-1.5"
                                       />
                                     </div>
                                   </div>
@@ -1225,20 +1196,6 @@ const TraineeRatingDashboard = () => {
                                         className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
                                         rows={2}
                                       />
-                                      <Icon
-                                        icon="mdi:close-circle-outline"
-                                        width="30"
-                                        onClick={() => {
-                                          setRows({
-                                            ...rows,
-                                          });
-                                          setRemoveModel(!removeModel);
-                                        }}
-                                        height="30"
-                                        cursor="pointer"
-                                        color="#ff0000"
-                                        className="absolute bottom-1.5 right-1.5"
-                                      />
                                     </div>
                                   </div>
                                 </div>
@@ -1251,53 +1208,6 @@ const TraineeRatingDashboard = () => {
                                     {t('Cancel')}
                                   </button>
                                 </div>
-                                {/* =========================== Start::  removeModel =============================== */}
-                                <div
-                                  className={`min-h-full fixed inset-0 overflow-y-auto bg-black bg-opacity-40 flex items-center justify-center px-4 ${
-                                    removeModel === true ? 'block' : 'hidden'
-                                  }`}
-                                >
-                                  <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 m-4 md:w-full  xl:w-3/4 rounded-lg p-4 pb-8">
-                                    <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                                      <h3 className="font-bold text-sm dark:text-white text-center w-11/2">
-                                        {t('Delete reply')}
-                                      </h3>
-                                      <hr className=" bg-primary border-b my-3 w-full" />
-                                    </div>
-                                    <div className="card-body">
-                                      <form className=" py-3 px-8">
-                                        <div>
-                                          <h2 className="text-base dark:text-white m-4">
-                                            {t(
-                                              'Are you sure you want to delete this reply',
-                                            )}
-                                            ?
-                                          </h2>
-                                        </div>
-                                        <div className="w-full flex justify-between">
-                                          <Button
-                                            data-testid="removeModel"
-                                            variant="info"
-                                            size="sm"
-                                            style="w-[30%] md:w-1/4 text-sm font-sans"
-                                            onClick={() => removeReply()}
-                                          >
-                                            {t('Cancel')}
-                                          </Button>
-                                          <Button
-                                            variant="danger"
-                                            size="sm"
-                                            style="w-[30%] md:w-1/4 text-sm font-sans"
-                                            onClick={() => removereply()}
-                                          >
-                                            {t('Delete')}
-                                          </Button>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                                {/* =========================== End::  remove Model =============================== */}
                               </form>
                             </Dialog.Panel>
                           </Transition.Child>

@@ -147,6 +147,7 @@ const TraineePerfomance = () => {
                                         quality: item?.quality,
                                         quantity: item?.quantity,
                                         professional: item?.professional_Skills,
+                                        user_id: item?.user.id,
                                       }),
                                     );
                                   }}

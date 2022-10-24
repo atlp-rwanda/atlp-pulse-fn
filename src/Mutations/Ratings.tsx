@@ -13,12 +13,12 @@ export const GET_RATINGS = gql`
       bodyQuantity
       quality
       qualityRemark
-      bodyQuality
-      professional_Skills
-      professionalRemark
       bodyProfessional
       approved
       coordinator
+      professionalRemark
+      professional_Skills
+      bodyQuality
     }
   }
 `;
@@ -54,7 +54,10 @@ export const ADD_RATING = gql`
     ) {
       user {
         id
+        role
         email
+        password
+        organizations
       }
       sprint
       quantity
