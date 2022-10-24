@@ -34,7 +34,6 @@ import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
 const organizationToken = localStorage.getItem('orgToken');
 
-
 const AdminTraineeDashboard = () => {
   useDocumentTitle('Trainees');
   const { t }: any = useTranslation();
@@ -48,7 +47,7 @@ const AdminTraineeDashboard = () => {
   const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
   const [email, setEmail] = useState<any[]>([]);
-   const [traineeDetails, setTraineeDetails] = useState<any>({});
+  const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
   const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
@@ -60,34 +59,30 @@ const AdminTraineeDashboard = () => {
   const [toggle, setToggle] = useState(false);
   const options: any = [];
   const traineeOptions: any = [];
-  let traineeDat: any=[];
-
+  let traineeDat: any = [];
 
   function PaperComponent(props: PaperProps) {
-  return (
-    <Draggable
-      handle="#draggable-dialog-title"
-      cancel={'[class*="MuiDialogContent-root"]'}
-    >
-      <Paper {...props} />
-    </Draggable>
-  );
-}
- const [open, setOpen] = React.useState(false);
+    return (
+      <Draggable
+        handle="#draggable-dialog-title"
+        cancel={'[class*="MuiDialogContent-root"]'}
+      >
+        <Paper {...props} />
+      </Draggable>
+    );
+  }
+  const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = (rowData:any) => {
-    const filteredUser=traineeData.filter(item=>item.email==rowData)
-    setTraineeDetails(filteredUser[0])
+  const handleClickOpen = (rowData: any) => {
+    const filteredUser = traineeData.filter((item) => item.email == rowData);
+    setTraineeDetails(filteredUser[0]);
 
-    
     setOpen(true);
-    
   };
 
   const handleClose = () => {
     setOpen(false);
   };
-
 
   const removeTraineeMod = () => {
     let newState = !removeTraineeModel;
@@ -142,7 +137,6 @@ const AdminTraineeDashboard = () => {
     },
   };
 
-
   const columns = [
     { Header: 'Name', accessor: 'name' },
     { Header: 'Email', accessor: 'email' },
@@ -170,7 +164,6 @@ const AdminTraineeDashboard = () => {
               removeEditModel();
               setEditEmail(row.original.email);
               setEditCohort(row.original.cohort);
-               
             }}
           />
           <Icon
@@ -186,28 +179,19 @@ const AdminTraineeDashboard = () => {
             }}
           />
 
-      
-      
-
-<Icon
+          <Icon
             icon="flat-color-icons:view-details"
             width="30"
             height="30"
             cursor="pointer"
             color="#148fb6"
-           
-            onClick={()=>handleClickOpen(row.original.email)}
+            onClick={() => handleClickOpen(row.original.email)}
           />
-      
-     
-        
         </div>
-
-        
       ),
     },
   ];
-  
+
   const data = devs;
   let datum: any = [];
   const [getUsers] = useLazyQuery(GET_USERS_QUERY, {
@@ -226,8 +210,6 @@ const AdminTraineeDashboard = () => {
     },
   });
 
-
-
   if (traineeData && traineeData.length > 0) {
     traineeData?.map((data: any, index: number) => {
       datum[index] = {};
@@ -238,7 +220,7 @@ const AdminTraineeDashboard = () => {
       datum[index].program = data.cohort.program.name;
     });
   }
- 
+
   const [addMemberToCohort] = useMutation(ADD_MEMBER_TO_COHORT_MUTATION, {
     variables: {
       cohortName: Object.values(selectedOption)[0],
@@ -343,7 +325,7 @@ const AdminTraineeDashboard = () => {
       onCompleted: (data) => {
         setTraineeData(data.getTrainees);
       },
-      
+
       onError: (error) => {
         toast.error(error.message);
       },
@@ -358,8 +340,6 @@ const AdminTraineeDashboard = () => {
         toast.error(error.message);
       },
     });
-  
-
   }, [registerTraineeModel, removeTraineeModel, toggle]);
 
   if (allUserEmail.length > 0) {
@@ -378,9 +358,67 @@ const AdminTraineeDashboard = () => {
     });
   }
 
- 
   return (
     <>
+      {/* =========================== Start::  InviteTraineeModel =============================== */}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperComponent={PaperComponent}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+          {traineeDetails && traineeDetails.profile
+            ? traineeDetails.profile.name
+            : 'Un availabe'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <img src={image} alt="Logo" />
+
+            {traineeDetails &&
+            traineeDetails.profile &&
+            traineeDetails.profile.avatar
+              ? traineeDetails.profile.avatar
+              : image}
+            <h3>
+              {' '}
+              COUNTRY:
+              {traineeDetails && traineeDetails.profile
+                ? traineeDetails.profile.country
+                : 'Un availabe'}
+            </h3>
+            <h3>
+              CITY:
+              {traineeDetails && traineeDetails.profile
+                ? traineeDetails.profile.city
+                : 'Un availabe'}
+            </h3>
+            <h3>
+              {' '}
+              PHONE NUMBER:
+              {traineeDetails && traineeDetails.profile
+                ? traineeDetails.profile.phoneNumber
+                : 'Un availabe'}
+            </h3>
+            <h3>
+              EMAIL:
+              {traineeDetails && traineeDetails.profile
+                ? traineeDetails.email
+                : 'Un availabe'}
+            </h3>
+            <h3>
+              {' '}
+              BIOGRAPHY:
+              {traineeDetails && traineeDetails.profile
+                ? traineeDetails.profile.biography
+                : 'Un availabe'}
+            </h3>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions></DialogActions>
+      </Dialog>
+
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
@@ -428,6 +466,7 @@ const AdminTraineeDashboard = () => {
                 >
                   {t('Cancel')}
                 </Button>
+
                 <Button
                   variant="primary"
                   size="sm"
@@ -611,7 +650,6 @@ const AdminTraineeDashboard = () => {
                     options={traineeOptions}
                     isSearchable
                   />
-            
                 </div>
               </div>
 
