@@ -70,7 +70,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
     >
       <img
         alt="avatar"
-        className="w-6 cursor-pointer ml-4 mr-8"
+        className="w-8 cursor-pointer ml-4 mr-4 h-8 rounded-full"
         src={Object {}}
       />
     </div>

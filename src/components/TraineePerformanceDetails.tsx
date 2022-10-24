@@ -9,6 +9,7 @@ import {
   ADD_REPLY,
   GET_REPLIES,
   REMOVE_REPLY,
+  UPDATE_TO_REPLY,
 } from '../Mutations/replyMutation';
 import { phase, cohort, sprint, people as trainee } from '../dummyData/ratings';
 import { useLazyQuery, useMutation } from '@apollo/client';
@@ -16,20 +17,23 @@ import { toast } from 'react-toastify';
 import { Transition, Dialog } from '@headlessui/react';
 import { gql } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { dataItem } from 'react-widgets/cjs/Accessors';
 const TraineePerfomanceDetails = () => {
   const navigate = useNavigate();
-
+  const organizationToken = localStorage.getItem('orgToken');
   const [replyData, setReplyData] = useState({
     userEmail: '',
     bodyQuantity: '',
     bodyQuality: '',
     bodyProfessional: '',
+    id: '',
   });
   const [rows, setRows] = useState({
     user: '',
     bodyQuantity: '',
     bodyQuality: '',
     bodyProfessional: '',
+    id: '',
   });
 
   const [trainee, setTrainee] = useState<any>([]);
@@ -48,11 +52,12 @@ const TraineePerfomanceDetails = () => {
     const data: any = sessionStorage.getItem('data');
     const getData = JSON.parse(data);
     setRatings(getData);
-    console.log(data);
   }, []);
 
   const closeModel = () => {
     setIsOpen(false);
+    setIsOpen2(false);
+    setIsOpen3(false);
     setShowActions(false);
   };
 
@@ -65,7 +70,24 @@ const TraineePerfomanceDetails = () => {
   const openModalProfessional = () => {
     setIsOpen3(true);
   };
-
+  const handleUpdate = (e: any) => {
+    e.preventDefault();
+    updateToReply();
+    handleToggle();
+    closeModel();
+  };
+  const handleUpdateRow = (e: any) => {
+    e.preventDefault();
+    updateToReply();
+    handleToggle();
+    closeModel();
+  };
+  const handleUpdateColumn = (e: any) => {
+    e.preventDefault();
+    updateToReply();
+    handleToggle();
+    closeModel();
+  };
   const handleClick = () => setNav(nav);
   const handleToggle = () => {
     setToggle(!toggle);
@@ -73,14 +95,33 @@ const TraineePerfomanceDetails = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    createReply();
     handleToggle();
+    updateToReply();
     closeModel();
   };
-
+  const [updateToReply] = useMutation(UPDATE_TO_REPLY, {
+    variables: {
+      user: ratings.user_id,
+      sprint: ratings.user_sprint,
+      bodyQuantity: rows?.bodyQuantity,
+      bodyQuality: rows?.bodyQuality,
+      bodyProfessional: rows?.bodyProfessional,
+      orgToken: organizationToken,
+    },
+    onError: (err) => {
+      toast.error('Unable to proceed');
+      openModal();
+      openModalQuality();
+      openModalProfessional();
+    },
+    onCompleted: ({ updateToReply }) => {
+      handleToggle();
+      toast.success('Reply sent successfully');
+    },
+  });
   const [createReply] = useMutation(ADD_REPLY, {
     variables: {
-      user: replyData.userEmail,
+      user: ratings.user_id,
       sprint: ratings.user_sprint,
       bodyQuantity: rows.bodyQuantity.toString(),
       bodyQuality: rows.bodyQuality.toString(),
@@ -211,7 +252,7 @@ const TraineePerfomanceDetails = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className=" bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[65%] lg:ml-90 mb-10 mt-10">
-                  <form>
+                  <form onSubmit={handleUpdate}>
                     <Dialog.Title
                       as="h3"
                       className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"
@@ -303,35 +344,33 @@ const TraineePerfomanceDetails = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className=" bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[65%] lg:ml-90 mb-10 mt-10">
-                  <form>
+                  <form onSubmit={handleUpdate}>
                     <Dialog.Title
                       as="h3"
                       className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"
                     >
-                      {t('Reply on Quality Remarks')}
+                      {t('Reply on Quantity Remarks')}
                     </Dialog.Title>
                     <div className="mt-4 md:mt-8">
                       <div className="w-2/3 flex flex-col border border-gray-200 mb-4 float-left rounded-tr-lg rounded-bl-lg">
                         <div className="m-8">
                           <p className="float-left">
-                            {ratings?.quality_remark}
+                            {ratings?.quantity_remark}
                           </p>
                         </div>
                         <div className="ml-9 text-primary ">
-                          <h3 className="float-left">
-                            {/* {ratings?.createdAt} */}
-                          </h3>
+                          <h3 className="float-left">{/* 30/09/2022 */}</h3>
                         </div>
                       </div>
                       <div className="w-full flex flex-col border border-gray-400 rounded-md">
                         <div className="m-4">
                           <div className=" ">
                             <input
-                              value={rows.bodyQuality}
+                              value={rows.bodyQuantity}
                               onChange={(e) =>
                                 setRows({
                                   ...rows,
-                                  bodyQuality: e.target.value,
+                                  bodyQuantity: e.target.value,
                                 })
                               }
                               className="w-full bg-inherit px-2 outline-0"
@@ -397,7 +436,7 @@ const TraineePerfomanceDetails = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className=" bg-white dark:bg-dark-bg shadow-lg px-5 py-4 rounded-md w-[90%] mx-auto lg:w-[65%] lg:ml-90 mb-10 mt-10">
-                  <form>
+                  <form onSubmit={handleUpdateColumn}>
                     <Dialog.Title
                       as="h3"
                       className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"

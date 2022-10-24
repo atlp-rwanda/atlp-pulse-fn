@@ -60,9 +60,11 @@ export default function CreateCohortModal({
     watch,
     formState: { errors },
     reset,
+    setValue,
     register,
     control,
   } = useForm();
+  /* istanbul ignore next */
   const [addCohortMutation, { loading }] = useMutation(AddCohort, {
     onError(error) {
       toast.error(error.message.toString());
@@ -72,12 +74,12 @@ export default function CreateCohortModal({
       removeModel();
     },
   });
-
+  /* istanbul ignore next */
   const coordinators = data?.getAllUsers.filter(
     (user) => user.role === 'coordinator',
   );
   const programs = data?.getAllPrograms;
-
+  /* istanbul ignore next */
   async function addCohort(data: any) {
     const newData = { ...data };
 
@@ -91,9 +93,16 @@ export default function CreateCohortModal({
       }
     });
 
-    await addCohortMutation({ variables: newData });
+    await addCohortMutation({
+      variables: newData,
+      onCompleted() {
+        reset();
+        setValue('coordinatorEmail', { value: undefined, label: undefined });
+        setValue('programName', { value: undefined, label: undefined });
+      },
+    });
   }
-
+  /* istanbul ignore next */
   return (
     <div
       className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${

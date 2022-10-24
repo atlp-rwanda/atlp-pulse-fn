@@ -5,21 +5,26 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
+import ControlledSelect from '../../components/ControlledSelect';
 import { Cohort, PartialProgram, PartialUser } from './Cohorts';
 
 export const UpdateCohort = gql`
   mutation UpdateCohort(
     $updateCohortId: ID!
-    $name: String
     $orgToken: String
+    $coordinatorEmail: String!
+    $programName: String!
+    $name: String
     $phase: String
     $startDate: DateTime
     $endDate: DateTime
   ) {
     updateCohort(
       id: $updateCohortId
-      name: $name
       orgToken: $orgToken
+      name: $name
+      coordinatorEmail: $coordinatorEmail
+      programName: $programName
       phase: $phase
       startDate: $startDate
       endDate: $endDate
@@ -94,6 +99,14 @@ export default function UpdateCohortModal({
   useEffect(() => {
     setValue('name', currentCohort?.name);
     setValue('phase', currentCohort?.phase);
+    setValue('coordinatorEmail', {
+      value: currentCohort?.coordinator.email,
+      label: currentCohort?.coordinator.email,
+    });
+    setValue('programName', {
+      value: currentCohort?.program.name,
+      label: currentCohort?.program.name,
+    });
     if (currentCohort?.startDate) {
       setValue(
         'startDate',
@@ -106,7 +119,7 @@ export default function UpdateCohortModal({
         format(new Date(currentCohort?.endDate as string), 'yyyy-MM-dd'),
       );
     }
-  }, [currentCohort]);
+  }, [currentCohort, updateCohortModal]);
 
   return (
     <div
@@ -154,7 +167,48 @@ export default function UpdateCohortModal({
                 </p>
               )}
             </div>
-
+            <div className="input my-5 h-9 ">
+              <div className="grouped-input flex items-center h-full w-full rounded-md">
+                <ControlledSelect
+                  placeholder={t('Select Coordinator')}
+                  register={{
+                    control,
+                    name: 'coordinatorEmail',
+                    rules: {
+                      required: `${t('The Coordinator Email is required')}`,
+                    },
+                  }}
+                  options={coordinators?.map(({ email }) => ({
+                    value: email,
+                    label: email,
+                  }))}
+                />
+              </div>
+              {errors?.coordinatorEmail && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.coordinatorEmail?.message?.toString()}
+                </p>
+              )}
+            </div>
+            <div className="input my-5 h-9 ">
+              <ControlledSelect
+                placeholder={t('Program Name')}
+                register={{
+                  control,
+                  name: 'programName',
+                  rules: { required: `${t('The Program Name is required')}` },
+                }}
+                options={programs?.map(({ name }) => ({
+                  value: name,
+                  label: name,
+                }))}
+              />
+              {errors?.programName && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.programName?.message?.toString()}
+                </p>
+              )}
+            </div>
             <div className="input my-5 h-9 ">
               <div className="grouped-input flex items-center h-full w-full rounded-md">
                 <input

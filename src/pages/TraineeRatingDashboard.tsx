@@ -1,4 +1,6 @@
 /* eslint-disable */
+import gql from 'graphql-tag';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import React, { useState, Fragment, useEffect } from 'react';
 import { Listbox, Combobox, Transition, Dialog } from '@headlessui/react';
 import { CheckIcon, SelectorIcon, PlusIcon } from '@heroicons/react/solid';
@@ -24,7 +26,6 @@ import DataTable from '../components/DataTable';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
-import { gql } from '@apollo/client';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -37,16 +38,11 @@ const TraineeRatingDashboard = () => {
   const [nav, setNav] = useState(false);
   const [trainee, setTrainee] = useState<any>([]);
   const [cohorts, setCohorts] = useState<any>([]);
-  const [removeModel, setRemoveModel] = useState(false);
-  const [selectedPhase, setselectedPhase] = useState(phase[0]);
   const [selectedCohort, setSelectedCohort] = useState(cohorts[0]);
   const [selectedUser, setSelectedUser] = useState<any>([]);
   const [selectedSprint, setSelectedSprint] = useState(sprint[0]);
   const [cohortName, setCohortName] = useState({ cohortName: '' });
-  const removeReply = () => {
-    let thisState = !removeModel;
-    setRemoveModel(thisState);
-  };
+  const [disable, setDisable] = useState(true);
   const [ratingData, setRatingData] = useState({
     quality: '0',
     qualityRemark: '',
@@ -56,15 +52,6 @@ const TraineeRatingDashboard = () => {
     professionalRemark: '',
     userEmail: '',
   });
-  // const [remarks, setRemarks] = useState({
-  //   bodyQuality: 'This is Quality reply',
-  //   bodyQuantity: 'This is Quantity reply',
-  //   bodyProfessional: 'This is Professionalism reply',
-  //   sprint: '0',
-  //   user: '',
-  //   id: '',
-
-  // })
   const [rows, setRows] = useState({
     quality: '0',
     qualityremark: '',
@@ -79,6 +66,7 @@ const TraineeRatingDashboard = () => {
     user: '',
     id: '',
   });
+  /* istanbul ignore next */
   let [isOpen, setIsOpen] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [showRemarks, setShowRemarks] = useState(false);
@@ -86,6 +74,7 @@ const TraineeRatingDashboard = () => {
   const [selectedTrainee, setSelectedTrainee] = useState(trainee[0]);
   const [query, setQuery] = useState('');
   const [toggle, setToggle] = useState(false);
+  /* istanbul ignore next */
   const filteredTrainees =
     query === ''
       ? trainee
@@ -95,20 +84,7 @@ const TraineeRatingDashboard = () => {
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, '')),
         );
-  const [removereply] = useMutation(REMOVE_REPLY, {
-    variables: {
-      deleteReplyId: 'id here',
-    },
-    onError: (error) => {
-      toast.error(error?.message || 'Something went wrong');
-      closeModal();
-    },
-    onCompleted: (reply) => {
-      toast.success('Successfully deleted!');
-      removereply();
-      closeModal();
-    },
-  });
+  /* istanbul ignore next */
   const filteredcohorts =
     query === ''
       ? cohorts
@@ -120,6 +96,7 @@ const TraineeRatingDashboard = () => {
         );
 
   const closeModal = () => {
+    /* istanbul ignore next */
     setIsOpen(false);
     setShowActions(false);
     setShowRemarks(false);
@@ -133,6 +110,7 @@ const TraineeRatingDashboard = () => {
   };
 
   const handleSubmit = (e: any) => {
+    /* istanbul ignore next */
     e.preventDefault();
     createRatings();
     handleToggle();
@@ -140,6 +118,7 @@ const TraineeRatingDashboard = () => {
   };
 
   const handleUpdate = (e: any) => {
+    /* istanbul ignore next */
     e.preventDefault();
     updateRatings();
     handleToggle();
@@ -159,8 +138,10 @@ const TraineeRatingDashboard = () => {
     },
   });
   const data = ratings;
+  /* istanbul ignore next */
   const columns = [
-    { Header: `${t('Name')}`, accessor: 'user[email]' },
+    { Header: `${t('Email')}`, accessor: 'user[email]' },
+    { Header: `${t('Cohort')}`, accessor: 'cohort[name]' },
     { Header: `${t('Sprint')}`, accessor: 'sprint' },
     { Header: `${t('Quantity')}`, accessor: 'quantity' },
     { Header: `${t('Quality')}`, accessor: 'quality' },
@@ -230,7 +211,7 @@ const TraineeRatingDashboard = () => {
       ),
     },
   ];
-
+  /* istanbul ignore next */
   const [createRatings] = useMutation(ADD_RATING, {
     variables: {
       user: ratingData.userEmail,
@@ -244,7 +225,7 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
     onError: (err) => {
-      toast.error('something went wrong');
+      toast.error(err.message || 'Something went wrong');
       openModal();
     },
     onCompleted: ({ createRatings }) => {
@@ -252,7 +233,7 @@ const TraineeRatingDashboard = () => {
       toast.success('Successfully done');
     },
   });
-
+  /* istanbul ignore next */
   const [updateRatings] = useMutation(UPDATE_RATING, {
     variables: {
       user: rows.id,
@@ -266,11 +247,11 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
     onError: (err) => {
-      toast.error('something went wrong');
-      openModal();
+      toast.error(err.message || 'something went wrong');
+      setShowActions(true);
     },
     onCompleted: (data) => {
-      toast.success('Successfully sent to Admin');
+      toast.success('Successfully updated!');
     },
   });
 
@@ -301,36 +282,30 @@ const TraineeRatingDashboard = () => {
     getRatings({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        /* istanbul ignore next */
         setRatings(data?.fetchRatings);
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(error?.message || 'Failed to load the data');
       },
     });
 
     getCohorts({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        /* istanbul ignore next */
         const cohorts = data?.getCohorts;
         data?.getCohorts?.length !== 0
           ? setCohorts(cohorts)
           : setCohorts(cohorts);
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(error?.message || 'Failed to load the data');
       },
     });
-    showReplyByUser({
-      fetchPolicy: 'network-only',
-      onCompleted: (reply) => {
-        setSelectedUser(reply);
-        // console.log('show me', reply);
-      },
-      onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
-      },
-    });
-  }, [toggle]);
+  }, [toggle, updateRatings]);
+
+  /* istanbul ignore next */
 
   return (
     <>
@@ -348,6 +323,7 @@ const TraineeRatingDashboard = () => {
                       onChange={(e) => {
                         setSelectedCohort(e);
                         setCohortName(e.name);
+                        setDisable(false);
                         getUsers({
                           fetchPolicy: 'network-only',
                           onCompleted: (data) => {
@@ -862,6 +838,7 @@ const TraineeRatingDashboard = () => {
                                     type="submit"
                                     className="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                                     onClick={closeModal}
+                                    disabled={disable}
                                   >
                                     {t('Save ratings')}
                                   </button>
@@ -1128,12 +1105,6 @@ const TraineeRatingDashboard = () => {
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <textarea
                                       value={rows.qualityremark}
-                                      onChange={(e) =>
-                                        setRows({
-                                          ...rows,
-                                          qualityremark: e.target.value,
-                                        })
-                                      }
                                       id=""
                                       rows={5}
                                       className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
@@ -1149,20 +1120,6 @@ const TraineeRatingDashboard = () => {
                                         placeholder="No reply here"
                                         value={rows.bodyQuality}
                                       />
-                                      <Icon
-                                        icon="mdi:close-circle-outline"
-                                        width="30"
-                                        onClick={() => {
-                                          setRows({
-                                            ...rows,
-                                          });
-                                          setRemoveModel(!removeModel);
-                                        }}
-                                        height="30"
-                                        cursor="pointer"
-                                        color="#ff0000"
-                                        className="absolute bottom-1.5 right-1.5"
-                                      />
                                     </div>
                                   </div>
                                   <div className="mx-0 md:mx-2  my-1 w-full flex flex-col md:flex-col justify-start items-center ">
@@ -1170,12 +1127,6 @@ const TraineeRatingDashboard = () => {
                                       name="quantityDescription"
                                       id=""
                                       value={rows.quantityremark}
-                                      onChange={(e) =>
-                                        setRows({
-                                          ...rows,
-                                          quantityremark: e.target.value,
-                                        })
-                                      }
                                       rows={5}
                                       className="rounded-md w-full  my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
                                       placeholder=" No quantity rating remark"
@@ -1187,20 +1138,6 @@ const TraineeRatingDashboard = () => {
                                         rows={2}
                                         placeholder="No reply here"
                                       />
-                                      <Icon
-                                        icon="mdi:close-circle-outline"
-                                        width="30"
-                                        onClick={() => {
-                                          setRows({
-                                            ...rows,
-                                          });
-                                          setRemoveModel(!removeModel);
-                                        }}
-                                        height="30"
-                                        cursor="pointer"
-                                        color="#ff0000"
-                                        className="absolute bottom-1.5 right-1.5"
-                                      />
                                     </div>
                                   </div>
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
@@ -1208,12 +1145,6 @@ const TraineeRatingDashboard = () => {
                                       name="proffessionalDescription"
                                       id=""
                                       value={rows.professionalRemark}
-                                      onChange={(e) =>
-                                        setRows({
-                                          ...rows,
-                                          professionalRemark: e.target.value,
-                                        })
-                                      }
                                       rows={5}
                                       className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
                                       placeholder="No professional rating remark"
@@ -1224,20 +1155,6 @@ const TraineeRatingDashboard = () => {
                                         placeholder="No reply here"
                                         className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
                                         rows={2}
-                                      />
-                                      <Icon
-                                        icon="mdi:close-circle-outline"
-                                        width="30"
-                                        onClick={() => {
-                                          setRows({
-                                            ...rows,
-                                          });
-                                          setRemoveModel(!removeModel);
-                                        }}
-                                        height="30"
-                                        cursor="pointer"
-                                        color="#ff0000"
-                                        className="absolute bottom-1.5 right-1.5"
                                       />
                                     </div>
                                   </div>
@@ -1251,53 +1168,6 @@ const TraineeRatingDashboard = () => {
                                     {t('Cancel')}
                                   </button>
                                 </div>
-                                {/* =========================== Start::  removeModel =============================== */}
-                                <div
-                                  className={`min-h-full fixed inset-0 overflow-y-auto bg-black bg-opacity-40 flex items-center justify-center px-4 ${
-                                    removeModel === true ? 'block' : 'hidden'
-                                  }`}
-                                >
-                                  <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 m-4 md:w-full  xl:w-3/4 rounded-lg p-4 pb-8">
-                                    <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                                      <h3 className="font-bold text-sm dark:text-white text-center w-11/2">
-                                        {t('Delete reply')}
-                                      </h3>
-                                      <hr className=" bg-primary border-b my-3 w-full" />
-                                    </div>
-                                    <div className="card-body">
-                                      <form className=" py-3 px-8">
-                                        <div>
-                                          <h2 className="text-base dark:text-white m-4">
-                                            {t(
-                                              'Are you sure you want to delete this reply',
-                                            )}
-                                            ?
-                                          </h2>
-                                        </div>
-                                        <div className="w-full flex justify-between">
-                                          <Button
-                                            data-testid="removeModel"
-                                            variant="info"
-                                            size="sm"
-                                            style="w-[30%] md:w-1/4 text-sm font-sans"
-                                            onClick={() => removeReply()}
-                                          >
-                                            {t('Cancel')}
-                                          </Button>
-                                          <Button
-                                            variant="danger"
-                                            size="sm"
-                                            style="w-[30%] md:w-1/4 text-sm font-sans"
-                                            onClick={() => removereply()}
-                                          >
-                                            {t('Delete')}
-                                          </Button>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                                {/* =========================== End::  remove Model =============================== */}
                               </form>
                             </Dialog.Panel>
                           </Transition.Child>

@@ -9,6 +9,7 @@ import formatDate from '../../utils/formatDate';
 import CreateCohortModal from './CreateCohortModal';
 import DeleteCohortModal from './DeleteCohortModal';
 import UpdateCohortModal from './UpdateCohortModal';
+import CohortTraineeModal from './CohortTraineeModal';
 
 export interface Cohort {
   id: string;
@@ -65,10 +66,27 @@ function ActionButtons({
   setCurrentCohort,
   setUpdateCohortModal,
   setDeleteCohortModal,
+  setCohortTrainneModal,
   ...props
 }: any) {
   return (
     <div className="flex relative flex-row align-middle justify-center items-center">
+      <div
+        data-testid="Trainee"
+        onClick={() => {
+          setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+          setCohortTrainneModal(true);
+        }}
+      >
+        <Icon
+          icon="akar-icons:people-group"
+          className="mr-2"
+          width="25"
+          height="25"
+          cursor="pointer"
+          color="#148fb6"
+        />
+      </div>
       <div
         data-testid="updateIcon"
         onClick={() => {
@@ -130,6 +148,7 @@ function AdminCohort() {
 
   const [createCohortModal, setCreateCohortModal] = useState(false);
   const [updateCohortModal, setUpdateCohortModal] = useState(false);
+  const [cohortTrainneModal, setCohortTrainneModal] = useState(false);
   const [currentCohort, setCurrentCohort] = useState<Cohort | undefined>(
     undefined,
   );
@@ -162,6 +181,7 @@ function AdminCohort() {
           setCurrentCohort,
           setUpdateCohortModal,
           setDeleteCohortModal,
+          setCohortTrainneModal,
           ...props,
         }),
     },
@@ -202,6 +222,16 @@ function AdminCohort() {
           setUpdateCohortModal(false);
         }}
       />
+
+      <CohortTraineeModal
+        cohortTraineeModal={cohortTrainneModal}
+        currentCohort={currentCohort}
+        refetch={getRefetch}
+        removeModel={() => {
+          setCohortTrainneModal(false);
+        }}
+      />
+
       <DeleteCohortModal
         deleteCohortModal={deleteCohortModal}
         currentCohort={currentCohort}

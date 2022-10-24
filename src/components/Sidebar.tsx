@@ -52,7 +52,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <HomeIcon className="w-5 mr-2 " />
           </SideNavLink>
 
-          <SideNavLink onClick={toggle} name="Admins" to="/dashboard/admins">
+          <SideNavLink onClick={toggle} name="Admins" data-testid="keppi" to="/dashboard/admins">
             <UsersIcon className="w-5 mr-2 " />
           </SideNavLink>
           <SideNavLink onClick={toggle} name="Domains" to="/dashboard/domains">
@@ -89,6 +89,13 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             name="Programs"
           >
             <ProgramIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink
+            onClick={toggle}
+            to="/dashboard/admin/ratings"
+            name="Ratings"
+          >
+            <ClipboardListIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}

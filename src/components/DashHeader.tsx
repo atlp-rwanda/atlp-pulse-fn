@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { BellIcon, SearchIcon } from '@heroicons/react/solid';
@@ -10,17 +10,45 @@ import useDarkMode from '../hook/useDarkMode';
 import Sidebar from './Sidebar';
 import Notification from './Notification';
 import ProfileDropdown from './ProfileDropdown';
+import {
+  useLazyQuery
+} from '@apollo/client';
+import { GET_PROFILE } from '../Mutations/User';
+import { UserContext } from '../hook/useAuth';
+import { toast } from 'react-toastify';
+
 
 function DashHeader() {
   const [showNotification, setShowNotification] = useState(false);
   const [showProfileDropdown, setShowprofileDropdown] = useState(false);
+  const [profileData, setProfileData] = useState<any>();
+  const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
+  const { user } = useContext(UserContext);
 
   const [colorTheme] = useDarkMode();
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleShowNotification = () => setShowNotification(!showNotification);
+  /* istanbul ignore next */
   const handleShowProfileDropdown = () =>
     setShowprofileDropdown(!showProfileDropdown);
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const { data } = await getProfile();
+        /* istanbul ignore next*/
+        setProfileData(data);
+      } catch (error: any) {
+        /* istanbul ignore next*/
+        toast.error(error?.message || 'Something went wrong');
+      }
+    };
+    /* istanbul ignore next*/
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -74,8 +102,8 @@ function DashHeader() {
           />
           <div onClick={handleShowProfileDropdown}>
             <img
-              className="w-6 cursor-pointer ml-4 mr-8"
-              src={Avatar}
+              className="w-8 cursor-pointer ml-4 mr-4 h-8 rounded-full"
+              src={user?.profileImage ? user?.profileImage : (profileData?.getProfile?.avatar ? (profileData?.getProfile?.avatar) : Avatar)}
               alt="avatar"
             />
           </div>

@@ -63,7 +63,8 @@ const UPDATE_PROFILE = gql`
 function EditProfile() {
   // eslint-disable-next-line  operator-linebreak
   const { setName } = useContext(UserContext);
-  const [profileFieldState, setProfileFieldState] = useState<fields>(fieldState);
+  const [profileFieldState, setProfileFieldState] =
+    useState<fields>(fieldState);
 
   const myRef = React.createRef<HTMLDivElement>();
 

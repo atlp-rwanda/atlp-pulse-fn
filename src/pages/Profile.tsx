@@ -10,6 +10,7 @@ import { GET_PROFILE } from '../Mutations/User';
 import Square from '../Skeletons/Square';
 
 export function CountryComponent({ country }: any) {
+  /* istanbul ignore next */
   const userCountry: any = COUNTRIES.filter((c) => c.value === country)[0];
   return (
     <span
@@ -28,16 +29,19 @@ export function CountryComponent({ country }: any) {
 }
 
 export default function Profile() {
-  const { setName } = useContext(UserContext);
+  const { setName ,setProfileImage} = useContext(UserContext);
   useDocumentTitle('Profile');
   const [data, setData] = useState<any>();
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
   useEffect(() => {
     const fetchData = async () => {
+      /* istanbul ignore next */
       try {
         const { data } = await getProfile();
         setData(data);
         setName(data.getProfile.name);
+        setProfileImage(data.getProfile.avatar);
+
       } catch (error: any) {
         toast.error(error?.message || 'Something went wrong');
       }

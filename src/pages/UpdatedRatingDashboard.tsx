@@ -22,27 +22,30 @@ const UpdatedRatingDashboard = () => {
   const [rows, setRows] = useState({
     user: '',
     id: '',
-    sprint: ''
+    sprint: '',
   });
   const GET_USERS = gql`
-  query Query($orgToken: String) {
-    fetchRatingsForAdmin(orgToken: $orgToken) {
-      sprint
-      quantity
-      quantityRemark
-      quality
-      qualityRemark
-      professional_Skills
-      professionalRemark
-      user {
-        id
-        role
-        email
+    query Query($orgToken: String) {
+      fetchRatingsForAdmin(orgToken: $orgToken) {
+        sprint
+        quantity
+        quantityRemark
+        quality
+        qualityRemark
+        professional_Skills
+        professionalRemark
+        user {
+          id
+          role
+          email
+        }
+        cohort {
+          name
+        }
       }
     }
-  }
   `;
-
+  /* istanbul ignore next */
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -57,8 +60,10 @@ const UpdatedRatingDashboard = () => {
     setRejectModel(newState);
   };
   const [nav, setNav] = useState(false);
+  /* istanbul ignore next */
   const handleClick = () => setNav(!nav);
   const data = ratings;
+  /* istanbul ignore next */
   const columns = [
     { Header: `${t('Name')}`, accessor: 'user[email]' },
     { Header: `${t('Sprint')}`, accessor: 'sprint' },
@@ -68,40 +73,50 @@ const UpdatedRatingDashboard = () => {
     {
       Header: `${t('Actions')}`,
       accessor: '',
+      /* istanbul ignore next */
       Cell: ({ row }: any) => (
-        <div className="flex flex-row justify-around">
-          <div className="cursor-pointer my-auto">
+        /* istanbul ignore next */
+        <div className="flex relative flex-row align-middle  justify-center items-center">
+          <div
+            data-testid="updateIcon"
+            onClick={() => {
+              setRows({
+                ...rows,
+                user: row.original.user.email,
+                id: row.original.user.id,
+                sprint: row.original.sprint,
+              });
+              setApproveModel(!approveModel);
+            }}
+          >
             <Icon
               icon="teenyicons:tick-circle-solid"
-              color="#8EB95D"
-              width="20"
-              height="20"
-              onClick={() => {
-                setRows({
-                  ...rows,
-                  user: row.original.user.email,
-                  id: row.original.user.id,
-                  sprint: row.original.sprint
-                });
-                setApproveModel(!approveModel);
-              }}
+              className="mr-2"
+              width="25"
+              height="25"
+              cursor="pointer"
+              color="#148fb6"
             />
           </div>
-          <div className="cursor-pointer">
+
+          <div
+            data-testid="deleteIcon"
+            onClick={() => {
+              setRows({
+                ...rows,
+                user: row.original.user.email,
+                id: row.original.user.id,
+                sprint: row.original.sprint,
+              });
+              setRejectModel(!rejectModel);
+            }}
+          >
             <Icon
-              icon="ic:sharp-cancel"
-              color="#F08080"
-              width="24"
-              height="24"
-              onClick={() => {
-                setRows({
-                  ...rows,
-                  user: row.original.user.email,
-                  id: row.original.user.id,
-                  sprint: row.original.sprint
-                });
-                setRejectModel(!rejectModel);
-              }}
+              icon="mdi:close-circle-outline"
+              width="30"
+              height="30"
+              cursor="pointer"
+              color="#148fb6"
             />
           </div>
         </div>
@@ -117,10 +132,10 @@ const UpdatedRatingDashboard = () => {
   const [approveRating] = useMutation(APPROVE_RATING, {
     variables: {
       user: rows.id,
-      sprint: rows.sprint
+      sprint: rows.sprint,
     },
     onError: (err) => {
-      toast.error('something went wrong');
+      toast.error(err.message || 'something went wrong');
       removeApproveModel();
     },
     onCompleted: (data) => {
@@ -132,24 +147,27 @@ const UpdatedRatingDashboard = () => {
   const [rejectRating] = useMutation(REJECT_RATING, {
     variables: {
       user: rows.id,
-      sprint: rows.sprint
+      sprint: rows.sprint,
     },
+    /* istanbul ignore next */
     onError: (err) => {
-      toast.error('something went wrong');
+      toast.error(err.message || 'something went wrong');
       removeRejectModel();
     },
+    /* istanbul ignore next */
     onCompleted: (data) => {
       toast.success('Successfully rejected!');
       removeRejectModel();
       handleToggle();
     },
   });
+  /* istanbul ignore next */
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
         setRatings(data.fetchRatingsForAdmin);
-        handleToggle()
+        handleToggle();
       },
       onError: (error) => {
         toast.error(error?.message || 'Something went wrong');
@@ -176,7 +194,8 @@ const UpdatedRatingDashboard = () => {
             <form className=" py-3 px-8">
               <div>
                 <h2 className="text-base dark:text-white m-4">
-                  {t('Are you sure you want to approve this updated ratings ?')} ?
+                  {t('Are you sure you want to approve this updated ratings ?')}{' '}
+                  ?
                 </h2>
               </div>
               <div className="w-full flex justify-between">
@@ -239,6 +258,7 @@ const UpdatedRatingDashboard = () => {
                   variant="danger"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
+                  /* istanbul ignore next */
                   onClick={() => rejectRating()}
                 >
                   {t('Reject')}
@@ -261,10 +281,10 @@ const UpdatedRatingDashboard = () => {
                     <DataTable
                       data={data}
                       columns={columns}
-                      title={t("Performance Ratings")}
+                      title={t('Performance Ratings')}
                     />
                   ) : (
-                    <div className='text-center mt-7 text-lg uppercase'>
+                    <div className="text-center mt-48 text-lg uppercase">
                       <p> {t('No updated ratings found')}</p>
                     </div>
                   )}

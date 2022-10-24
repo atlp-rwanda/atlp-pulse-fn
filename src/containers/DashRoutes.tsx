@@ -1,9 +1,11 @@
 /* eslint-disable */
+/* istanbul ignore file */
 
 import React, { Suspense, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';
+
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const Settings = React.lazy(() => import('../pages/Settings'));
 const PerformanceDetails = React.lazy(
@@ -34,6 +36,9 @@ const AdminTraineeDashboard = React.lazy(
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
 );
+
+const AdminRatings = React.lazy(() => import('../pages/AdminRatings'));
+
 const UpdatedRatingDashboard = React.lazy(
   () => import('../pages/UpdatedRatingDashboard'),
 );
@@ -52,7 +57,7 @@ function DashRoutes() {
   const handleClick = () => setNav(!nav);
   return (
     <PrivateRoute>
-      <div className="flex flex-col min-h-screen">
+      <div data-testid="cohorts-route" className="flex flex-col  min-h-screen">
         <DashHeader />
         <Sidebar toggle={handleClick} style="hidden lg:flex" />
         <Suspense fallback={<Square />}>
@@ -60,6 +65,7 @@ function DashRoutes() {
             <Route path="" element={<Dashboard />} />
             <Route path="/trainees" element={<AdminTraineeDashboard />} />
             <Route path="/ratings" element={<TraineeRatingDashboard />} />
+            <Route path="/admin/ratings" element={<AdminRatings />} />
             <Route
               path="/updated-ratings"
               element={<UpdatedRatingDashboard />}
@@ -68,7 +74,7 @@ function DashRoutes() {
             <Route path="/performance" element={<TraineePerfomance />} />
             <Route path="/attendance" element={<TraineeAttendance />} />
             <Route path="/attendance-details" element={<AttendanceDetails />} />
-            <Route path="/cohorts" element={<AdminCohorts />} />
+            <Route path="/cohorts"   element={<AdminCohorts />} />
             <Route path="/programs" element={<AdminPrograms />} />
             <Route path="/sessions" element={<AdminSession />} />
             <Route path="/manage" element={<AdminManageRoles />} />
@@ -81,7 +87,7 @@ function DashRoutes() {
             <Route path="/profile/edit" element={<EditProfile />} />
             <Route path="*" element={<Error />} />
             <Route path="/super-admin" element={<SupAdDashboard />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings"  element={<Settings />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
           </Routes>

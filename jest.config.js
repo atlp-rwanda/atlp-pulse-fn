@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   preset: 'ts-jest',
@@ -12,4 +13,19 @@ module.exports = {
     '\\.(css|less)$': '<rootDir>/test/jest/__mocks__/styleMock.js',
   },
   setupFilesAfterEnv: ['<rootDir>/tests/setupTest.tsx'],
+  coverageReporters: [
+    'clover',
+    'html',
+    'json',
+    'lcov',
+    ['text', { skipFull: true }],
+  ],
+  coverageThreshold: {
+    global: {
+      lines: 80,
+      functions: 60,
+      branches: 60,
+      statements: 80,
+    },
+  },
 };

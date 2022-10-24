@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_RATINGS = gql`
-  query FetchRatings($orgToken: String) {
+  query Query($orgToken: String) {
     fetchRatings(orgToken: $orgToken) {
       user {
         id
@@ -9,34 +9,57 @@ export const GET_RATINGS = gql`
       }
       sprint
       quantity
-      quantityRemark
       bodyQuantity
+      quantityRemark
       quality
+      bodyProfessional
       qualityRemark
-      bodyQuality
       professional_Skills
       professionalRemark
-      bodyProfessional
-      approved
+      bodyQuality
+      coordinator
+      cohort {
+        name
+      }
+    }
+  }
+`;
+export const FETCH_ALL_RATINGS = gql`
+  query FetchAllRatings($orgToken: String) {
+    fetchAllRatings(orgToken: $orgToken) {
+      user {
+        id
+        email
+      }
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+      cohort {
+        name
+      }
       coordinator
     }
   }
 `;
 
 export const ADD_RATING = gql`
-  mutation AddRatings(
+  mutation Mutation(
     $user: String!
     $sprint: Int!
     $quantity: String!
     $quality: String!
     $professionalSkills: String!
     $orgToken: String!
-    $quantityRemark: String
-    $bodyQuality: String
     $qualityRemark: String
     $bodyQuantity: String
-    $professionalRemark: String
     $bodyProfessional: String
+    $bodyQuality: String
+    $professionalRemark: String
+    $quantityRemark: String
   ) {
     addRatings(
       user: $user
@@ -54,7 +77,10 @@ export const ADD_RATING = gql`
     ) {
       user {
         id
+        role
         email
+        password
+        organizations
       }
       sprint
       quantity

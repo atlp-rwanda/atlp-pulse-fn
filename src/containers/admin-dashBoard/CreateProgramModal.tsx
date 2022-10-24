@@ -45,13 +45,16 @@ export default function CreateProgramModal({
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
     register,
     control,
   } = useForm();
   const [addProgramMutation, { loading }] = useMutation(AddProgram, {
+    /* istanbul ignore next */
     onError(error) {
       toast.error(error.message.toString());
     },
+    /* istanbul ignore next */
     onCompleted() {
       refetch();
       removeModel();
@@ -61,18 +64,23 @@ export default function CreateProgramModal({
   const managers = data?.getAllUsers?.filter((user) => user.role === 'manager');
 
   async function addProgram(data: any) {
+    /* istanbul ignore next */
     const newData = { ...data };
-
+    /* istanbul ignore next */
     newData.managerEmail && (newData.managerEmail = newData.managerEmail.value);
-
+    /* istanbul ignore next */
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {
         delete newData[field];
       }
     });
-
+    /* istanbul ignore next */
     await addProgramMutation({
       variables: { orgToken: localStorage.getItem('orgToken'), ...newData },
+      onCompleted() {
+        reset();
+        setValue('managerEmail', { value: undefined, label: undefined });
+      },
     });
   }
 
@@ -168,6 +176,7 @@ export default function CreateProgramModal({
                 variant="primary"
                 size="sm"
                 style="w-[30%] md:w-1/4 text-sm font-sans p-0"
+                /* istanbul ignore next */
                 onClick={handleSubmit(addProgram)}
                 loading={loading}
               >

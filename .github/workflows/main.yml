@@ -25,8 +25,8 @@ jobs:
       - name: Check linting errors
         run: npm run lint
       - name: Run tests and generate coverage reports
-        run: npm run coverage
+        run: npm run coverage -- -u
       - name: Sending coveralls report
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

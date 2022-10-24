@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Button from './Buttons';
 
 export default function PricingCard(props: any) {
+  /* istanbul ignore next */
   const { t } = useTranslation();
   return (
     <div className="border-2 w-60 md:w-80 rounded-lg m-10">

@@ -21,7 +21,7 @@ jobs:
         run: npm install
       # to added after the merge of test PR
       - name: Run tests and generate coverage
-        run: npm run coverage
+        run: npm run coverage -- -u
       - name: Check linting errors
         run: npm run lint
       - name: Run the build and check success

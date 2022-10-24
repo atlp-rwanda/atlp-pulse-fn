@@ -2,31 +2,31 @@ name: Publish production app image to Docker hub
 
 on:
   push:
-  # Triggered on pull request against the main branch
-    branches: [ main ]
+    # Triggered on pull request against the main branch
+    branches: [main]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-    build:
-      runs-on: ubuntu-latest
-      concurrency: 
-        group: docker_image
-        cancel-in-progress: false
-      steps:
-        - uses: actions/checkout@v3
-        - name: Uses Node.js 
-          uses: actions/setup-node@v3
-          with:
-            node-version: 16.x
-            cache: 'npm'
-            
-        - run: npm install
-        - run: npm run build    
-        - name: Build and publish Docker Image
-          uses: mr-smithers-excellent/docker-build-push@v5
-          with:
-            image: ${{ secrets.DOCKER_HUB_USERNAME }}/frontend
-            registry: docker.io
-            username: ${{ secrets.DOCKER_HUB_USERNAME }}
-            password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+  build:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: docker_image
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v3
+      - name: Uses Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
+
+      - run: npm install
+      - run: npm run build
+      - name: Build and publish Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: ${{ secrets.DOCKER_HUB_USERNAME }}/frontend
+          registry: docker.io
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}

@@ -21,22 +21,22 @@ function MainRoutes() {
           <Route path="signup/org" element={<OrgRegister />} />
           <Route
             path="/login/org"
-            element={(
+            element={
               <ProtectedRoutes>
                 <Orglogin />
               </ProtectedRoutes>
-            )}
+            }
           />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route
             path="/users/login"
-            element={(
+            element={
               <ProtectedRoutes>
                 <AdminLogin />
               </ProtectedRoutes>
-            )}
+            }
           />
           <Route path="/" element={<Perfomancetraineetable />} />
           <Route path="/signup/org" element={<OrgRegister />} />
