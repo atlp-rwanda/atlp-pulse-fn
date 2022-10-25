@@ -1,4 +1,6 @@
 /* eslint-disable */
+import gql from 'graphql-tag';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import React, { useState, Fragment, useEffect } from 'react';
 import { Listbox, Combobox, Transition, Dialog } from '@headlessui/react';
 import { CheckIcon, SelectorIcon, PlusIcon } from '@heroicons/react/solid';
@@ -24,7 +26,6 @@ import DataTable from '../components/DataTable';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
-import { gql } from '@apollo/client';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
