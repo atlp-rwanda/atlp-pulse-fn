@@ -13,7 +13,7 @@
     "test": "npx jest",
     "coverage": "jest --collect-coverage --silent -u",
     "lint": "npx eslint src/**/*.{tsx,ts} --fix",
-    "format": "npx pretty-quick --staged",
+    "format": "npx prettier --write .",
     "prepare": "husky install"
   },
   "repository": {

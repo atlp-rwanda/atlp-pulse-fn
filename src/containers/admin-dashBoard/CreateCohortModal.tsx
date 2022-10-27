@@ -60,6 +60,7 @@ export default function CreateCohortModal({
     watch,
     formState: { errors },
     reset,
+    setValue,
     register,
     control,
   } = useForm();
@@ -92,7 +93,14 @@ export default function CreateCohortModal({
       }
     });
 
-    await addCohortMutation({ variables: newData });
+    await addCohortMutation({
+      variables: newData,
+      onCompleted() {
+        reset();
+        setValue('coordinatorEmail', { value: undefined, label: undefined });
+        setValue('programName', { value: undefined, label: undefined });
+      },
+    });
   }
   /* istanbul ignore next */
   return (

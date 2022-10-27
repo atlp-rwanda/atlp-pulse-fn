@@ -45,6 +45,7 @@ export default function CreateProgramModal({
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
     register,
     control,
   } = useForm();
@@ -76,6 +77,10 @@ export default function CreateProgramModal({
     /* istanbul ignore next */
     await addProgramMutation({
       variables: { orgToken: localStorage.getItem('orgToken'), ...newData },
+      onCompleted() {
+        reset();
+        setValue('managerEmail', { value: undefined, label: undefined });
+      },
     });
   }
 

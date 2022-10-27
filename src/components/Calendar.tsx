@@ -181,7 +181,7 @@ const Calendar = () => {
                   <input
                     type="time"
                     name="hostName"
-                    className= "dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                    className="dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('Start time')}
                     value={newEvent.timeToStart}
                     onChange={(e) =>
