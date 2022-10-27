@@ -2,6 +2,7 @@
 import React from 'react';
 
 function ProgramIcon({ className }: { className: string }) {
+  /* istanbul ignore next */
   return (
     <svg
       width="25"

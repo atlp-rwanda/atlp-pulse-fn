@@ -44,24 +44,28 @@ const AdminSission = () => {
   const [findFilter, setFindFilter] = useState('');
   const [allRoles, setallRoles] = useState<any>();
   let newUsers: any = [];
-
+  /* istanbul ignore next */
   const handleAll = () => {
     setTabName('all');
   };
+  /* istanbul ignore next */
   const handleAdmin = () => {
     setTabName('admin');
   };
+  /* istanbul ignore next */
   const handleCoord = () => {
     setTabName('coordinator');
   };
+  /* istanbul ignore next */
   const handletrainee = () => {
     setTabName('trainee');
   };
-
+  /* istanbul ignore next */
   const removeModel = () => {
     let newState = !addMemberModel;
     setAddMemberModel(newState);
   };
+  /* istanbul ignore next */
   const removeDeleteModel = (e: any) => {
     e.preventDefault();
     let newState = !deleteModel;
@@ -71,12 +75,13 @@ const AdminSission = () => {
     if (tabName === 'all') {
       setDataDev(rolemanagement);
     } else {
+      /* istanbul ignore next */
       setDataDev(rolemanagement.filter((item: any) => item.role === tabName));
     }
   }, [tabName]);
 
   const removeAssignModel = (id: any) => {
-    // e.preventDefault();
+    /* istanbul ignore next */
     setUserId(id);
     let newState = !deleteModel;
     setDeleteModel(newState);
@@ -84,23 +89,10 @@ const AdminSission = () => {
 
   const handleShowRole = () => {
     setShowRoles(!showRoles);
+    /* istanbul ignore if */
     if (showRoles) setSubTitle('Available Roles');
     else setSubTitle('Manage Roles');
   };
-
-  // const handleCreateRole = async () => {
-  //   // e.preventDefault();
-  //   try {
-  //     const { data }: any = await createUserRole({
-  //       variables: { name: roleName },
-  //     });
-  //     let newState = !addMemberModel;
-  //     setTimeout(() => {
-  //       setAddMemberModel(newState);
-  //     }, 1000);
-
-  //   } catch (error) {}
-  // };
 
   const [handleCreateRole] = useMutation(CREATE_ROLE_MUTATION, {
     variables: { name: roleName },
@@ -140,20 +132,23 @@ const AdminSission = () => {
   const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {});
 
   useEffect(() => {
-
     fetchData2({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        /* istanbul ignore next */
         setUsers(data?.getAllUsers);
+        /* istanbul ignore next */
         data.getAllUsers.map((user: any, index: any) => {
           newUsers[index] = {};
           newUsers[index].role = user.role;
           newUsers[index].email = user.email;
           newUsers[index].id = user.id;
         });
+        /* istanbul ignore next */
         setallRoles(data?.getAllRoles);
       },
       onError: (error) => {
+        /* istanbul ignore next */
         console.log(error, 'error');
       },
     });
@@ -201,7 +196,7 @@ const AdminSission = () => {
       ),
     },
   ];
-
+  /* istanbul ignore next */
   return (
     <>
       {users && allRoles ? (

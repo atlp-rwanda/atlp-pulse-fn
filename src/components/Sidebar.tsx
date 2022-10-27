@@ -52,7 +52,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <HomeIcon className="w-5 mr-2 " />
           </SideNavLink>
 
-          <SideNavLink onClick={toggle} name="Admins" to="/dashboard/admins">
+          <SideNavLink onClick={toggle} name="Admins" data-testid="keppi" to="/dashboard/admins">
             <UsersIcon className="w-5 mr-2 " />
           </SideNavLink>
           <SideNavLink onClick={toggle} name="Domains" to="/dashboard/domains">

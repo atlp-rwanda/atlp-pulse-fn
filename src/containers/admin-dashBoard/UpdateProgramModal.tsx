@@ -43,6 +43,8 @@ export default function UpdateProgramModal({
     register,
     setValue,
   } = useForm();
+  /* istanbul ignore next */
+
   const [updateProgramMutation, { loading }] = useMutation(UpdateProgram, {
     onError(error) {
       toast.error(error.message.toString());

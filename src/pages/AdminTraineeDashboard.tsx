@@ -1,4 +1,6 @@
 /* eslint-disable */
+/* istanbul ignore file */
+
 import React, { useState, useEffect, useContext } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
@@ -48,6 +50,7 @@ const AdminTraineeDashboard = () => {
   const options: any = [];
   const traineeOptions: any = [];
 
+  /* istanbul ignore next */
   const removeTraineeMod = () => {
     let newState = !removeTraineeModel;
     setRemoveTraineeModel(newState);
@@ -58,6 +61,7 @@ const AdminTraineeDashboard = () => {
     setRegisterTraineeModel(newState);
   };
 
+  /* istanbul ignore next */
   const removeEditModel = () => {
     let newState = !editTraineeModel;
     setEditTraineeModel(newState);
@@ -67,7 +71,7 @@ const AdminTraineeDashboard = () => {
     let newState = !inviteTraineeModel;
     setInviteTraineeModel(newState);
   };
-
+  /* istanbul ignore next */
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -96,7 +100,7 @@ const AdminTraineeDashboard = () => {
     singleValue: (provided: any, state: any) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = 'opacity 300ms';
-
+      /* istanbul ignore next */
       return { ...provided, opacity, transition };
     },
   };
@@ -123,6 +127,7 @@ const AdminTraineeDashboard = () => {
             cursor="pointer"
             color="#148fb6"
             test-Id=""
+            /* istanbul ignore next */
             onClick={() => {
               removeEditModel();
               setEditEmail(row.original.email);
@@ -135,6 +140,7 @@ const AdminTraineeDashboard = () => {
             height="30"
             cursor="pointer"
             color="#148fb6"
+            /* istanbul ignore next */
             onClick={() => {
               removeTraineeMod();
               setDeleteEmail(row.original.email);
@@ -162,7 +168,7 @@ const AdminTraineeDashboard = () => {
       orgToken: organizationToken,
     },
   });
-
+  /* istanbul ignore if */
   if (traineeData && traineeData.length > 0) {
     traineeData?.map((data: any, index: number) => {
       datum[index] = {};
@@ -180,6 +186,7 @@ const AdminTraineeDashboard = () => {
       email: Object.values(email)[1],
       orgToken: organizationToken,
     },
+    /* istanbul ignore next */
     onCompleted: (data) => {
       setTimeout(() => {
         setButtonLoading(false);
@@ -187,6 +194,7 @@ const AdminTraineeDashboard = () => {
         removeModel();
       }, 500);
     },
+    /* istanbul ignore next */
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
@@ -293,7 +301,7 @@ const AdminTraineeDashboard = () => {
       },
     });
   }, [registerTraineeModel, removeTraineeModel, toggle]);
-
+  /* istanbul ignore if */
   if (allUserEmail.length > 0) {
     allUserEmail.map((trainee: any, index: any) => {
       traineeOptions[index] = {};
@@ -301,7 +309,7 @@ const AdminTraineeDashboard = () => {
       traineeOptions[index].label = trainee.email;
     });
   }
-
+  /* istanbul ignore if */
   if (cohorts.length > 0) {
     cohorts.map((cohort: any, index: any) => {
       options[index] = {};
