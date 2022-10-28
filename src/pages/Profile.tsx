@@ -29,7 +29,7 @@ export function CountryComponent({ country }: any) {
 }
 
 export default function Profile() {
-  const { setName } = useContext(UserContext);
+  const { setName ,setProfileImage} = useContext(UserContext);
   useDocumentTitle('Profile');
   const [data, setData] = useState<any>();
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
@@ -40,6 +40,8 @@ export default function Profile() {
         const { data } = await getProfile();
         setData(data);
         setName(data.getProfile.name);
+        setProfileImage(data.getProfile.avatar);
+
       } catch (error: any) {
         toast.error(error?.message || 'Something went wrong');
       }

@@ -4,17 +4,19 @@ import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import Register from './../OrgRegister';
-import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({ cache: new InMemoryCache() });
 
 describe('Register an Organization', () => {
   test('Renders the register Page', () => {
     act(() => {
       render(
-        <MemoryRouter>
-          <ApolloProvider>
+        <ApolloProvider client={client}>
+          <MemoryRouter>
             <Register />
-          </ApolloProvider>
-        </MemoryRouter>,
+          </MemoryRouter>
+        </ApolloProvider>,
       );
     });
     expect(screen.getByTestId('dataid')).toBeInTheDocument();

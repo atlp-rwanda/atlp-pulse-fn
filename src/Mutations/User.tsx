@@ -10,7 +10,7 @@ export const GET_PROFILE = gql`
       city
       country
       avatar
-      coverImage
+      cover
       name
       biography
     }
