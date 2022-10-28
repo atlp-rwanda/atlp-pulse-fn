@@ -36,21 +36,16 @@ exports[`Organization Login Should render 1`] = `
         className="-mt-6"
       />
       <div>
-        <a
-          href="/users/login"
+        <button
+          className="btn primary lg w-full ml-0 hover:bg-cyan-700 text-sm"
+          data-testid="loginForm"
+          disabled={false}
           onClick={[Function]}
+          type="button"
         >
-          <button
-            className="btn primary lg w-full ml-0 hover:bg-cyan-700 text-sm"
-            data-testid="loginForm"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-             
-            Continue
-          </button>
-        </a>
+           
+          Continue
+        </button>
       </div>
       <div
         className="w-full text-sm  text-light-text dark:text-dark-text-fill"
