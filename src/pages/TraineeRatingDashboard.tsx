@@ -1,8 +1,16 @@
 /* eslint-disable */
+import gql from 'graphql-tag';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import React, { useState, Fragment, useEffect } from 'react';
 import { Listbox, Combobox, Transition, Dialog } from '@headlessui/react';
 import { CheckIcon, SelectorIcon, PlusIcon } from '@heroicons/react/solid';
 import { useTranslation } from 'react-i18next';
+import {
+  ADD_REPLY,
+  GET_REPLIES,
+  GET_REPLIES_BY_USER,
+} from '../Mutations/replyMutation';
+import { REMOVE_REPLY } from '../Mutations/replyMutation';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Sidebar from '../components/Sidebar';
 import Button from '../components/Buttons';
@@ -18,7 +26,6 @@ import DataTable from '../components/DataTable';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
-import { gql } from '@apollo/client';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -32,6 +39,7 @@ const TraineeRatingDashboard = () => {
   const [trainee, setTrainee] = useState<any>([]);
   const [cohorts, setCohorts] = useState<any>([]);
   const [selectedCohort, setSelectedCohort] = useState(cohorts[0]);
+  const [selectedUser, setSelectedUser] = useState<any>([]);
   const [selectedSprint, setSelectedSprint] = useState(sprint[0]);
   const [cohortName, setCohortName] = useState({ cohortName: '' });
   const [disable, setDisable] = useState(true);
@@ -51,6 +59,9 @@ const TraineeRatingDashboard = () => {
     quantityremark: '',
     professional: '0',
     professionalRemark: '',
+    bodyQuantity: '',
+    bodyQuality: '',
+    bodyProfessional: '',
     sprint: '0',
     user: '',
     id: '',
@@ -58,6 +69,7 @@ const TraineeRatingDashboard = () => {
   /* istanbul ignore next */
   let [isOpen, setIsOpen] = useState(false);
   const [showActions, setShowActions] = useState(false);
+  const [showRemarks, setShowRemarks] = useState(false);
   const [ratings, setRatings] = useState<any>([]);
   const [selectedTrainee, setSelectedTrainee] = useState(trainee[0]);
   const [query, setQuery] = useState('');
@@ -87,6 +99,7 @@ const TraineeRatingDashboard = () => {
     /* istanbul ignore next */
     setIsOpen(false);
     setShowActions(false);
+    setShowRemarks(false);
   };
   const openModal = () => {
     setIsOpen(true);
@@ -119,7 +132,11 @@ const TraineeRatingDashboard = () => {
       };
     });
   };
-
+  const [showReply] = useLazyQuery(GET_REPLIES_BY_USER, {
+    variables: {
+      userId: '63542fa638ef0f51a25dae40',
+    },
+  });
   const data = ratings;
   /* istanbul ignore next */
   const columns = [
@@ -148,6 +165,41 @@ const TraineeRatingDashboard = () => {
                   quantityremark: row.original.quantityRemark,
                   professional: row.original.professional_Skills,
                   professionalRemark: row.original.professionalRemark,
+                  sprint: row.original.sprint,
+                  user: row.original.user.email,
+                  id: row.original.user.id,
+                });
+              }}
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      Header: `${t('Remarks')}`,
+      accessor: '',
+      Cell: ({ row }: any) => (
+        <div className="flex flex-row">
+          <div className="cursor-pointer">
+            <Icon
+              icon="ant-design:comment-outlined"
+              width="25"
+              height="25"
+              color="#148fb6"
+              onClick={() => {
+                setShowRemarks(!showRemarks);
+                setShowActions(!showActions);
+                setRows({
+                  ...rows,
+                  quality: row.original.quality,
+                  qualityremark: row.original.qualityRemark,
+                  bodyQuality: row.original.bodyQuality,
+                  quantity: row.original.quantity,
+                  quantityremark: row.original.quantityRemark,
+                  bodyQuantity: row.original.bodyQuantity,
+                  professional: row.original.professional_Skills,
+                  professionalRemark: row.original.professionalRemark,
+                  bodyProfessional: row.original.bodyProfessional,
                   sprint: row.original.sprint,
                   user: row.original.user.email,
                   id: row.original.user.id,
@@ -218,6 +270,11 @@ const TraineeRatingDashboard = () => {
   const [getUsers] = useLazyQuery(GET_USERS, {
     variables: {
       cohortName: cohortName,
+    },
+  });
+  const [showReplyByUser] = useLazyQuery(GET_REPLIES_BY_USER, {
+    variables: {
+      userId: '63542fa638ef0f51a25dae40',
     },
   });
 
@@ -829,7 +886,7 @@ const TraineeRatingDashboard = () => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                           >
-                            <Dialog.Panel className="w-full overflow-auto lg:mx-60 xl:mx-96 h-[800px] md:h-[600px] transform  rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full overflow-auto lg:mx-60 xl:mx-96 h-[800px] md:h-[500px] transform  rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
                               <form onSubmit={handleUpdate}>
                                 <Dialog.Title
                                   as="h3"
@@ -883,7 +940,7 @@ const TraineeRatingDashboard = () => {
                                       placeholder="Quality ratings remark"
                                       name="qualityDescription"
                                       data-testid="qualityDescriptionTextArea"
-                                    />
+                                    />{' '}
                                   </div>
                                   <div className="mx-0 md:mx-2  my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <Button
@@ -928,7 +985,7 @@ const TraineeRatingDashboard = () => {
                                       }
                                       rows={5}
                                       className="rounded-md w-full  my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
-                                      placeholder="Qantity rating remark"
+                                      placeholder="Quantity rating remark"
                                     />
                                   </div>
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
@@ -1001,6 +1058,124 @@ const TraineeRatingDashboard = () => {
                     </Dialog>
                   </Transition>
                   {/* UPDATE MODAL END */}
+
+                  {/* REMARKS MODEL START */}
+                  <Transition
+                    appear
+                    show={showRemarks}
+                    as={Fragment}
+                    data-testid="modalTransistion"
+                  >
+                    <Dialog
+                      as="div"
+                      className="relative z-10"
+                      onClose={closeModal}
+                    >
+                      <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <div className="fixed inset-0 bg-black bg-opacity-50" />
+                      </Transition.Child>
+                      <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full  items-center justify-center p-4 text-center">
+                          <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 scale-95"
+                            enterTo="opacity-100 scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 scale-100"
+                            leaveTo="opacity-0 scale-95"
+                          >
+                            <Dialog.Panel className="w-full overflow-auto lg:mx-60 xl:mx-96 h-[800px] md:h-[460px] transform  rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+                              <form onSubmit={handleUpdate}>
+                                <Dialog.Title
+                                  as="h3"
+                                  className="text-lg font-medium leading-6 text-gray-900 dark:text-dark-text-fill items-center"
+                                >
+                                  {t('Remarking System Conversation')}
+                                </Dialog.Title>
+                                <div className="bg-gray-100 dark:bg-dark-frame-bg rounded-md p-2 my-2 mt-6 md:mt-8 flex flex-col md:flex-row">
+                                  <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
+                                    <textarea
+                                      value={rows.qualityremark}
+                                      id=""
+                                      rows={5}
+                                      className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                      placeholder="No quality ratings remark"
+                                      name="qualityDescription"
+                                      data-testid="qualityDescriptionTextArea"
+                                    />
+
+                                    <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
+                                      <textarea
+                                        className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                        rows={2}
+                                        placeholder="No reply here"
+                                        value={rows.bodyQuality}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="mx-0 md:mx-2  my-1 w-full flex flex-col md:flex-col justify-start items-center ">
+                                    <textarea
+                                      name="quantityDescription"
+                                      id=""
+                                      value={rows.quantityremark}
+                                      rows={5}
+                                      className="rounded-md w-full  my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
+                                      placeholder=" No quantity rating remark"
+                                    />
+                                    <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
+                                      <textarea
+                                        className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                        value={rows.bodyQuantity}
+                                        rows={2}
+                                        placeholder="No reply here"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
+                                    <textarea
+                                      name="proffessionalDescription"
+                                      id=""
+                                      value={rows.professionalRemark}
+                                      rows={5}
+                                      className="rounded-md w-full my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
+                                      placeholder="No professional rating remark"
+                                    />
+                                    <div className="rounded-md relative w-full bg-white border-none border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill dark:border-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10">
+                                      <textarea
+                                        value={rows.bodyProfessional}
+                                        placeholder="No reply here"
+                                        className="rounded-md w-full h-full p-3 border dark:bg-dark-bg sm:text-sm  dark:text-dark-text-fill focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10"
+                                        rows={2}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="mt-4 md:mt-8">
+                                  <button
+                                    type="button"
+                                    className="inline-flex justify-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                                    onClick={closeModal}
+                                  >
+                                    {t('Cancel')}
+                                  </button>
+                                </div>
+                              </form>
+                            </Dialog.Panel>
+                          </Transition.Child>
+                        </div>
+                      </div>
+                    </Dialog>
+                  </Transition>
+                  {/* REMARKS MODEL END */}
                 </div>
                 <div className="w-full">
                   <div>

@@ -9,11 +9,14 @@ export const GET_RATINGS = gql`
       }
       sprint
       quantity
+      bodyQuantity
       quantityRemark
       quality
+      bodyProfessional
       qualityRemark
       professional_Skills
       professionalRemark
+      bodyQuality
       coordinator
       cohort {
         name
@@ -21,7 +24,6 @@ export const GET_RATINGS = gql`
     }
   }
 `;
-
 export const FETCH_ALL_RATINGS = gql`
   query FetchAllRatings($orgToken: String) {
     fetchAllRatings(orgToken: $orgToken) {
@@ -53,6 +55,9 @@ export const ADD_RATING = gql`
     $professionalSkills: String!
     $orgToken: String!
     $qualityRemark: String
+    $bodyQuantity: String
+    $bodyProfessional: String
+    $bodyQuality: String
     $professionalRemark: String
     $quantityRemark: String
   ) {
@@ -63,18 +68,32 @@ export const ADD_RATING = gql`
       quality: $quality
       professional_Skills: $professionalSkills
       orgToken: $orgToken
-      qualityRemark: $qualityRemark
-      professionalRemark: $professionalRemark
       quantityRemark: $quantityRemark
+      bodyQuality: $bodyQuality
+      qualityRemark: $qualityRemark
+      bodyQuantity: $bodyQuantity
+      professionalRemark: $professionalRemark
+      bodyProfessional: $bodyProfessional
     ) {
-      user
+      user {
+        id
+        role
+        email
+        password
+        organizations
+      }
       sprint
       quantity
       quantityRemark
+      bodyQuantity
       quality
       qualityRemark
+      bodyQuality
       professional_Skills
       professionalRemark
+      bodyProfessional
+      approved
+      coordinator
     }
   }
 `;
