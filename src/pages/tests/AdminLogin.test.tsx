@@ -61,6 +61,18 @@ describe('Admin Login', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
+  it('Switch your organization Sshould be in document', async () => {
+    const { getByTestId, findByText } = render(
+      <MemoryRouter>
+        <UserProvider>
+          <ApolloProvider addTypename={false} mocks={successMocks}>
+            <AdminLogin />
+          </ApolloProvider>
+        </UserProvider>
+      </MemoryRouter>,
+    );
+    expect(await findByText('Switch your organization')).toBeInTheDocument();
+  });
 });
 
 describe('Admin login with error', () => {
