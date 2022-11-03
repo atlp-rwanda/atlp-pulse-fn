@@ -20,6 +20,7 @@ exports[`Organization Login Should render 1`] = `
     <form
       action="#none"
       className="space-y-6 mt-4"
+      onSubmit={[Function]}
     >
       <div>
         <input
@@ -46,17 +47,6 @@ exports[`Organization Login Should render 1`] = `
            
           Continue
         </button>
-      </div>
-      <div
-        className="w-full text-sm  text-light-text dark:text-dark-text-fill"
-      >
-        Don’t know your organization URL?
-        <a
-          className="text-primary"
-          href="#link"
-        >
-          Find your organizations
-        </a>
       </div>
       <div
         className="w-full text-sm  text-light-text dark:text-dark-text-fill"

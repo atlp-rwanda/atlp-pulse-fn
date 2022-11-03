@@ -38,6 +38,7 @@ function Orglogin() {
       },
     });
   };
+
   return (
     <div className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans">
       <div className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none">
@@ -47,7 +48,7 @@ function Orglogin() {
         <div className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs">
           {t('Enter your organization’s Dev-Pulse URL')}
         </div>
-        <form action="#none" className="space-y-6 mt-4">
+        <form action="#none" className="space-y-6 mt-4" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <input
               type="text"
@@ -69,7 +70,7 @@ function Orglogin() {
               <ButtonLoading style="rounded-full inline-block" />
             ) : (
               <Button
-                onClick={handleSubmit(onSubmit)}
+                type="submit"
                 variant="primary"
                 data-testid="loginForm"
                 size="lg"
@@ -79,13 +80,6 @@ function Orglogin() {
                 {t('Continue')}
               </Button>
             )}
-          </div>
-
-          <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
-            {t('Don’t know your organization URL?')}
-            <a href="#link" className="text-primary">
-              {t('Find your organizations')}
-            </a>
           </div>
           <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
             {t('Looking to register an organization instead?')}
