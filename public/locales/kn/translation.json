@@ -336,5 +336,14 @@
   "Quality Ratings": "Ibipimo byiza",
   "Quality Remarks": "Ijambo ryiza",
   "Professionalism Remarks": "Ijambo ry'umwuga",
-  "Your token has expired, try to login again": "Tokeni yawe yarangiye, ongera winjire muri porogaramu"
+  "Your token has expired, try to login again": "Tokeni yawe yarangiye, ongera winjire muri porogaramu",
+  "Email is required": "Shyiramo email",
+  "Reset Password": "Gundura ijambobanga",
+  "You will receive an email to proceed with resetting password": "Reba muri Imeri yawe uburyo wahindura ijambobanga ryawe",
+  "Re-write your password": "Ongera wandike ijambobanga hano",
+  "Confirm password": "Emeza ijambobanga",
+  "Check your email to proceed!": "Reba muri imeri yawe maze ukurikize amabwiriza!",
+  "You have Successfully reset your password!": "Ijambobanga ryahindutse!",
+  "Reset your password": "Hindura ijambobanga",
+  "Enter your email address": "Shyiramo imeri yawe"
 }

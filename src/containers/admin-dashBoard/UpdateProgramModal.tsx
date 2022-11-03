@@ -27,7 +27,6 @@ export const UpdateProgram = gql`
     }
   }
 `;
-
 export default function UpdateProgramModal({
   data,
   updateProgramModal,
@@ -54,7 +53,6 @@ export default function UpdateProgramModal({
     setValue,
   } = useForm();
   /* istanbul ignore next */
-
   const [updateProgramMutation, { loading }] = useMutation(UpdateProgram, {
     onError(error) {
       toast.error(error.message.toString());
@@ -64,23 +62,28 @@ export default function UpdateProgramModal({
       removeModel();
     },
   });
-
   const orgToken = localStorage.getItem('orgToken');
   const managers = data?.getAllUsers?.filter((user) => user.role === 'manager');
 
   async function updateProgram(data: any) {
     const newData = { ...data };
+    /* istanbul ignore next */
 
     newData.managerEmail && (newData.managerEmail = newData.managerEmail.value);
+    /* istanbul ignore next */
 
     Object.keys(newData).forEach((field) => {
+      /* istanbul ignore if */
       if (!newData[field] || newData[field] === '') {
         delete newData[field];
       }
     });
+    /* istanbul ignore next */
 
     newData.updateProgramId = currentProgram?.id;
+    /* istanbul ignore next */
     orgToken && (newData.orgToken = orgToken);
+    /* istanbul ignore next */
 
     await updateProgramMutation({ variables: newData });
   }
@@ -93,7 +96,6 @@ export default function UpdateProgramModal({
     });
     setValue('description', currentProgram?.description);
   }, [currentProgram, updateProgramModal]);
-
   return (
     <div
       className={`h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 ${

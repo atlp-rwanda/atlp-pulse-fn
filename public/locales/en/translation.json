@@ -264,5 +264,14 @@
   "comingsoon": "coming soon",
   "Somethingnewiscoming": "Something new is coming",
   "Sign up using": "Sign up using",
-  "Your token has expired, try to login again": "Your token has expired, try to login again"
+  "Your token has expired, try to login again": "Your token has expired, try to login again",
+  "Reset Password": "Reset Password",
+  "You will receive an email to proceed with resetting password": "You will receive an email to proceed with resetting password",
+  "Enter new password": "Enter new password",
+  "Re-write your password": "Re-write your password",
+  "Confirm password": "Confirm password",
+  "Check your email to proceed!": "Check your email to proceed!",
+  "You have Successfully reset your password!": "You have Successfully reset your password!",
+  "Reset your password": "Reset your password",
+  "Enter your email address": "Enter your email address"
 }

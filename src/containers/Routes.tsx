@@ -13,6 +13,8 @@ const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
 /* istanbul ignore next */
 const Orglogin = React.lazy(() => import('../pages/Organization/Orglogin'));
 /* istanbul ignore next */
+const ResetPassword = React.lazy(() => import('../pages/ResetPassword'));
+const ForgotPassword = React.lazy(() => import('../pages/ForgotPassword'));
 const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
 /* istanbul ignore next */
 const Pricing = React.lazy(() => import('../pages/Pricing'));
@@ -33,6 +35,8 @@ function MainRoutes() {
           <Route path="/register/:token" element={<UserRegister />} />
           <Route path="/register-successful" element={<Message />} />
           <Route path="/signup/org" element={<OrgRegister />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/forgot-password/:token" element={<ForgotPassword />} />
           <Route
             path="/login/org"
             element={
