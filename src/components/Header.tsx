@@ -13,6 +13,7 @@ import Button from './Buttons';
 import WithClickOutside from './WithClickOutside';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
+  const orgToken: any = localStorage.getItem('orgToken');
   const { t } = useTranslation();
   const [colorTheme, setTheme] = useDarkMode();
   /* istanbul ignore next */
@@ -24,6 +25,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
     localStorage.setItem('color-theme', colorTheme);
     setTheme(colorTheme);
   };
+  const goTo = orgToken ? '/users/login' : '/login/org';
 
   return (
     <div
@@ -99,7 +101,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               <SunIcon className="w-8 text-dark-text-fill" />
             )}
           </button>
-          <Link to={user?.auth ? '/dashboard' : '/login/org'}>
+          <Link to={user?.auth ? '/dashboard' : goTo}>
             <Button variant="primary" size="lg">
               {' '}
               {!user?.auth ? t('Sign In') : t('Dashboard')}{' '}
@@ -163,10 +165,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         </li>
 
         <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
-          <Link
-            to={user?.auth ? '/dashboard' : '/login/org'}
-            className="w-full"
-          >
+          <Link to={user?.auth ? '/dashboard' : goTo} className="w-full">
             {' '}
             {!user?.auth ? t('Sign In') : t('Dashboard')}
           </Link>

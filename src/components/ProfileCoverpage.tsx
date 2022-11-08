@@ -77,9 +77,9 @@ export default function ProfileCoverpage({
         setProfileImage(updated?.data?.updateAvatar?.avatar);
         toast.success('updated');
       }
-      /* istanbul ignore next*/
+      /* istanbul ignore next */
       if (updated?.data?.updateAvatar?.avatar) {
-        /* istanbul ignore next*/
+        /* istanbul ignore next */
         setStatus({
           isUploaded: true,
         });
@@ -110,7 +110,7 @@ export default function ProfileCoverpage({
         setSpinnerCover(false);
         toast.success('updated');
       }
-      /* istanbul ignore next*/
+      /* istanbul ignore next */
       if (updated?.data?.updateCoverImage?.cover) {
         /* istanbul ignore next */
         setStatus({
@@ -216,8 +216,8 @@ export default function ProfileCoverpage({
     </div>
   );
 }
-/* istanbul ignore next*/
+/* istanbul ignore next */
 function setData(data: any) {
-  /* istanbul ignore next*/
+  /* istanbul ignore next */
   throw new Error('Function not implemented.');
 }

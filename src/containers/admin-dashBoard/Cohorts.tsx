@@ -72,7 +72,7 @@ function ActionButtons({
   return (
     <div className="flex relative flex-row align-middle justify-center items-center">
       <div
-        data-testid="Trainee"
+        data-testid="traineeIcon"
         onClick={() => {
           setCurrentCohort(getData?.getAllCohorts[props.row.index]);
           setCohortTrainneModal(true);

@@ -49,6 +49,8 @@
   "Profile": "Profil",
   "Edit profile, export account data, ...": "Modifier le profil, exporter les données du compte, ...",
   "Change": "Modifiez",
+  "Switch": "Changer",
+  "Welcome to": "Bienvenue à",
   "Appearance": "Apparence",
   "Theme preferences": "Préférences de thème",
   "Light theme": "Thème clair",
@@ -74,6 +76,8 @@
   "Help": "Aide",
   "RegisterOrg": "Enregistrez votre organisation",
   "OrgName": "nom de l'organisation",
+  "New Organization Signup": "Inscription d’une nouvelle organisation",
+
   "OrgDesc": "Description de l'organisation",
   "Terms": "termes et conditions",
   "started": "COMMENCER",

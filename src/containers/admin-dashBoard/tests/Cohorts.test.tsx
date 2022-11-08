@@ -32,8 +32,10 @@ describe('Cohorts tests', () => {
 
     const updateIcon = await screen.findByTestId('updateIcon');
     const deleteIcon = await screen.findByTestId('deleteIcon');
+    const viewTraineeIcon = await screen.findByTestId('traineeIcon');
     expect(updateIcon).toBeInTheDocument();
     expect(deleteIcon).toBeInTheDocument();
+    expect(viewTraineeIcon).toBeInTheDocument();
 
     await act(async () => {
       fireEvent.click(updateIcon);
