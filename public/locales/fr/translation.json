@@ -133,6 +133,8 @@
   "Duration": "Durée",
   "Organizer": "Organisatrice/Organisateur",
   "DeleteSession": "Supprimer une session",
+  "DeleteGRADINGSYSTEM": "SUPPRIMER LE SYSTÈME DE NOTATION",
+  "reallyRemoveGrading": "Voulez-vous vraiment supprimer ce classement ?",
   "reallydeleteSession": "voulez-vous vraiment supprimer cette session?",
   "UpdateSession": "Mettre à jour une session",
   "demo": "démo",

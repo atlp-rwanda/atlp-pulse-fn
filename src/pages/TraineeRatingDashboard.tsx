@@ -28,6 +28,7 @@ import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
 
 function classNames(...classes: any) {
+  /* istanbul ignore next */
   return classes.filter(Boolean).join(' ');
 }
 const TraineeRatingDashboard = () => {

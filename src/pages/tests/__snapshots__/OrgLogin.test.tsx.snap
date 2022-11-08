@@ -41,8 +41,7 @@ exports[`Organization Login Should render 1`] = `
           className="btn primary lg w-full ml-0 hover:bg-cyan-700 text-sm"
           data-testid="loginForm"
           disabled={false}
-          onClick={[Function]}
-          type="button"
+          type="submit"
         >
            
           Continue

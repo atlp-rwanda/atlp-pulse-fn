@@ -36,11 +36,11 @@ export default function ProfileCoverpage({
     }
   `;
   const UPDATE_COVER = gql`
-  mutation UpdateCover($cover: String) {
-    updateCoverImage(cover: $cover) {
-      cover
+    mutation UpdateCover($cover: String) {
+      updateCoverImage(cover: $cover) {
+        cover
+      }
     }
-  }
   `;
 
   const client = useApolloClient();
@@ -81,12 +81,12 @@ export default function ProfileCoverpage({
       if (updated?.data?.updateAvatar?.avatar) {
         /* istanbul ignore next*/
         setStatus({
-          isUploaded: true
-        })
+          isUploaded: true,
+        });
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const uploadCover = async (files: any) => {
@@ -112,19 +112,17 @@ export default function ProfileCoverpage({
       }
       /* istanbul ignore next*/
       if (updated?.data?.updateCoverImage?.cover) {
-      /* istanbul ignore next */
+        /* istanbul ignore next */
         setStatus({
-          isUploaded: true
-        })
-
+          isUploaded: true,
+        });
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const { data } = await getProfile();
@@ -147,11 +145,21 @@ export default function ProfileCoverpage({
     });
   };
 
-
   return (
-    <div style={{ backgroundImage: profileData?.getProfile?.cover ? `url(${profileData?.getProfile?.cover})` : `url(${'https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80'})` }} className=" mt-[4.4rem] bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center">
+    <div
+      style={{
+        backgroundImage: profileData?.getProfile?.cover
+          ? `url(${profileData?.getProfile?.cover})`
+          : `url(${'https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80'})`,
+      }}
+      className=" mt-[4.4rem] bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center"
+    >
       <img
-        src={profileData?.getProfile?.avatar ? (profileData?.getProfile?.avatar) : Avatar}
+        src={
+          profileData?.getProfile?.avatar
+            ? profileData?.getProfile?.avatar
+            : Avatar
+        }
         className="w-20 md:w-28 h-20 md:h-28 m-4 relative ml-6 md:ml-20 mt-36 md:mt-12 rounded-full"
         alt="profile-avatar"
       />
@@ -160,10 +168,7 @@ export default function ProfileCoverpage({
           <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1">
             <PencilAltIcon className="w-5 md:w-3 mr-1 mt-0 dark:text-dark-text-fill" />
             <span className="text-lg md:text-sm dark:text-dark-text-fill">
-              <span className="hidden md:block">
-                {t('Edit')}
-                {' '}
-              </span>
+              <span className="hidden md:block">{t('Edit')} </span>
             </span>
             <input
               type="file"
@@ -176,7 +181,7 @@ export default function ProfileCoverpage({
             />
           </label>
         </div>
-        {spinner ? <Spinner /> : ""}
+        {spinner ? <Spinner /> : ''}
       </div>
       {currentPage !== 'editProfile' ? (
         <Button
@@ -186,21 +191,14 @@ export default function ProfileCoverpage({
           style="text-center ml-auto mr-4 mt-40 md:mt-24  rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1 md:p-2 flex flex-row"
         >
           <PencilIcon className="w-6 mr-1 md:mr-2 dark:text-dark-text-fill " />
-          <span className="hidden md:block">
-            {' '}
-            {t('Edit Profile')}
-            {' '}
-          </span>
+          <span className="hidden md:block"> {t('Edit Profile')} </span>
         </Button>
       ) : (
         <div className="flex w-full h-screen items-center justify-center bg-grey-lighter  ml-auto  mt-24">
           <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-2">
             <CameraIcon className="w-6 mr-1 mt-0  dark:text-dark-text-fill" />
             <span className=" dark:text-dark-text-fill">
-              <span className="hidden md:block">
-                {t('Change Picture')}
-                {' '}
-              </span>
+              <span className="hidden md:block">{t('Change Picture')} </span>
             </span>
             <input
               type="file"
@@ -209,8 +207,9 @@ export default function ProfileCoverpage({
               onChange={(event) => {
                 uploadCover(event.target.files);
                 setSpinnerCover(true);
-              }} />
-            {spinnerCover ? <Spinner /> : ""}
+              }}
+            />
+            {spinnerCover ? <Spinner /> : ''}
           </label>
         </div>
       )}
