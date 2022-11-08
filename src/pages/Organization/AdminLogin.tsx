@@ -176,15 +176,6 @@ function AdminLogin() {
                   </Button>
                 )}
               </div>
-
-              <div className="flex md:w-64 items-center rounded-md cursor-pointer justify-center my-2 w-full border border-gray">
-                <a href="#link" className="p-2 mx-1">
-                  <FcGoogle className="text-2xl dark:text-white" />
-                </a>
-                <p className="text-gray-400 my-2 dark:text-dark-text-fill ">
-                  {t('Sign in with Google')}
-                </p>
-              </div>
             </form>
           </div>
 
