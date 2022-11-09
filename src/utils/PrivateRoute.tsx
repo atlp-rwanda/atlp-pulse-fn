@@ -4,6 +4,7 @@ import { UserContext } from '../hook/useAuth';
 import checkTokenExpiration from '../utils/tokenValidation';
 
 
+
 interface Props {
   children: ReactNode;
   // any props that come into the component
@@ -11,6 +12,8 @@ interface Props {
 
 function CheckRole({ children, ...props }: Props) {
   const [token, setToken] = useState(true);
+  const { logout } = useContext(UserContext);
+
 
    setInterval(() =>{ 
     checkTokenExpiration();        
@@ -21,8 +24,9 @@ function CheckRole({ children, ...props }: Props) {
   },2000)
 
   if(!token){
+    logout()
     return(
-        <Navigate to="/login"/>  
+        <Navigate to="/login" replace/>  
     )
   }
 
