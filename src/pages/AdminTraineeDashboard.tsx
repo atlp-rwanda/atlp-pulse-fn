@@ -52,6 +52,7 @@ const AdminTraineeDashboard = () => {
 
   /* istanbul ignore next */
   const removeTraineeMod = () => {
+    /* istanbul ignore next */
     let newState = !removeTraineeModel;
     setRemoveTraineeModel(newState);
   };
@@ -63,6 +64,7 @@ const AdminTraineeDashboard = () => {
 
   /* istanbul ignore next */
   const removeEditModel = () => {
+    /* istanbul ignore next */
     let newState = !editTraineeModel;
     setEditTraineeModel(newState);
   };
@@ -129,6 +131,7 @@ const AdminTraineeDashboard = () => {
             test-Id=""
             /* istanbul ignore next */
             onClick={() => {
+              /* istanbul ignore next */
               removeEditModel();
               setEditEmail(row.original.email);
               setEditCohort(row.original.cohort);
@@ -142,6 +145,7 @@ const AdminTraineeDashboard = () => {
             color="#148fb6"
             /* istanbul ignore next */
             onClick={() => {
+              /* istanbul ignore next */
               removeTraineeMod();
               setDeleteEmail(row.original.email);
               setDeleteFromCohort(row.original.cohort);
@@ -170,6 +174,7 @@ const AdminTraineeDashboard = () => {
   });
   /* istanbul ignore if */
   if (traineeData && traineeData.length > 0) {
+    /* istanbul ignore next */
     traineeData?.map((data: any, index: number) => {
       datum[index] = {};
       datum[index].name = data.profile ? data.profile.name : 'undefined';
@@ -188,6 +193,7 @@ const AdminTraineeDashboard = () => {
     },
     /* istanbul ignore next */
     onCompleted: (data) => {
+      /* istanbul ignore next */
       setTimeout(() => {
         setButtonLoading(false);
         toast.success(data.addMemberToCohort);
@@ -210,6 +216,7 @@ const AdminTraineeDashboard = () => {
       email: editEmail,
       orgToken: organizationToken,
     },
+    /* istanbul ignore next */
     onCompleted: (data) => {
       handleToggle();
 
@@ -274,6 +281,7 @@ const AdminTraineeDashboard = () => {
     getUsers({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        /* istanbul ignore next */
         setAllUserEmail(data.getUsers);
       },
       onError: (error) => {
@@ -287,6 +295,7 @@ const AdminTraineeDashboard = () => {
         setTraineeData(data.getTrainees);
       },
       onError: (error) => {
+        /* istanbul ignore next */
         toast.error(error.message);
       },
     });
@@ -294,6 +303,7 @@ const AdminTraineeDashboard = () => {
     getCohortsQuery({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        /* istanbul ignore next */
         setCohorts(data.getCohorts);
       },
       onError: (error) => {
@@ -303,6 +313,7 @@ const AdminTraineeDashboard = () => {
   }, [registerTraineeModel, removeTraineeModel, toggle]);
   /* istanbul ignore if */
   if (allUserEmail.length > 0) {
+    /* istanbul ignore next */
     allUserEmail.map((trainee: any, index: any) => {
       traineeOptions[index] = {};
       traineeOptions[index].value = trainee.email;
@@ -311,6 +322,7 @@ const AdminTraineeDashboard = () => {
   }
   /* istanbul ignore if */
   if (cohorts.length > 0) {
+    /* istanbul ignore next */
     cohorts.map((cohort: any, index: any) => {
       options[index] = {};
       options[index].value = cohort.name;

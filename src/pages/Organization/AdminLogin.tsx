@@ -17,11 +17,12 @@ import LOGIN_MUTATION from './LoginMutation';
 
 function AdminLogin() {
   const orgToken: any = localStorage.getItem('orgToken');
+  const orgName: any = localStorage.getItem('orgName');
   useDocumentTitle('Login');
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
+  /* istanbul ignore next */
   const tooglePassword = () => {
-    /* istanbul ignore next */
     setPasswordShown(!passwordShown);
   };
   const {
@@ -40,8 +41,9 @@ function AdminLogin() {
     try {
       const { data }: any = await LoginUser({
         variables: { loginInput: userInput },
-        /* istanbul ignore next */
+        
         onCompleted: async (data) => {
+          /* istanbul ignore next */
           toast.success(data.addMemberToCohort);
           login(data.loginUser);
           await client.resetStore();
@@ -89,9 +91,18 @@ function AdminLogin() {
       <div className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
         <div className="py-10 sm:py-8 ">
           <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
-            {t('Welcome Back')}
+            {t('Welcome to')} {orgName}
           </h2>
           <div className="border-[1px] w-10 bg-primary border-primary inline-block mb-2" />
+          <div className=" text-sm text-center dark:text-dark-text-fill">
+            <Link
+              to="/login/org"
+              className="mx-1 text-primary"
+              data-testid="switch"
+            >
+              {t('Switch')} {t('your organization')}
+            </Link>
+          </div>
 
           <div className="flex flex-col items-center">
             <form

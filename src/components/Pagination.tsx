@@ -27,6 +27,7 @@ const Pagination = ({
   const [pagesInBetween, setPagesInBetween] = useState<number[]>([]);
 
   useEffect(() => {
+    /* istanbul ignore next */
     if (pageCount > 2) {
       const temp = new Array(pageCount - 2).fill(1).map((_, i) => i + 2);
       setPagesInBetween(temp);
@@ -55,14 +56,16 @@ const Pagination = ({
       paginationGroup = [page - 1, page, page + 1];
     }
     if (pageCount <= 5) {
+      /* istanbul ignore next */
       before = false;
       after = false;
-    } else {
+    } /* istanbul ignore next */ else {
       before = false;
       after = false;
       if (paginationGroup[0] > 2) {
         before = true;
       }
+      /* istanbul ignore next */
       if (paginationGroup[2] < pageCount - 1) {
         after = true;
       }
@@ -74,6 +77,7 @@ const Pagination = ({
     setPage((state) => {
       if (direction) {
         if (state === pageCount) {
+          /* istanbul ignore next */
           return state;
         }
         return state + 1;
@@ -82,14 +86,17 @@ const Pagination = ({
       if (state === 1) {
         return state;
       }
+      /* istanbul ignore next */
       return state - 1;
     });
   };
 
   const setPageSAFE = (num: number) => {
     if (num > pageCount) {
+      /* istanbul ignore next */
       setPage(pageCount);
     } else if (num < 1) {
+      /* istanbul ignore next */
       setPage(1);
     } else {
       setPage(num);

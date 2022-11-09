@@ -3,6 +3,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import { fireEvent, render } from '@testing-library/react';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import Grading from '../GradingSystem';
 
 describe('Register an Organization', () => {
@@ -10,7 +11,9 @@ describe('Register an Organization', () => {
     const elem = renderer
       .create(
         <MemoryRouter>
-          <Grading />
+          <ApolloProvider>
+            <Grading />
+          </ApolloProvider>
         </MemoryRouter>,
       )
       .toJSON();
@@ -21,7 +24,22 @@ describe('Register an Organization', () => {
     const removeModelMck = jest.fn();
     const { getByTestId } = render(
       <MemoryRouter>
-        <Grading />
+        <ApolloProvider>
+          <Grading />
+        </ApolloProvider>
+      </MemoryRouter>,
+    );
+    const removeModel = getByTestId('removeModel');
+    fireEvent.click(removeModel);
+    expect(removeModelMck).toBeCalledTimes(0);
+  });
+  it('should close the model', () => {
+    const removeModelMck = jest.fn();
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <ApolloProvider>
+          <Grading />
+        </ApolloProvider>
       </MemoryRouter>,
     );
     const removeModel = getByTestId('removeModel');

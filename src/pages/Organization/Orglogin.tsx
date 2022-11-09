@@ -24,10 +24,14 @@ function Orglogin() {
   const navigate = useNavigate();
 
   const onSubmit = async (orgInput: any) => {
+    /* istanbul ignore next */
     await OrgLogin({
       variables: { orgInput },
       onCompleted({ loginOrg }) {
+        /* istanbul ignore next */
         localStorage.setItem('orgToken', loginOrg.token);
+        /* istanbul ignore next */
+        localStorage.setItem('orgName', orgInput.name);
         toast.success('Welcome! Sign in to Continue');
         navigate('/users/login');
       },
@@ -48,7 +52,11 @@ function Orglogin() {
         <div className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs">
           {t('Enter your organization’s Dev-Pulse URL')}
         </div>
-        <form action="#none" className="space-y-6 mt-4" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          action="#none"
+          className="space-y-6 mt-4"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div>
             <input
               type="text"

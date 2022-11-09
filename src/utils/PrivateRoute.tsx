@@ -27,10 +27,17 @@ function CheckRole({ children, ...props }: Props) {
   }
 
 
+  const orgToken: any = localStorage.getItem('orgToken');
   const { user } = useContext(UserContext);
   const location = useLocation();
   if (user?.auth) return <React.Fragment {...props}>{children}</React.Fragment>;
-  return <Navigate {...props} to="/login/org" state={location.pathname} />;
+  return (
+    <Navigate
+      {...props}
+      to={orgToken ? '/users/login' : '/login/org'}
+      state={location.pathname}
+    />
+  );
 }
 
 export default CheckRole;

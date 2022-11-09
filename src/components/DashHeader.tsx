@@ -19,6 +19,7 @@ import { toast } from 'react-toastify';
 
 
 function DashHeader() {
+  /* istanbul ignore next */
   const [showNotification, setShowNotification] = useState(false);
   const [showProfileDropdown, setShowprofileDropdown] = useState(false);
   const [profileData, setProfileData] = useState<any>();
@@ -27,14 +28,17 @@ function DashHeader() {
 
   const [colorTheme] = useDarkMode();
   const [nav, setNav] = useState(false);
+  /* istanbul ignore next*/
+
   const handleClick = () => setNav(!nav);
   const handleShowNotification = () => setShowNotification(!showNotification);
   /* istanbul ignore next */
   const handleShowProfileDropdown = () =>
     setShowprofileDropdown(!showProfileDropdown);
-
+  /* istanbul ignore next*/
 
   useEffect(() => {
+    /* istanbul ignore next*/
 
     const fetchData = async () => {
       try {
@@ -103,7 +107,13 @@ function DashHeader() {
           <div onClick={handleShowProfileDropdown}>
             <img
               className="w-8 cursor-pointer ml-4 mr-4 h-8 rounded-full"
-              src={user?.profileImage ? user?.profileImage : (profileData?.getProfile?.avatar ? (profileData?.getProfile?.avatar) : Avatar)}
+              src={
+                user?.profileImage
+                  ? user?.profileImage
+                  : profileData?.getProfile?.avatar
+                  ? profileData?.getProfile?.avatar
+                  : Avatar
+              }
               alt="avatar"
             />
           </div>

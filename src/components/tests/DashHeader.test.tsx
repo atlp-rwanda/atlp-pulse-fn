@@ -5,11 +5,14 @@ import {
   useApolloClient,
   useLazyQuery,
   useMutation,
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
 } from '@apollo/client';
 import renderer from 'react-test-renderer';
 import '../../../test/jest/__mocks__/matchMedia';
 import DashHeader from '../DashHeader';
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+
 import { GET_PROFILE } from '../../Mutations/User';
 
 const client = new ApolloClient({ cache: new InMemoryCache() });

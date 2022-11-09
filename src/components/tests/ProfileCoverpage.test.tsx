@@ -2,9 +2,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import renderer from 'react-test-renderer';
-import ProfileCoverpage from '../ProfileCoverpage';
 import { fireEvent, render, screen } from '@testing-library/react';
-
+import ProfileCoverpage from '../ProfileCoverpage';
 
 const client = new ApolloClient({ cache: new InMemoryCache() });
 
@@ -25,19 +24,19 @@ describe('<ProfileTabs/>', () => {
 
     expect(elem).toMatchSnapshot();
   });
-  
+
   it('should update trainee profile image', () => {
     const updateImageMck = jest.fn();
 
     const { getByTestId } = render(
-
-        <ApolloProvider client={client}>
-           <MemoryRouter>
-          <ProfileCoverpage 
-                        data={{ name: 'Fabrice' }}
-                        currentPage="editProfile"/>
-          </MemoryRouter>
-        </ApolloProvider>,
+      <ApolloProvider client={client}>
+        <MemoryRouter>
+          <ProfileCoverpage
+            data={{ name: 'Fabrice' }}
+            currentPage="editProfile"
+          />
+        </MemoryRouter>
+      </ApolloProvider>,
     );
     const updateImage = getByTestId('upload-image');
     fireEvent.change(updateImage);
@@ -48,14 +47,14 @@ describe('<ProfileTabs/>', () => {
     const updateCoverMck = jest.fn();
 
     const { getByTestId } = render(
-
-        <ApolloProvider client={client}>
-           <MemoryRouter>
-          <ProfileCoverpage 
-                        data={{ name: 'Fabrice' }}
-                        currentPage="editProfile"/>
-          </MemoryRouter>
-        </ApolloProvider>,
+      <ApolloProvider client={client}>
+        <MemoryRouter>
+          <ProfileCoverpage
+            data={{ name: 'Fabrice' }}
+            currentPage="editProfile"
+          />
+        </MemoryRouter>
+      </ApolloProvider>,
     );
     const updateCover = getByTestId('upload-cover');
     fireEvent.change(updateCover);

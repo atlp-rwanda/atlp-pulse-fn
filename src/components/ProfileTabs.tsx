@@ -27,6 +27,7 @@ export function EditPassword() {
     formState: { errors },
     reset,
   }: any = useForm();
+  /* istanbul ignore next */
   const onSubmit = () => {
     reset();
   };
@@ -52,6 +53,7 @@ export function EditPassword() {
                 placeholder={t(`${field.placeholder}`)}
                 customClass="dark:bg-dark-bg"
                 handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  /* istanbul ignore next */
                   setPasswordField({
                     ...passwordFieldState,
                     [field.id]: e.target.value,
@@ -66,6 +68,7 @@ export function EditPassword() {
               variant="default"
               size="md"
               style="group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+              /* istanbul ignore next */
               onClick={() => {}}
               data-testid="change_password"
             >

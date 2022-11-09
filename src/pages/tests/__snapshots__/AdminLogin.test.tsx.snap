@@ -14,11 +14,26 @@ Array [
         <h2
           className="text-2xl font-bold text-primary dark:text-dark-text-fill "
         >
-          Welcome Back
+          Welcome to
+           
         </h2>
         <div
           className="border-[1px] w-10 bg-primary border-primary inline-block mb-2"
         />
+        <div
+          className=" text-sm text-center dark:text-dark-text-fill"
+        >
+          <a
+            className="mx-1 text-primary"
+            data-testid="switch"
+            href="/login/org"
+            onClick={[Function]}
+          >
+            Switch
+             
+            your organization
+          </a>
+        </div>
         <div
           className="flex flex-col items-center"
         >
