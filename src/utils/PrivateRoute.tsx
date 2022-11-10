@@ -26,7 +26,7 @@ function CheckRole({ children, ...props }: Props) {
   if(!token){
     logout()
     return(
-        <Navigate to="/login" replace/>  
+        <Navigate to="/login"/>  
     )
   }
 
