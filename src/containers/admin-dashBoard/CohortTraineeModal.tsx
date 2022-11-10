@@ -24,11 +24,11 @@ export default function CohortTraineeModal({
 
   const [traineeData, setTraineeData] = useState<any[]>([]);
   const columns = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Email', accessor: 'email' },
-    { Header: 'Rating', accessor: 'rating' },
-    { Header: 'Cohort', accessor: 'cohort' },
-    { Header: 'Program', accessor: 'program' },
+    { Header: t('name'), accessor: 'name' },
+    { Header: t('email'), accessor: 'email' },
+    { Header: t('rating'), accessor: 'rating' },
+    { Header: t('cohort'), accessor: 'cohort' },
+    { Header: t('program'), accessor: 'program' },
   ];
   const datum: any = [];
 
@@ -76,7 +76,7 @@ export default function CohortTraineeModal({
         <ModalDataTable
           data={traineeData?.length > 0 ? datum : [{}]}
           columns={columns}
-          title="Trainees list"
+          title={t('Trainees list')}
           removeModel={removeModel}
         />
       ) : (

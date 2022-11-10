@@ -75,9 +75,7 @@ exports[`Trainee Dashboard test  Should render TraineeDashboard 1`] = `
       >
         <h1
           className="mb-2 text-lg dark:text-dark-text-fill"
-        >
-          Overall performance
-        </h1>
+        />
         <h2
           className="text-xs mb-6 dark:text-dark-text-fill"
         >

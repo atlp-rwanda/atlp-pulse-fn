@@ -29,7 +29,7 @@ exports[`Organization Login Should render 1`] = `
           name="name"
           onBlur={[Function]}
           onChange={[Function]}
-          placeholder="your-organization.pulse.com"
+          placeholder="your-organization.devpulse.co"
           type="text"
         />
       </div>

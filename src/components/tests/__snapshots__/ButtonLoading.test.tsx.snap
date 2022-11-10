@@ -2,7 +2,7 @@
 
 exports[`Button Loading Renders the button 1`] = `
 <div
-  className="flex btn w-fit py-1 px-3 bg-purple-500 font-bold md"
+  className="flex btn w-fit py-1 px-3 bg-primary font-bold md"
 >
   <div
     className="loader mr-1"

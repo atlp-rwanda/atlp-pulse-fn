@@ -107,13 +107,13 @@ const AdminTraineeDashboard = () => {
     },
   };
   const columns = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Email', accessor: 'email' },
-    { Header: 'Rating', accessor: 'rating' },
-    { Header: 'Cohort', accessor: 'cohort' },
-    { Header: 'Program', accessor: 'program' },
+    { Header: t('name'), accessor: 'name' },
+    { Header: t('email'), accessor: 'email' },
+    { Header: t('rating'), accessor: 'rating' },
+    { Header: t('cohort'), accessor: 'cohort' },
+    { Header: t('program'), accessor: 'program' },
     {
-      Header: 'Action',
+      Header: t('action'),
       accessor: '',
       Cell: ({ row }: any) => (
         <div
@@ -656,7 +656,7 @@ const AdminTraineeDashboard = () => {
                   <DataTable
                     data={traineeData?.length > 0 ? datum : [{}]}
                     columns={columns}
-                    title="Developers list"
+                    title={t('Trainees list')}
                   />
                 </div>
               </div>
