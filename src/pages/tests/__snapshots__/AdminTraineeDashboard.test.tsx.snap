@@ -607,32 +607,6 @@ Array [
           >
             <a
               className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/notifications"
-              onClick={[Function]}
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
-                />
-              </svg>
-              <span
-                className="text-base "
-              >
-                Notifications
-              </span>
-            </a>
-          </li>
-          <li
-            className="mb-4 hover:text-primary transition-all group-hover:transition-all"
-          >
-            <a
-              className="flex flex-row dark:text-dark-text-fill"
               href="/dashboard/calendar"
               onClick={[Function]}
             >
@@ -852,7 +826,7 @@ Array [
                     <h2
                       className="text-gray-800 dark:text-white font-semibold text-xl"
                     >
-                      Developers list
+                      Trainees list
                     </h2>
                     <input
                       className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
@@ -889,7 +863,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Name
+                          name
                         </th>
                         <th
                           className=" thead"
@@ -903,7 +877,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Email
+                          email
                         </th>
                         <th
                           className=" thead"
@@ -917,7 +891,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Rating
+                          rating
                         </th>
                         <th
                           className=" thead"
@@ -931,7 +905,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Cohort
+                          cohort
                         </th>
                         <th
                           className=" thead"
@@ -945,7 +919,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Program
+                          program
                         </th>
                         <th
                           className=" thead"
@@ -959,7 +933,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Action
+                          action
                         </th>
                       </tr>
                     </thead>

@@ -481,17 +481,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
             Home
           </a>
         </li>
-        <li
-          className="px-5 text-xl dark:text-dark-text-fill"
-        >
-          <a
-            className=""
-            href="/pricing"
-            onClick={[Function]}
-          >
-            Pricing
-          </a>
-        </li>
+         
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
         >
@@ -606,16 +596,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
         Home
       </a>
     </li>
-    <li
-      className="p-2 w-full dark:text-dark-text-fill"
-    >
-      <a
-        href="/pricing"
-        onClick={[Function]}
-      >
-        Pricing
-      </a>
-    </li>
+     
     <li
       className="p-2 w-full dark:text-dark-text-fill"
     >

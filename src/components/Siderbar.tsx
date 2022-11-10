@@ -49,14 +49,6 @@ function Sidebar({ style }: { style: string }) {
         </li>
         <li className="mb-4 hover:text-primary">
           <NavLink to="to" className="flex flex-row">
-            <InboxInIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-            <span className="text-base dark:text-dark-text-fill">
-              Notifications
-            </span>
-          </NavLink>
-        </li>
-        <li className="mb-4 hover:text-primary">
-          <NavLink to="to" className="flex flex-row">
             <CalendarIcon className="w-5 mr-2 dark:text-dark-text-fill" />
             <span className="text-base dark:text-dark-text-fill">Calendar</span>
           </NavLink>

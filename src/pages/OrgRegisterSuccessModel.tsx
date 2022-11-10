@@ -22,7 +22,7 @@ export default function OrgRegisterSuccessModel({
       <div className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
         <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
           <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
-            {t('New Organization Signup')}
+            {t('Register organization')}
           </h3>
           <hr className=" bg-primary border-b my-3 w-full" />
         </div>

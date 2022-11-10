@@ -56,7 +56,6 @@ export default function OrgRegister() {
       });
     }
   };
-
   return (
     <>
       <OrgRegisterSuccessModel

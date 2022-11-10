@@ -123,13 +123,13 @@ function AdminPrograms() {
   useDocumentTitle('Programs');
 
   const programListColumns = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Number of Cohorts', accessor: 'numberOfCohorts' },
-    { Header: 'Manager', accessor: 'manager' },
-    { Header: 'Organization', accessor: 'organization' },
-    { Header: 'Description', accessor: 'description' },
+    { Header: t('name'), accessor: 'name' },
+    { Header: t('number of cohorts'), accessor: 'numberOfCohorts' },
+    { Header: t('Manager'), accessor: 'manager' },
+    { Header: t('Organization'), accessor: 'organization' },
+    { Header: t('Description'), accessor: 'description' },
     {
-      Header: 'Actions',
+      Header: t('Actions'),
       accessor: '',
       Cell: (props: any) =>
         ActionButtons({

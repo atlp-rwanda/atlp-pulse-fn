@@ -41,13 +41,13 @@ function AdminLogin() {
     try {
       const { data }: any = await LoginUser({
         variables: { loginInput: userInput },
-        
+
         onCompleted: async (data) => {
           /* istanbul ignore next */
           toast.success(data.addMemberToCohort);
           login(data.loginUser);
           await client.resetStore();
-          toast.success(`Welcome`);
+          toast.success(`${t(`Welcome`)}`);
           if (state) {
             navigate(`${state}`);
           } else {
