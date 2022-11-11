@@ -32,7 +32,7 @@ function Orglogin() {
         localStorage.setItem('orgToken', loginOrg.token);
         /* istanbul ignore next */
         localStorage.setItem('orgName', orgInput.name);
-        toast.success('Welcome! Sign in to Continue');
+        toast.success(t('Welcome! Sign in to Continue'));
         navigate('/users/login');
       },
       onError() {
@@ -64,7 +64,7 @@ function Orglogin() {
               {...register('name', {
                 required: 'Organisation name is required',
               })}
-              placeholder={t('your-organization.pulse.com')}
+              placeholder={t('your-organization.devpulse.co')}
               className="w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
             />
           </div>

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { UserContext } from '../hook/useAuth';
@@ -36,16 +37,22 @@ function LandingPage() {
                 <b> {t('ed-tech organization')} </b>
               </em>
             </p>
+            {!user?.auth ? (
             <div className="w-full text-center justify-center items-center mt-8">
+            <Link to="/signup/org">
               <Button
                 variant="primary"
                 size="lg"
                 style="mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
               >
                 {' '}
-                {user?.auth ? 'Continue' : t('Get Started')}{' '}
+                  {t('Get Started')}{' '}
               </Button>
+              </Link>
             </div>
+            ) : (
+              ' '
+            )}
           </div>
         </div>
       </div>
@@ -55,3 +62,4 @@ function LandingPage() {
 }
 
 export default LandingPage;
+

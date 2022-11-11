@@ -1,4 +1,5 @@
 import React from 'react';
+import { t } from 'i18next';
 import Chart from '../components/Chart';
 import Card from '../components/Card';
 
@@ -13,7 +14,7 @@ function SupAdDashboard() {
             <Card text="Perfomance" number={2} />
             <Card text="Attendance" number={1} />
           </div>
-          <Chart title="Overall performance" />
+          <Chart title={t('Overall performance')} />
         </div>
       </div>
     </div>

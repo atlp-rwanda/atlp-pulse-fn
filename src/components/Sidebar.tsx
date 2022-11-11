@@ -161,15 +161,6 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <TrendingUpIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
-
-        {/* Shared Links */}
-        <SideNavLink
-          onClick={toggle}
-          name="Notifications"
-          to="/dashboard/notifications"
-        >
-          <BellIcon className="w-5 mr-2" />
-        </SideNavLink>
         <SideNavLink onClick={toggle} name="Calendar" to="/dashboard/calendar">
           <CalendarIcon className="w-5 mr-2" />
         </SideNavLink>

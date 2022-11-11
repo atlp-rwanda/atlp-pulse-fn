@@ -488,15 +488,20 @@ exports[`Main Routes Should render 1`] = `
           <div
             className="w-full text-center justify-center items-center mt-8"
           >
-            <button
-              className="btn primary lg mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
-              disabled={false}
-              type="button"
+            <a
+              href="/signup/org"
+              onClick={[Function]}
             >
-               
-              Get Started
-               
-            </button>
+              <button
+                className="btn primary lg mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
+                disabled={false}
+                type="button"
+              >
+                 
+                Get Started
+                 
+              </button>
+            </a>
           </div>
         </div>
       </div>

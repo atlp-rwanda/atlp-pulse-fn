@@ -1751,7 +1751,7 @@ Array [
                 }
                 title="Toggle SortBy"
               >
-                Name
+                name
               </th>
               <th
                 className=" thead"
@@ -1765,7 +1765,7 @@ Array [
                 }
                 title="Toggle SortBy"
               >
-                Email
+                email
               </th>
               <th
                 className=" thead"
@@ -1779,7 +1779,7 @@ Array [
                 }
                 title="Toggle SortBy"
               >
-                Rating
+                rating
               </th>
               <th
                 className=" thead"
@@ -1793,7 +1793,7 @@ Array [
                 }
                 title="Toggle SortBy"
               >
-                Cohort
+                cohort
               </th>
               <th
                 className=" thead"
@@ -1807,7 +1807,7 @@ Array [
                 }
                 title="Toggle SortBy"
               >
-                Program
+                program
               </th>
             </tr>
           </thead>
