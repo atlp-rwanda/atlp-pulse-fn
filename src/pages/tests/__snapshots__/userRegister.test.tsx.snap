@@ -349,6 +349,6 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
         your organization
       </div>
     </div>
-  </div>
+  </div> 
 </div>
 `;

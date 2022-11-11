@@ -64,6 +64,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 {t('Home')}
               </NavLink>
             </li>
+            {!user?.auth ? (
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
                 className={(navData) => {
@@ -75,6 +76,9 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 {t('Pricing')}
               </NavLink>
             </li>
+            ) : (
+             ' '
+            )}
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
                 className={(navData) => {
@@ -154,9 +158,14 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
           <Link to="/">{t('Home')}</Link>
         </li>
+        {!user?.auth ? (
         <li className="p-2 w-full dark:text-dark-text-fill">
           <Link to="/pricing">Pricing</Link>
         </li>
+        ) : (
+        ' '
+        )}
+
 
         <li className="p-2 w-full dark:text-dark-text-fill">
           <Link to="/product" className="w-full">
