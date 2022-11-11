@@ -166,14 +166,14 @@ function AdminCohort() {
   };
 
   const cohortColumns = [
-    { Header: 'Name', accessor: 'name' },
-    { Header: 'Phase', accessor: 'phase' },
-    { Header: 'Coordinator', accessor: 'coordinator' },
-    { Header: 'Program', accessor: 'program' },
-    { Header: 'Starting Date', accessor: 'startDate' },
-    { Header: 'Closing Date', accessor: 'endDate' },
+    { Header: t('name'), accessor: 'name' },
+    { Header: t('phase'), accessor: 'phase' },
+    { Header: t('Coordinator'), accessor: 'coordinator' },
+    { Header: t('program'), accessor: 'program' },
+    { Header: t('starting date'), accessor: 'startDate' },
+    { Header: t('closing date'), accessor: 'endDate' },
     {
-      Header: 'Actions',
+      Header: t('action'),
       accessor: '',
       Cell: (props: any) =>
         ActionButtons({
@@ -260,7 +260,7 @@ function AdminCohort() {
             <DataTable
               columns={cohortColumns}
               data={cohortData ? (cohortData as [any]) : [{}]}
-              title="CohortList"
+              title={t('Cohorts List')}
             />
           )}
         </div>

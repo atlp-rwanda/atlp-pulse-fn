@@ -852,7 +852,7 @@ Array [
                     <h2
                       className="text-gray-800 dark:text-white font-semibold text-xl"
                     >
-                      Developers list
+                      Trainees list
                     </h2>
                     <input
                       className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
@@ -889,7 +889,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Name
+                          name
                         </th>
                         <th
                           className=" thead"
@@ -903,7 +903,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Email
+                          email
                         </th>
                         <th
                           className=" thead"
@@ -917,7 +917,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Rating
+                          rating
                         </th>
                         <th
                           className=" thead"
@@ -931,7 +931,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Cohort
+                          cohort
                         </th>
                         <th
                           className=" thead"
@@ -945,7 +945,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Program
+                          program
                         </th>
                         <th
                           className=" thead"
@@ -959,7 +959,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          Action
+                          action
                         </th>
                       </tr>
                     </thead>
