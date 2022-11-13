@@ -26,10 +26,18 @@ export const GET_TRAINEES_QUERY = gql`
       }
       email
       cohort {
-        name
+        startDate
         program {
           name
+          manager {
+            profile {
+              name
+            }
+            email
+          }
         }
+        name
+       phase
       }
     }
   }

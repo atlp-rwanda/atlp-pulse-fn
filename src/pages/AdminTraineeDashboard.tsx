@@ -396,40 +396,13 @@ const AdminTraineeDashboard = () => {
                     : Avatar} alt="Logo"/>
                 </div>
 
-                <h2 className="font-bold text-[20px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans" style={{ cursor: 'move', fontWeight: 'bold' }} id="draggable-dialog-title">
+                <h2 className="font-bold text-[18px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans" style={{ cursor: 'move', fontWeight: 'bold' }} id="draggable-dialog-title">
                   {traineeDetails && traineeDetails.profile
                     ? traineeDetails.profile.name
                     : 'Un availabe'}
                 </h2>
-                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginTop: '30px', borderBottom: '0.5px solid #EAECEE' }}>
-                  {' '}
-                  <h3><b>COUNTRY</b> </h3>
-                  <p>
-                    {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.profile.country
-                      : 'Un availabe'}
-                  </p>
-                </div>
-                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
-                  {' '}
-                  <h3><b>CITY</b> </h3>
-                  <p>
-                    <i>{traineeDetails && traineeDetails.profile
-                      ? traineeDetails.profile.city
-                      : 'Un availabe'}</i>
-                  </p>
-                </div>
-                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
-                  {' '}
-                  <h3><b>PHONE NUMBER</b> </h3>
-                  <p>
-                    <i> {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.profile.phoneNumber
-                      : 'Un availabe'}</i>
-                  </p>
-                </div>
 
-                <div  className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                <div  className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginTop: '30px', borderBottom: '0.5px solid #EAECEE' }}>
                   {' '}
                   <h3><b>EMAIL</b> </h3>
                   <p>
@@ -438,17 +411,56 @@ const AdminTraineeDashboard = () => {
                       : 'Un availabe'}</i>
                   </p>
                 </div>
-
-                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginBottom: '20px', borderBottom: '0.5px solid #EAECEE' }}>
+              <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginTop: '30px', borderBottom: '0.5px solid #EAECEE' }}>
                   {' '}
-                  <h3><b>BIOGRAPHY</b> </h3>
+                  <h3><b>START DATE</b></h3>
+                  <p>
+                    {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.cohort.startDate.split("T")[0]
+                      : 'Un availabe'}
+                  </p>
+                </div>
+             <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>PROGRAM</b> </h3>
                   <p>
                     <i> {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.profile.biography
+                      ? traineeDetails.cohort.program.name
                       : 'Un availabe'}</i>
                   </p>
                 </div>
 
+               
+
+
+                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>PHASE</b> </h3>
+                  <p>
+                    <i>{traineeDetails && traineeDetails.profile
+                      ? traineeDetails.cohort.phase
+                      : 'Un availabe'}</i>
+                  </p>
+                </div>
+              
+                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginBottom: '20px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>COHORT</b> </h3>
+                  <p>
+                    <i> {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.cohort.name
+                      : 'Un availabe'}</i>
+                  </p>
+                </div>
+            <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginBottom: '20px', borderBottom: '0.5px solid #EAECEE' }}>
+                  {' '}
+                  <h3><b>MANAGER</b> </h3>
+                  <p>
+                    <i> {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.cohort.program.manager.profile.name
+                      : 'Un availabe'}</i>
+                  </p>
+                </div>
                <Button
                 data-testid="removeInviteModel"
                 variant="info"
