@@ -263,5 +263,6 @@
   "Productpage": "Product page",
   "comingsoon": "coming soon",
   "Somethingnewiscoming": "Something new is coming",
-  "Sign up using": "Sign up using"
+  "Sign up using": "Sign up using",
+  "Your token has expired, try to login again": "Your token has expired, try to login again"
 }

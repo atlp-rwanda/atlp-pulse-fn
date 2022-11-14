@@ -24,7 +24,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path, extensions }) => {
       if (extensions?.code === 'JWT_EXPIRED') {
-        window.location.pathname = '/login';
+        window.location.pathname = '/users/login';
         window.localStorage.clear();
         toast.error('You have not been using the website for a while');
         return;

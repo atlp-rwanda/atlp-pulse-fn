@@ -254,7 +254,8 @@ exports[`Header Tests Should render the header with no active 1`] = `
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
-            className=""
+            aria-current="page"
+            className="text-primary"
             href="/"
             onClick={[Function]}
           >
@@ -474,24 +475,15 @@ exports[`Header Tests Should render the header with no active 2`] = `
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
-            className=""
+            aria-current="page"
+            className="text-primary"
             href="/"
             onClick={[Function]}
           >
             Home
           </a>
         </li>
-        <li
-          className="px-5 text-xl dark:text-dark-text-fill"
-        >
-          <a
-            className=""
-            href="/pricing"
-            onClick={[Function]}
-          >
-            Pricing
-          </a>
-        </li>
+         
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
         >
@@ -606,16 +598,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
         Home
       </a>
     </li>
-    <li
-      className="p-2 w-full dark:text-dark-text-fill"
-    >
-      <a
-        href="/pricing"
-        onClick={[Function]}
-      >
-        Pricing
-      </a>
-    </li>
+     
     <li
       className="p-2 w-full dark:text-dark-text-fill"
     >
@@ -907,7 +890,8 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
-            className=""
+            aria-current="page"
+            className="text-primary"
             href="/"
             onClick={[Function]}
           >
@@ -1128,7 +1112,8 @@ exports[`Header Tests Should render the header with product active 1`] = `
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
-            className=""
+            aria-current="page"
+            className="text-primary"
             href="/"
             onClick={[Function]}
           >
