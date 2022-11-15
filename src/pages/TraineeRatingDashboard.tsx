@@ -26,6 +26,8 @@ import DataTable from '../components/DataTable';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
+import GRADING_SYSTEM_QUERY from './GradingSystemQuery';
+import { useQuery } from '@apollo/client';
 
 function classNames(...classes: any) {
   /* istanbul ignore next */
@@ -138,7 +140,7 @@ const TraineeRatingDashboard = () => {
       userId: '63542fa638ef0f51a25dae40',
     },
   });
-  const data = ratings;
+  const datas = ratings;
   /* istanbul ignore next */
   const columns = [
     { Header: `${t('Email')}`, accessor: 'user[email]' },
@@ -279,6 +281,8 @@ const TraineeRatingDashboard = () => {
     },
   });
 
+  const { data } = useQuery(GRADING_SYSTEM_QUERY);
+
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
@@ -307,6 +311,10 @@ const TraineeRatingDashboard = () => {
   }, [toggle, updateRatings]);
 
   /* istanbul ignore next */
+
+  const defaultRating = data?.getRatingSystems?.filter(
+    (x: any) => x.defaultGrading,
+  );
 
   return (
     <>
@@ -717,11 +725,14 @@ const TraineeRatingDashboard = () => {
                                         <option value="0" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+
+                                        <>
+                                          {defaultRating &&
+                                            defaultRating.length &&
+                                            defaultRating[0]?.grade.map(
+                                              (r: any) => <option>{r}</option>,
+                                            )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -763,11 +774,13 @@ const TraineeRatingDashboard = () => {
                                         <option value="0" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+                                        <>
+                                          {defaultRating &&
+                                            defaultRating.length &&
+                                            defaultRating[0]?.grade.map(
+                                              (r: any) => <option>{r}</option>,
+                                            )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -803,11 +816,14 @@ const TraineeRatingDashboard = () => {
                                         <option value="0" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+
+                                        <>
+                                          {defaultRating &&
+                                            defaultRating.length &&
+                                            defaultRating[0]?.grade.map(
+                                              (r: any) => <option>{r}</option>,
+                                            )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -1182,9 +1198,9 @@ const TraineeRatingDashboard = () => {
                   <div>
                     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
                       <div className="px-3 md:px-8 mt-10">
-                        {data.length !== 0 ? (
+                        {datas.length !== 0 ? (
                           <DataTable
-                            data={data}
+                            data={datas}
                             columns={columns}
                             title={t('Performance Ratings')}
                           />

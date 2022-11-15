@@ -181,6 +181,7 @@ const AdminTraineeDashboard = () => {
               removeTraineeMod();
               setDeleteEmail(row.original.email);
               setDeleteFromCohort(row.original.cohort);
+              console.log(traineeData)
             }}
           />
 
@@ -569,9 +570,8 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          inviteTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -636,9 +636,8 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          editTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${editTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -711,9 +710,8 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          removeTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${removeTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -769,9 +767,8 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          registerTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${registerTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">

@@ -33,7 +33,7 @@ function Orglogin() {
         localStorage.setItem('orgToken', loginOrg.token);
         /* istanbul ignore next */
         localStorage.setItem('orgName', orgInput.name);
-        toast.success(t('Welcome! Sign in to Continue'));
+        toast.success('Welcome! Sign in to Continue');
         navigate('/users/login');
       },
       onError() {
