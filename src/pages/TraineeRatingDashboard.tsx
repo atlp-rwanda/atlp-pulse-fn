@@ -1,10 +1,12 @@
 /* eslint-disable */
 import gql from 'graphql-tag';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, Fragment, useEffect, Suspense } from 'react';
 import { Listbox, Combobox, Transition, Dialog } from '@headlessui/react';
 import { CheckIcon, SelectorIcon, PlusIcon } from '@heroicons/react/solid';
 import { useTranslation } from 'react-i18next';
+import Square from '../Skeletons/Square';
+import Skeleton from '../components/Skeleton';
 import {
   ADD_REPLY,
   GET_REPLIES,
@@ -14,23 +16,33 @@ import { REMOVE_REPLY } from '../Mutations/replyMutation';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Sidebar from '../components/Sidebar';
 import Button from '../components/Buttons';
+import { DEFAULT_GRADE } from '../Mutations/MakeDefault';
 import {
   GET_RATINGS,
   ADD_RATING,
   UPDATE_RATING,
   GET_USERS,
+  RATING_BY_COHORT,
+  FETCH_ALL_RATINGS,
 } from '../Mutations/Ratings';
 import { GET_COHORTS_QUERY } from '../Mutations/manageStudentMutations';
+
+import { GET_COHORT_TRAINEES_QUERY } from '../Mutations/manageStudentMutations';
 import { phase, sprint } from '../dummyData/ratings';
 import DataTable from '../components/DataTable';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
+import GRADING_SYSTEM_QUERY from './GradingSystemQuery';
+import { useQuery } from '@apollo/client';
+import GradingSystem from './GradingSystem';
 
 function classNames(...classes: any) {
   /* istanbul ignore next */
   return classes.filter(Boolean).join(' ');
 }
+
+
 const TraineeRatingDashboard = () => {
   const organizationToken = localStorage.getItem('orgToken');
 
@@ -43,6 +55,7 @@ const TraineeRatingDashboard = () => {
   const [selectedUser, setSelectedUser] = useState<any>([]);
   const [selectedSprint, setSelectedSprint] = useState(sprint[0]);
   const [cohortName, setCohortName] = useState({ cohortName: '' });
+
   const [disable, setDisable] = useState(true);
   const [ratingData, setRatingData] = useState({
     quality: '0',
@@ -52,6 +65,7 @@ const TraineeRatingDashboard = () => {
     professional: '0',
     professionalRemark: '',
     userEmail: '',
+    average: '',
   });
   const [rows, setRows] = useState({
     quality: '0',
@@ -72,6 +86,9 @@ const TraineeRatingDashboard = () => {
   const [showActions, setShowActions] = useState(false);
   const [showRemarks, setShowRemarks] = useState(false);
   const [ratings, setRatings] = useState<any>([]);
+  const [trainees, setTrainees] = useState<any>([]);
+  const [ratingsByCohort, setRatingsByCohort] = useState<any>([]);
+  const [defaultGrading, setDefaultGrading] = useState<any>([]);
   const [selectedTrainee, setSelectedTrainee] = useState(trainee[0]);
   const [query, setQuery] = useState('');
   const [toggle, setToggle] = useState(false);
@@ -96,26 +113,43 @@ const TraineeRatingDashboard = () => {
             .includes(query.toLowerCase().replace(/\s+/g, '')),
         );
 
-  const closeModal = () => {
+  const closeModal = /* istanbul ignore next */ 
+  () => {
     /* istanbul ignore next */
+    // setIsOpen(false);
+    /* istanbul ignore next */
+    setShowActions(false);
+    /* istanbul ignore next */
+    setShowRemarks(false);
+  };
+  const closeCancel = () => {
     setIsOpen(false);
     setShowActions(false);
     setShowRemarks(false);
-  };
+  }
   const openModal = () => {
     setIsOpen(true);
   };
-  const handleClick = () => setNav(!nav);
-  const handleToggle = () => {
+  const handleClick =
+    /* istanbul ignore next */
+    () =>
+      /* istanbul ignore next */
+      setNav(!nav);
+  const handleToggle = /* istanbul ignore next */ 
+  () => {
+    /* istanbul ignore next */
     setToggle(!toggle);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = /* istanbul ignore next */ 
+  (e: any) => {
     /* istanbul ignore next */
     e.preventDefault();
+    /* istanbul ignore next */
     createRatings();
+    /* istanbul ignore next */
     handleToggle();
-    closeModal();
+    /* istanbul ignore next */
   };
 
   const handleUpdate = (e: any) => {
@@ -129,26 +163,25 @@ const TraineeRatingDashboard = () => {
   const handleRatingChange = (e: any) => {
       /* istanbul ignore next */
     setRatingData((prevRatingData) => {
+      /* istanbul ignore next */
       return {
         ...prevRatingData,
         [e.target.name]: e.target.value,
       };
     });
   };
-  const [showReply] = useLazyQuery(GET_REPLIES_BY_USER, {
-    variables: {
-      userId: '63542fa638ef0f51a25dae40',
-    },
-  });
-  const data = ratings;
+  const vardata = ratingsByCohort;
   /* istanbul ignore next */
+ 
   const columns = [
     { Header: `${t('Email')}`, accessor: 'user[email]' },
-    { Header: `${t('Cohort')}`, accessor: 'cohort[name]' },
+    { Header: `${t('Phase')}`, accessor: 'cohort[phase[name]]' },
     { Header: `${t('Sprint')}`, accessor: 'sprint' },
     { Header: `${t('Quantity')}`, accessor: 'quantity' },
     { Header: `${t('Quality')}`, accessor: 'quality' },
     { Header: `${t('Professional skills')}`, accessor: 'professional_Skills' },
+   
+    { Header: `${t('Average')}`, accessor:  'average' },
     {
       Header: `${t('Actions')}`,
       accessor: '',
@@ -172,6 +205,7 @@ const TraineeRatingDashboard = () => {
                   user: row.original.user.email,
                   id: row.original.user.id,
                 });
+                
               }}
             />
           </div>
@@ -217,6 +251,7 @@ const TraineeRatingDashboard = () => {
   /* istanbul ignore next */
   const [createRatings] = useMutation(ADD_RATING, {
     variables: {
+      cohort: selectedCohort?.id,
       user: ratingData.userEmail,
       sprint: selectedSprint.name,
       quantity: ratingData.quantity.toString(),
@@ -233,6 +268,7 @@ const TraineeRatingDashboard = () => {
     },
     onCompleted: ({ createRatings }) => {
       handleToggle();
+      closeCancel();
       toast.success('Successfully done');
     },
   });
@@ -257,48 +293,107 @@ const TraineeRatingDashboard = () => {
       toast.success('Successfully updated!');
     },
   });
+  const [DefaultGrade] = useLazyQuery(DEFAULT_GRADE, {})
 
   const [getRatings] = useLazyQuery(GET_RATINGS, {
     variables: {
       orgToken: organizationToken,
     },
   });
+  const [RatingByCohort] = useLazyQuery(RATING_BY_COHORT, {
+    variables: {
+      cohortName: selectedCohort?.name,
+    },
+  });
 
+
+  // const [getTraineesCohorts] = useLazyQuery(GET_COHORT_TRAINEES_QUERY, {
+  //   variables: {
+  //   orgToken: organizationToken,
+  //   cohort: cohortName,
+  //   }
+  //   });
+  
   const [getCohorts] = useLazyQuery(GET_COHORTS_QUERY, {
     variables: {
       orgToken: organizationToken,
     },
   });
 
-  const [getUsers] = useLazyQuery(GET_USERS, {
+  const [getUsers] = useLazyQuery(GET_COHORT_TRAINEES_QUERY, {
     variables: {
-      cohortName: cohortName,
+      orgToken: organizationToken,
+      cohort: cohortName,
     },
   });
-  const [showReplyByUser] = useLazyQuery(GET_REPLIES_BY_USER, {
-    variables: {
-      userId: '63542fa638ef0f51a25dae40',
-    },
-  });
+
+  const { data } = useQuery(GRADING_SYSTEM_QUERY);
 
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
+      /* istanbul ignore next */
       onCompleted: (data) => {
         /* istanbul ignore next */
         setRatings(data?.fetchRatings);
+        
+      },
+      onError: /* istanbul ignore next */ 
+      (error) => {
+        /* istanbul ignore next */
+        toast.error(error?.message || 'Failed to load the data');
+      },
+    });
+    // getTraineesCohorts({
+    //   fetchPolicy: 'network-only',
+    //   /* istanbul ignore next */
+    //   onCompleted: (data) => {
+    //     /* istanbul ignore next */
+    //     setTrainees(data?.getCohortTrainees);
+    //     console.log('show trainees',data?.getCohortTrainees);
+        
+
+        
+    //   },
+    //   onError: /* istanbul ignore next */ 
+    //   (error) => {
+    //     /* istanbul ignore next */
+    //     toast.error(error?.message || 'Failed to load the data');
+    //   },
+    // });
+
+
+    RatingByCohort({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        /* istanbul ignore next */
+        setRatingsByCohort(data?.fetchRatingByCohort);
+        
       },
       onError: (error) => {
       /* istanbul ignore next */
         toast.error(error?.message || 'Failed to load the data');
       },
     });
+ 
+    DefaultGrade({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        setDefaultGrading(data?.getDefaultGrading[0]?.grade)
+        
+      },
+    onError: (error) => {
+        toast.error(error?.message || 'Failed to load the data');
+      },
+    })
 
     getCohorts({
       fetchPolicy: 'network-only',
+      /* istanbul ignore next */
       onCompleted: (data) => {
         /* istanbul ignore next */
         const cohorts = data?.getCohorts;
+        /* istanbul ignore next */
         data?.getCohorts?.length !== 0
           ? setCohorts(cohorts)
           : setCohorts(cohorts);
@@ -311,6 +406,10 @@ const TraineeRatingDashboard = () => {
   }, [toggle, updateRatings]);
 
   /* istanbul ignore next */
+
+  const defaultRating = data?.getDefaultGrading?.filter(
+    (x: any) => x.defaultGrading,
+  );
 
   return (
     <>
@@ -325,27 +424,32 @@ const TraineeRatingDashboard = () => {
                   <div className="flex flex-col md:ml-a w-40">
                     <Listbox
                       value={selectedCohort}
-                      onChange={(e) => {
-                        setSelectedCohort(e);
-                        setCohortName(e.name);
-                        setDisable(false);
-                        getUsers({
-                          fetchPolicy: 'network-only',
-                          onCompleted: (data) => {
-                            const tr = data?.fetchCohortsCoordinator.map(
-                              (el: any) => el.members,
-                            );
-                            data?.fetchCohortsCoordinator.length == 0
-                              ? setTrainee(tr)
-                              : setTrainee(tr[0]);
-                          },
-                          onError: (error) => {
-                            toast.error(
-                              error?.message || 'Something went wrong',
-                            );
-                          },
-                        });
-                      }}
+                      onChange={
+                        /* istanbul ignore next */ 
+                        (e) => {
+                          /* istanbul ignore next */
+                          setSelectedCohort(e);
+                          setCohortName(e.name);
+                          setDisable(false);
+                          getUsers({
+                            fetchPolicy: 'network-only',
+                            /* istanbul ignore next */
+                            onCompleted: (data) => {
+                                setTrainee(data?.getCohortTrainees)
+                              /* istanbul ignore next */
+                              console.log('result',data);
+                              
+                            },
+                            onError: /* istanbul ignore next */ 
+                            (error) => {
+                              /* istanbul ignore next */
+                              toast.error(
+                                error?.message || 'Something went wrong',
+                              );
+                            },
+                          });
+                        }
+                      }
                     >
                       {({ open }) => (
                         <>
@@ -489,8 +593,12 @@ const TraineeRatingDashboard = () => {
                                 {/* SELECT TRAINEE DROPDOWN START */}
                                 <div className="mt-10 md:mt-12 grid grid-cols-4">
                                   <Combobox
-                                    value={selectedTrainee}
+                                    value={selectedUser}
                                     onChange={(e) => {
+                                      setSelectedUser(
+                                       e
+                                      )
+                                      
                                       setRatingData({
                                         ...ratingData,
                                         userEmail: e.id,
@@ -498,7 +606,7 @@ const TraineeRatingDashboard = () => {
                                     }}
                                     data-testid="traineesCombo"
                                   >
-                                    <div className="flex flex-col col-span-4 md:col-span-1">
+                                    <div className="flex flex-col col-span-6 md:col-span-1">
                                       <Combobox.Label className="text-lg  font-bold pr-2 ">
                                         {t('Trainee')}
                                       </Combobox.Label>
@@ -604,6 +712,9 @@ const TraineeRatingDashboard = () => {
                                     </div>
                                   </Combobox>
                                   {/* SELECT TRAINEE DROPDOWN END */}
+
+                                  
+
                                   {/* SELECT SPRINT  DROPDOWN START */}
                                   <div className="flex flex-col ml-auto col-span-0 md:col-span-3">
                                     <Listbox
@@ -696,6 +807,7 @@ const TraineeRatingDashboard = () => {
 
                                   {/* SELECT SPRINT DROPDOWN END. */}
                                 </div>
+                                
                                 <div className="bg-gray-100 dark:bg-dark-frame-bg rounded-md p-2 my-2 mt-6 md:mt-8 flex flex-col md:flex-row">
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <Button
@@ -718,14 +830,14 @@ const TraineeRatingDashboard = () => {
                                         id="qualityRating"
                                         className="rounded-md appearance-none relative block w-full px-3 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
                                       >
-                                        <option value="0" disabled>
+                                        <option value="-1" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+                                        <>
+                                        {defaultGrading?.map(
+                                          (grade: any) => <option>{grade}</option>
+                                        )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -752,6 +864,7 @@ const TraineeRatingDashboard = () => {
                                       {t('Quantity')}
                                     </Button>
                                     <div className="flex flex-col justify-start items-start w-full my-0 md:my-2">
+                                    
                                       <select
                                         name="quantity"
                                         id="quantityRating"
@@ -764,14 +877,16 @@ const TraineeRatingDashboard = () => {
                                         }
                                         className="rounded-md appearance-none relative block w-full px-3 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
                                       >
-                                        <option value="0" disabled>
+                                        
+                                        <option value="-1" disabled>
                                           {t('Select rating')}
+                                         
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+                                        <>
+                                        {defaultGrading?.map(
+                                          (grade: any) => <option>{grade}</option>
+                                        )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -785,7 +900,7 @@ const TraineeRatingDashboard = () => {
                                       }
                                       rows={5}
                                       className="rounded-md w-full  my-1 md:my-3  p-3 border dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white"
-                                      placeholder={t('Qantity rating remark')}
+                                      placeholder={t('Quantity rating remark')}
                                     />
                                   </div>
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
@@ -804,14 +919,14 @@ const TraineeRatingDashboard = () => {
                                         onChange={handleRatingChange}
                                         className="rounded-md appearance-none relative block w-full px-3 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
                                       >
-                                        <option value="0" disabled>
+                                        <option value="-1" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+                                        <>
+                                        {defaultGrading?.map(
+                                          (grade: any) => <option>{grade}</option>
+                                        )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -835,7 +950,7 @@ const TraineeRatingDashboard = () => {
                                   <button
                                     type="button"
                                     className="inline-flex justify-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                                    onClick={closeModal}
+                                    onClick={closeCancel}
                                   >
                                     {t('Cancel')}
                                   </button>
@@ -921,14 +1036,14 @@ const TraineeRatingDashboard = () => {
                                         id="qualityRating"
                                         className="rounded-md appearance-none relative block w-full px-3 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
                                       >
-                                        <option value="0" disabled>
+                                        <option value="-1" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+                                        <>
+                                        {defaultGrading?.map(
+                                          (grade: any) => <option>{grade}</option>
+                                        )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -968,14 +1083,14 @@ const TraineeRatingDashboard = () => {
                                         }
                                         className="rounded-md appearance-none relative block w-full px-3 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
                                       >
-                                        <option value="0" disabled>
+                                        <option value="-1" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="2"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+                                        <>
+                                        {defaultGrading?.map(
+                                          (grade: any) => <option>{grade}</option>
+                                        )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -1014,14 +1129,14 @@ const TraineeRatingDashboard = () => {
                                         }
                                         className="rounded-md appearance-none relative block w-full px-3 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
                                       >
-                                        <option value="0" disabled>
+                                        <option value="-1" disabled>
                                           {t('Select rating')}
                                         </option>
-                                        <option value="1"> 1</option>
-                                        <option value="1"> 2</option>
-                                        <option value="3"> 3</option>
-                                        <option value="4"> 4</option>
-                                        <option value="5"> 5</option>
+                                        <>
+                                        {defaultGrading?.map(
+                                          (grade: any) => <option>{grade}</option>
+                                        )}
+                                        </>
                                       </select>
                                     </div>
                                     <textarea
@@ -1050,7 +1165,7 @@ const TraineeRatingDashboard = () => {
                                   <button
                                     type="button"
                                     className="inline-flex justify-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                                    onClick={closeModal}
+                                    onClick={closeCancel}
                                   >
                                     {t('Cancel')}
                                   </button>
@@ -1104,7 +1219,7 @@ const TraineeRatingDashboard = () => {
                                   as="h3"
                                   className="text-lg font-medium leading-6 text-gray-900 dark:text-dark-text-fill items-center"
                                 >
-                                  {t('Remarking System Conversation')}
+                                  {t('Remarking Conversation')}
                                 </Dialog.Title>
                                 <div className="bg-gray-100 dark:bg-dark-frame-bg rounded-md p-2 my-2 mt-6 md:mt-8 flex flex-col md:flex-row">
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
@@ -1167,10 +1282,10 @@ const TraineeRatingDashboard = () => {
                                 <div className="mt-4 md:mt-8">
                                   <button
                                     type="button"
-                                    className="inline-flex justify-center rounded-md border border-transparent bg-gray-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                                    className="inline-flex justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                                     onClick={closeModal}
                                   >
-                                    {t('Cancel')}
+                                    {t('Close')}
                                   </button>
                                 </div>
                               </form>
@@ -1186,16 +1301,20 @@ const TraineeRatingDashboard = () => {
                   <div>
                     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
                       <div className="px-3 md:px-8 mt-10">
-                        {data.length !== 0 ? (
+                        {data == 0 ? (
+                          
+                          <div className="text-center mt-7 text-lg uppercase">
+                            <p> {t('No ratings data found')}</p>
+
+                            {/* <Square /> */}
+                          </div>
+                          
+                        ) : (
                           <DataTable
-                            data={data}
+                            data={vardata}
                             columns={columns}
                             title={t('Performance Ratings')}
                           />
-                        ) : (
-                          <div className="text-center mt-7 text-lg uppercase">
-                            <p> {t('No updated ratings found')}</p>
-                          </div>
                         )}
                       </div>
                     </div>

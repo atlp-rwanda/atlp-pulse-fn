@@ -54,6 +54,7 @@ export const GET_COHORT_TRAINEES_QUERY = gql`
         name
       }
       email
+      id
       team {
         name
         cohort {

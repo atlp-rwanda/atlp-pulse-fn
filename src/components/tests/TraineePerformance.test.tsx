@@ -21,20 +21,6 @@ describe('View overall performance', () => {
       </BrowserRouter>,
     );
 
-    let removePrevMck = getByTestId('prev');
-    fireEvent.click(removePrevMck);
-    expect(PreMck).toHaveBeenCalledTimes(0);
 
-    let removeNextMck = getByTestId('next');
-    fireEvent.click(removeNextMck);
-    expect(NexMck).toHaveBeenCalledTimes(0);
-
-    const removepage1Mck = getByTestId('page1');
-    fireEvent.click(removepage1Mck);
-    expect(setPageMck).toHaveBeenCalledTimes(0);
-
-    const removepage3Mck = getByTestId('page3');
-    fireEvent.click(removepage3Mck);
-    expect(MckPage).toHaveBeenCalledTimes(0);
   });
 });

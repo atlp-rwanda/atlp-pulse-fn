@@ -67,23 +67,25 @@ export default function UpdatePhaseModal({
   });
 
   const orgToken = localStorage.getItem('orgToken');
+   /* istanbul ignore next */
   const managers = data?.getAllUsers?.filter((user) => user.role === 'manager');
-
+ /* istanbul ignore next */
   async function updatePhase(data: any) {
    /* istanbul ignore next */
     const newData = { ...data };
-
+      /* istanbul ignore next */
     newData.managerEmail && (newData.managerEmail = newData.managerEmail.value);
-
+    /* istanbul ignore next */
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {
         delete newData[field];
       }
     });
-
+    /* istanbul ignore next */
     newData.updatePhaseId = currentPhase?.id;
+     /* istanbul ignore next */
     orgToken && (newData.orgToken = orgToken);
-
+    /* istanbul ignore next */
     await updatePhaseMutation({ variables: newData });
   }
 
@@ -145,7 +147,9 @@ export default function UpdatePhaseModal({
                 size="sm"
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="remove"
+                 /* istanbul ignore next */
                 onClick={() => {
+                   /* istanbul ignore next */
                   removeModel();
                   reset();
                 }}

@@ -12,12 +12,14 @@ const GRADING_SYSTEM_MUTATION = gql`
       grade: $grade
       description: $description
       percentage: $percentage
+     
     ) {
       id
       name
       grade
       description
       percentage
+      defaultGrading
       userId
     }
   }

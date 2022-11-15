@@ -18,12 +18,46 @@ export const GET_RATINGS = gql`
       professionalRemark
       bodyQuality
       coordinator
+      average
       cohort {
         name
+        phase {
+          name
+        }
       }
     }
   }
 `;
+export const RATING_BY_COHORT = gql `
+query GetAllCohorts( $cohortName: String) {
+  fetchRatingByCohort(  CohortName: $cohortName) {
+    sprint
+    quantity
+    approved
+    coordinator
+    average
+    cohort {
+      name
+      id
+      phase {
+        name
+      }
+    }
+    user {
+      id
+      email
+    }
+    quantityRemark
+    bodyQuantity
+    quality
+    qualityRemark
+    bodyQuality
+    professional_Skills
+    professionalRemark
+    bodyProfessional
+  }
+}
+`
 export const FETCH_ALL_RATINGS = gql`
   query FetchAllRatings($orgToken: String) {
     fetchAllRatings(orgToken: $orgToken) {
@@ -38,8 +72,12 @@ export const FETCH_ALL_RATINGS = gql`
       qualityRemark
       professional_Skills
       professionalRemark
+      average
       cohort {
         name
+        phase {
+          name
+        }
       }
       coordinator
     }
@@ -47,55 +85,33 @@ export const FETCH_ALL_RATINGS = gql`
 `;
 
 export const ADD_RATING = gql`
-  mutation Mutation(
-    $user: String!
-    $sprint: Int!
-    $quantity: String!
-    $quality: String!
-    $professionalSkills: String!
-    $orgToken: String!
-    $qualityRemark: String
-    $bodyQuantity: String
-    $bodyProfessional: String
-    $bodyQuality: String
-    $professionalRemark: String
-    $quantityRemark: String
-  ) {
-    addRatings(
-      user: $user
-      sprint: $sprint
-      quantity: $quantity
-      quality: $quality
-      professional_Skills: $professionalSkills
-      orgToken: $orgToken
-      quantityRemark: $quantityRemark
-      bodyQuality: $bodyQuality
-      qualityRemark: $qualityRemark
-      bodyQuantity: $bodyQuantity
-      professionalRemark: $professionalRemark
-      bodyProfessional: $bodyProfessional
-    ) {
-      user {
-        id
-        role
-        email
-        password
-        organizations
-      }
-      sprint
-      quantity
-      quantityRemark
-      bodyQuantity
-      quality
-      qualityRemark
-      bodyQuality
-      professional_Skills
-      professionalRemark
-      bodyProfessional
-      approved
-      coordinator
+mutation AddRatings($user: String!, $sprint: Int!, $quantity: String!, $quality: String!, $cohort: String!, $professionalSkills: String!, $orgToken: String!, $quantityRemark: String, $bodyQuality: String, $qualityRemark: String, $bodyQuantity: String, $professionalRemark: String, $bodyProfessional: String) {
+  addRatings(user: $user, sprint: $sprint, quantity: $quantity, quality: $quality, cohort: $cohort, professional_Skills: $professionalSkills, orgToken: $orgToken, quantityRemark: $quantityRemark, bodyQuality: $bodyQuality, qualityRemark: $qualityRemark, bodyQuantity: $bodyQuantity, professionalRemark: $professionalRemark, bodyProfessional: $bodyProfessional) {
+    user {
+      id
+      email
     }
+    sprint
+    cohort {
+      name
+      id
+      phase {
+        name
+      }
+    }
+    quantity
+    quantityRemark
+    bodyQuantity
+    quality
+    qualityRemark
+    bodyQuality
+    professional_Skills
+    professionalRemark
+    bodyProfessional
+    approved
+    coordinator
   }
+}
 `;
 
 export const UPDATE_RATING = gql`
@@ -168,6 +184,12 @@ export const TRAINEE_RATING = gql`
       qualityRemark
       professional_Skills
       professionalRemark
+      average
+      cohort {
+        phase {
+          name
+        }
+      }
     }
   }
 `;
@@ -176,7 +198,9 @@ export const GET_USERS = gql`
   query GetAllUsers($cohortName: ID!) {
     fetchCohortsCoordinator(cohortName: $cohortName) {
       name
-      phase
+      phase {
+        name
+      }
       coordinator {
         id
       }
