@@ -2,6 +2,7 @@ import React, { ReactNode, useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { UserContext } from '../hook/useAuth';
 import checkTokenExpiration from '../utils/tokenValidation';
+import checkOrgTokenExpiration from './validateOrgToken';
 
 interface Props {
   children: ReactNode;
@@ -9,7 +10,8 @@ interface Props {
 }
 
 function CheckRole({ children, ...props }: Props) {
-  checkTokenExpiration()
+  checkTokenExpiration();
+  checkOrgTokenExpiration();
   const orgToken: any = localStorage.getItem('orgToken');
   const { user } = useContext(UserContext);
   const location = useLocation();
