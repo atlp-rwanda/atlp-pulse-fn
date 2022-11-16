@@ -24,7 +24,7 @@ exports[`Square skeleton Should render 1`] = `
           />
           <div
             className=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
-          /> 
+          />
           <div
             className=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
           />
