@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* istanbul ignore next */
 import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';

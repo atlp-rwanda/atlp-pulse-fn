@@ -1,72 +1,70 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router';
-import Button from '../../components/Buttons';
-import useDocumentTitle from '../../hook/useDocumentTitle';
-import LOGIN_ORGANIZATION_MUTATION from './LoginOrganisationMutation';
-import ButtonLoading from '../../components/ButtonLoading';
+import e from 'express';
+import Button from '../components/Buttons';
+import useDocumentTitle from '../hook/useDocumentTitle';
+import { RESET_PASSWORD_EMAIL } from '../Mutations/resetPassword';
+import ButtonLoading from '../components/ButtonLoading';
 
-function Orglogin() {
-  useDocumentTitle('Login');
+function ResetPassword() {
+  useDocumentTitle('Reset Password');
   const { t } = useTranslation();
-  const [OrgLogin, { loading }] = useMutation(LOGIN_ORGANIZATION_MUTATION);
+
+  const navigate = useNavigate();
+  const [ResetPasswordEmail, { loading }] = useMutation(RESET_PASSWORD_EMAIL, {
+    onCompleted: (data) => {
+      setTimeout(() => {
+        toast.success(t('Check your email to proceed!'));
+        navigate('/');
+      }, 2000);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        toast.error(err.message);
+      }, 1000);
+    },
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
   }: any = useForm();
-  const navigate = useNavigate();
 
-  const onSubmit = async (orgInput: any) => {
-    /* istanbul ignore next */
-    await OrgLogin({
-      /* istanbul ignore next */
-      variables: { orgInput },
-      /* istanbul ignore next */
-      onCompleted({ loginOrg }) {
-        /* istanbul ignore next */
-        localStorage.setItem('orgToken', loginOrg.token);
-        /* istanbul ignore next */
-        localStorage.setItem('orgName', orgInput.name);
-        toast.success(t('Welcome! Sign in to Continue'));
-        navigate('/users/login');
-      },
-      onError() {
-        /* istanbul ignore next */
-        setError('name', {
-          message: t('Incorrect Organisation Name'),
-        });
+  const onSubmit = async (Input: any) => {
+    // Input.presentDefault()
+    await ResetPasswordEmail({
+      variables: {
+        email: Input.email,
       },
     });
   };
-
   return (
     <div className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans">
       <div className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none">
         <div className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill ">
-          {t('Sign in to your Organization')}
+          {t('Reset Password')}
         </div>
         <div className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs">
-          {t('Enter your organization’s Dev-Pulse URL')}
+          {t('You will receive an email to proceed with resetting password')}
         </div>
         <form
+          onSubmit={handleSubmit(onSubmit)}
           action="#none"
           className="space-y-6 mt-4"
-          onSubmit={handleSubmit(onSubmit)}
         >
           <div>
             <input
               type="text"
-              data-testid="orgName"
-              {...register('name', {
-                required: 'Organisation name is required',
+              data-testid="email"
+              {...register('email', {
+                required: 'Email is required',
               })}
-              placeholder={t('your-organization.devpulse.co')}
+              placeholder={t('Enter your email address')}
               className="w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
             />
           </div>
@@ -81,6 +79,7 @@ function Orglogin() {
             ) : (
               <Button
                 type="submit"
+                // onClick={handleSubmit(onSubmit)}
                 variant="primary"
                 data-testid="loginForm"
                 size="lg"
@@ -91,17 +90,26 @@ function Orglogin() {
               </Button>
             )}
           </div>
+
           <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
-            {t('Looking to register an organization instead?')}
-            <Link to="/signup/org">
+            {t('New to DevPulse?')}
+            <Link to="/register">
               <a href="#link" className="text-primary">
-                {t('Register a new organization')}
+                {t('Sign Up')}
               </a>
             </Link>
+          </div>
+
+          <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
+            {t('Don’t know your organization URL?')}
+            <a href="#link" className="text-primary">
+              {t('Find your organizations')}
+            </a>
           </div>
         </form>
       </div>
     </div>
   );
 }
-export default Orglogin;
+
+export default ResetPassword;
