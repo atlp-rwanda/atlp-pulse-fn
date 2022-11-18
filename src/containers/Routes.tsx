@@ -14,9 +14,7 @@ const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
 const Orglogin = React.lazy(() => import('../pages/Organization/Orglogin'));
 /* istanbul ignore next */
 const ResetPassword = React.lazy(() => import('../pages/ResetPassword'));
-/* istanbul ignore next */
 const ForgotPassword = React.lazy(() => import('../pages/ForgotPassword'));
-/* istanbul ignore next */
 const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
 /* istanbul ignore next */
 const Pricing = React.lazy(() => import('../pages/Pricing'));

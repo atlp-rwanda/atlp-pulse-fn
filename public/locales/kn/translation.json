@@ -342,7 +342,6 @@
   "Quality Remarks": "Ijambo ryiza",
   "Professionalism Remarks": "Ijambo ry'umwuga",
   "Your token has expired, try to login again": "Tokeni yawe yarangiye, ongera winjire muri porogaramu",
-  "Your Org token has expired, try to login again": "Tokeni ya Kompanyi yarangiye, ongera winjire muri porogaramu",
   "Email is required": "Shyiramo email",
   "Reset Password": "Gundura ijambobanga",
   "You will receive an email to proceed with resetting password": "Reba muri Imeri yawe uburyo wahindura ijambobanga ryawe",
@@ -351,16 +350,5 @@
   "Check your email to proceed!": "Reba muri imeri yawe maze ukurikize amabwiriza!",
   "You have Successfully reset your password!": "Ijambobanga ryahindutse!",
   "Reset your password": "Hindura ijambobanga",
-  "Enter your email address": "Shyiramo imeri yawe",
-  "You have not been using the website for a while": "Umaze igihe utari gukoresha urubuga",
-  "Teams list": "urutonde rw'amakipe",
-  "Add A Team": "Ongeramo Ikipe",
-  "Choose a Cohort": "Hitamo Itsinda",
-  "Team Name": "Izina ry'Ikipe",
-  "Team deleted successfully": "Ikipe yasibwe!",
-  "Delete Team": "Siba iyi kipe",
-  "Delete Team Permanently": "Emeza ko ushaka gusiba iyi kipe",
-  "Update Team": "Vugurura ikipe",
-  "The Team name is required": "Uzaza izina ry'ikipe",
-  "Team updated successfully": "Ikipe yavuguruwe!"
+  "Enter your email address": "Shyiramo imeri yawe"
 }
