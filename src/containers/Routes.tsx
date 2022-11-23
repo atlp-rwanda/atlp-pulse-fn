@@ -54,7 +54,7 @@ function MainRoutes() {
             }
           />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/product" element={<Product title={'Productpage'} />} /> 
           <Route path="/noredirect" element={<Noredirect />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="*" element={<Error />} />

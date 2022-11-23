@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
-export default function Comingsoon() {
+export default function Comingsoon(props: { title: any; }) {
   useDocumentTitle('Product');
   const { t } = useTranslation();
   return (
@@ -10,7 +10,7 @@ export default function Comingsoon() {
       <div className="dark:bg-dark-bg bg-gray-100 rounded-lg shadow-lg p-5 md:p-20 mx-2">
         <div className="text-center">
           <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-light-text dark:text-dark-text-fill sm:text-5xl sm:leading-none md:text-6xl">
-            {t('Productpage')}
+            {t(`${props.title}`)}
           </h2>
           <h3 className="text-xl text-light-text dark:text-dark-text-fill md:text-3xl mt-10">
             {t('comingsoon')}

@@ -3,6 +3,9 @@
 exports[`AdminTraineeDashboard Tests Renders AdminTraineeDashboard 1`] = `
 Array [
   <div
+    className=" dark:bg-dark-bg rounded-lg"
+  />,
+  <div
     className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
   >
     <div
