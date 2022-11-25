@@ -383,6 +383,7 @@
   "Are you sure you want to approve this updated ratings ?": "Êtes-vous sûr de vouloir approuver cette note mise à jour ?",
   "Approve updated ratings": "Approuver les évaluations mises à jour",
   "Your token has expired, try to login again": "Votre jeton a expiré, essayez de vous reconnecter",
+  "Your Org token has expired, try to login again": "Votre jeton d'organisation a expiré, essayez de vous reconnecter",
   "Reset Password": "Réinitialiser le mot de passe",
   "You will receive an email to proceed with resetting password": "Vous recevrez un e-mail pour procéder à la réinitialisation du mot de passe",
   "Re-write your password": "Réécrivez votre mot de passe",
@@ -390,5 +391,6 @@
   "Check your email to proceed!": "Vérifiez votre e-mail pour continuer !",
   "You have Successfully reset your password!": "Vous avez réinitialisé votre mot de passe avec succès!",
   "Reset your password": "Réinitialisez votre mot de passe",
-  "Enter your email address": "Entrez votre adresse email"
+  "Enter your email address": "Entrez votre adresse email",
+  "You have not been using the website for a while": "Vous n'utilisez pas le site Web depuis un certain temps"
 }
