@@ -184,7 +184,7 @@ const AdminTraineeDashboard = () => {
             onClick={() => {
               removeTraineeMod();
               setDeleteEmail(row.original.email);
-              setDeleteFromCohort(row.original.team);
+              setDeleteFromCohort(row.original.cohort);
             }}
           />
 
@@ -488,8 +488,8 @@ const AdminTraineeDashboard = () => {
                     <b>START DATE</b>
                   </h3>
                   <p>
-                    {traineeDetails && traineeDetails.team
-                      ? traineeDetails.team.cohort.startDate.split('T')[0]
+                    {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.cohort.startDate.split('T')[0]
                       : 'Un availabe'}
                   </p>
                 </div>
@@ -510,8 +510,8 @@ const AdminTraineeDashboard = () => {
                   <p>
                     <i>
                       {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.program.name
+                      {traineeDetails && traineeDetails.profile
+                        ? traineeDetails.cohort.program.name
                         : 'Un availabe'}
                     </i>
                   </p>
@@ -533,8 +533,8 @@ const AdminTraineeDashboard = () => {
                   </h3>
                   <p>
                     <i>
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.phase.name
+                      {traineeDetails && traineeDetails.profile
+                        ? traineeDetails.cohort.phase
                         : 'Un availabe'}
                     </i>
                   </p>
@@ -558,8 +558,8 @@ const AdminTraineeDashboard = () => {
                   <p>
                     <i>
                       {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.name
+                      {traineeDetails && traineeDetails.profile
+                        ? traineeDetails.cohort.name
                         : 'Un availabe'}
                     </i>
                   </p>
@@ -582,9 +582,8 @@ const AdminTraineeDashboard = () => {
                   <p>
                     <i>
                       {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.program.manager.profile
-                            .name
+                      {traineeDetails && traineeDetails.profile
+                        ? traineeDetails.cohort.program.manager.profile.name
                         : 'Un availabe'}
                     </i>
                   </p>

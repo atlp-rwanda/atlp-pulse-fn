@@ -7,7 +7,7 @@ import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';

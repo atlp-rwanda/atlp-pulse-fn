@@ -19,9 +19,13 @@ import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserProvider from './hook/useAuth';
+<<<<<<< HEAD
 import {WebSocketLink} from '@apollo/client/link/ws';
 import { t } from 'i18next';
 import { getMainDefinition } from '@apollo/client/utilities';
+=======
+import { t } from 'i18next';
+>>>>>>> e2b6435 (fix(org-login): fix expired org token (#178))
 const App = React.lazy(() => import('./App'));
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
