@@ -18,6 +18,7 @@ import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserProvider from './hook/useAuth';
+import { t } from 'i18next';
 const App = React.lazy(() => import('./App'));
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -25,8 +26,17 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.forEach(({ message, locations, path, extensions }) => {
       if (extensions?.code === 'JWT_EXPIRED') {
         window.location.pathname = '/users/login';
-        window.localStorage.clear();
-        toast.error('You have not been using the website for a while');
+        localStorage.removeItem('auth');
+        localStorage.removeItem('auth_token');
+        toast.error(`${t('You have not been using the website for a while')}`);
+        return;
+      } else if (extensions?.code === 'ORG_JWT_EXPIRED') {
+        window.location.pathname = '/login/org';
+        localStorage.removeItem('orgTpken');
+        localStorage.removeItem('orgName');
+        localStorage.removeItem('auth');
+        localStorage.removeItem('auth_token');
+        toast.error(`${t('Your Org token has expired, try to login again')}`);
         return;
       }
     });
