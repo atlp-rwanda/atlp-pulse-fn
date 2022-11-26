@@ -7,11 +7,12 @@ import {
   from,
   InMemoryCache,
 } from '@apollo/client';
+import fetch from 'cross-fetch'
 import { setContext } from '@apollo/client/link/context';
 import React, { Suspense } from 'react';
 import * as ReactDOMClient from 'react-dom/client';
 import Skeleton from './components/Skeleton';
-import './i18n.ts';
+import './i18n'
 import './index.css';
 
 import { onError } from '@apollo/client/link/error';
@@ -46,7 +47,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const httpLink = createHttpLink({
-  uri: process.env.BACKEND_URL || 'http://localhost:4000',
+  uri: process.env.BACKEND_URL || 'http://localhost:4000',fetch
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -65,9 +66,7 @@ export const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// render the app using apolloprovider
 const container = document.getElementById('tree')!;
-
 const root = ReactDOMClient.createRoot(container).render(
   <ApolloProvider client={client}>
     <Suspense fallback={<Skeleton />}>

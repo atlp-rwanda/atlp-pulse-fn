@@ -2,12 +2,27 @@ import { gql } from '@apollo/client';
 import GET_PROFILE from './User';
 
 export const GET_USERS_QUERY = gql`
-  query GetUsers($orgToken: String) {
-    getUsers(orgToken: $orgToken) {
-      email
-      id
-    }
-  }
+query GetUsers($orgToken: String) {
+  getUsers(orgToken: $orgToken) {
+    role
+    email
+    id
+    organizations
+    cohort {
+        startDate
+        program {
+          manager {
+            profile {
+              name
+            }
+            email
+          }
+        }
+        name
+       phase
+      }
+    } 
+}
 `;
 
 export const GET_TRAINEES_QUERY = gql`
@@ -43,6 +58,27 @@ export const GET_TRAINEES_QUERY = gql`
             name
           }
         }
+        members {
+        email
+        cohort {
+          name
+          endDate
+          startDate
+          phase
+          program {
+            name
+            manager {
+              profile {
+                name
+                lastName
+                firstName
+              }
+            }
+          }
+        }
+      }
+        name
+       phase
       }
     }
   }

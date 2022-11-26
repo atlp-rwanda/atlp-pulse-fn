@@ -36,7 +36,7 @@ const initialData: EventInput[] = [
     timeToFinish: '11:00',
   },
 ];
-
+ /* istanbul ignore next */
 const Calendar = () => {
   useDocumentTitle('Calendar');
   const [addEventModel, setAddEventModel] = useState(false);
@@ -51,8 +51,7 @@ const Calendar = () => {
   const [data, setData] = useState<EventInput[]>(initialData);
   const { t } = useTranslation();
   const renderEvent = (e: EventContentArg) => (
-    /* istanbul ignore next */
-
+ /* istanbul ignore next */
     <div
       data-html={true}
       data-tip={`<div >  ${e.event.title} <br> ${e.event.extendedProps.hostName}  <br> ${e.event.extendedProps.timeToStart} - ${e.event.extendedProps.timeToFinish}</div> `}
@@ -67,7 +66,7 @@ const Calendar = () => {
       <ReactTooltip data-html={true} />
     </div>
   );
-
+ /* istanbul ignore next */
   const removeModel = (e: any) => {
     e.preventDefault();
     const newState = !addEventModel;

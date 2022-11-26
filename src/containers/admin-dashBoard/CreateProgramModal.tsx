@@ -127,6 +127,7 @@ export default function CreateProgramModal({
                       required: `${t('The Manager email is required')}`,
                     },
                   }}
+                   /* istanbul ignore next */
                   options={managers?.map(({ email }) => ({
                     value: email,
                     label: email,
@@ -156,7 +157,6 @@ export default function CreateProgramModal({
                 </p>
               )}
             </div>
-
             <div className="w-full flex justify-between">
               <Button
                 variant="info"

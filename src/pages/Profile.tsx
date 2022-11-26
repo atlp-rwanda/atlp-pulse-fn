@@ -43,7 +43,7 @@ export default function Profile() {
         setProfileImage(data.getProfile.avatar);
 
       } catch (error: any) {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(error?.message || 'oops Something went wrong');
       }
     };
     fetchData();

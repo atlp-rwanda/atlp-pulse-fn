@@ -10,6 +10,28 @@ const GET_ROLE_QUERY = gql`
       id
       role
       email
+      cohort {
+      startDate
+      phase
+      name
+      endDate
+      program {
+        name
+        manager {
+          email
+          role
+          profile {
+            phoneNumber
+            name
+            lastName
+            firstName
+          }
+        }
+        organization {
+          name
+        }
+      }
+    }
     }
   }
 `;

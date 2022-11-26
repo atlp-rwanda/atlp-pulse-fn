@@ -45,6 +45,7 @@ function DashHeader() {
         const { data } = await getProfile();
         /* istanbul ignore next*/
         setProfileData(data);
+     
       } catch (error: any) {
         /* istanbul ignore next*/
         toast.error(error?.message || 'Something went wrong');
@@ -52,6 +53,7 @@ function DashHeader() {
     };
     /* istanbul ignore next*/
     fetchData();
+    
   }, []);
 
   return (

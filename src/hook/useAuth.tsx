@@ -39,6 +39,7 @@ function UserProvider({ children, ...props }: Props) {
       firstName: data.user?.profile?.firstName,
       id: data.user?.profile?.id,
       profileImage: data.user?.profile?.avatar
+      
     }));
   };
   /* istanbul ignore next */

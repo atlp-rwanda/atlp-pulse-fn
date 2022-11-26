@@ -1,20 +1,25 @@
+import { MockedProvider } from '@apollo/client/testing';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import i18n from '../../i18n';
+import {
+  ApolloProvider,
+} from '@apollo/client';
 import ProfileTabs from '../ProfileTabs';
+import { client } from '../..';
 
 describe('<ProfileTabs/>', () => {
   it('Renders Profile Tabs', () => {
-    const { getByText } = render(
+  const elem = render(
       <MemoryRouter>
+      <MockedProvider mocks={[]}>
         <ProfileTabs data={{ name: 'Fabrice' }} />
-      </MemoryRouter>,
+        </MockedProvider>
+      </MemoryRouter>
+        
     );
 
-    expect(getByText('Change Password')).toBeInTheDocument();
-    expect(
-      screen.getAllByText('You in the organization')[0],
-    ).toBeInTheDocument();
-    expect(getByText('Biography')).toBeInTheDocument();
+  expect(elem).toMatchSnapshot();
   });
 });

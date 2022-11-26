@@ -1,0 +1,1006 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="flex flex-wrap lg:ml-60 lg:mr-8"
+      >
+        <div
+          class="lg:w-[40vw]"
+        >
+          <ul
+            class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
+            role="tablist"
+          >
+            <li
+              class="-mb-px mr-2 last:mr-0 flex-auto text-center"
+            >
+              <a
+                class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal bg-white dark:bg-dark-bg border-b-4 border-b-primary "
+                data-testid="tab-link"
+                data-toggle="tab"
+                href="#link1"
+                role="tablist"
+              >
+                About
+              </a>
+            </li>
+            <li
+              class="-mb-px mr-2 last:mr-0 flex-auto text-center"
+            >
+              <a
+                class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+                data-testid="tab-link"
+                data-toggle="tab"
+                href="#link1"
+                role="tablist"
+              >
+                Organizations
+              </a>
+            </li>
+            <li
+              class="-mb-px mr-2 last:mr-0 flex-auto text-center"
+            >
+              <a
+                class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+                data-testid="tab-link"
+                data-toggle="tab"
+                href="#link1"
+                role="tablist"
+              >
+                Account
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="relative flex flex-col min-w-0 break-words text-light-text dark:text-dark-text-fill  w-full rounded"
+        >
+          <div
+            class="py-2 flex-auto"
+          >
+            <div
+              class="tab-content tab-space"
+            >
+              <div
+                class="block"
+                id="link1"
+              >
+                <div
+                  class="grid md:grid-cols-5 gap-4 md:gap-6 "
+                >
+                  <div
+                    class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+                  >
+                    <h3
+                      class="text-2xl font-bold m-2  mb-4"
+                    >
+                      Fabrice
+                       
+                    </h3>
+                    <div
+                      class="py-4 flex  justify-center"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="w-6 mr-2 dark:text-dark-text-fill"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        />
+                        <path
+                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="flex"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="w-6 mr-2 dark:text-dark-text-fill"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="py-4 flex "
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="w-6 mr-2 dark:text-dark-text-fill"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                        />
+                      </svg>
+                      ,
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+                  >
+                    <h2
+                      class="text-xl font-bold m-2  mb-4"
+                    >
+                      Biography
+                      Biography
+                    </h2>
+                    <p>
+                      Add biography
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="grid m-1 p-2 -ml-2 -mr-2 relative"
+                >
+                  <div
+                    class="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+                  >
+                    <img
+                      alt="logo"
+                      class="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                      src="[object Object]"
+                    />
+                    <div
+                      class="flex flex-col justify-start items-start ml-36"
+                    >
+                      <h2
+                        class="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
+                      >
+                        Un availabe
+                      </h2>
+                      <h3
+                        class="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                      >
+                        https://andela.pulse.com
+                      </h3>
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  >
+                    <h3
+                      class="text-2xl font-bold m-2  mb-4"
+                    >
+                      You in the organization
+                    </h3>
+                    <div
+                      class="py-4 flex  justify-center"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Joined
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                    <div
+                      class="flex"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        role
+                        :
+                      </h4>
+                    </div>
+                    <div
+                      class="py-4 flex "
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Team
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  >
+                    <h3
+                      class="text-2xl font-bold m-2  mb-4"
+                    >
+                      Management
+                    </h3>
+                    <div
+                      class="py-4 flex  justify-center"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        program
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                    <div
+                      class="flex"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Stage(current)
+                        :
+                        Un availabe
+                      </h4>
+                    </div>
+                    <div
+                      class="py-4 flex "
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Manager
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="hidden"
+                id="link3"
+              >
+                <div
+                  class="grid m-1 p-2 -ml-2 -mr-2 relative"
+                >
+                  <div
+                    class="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+                  >
+                    <img
+                      alt="logo"
+                      class="w-12 h-12 md:w-16 md:h-16 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                      src="[object Object]"
+                    />
+                    <div
+                      class="flex flex-col justify-start items-start ml-36"
+                    >
+                      <h2
+                        class="font-bold text-dark-text-fill text-center text-lg md:text-xl"
+                      >
+                        Un availabe
+                      </h2>
+                      <h3
+                        class="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                      >
+                        https://andela.pusle.com
+                      </h3>
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  >
+                    <h3
+                      class="text-2xl font-bold m-2  mb-4"
+                    >
+                      You in the organization
+                    </h3>
+                    <div
+                      class="py-4 flex  justify-center"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Joined
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                    <div
+                      class="flex"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Role
+                        :
+                      </h4>
+                      Trainee
+                    </div>
+                    <div
+                      class="py-4 flex "
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Team
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  >
+                    <h3
+                      class="text-2xl font-bold m-2  mb-4"
+                    >
+                      Management
+                    </h3>
+                    <div
+                      class="py-4 flex  justify-center"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Program
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                    <div
+                      class="flex"
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Stage(current)
+                        :
+                        Un availabe
+                      </h4>
+                    </div>
+                    <div
+                      class="py-4 flex "
+                    >
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Manager
+                        :
+                      </h4>
+                      Un availabe
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="hidden"
+                id="link2"
+              >
+                <div
+                  class="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
+                >
+                  <div
+                    class="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
+                  >
+                    <div
+                      class="px-4"
+                    >
+                      <form
+                        class="mt-12 grid grid-cols-1 gap-4"
+                      >
+                        <div
+                          class="flex flex-col justify-start items-start"
+                        >
+                          <label
+                            class="font-semibold mb-2"
+                            for="current-password"
+                          >
+                            Current Password
+                          </label>
+                          <input
+                            class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                            id="current-password"
+                            name="current-password"
+                            placeholder="Enter your current password"
+                            type="passsword"
+                          />
+                          <div
+                            class=""
+                          >
+                            <small
+                              class="text-red-600"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="flex flex-col justify-start items-start"
+                        >
+                          <label
+                            class="font-semibold mb-2"
+                            for="new-password"
+                          >
+                            New Password
+                          </label>
+                          <input
+                            class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                            id="new-password"
+                            name="new-password"
+                            placeholder="Enter new password"
+                            type="password"
+                          />
+                          <div
+                            class=""
+                          >
+                            <small
+                              class="text-red-600"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="flex flex-col justify-start items-start"
+                        >
+                          <label
+                            class="font-semibold mb-2"
+                            for="confirm-password"
+                          >
+                            Confirm Password
+                          </label>
+                          <input
+                            class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                            id="confirm-password"
+                            name="confirm-password"
+                            placeholder="Re-enter the new password"
+                            type="password"
+                          />
+                          <div
+                            class=""
+                          >
+                            <small
+                              class="text-red-600"
+                            />
+                          </div>
+                        </div>
+                        <button
+                          class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                          data-testid="change_password"
+                          type="button"
+                        >
+                          Change Password
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="flex flex-wrap lg:ml-60 lg:mr-8"
+    >
+      <div
+        class="lg:w-[40vw]"
+      >
+        <ul
+          class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
+          role="tablist"
+        >
+          <li
+            class="-mb-px mr-2 last:mr-0 flex-auto text-center"
+          >
+            <a
+              class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal bg-white dark:bg-dark-bg border-b-4 border-b-primary "
+              data-testid="tab-link"
+              data-toggle="tab"
+              href="#link1"
+              role="tablist"
+            >
+              About
+            </a>
+          </li>
+          <li
+            class="-mb-px mr-2 last:mr-0 flex-auto text-center"
+          >
+            <a
+              class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+              data-testid="tab-link"
+              data-toggle="tab"
+              href="#link1"
+              role="tablist"
+            >
+              Organizations
+            </a>
+          </li>
+          <li
+            class="-mb-px mr-2 last:mr-0 flex-auto text-center"
+          >
+            <a
+              class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
+              data-testid="tab-link"
+              data-toggle="tab"
+              href="#link1"
+              role="tablist"
+            >
+              Account
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="relative flex flex-col min-w-0 break-words text-light-text dark:text-dark-text-fill  w-full rounded"
+      >
+        <div
+          class="py-2 flex-auto"
+        >
+          <div
+            class="tab-content tab-space"
+          >
+            <div
+              class="block"
+              id="link1"
+            >
+              <div
+                class="grid md:grid-cols-5 gap-4 md:gap-6 "
+              >
+                <div
+                  class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    class="text-2xl font-bold m-2  mb-4"
+                  >
+                    Fabrice
+                     
+                  </h3>
+                  <div
+                    class="py-4 flex  justify-center"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-6 mr-2 dark:text-dark-text-fill"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                      />
+                      <path
+                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="flex"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-6 mr-2 dark:text-dark-text-fill"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="py-4 flex "
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="w-6 mr-2 dark:text-dark-text-fill"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                      />
+                    </svg>
+                    ,
+                  </div>
+                </div>
+                <div
+                  class="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+                >
+                  <h2
+                    class="text-xl font-bold m-2  mb-4"
+                  >
+                    Biography
+                    Biography
+                  </h2>
+                  <p>
+                    Add biography
+                  </p>
+                </div>
+              </div>
+              <div
+                class="grid m-1 p-2 -ml-2 -mr-2 relative"
+              >
+                <div
+                  class="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+                >
+                  <img
+                    alt="logo"
+                    class="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                    src="[object Object]"
+                  />
+                  <div
+                    class="flex flex-col justify-start items-start ml-36"
+                  >
+                    <h2
+                      class="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
+                    >
+                      Un availabe
+                    </h2>
+                    <h3
+                      class="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                    >
+                      https://andela.pulse.com
+                    </h3>
+                  </div>
+                </div>
+                <div
+                  class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    class="text-2xl font-bold m-2  mb-4"
+                  >
+                    You in the organization
+                  </h3>
+                  <div
+                    class="py-4 flex  justify-center"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Joined
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                  <div
+                    class="flex"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      role
+                      :
+                    </h4>
+                  </div>
+                  <div
+                    class="py-4 flex "
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Team
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                </div>
+                <div
+                  class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    class="text-2xl font-bold m-2  mb-4"
+                  >
+                    Management
+                  </h3>
+                  <div
+                    class="py-4 flex  justify-center"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      program
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                  <div
+                    class="flex"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Stage(current)
+                      :
+                      Un availabe
+                    </h4>
+                  </div>
+                  <div
+                    class="py-4 flex "
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Manager
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="hidden"
+              id="link3"
+            >
+              <div
+                class="grid m-1 p-2 -ml-2 -mr-2 relative"
+              >
+                <div
+                  class="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+                >
+                  <img
+                    alt="logo"
+                    class="w-12 h-12 md:w-16 md:h-16 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                    src="[object Object]"
+                  />
+                  <div
+                    class="flex flex-col justify-start items-start ml-36"
+                  >
+                    <h2
+                      class="font-bold text-dark-text-fill text-center text-lg md:text-xl"
+                    >
+                      Un availabe
+                    </h2>
+                    <h3
+                      class="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                    >
+                      https://andela.pusle.com
+                    </h3>
+                  </div>
+                </div>
+                <div
+                  class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    class="text-2xl font-bold m-2  mb-4"
+                  >
+                    You in the organization
+                  </h3>
+                  <div
+                    class="py-4 flex  justify-center"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Joined
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                  <div
+                    class="flex"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Role
+                      :
+                    </h4>
+                    Trainee
+                  </div>
+                  <div
+                    class="py-4 flex "
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Team
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                </div>
+                <div
+                  class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                >
+                  <h3
+                    class="text-2xl font-bold m-2  mb-4"
+                  >
+                    Management
+                  </h3>
+                  <div
+                    class="py-4 flex  justify-center"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Program
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                  <div
+                    class="flex"
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Stage(current)
+                      :
+                      Un availabe
+                    </h4>
+                  </div>
+                  <div
+                    class="py-4 flex "
+                  >
+                    <h4
+                      class="font-bold text-base mr-4"
+                    >
+                      Manager
+                      :
+                    </h4>
+                    Un availabe
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="hidden"
+              id="link2"
+            >
+              <div
+                class="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
+              >
+                <div
+                  class="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
+                >
+                  <div
+                    class="px-4"
+                  >
+                    <form
+                      class="mt-12 grid grid-cols-1 gap-4"
+                    >
+                      <div
+                        class="flex flex-col justify-start items-start"
+                      >
+                        <label
+                          class="font-semibold mb-2"
+                          for="current-password"
+                        >
+                          Current Password
+                        </label>
+                        <input
+                          class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                          id="current-password"
+                          name="current-password"
+                          placeholder="Enter your current password"
+                          type="passsword"
+                        />
+                        <div
+                          class=""
+                        >
+                          <small
+                            class="text-red-600"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col justify-start items-start"
+                      >
+                        <label
+                          class="font-semibold mb-2"
+                          for="new-password"
+                        >
+                          New Password
+                        </label>
+                        <input
+                          class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                          id="new-password"
+                          name="new-password"
+                          placeholder="Enter new password"
+                          type="password"
+                        />
+                        <div
+                          class=""
+                        >
+                          <small
+                            class="text-red-600"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="flex flex-col justify-start items-start"
+                      >
+                        <label
+                          class="font-semibold mb-2"
+                          for="confirm-password"
+                        >
+                          Confirm Password
+                        </label>
+                        <input
+                          class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                          id="confirm-password"
+                          name="confirm-password"
+                          placeholder="Re-enter the new password"
+                          type="password"
+                        />
+                        <div
+                          class=""
+                        >
+                          <small
+                            class="text-red-600"
+                          />
+                        </div>
+                      </div>
+                      <button
+                        class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                        data-testid="change_password"
+                        type="button"
+                      >
+                        Change Password
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

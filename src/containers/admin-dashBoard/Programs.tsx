@@ -75,6 +75,7 @@ function ActionButtons({
       </div>
       <div
         data-testid="deleteIcon"
+         /* istanbul ignore next */
         onClick={() => {
          /* istanbul ignore next */
           const program = getData?.getAllPrograms[props.row.index];
@@ -142,7 +143,7 @@ function AdminPrograms() {
         }),
     },
   ];
-
+ /* istanbul ignore next */
   const programListData = getData
     ? getData.getAllPrograms.map(
         ({
@@ -160,12 +161,12 @@ function AdminPrograms() {
         }),
       )
     : [{}];
-
+ /* istanbul ignore next */
   const removeModel = () => {
     const newState = !createProgramModel;
     setCreateProgramModel(newState);
   };
-
+ /* istanbul ignore next */
   return (
     <>
       {/* =========================== Start:: CreateProgramModel =============================== */}
