@@ -11,84 +11,31 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
       className="lg:ml-44 w-[90%] pt-[4vh] lg:pt-[6vh]"
     >
       <div
-        className="grid grid-cols-2 lg:grid-cols-4"
+        className="flex items-center justify-center h-screen bg-light-bg dark:bg-dark-frame-bg md:-mt-16 md:-mb-44"
       >
         <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
+          className="dark:bg-dark-bg bg-gray-100 rounded-lg shadow-lg p-5 md:p-20 mx-2"
         >
-          <h4
-            className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
+          <div
+            className="text-center"
           >
-            All Organizations
-          </h4>
-          <h1
-            className="font-['sans] font-semibold text-4xl mt-2 dark:text-dark-text-fill"
-          >
-            24
-          </h1>
+            <h2
+              className="text-4xl tracking-tight leading-10 font-extrabold text-light-text dark:text-dark-text-fill sm:text-5xl sm:leading-none md:text-6xl"
+            >
+              Dashboard
+            </h2>
+            <h3
+              className="text-xl text-light-text dark:text-dark-text-fill md:text-3xl mt-10"
+            >
+              comingsoon
+            </h3>
+            <p
+              className="text-md md:text-xl mt-10 text-light-text dark:text-dark-text-fill"
+            >
+              Somethingnewiscoming
+            </p>
+          </div>
         </div>
-        <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
-        >
-          <h4
-            className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
-          >
-            All Admins
-          </h4>
-          <h1
-            className="font-['sans] font-semibold text-4xl mt-2 dark:text-dark-text-fill"
-          >
-            24
-          </h1>
-        </div>
-        <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
-        >
-          <h4
-            className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
-          >
-            Domains
-          </h4>
-          <h1
-            className="font-['sans] font-semibold text-4xl mt-2 dark:text-dark-text-fill"
-          >
-            24
-          </h1>
-        </div>
-        <div
-          className="border bg-white py-4 dark:bg-dark-bg md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg"
-        >
-          <h4
-            className="font-['sans'] font-medium text-base dark:text-dark-text-fill"
-          >
-            Income
-          </h4>
-          <h1
-            className="font-['sans] font-semibold text-4xl mt-2 dark:text-dark-text-fill"
-          >
-            $1000
-          </h1>
-        </div>
-      </div>
-      <div
-        className="w-[100%] h-[46vh] lg:h-[62vh] pb-20 lg:w-[90%] lg:ml-14 lg:mr-2 p-4 mt-8 bottom-0 bg-white dark:bg-dark-bg"
-      >
-        <h1
-          className="mb-2 text-lg dark:text-dark-text-fill"
-        >
-          Organizations
-        </h1>
-        <h2
-          className="text-xs mb-6 dark:text-dark-text-fill"
-        >
-          As of
-           22/07/2022, 12:00 PM
-        </h2>
-        <canvas
-          height={150}
-          role="img"
-          width={300}
-        />
       </div>
     </div>
   </div>
