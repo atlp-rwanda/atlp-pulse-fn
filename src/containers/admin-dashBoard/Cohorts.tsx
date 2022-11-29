@@ -331,7 +331,7 @@ function AdminCohort() {
 
       {/* =========================== End::  CreateCohortModel =============================== */}
 
-      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
+      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
         <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
           <div className="space-x-8 lg:ml-10">
             <Button

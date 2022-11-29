@@ -53,18 +53,27 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
         </h1>
       </a>
     </div>
-    <svg
-      aria-hidden="true"
-      className="w-6 cursor-pointer ml-auto dark:text-dark-text-fill"
-      fill="currentColor"
-      onClick={[Function]}
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      className="inline-flex relative items-center p-0 text-sm font-medium text-center text-black  ml-auto dark:bg-dark-bg rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300   dark:focus:ring-blue-800"
     >
-      <path
-        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
-      />
-    </svg>
+      <svg
+        aria-hidden="true"
+        className="w-6 cursor-pointer ml-auto  dark:text-dark-text-fill"
+        fill="currentColor"
+        onClick={[Function]}
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+        />
+      </svg>
+      <span
+        className="sr-only"
+      >
+        Notifications
+      </span>
+    </div>
     <div
       onClick={[Function]}
     >

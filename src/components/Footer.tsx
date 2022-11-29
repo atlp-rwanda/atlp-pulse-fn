@@ -37,7 +37,7 @@ function Footer({ styles }: any) {
             <div className="flex mb-2">
               <img className="mr-2 lg:mr-0" src={LogoFooter} alt="logo" />
               <h1
-                className="text-3xl font-bold text-primary dark:text-dark-text-fill"
+                className="text-3xl font-bold text-white dark:text-dark-text-fill"
                 data-testid="pulse"
               >
                 PULSE

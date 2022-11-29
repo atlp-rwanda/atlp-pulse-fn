@@ -68,7 +68,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           <select
             className="ml-auto bg-white border px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
             data-testid="themeChange"
-            defaultValue="dark"
+            defaultValue="light"
             onChange={[Function]}
           >
             <option

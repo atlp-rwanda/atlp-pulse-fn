@@ -123,8 +123,11 @@ const TraineeRatingDashboard = () => {
     setShowRemarks(false);
   };
   const closeCancel = () => {
+    /* istanbul ignore next */
     setIsOpen(false);
+    /* istanbul ignore next */
     setShowActions(false);
+    /* istanbul ignore next */
     setShowRemarks(false);
   }
   const openModal = () => {
@@ -157,7 +160,9 @@ const TraineeRatingDashboard = () => {
     e.preventDefault();
     /* istanbul ignore next */
     updateRatings();
+    /* istanbul ignore next */
     handleToggle();
+    /* istanbul ignore next */
     closeModal();
   };
   const handleRatingChange = (e: any) => {
@@ -344,45 +349,16 @@ const TraineeRatingDashboard = () => {
         toast.error(error?.message || 'Failed to load the data');
       },
     });
-    // getTraineesCohorts({
-    //   fetchPolicy: 'network-only',
-    //   /* istanbul ignore next */
-    //   onCompleted: (data) => {
-    //     /* istanbul ignore next */
-    //     setTrainees(data?.getCohortTrainees);
-    //     console.log('show trainees',data?.getCohortTrainees);
-        
-
-        
-    //   },
-    //   onError: /* istanbul ignore next */ 
-    //   (error) => {
-    //     /* istanbul ignore next */
-    //     toast.error(error?.message || 'Failed to load the data');
-    //   },
-    // });
-
-
-    RatingByCohort({
-      fetchPolicy: 'network-only',
-      onCompleted: (data) => {
-        /* istanbul ignore next */
-        setRatingsByCohort(data?.fetchRatingByCohort);
-        
-      },
-      onError: (error) => {
-      /* istanbul ignore next */
-        toast.error(error?.message || 'Failed to load the data');
-      },
-    });
  
     DefaultGrade({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        /* istanbul ignore next */
         setDefaultGrading(data?.getDefaultGrading[0]?.grade)
         
       },
     onError: (error) => {
+      /* istanbul ignore next */
         toast.error(error?.message || 'Failed to load the data');
       },
     })
@@ -411,6 +387,22 @@ const TraineeRatingDashboard = () => {
     (x: any) => x.defaultGrading,
   );
 
+  function getRatingByCohort() {
+    /* istanbul ignore next */
+    RatingByCohort({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        /* istanbul ignore next */
+        setRatingsByCohort(data?.fetchRatingByCohort);
+        
+      },
+      onError: (error) => {
+      /* istanbul ignore next */
+        toast.error(error?.message || 'Failed to load the data');
+      },
+    });
+  }
+
   return (
     <>
       <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg">
@@ -437,7 +429,6 @@ const TraineeRatingDashboard = () => {
                             onCompleted: (data) => {
                                 setTrainee(data?.getCohortTrainees)
                               /* istanbul ignore next */
-                              console.log('result',data);
                               
                             },
                             onError: /* istanbul ignore next */ 
@@ -448,6 +439,7 @@ const TraineeRatingDashboard = () => {
                               );
                             },
                           });
+                          getRatingByCohort()
                         }
                       }
                     >
@@ -595,10 +587,11 @@ const TraineeRatingDashboard = () => {
                                   <Combobox
                                     value={selectedUser}
                                     onChange={(e) => {
+                                      /* istanbul ignore next */
                                       setSelectedUser(
                                        e
                                       )
-                                      
+                                      /* istanbul ignore next */
                                       setRatingData({
                                         ...ratingData,
                                         userEmail: e.id,

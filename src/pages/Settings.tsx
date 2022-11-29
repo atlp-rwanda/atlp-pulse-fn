@@ -20,7 +20,7 @@ function Settings() {
     setTheme(value);
     localStorage.setItem('color-theme', colorTheme);
   };
-
+  const defaultTheme:any=localStorage.getItem('color-theme')?localStorage.getItem('color-theme'):"light"
   const userLang = window.navigator.language;
 
   const handleLanChange = (e: { target: { value: any } }) => {
@@ -69,7 +69,7 @@ function Settings() {
                 </p>
               </div>
               <select
-                defaultValue="dark"
+                defaultValue={defaultTheme}
                 data-testid="themeChange"
                 onChange={(e) => handleThemeChange(e)}
                 className="ml-auto bg-white border px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
