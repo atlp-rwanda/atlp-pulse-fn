@@ -51,6 +51,7 @@ function AdminLogin() {
           await client.resetStore();
            /* istanbul ignore next */
           toast.success(t(`Welcome`));
+<<<<<<< HEAD
           if (state) {
             navigate(`${state}`);
           } else {
@@ -60,13 +61,21 @@ function AdminLogin() {
           if (data.loginUser) {
             //navigate to ${state},in case you want to make it default (/dashboard),  
              /* istanbul ignore next */
+=======
+          if (data.loginUser) {
+            console.log(data.loginUser.user.role);
+            //navigate to ${state},in case you want to make it default (/dashboard),  
+>>>>>>> 4995763 (chore(fix):fixed the dashboard redirect&coming soon page. (#183))
             {data.loginUser.user.role === 'superAdmin'? 
             navigate(`/dashboard/organizations`):(data.loginUser.user.role === "admin")? 
             navigate(`/dashboard/trainees`):(data.loginUser.user.role === 'coordinator')? 
             navigate(`/dashboard/trainees`):(data.loginUser.user.role === 'manager')? 
             navigate(`/dashboard/coordinators`): navigate('/dashboard/performance') }
           } 
+<<<<<<< HEAD
            /* istanbul ignore next */
+=======
+>>>>>>> 4995763 (chore(fix):fixed the dashboard redirect&coming soon page. (#183))
           return;
         },
         onError: (err) => {
