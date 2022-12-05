@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
-import { Cohort, PartialProgram, PartialUser } from './Cohorts';
+import { Cohort, PartialProgram, PartialUser, PartialPhase } from './Cohorts';
 
 export const UpdateCohort = gql`
   mutation UpdateCohort(
@@ -15,7 +15,7 @@ export const UpdateCohort = gql`
     $coordinatorEmail: String!
     $programName: String!
     $name: String
-    $phase: String
+    $phaseName: String
     $startDate: DateTime
     $endDate: DateTime
   ) {
@@ -25,7 +25,7 @@ export const UpdateCohort = gql`
       name: $name
       coordinatorEmail: $coordinatorEmail
       programName: $programName
-      phase: $phase
+      phaseName: $phaseName
       startDate: $startDate
       endDate: $endDate
     ) {
@@ -45,6 +45,7 @@ export default function UpdateCohortModal({
     getAllCohorts: Cohort[];
     getAllUsers: PartialUser[];
     getAllPrograms: PartialProgram[];
+    getAllPhases: PartialPhase[];
   };
   updateCohortModal: boolean;
   currentCohort: Cohort | undefined;
@@ -65,9 +66,12 @@ export default function UpdateCohortModal({
     onError(error) {
       toast.error(error.message.toString());
     },
+    /* istanbul ignore next */
     onCompleted() {
       refetch();
       removeModel();
+      toast.success("Cohort Updated successful");
+
     },
   });
 
@@ -75,6 +79,7 @@ export default function UpdateCohortModal({
     (user) => user.role === 'coordinator',
   );
   const programs = data?.getAllPrograms;
+  const phases = data?.getAllPhases;
   const orgToken = localStorage.getItem('orgToken');
 
   async function updateCohort(data: any) {
@@ -83,6 +88,8 @@ export default function UpdateCohortModal({
     newData.coordinatorEmail &&
       (newData.coordinatorEmail = newData.coordinatorEmail.value);
     newData.programName && (newData.programName = newData.programName.value);
+    newData.phaseName && (newData.phaseName = newData.phaseName.value);
+
 
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {
@@ -98,7 +105,10 @@ export default function UpdateCohortModal({
 
   useEffect(() => {
     setValue('name', currentCohort?.name);
-    setValue('phase', currentCohort?.phase);
+    setValue('phaseName', {
+      value: currentCohort?.phase.name,
+      label: currentCohort?.phase.name,
+    });
     setValue('coordinatorEmail', {
       value: currentCohort?.coordinator.email,
       label: currentCohort?.coordinator.email,
@@ -153,19 +163,24 @@ export default function UpdateCohortModal({
               )}
             </div>
             <div className="input my-5 h-9 ">
-              <div className="grouped-input flex items-center h-full w-full rounded-md">
-                <input
-                  type="text"
-                  className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                  placeholder={t('Phase')}
-                  {...register('phase')}
+              <ControlledSelect
+                  placeholder={t('Phase Name')}
+                  register={{
+                    control,
+                    name: 'phaseName',
+                    rules: { required: `${t('The Phase Name is required')}` },
+                  }}
+                /* istanbul ignore next */
+                  options={phases?.map(({ name }) => ({
+                    value: name,
+                    label: name,
+                  }))}
                 />
-              </div>
-              {errors?.phase && (
-                <p className="font-thin text-[12px] text-red-300">
-                  {errors?.phase?.message?.toString()}
-                </p>
-              )}
+                {errors?.phaseName && (
+                  <p className="font-thin text-[12px] text-red-300">
+                    {errors?.phaseName?.message?.toString()}
+                  </p>
+                )}
             </div>
             <div className="input my-5 h-9 ">
               <div className="grouped-input flex items-center h-full w-full rounded-md">

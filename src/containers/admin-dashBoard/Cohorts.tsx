@@ -14,7 +14,9 @@ import CohortTraineeModal from './CohortTraineeModal';
 export interface Cohort {
   id: string;
   name: string;
-  phase: string;
+  phase: {
+    name: string;
+  };
   coordinator: {
     email: string;
   };
@@ -33,13 +35,19 @@ export interface PartialProgram {
   id: string;
   name: string;
 }
+export interface PartialPhase {
+  id: string;
+  name: string;
+}
 
 export const getAllCohorts = gql`
-  query GetAllCohorts($orgToken: String) {
+  query GetAllCohorts($orgToken: String!) {
     getAllCohorts(orgToken: $orgToken) {
       id
       name
-      phase
+      phase{
+        name
+      }
       coordinator {
         email
       }
@@ -55,6 +63,10 @@ export const getAllCohorts = gql`
       role
     }
     getAllPrograms(orgToken: $orgToken) {
+      id
+      name
+    }
+    getAllPhases(orgToken: $orgToken) {
       id
       name
     }
@@ -134,6 +146,7 @@ function AdminCohort() {
   }: {
     data?: {
       getAllCohorts: Cohort[];
+      getAllPhases: PartialPhase[];
       getAllUsers: PartialUser[];
       getAllPrograms: PartialProgram[];
     };
@@ -189,14 +202,14 @@ function AdminCohort() {
   const cohortData = getData?.getAllCohorts.map(
     ({
       name,
-      phase,
+      phase: { name: phaseName },
       coordinator: { email: coordinatorEmail },
       program: { name: programName },
       startDate,
       endDate,
     }) => ({
       name,
-      phase,
+      phase: phaseName,
       coordinator: coordinatorEmail,
       program: programName,
       startDate: formatDate(startDate),
@@ -270,3 +283,4 @@ function AdminCohort() {
 }
 
 export default AdminCohort;
+

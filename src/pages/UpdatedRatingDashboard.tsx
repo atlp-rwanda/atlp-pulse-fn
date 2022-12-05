@@ -135,10 +135,12 @@ const UpdatedRatingDashboard = () => {
       sprint: rows.sprint,
     },
     onError: (err) => {
+      /* istanbul ignore next */
       toast.error(err.message || 'something went wrong');
       removeApproveModel();
     },
     onCompleted: (data) => {
+      /* istanbul ignore next */
       toast.success('Successfully approved');
       removeApproveModel();
       handleToggle();

@@ -33,6 +33,7 @@ const GradingSystem = () => {
   const removeDeleteModel = () => {
     /* istanbul ignore next */
     const newState = !deleteGradingModal;
+    /* istanbul ignore next */
     setDeleteGradingModal(newState);
   };
 
