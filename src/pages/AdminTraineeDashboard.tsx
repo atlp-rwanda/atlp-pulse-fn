@@ -5,7 +5,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Paper, { PaperProps } from '@mui/material/Paper';
@@ -23,16 +22,15 @@ import {
   GET_USERS_QUERY,
   GET_TRAINEES_QUERY,
   GET_COHORTS_QUERY,
-  GET_TRAINEE_PROFILE,
-  ADD_MEMBER_TO_COHORT_MUTATION,
   REMOVE_MEMBER_FROM_COHORT_MUTATION,
   EDIT_MEMBER_MUTATION,
   INVITE_USER_MUTATION,
+  GET_TEAM_QUERY,
+  ADD_MEMBER_TO_TEAM,
 } from '../Mutations/manageStudentMutations';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
-import { height } from '@mui/system';
 const organizationToken = localStorage.getItem('orgToken');
 
 const AdminTraineeDashboard = () => {
@@ -47,20 +45,25 @@ const AdminTraineeDashboard = () => {
   const [traineeData, setTraineeData] = useState<any[]>([]);
   const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
+  const [cohortName, setCohortName] = useState('');
+  const [teams, setTeams] = useState<any[]>([]);
   const [email, setEmail] = useState<any[]>([]);
   const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
   const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
+  const [selectedTeamOption, setSelectedTeamOption] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
   const [deleteFromCohort, setDeleteFromCohort] = useState('');
   const [editEmail, setEditEmail] = useState('');
   const [editCohort, setEditCohort] = useState('');
+  const [editTeam, setEditTeam] = useState('');
   const [inviteEmail, setInviteEmail] = useState('');
   const [buttonLoading, setButtonLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
   const options: any = [];
+  const teamsOptions: any = [];
   const traineeOptions: any = [];
-  let traineeDat: any = [];
+  const teamOptions: any = [];
 
   function PaperComponent(props: PaperProps) {
     return (
@@ -144,6 +147,7 @@ const AdminTraineeDashboard = () => {
     { Header: t('name'), accessor: 'name' },
     { Header: t('email'), accessor: 'email' },
     { Header: t('rating'), accessor: 'rating' },
+    { Header: t('Team'), accessor: 'team' },
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
     {
@@ -168,6 +172,7 @@ const AdminTraineeDashboard = () => {
               removeEditModel();
               setEditEmail(row.original.email);
               setEditCohort(row.original.cohort);
+              setEditTeam(row.original.team);
             }}
           />
           <Icon
@@ -214,6 +219,23 @@ const AdminTraineeDashboard = () => {
       orgToken: organizationToken,
     },
   });
+  const [getTeamQuery] = useLazyQuery(GET_TEAM_QUERY, {
+    variables: {
+      orgToken: organizationToken,
+      cohort: cohortName,
+    },
+  });
+  function getTeam() {
+    getTeamQuery({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        setTeams(data.getAllTeamInCohort);
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    });
+  }
   /* istanbul ignore if */
 
   if (traineeData && traineeData.length > 0) {
@@ -222,14 +244,15 @@ const AdminTraineeDashboard = () => {
       datum[index].name = data.profile ? data.profile.name : 'undefined';
       datum[index].email = data.email;
       datum[index].rating = '2';
-      datum[index].cohort = data.cohort.name;
-      datum[index].program = data.cohort.program.name;
+      datum[index].team = data.team?.name;
+      datum[index].cohort = data.team?.cohort.name;
+      datum[index].program = data.team?.cohort.program.name;
     });
   }
 
-  const [addMemberToCohort] = useMutation(ADD_MEMBER_TO_COHORT_MUTATION, {
+  const [addMemberToTeam] = useMutation(ADD_MEMBER_TO_TEAM, {
     variables: {
-      cohortName: Object.values(selectedOption)[0],
+      teamName: Object.values(selectedTeamOption)[0],
       email: Object.values(email)[1],
       orgToken: organizationToken,
     },
@@ -237,7 +260,7 @@ const AdminTraineeDashboard = () => {
     onCompleted: (data) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.success(data.addMemberToCohort);
+        toast.success(data.addMemberToTeam);
         removeModel();
       }, 500);
     },
@@ -252,8 +275,8 @@ const AdminTraineeDashboard = () => {
 
   const [editMemberMutation] = useMutation(EDIT_MEMBER_MUTATION, {
     variables: {
-      removedFromcohortName: editCohort,
-      addedTocohortName: Object.values(selectedOption2)[0],
+      removedFromTeamName: editTeam,
+      addedToTeamName: Object.values(selectedTeamOption)[0],
       email: editEmail,
       orgToken: organizationToken,
     },
@@ -363,6 +386,20 @@ const AdminTraineeDashboard = () => {
       options[index] = {};
       options[index].value = cohort.name;
       options[index].label = cohort.name;
+    });
+  }
+  if (teams.length > 0) {
+    teams.map((team: any, index: any) => {
+      teamsOptions[index] = {};
+      teamsOptions[index].value = team.name;
+      teamsOptions[index].label = team.name;
+    });
+  }
+  if (teams.length > 0) {
+    teams.map((team: any, index: any) => {
+      teamOptions[index] = {};
+      teamOptions[index].value = team?.name;
+      teamOptions[index].label = team?.name;
     });
   }
 
@@ -498,7 +535,7 @@ const AdminTraineeDashboard = () => {
                   <p>
                     <i>
                       {traineeDetails && traineeDetails.profile
-                        ? traineeDetails.cohort.phase
+                        ? traineeDetails.cohort.phase.name
                         : 'Un availabe'}
                     </i>
                   </p>
@@ -665,10 +702,26 @@ const AdminTraineeDashboard = () => {
                     noRegister={{
                       onChange: (e) => {
                         setSelectedOption2(e);
+                        setCohortName(e.value);
+                        getTeam();
                       },
                     }}
-                    options={options.filter((option: any) => {
-                      return option.value !== editCohort;
+                    options={options}
+                  />
+                </div>
+              </div>
+              <div className="text-white input my-3 h-9 ">
+                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+                  <ControlledSelect
+                    placeholder={t('Select team')}
+                    defaultValue={selectedTeamOption}
+                    noRegister={{
+                      onChange: (e) => {
+                        setSelectedTeamOption(e);
+                      },
+                    }}
+                    options={teamsOptions.filter((option: any) => {
+                      return option.value !== editTeam;
                     })}
                   />
                 </div>
@@ -808,9 +861,26 @@ const AdminTraineeDashboard = () => {
                     noRegister={{
                       onChange: (e) => {
                         setSelectedOption(e);
+                        setCohortName(e.value);
+                        getTeam();
                       },
                     }}
                     options={options}
+                  />
+                </div>
+              </div>
+
+              <div className="text-white input my-3 h-9 ">
+                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+                  <ControlledSelect
+                    placeholder={t('Select Team')}
+                    defaultValue={selectedTeamOption}
+                    noRegister={{
+                      onChange: (e) => {
+                        setSelectedTeamOption(e);
+                      },
+                    }}
+                    options={teamOptions}
                   />
                 </div>
               </div>
@@ -832,7 +902,7 @@ const AdminTraineeDashboard = () => {
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     setButtonLoading(true);
-                    addMemberToCohort();
+                    addMemberToTeam();
                   }}
                   loading={buttonLoading}
                 >

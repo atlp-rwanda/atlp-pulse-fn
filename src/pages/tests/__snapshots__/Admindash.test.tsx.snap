@@ -1939,6 +1939,20 @@ Array [
                 }
                 title="Toggle SortBy"
               >
+                team
+              </th>
+              <th
+                className=" thead"
+                colSpan={1}
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
+              >
                 cohort
               </th>
               <th
@@ -1984,6 +1998,10 @@ Array [
                 className="data-cell"
                 role="cell"
               />
+              <td
+                className="data-cell"
+                role="cell"
+              />
             </tr>
           </tbody>
         </table>
@@ -1998,7 +2016,7 @@ Array [
                 className="w-full py-2"
               >
                 <td
-                  colSpan={5}
+                  colSpan={6}
                 >
                   <div
                     className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto"
@@ -2200,6 +2218,23 @@ Array [
           </div>
         </form>
       </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
+  >
+    <div
+      className="flex btn w-fit py-1 px-3 bg-primary font-bold rounded-full inline-block"
+    >
+      <div
+        className="loader mr-1"
+      />
+      <button
+        className="ml-1 text-white font-bold"
+        disabled={true}
+      >
+        Processing...
+      </button>
     </div>
   </div>,
   <div

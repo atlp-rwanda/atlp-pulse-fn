@@ -10,6 +10,7 @@ import CreateCohortModal from './CreateCohortModal';
 import DeleteCohortModal from './DeleteCohortModal';
 import UpdateCohortModal from './UpdateCohortModal';
 import CohortTraineeModal from './CohortTraineeModal';
+import CohortTeamsModel from './CohortTeamsModal';
 
 export interface Cohort {
   id: string;
@@ -23,6 +24,7 @@ export interface Cohort {
   program: {
     name: string;
   };
+  teams: string;
   startDate: string | Date;
   endDate: string | Date;
 }
@@ -45,7 +47,7 @@ export const getAllCohorts = gql`
     getAllCohorts(orgToken: $orgToken) {
       id
       name
-      phase{
+      phase {
         name
       }
       coordinator {
@@ -54,7 +56,8 @@ export const getAllCohorts = gql`
       program {
         name
       }
-      startDate
+      teams
+    startDate
       endDate
     }
     getAllUsers {
@@ -86,7 +89,9 @@ function ActionButtons({
       <div
         data-testid="traineeIcon"
         onClick={() => {
+          /* istanbul ignore next */
           setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+          /* istanbul ignore next */
           setCohortTrainneModal(true);
         }}
       >
@@ -119,7 +124,9 @@ function ActionButtons({
       <div
         data-testid="deleteIcon"
         onClick={() => {
+          /* istanbul ignore next */
           setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+          /* istanbul ignore next */
           setDeleteCohortModal(true);
         }}
       >
@@ -130,6 +137,27 @@ function ActionButtons({
           cursor="pointer"
           color="#148fb6"
         />
+      </div>
+    </div>
+  );
+}
+function TeamsButtons({
+  getData,
+  setCurrentCohort,
+  setCohortTeamsModel,
+  ...props
+}: any) {
+  return (
+    <div className="flex relative flex-row align-middle justify-center items-center">
+      <div
+        className="cursor-pointer"
+        onClick={() => {
+          /* istanbul ignore next */
+          setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+          setCohortTeamsModel(true);
+        }}
+      >
+        {getData?.getAllCohorts[props.row.index].teams}
       </div>
     </div>
   );
@@ -162,12 +190,13 @@ function AdminCohort() {
   const [createCohortModal, setCreateCohortModal] = useState(false);
   const [updateCohortModal, setUpdateCohortModal] = useState(false);
   const [cohortTrainneModal, setCohortTrainneModal] = useState(false);
+  const [cohortTeamsModel, setCohortTeamsModel] = useState(false);
   const [currentCohort, setCurrentCohort] = useState<Cohort | undefined>(
     undefined,
   );
   const [deleteCohortModal, setDeleteCohortModal] = useState(false);
   useDocumentTitle('Cohorts');
-
+  /* istanbul ignore next */
   const removeDeleteModel = () => {
     const newState = !deleteCohortModal;
     setDeleteCohortModal(newState);
@@ -181,6 +210,17 @@ function AdminCohort() {
   const cohortColumns = [
     { Header: t('name'), accessor: 'name' },
     { Header: t('phase'), accessor: 'phase' },
+    {
+      Header: t('Teams'),
+      accessor: '',
+      Cell: (props: any) =>
+        TeamsButtons({
+          getData,
+          setCurrentCohort,
+          setCohortTeamsModel,
+          ...props,
+        }),
+    },
     { Header: t('Coordinator'), accessor: 'coordinator' },
     { Header: t('program'), accessor: 'program' },
     { Header: t('starting date'), accessor: 'startDate' },
@@ -205,6 +245,7 @@ function AdminCohort() {
       phase: { name: phaseName },
       coordinator: { email: coordinatorEmail },
       program: { name: programName },
+      teams,
       startDate,
       endDate,
     }) => ({
@@ -212,6 +253,7 @@ function AdminCohort() {
       phase: phaseName,
       coordinator: coordinatorEmail,
       program: programName,
+      teams,
       startDate: formatDate(startDate),
       endDate: formatDate(endDate),
     }),
@@ -252,6 +294,15 @@ function AdminCohort() {
         refetch={getRefetch}
       />
 
+      <CohortTeamsModel
+        cohortTeamsModel={cohortTeamsModel}
+        currentCohort={currentCohort}
+        removeModel={() => {
+          setCohortTeamsModel(false);
+        }}
+        refetch={getRefetch}
+      />
+
       {/* =========================== End::  CreateCohortModel =============================== */}
 
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen">
@@ -283,4 +334,3 @@ function AdminCohort() {
 }
 
 export default AdminCohort;
-

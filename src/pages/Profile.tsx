@@ -29,7 +29,7 @@ export function CountryComponent({ country }: any) {
 }
 
 export default function Profile() {
-  const { setName ,setProfileImage} = useContext(UserContext);
+  const { setName, setProfileImage } = useContext(UserContext);
   useDocumentTitle('Profile');
   const [data, setData] = useState<any>();
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
