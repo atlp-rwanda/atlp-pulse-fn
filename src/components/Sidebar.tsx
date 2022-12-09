@@ -17,6 +17,7 @@ import {
   TemplateIcon,
   RefreshIcon,
   UserGroupIcon,
+  MoonIcon
 } from '@heroicons/react/solid';
 import {
   AcademicCapIcon,
@@ -82,6 +83,9 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </SideNavLink>
           <SideNavLink onClick={toggle} to="/dashboard/cohorts" name="Cohorts">
             <AcademicCapIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+          <SideNavLink onClick={toggle} to="/dashboard/phases" name="Phases">
+            <MoonIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}

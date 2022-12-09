@@ -76,6 +76,7 @@ function ActionButtons({
       <div
         data-testid="deleteIcon"
         onClick={() => {
+         /* istanbul ignore next */
           const program = getData?.getAllPrograms[props.row.index];
           setCurrentProgram(program);
           setDeleteProgramModal(true);

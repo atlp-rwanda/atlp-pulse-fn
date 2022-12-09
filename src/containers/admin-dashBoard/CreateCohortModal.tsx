@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
-import { Cohort, PartialProgram, PartialUser } from './Cohorts';
+import { Cohort, PartialProgram, PartialUser, PartialPhase } from './Cohorts';
 
 export const AddCohort = gql`
   mutation AddCohort(
     $name: String!
-    $phase: String!
+    $phaseName: String!
     $coordinatorEmail: String!
     $programName: String!
     $startDate: DateTime!
@@ -18,7 +18,7 @@ export const AddCohort = gql`
   ) {
     addCohort(
       name: $name
-      phase: $phase
+      phaseName: $phaseName
       coordinatorEmail: $coordinatorEmail
       programName: $programName
       startDate: $startDate
@@ -26,7 +26,9 @@ export const AddCohort = gql`
     ) {
       id
       name
-      phase
+      phase{
+        name
+      }
       coordinator {
         email
       }
@@ -49,6 +51,7 @@ export default function CreateCohortModal({
     getAllCohorts: Cohort[];
     getAllUsers: PartialUser[];
     getAllPrograms: PartialProgram[];
+    getAllPhases:PartialPhase[];
   };
   createCohortModel: boolean;
   removeModel: Function;
@@ -79,6 +82,7 @@ export default function CreateCohortModal({
     (user) => user.role === 'coordinator',
   );
   const programs = data?.getAllPrograms;
+  const phases = data?.getAllPhases;
   /* istanbul ignore next */
   async function addCohort(data: any) {
     const newData = { ...data };
@@ -86,6 +90,8 @@ export default function CreateCohortModal({
     newData.coordinatorEmail &&
       (newData.coordinatorEmail = newData.coordinatorEmail.value);
     newData.programName && (newData.programName = newData.programName.value);
+    newData.phaseName && (newData.phaseName = newData.phaseName.value);
+
 
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {
@@ -99,6 +105,10 @@ export default function CreateCohortModal({
         reset();
         setValue('coordinatorEmail', { value: undefined, label: undefined });
         setValue('programName', { value: undefined, label: undefined });
+        setValue('phaseName', { value: undefined, label: undefined });
+           
+        toast.success("Cohort Created successful");
+      
       },
     });
   }
@@ -136,19 +146,21 @@ export default function CreateCohortModal({
               )}
             </div>
             <div className="input my-5 h-9 ">
-              <div className="grouped-input flex items-center h-full w-full rounded-md">
-                <input
-                  type="text"
-                  className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                  placeholder={t('Phase')}
-                  {...register('phase', {
-                    required: `${t('The Phase is required')}`,
-                  })}
-                />
-              </div>
-              {errors?.phase && (
+              <ControlledSelect
+                placeholder={t('Phase Name')}
+                register={{
+                  control,
+                  name: 'phaseName',
+                  rules: { required: `${t('The Phase Name is required')}` },
+                }}
+                options={phases?.map(({ name }) => ({
+                  value: name,
+                  label: name,
+                }))}
+              />
+              {errors?.phaseName && (
                 <p className="font-thin text-[12px] text-red-300">
-                  {errors?.phase?.message?.toString()}
+                  {errors?.phaseName?.message?.toString()}
                 </p>
               )}
             </div>

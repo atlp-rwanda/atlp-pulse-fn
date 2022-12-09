@@ -7,7 +7,7 @@ import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';
@@ -48,15 +48,11 @@ function AdminLogin() {
           login(data.loginUser);
           await client.resetStore();
           toast.success(t(`Welcome`));
-          if (data.loginUser) {
-            console.log(data.loginUser.user.role);
-            //navigate to ${state},in case you want to make it default (/dashboard),  
-            {data.loginUser.user.role === 'superAdmin'? 
-            navigate(`/dashboard/organizations`):(data.loginUser.user.role === "admin")? 
-            navigate(`/dashboard/trainees`):(data.loginUser.user.role === 'coordinator')? 
-            navigate(`/dashboard/trainees`):(data.loginUser.user.role === 'manager')? 
-            navigate(`/dashboard/coordinators`): navigate('/dashboard/performance') }
-          } 
+          if (state) {
+            navigate(`${state}`);
+          } else {
+            navigate('/dashboard/');
+          }
           return;
         },
         onError: (err) => {

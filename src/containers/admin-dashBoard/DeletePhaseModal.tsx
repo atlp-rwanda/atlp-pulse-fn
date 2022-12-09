@@ -3,62 +3,65 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
-import { Program } from './Programs';
+import { Phase } from './Phases';
 
-export const DeleteProgram = gql`
-  mutation DeleteProgram($deleteProgramId: ID!, $orgToken: String) {
-    deleteProgram(id: $deleteProgramId, orgToken: $orgToken) {
+export const DeletePhase = gql`
+    mutation DeletePhase($deletePhaseId: ID!, $orgToken: String) {
+    deletePhase(id: $deletePhaseId, orgToken: $orgToken) {
       id
     }
   }
 `;
 
-export default function DeleteProgramModal({
-  deleteProgramModal,
-  currentProgram,
+
+
+export default function DeletePhaseModal({
+  deletePhaseModal,
+  currentPhase,
   removeModel,
   refetch,
 }: {
-  deleteProgramModal: boolean;
-  currentProgram: Program | undefined;
+  deletePhaseModal: boolean;
+  currentPhase: Phase | undefined;
   removeModel: Function;
   refetch: Function;
 }) {
   const { t } = useTranslation();
-  const [deleteProgramMutation, { loading }] = useMutation(DeleteProgram, {
+  const [deletePhaseMutation, { loading }] = useMutation(DeletePhase, {
     onError(error) {
       /* istanbul ignore next */
+      removeModel();
       toast.error(error.message.toString());
     },
     onCompleted() {
       /* istanbul ignore next */
       refetch();
       removeModel();
-      toast.success("Program deleted");
-
+      toast.success("Phase deleted successfully");
     },
   });
   const orgToken = localStorage.getItem('orgToken');
 
-  async function deleteProgram() {
+  async function deletePhase() {
     const data: any = {};
 
-    data.deleteProgramId = currentProgram?.id;
+    data.deletePhaseId = currentPhase?.id;
     orgToken && (data.orgToken = orgToken);
 
-    await deleteProgramMutation({ variables: data });
+    await deletePhaseMutation({ variables: data });
+      
   }
 
   return (
     <div
       className={`h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 ${
-        deleteProgramModal === true ? 'block' : 'hidden'
+        deletePhaseModal === true ? 'block' : 'hidden'
       }`}
     >
       <div className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
         <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
           <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
-            {t('Delete Program')}
+            {t('Delete Phase')}
           </h3>
           <hr className=" bg-primary border-b my-3 w-full" />
         </div>
@@ -66,7 +69,7 @@ export default function DeleteProgramModal({
           <form className=" py-3 px-8">
             <div>
               <h2 className="text-base dark:text-white text-center m-4">
-                {t('reallyRemoveProgram')}
+                {t('do you really want to remove this Phase?')}
               </h2>
             </div>
             <div className="w-full flex justify-between">
@@ -85,7 +88,7 @@ export default function DeleteProgramModal({
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="confirmDeleteBtn"
                 onClick={() => {
-                  deleteProgram();
+                  deletePhase();
                 }}
               >
                 {t('Delete')}
