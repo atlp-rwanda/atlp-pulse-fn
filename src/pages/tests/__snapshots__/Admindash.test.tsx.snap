@@ -1078,7 +1078,7 @@ Array [
                     className="my-react-select__placeholder css-14el2xx-placeholder"
                     id="react-select-2-placeholder"
                   >
-                    Phase Name
+                    Select Phase Name
                   </div>
                   <div
                     className="my-react-select__input-container css-6j8wv5-Input"
@@ -1286,7 +1286,7 @@ Array [
                     className="my-react-select__placeholder css-14el2xx-placeholder"
                     id="react-select-4-placeholder"
                   >
-                    Program Name
+                    Select Program Name
                   </div>
                   <div
                     className="my-react-select__input-container css-6j8wv5-Input"
