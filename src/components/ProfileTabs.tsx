@@ -219,7 +219,7 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                         : 'Un availabe'}
                       </h2>
                       <h3 className="font-bold text-dark-text-fill text-center text-sm md:text-lg ">
-                        https://andela.pulse.com
+                        https://andela.pulse.com/
                       </h3>
                     </div>
                   </div>
