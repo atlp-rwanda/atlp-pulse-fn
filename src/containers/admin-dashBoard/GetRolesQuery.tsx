@@ -12,7 +12,6 @@ const GET_ROLE_QUERY = gql`
       email
       cohort {
       startDate
-      phase
       name
       endDate
       program {

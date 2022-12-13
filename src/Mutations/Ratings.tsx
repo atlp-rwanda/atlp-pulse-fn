@@ -193,6 +193,47 @@ export const GET_USERS = gql`
   }
 `;
 
+
+export const GET_ALL_TRAINEES = gql`
+  query GetAllUsers {
+  getAllUsers {
+   email
+    organizations
+    role
+    cohort {
+      endDate
+      startDate
+      phase{
+        name
+      }
+      program {
+        name
+        organization {
+          name
+        }
+        manager {
+          email
+          role
+          team {
+            name
+          }
+          profile {
+            phoneNumber
+            name
+            lastName
+            firstName
+          }
+        }
+      }
+      teams
+    }
+    team {
+      name
+    }
+  }
+}
+`;
+
 export const GET_COORDINATOR_COHORTS_QUERY = gql`
   query GetCoordinatorCohorts($orgToken: String) {
     getCoordinatorCohorts(orgToken: $orgToken) {

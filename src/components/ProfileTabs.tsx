@@ -13,7 +13,7 @@ import { CountryComponent } from '../pages/Profile';
 import { toast } from 'react-toastify';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
-import GET_ROLE_QUERY from "../containers/admin-dashBoard/GetRolesQuery"
+import {GET_ALL_TRAINEES} from "../Mutations/Ratings"
 
 import { useLazyQuery } from '@apollo/client';
 import {useEffect} from 'react';
@@ -98,10 +98,10 @@ export default function ProfileTabs({ data }: any) {
   const tabs: Array<string> = ['About', 'Organizations', 'Account'];
   const { user, setName } = useContext(UserContext);
   const [traineeData, setTraineeData] = useState<any>([]);
-  const [singleUser, setSingleUser]=useState<any>({});
+  const [singleUser, setSingleUser]=useState<any>([]);
  
  /* istanbul ignore next */
-  const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {});
+  const [fetchData2] = useLazyQuery(GET_ALL_TRAINEES, {});
 
 
  
@@ -125,7 +125,7 @@ export default function ProfileTabs({ data }: any) {
  useEffect(() => {
 let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
   setSingleUser(singleTrainne[0]) //returns an object with single trainnee data that can be accessed singleUser.email
-  
+  console.log(singleTrainne)
 
  },[traineeData])
   
@@ -243,8 +243,8 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                     <div className="py-4 flex ">
                       <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
                        {singleUser && singleUser.cohort
-                        ? singleUser.cohort.program.team
-                        : 'Un availabe'}
+                        ? singleUser.team.name
+                        : 'Un availabe'} 
                     </div>
                   </div>
                   <div className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
@@ -263,7 +263,7 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                       <h4 className="font-bold text-base mr-4">
                         {t('Stage(current)')}:  
                       {singleUser && singleUser.cohort
-                        ? singleUser.cohort.phase
+                        ? singleUser.cohort.phase.name
                         : 'Un availabe'}
                       </h4>
                     </div>
@@ -344,7 +344,7 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                       <h4 className="font-bold text-base mr-4">
                         {t('Stage(current)')}: 
                           {singleUser && singleUser.cohort
-                        ? singleUser.cohort.phase
+                        ? singleUser.cohort.phase.name
                         : 'Un availabe'}
                       </h4>
                     </div>
