@@ -273,5 +273,16 @@
   "Check your email to proceed!": "Check your email to proceed!",
   "You have Successfully reset your password!": "You have Successfully reset your password!",
   "Reset your password": "Reset your password",
-  "Enter your email address": "Enter your email address"
+  "Enter your email address": "Enter your email address",
+  "Teams list": "Teams list",
+  "Team": "Team",
+  "Add A Team": "Add A Team",
+  "Choose a Cohort": "Choose a Cohort",
+  "Team Name": "Team Name",
+  "Team deleted successfully": "Team deleted successfully",
+  "Delete Team": "Delete Team",
+  "Delete Team Permanently": "Delete Team Permanently",
+  "Update Team": "Update Team",
+  "The Team name is required": "The Team name is required",
+  "Team updated successfully": "Team updated successfully"
 }

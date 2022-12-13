@@ -347,5 +347,15 @@
   "You have Successfully reset your password!": "Ijambobanga ryahindutse!",
   "Reset your password": "Hindura ijambobanga",
   "Enter your email address": "Shyiramo imeri yawe",
-  "You have not been using the website for a while": "Umaze igihe utari gukoresha urubuga"
+  "You have not been using the website for a while": "Umaze igihe utari gukoresha urubuga",
+  "Teams list": "urutonde rw'amakipe",
+  "Add A Team": "Ongeramo Ikipe",
+  "Choose a Cohort": "Hitamo Itsinda",
+  "Team Name": "Izina ry'Ikipe",
+  "Team deleted successfully": "Ikipe yasibwe!",
+  "Delete Team": "Siba iyi kipe",
+  "Delete Team Permanently": "Emeza ko ushaka gusiba iyi kipe",
+  "Update Team": "Vugurura ikipe",
+  "The Team name is required": "Uzaza izina ry'ikipe",
+  "Team updated successfully": "Ikipe yavuguruwe!"
 }

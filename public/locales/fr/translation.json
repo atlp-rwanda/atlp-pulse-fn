@@ -392,5 +392,14 @@
   "You have Successfully reset your password!": "Vous avez réinitialisé votre mot de passe avec succès!",
   "Reset your password": "Réinitialisez votre mot de passe",
   "Enter your email address": "Entrez votre adresse email",
-  "You have not been using the website for a while": "Vous n'utilisez pas le site Web depuis un certain temps"
+  "You have not been using the website for a while": "Vous n'utilisez pas le site Web depuis un certain temps",
+  "teamTitle": "liste des équipes",
+  "Add A Team": "Ajouter une équipe",
+  "Choose a Cohort": "Choisissez une cohorte",
+  "Team Name": "Nom de l'équipe",
+  "  Delete Team Permanently": "Supprimer définitivement l'équipe",
+  "Team deleted successfully": "Équipe supprimée avec succès",
+  "Delete Team": "Supprimer l'équipe",
+  "Update Team": "Équipe de mise à jour",
+  "Team updated successfully": "L'équipe a été mise à jour avec succès"
 }
