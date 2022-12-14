@@ -8,7 +8,7 @@ Pulse is a platform designed to handle ratings for the companies in the **Ed-tec
 
 ## Hosted version
 
-- [Staging Application on Railway](https://metron-devpulse.vercel.app/)
+- [Staging Application on Vercel](https://metron-devpulse.vercel.app/)
 
 ## How to run
 
