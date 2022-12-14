@@ -8,7 +8,7 @@ Pulse is a platform designed to handle ratings for the companies in the **Ed-tec
 
 ## Hosted version
 
-- [Staging Application on Heroku](https://metron-devpulse.vercel.app/)
+- [Staging Application on Railway](https://metron-devpulse.vercel.app/)
 
 ## How to run
 
@@ -31,7 +31,7 @@ open http://localhost:3000
 
 - `npm run lint` is used to format and check for linting errors files
 - `npm run coverage` is used to run tests and generate coverage reports
-- `npm run build` is used to build the production ready version of the projects. Used during deployment
+- `npm run build` is used to build a minified production-ready version of the project.
 
 ## Technologies
 
