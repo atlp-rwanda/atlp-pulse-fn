@@ -15,6 +15,7 @@ export const AddCohort = gql`
     $programName: String!
     $startDate: DateTime!
     $endDate: DateTime
+    $orgToken: String!
   ) {
     addCohort(
       name: $name
@@ -23,6 +24,7 @@ export const AddCohort = gql`
       programName: $programName
       startDate: $startDate
       endDate: $endDate
+      orgToken: $orgToken
     ) {
       id
       name
@@ -100,7 +102,7 @@ export default function CreateCohortModal({
     });
 
     await addCohortMutation({
-      variables: newData,
+      variables: { orgToken: localStorage.getItem('orgToken'), ...newData },
       onCompleted() {
         reset();
         setValue('coordinatorEmail', { value: undefined, label: undefined });

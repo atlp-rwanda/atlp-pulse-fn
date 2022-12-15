@@ -15,13 +15,13 @@ query Query($orgToken: String) {
 `;
 export default GET_TEAMS
 
-export const ADD_TEAMS = gql`
-mutation Mutation($name: String!, $cohortName: String!) {
-    addTeam(name: $name, cohortName: $cohortName) {
-      cohort {
-        name
-      }
+export const ADD_TEAMS = gql`mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!) {
+  addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken) {
+    name
+    cohort {
       name
     }
   }
+}
+
 `;
