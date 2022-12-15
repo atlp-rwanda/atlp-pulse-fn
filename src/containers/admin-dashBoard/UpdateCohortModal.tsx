@@ -70,8 +70,7 @@ export default function UpdateCohortModal({
     onCompleted() {
       refetch();
       removeModel();
-      toast.success("Cohort Updated successful");
-
+      toast.success('Cohort Updated successful');
     },
   });
 
@@ -89,7 +88,6 @@ export default function UpdateCohortModal({
       (newData.coordinatorEmail = newData.coordinatorEmail.value);
     newData.programName && (newData.programName = newData.programName.value);
     newData.phaseName && (newData.phaseName = newData.phaseName.value);
-
 
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {
@@ -110,8 +108,8 @@ export default function UpdateCohortModal({
       label: currentCohort?.phase.name,
     });
     setValue('coordinatorEmail', {
-      value: currentCohort?.coordinator.email,
-      label: currentCohort?.coordinator.email,
+      value: currentCohort?.coordinator?.email,
+      label: currentCohort?.coordinator?.email,
     });
     setValue('programName', {
       value: currentCohort?.program.name,
@@ -164,23 +162,23 @@ export default function UpdateCohortModal({
             </div>
             <div className="input my-5 h-9 ">
               <ControlledSelect
-                  placeholder={t('Phase Name')}
-                  register={{
-                    control,
-                    name: 'phaseName',
-                    rules: { required: `${t('The Phase Name is required')}` },
-                  }}
+                placeholder={t('Phase Name')}
+                register={{
+                  control,
+                  name: 'phaseName',
+                  rules: { required: `${t('The Phase Name is required')}` },
+                }}
                 /* istanbul ignore next */
-                  options={phases?.map(({ name }) => ({
-                    value: name,
-                    label: name,
-                  }))}
-                />
-                {errors?.phaseName && (
-                  <p className="font-thin text-[12px] text-red-300">
-                    {errors?.phaseName?.message?.toString()}
-                  </p>
-                )}
+                options={phases?.map(({ name }) => ({
+                  value: name,
+                  label: name,
+                }))}
+              />
+              {errors?.phaseName && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.phaseName?.message?.toString()}
+                </p>
+              )}
             </div>
             <div className="input my-5 h-9 ">
               <div className="grouped-input flex items-center h-full w-full rounded-md">

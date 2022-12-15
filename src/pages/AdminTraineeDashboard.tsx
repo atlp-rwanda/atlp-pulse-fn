@@ -88,7 +88,6 @@ const AdminTraineeDashboard = () => {
     setOpen(false);
   };
 
-
   /* istanbul ignore next */
   const removeTraineeMod = () => {
     let newState = !removeTraineeModel;
@@ -186,8 +185,8 @@ const AdminTraineeDashboard = () => {
             onClick={() => {
               removeTraineeMod();
               setDeleteEmail(row.original.email);
-              setDeleteFromCohort(row.original.cohort);
-              console.log(traineeData)
+              setDeleteFromCohort(row.original.team);
+              console.log(traineeData);
             }}
           />
 
@@ -303,7 +302,7 @@ const AdminTraineeDashboard = () => {
     REMOVE_MEMBER_FROM_COHORT_MUTATION,
     {
       variables: {
-        cohortName: deleteFromCohort,
+        teamName: deleteFromCohort,
         orgToken: organizationToken,
         email: deleteEmail,
       },
@@ -416,110 +415,202 @@ const AdminTraineeDashboard = () => {
           aria-labelledby="draggable-dialog-title"
           className="rounded-lg"
           fullWidth
-
         >
-
           <DialogContent className="dark:bg-dark-bg font-sans">
             <DialogContentText className=" dark:bg-dark-bg font-sans">
-
-              <div className="font-bold text-sm dark:text-white text-center  dark:bg-dark-bg font-sans" >
-                <div className='bg-[#4aa5be] h-[150px]'>
-                  <img className='absolute top-[80px] left-[40px] border-4 border-white font-sans' style={{ margin: '0 auto', borderRadius: '50%', marginBottom: '20px', width: '150px', height: '150px' }} src={traineeDetails &&
-                    traineeDetails.profile &&
-                    traineeDetails.profile.avatar
-                    ? traineeDetails.profile.avatar
-                    : Avatar} alt="Logo"/>
+              <div className="font-bold text-sm dark:text-white text-center  dark:bg-dark-bg font-sans">
+                <div className="bg-[#4aa5be] h-[150px]">
+                  <img
+                    className="absolute top-[80px] left-[40px] border-4 border-white font-sans"
+                    style={{
+                      margin: '0 auto',
+                      borderRadius: '50%',
+                      marginBottom: '20px',
+                      width: '150px',
+                      height: '150px',
+                    }}
+                    src={
+                      traineeDetails &&
+                      traineeDetails.profile &&
+                      traineeDetails.profile.avatar
+                        ? traineeDetails.profile.avatar
+                        : Avatar
+                    }
+                    alt="Logo"
+                  />
                 </div>
 
-                <h2 className="font-bold text-[18px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans" style={{ cursor: 'move', fontWeight: 'bold' }} id="draggable-dialog-title">
+                <h2
+                  className="font-bold text-[18px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans"
+                  style={{ cursor: 'move', fontWeight: 'bold' }}
+                  id="draggable-dialog-title"
+                >
                   {traineeDetails && traineeDetails.profile
                     ? traineeDetails.profile.name
                     : 'Un availabe'}
                 </h2>
 
-                <div  className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginTop: '30px', borderBottom: '0.5px solid #EAECEE' }}>
+                <div
+                  className="text-sm font-sans"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginTop: '30px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
                   {' '}
-                  <h3><b>EMAIL</b> </h3>
+                  <h3>
+                    <b>EMAIL</b>{' '}
+                  </h3>
                   <p>
-                    <i> {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.email
-                      : 'Un availabe'}</i>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.profile
+                        ? traineeDetails.email
+                        : 'Un availabe'}
+                    </i>
                   </p>
                 </div>
-              <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginTop: '30px', borderBottom: '0.5px solid #EAECEE' }}>
+                <div
+                  className="text-sm font-sans"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginTop: '30px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
                   {' '}
-                  <h3><b>START DATE</b></h3>
+                  <h3>
+                    <b>START DATE</b>
+                  </h3>
                   <p>
-                    {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.cohort.startDate.split("T")[0]
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.cohort.startDate.split('T')[0]
                       : 'Un availabe'}
                   </p>
                 </div>
-             <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                <div
+                  className="text-sm font-sans"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
                   {' '}
-                  <h3><b>PROGRAM</b> </h3>
+                  <h3>
+                    <b>PROGRAM</b>{' '}
+                  </h3>
                   <p>
-                    <i> {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.cohort.program.name
-                      : 'Un availabe'}</i>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.team
+                        ? traineeDetails.team.cohort.program.name
+                        : 'Un availabe'}
+                    </i>
                   </p>
                 </div>
 
-               
+                <div
+                  className="text-sm font-sans"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>PHASE</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {traineeDetails && traineeDetails.team
+                        ? traineeDetails.team.cohort.phase.name
+                        : 'Un availabe'}
+                    </i>
+                  </p>
+                </div>
 
-
-                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', borderBottom: '0.5px solid #EAECEE' }}>
+                <div
+                  className="text-sm font-sans"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
                   {' '}
-                  <h3><b>PHASE</b> </h3>
+                  <h3>
+                    <b>COHORT</b>{' '}
+                  </h3>
                   <p>
-                    <i>{traineeDetails && traineeDetails.profile
-                      ? traineeDetails.cohort.phase
-                      : 'Un availabe'}</i>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.team
+                        ? traineeDetails.team.cohort.name
+                        : 'Un availabe'}
+                    </i>
                   </p>
                 </div>
-              
-                <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginBottom: '20px', borderBottom: '0.5px solid #EAECEE' }}>
+                <div
+                  className="text-sm font-sans"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
                   {' '}
-                  <h3><b>COHORT</b> </h3>
+                  <h3>
+                    <b>MANAGER</b>{' '}
+                  </h3>
                   <p>
-                    <i> {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.cohort.name
-                      : 'Un availabe'}</i>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.team
+                        ? traineeDetails.team.cohort.program.manager.profile
+                            .name
+                        : 'Un availabe'}
+                    </i>
                   </p>
                 </div>
-            <div className="text-sm font-sans" style={{ display: 'flex', gap: '50px', justifyContent: 'space-between', paddingBlock: '10px', marginBottom: '20px', borderBottom: '0.5px solid #EAECEE' }}>
-                  {' '}
-                  <h3><b>MANAGER</b> </h3>
-                  <p>
-                    <i> {traineeDetails && traineeDetails.profile
-                      ? traineeDetails.cohort.program.manager.profile.name
-                      : 'Un availabe'}</i>
-                  </p>
-                </div>
-               <Button
-                data-testid="removeInviteModel"
-                variant="info"
-                size="sm"
-                style="w-[20%] md:w-1/4 text-sm font-sans"
-                onClick={() => handleClose()}
-              >
-                {t('Close')}
-              </Button>
+                <Button
+                  data-testid="removeInviteModel"
+                  variant="info"
+                  size="sm"
+                  style="w-[20%] md:w-1/4 text-sm font-sans"
+                  onClick={() => handleClose()}
+                >
+                  {t('Close')}
+                </Button>
               </div>
-             
-              
-        
             </DialogContentText>
-
           </DialogContent>
-         
         </Dialog>
       </div>
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          inviteTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -584,8 +675,9 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${editTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          editTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -674,8 +766,9 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${removeTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          removeTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -731,8 +824,9 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${registerTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          registerTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">

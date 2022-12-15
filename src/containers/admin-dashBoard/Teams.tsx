@@ -196,7 +196,9 @@ function AdminTeams() {
   const teamData = getData?.getAllTeams.map(({ name, cohort }) => ({
     name,
     cohortName: cohort?.name,
-    coordinator: cohort?.coordinator?.email,
+    coordinator: cohort?.coordinator?.email
+      ? cohort?.coordinator?.email
+      : 'Not Assigned',
     phase: cohort?.phase.name,
     programName: cohort?.program?.name,
   }));

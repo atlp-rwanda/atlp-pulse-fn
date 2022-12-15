@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client';
 
 const GET_ROLE_QUERY = gql`
-  query GetAllRoles {
+  query GetAllRoles($orgToken: String) {
     getAllRoles {
       id
       name
     }
-    getAllUsers {
+    getAllUsers(orgToken: $orgToken) {
       id
-      role
       email
+      role
     }
   }
 `;
