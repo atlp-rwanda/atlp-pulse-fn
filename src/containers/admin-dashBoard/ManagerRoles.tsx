@@ -105,8 +105,8 @@ const AdminSission = () => {
         setAddMemberModel(newState);
       }, 1000);
     },
+    
     onError: (err) => {
-      console.log('Error ', err);
     },
   });
 
@@ -122,7 +122,7 @@ const AdminSission = () => {
   const [handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
     variables: { updateUserRoleId: userId, name: selectedRole },
     onCompleted: (data) => {
-      /* istanbul ignore if */
+       /* istanbul ignore next */
       setToggle(!toggle);
       let newState = !deleteModel;
       setTimeout(() => {
@@ -141,6 +141,8 @@ const AdminSission = () => {
   useEffect(() => {
     fetchData2({
       fetchPolicy: 'network-only',
+
+        /* istanbul ignore next */
       onCompleted: (data) => {
         /* istanbul ignore next */
         setUsers(data?.getAllUsers);
@@ -155,6 +157,8 @@ const AdminSission = () => {
         /* istanbul ignore next */
         setallRoles(data?.getAllRoles);
       },
+
+        /* istanbul ignore next */
       onError: (error) => {
         /* istanbul ignore next */
         console.log(error, 'error');
@@ -168,6 +172,8 @@ const AdminSission = () => {
     {
       Header: 'Email',
       accessor: 'email',
+
+        /* istanbul ignore next */
       Cell: ({ row }: any) => (
         <div className="flex items-left">
           <span className="hidden  ml-2 md:inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100 dark:bg-dark-tertiary">
@@ -192,9 +198,12 @@ const AdminSission = () => {
     {
       Header: 'Action',
       accessor: '',
+      /* istanbul ignore next */
       Cell: ({ row }: any) => (
         <p
           className="text-red-500 whitespace-no-wrap cursor-pointer"
+
+        /* istanbul ignore next */
           onClick={() => {
             removeAssignModel(row.original.id);
           }}

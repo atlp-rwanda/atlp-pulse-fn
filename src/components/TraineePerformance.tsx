@@ -31,15 +31,21 @@ const TraineePerfomance = () => {
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
+      /* istanbul ignore next */
       onCompleted: (data) => {
+        /* istanbul ignore next */
         setRatings(data?.fetchRatingsTrainee);
+        /* istanbul ignore next */
         sessionStorage.removeItem('data');
       },
-      onError: (error) => {
+      onError: /* istanbul ignore next */ 
+      (error) => {
+        /* istanbul ignore next */
         toast.error(error?.message || 'Something went wrong');
       },
     });
   }, [toggle]);
+
 
   return (
     <>
@@ -53,14 +59,6 @@ const TraineePerfomance = () => {
                 </h2>
               </div>
               <div className="flex ml-[-25px] px-7 py-2  mt-4">
-                <select className="flex bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer">
-                  <option>{t('phases')}</option>
-                  <option>{t('Phase 1')}</option>
-                  <option>{t('Phase 2')}</option>
-                  <option>{t('Phase 3')}</option>
-                  <option>{t('Phase 4')}</option>
-                  <option>{t('Phase 5')}</option>
-                </select>
               </div>
             </div>
 
@@ -73,6 +71,10 @@ const TraineePerfomance = () => {
                       <tr>
                         <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Sprint')}
+                        </th>
+
+                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                          {t('Phase')}
                         </th>
                         <th className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
                           {t('Quantity')}
@@ -87,11 +89,14 @@ const TraineePerfomance = () => {
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Average')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider"></th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                          {('Actions')}
+                        </th>
                       </tr>
-                      {ratings
-                        ?.slice(firstContentIndex, lastContentIndex)
-                        .map((item: any) => (
+                      {ratings?.slice(firstContentIndex, lastContentIndex).map(
+                        /* istanbul ignore next */
+                        (item: any) => (
+                          /* istanbul ignore next */
                           <tr key={item.id}>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <div className="flex justify-center items-center">
@@ -101,6 +106,11 @@ const TraineePerfomance = () => {
                                   </p>
                                 </div>
                               </div>
+                            </td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
+                              <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                {item.cohort.phase.name}
+                              </p>
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
@@ -119,45 +129,54 @@ const TraineePerfomance = () => {
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                {Math.round(
-                                  (parseInt(item.quantity) +
-                                    parseInt(item.quality) +
-                                    parseInt(item.professional_Skills)) /
-                                    3,
-                                )}
+                                {item.average}
                               </p>
                             </td>
 
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <Link to="/dashboard/performance-details">
+                                
                                 <Button
                                   variant="primary"
                                   size="sm"
                                   style="px-4 py-0 text-sm"
-                                  onClick={() => {
-                                    setToggle(!toggle);
-                                    sessionStorage.setItem(
-                                      'data',
-                                      JSON.stringify({
-                                        user_sprint: item?.sprint,
-                                        quantity_remark: item?.quantityRemark,
-                                        quality_remark: item?.qualityRemark,
-                                        professional_remark:
-                                          item?.professionalRemark,
-                                        quality: item?.quality,
-                                        quantity: item?.quantity,
-                                        professional: item?.professional_Skills,
-                                        user_id: item?.user.id,
-                                      }),
-                                    );
-                                  }}
+                                  onClick={
+                                    
+                                    /* istanbul ignore next */
+                                    () => {
+                                      /* istanbul ignore next */
+                                      setToggle(!toggle);
+                                      sessionStorage.setItem(
+                                        'data',
+                                        
+                                        JSON.stringify({
+                                          user_sprint: item?.sprint,
+                                          quantity_remark: item?.quantityRemark,
+                                          quality_remark: item?.qualityRemark,
+                                          professional_remark:
+                                            item?.professionalRemark,
+                                          quality: item?.quality,
+                                          quantity: item?.quantity,
+                                          professional:
+                                            item?.professional_Skills,
+                                          user_id: item?.user.id,
+                                        }),
+                                      );
+                                    }
+                                  }
+                                  
                                 >
                                   {t('Details')}
+                                  
                                 </Button>
+                                
                               </Link>
+                              
                             </td>
+                            
                           </tr>
-                        ))}
+                        ),
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -184,18 +203,25 @@ const TraineePerfomance = () => {
               1
             </button>
             {/* @ts-ignore */}
-            {gaps.paginationGroup.map((el) => (
-              <button
-                onClick={() => setPage(el)}
-                data-testid="page"
-                key={el}
-                className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                  page === el ? 'active' : ''
-                }`}
-              >
-                {el}
-              </button>
-            ))}
+            {gaps.paginationGroup.map(
+              /* istanbul ignore next */ (el) => (
+                /* istanbul ignore next */
+                <button
+                  onClick={
+                    /* istanbul ignore next */
+                    () => /* istanbul ignore next */ 
+                    setPage(el)
+                  }
+                  data-testid="page"
+                  key={el}
+                  className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
+                    page === el ? 'active' : ''
+                  }`}
+                >
+                  {el}
+                </button>
+              ),
+            )}
             <button
               onClick={() => setPage(totalPages)}
               data-testid="page3"

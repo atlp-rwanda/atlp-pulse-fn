@@ -80,6 +80,8 @@
   "Help": "Aide",
   "RegisterOrg": "Enregistrez votre organisation",
   "OrgName": "nom de l'organisation",
+  "New Organization Signup": "Inscription d’une nouvelle organisation",
+
   "OrgDesc": "Description de l'organisation",
   "Terms": "termes et conditions",
   "started": "COMMENCER",
@@ -175,6 +177,8 @@
   "program": "Programme",
   "cancel": "Annuler",
   "save": "Enregistrer",
+  "Available gradings":"Disponible classement",
+  "make default":"faire défaut",
   "register": "Enregistrez",
   "Developers Info": "Informations pour les développeurs",
   "role": "Rôle",

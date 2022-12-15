@@ -63,8 +63,10 @@ export default function UpdateProgramModal({
     },
   });
   const orgToken = localStorage.getItem('orgToken');
-  const managers = data?.getAllUsers?.filter((user) => user.role === 'manager');
-
+  const managers = data?.getAllUsers?.filter(
+     /* istanbul ignore next */
+    (user) => user.role === 'manager');
+ /* istanbul ignore next */
   async function updateProgram(data: any) {
     const newData = { ...data };
     /* istanbul ignore next */
@@ -137,7 +139,10 @@ export default function UpdateProgramModal({
                       required: `${t('The Manager email is required')}`,
                     },
                   }}
-                  options={managers?.map(({ email }) => ({
+                  options={managers?.map(
+
+                 /* istanbul ignore next */
+                    ({ email }) => ({
                     value: email,
                     label: email,
                   }))}
@@ -172,7 +177,9 @@ export default function UpdateProgramModal({
                 size="sm"
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="remove"
-                onClick={() => {
+                onClick={
+                 /* istanbul ignore next */
+                  () => {
                   removeModel();
                   reset();
                 }}

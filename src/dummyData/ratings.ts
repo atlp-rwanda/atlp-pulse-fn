@@ -1,23 +1,23 @@
 export const phase = [
   {
     id: 1,
-    name: 'All Phases',
+    name: 'Select',
   },
   {
     id: 2,
-    name: 'Phase 1',
+    name: '1',
   },
   {
     id: 3,
-    name: 'Phase 2',
+    name: '2',
   },
   {
     id: 4,
-    name: 'Phase 3',
+    name: '3',
   },
   {
     id: 5,
-    name: 'Phase 4',
+    name: '4',
   },
 ];
 

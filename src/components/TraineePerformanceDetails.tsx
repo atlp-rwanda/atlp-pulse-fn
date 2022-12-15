@@ -49,9 +49,11 @@ const TraineePerfomanceDetails = () => {
 
   const [ratings, setRatings] = useState<any>([]);
   useEffect(() => {
-    const data: any = sessionStorage.getItem('data');
+    const data: any = sessionStorage.getItem('data');    
     const getData = JSON.parse(data);
+    
     setRatings(getData);
+    
   }, []);
 
   const closeModel = () => {
@@ -161,6 +163,23 @@ const TraineePerfomanceDetails = () => {
             </tr>
           </thead>
           <tbody className=" text-center ">
+            <tr className="text-black dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary ">
+              <td className="py-10 px-10 text-left">{t('Quality')}</td>
+              <td className="py-3 ">{ratings.quality}</td>
+              <td className="py-3  text-start text-sm">
+                {ratings?.quality_remark}
+              </td>
+              <td className="py-3 ">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  style="px-4 py-0 text-sm"
+                  onClick={openModalQuality}
+                >
+                  {t('Reply')}
+                </Button>
+              </td>
+            </tr>
             <tr className="text-light-text dark:text-dark-text-fill bg-light-bg dark:bg-dark-bg ">
               <td className="lg:py-10 md:py-0 px-10 text-left  ">
                 {t('Quantity')}
@@ -176,23 +195,6 @@ const TraineePerfomanceDetails = () => {
                   size="sm"
                   style="px-4 py-0 text-sm"
                   onClick={openModal}
-                >
-                  {t('Reply')}
-                </Button>
-              </td>
-            </tr>
-            <tr className="text-black dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary ">
-              <td className="py-10 px-10 text-left">{t('Quality')}</td>
-              <td className="py-3 ">{ratings.quality}</td>
-              <td className="py-3  text-start text-sm">
-                {ratings?.quality_remark}
-              </td>
-              <td className="py-3 ">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  style="px-4 py-0 text-sm"
-                  onClick={openModalQuality}
                 >
                   {t('Reply')}
                 </Button>
@@ -355,7 +357,7 @@ const TraineePerfomanceDetails = () => {
                       <div className="w-2/3 flex flex-col border border-gray-200 mb-4 float-left rounded-tr-lg rounded-bl-lg">
                         <div className="m-8">
                           <p className="float-left">
-                            {ratings?.quantity_remark}
+                            {ratings?.quality_remark}
                           </p>
                         </div>
                         <div className="ml-9 text-primary ">
@@ -366,11 +368,11 @@ const TraineePerfomanceDetails = () => {
                         <div className="m-4">
                           <div className=" ">
                             <input
-                              value={rows.bodyQuantity}
+                              value={rows.bodyQuality}
                               onChange={(e) =>
                                 setRows({
                                   ...rows,
-                                  bodyQuantity: e.target.value,
+                                  bodyQuality: e.target.value,
                                 })
                               }
                               className="w-full bg-inherit px-2 outline-0"

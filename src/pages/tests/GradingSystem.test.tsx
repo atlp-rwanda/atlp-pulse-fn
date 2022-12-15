@@ -29,21 +29,6 @@ describe('Register an Organization', () => {
         </ApolloProvider>
       </MemoryRouter>,
     );
-    const removeModel = getByTestId('removeModel');
-    fireEvent.click(removeModel);
-    expect(removeModelMck).toBeCalledTimes(0);
-  });
-  it('should close the model', () => {
-    const removeModelMck = jest.fn();
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <ApolloProvider>
-          <Grading />
-        </ApolloProvider>
-      </MemoryRouter>,
-    );
-    const removeModel = getByTestId('removeModel');
-    fireEvent.click(removeModel);
     expect(removeModelMck).toBeCalledTimes(0);
   });
 });

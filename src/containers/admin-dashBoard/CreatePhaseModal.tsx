@@ -52,7 +52,7 @@ export default function CreatePhaseModal({
     },
   });
 
-
+ /* istanbul ignore next */
   async function addPhase(data: any) {
     /* istanbul ignore next */
     const newData = { ...data };
@@ -64,7 +64,9 @@ export default function CreatePhaseModal({
       }
     });
     await addPhaseMutation({
+       /* istanbul ignore next */
       variables: { orgToken: localStorage.getItem('orgToken'),...newData },
+       /* istanbul ignore next */
       onCompleted() {
         reset();
          toast.success("Phase Created successful");
@@ -132,6 +134,8 @@ export default function CreatePhaseModal({
                 data-testid="remove"
                 onClick={() => {
                   removeModel();
+
+                /* istanbul ignore next */
                   reset();
                 }}
                 disabled={loading}

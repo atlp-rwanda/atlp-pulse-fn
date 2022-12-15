@@ -11,8 +11,11 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
 import { toast } from 'react-toastify';
 
+import Square from '../Skeletons/Square';
+
 const organizationToken = localStorage.getItem('orgToken');
 const UpdatedRatingDashboard = () => {
+  /* istanbul ignore next */
   useDocumentTitle('Updated Ratings');
   const { t } = useTranslation();
   const [toggle, setToggle] = useState(false);
@@ -137,12 +140,15 @@ const UpdatedRatingDashboard = () => {
     onError: (err) => {
       /* istanbul ignore next */
       toast.error(err.message || 'something went wrong');
+      /* istanbul ignore next */
       removeApproveModel();
     },
     onCompleted: (data) => {
       /* istanbul ignore next */
       toast.success('Successfully approved');
+      /* istanbul ignore next */
       removeApproveModel();
+      /* istanbul ignore next */
       handleToggle();
     },
   });
@@ -153,12 +159,18 @@ const UpdatedRatingDashboard = () => {
     },
     /* istanbul ignore next */
     onError: (err) => {
-      toast.error(err.message || 'something went wrong');
+      /* istanbul ignore next */
+      toast.error(
+        err.message || 'something went wrong',
+      ); /* istanbul ignore next */
       removeRejectModel();
     },
     /* istanbul ignore next */
-    onCompleted: (data) => {
+    onCompleted: /* istanbul ignore next */
+     (data) => {
+      /* istanbul ignore next */
       toast.success('Successfully rejected!');
+      /* istanbul ignore next */
       removeRejectModel();
       handleToggle();
     },
@@ -206,7 +218,11 @@ const UpdatedRatingDashboard = () => {
                   variant="info"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => removeApproveModel()}
+                  /* istanbul ignore next */
+                  onClick={() =>
+                    /* istanbul ignore next */
+                    removeApproveModel()
+                  }
                 >
                   {' '}
                   {t('Cancel')}{' '}

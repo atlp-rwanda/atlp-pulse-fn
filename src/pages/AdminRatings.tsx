@@ -2,6 +2,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import Square from '../Skeletons/Square';
 import Sidebar from '../components/Sidebar';
 import { FETCH_ALL_RATINGS } from '../Mutations/Ratings';
 import { phase, sprint } from '../dummyData/ratings';
@@ -236,7 +237,7 @@ const TraineeRatingDashboard = () => {
                     />
                   ) : (
                     <div className="text-center mt-7 text-lg uppercase">
-                      <p> {t('No updated ratings found')}</p>
+                      <Square></Square>
                     </div>
                   )}
                 </div>

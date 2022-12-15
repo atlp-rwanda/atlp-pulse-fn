@@ -4,6 +4,7 @@ const GRADING_SYSTEM_QUERY = gql`
   query {
     getRatingSystems {
       id
+      defaultGrading
       name
       grade
       description
