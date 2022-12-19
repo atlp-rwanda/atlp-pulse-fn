@@ -926,6 +926,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                 className="text-xl font-bold m-2  mb-4"
               >
                 Biography
+                Biography
               </h2>
               <p>
                 Add biography
@@ -948,13 +949,11 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               >
                 <h2
                   className="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
-                >
-                  Andela
-                </h2>
+                />
                 <h3
                   className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
                 >
-                  https://andela.pulse.com
+                  https://andela.pulse.com/
                 </h3>
               </div>
             </div>
@@ -975,7 +974,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Joined
                   :
                 </h4>
-                18/07/2022
+                Unavailabe
               </div>
               <div
                 className="flex"
@@ -983,7 +982,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                 <h4
                   className="font-bold text-base mr-4"
                 >
-                  role
+                  Role
                   :
                 </h4>
               </div>
@@ -996,7 +995,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Team
                   :
                 </h4>
-                Codebandits
+                Unavailabe
               </div>
             </div>
             <div
@@ -1016,7 +1015,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   program
                   :
                 </h4>
-                ATLP
+                Unavailabe
               </div>
               <div
                 className="flex"
@@ -1025,7 +1024,8 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   className="font-bold text-base mr-4"
                 >
                   Stage(current)
-                  : Core Concepts
+                  :
+                  Unavailabe
                 </h4>
               </div>
               <div
@@ -1037,7 +1037,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Manager
                   :
                 </h4>
-                Mukunzi Dodo
+                Unavailabe
               </div>
             </div>
           </div>
@@ -1063,7 +1063,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                 <h2
                   className="font-bold text-dark-text-fill text-center text-lg md:text-xl"
                 >
-                  Andela
+                  Unavailabe
                 </h2>
                 <h3
                   className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
@@ -1089,7 +1089,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Joined
                   :
                 </h4>
-                18/07/2022
+                Unavailabe
               </div>
               <div
                 className="flex"
@@ -1100,7 +1100,6 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Role
                   :
                 </h4>
-                Trainee
               </div>
               <div
                 className="py-4 flex "
@@ -1111,7 +1110,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Team
                   :
                 </h4>
-                Codebandits
+                Unavailabe
               </div>
             </div>
             <div
@@ -1131,7 +1130,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Program
                   :
                 </h4>
-                ATLP
+                Unavailabe
               </div>
               <div
                 className="flex"
@@ -1140,7 +1139,8 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   className="font-bold text-base mr-4"
                 >
                   Stage(current)
-                  : Core Concepts
+                  :
+                  Unavailabe
                 </h4>
               </div>
               <div
@@ -1152,7 +1152,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                   Manager
                   :
                 </h4>
-                Mukunzi Dodo
+                Unavailabe
               </div>
             </div>
           </div>

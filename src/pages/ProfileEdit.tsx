@@ -11,6 +11,7 @@ import CountrySelector from '../components/CountrySelector';
 import Input from '../components/Input';
 import ProfileCoverpage from '../components/ProfileCoverpage';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import { useEffect } from 'react';
 
 import Button from '../components/Buttons';
 import { COUNTRIES, SelectMenuOption } from '../constants/countries';
@@ -73,18 +74,18 @@ function EditProfile() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
+
+
+  
   const { profile }: any = location.state;
   // eslint-disable-next-line no-underscore-dangle
-  delete profile?.__typename;
-  delete profile?.avatar;
-  delete profile?.coverImage;
-  delete profile?.name;
 
   useDocumentTitle('Edit Profile');
   const {
     control,
     register,
     handleSubmit,
+
     formState: { errors },
   }: any = useForm({ mode: 'all', defaultValues: profile });
   const client = useApolloClient();
