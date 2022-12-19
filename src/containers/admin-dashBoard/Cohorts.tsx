@@ -57,10 +57,10 @@ export const getAllCohorts = gql`
         name
       }
       teams
-    startDate
+      startDate
       endDate
     }
-    getAllUsers {
+    getAllUsers(orgToken: $orgToken) {
       id
       email
       role
@@ -91,11 +91,12 @@ function ActionButtons({
         onClick={
           /* istanbul ignore next */
           () => {
-          /* istanbul ignore next */
-          setCurrentCohort(getData?.getAllCohorts[props.row.index]);
-          /* istanbul ignore next */
-          setCohortTrainneModal(true);
-        }}
+            /* istanbul ignore next */
+            setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+            /* istanbul ignore next */
+            setCohortTrainneModal(true);
+          }
+        }
       >
         <Icon
           icon="akar-icons:people-group"
@@ -128,11 +129,12 @@ function ActionButtons({
         onClick={
           /* istanbul ignore next */
           () => {
-          /* istanbul ignore next */
-          setCurrentCohort(getData?.getAllCohorts[props.row.index]);
-          /* istanbul ignore next */
-          setDeleteCohortModal(true);
-        }}
+            /* istanbul ignore next */
+            setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+            /* istanbul ignore next */
+            setDeleteCohortModal(true);
+          }
+        }
       >
         <Icon
           icon="mdi:close-circle-outline"
@@ -158,11 +160,12 @@ function TeamsButtons({
         onClick={
           /* istanbul ignore next */
           () => {
-          /* istanbul ignore next */
-          setCurrentCohort(getData?.getAllCohorts[props.row.index]);
-          /* istanbul ignore next */
-          setCohortTeamsModel(true);
-        }}
+            /* istanbul ignore next */
+            setCurrentCohort(getData?.getAllCohorts[props.row.index]);
+            /* istanbul ignore next */
+            setCohortTeamsModel(true);
+          }
+        }
       >
         {getData?.getAllCohorts[props.row.index].teams}
       </div>
@@ -204,17 +207,17 @@ function AdminCohort() {
   const [deleteCohortModal, setDeleteCohortModal] = useState(false);
   useDocumentTitle('Cohorts');
   /* istanbul ignore next */
-  const removeDeleteModel = 
-  /* istanbul ignore next */
-  () => {
-    const newState = !deleteCohortModal;
-    setDeleteCohortModal(newState);
-  };
+  const removeDeleteModel =
+    /* istanbul ignore next */
+    () => {
+      const newState = !deleteCohortModal;
+      setDeleteCohortModal(newState);
+    };
 
   const removeModel = () => {
-    const newState = 
-    /* istanbul ignore next */
-    !createCohortModal;
+    const newState =
+      /* istanbul ignore next */
+      !createCohortModal;
     setCreateCohortModal(newState);
   };
 
@@ -255,22 +258,22 @@ function AdminCohort() {
     ({
       name,
       phase: { name: phaseName },
-      coordinator: { email: coordinatorEmail },
+      coordinator,
       program: { name: programName },
       teams,
       startDate,
       endDate,
-    }) => (
+    }) =>
       /* istanbul ignore next */
-      {
-      name,
-      phase: phaseName,
-      coordinator: coordinatorEmail,
-      program: programName,
-      teams,
-      startDate: formatDate(startDate),
-      endDate: formatDate(endDate),
-    }),
+      ({
+        name,
+        phase: phaseName,
+        coordinator: coordinator ? coordinator.email : 'Not Assigned',
+        program: programName,
+        teams,
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      }),
   );
 
   return (
@@ -289,11 +292,10 @@ function AdminCohort() {
         refetch={getRefetch}
         removeModel={
           /* istanbul ignore next */
-          () => 
-          /* istanbul ignore next */
-          {
-          setUpdateCohortModal(false);
-        }}
+          () => /* istanbul ignore next */ {
+            setUpdateCohortModal(false);
+          }
+        }
       />
 
       <CohortTraineeModal
@@ -302,11 +304,10 @@ function AdminCohort() {
         refetch={getRefetch}
         removeModel={
           /* istanbul ignore next */
-          () =>
-          /* istanbul ignore next */
-          {
-          setCohortTrainneModal(false);
-        }}
+          () => /* istanbul ignore next */ {
+            setCohortTrainneModal(false);
+          }
+        }
       />
 
       <DeleteCohortModal
@@ -321,11 +322,10 @@ function AdminCohort() {
         currentCohort={currentCohort}
         removeModel={
           /* istanbul ignore next */
-          () => 
-          /* istanbul ignore next */
-          {
-          setCohortTeamsModel(false);
-        }}
+          () => /* istanbul ignore next */ {
+            setCohortTeamsModel(false);
+          }
+        }
         refetch={getRefetch}
       />
 

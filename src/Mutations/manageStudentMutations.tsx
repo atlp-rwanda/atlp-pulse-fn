@@ -110,12 +110,12 @@ export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
 
 export const REMOVE_MEMBER_FROM_COHORT_MUTATION = gql`
   mutation RemoveMemberFromCohort(
-    $cohortName: String!
+    $teamName: String!
     $orgToken: String!
     $email: String!
   ) {
     removeMemberFromCohort(
-      cohortName: $cohortName
+      teamName: $teamName
       orgToken: $orgToken
       email: $email
     )

@@ -2,23 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../../components/DataTable';
-import Pagination from '../../components/Pagination';
 import rolemanagement from '../../dummyData/rolemanagement.json';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import Button from './../../components/Buttons';
 import devs from '../../dummyData/rolemanagement.json';
-import USER_QUERY from '../admin-dashBoard/UserMutation';
 import CREATE_ROLE_MUTATION from '../admin-dashBoard/createRoleMutation';
 import GET_ROLE_QUERY from '../admin-dashBoard/GetRolesQuery';
 import ASSIGN_ROLE_MUTATION from '../admin-dashBoard/AssignRolesMutation';
-import {
-  useApolloClient,
-  useLazyQuery,
-  useMutation,
-  useQuery,
-} from '@apollo/client';
+import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
 import roles from '../../dummyData/roles.json';
 import Square from '../../Skeletons/Square';
+import { toast } from 'react-toastify';
 
 const AdminSission = () => {
   const { t } = useTranslation();
@@ -96,23 +90,22 @@ const AdminSission = () => {
 
   const [handleCreateRole] = useMutation(CREATE_ROLE_MUTATION, {
     variables: { name: roleName },
-    /* istanbul ignore if */
+    /* istanbul ignore next */
     onCompleted: (data) => {
-      /* istanbul ignore if */
+      /* istanbul ignore next */
       setToggle(!toggle);
       let newState = !addMemberModel;
       setTimeout(() => {
         setAddMemberModel(newState);
       }, 1000);
     },
-    
-    onError: (err) => {
-    },
+
+    onError: (err) => {},
   });
 
-  /* istanbul ignore if */
+  /* istanbul ignore next */
   const handleSelectRole = (e: any, name: any) => {
-    /* istanbul ignore if */
+    /* istanbul ignore next */
     e.preventDefault();
     setSelectedRole(name);
   };
@@ -120,29 +113,39 @@ const AdminSission = () => {
   const [toggle, setToggle] = useState(false);
 
   const [handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
-    variables: { updateUserRoleId: userId, name: selectedRole },
+    variables: {
+      updateUserRoleId: userId,
+      name: selectedRole,
+      orgToken: localStorage.getItem('orgToken'),
+    },
     onCompleted: (data) => {
-       /* istanbul ignore next */
+      /* istanbul ignore next */
+      toast.success('Role assigned successful');
+      /* istanbul ignore next */
       setToggle(!toggle);
       let newState = !deleteModel;
       setTimeout(() => {
         setDeleteModel(newState);
       }, 1000);
     },
-    /* istanbul ignore if */
+    /* istanbul ignore next */
     onError: (err) => {
-      /* istanbul ignore if */
+      /* istanbul ignore next */
       console.log('Error ', err);
     },
   });
 
-  const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {});
+  const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {
+    variables: {
+      orgToken: localStorage.getItem('orgToken'),
+    },
+  });
 
   useEffect(() => {
     fetchData2({
       fetchPolicy: 'network-only',
 
-        /* istanbul ignore next */
+      /* istanbul ignore next */
       onCompleted: (data) => {
         /* istanbul ignore next */
         setUsers(data?.getAllUsers);
@@ -158,7 +161,7 @@ const AdminSission = () => {
         setallRoles(data?.getAllRoles);
       },
 
-        /* istanbul ignore next */
+      /* istanbul ignore next */
       onError: (error) => {
         /* istanbul ignore next */
         console.log(error, 'error');
@@ -173,7 +176,7 @@ const AdminSission = () => {
       Header: 'Email',
       accessor: 'email',
 
-        /* istanbul ignore next */
+      /* istanbul ignore next */
       Cell: ({ row }: any) => (
         <div className="flex items-left">
           <span className="hidden  ml-2 md:inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100 dark:bg-dark-tertiary">
@@ -202,8 +205,7 @@ const AdminSission = () => {
       Cell: ({ row }: any) => (
         <p
           className="text-red-500 whitespace-no-wrap cursor-pointer"
-
-        /* istanbul ignore next */
+          /* istanbul ignore next */
           onClick={() => {
             removeAssignModel(row.original.id);
           }}
@@ -213,64 +215,22 @@ const AdminSission = () => {
       ),
     },
   ];
+  const allRoless = [
+    {
+      name: 'coordinator',
+    },
+    {
+      name: 'manager',
+    },
+    {
+      name: 'admin',
+    },
+  ];
   /* istanbul ignore next */
   return (
     <>
-      {users && allRoles ? (
+      {users && allRoless ? (
         <>
-          {/* =========================== Start::  CreateCohortModel =============================== */}
-          <div
-            className={`h-screen w-screen z-20 fixed bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center px-4 ${
-              addMemberModel === true ? 'block' : 'hidden'
-            }`}
-          >
-            <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
-              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                <h3 className="font-bold text-sm dark:text-white text-center w-11/12">
-                  {t('AddRole')}
-                </h3>
-                <hr className=" bg-primary border-b my-3 w-full" />
-              </div>
-              <div className="card-body">
-                <form className=" py-3 px-8">
-                  <div className="input my-3 h-9 ">
-                    <div className="grouped-input flex items-center h-full w-full rounded-md">
-                      <input
-                        type="text"
-                        name="name"
-                        className="dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
-                        placeholder={t('Role')}
-                        value={roleName}
-                        onChange={(e) => setRoleName(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full flex justify-between">
-                    <Button
-                      variant="info"
-                      size="sm"
-                      style="w-[30%] md:w-1/4 text-sm font-sans"
-                      onClick={() => removeModel()}
-                    >
-                      {' '}
-                      {t('Cancel')}{' '}
-                    </Button>
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      style="w-[30%] md:w-1/4 text-sm font-sans"
-                      onClick={() => handleCreateRole()}
-                    >
-                      {' '}
-                      {t('Save')}{' '}
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          {/* =========================== End::  CreateCohortModel =============================== */}
-
           {/* =========================== Start::  delete Session Model =============================== */}
           <div
             className={`min-h-screen w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 ${
@@ -290,7 +250,7 @@ const AdminSission = () => {
                   <div>
                     <div className="flex justify-center">
                       <div className="flex flex-wrap">
-                        {allRoles?.map((obj: any, index: any) => (
+                        {allRoless?.map((obj: any, index: any) => (
                           <div
                             key={index}
                             onClick={(e) => handleSelectRole(e, obj.name)}
@@ -333,20 +293,7 @@ const AdminSission = () => {
           </div>
           {/* =========================== End::  delete Session Model =============================== */}
           <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen pb-16">
-            <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
-              <div className="space-x-8 lg:ml-10">
-                <Button
-                  onClick={() => removeModel()}
-                  variant="primary"
-                  size="lg"
-                  style="px-2"
-                >
-                  {' '}
-                  {t('AddRole')}{' '}
-                </Button>
-              </div>
-            </div>
-            <div className="px-3 md:px-8">
+            <div className="px-3 pt-24 md:px-8">
               <DataTable
                 data={newUsers.length > 0 ? newUsers : users}
                 columns={columns}

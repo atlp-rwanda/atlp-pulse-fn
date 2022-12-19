@@ -39,7 +39,7 @@ export const getAllPrograms = gql`
       }
       description
     }
-    getAllUsers {
+    getAllUsers(orgToken: $orgToken) {
       id
       email
       role
@@ -75,9 +75,9 @@ function ActionButtons({
       </div>
       <div
         data-testid="deleteIcon"
-         /* istanbul ignore next */
+        /* istanbul ignore next */
         onClick={() => {
-         /* istanbul ignore next */
+          /* istanbul ignore next */
           const program = getData?.getAllPrograms[props.row.index];
           setCurrentProgram(program);
           setDeleteProgramModal(true);
@@ -143,25 +143,25 @@ function AdminPrograms() {
         }),
     },
   ];
- /* istanbul ignore next */
+  /* istanbul ignore next */
   const programListData = getData
     ? getData.getAllPrograms.map(
         ({
           name,
           cohorts,
-          manager: { email: managerEmail },
+          manager,
           organization: { name: orgName },
           description,
         }) => ({
           name,
           numberOfCohorts: cohorts.length,
-          manager: managerEmail,
+          manager: manager ? manager.email : 'Not Assigned',
           organization: orgName,
           description,
         }),
       )
     : [{}];
- /* istanbul ignore next */
+  /* istanbul ignore next */
   const removeModel = () => {
     const newState = !createProgramModel;
     setCreateProgramModel(newState);
@@ -179,7 +179,7 @@ function AdminPrograms() {
       <UpdateProgramModal
         data={getData}
         updateProgramModal={updateProgramModal}
-         /* istanbul ignore next */
+        /* istanbul ignore next */
         currentProgram={currentProgram}
         removeModel={() => {
           setUpdateProgramModal(false);
@@ -188,7 +188,7 @@ function AdminPrograms() {
       />
       <DeleteProgramModal
         deleteProgramModal={deleteProgramModal}
-         /* istanbul ignore next */
+        /* istanbul ignore next */
         currentProgram={currentProgram}
         removeModel={() => {
           setDeleteProgramModal(false);
