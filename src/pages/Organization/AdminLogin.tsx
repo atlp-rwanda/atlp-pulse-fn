@@ -45,21 +45,36 @@ function AdminLogin() {
         onCompleted: async (data) => {
           /* istanbul ignore next */
           toast.success(data.addMemberToCohort);
+           /* istanbul ignore next */
           login(data.loginUser);
+           /* istanbul ignore next */
           await client.resetStore();
+           /* istanbul ignore next */
           toast.success(t(`Welcome`));
           if (state) {
             navigate(`${state}`);
           } else {
             navigate('/dashboard/');
           }
+           /* istanbul ignore if */
+          if (data.loginUser) {
+            //navigate to ${state},in case you want to make it default (/dashboard),  
+             /* istanbul ignore next */
+            {data.loginUser.user.role === 'superAdmin'? 
+            navigate(`/dashboard/organizations`):(data.loginUser.user.role === "admin")? 
+            navigate(`/dashboard/trainees`):(data.loginUser.user.role === 'coordinator')? 
+            navigate(`/dashboard/trainees`):(data.loginUser.user.role === 'manager')? 
+            navigate(`/dashboard/coordinators`): navigate('/dashboard/performance') }
+          } 
+           /* istanbul ignore next */
           return;
         },
         onError: (err) => {
-          /* istanbul ignore if */
+          /* istanbul ignore next */
           if (err.message.toLowerCase() !== 'invalid credential') {
             toast.error(err.message);
           } else {
+             /* istanbul ignore next */
             setError('password', {
               type: 'custom',
               message: t('Invalid credentials'),

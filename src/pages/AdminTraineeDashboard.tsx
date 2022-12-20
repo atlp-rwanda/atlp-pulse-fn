@@ -166,7 +166,6 @@ const AdminTraineeDashboard = () => {
             height="25"
             cursor="pointer"
             color="#148fb6"
-            test-Id=""
             /* istanbul ignore next */
             onClick={() => {
               removeEditModel();
@@ -186,7 +185,6 @@ const AdminTraineeDashboard = () => {
               removeTraineeMod();
               setDeleteEmail(row.original.email);
               setDeleteFromCohort(row.original.team);
-              console.log(traineeData);
             }}
           />
 
@@ -246,8 +244,8 @@ const AdminTraineeDashboard = () => {
       datum[index].email = data.email;
       datum[index].rating = '2';
       datum[index].team = data.team?.name;
-      datum[index].cohort = data.team?.cohort.name;
-      datum[index].program = data.team?.cohort.program.name;
+      datum[index].cohort = data.team?.cohort?.name;
+      datum[index].program = data.team?.cohort?.program?.name;
     });
   }
 
@@ -636,7 +634,7 @@ const AdminTraineeDashboard = () => {
                     }}
                     type="email"
                     name="email"
-                    className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
                     placeholder={t('email')}
                   />
                 </div>

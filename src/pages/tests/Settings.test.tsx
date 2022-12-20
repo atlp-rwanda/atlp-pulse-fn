@@ -18,7 +18,7 @@ describe('Settings page tests', () => {
       </BrowserRouter>,
     );
     let theme = getByTestId('themeChange');
-    expect(theme).toHaveValue('dark');
+    expect(theme).toHaveValue('light');
 
     fireEvent.change(theme, { target: { value: 'dark' } });
     expect(theme).toHaveValue('dark');

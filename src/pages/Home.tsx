@@ -56,7 +56,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <Footer styles="dark:bg-opacity-75 bg-opacity-50" />
+      <Footer styles="dark:bg-opacity-75 bg-opacity-100" />
     </div>
   );
 }

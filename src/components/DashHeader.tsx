@@ -11,11 +11,13 @@ import Sidebar from './Sidebar';
 import Notification from './Notification';
 import ProfileDropdown from './ProfileDropdown';
 import {
-  useLazyQuery
+  useLazyQuery,
+  useSubscription,
 } from '@apollo/client';
 import { GET_PROFILE } from '../Mutations/User';
 import { UserContext } from '../hook/useAuth';
 import { toast } from 'react-toastify';
+import {getAllNotification , NotificationSubscription,deleteNotification,markAsRead} from './../Mutations/notificationMutation'
 
 
 function DashHeader() {
@@ -24,7 +26,11 @@ function DashHeader() {
   const [showProfileDropdown, setShowprofileDropdown] = useState(false);
   const [profileData, setProfileData] = useState<any>();
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
-  const { user } = useContext(UserContext);
+  const { user ,setNotificationData} = useContext(UserContext);
+  const [getNotification] = useLazyQuery(getAllNotification);
+
+  const notifications=user?.notifications;
+
 
   const [colorTheme] = useDarkMode();
   const [nav, setNav] = useState(false);
@@ -32,6 +38,21 @@ function DashHeader() {
 
   const handleClick = () => setNav(!nav);
   const handleShowNotification = () => setShowNotification(!showNotification);
+
+  const {data, loading} = useSubscription(
+    NotificationSubscription,
+    {
+
+      onData:(data)=>{
+      
+        setNotificationData([data.data.data.newRating,...notifications])
+      },
+      variables:{
+        receiver:user?.userId
+      }
+  },
+  );
+
   /* istanbul ignore next */
   const handleShowProfileDropdown = () =>
     setShowprofileDropdown(!showProfileDropdown);
@@ -51,6 +72,19 @@ function DashHeader() {
       }
     };
     /* istanbul ignore next*/
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await getNotification();
+       setNotificationData(data.getAllNotification);
+      } catch (error: any) {
+        console.log("error")
+      }
+
+    };
     fetchData();
   }, []);
 
@@ -100,10 +134,16 @@ function DashHeader() {
               </h1>
             </Link>
           </div>
-          <BellIcon
-            className="w-6 cursor-pointer ml-auto dark:text-dark-text-fill"
+
+          <div className="inline-flex relative items-center p-0 text-sm font-medium text-center text-black  ml-auto dark:bg-dark-bg rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300   dark:focus:ring-blue-800">
+            <BellIcon
+            className="w-6 cursor-pointer ml-auto  dark:text-dark-text-fill"
             onClick={handleShowNotification}
-          />
+            />
+            <span className="sr-only">Notifications</span>
+            {notifications?.filter((item:any)=>item.read=="false").length?<div className="inline-flex absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900">{notifications?.filter((item:any)=>item.read=="false").length}</div>:""}
+          </div>
+
           <div onClick={handleShowProfileDropdown}>
             <img
               className="w-8 cursor-pointer ml-4 mr-4 h-8 rounded-full"

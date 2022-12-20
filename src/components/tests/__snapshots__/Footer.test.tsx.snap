@@ -22,7 +22,7 @@ exports[`<Footer/> Renders Header 1`] = `
             src={Object {}}
           />
           <h1
-            className="text-3xl font-bold text-primary dark:text-dark-text-fill"
+            className="text-3xl font-bold text-white dark:text-dark-text-fill"
             data-testid="pulse"
           >
             PULSE

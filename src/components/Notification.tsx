@@ -1,57 +1,75 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
-import notificationDummy from '../dummyData/notificationDummy';
+import { useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import {
+  deleteNotification,
+  markAsRead,
+  markAllAsRead,
+} from '../Mutations/notificationMutation';
 
-function markRead(
-  id: number,
-  notifications: typeof notificationDummy,
-  setNotifications: Function,
-): void {
-  setNotifications(
-    notifications.map((notification) => {
-      if (notification.id === id) {
-        return {
-          ...notification,
-          read: true,
-        };
-      }
-      return notification;
-    }),
-  );
-}
-function markAllRead(
-  notifications: typeof notificationDummy,
-  setNotifications: Function,
-): void {
-  setNotifications(
-    notifications.map((notification) => {
-      if (notification.read !== true) {
-        return { ...notification, read: true };
-      }
-
-      return notification;
-    }),
-  );
-}
-function deleteNotification(
-  id: number,
-  notifications: typeof notificationDummy,
-  setNotifications: Function,
-): void {
-  setNotifications(
-    notifications.filter((notification) => notification.id !== id),
-  );
-}
+import Avatar from '../assets/avatar.png';
+import { UserContext } from '../hook/useAuth';
 
 function Notification({
   handleShowNotification,
 }: {
   handleShowNotification: any;
 }) {
-  const [notifications, setNotifications] = useState(notificationDummy);
+  const [delNotification] = useMutation(deleteNotification);
+  const [readNotification] = useMutation(markAsRead);
+  const [readAllNotification] = useMutation(markAllAsRead);
+  const { user, setNotificationData } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const notifications = user?.notifications;
   const { t } = useTranslation();
+
+  function removeNotification(id: number): void {
+    setNotificationData(
+      notifications.filter((notification: any) => notification.id !== id),
+    );
+    delNotification({
+      variables: {
+        deleteNotificationsId: id,
+      },
+    });
+  }
+
+  function markRead(id: number): void {
+    setNotificationData(
+      notifications.map((notification: any) => {
+        if (notification.id === id) {
+          return {
+            ...notification,
+            read: true,
+          };
+        }
+
+        return notification;
+      }),
+    );
+    readNotification({
+      variables: {
+        markAsReadId: id,
+      },
+    });
+  }
+  function markAllRead(): void {
+    setNotificationData(
+      notifications?.map((notification: any) => {
+        if (notification.read !== true) {
+          return { ...notification, read: true };
+        }
+
+        return notification;
+      }),
+    );
+    readAllNotification();
+  }
+
   return (
     <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4">
       <div
@@ -78,14 +96,24 @@ function Notification({
             className="flex flex-col w-full overflow-auto"
             data-testid="notificationsContainer"
           >
-            {notifications.map((notification, index) => (
+            {notifications?.map((notification: any, index: any) => (
               <div
-                className="w-full p-5 border-border-dark dark:border-white border-b-[0.5px]"
+                className="w-full p-5 border-border-dark dark:border-white border-b-[0.5px] "
                 key={notification.id}
               >
-                <div className="flex flex-row justify-between align-center gap-x-[20px] ">
+                <div
+                  className={`flex flex-row justify-between align-center gap-x-[10px] ${
+                    notification.read === 'false'
+                      ? 'bg-[#E5EAFF] font-bold dark:bg-dark-tertiary'
+                      : 'border-border-dark dark:border-white dark:bg-dark-tertiary opacity-30 hover:bg-[#E5EAFF] hover:opacity-100 dark:hover:bg-dark-tertiary'
+                  }`}
+                >
                   <img
-                    src={notification.profile}
+                    src={
+                      notification.sender.profile.avatar
+                        ? notification.sender.profile.avatar
+                        : Avatar
+                    }
                     alt="oldMan"
                     className="rounded-[1000px] w-[60px] h-[60px] object-cover cursor-pointer"
                   />
@@ -93,41 +121,38 @@ function Notification({
                   <div
                     className="flex flex-col w-full gap-[5px] cursor-pointer"
                     onClick={() => {
-                      markRead(
-                        notification.id,
-                        notifications,
-                        setNotifications,
-                      );
+                      markRead(notification.id);
+                      user.role === 'trainee'
+                        ? navigate('/dashboard/performance')
+                        : navigate('/dashboard/ratings');
+                      handleShowNotification();
                     }}
                     data-testid={index === 0 && 'read'}
                   >
                     <p className="font-bold dark:text-white">
-                      {notification.names}
+                      {notification.sender.profile.name}
                     </p>
                     <p className="text-[#111827] dark:text-white text-[12px]">
-                      {notification.description}
+                      {notification.message}
                     </p>
                     <p className="text-[12px] dark:text-white">
-                      {format(new Date(notification.created), 'MMMM dd, p')}
+                      {format(new Date(notification.createdAt), 'MMMM dd, p')}
                     </p>
                   </div>
 
                   <div className="flex flex-col items-center transition-all">
                     <div
-                      className={`h-[10px] w-[10px] rounded-full ${
-                        !notification.read
+                      className={`h-[15px] w-[15px] rounded-full ${
+                        notification.read === 'false'
                           ? 'bg-[#148FB6]'
                           : 'border-border-dark dark:border-white border-[1px]'
                       }  mt-[7px] mb-[10px]`}
                     />
+                    
                     <XIcon
                       className="border-border-dark dark:fill-white h-[20px] w-[20px] cursor-pointer"
                       onClick={() => {
-                        deleteNotification(
-                          notification.id,
-                          notifications,
-                          setNotifications,
-                        );
+                        removeNotification(notification.id);
                       }}
                       data-testid={index === 0 && 'delete'}
                     />
@@ -138,13 +163,16 @@ function Notification({
           </div>
 
           <div className="w-full p-3 flex flex-row align-center justify-between">
-            {/* <p className="font-normal text-xs m-1 dark:text-white cursor-pointer">
+            <p
+              className="font-normal text-xs m-1 dark:text-white cursor-pointer"
+              data-testid="seeAllNotification"
+            >
               See all notification
-            </p> */}
+            </p>
             <div
               className="font-normal text-xs m-1 dark:text-white cursor-pointer ml-auto"
               onClick={() => {
-                markAllRead(notifications, setNotifications);
+                markAllRead();
               }}
               data-testid="markAllRead"
             >

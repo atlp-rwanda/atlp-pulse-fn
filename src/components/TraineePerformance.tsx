@@ -31,16 +31,14 @@ const TraineePerfomance = () => {
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
-      /* istanbul ignore next */
-      onCompleted: (data) => {
-        /* istanbul ignore next */
+      onCompleted: /* istanbul ignore next */ (data) => {
+         /* istanbul ignore next */
         setRatings(data?.fetchRatingsTrainee);
-        /* istanbul ignore next */
+         /* istanbul ignore next */
         sessionStorage.removeItem('data');
       },
-      onError: /* istanbul ignore next */ 
-      (error) => {
-        /* istanbul ignore next */
+      onError:  /* istanbul ignore next */(error) => {
+         /* istanbul ignore next */
         toast.error(error?.message || 'Something went wrong');
       },
     });
@@ -109,7 +107,7 @@ const TraineePerfomance = () => {
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                {item.cohort.phase.name}
+                                {item.cohort.phase?.name}
                               </p>
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
@@ -203,25 +201,18 @@ const TraineePerfomance = () => {
               1
             </button>
             {/* @ts-ignore */}
-            {gaps.paginationGroup.map(
-              /* istanbul ignore next */ (el) => (
-                /* istanbul ignore next */
-                <button
-                  onClick={
-                    /* istanbul ignore next */
-                    () => /* istanbul ignore next */ 
-                    setPage(el)
-                  }
-                  data-testid="page"
-                  key={el}
-                  className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                    page === el ? 'active' : ''
-                  }`}
-                >
-                  {el}
-                </button>
-              ),
-            )}
+            {gaps.paginationGroup.map( /* istanbul ignore next */(el) => (
+              <button
+                onClick={ /* istanbul ignore next */() => setPage(el)}
+                data-testid="page"
+                key={el}
+                className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
+                  page === el ? 'active' : ''
+                }`}
+              >
+                {el}
+              </button>
+            ))}
             <button
               onClick={() => setPage(totalPages)}
               data-testid="page3"
