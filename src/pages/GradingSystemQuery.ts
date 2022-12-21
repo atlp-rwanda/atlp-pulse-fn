@@ -1,13 +1,13 @@
 import { gql } from '@apollo/client';
 
 const GRADING_SYSTEM_QUERY = gql`
-  query {
-    getRatingSystems {
+query Query($orgToken: String!) {
+    getRatingSystems(orgToken: $orgToken) {
+      description
+      grade
       id
       defaultGrading
       name
-      grade
-      description
       percentage
       userId
     }

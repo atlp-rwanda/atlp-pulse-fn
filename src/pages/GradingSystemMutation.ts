@@ -6,13 +6,14 @@ const GRADING_SYSTEM_MUTATION = gql`
     $grade: [String]!
     $description: [String]!
     $percentage: [String]!
+    $orgToken: String!
   ) {
     createRatingSystem(
       name: $name
       grade: $grade
       description: $description
       percentage: $percentage
-     
+      orgToken: $orgToken
     ) {
       id
       name

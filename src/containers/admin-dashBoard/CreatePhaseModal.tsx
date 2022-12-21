@@ -63,6 +63,7 @@ export default function CreatePhaseModal({
         delete newData[field];
       }
     });
+    /* istanbul ignore next */
     await addPhaseMutation({
        /* istanbul ignore next */
       variables: { orgToken: localStorage.getItem('orgToken'),...newData },

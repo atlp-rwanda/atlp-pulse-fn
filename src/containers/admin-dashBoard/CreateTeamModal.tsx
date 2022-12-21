@@ -8,12 +8,12 @@ import ControlledSelect from '../../components/ControlledSelect';
 import { Team, Cohort } from './Teams';
 
 export const AddTeam = gql`
-mutation Mutation($name: String!, $cohortName: String!) {
-    addTeam(name: $name, cohortName: $cohortName) {
+mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!) {
+    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken) {
+      name
       cohort {
         name
       }
-      name
     }
   }
 `;
@@ -68,7 +68,8 @@ export default function CreateTeamModal({
         });
 
         await addTeamMutation({
-            variables: newData,
+            variables: { orgToken: localStorage.getItem('orgToken'),...newData },
+
             onCompleted() {
                 reset();
                 setValue('coordinatorEmail', { value: undefined, label: undefined });
