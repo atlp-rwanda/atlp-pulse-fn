@@ -38,6 +38,7 @@ const AdminTraineeDashboard = React.lazy(
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
 );
+const AdminCoordinators = React.lazy(() => import('../pages/AdminCoordinatorDashboard'));
 
 const AdminRatings = React.lazy(() => import('../pages/AdminRatings'));
 
@@ -77,6 +78,7 @@ function DashRoutes() {
             <Route path="/attendance" element={<TraineeAttendance />} />
             <Route path="/attendance-details" element={<AttendanceDetails />} />
             <Route path="/teams"   element={<AdminTeams />} />
+            <Route path="/coordinators"   element={<AdminCoordinators />} />
             <Route path="/cohorts"   element={<AdminCohorts />} />
             <Route path="/phases" element={<AdminPhases />} />
             <Route path="/programs" element={<AdminPrograms />} />
