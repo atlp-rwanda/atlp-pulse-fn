@@ -32,7 +32,6 @@ const Stepper = ({ steps }: any) => {
         };
         count++;
       }
-      //step pending
       else {
         newSteps[count] = {
           ...newSteps[count],
