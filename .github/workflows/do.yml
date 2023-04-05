@@ -5,7 +5,8 @@ on:
     branches:
       - circleci-project-setup
   pull_request:
-    branches:["develop"]
+    branches:
+      - develop
 
 jobs:
   build-and-push:
