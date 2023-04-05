@@ -20,5 +20,5 @@ jobs:
         key: ${{ secrets.DO_KEY }}
         port: ${{ secrets.DO_PORT }}
         script: |
-          e "Hello World" # echo "Hello World"
-          mkdir test
+          echo "What ever World" # echo something
+          mkdir test_
