@@ -12,6 +12,15 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+    - name: Login to docker
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_ HUB_PASSWORD }}
+    - name: Build the docker image
+      run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:v1.0.3 .
+    - name: Push the docker image
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/atlp-pulse-fn
     - name: Login to DO
       uses: appleboy/ssh-action@master
       with:
@@ -20,5 +29,4 @@ jobs:
         key: ${{ secrets.DO_KEY }}
         port: ${{ secrets.DO_PORT }}
         script: |
-          echo "What ever World" # echo something
-          mkdir test_
+          docker pull ${{ secrets.DOCKER_USERNAME }}/atlp-pulse-fn:v1.0.3
