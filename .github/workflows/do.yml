@@ -1,0 +1,24 @@
+name: Login to Digital Ocean and create a director
+
+on:
+  push:
+    branches:
+      - circleci-project-setup
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to DO
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DO_HOST }}
+        username: ${{ secrets.DO_USERNAME }}
+        key: ${{ secrets.DO_KEY }}
+        port: ${{ secrets.DO_PORT }}
+        script: |
+          echo "What ever World" # echo something
+          mkdir test_
