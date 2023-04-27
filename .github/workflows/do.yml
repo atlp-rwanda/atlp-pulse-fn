@@ -16,7 +16,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_ HUB_PASSWORD }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Build the docker image
       run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:v1.0.3 .
     - name: Push the docker image
