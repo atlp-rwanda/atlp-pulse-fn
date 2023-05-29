@@ -18,7 +18,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Build the docker image
-      run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:v1.0.3 .
+      run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:v1.0.3 /atlp-pulse-fn/Dockerfile
     - name: Push the docker image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/atlp-pulse-fn
     - name: Login to DO
