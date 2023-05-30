@@ -29,107 +29,103 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
 
   return (
     <div
-      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b ${props?.styles}`}
+      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed ${props?.styles}`}
     >
-      <div className="px-3 flex justify-between items-center w-full h-full">
-        <div className="flex items-center h-full justify-between lg:w-full">
-          <Link to="/" className="flex flex-row lg:px-5">
-            {colorTheme === 'dark' ? (
-              <img
-                className="w-full cursor-pointer mr-2"
-                src={Logo}
-                alt="logo"
-              />
-            ) : (
-              <img
-                className="w-full cursor-pointer mr-2"
-                src={LogoWhite}
-                alt="logoWhite"
-              />
-            )}
+      <div className="px-3 flex items-center w-full h-full justify-between">
+        <div className="flex items-center h-full justify-between lg:w-[95%]">
+          <div>
+            <Link to="/" className="flex flex-row lg:px-">
+              {colorTheme === 'dark' ? (
+                <img
+                  className="w-full cursor-pointer w-17"
+                  src={Logo}
+                  alt="logo"
+                />
+              ) : (
+                <img
+                  className="w-full cursor-pointer w-17"
+                  src={LogoWhite}
+                  alt="logoWhite"
+                />
+              )}
 
-            <h1 className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill">
-              PULSE
-            </h1>
-          </Link>
-          <ul className="hidden lg:flex cursor-pointer">
-            <li className="px-5 text-xl dark:text-dark-text-fill">
-              <NavLink
-                to="/"
-                className={(navData) => {
-                  if (navData.isActive) return 'text-primary';
-                  return '';
-                }}
-              >
-                {t('Home')}
-              </NavLink>
-            </li>
-            {!user?.auth ? (
-            <li className="px-5 text-xl dark:text-dark-text-fill">
-              <NavLink
-                className={(navData) => {
-                  if (navData.isActive) return 'text-primary';
-                  return '';
-                }}
-                to="/pricing"
-              >
-                {t('Pricing')}
-              </NavLink>
-            </li>
-            ) : (
-             ' '
-            )}
-            <li className="px-5 text-xl dark:text-dark-text-fill">
-              <NavLink
-                className={(navData) => {
-                  if (navData.isActive) return 'text-primary';
-                  return '';
-                }}
-                to="/product"
-              >
-                {t('Product')}
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-        <div className="hidden lg:flex lg:w-full justify-end ">
-          <button
-            type="button"
-            id="theme-switch"
-            className="px-4 mt-1 cursor-pointer"
-            onClick={() => handleTheme()}
-          >
-            {colorTheme === 'dark' ? (
-              <MoonIcon className="w-8" />
-            ) : (
-              <SunIcon className="w-8 text-dark-text-fill" />
-            )}
-          </button>
-          <Link to={user?.auth ? '/dashboard' : goTo}>
-            <Button variant="primary" size="lg">
-              {' '}
-              {!user?.auth ? t('Sign In') : t('Dashboard')}{' '}
-            </Button>
-          </Link>
-          {user?.auth ? (
-            <Button
-              variant="transparentbtn"
-              size="lg"
-              onClick={() => logout()}
-              style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
-            >
-              {' '}
-              {t('Logout')}{' '}
-            </Button>
-          ) : (
-            <Link to="/signup/org">
-              <Button variant="transparentbtn" size="lg" style="mr-8">
-                {' '}
-                {t('Register an organization')}{' '}
-              </Button>
+              <h1 className="text-2xl font-bold font-lexend text-primary dark:text-dark-text-fill">
+                PULSE
+              </h1>
             </Link>
-          )}
+          </div>
+
+          <div className="flex flex-row items-center">
+            <ul className="hidden lg:flex cursor-pointer">
+              <li className="px-5 text-lg dark:text-dark-text-fill">
+                <NavLink
+                  to="/"
+                  className={(navData) => {
+                    if (navData.isActive) return 'text-primary';
+                    return '';
+                  }}
+                >
+                  {t('Home')}
+                </NavLink>
+              </li>
+              <li className="px-5 text-lg dark:text-dark-text-fill">
+                <NavLink
+                  className={(navData) => {
+                    if (navData.isActive) return 'text-white';
+                    return '';
+                  }}
+                  to="#"
+                >
+                  {t('About')}
+                </NavLink>
+              </li>
+            </ul>
+
+            <div className="hidden lg:flex lg:w-full justify-end ">
+              <Link to={user?.auth ? '/dashboard' : goTo}>
+                <Button variant="primary" size="lg">
+                  {' '}
+                  {!user?.auth ? t('Login') : t('Dashboard')}{' '}
+                </Button>
+              </Link>
+
+              <button
+                type="button"
+                id="theme-switch"
+                className="px-4 mt-1 cursor-pointer"
+                onClick={() => handleTheme()}
+              >
+                {colorTheme === 'dark' ? (
+                  <MoonIcon className="w-6" />
+                ) : (
+                  <SunIcon className="w-6 text-dark-text-fill" />
+                )}
+              </button>
+
+              {/* {user?.auth ? (
+                <Button
+                  variant="transparentbtn"
+                  size="lg"
+                  onClick={() => logout()}
+                  style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+                >
+                  {' '}
+                  {t('Logout')}{' '}
+                </Button>
+              ) : (
+                <Link to="/signup/org">
+                  <Button variant="transparentbtn" size="lg" style="mr-8">
+                    {' '}
+                    {t('Register an organization')}{' '}
+                  </Button>
+                </Link>
+              )} */}
+            </div>
+          </div>
         </div>
+
+        {/* DarkMode icon in small size */}
+
         <div className="flex px-5 lg:hidden">
           <button type="button" className="px-3" onClick={() => handleTheme()}>
             {colorTheme === 'dark' ? (
@@ -147,57 +143,58 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           </button>
         </div>
       </div>
-      <ul
-        ref={ref}
-        className={
-          !open
-            ? 'hidden'
-            : 'absolute bg-white dark:bg-dark-bg w-1/8 justify-end px-8 m-1 right-0 lg:hidden'
-        }
-      >
-        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
-          <Link to="/">{t('Home')}</Link>
-        </li>
-        {!user?.auth ? (
-        <li className="p-2 w-full dark:text-dark-text-fill">
-          <Link to="/pricing">Pricing</Link>
-        </li>
-        ) : (
-        ' '
-        )}
 
+      {/* For responsive part */}
+      <div>
+        <ul
+          ref={ref}
+          className={
+            !open
+              ? 'hidden'
+              : 'absolute bg-white dark:bg-dark-bg w-[280px] justify-end px-8 m-1 right-0 lg:hidden'
+          }
+        >
+          <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
+            <Link to="/">{t('Home')}</Link>
+          </li>
+          {!user?.auth ? (
+            <li className="p-2 w-full dark:text-dark-text-fill">
+              <Link to="/">About</Link>
+            </li>
+          ) : (
+            ' '
+          )}
 
-        <li className="p-2 w-full dark:text-dark-text-fill">
-          <Link to="/product" className="w-full">
-            {t('Product')}
-          </Link>
-        </li>
-
-        <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
-          <Link to={user?.auth ? '/dashboard' : goTo} className="w-full">
-            {' '}
-            {!user?.auth ? t('Sign In') : t('Dashboard')}
-          </Link>
-        </li>
-        {user?.auth ? (
-          <Button
-            variant="transparentbtn"
-            size="lg"
-            onClick={() => logout()}
-            style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
-          >
-            {' '}
-            {t('Logout')}{' '}
-          </Button>
-        ) : (
+          <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
+            <Link to={user?.auth ? '/dashboard' : goTo} className="w-full">
+              {' '}
+              {!user?.auth ? t('Sign In') : t('Dashboard')}
+            </Link>
+          </li>
+          {
+            user?.auth ? (
+              <Button
+                variant="transparentbtn"
+                size="lg"
+                onClick={() => logout()}
+                style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+              >
+                {' '}
+                {t('Logout')}{' '}
+              </Button>
+            ) : (
+              ''
+            ) /* (
           <Link to="/signup/org">
             <Button variant="transparentbtn" size="lg" style="mr-8">
               {' '}
               {t('Register an organization')}{' '}
             </Button>
           </Link>
-        )}
-      </ul>
+        ) */
+          }
+        </ul>
+      </div>
     </div>
   );
 });
