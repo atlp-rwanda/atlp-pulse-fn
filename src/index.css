@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 @media (max-width: 375px) {
   .max-375-footrt {
     display: flex;
@@ -46,8 +50,7 @@
 
 /* HERO SECTION */
 .hero {
-  background-image: linear-gradient(to right, #24243e, #302b63c9, #0f0c2945),
-    url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80');
+  background-image:url('https://res.cloudinary.com/bdushimi/image/upload/v1683554711/Andela_Rwanda_Engineers_zr7awr.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
