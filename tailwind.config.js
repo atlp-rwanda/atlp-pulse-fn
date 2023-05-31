@@ -23,8 +23,12 @@ module.exports = {
         'divider-bg': '#E5E7EB',
         'dark-45': '#00000073',
         'border-dark': '#5f5b5b80',
+        'light-green': '#D9E4DD',
+        'dark-blue':'#122242',
+        'dark-light-blue': '#1C3457'
       },
       fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
         Inria: ['Inria Serif', 'serif'],
         josefin: ['Josefin Sans', 'sans-serif'],
         lexend: ['Lexend Deca', 'sans-serif'],
