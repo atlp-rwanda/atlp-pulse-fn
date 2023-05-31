@@ -29,7 +29,7 @@ function Footer({ styles }: any) {
   }, []);
   return (
     <div
-      className={`w-full bg-primary dark:bg-dark-bg text-gray-300 mt-auto ${styles}`}
+      className={`w-full bg-light-footer dark:bg-card-dark text-white mt-auto ${styles}`}
     >
       <div className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full">
         <div className="flex flex-col lg:flex-row items-center py-5">
@@ -81,7 +81,7 @@ function Footer({ styles }: any) {
                   onChange={(e) => {
                     changeLan(e);
                   }}
-                  className="bg-dark-bg mt-2 outline rounded-md px-2 py-1 text-white dark:text-dark-text-fill dark:bg-dark-bg "
+                  className="bg-light-footer mt-2 outline rounded-md px-2 py-1 text-white dark:text-dark-text-fill dark:bg-card-dark"
                 >
                   <option value="en">English</option>
                   <option value="kn">Kinyarwanda</option>
@@ -91,10 +91,20 @@ function Footer({ styles }: any) {
             </div>
           </div>
         </div>
-        <div className=" lg:flex">
+        <div className=" lg:flex flex-col">
           <span className="px-4 lg:py-3 cursor-pointer text-lg">
             © {new Date().getFullYear()} Pulse Technologies
           </span>
+          <div className="flex flex-row items-center px-5">
+            <p>POWERED BY Andela</p>
+            <div className="w-[30px] h-[30px] p-1">
+              <img
+                src="https://media.licdn.com/dms/image/C560BAQHOiEePQQlQ8g/company-logo_200_200/0/1656607039747?e=2147483647&v=beta&t=Qm-a9L8i8faou2jKBHhB7q8ueve1usErY4AiBFJj818"
+                alt="Andela's log"
+                className="w-full h-full rounded-lg"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

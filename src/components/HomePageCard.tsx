@@ -4,7 +4,7 @@ function HomePageCard({ style }: any) {
   return (
     <>
       <div
-        className=" text-black md:w-[600px] md:h-fit bg-light-green m-9 p-5 shadow-lg rounded-lg font-poppins text-center justify-center dark:bg-dark-light-blue dark:text-white"
+        className="my-16 text-black md:w-[600px] md:h-fit bg-light-green m-9 p-5 shadow-lg rounded-lg font-poppins text-center justify-center dark:bg-dark-light-blue dark:text-white"
         //   style={{ backgroundColor: '#D9E4DD' }}
       >
         <h1 className="font-black text-[19px] mt-5 ">

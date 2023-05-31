@@ -60,6 +60,9 @@
   height: 100vh;
   background-position: center;
 }
+.card {
+  background-color: 'white';
+}
 
 /* input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
