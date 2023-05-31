@@ -6,8 +6,8 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
-
 import Button from '../components/Buttons';
+import HomePageCardContainer from '../components/HomePageCardContainer';
 
 function LandingPage() {
   /* istanbul ignore next */
@@ -44,6 +44,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
+      <HomePageCardContainer />
       <Footer styles="dark:bg-opacity-75 bg-opacity-100" />
     </div>
   );
