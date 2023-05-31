@@ -23,6 +23,12 @@ module.exports = {
         'divider-bg': '#E5E7EB',
         'dark-45': '#00000073',
         'border-dark': '#5f5b5b80',
+        'light-base': '#FBF7F0',
+        'light-primary': '#D9E4DD',
+        'light-secondary': '#CDC9C3',
+        'dark-base': '#173B3F',
+        'dark-primary': '#0B4E64',
+        'dark-secondary': '#183D41',
       },
       fontFamily: {
         Inria: ['Inria Serif', 'serif'],

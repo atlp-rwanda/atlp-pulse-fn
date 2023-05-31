@@ -50,8 +50,8 @@
 
 /* HERO SECTION */
 .hero {
-  background-image: linear-gradient(to right, #24243e, #302b63c9, #0f0c2945),
-    url('./assets/background.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('https://res.cloudinary.com/bdushimi/image/upload/v1683554711/Andela_Rwanda_Engineers_zr7awr.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -86,7 +86,7 @@ input[type='number']::-webkit-outer-spin-button {
   /*button colors: primary, info, success, danger, dark */
 
   .primary {
-    @apply bg-primary text-white font-semibold;
+    @apply bg-light-primary text-white font-semibold;
   }
   .primary:hover {
     @apply bg-primary text-white font-semibold;

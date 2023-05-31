@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -13,6 +13,8 @@ import Button from './Buttons';
 import WithClickOutside from './WithClickOutside';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
+  // eslint-disable-next-line no-console
+  console.log(open);
   const orgToken: any = localStorage.getItem('orgToken');
   const { t } = useTranslation();
   const [colorTheme, setTheme] = useDarkMode();
@@ -27,17 +29,33 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   };
   const goTo = orgToken ? '/users/login' : '/login/org';
 
+  // scroll behaviour to header
+  const [showElm, setShowElm] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      scrollPosition >= 50 ? setShowElm(true) : setShowElm(false);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div
-      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed ${props?.styles}`}
+      className={`w-screen h-[10vh] z-10 fixed ${props?.styles} ${
+        showElm && 'bg-secondary'
+      }`}
     >
       <div className="px-3 flex items-center w-full h-full justify-between">
         <div className="flex items-center h-full justify-between lg:w-[95%]">
           <div>
-            <Link to="/" className="flex flex-row lg:px-">
+            <Link to="/" className="flex flex-row ">
               {colorTheme === 'dark' ? (
                 <img
-                  className="w-full cursor-pointer w-17"
+                  className="w-full px-6 cursor-pointer w-17"
                   src={Logo}
                   alt="logo"
                 />
@@ -83,7 +101,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
 
             <div className="hidden lg:flex lg:w-full justify-end ">
               <Link to={user?.auth ? '/dashboard' : goTo}>
-                <Button variant="primary" size="lg">
+                <Button variant="primary" size="lg" style={{ color: 'black' }}>
                   {' '}
                   {!user?.auth ? t('Login') : t('Dashboard')}{' '}
                 </Button>
@@ -101,25 +119,6 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                   <SunIcon className="w-6 text-dark-text-fill" />
                 )}
               </button>
-
-              {/* {user?.auth ? (
-                <Button
-                  variant="transparentbtn"
-                  size="lg"
-                  onClick={() => logout()}
-                  style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
-                >
-                  {' '}
-                  {t('Logout')}{' '}
-                </Button>
-              ) : (
-                <Link to="/signup/org">
-                  <Button variant="transparentbtn" size="lg" style="mr-8">
-                    {' '}
-                    {t('Register an organization')}{' '}
-                  </Button>
-                </Link>
-              )} */}
             </div>
           </div>
         </div>
@@ -171,28 +170,19 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               {!user?.auth ? t('Sign In') : t('Dashboard')}
             </Link>
           </li>
-          {
-            user?.auth ? (
-              <Button
-                variant="transparentbtn"
-                size="lg"
-                onClick={() => logout()}
-                style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
-              >
-                {' '}
-                {t('Logout')}{' '}
-              </Button>
-            ) : (
-              ''
-            ) /* (
-          <Link to="/signup/org">
-            <Button variant="transparentbtn" size="lg" style="mr-8">
+          {user?.auth ? (
+            <Button
+              variant="transparentbtn"
+              size="lg"
+              onClick={() => logout()}
+              style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+            >
               {' '}
-              {t('Register an organization')}{' '}
+              {t('Logout')}{' '}
             </Button>
-          </Link>
-        ) */
-          }
+          ) : (
+            ''
+          )}
         </ul>
       </div>
     </div>
