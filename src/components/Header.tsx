@@ -46,7 +46,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   return (
     <div
       className={`w-screen h-[10vh] z-10 fixed ${props?.styles} ${
-        showElm && 'bg-secondary'
+        showElm && 'bg-light-footer dark:bg-card-dark'
       }`}
     >
       <div className="px-3 flex items-center w-full h-full justify-between">
@@ -55,8 +55,8 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             <Link to="/" className="flex flex-row ">
               {colorTheme === 'dark' ? (
                 <img
-                  className="w-full px-6 cursor-pointer w-17"
-                  src={Logo}
+                  className="w-full cursor-pointer w-17"
+                  src={LogoWhite}
                   alt="logo"
                 />
               ) : (
@@ -67,7 +67,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 />
               )}
 
-              <h1 className="text-2xl font-bold font-lexend text-primary dark:text-dark-text-fill">
+              <h1 className="text-2xl font-bold font-lexend text-white dark:text-dark-text-fill">
                 PULSE
               </h1>
             </Link>
@@ -79,7 +79,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 <NavLink
                   to="/"
                   className={(navData) => {
-                    if (navData.isActive) return 'text-primary';
+                    if (navData.isActive) return 'text-white';
                     return '';
                   }}
                 >
@@ -101,7 +101,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
 
             <div className="hidden lg:flex lg:w-full justify-end ">
               <Link to={user?.auth ? '/dashboard' : goTo}>
-                <Button variant="primary" size="lg" style={{ color: 'black' }}>
+                <Button variant="primary" size="lg">
                   {' '}
                   {!user?.auth ? t('Login') : t('Dashboard')}{' '}
                 </Button>
@@ -153,7 +153,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               : 'absolute bg-white dark:bg-dark-bg w-[280px] justify-end px-8 m-1 right-0 lg:hidden'
           }
         >
-          <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
+          <li className="p-2 w-full mt-2 dark:text-dark-text-fill">
             <Link to="/">{t('Home')}</Link>
           </li>
           {!user?.auth ? (

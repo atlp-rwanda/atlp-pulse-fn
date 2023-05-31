@@ -4,7 +4,7 @@ function HomePageCard({ style }: any) {
   return (
     <>
       <div
-        className=" text-black md:w-[600px] md:h-fit bg-light-green m-9 p-5 shadow-lg rounded-lg font-poppins text-center justify-center dark:bg-dark-light-blue dark:text-white"
+        className="text-black md:w-[600px] md:h-fit bg-light-green m-9 p-5 shadow-lg rounded-lg font-poppins text-center justify-center dark:bg-dark-light-blue dark:text-white lg:h-[210px]"
         //   style={{ backgroundColor: '#D9E4DD' }}
       >
         <h1 className="font-black text-[19px] mt-5 ">
@@ -15,7 +15,21 @@ function HomePageCard({ style }: any) {
           manage trainees from the recruitment all the way to their graduation.
         </p>
       </div>
-      <div className="text-black md:w-[600px] md:h-fit bg-light-green m-9 p-5 shadow-lg rounded-lg font-poppins text-center justify-center dark:bg-dark-light-blue dark:text-white">
+
+      <div
+        className=" text-black md:w-[600px] md:h-fit md:my-2 bg-light-green m-9 p-5 shadow-lg rounded-lg font-poppins text-center justify-center dark:bg-dark-light-blue dark:text-white lg:h-[210px]"
+        //   style={{ backgroundColor: '#D9E4DD' }}
+      >
+        <h1 className="font-black text-[19px] mt-5 ">
+          Track Your Program Cycle
+        </h1>
+        <p className="font-light text-base text-left mt-5 ">
+          Leverage a robust platform that empowers you to effortlessly track and
+          manage trainees from the recruitment all the way to their graduation.
+        </p>
+      </div>
+
+      <div className="text-black md:w-[600px] md:h-fit md:my-2 bg-light-green m-9 p-5 shadow-lg rounded-lg font-poppins text-center justify-center dark:bg-dark-light-blue dark:text-white lg:h-[210px]">
         <h1 className=" font-black text-[19px] mt-5">
           Say Goodbye to Spreadsheets
         </h1>

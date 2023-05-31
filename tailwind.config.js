@@ -10,7 +10,7 @@ module.exports = {
         xl: '1440px',
       },
       colors: {
-        primary: '#148FB6',
+        primary: '#0F172A',
         secondary: '#173B3F',
         tertiary: '#F3F4F6',
         'light-bg': '#F9F9FB',
@@ -26,6 +26,11 @@ module.exports = {
         'light-green': '#D9E4DD',
         'dark-blue': '#122242',
         'dark-light-blue': '#1C3457',
+        'card-dark': '#1C3457',
+        'card-light': '#FDFFFF',
+        'card-container': '#D9E4DD',
+        'light-footer': '#9AA59E',
+        'main-dark': '#0F172A',
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],

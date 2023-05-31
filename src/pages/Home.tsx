@@ -8,6 +8,7 @@ import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
 import HomePageCardContainer from '../components/HomePageCardContainer';
+import Team from '../components/team';
 
 function LandingPage() {
   /* istanbul ignore next */
@@ -17,16 +18,16 @@ function LandingPage() {
 
   return (
     <div className="hero">
-      <Header styles="bg-opacity-50 dark:bg-opacity-50" />
+      <Header styles="" />
       <div className="hero w-full min-h-full   flex flex-col justify-center grow items-center py-20">
         <div className="grid h-full lg:grid-cols-2 w-full justify-around content-center pb-6">
           <div className="flex h-full flex-col items-center justify-start  w-full px-4 py-2">
-            <h1 className="mt-10 sm:mt-10 text-2xl sm:text-3xl md:pl-10 md:text-5xl font-bold text-white dark:text-dark-text-fill font-lexend md:text-left">
+            <h1 className="mt-10 sm:mt-10 text-2xl sm:text-4xl md:pl-10 md:text-5xl font-bold text-white dark:text-dark-text-fill font-lexend md:text-left">
               The brilliant management platform around the word
             </h1>
 
             {!user?.auth ? (
-              <div className="w-full items-center mt-6 ml-14">
+              <div className="w-full items-center mt-6 ml-14 sm:ml-3 md:ml-10">
                 <Link to="/signup/org">
                   <Button
                     variant="primary"
@@ -45,6 +46,7 @@ function LandingPage() {
         </div>
       </div>
       <HomePageCardContainer />
+      <Team />
       <Footer styles="dark:bg-opacity-75 bg-opacity-100" />
     </div>
   );
