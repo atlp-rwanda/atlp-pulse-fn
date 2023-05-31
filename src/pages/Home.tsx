@@ -7,6 +7,7 @@ import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
 import Button from '../components/Buttons';
+import Team from '../components/Team';
 
 function LandingPage() {
   /* istanbul ignore next */
@@ -56,6 +57,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
+      <Team/>
       <Footer styles="dark:bg-opacity-75 bg-opacity-100" />
     </div>
   );

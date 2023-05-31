@@ -10,7 +10,7 @@ module.exports = {
         xl: '1440px',
       },
       colors: {
-        primary: '#148FB6',
+        primary: '#0F172A',
         secondary: '#173B3F',
         tertiary: '#F3F4F6',
         'light-bg': '#F9F9FB',
@@ -23,6 +23,9 @@ module.exports = {
         'divider-bg': '#E5E7EB',
         'dark-45': '#00000073',
         'border-dark': '#5f5b5b80',
+        'card-dark':'#1C3457',
+        'card-light':'#FDFFFF',
+        'card-container':'#D9E4DD'
       },
       fontFamily: {
         Inria: ['Inria Serif', 'serif'],
