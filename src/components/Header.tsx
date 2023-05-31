@@ -101,7 +101,11 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
 
             <div className="hidden lg:flex lg:w-full justify-end ">
               <Link to={user?.auth ? '/dashboard' : goTo}>
-                <Button variant="primary" size="lg">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  style={'bg-white dark:bg-[#0F172A] text-black dark:text-white'}
+                >
                   {' '}
                   {!user?.auth ? t('Login') : t('Dashboard')}{' '}
                 </Button>

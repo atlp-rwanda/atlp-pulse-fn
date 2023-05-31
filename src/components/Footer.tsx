@@ -93,7 +93,7 @@ function Footer({ styles }: any) {
         </div>
         <div className=" lg:flex flex-col">
           <span className="px-4 lg:py-3 cursor-pointer text-lg">
-            © {new Date().getFullYear()} Pulse Technologies
+            © {new Date().getFullYear()} DevPulse Technologies
           </span>
           <div className="flex flex-row items-center px-5">
             <p>POWERED BY Andela</p>

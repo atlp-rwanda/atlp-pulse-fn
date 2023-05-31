@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Poppins';
+  font-family: 'georgia';
 }
 
 @media (max-width: 375px) {
