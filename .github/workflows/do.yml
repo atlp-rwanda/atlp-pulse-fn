@@ -22,7 +22,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:$(date +%T)
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:v1.0.3
     - name: Login to DO
       uses: appleboy/ssh-action@master
       with:
