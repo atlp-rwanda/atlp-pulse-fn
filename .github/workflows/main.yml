@@ -1,7 +1,5 @@
 name: CI
 on:
-  # Triggers the workflow on push for all branches
-  push:
   # Triggered also on pull request against the develop and main branch
   pull_request:
     branches:
