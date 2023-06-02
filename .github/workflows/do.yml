@@ -1,4 +1,4 @@
-name: Login to Digital Ocean and create a director
+name: Login to Digital Ocean and create a directory
 
 on:
   push:
@@ -12,6 +12,16 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+    - name: Login to docker
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: Build and Push docker image
+      uses: docker/build-push-action@v4
+      with:
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:v1.0.3
     - name: Login to DO
       uses: appleboy/ssh-action@master
       with:
@@ -20,5 +30,4 @@ jobs:
         key: ${{ secrets.DO_KEY }}
         port: ${{ secrets.DO_PORT }}
         script: |
-          echo "What ever World" # echo something
-          mkdir test_
+          mkdir "$(date +%T)"
