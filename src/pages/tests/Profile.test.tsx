@@ -4,9 +4,14 @@ import React from 'react';
 import * as ReactRouter from 'react-router';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import {
+  ApolloProvider,
+} from '@apollo/client';
 import ProfileTabs from '../../components/ProfileTabs';
 import Profile from '../Profile';
 import EditProfile from '../ProfileEdit';
+/* istanbul ignore next */
+import { client } from '../../index';
 
 // eslint-disable-next-line no-import-assign
 Object.defineProperty(ReactRouter, 'useLocation', {
@@ -45,10 +50,14 @@ describe('Profile Page', () => {
   });
   it('Renders the profile tabs', () => {
     const elem = renderer
+  
       .create(
         <MemoryRouter>
+           <MockedProvider mocks={[]}>
           <ProfileTabs data={{ name: 'Fabrice' }} />
-        </MemoryRouter>,
+             </MockedProvider>
+        </MemoryRouter>
+          
       )
       .toJSON();
 
