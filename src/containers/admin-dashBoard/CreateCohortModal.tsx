@@ -149,7 +149,7 @@ export default function CreateCohortModal({
             </div>
             <div className="input my-5 h-9 ">
               <ControlledSelect
-                placeholder={t('Phase Name')}
+                placeholder={t('Select Phase Name')}
                 register={{
                   control,
                   name: 'phaseName',
@@ -191,7 +191,7 @@ export default function CreateCohortModal({
             </div>
             <div className="input my-5 h-9 ">
               <ControlledSelect
-                placeholder={t('Program Name')}
+                placeholder={t('Select Program Name')}
                 register={{
                   control,
                   name: 'programName',

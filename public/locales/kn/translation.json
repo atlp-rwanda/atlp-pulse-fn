@@ -362,5 +362,22 @@
   "Delete Team Permanently": "Emeza ko ushaka gusiba iyi kipe",
   "Update Team": "Vugurura ikipe",
   "The Team name is required": "Uzaza izina ry'ikipe",
-  "Team updated successfully": "Ikipe yavuguruwe!"
+  "Team updated successfully": "Ikipe yavuguruwe!",
+  "Phases": "ibihembwe",
+  "Phase": "igihembwe",
+  "Add Phase": "ongeramo igihembwe",
+  "Phase list": "Liste y' ibihembwe",
+  "Update Phase": "Kuvugurura igihembwe",
+  "Update Cohort": "Kuvugurura itsinda",
+  "do you really want to remove this Phase?": "urashaka gusiba iri tsinda?",
+  "Delete Cohort": "Gusiba itsinda",
+  "Delete Phase": "Gusiba igihembwe",
+  "reallyRemoveCohort": "urashaka gusiba iki gihembwe?",
+  "Select Phase Name": "Hitamo igihembwe",
+  "Select Coordinator": "Hitamo umuhuzabikorwa",
+  "Select Program Name": "Hitamo porogaramu",
+  "Update Program": "Kuvugurura porogaramu",
+  "Delete Program": "Gusiba porogaramu",
+  "reallyRemoveProgram": "urashaka gusiba iyi porogaramu?",
+  "Manager Email": "Imeyili y' Umuyobozi"
 }

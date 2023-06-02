@@ -275,5 +275,20 @@
   "You have Successfully reset your password!": "You have Successfully reset your password!",
   "Reset your password": "Reset your password",
   "Enter your email address": "Enter your email address",
-  "MakeDefaultTitle": "Make Default Grading."
+  "MakeDefaultTitle": "Make Default Grading.",
+  "Phases": "Phases",
+  "Add Phase": "Add Phase",
+  "Phase list": "Phase list",
+  "Update Phase": "Update Phase",
+  "Update Cohort": "Update Cohort",
+  "do you really want to remove this Phase?": "do you really want to remove this Phase??",
+  "Delete Cohort": "Delete Cohort",
+  "Delete Phase": "Delete Phase",
+  "Select Phase Name": "Select Phase Name",
+  "Select Coordinator": "Select Coordinator",
+  "Select Program Name": "Select Program Name",
+  "Update Program": "Update Program",
+  "Delete Program": "Delete Program",
+  "Manager Email": "Manager Email"
+ 
 }
