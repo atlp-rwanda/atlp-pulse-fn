@@ -39,17 +39,17 @@ function CustomSelect({
   placeholder,
   name,
   value,
+  defaultValue,
   options,
   onChange,
   ...props
 }: any) {
   return (
     <Select
-      value={value}
+      value={defaultValue?defaultValue: value}
       className="my-react-select-container"
       classNamePrefix="my-react-select"
       styles={customStyles}
-      defaultValue={value}
       onChange={onChange}
       options={options}
       placeholder={placeholder}
@@ -99,6 +99,7 @@ export default function ControlledSelect({
   ) : (
     <CustomSelect
       placeholder={placeholder}
+      defaultValue={defaultValue!}
       name={name!}
       onChange={onChange!}
       options={options}

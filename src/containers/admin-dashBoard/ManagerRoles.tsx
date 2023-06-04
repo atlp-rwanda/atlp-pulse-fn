@@ -28,7 +28,7 @@ const AdminSission = () => {
 
   const [showRoles, setShowRoles] = useState(false);
   const [roleName, setRoleName] = useState('');
-  const [userId, setUserId] = useState();
+  const [selectedUser, setSelectedUser] = useState({id: '', role: ''})
   const [err, setErr] = useState();
   const [selectedRole, setSelectedRole] = useState('');
   const [subTitle, setSubTitle] = useState('Available roles');
@@ -74,9 +74,9 @@ const AdminSission = () => {
     }
   }, [tabName]);
 
-  const removeAssignModel =  /* istanbul ignore next */(id: any) => {
+  const removeAssignModel =  /* istanbul ignore next */(user: any) => {
     /* istanbul ignore next */
-    setUserId(id);
+    setSelectedUser({id: user.id, role: user.role});
      /* istanbul ignore next */
     let newState = !deleteModel;
      /* istanbul ignore next */
@@ -124,7 +124,7 @@ const AdminSission = () => {
 
   const [handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
     variables: {
-      updateUserRoleId: userId,
+      updateUserRoleId: selectedUser.id,
       name: selectedRole,
       orgToken: localStorage.getItem('orgToken'),
     },
@@ -144,7 +144,7 @@ const AdminSission = () => {
     /* istanbul ignore next */
     onError: /* istanbul ignore next */(err) => {
       /* istanbul ignore next */
-      console.log('Error ', err);
+      toast.error(err.message);
     },
   });
 
@@ -221,7 +221,8 @@ const AdminSission = () => {
           className="text-red-500 whitespace-no-wrap cursor-pointer"
           onClick={/* istanbul ignore next */() => {
             /* istanbul ignore next */
-            removeAssignModel(row.original.id);
+            console.log(row.original.role);
+            removeAssignModel(row.original);
           }}
         >
           {t('Assign')}
@@ -264,7 +265,7 @@ const AdminSission = () => {
                   <div>
                     <div className="flex justify-center">
                       <div className="flex flex-wrap">
-                        {allRoless?.map((obj: any, index: any) => (
+                        {allRoless.filter((item)=>item.name!=selectedUser.role).map((obj: any, index: any) => (
                           <div
                             key={index}
                             onClick={(e) => handleSelectRole(e, obj.name)}
