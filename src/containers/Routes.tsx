@@ -26,6 +26,7 @@ const Product = React.lazy(() => import('../pages/Comingsoon'));
 const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
+import RemoveTokenPage from '../utils/RemoveTokenPage';
 
 function MainRoutes() {
   return (
@@ -37,6 +38,7 @@ function MainRoutes() {
           <Route path="/register/:token" element={<UserRegister />} />
           <Route path="/register-successful" element={<Message />} />
           <Route path="/signup/org" element={<OrgRegister />} />
+          <Route path="/signup/org/:token" element={<RemoveTokenPage />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/forgot-password/:token" element={<ForgotPassword />} />
           <Route
@@ -56,7 +58,7 @@ function MainRoutes() {
             }
           />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/product" element={<Product title={'Productpage'} />} /> 
+          <Route path="/product" element={<Product title={'Productpage'} />} />
           <Route path="/noredirect" element={<Noredirect />} />
           <Route path="/pricing-form" element={<Pay />} />
           <Route path="*" element={<Error />} />

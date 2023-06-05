@@ -1,6 +1,6 @@
 import { gql, useApolloClient, useMutation } from '@apollo/client';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,7 +11,6 @@ import CountrySelector from '../components/CountrySelector';
 import Input from '../components/Input';
 import ProfileCoverpage from '../components/ProfileCoverpage';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import { useEffect } from 'react';
 
 import Button from '../components/Buttons';
 import { COUNTRIES, SelectMenuOption } from '../constants/countries';
@@ -75,8 +74,6 @@ function EditProfile() {
   const navigate = useNavigate();
   const location = useLocation();
 
-
-  
   const { profile }: any = location.state;
   // eslint-disable-next-line no-underscore-dangle
 
