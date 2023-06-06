@@ -24,12 +24,6 @@ function Error() {
         />
       </div>
       <div className="max-w-screen-md mt-5 text-white">
-        <h1 className="font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
-          {t('PAGE NOT FOUND')}
-        </h1>
-        <p className="my-3 px-8 md:px-14 lg:px-0">
-          {t('error_page_paragraph')}
-        </p>
         <Button
           onClick={navigateHome}
           variant="primary"

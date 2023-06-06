@@ -86,7 +86,7 @@ const TraineeAttendanceDetails = () => {
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
                 <td className="py-10 px-10 text-left">{t('Comments')}</td>
                 <td className="py-3  text-start text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit sed to
                 </td>
               </tr>
             </tbody>
