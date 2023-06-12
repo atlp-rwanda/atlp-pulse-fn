@@ -50,6 +50,8 @@ const AdminTraineeDashboard = () => {
   const [email, setEmail] = useState<any[]>([]);
   const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
+  const [selectedOptionUpdate, setSelectedOptionUpdate] = useState<any>({});
+  const [selectedTeamOptionUpdate, setSelectedTeamOptionUpdate] = useState<any>({});
   const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
   const [selectedTeamOption, setSelectedTeamOption] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
@@ -168,6 +170,10 @@ const AdminTraineeDashboard = () => {
             color="#148fb6"
             /* istanbul ignore next */
             onClick={() => {
+              setSelectedOptionUpdate({value:row.original.cohort,label:row.original.cohort});
+              setSelectedTeamOptionUpdate({value:row.original.team,label:row.original.team});
+              console.log(selectedOption2);
+              console.log(row.original.team);
               removeEditModel();
               setEditEmail(row.original.email);
               setEditCohort(row.original.cohort);
@@ -251,7 +257,7 @@ const AdminTraineeDashboard = () => {
 
   const [addMemberToTeam] = useMutation(ADD_MEMBER_TO_TEAM, {
     variables: {
-      teamName: Object.values(selectedTeamOption)[0],
+      teamName: Object.values(selectedTeamOption)[1],
       email: Object.values(email)[1],
       orgToken: organizationToken,
     },
@@ -275,7 +281,7 @@ const AdminTraineeDashboard = () => {
   const [editMemberMutation] = useMutation(EDIT_MEMBER_MUTATION, {
     variables: {
       removedFromTeamName: editTeam,
-      addedToTeamName: Object.values(selectedTeamOption)[0],
+      addedToTeamName: selectedTeamOptionUpdate.value,
       email: editEmail,
       orgToken: organizationToken,
     },
@@ -673,7 +679,7 @@ const AdminTraineeDashboard = () => {
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen z-20 bg-black bg-opacity-40 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           editTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -698,10 +704,11 @@ const AdminTraineeDashboard = () => {
                 <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
                   <ControlledSelect
                     placeholder={t('Select cohort')}
-                    defaultValue={selectedOption2}
+                    defaultValue={selectedOptionUpdate}
                     noRegister={{
                       onChange: (e) => {
-                        setSelectedOption2(e);
+                        setSelectedOptionUpdate(e);
+                        setSelectedTeamOptionUpdate({value:'',label:'Select team'});
                         setCohortName(e.value);
                         getTeam();
                       },
@@ -714,10 +721,10 @@ const AdminTraineeDashboard = () => {
                 <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
                   <ControlledSelect
                     placeholder={t('Select team')}
-                    defaultValue={selectedTeamOption}
+                    defaultValue={selectedTeamOptionUpdate}
                     noRegister={{
                       onChange: (e) => {
-                        setSelectedTeamOption(e);
+                        setSelectedTeamOptionUpdate(e);
                       },
                     }}
                     options={teamsOptions.filter((option: any) => {
