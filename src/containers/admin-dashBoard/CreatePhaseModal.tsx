@@ -70,7 +70,7 @@ export default function CreatePhaseModal({
        /* istanbul ignore next */
       onCompleted() {
         reset();
-         toast.success("Phase Created successful");
+         toast.success(t("Phase Created successful"));
       },
     });
  

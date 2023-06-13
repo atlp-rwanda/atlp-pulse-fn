@@ -27,11 +27,13 @@ export default function DeleteCohortModal({
   const { t } = useTranslation();
   const [deleteCohortMutation, { loading }] = useMutation(DeleteCohort, {
     onError(error) {
+      removeModel();
       toast.error(error.message.toString());
     },
     onCompleted() {
       refetch();
       removeModel();
+      toast.success(t("Cohort deleted successfully"));
     },
   });
   const orgToken = localStorage.getItem('orgToken');
@@ -83,6 +85,7 @@ export default function DeleteCohortModal({
                 onClick={() => {
                   deleteCohort();
                 }}
+                loading={loading}
               >
                 {t('Delete')}
               </Button>
