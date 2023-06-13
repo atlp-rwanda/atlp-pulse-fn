@@ -1,26 +1,28 @@
-
 import { HomeIcon, MailIcon, PhoneIcon } from '@heroicons/react/solid';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { toast } from 'react-toastify';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+  useLazyQuery,
+} from '@apollo/client';
 import Logo from '../assets/logo.svg';
 import Button from '../components/Buttons';
 import Input from '../components/Input';
 import { passwordFields } from '../constants/formFields';
 import { UserContext } from '../hook/useAuth';
 import { CountryComponent } from '../pages/Profile';
-import { toast } from 'react-toastify';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
-import {GET_ALL_TRAINEES} from "../Mutations/Ratings"
+import { GET_ALL_TRAINEES } from '../Mutations/Ratings';
 
-import { useLazyQuery } from '@apollo/client';
-import {useEffect} from 'react';
 const organizationToken = localStorage.getItem('orgToken');
 const token = localStorage.getItem('orgToken');
 const orgName = window.localStorage.getItem('orgName');
-
 
 export function EditPassword() {
   type fields = {
@@ -41,7 +43,7 @@ export function EditPassword() {
   }: any = useForm();
   /* istanbul ignore next */
   const onSubmit = () => {
-    reset()
+    reset();
   };
 
   const [passwordFieldState, setPasswordField] = useState<fields>(fieldState);
@@ -99,21 +101,17 @@ export default function ProfileTabs({ data }: any) {
   const tabs: Array<string> = ['About', 'Organizations', 'Account'];
   const { user, setName } = useContext(UserContext);
   const [traineeData, setTraineeData] = useState<any>([]);
-  const [singleUser, setSingleUser]=useState<any>({});
- 
- /* istanbul ignore next */
+  const [singleUser, setSingleUser] = useState<any>({});
+
+  /* istanbul ignore next */
   const [fetchData2] = useLazyQuery(GET_ALL_TRAINEES, {
-     variables: {
+    variables: {
       orgToken: organizationToken,
     },
   });
- 
-    useEffect(() => {
 
-
-
+  useEffect(() => {
     fetchData2({
-      
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
         setTraineeData(data.getAllUsers);
@@ -122,18 +120,16 @@ export default function ProfileTabs({ data }: any) {
         toast.error(error.message);
       },
     });
+  }, []);
 
-},[]);
-
- useEffect(() => {
-let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
-  setSingleUser(singleTrainne[0]) //returns an object with single trainnee data that can be accessed singleUser.email
-
- },[traineeData])
-  
+  useEffect(() => {
+    const singleTrainne = traineeData.filter(
+      (item: any) => item.email === user.email,
+    );
+    setSingleUser(singleTrainne[0]); // returns an object with single trainnee data that can be accessed singleUser.email
+  }, [traineeData]);
 
   return (
-    
     <div className="flex flex-wrap lg:ml-60 lg:mr-8">
       <>
         <div className="lg:w-[40vw]">
@@ -156,7 +152,6 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                   onClick={(e) => {
                     e.preventDefault();
                     setOpenTab(`${tab}`);
-
                   }}
                   data-toggle="tab"
                   href="#link1"
@@ -201,9 +196,9 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                   </div>
                   <div className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow">
                     <h2 className="text-xl font-bold m-2  mb-4">
-                      Biography 
-                       {t('Biography')}
-                      </h2>
+                      Biography
+                      {t('Biography')}
+                    </h2>
                     <p>{data?.biography || 'Add biography'}</p>
                   </div>
                 </div>
@@ -216,7 +211,7 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                     />
                     <div className="flex flex-col justify-start items-start ml-36">
                       <h2 className="font-bold text-dark-text-fill text-center text-2xl md:text-3xl">
-                         {orgName}
+                        {orgName}
                       </h2>
                       <h3 className="font-bold text-dark-text-fill text-center text-sm md:text-lg ">
                         https://andela.pulse.com/
@@ -232,9 +227,9 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                       <h4 className="font-bold text-base mr-4">
                         {t('Joined')}:
                       </h4>
-                       {singleUser && singleUser.team
-                      ? singleUser.team.cohort.startDate.split("T")[0]
-                      : 'Unavailabe'}
+                      {singleUser && singleUser.team
+                        ? singleUser.team.cohort.startDate.split('T')[0]
+                        : 'Unavailabe'}
                     </div>
 
                     <div className="flex">
@@ -243,9 +238,9 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                     </div>
                     <div className="py-4 flex ">
                       <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
-                       {singleUser && singleUser.team
+                      {singleUser && singleUser.team
                         ? singleUser.team.name
-                        : 'Unavailabe'} 
+                        : 'Unavailabe'}
                     </div>
                   </div>
                   <div className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
@@ -262,21 +257,20 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                     </div>
                     <div className="flex">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Stage(current)')}:  
-                      {singleUser && singleUser.team
-                        ? singleUser.team.cohort.phase.name
-                        : 'Unavailabe'}
+                        {t('Stage(current)')}:
+                        {singleUser && singleUser.team
+                          ? singleUser.team.cohort.phase.name
+                          : 'Unavailabe'}
                       </h4>
                     </div>
                     <div className="py-4 flex ">
                       <h4 className="font-bold text-base mr-4">
                         {t('Manager')}:
                       </h4>
-                     
+
                       {singleUser && singleUser.team
                         ? singleUser.team.cohort.program.manager.profile.name
                         : 'Unavailabe'}
-
                     </div>
                   </div>
                 </div>
@@ -295,15 +289,14 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                     />
                     <div className="flex flex-col justify-start items-start ml-36">
                       <h2 className="font-bold text-dark-text-fill text-center text-lg md:text-xl">
-                       {singleUser && singleUser.team
-                        ? singleUser.team.cohort.program.organization.name
-                        : 'Unavailabe'}
+                        {singleUser && singleUser.team
+                          ? singleUser.team.cohort.program.organization.name
+                          : 'Unavailabe'}
                       </h2>
                       <h3 className="font-bold text-dark-text-fill text-center text-sm md:text-lg ">
                         https://andela.pusle.com
                       </h3>
                     </div>
-              
                   </div>
                   <div className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
@@ -313,19 +306,19 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                       <h4 className="font-bold text-base mr-4">
                         {t('Joined')}:
                       </h4>
-                     {singleUser && singleUser.team
-                      ? singleUser.team.cohort.startDate.split("T")[0]
-                      : 'Unavailabe'}
+                      {singleUser && singleUser.team
+                        ? singleUser.team.cohort.startDate.split('T')[0]
+                        : 'Unavailabe'}
                     </div>
                     <div className="flex">
                       <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
-                     {user?.role}
+                      {user?.role}
                     </div>
                     <div className="py-4 flex ">
                       <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
-                     {singleUser && singleUser.team
+                      {singleUser && singleUser.team
                         ? singleUser.team.name
-                        : 'Unavailabe'} 
+                        : 'Unavailabe'}
                     </div>
                   </div>
                   <div className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
@@ -336,17 +329,17 @@ let singleTrainne=traineeData.filter((item:any) =>item.email=== user.email)
                       <h4 className="font-bold text-base mr-4">
                         {t('Program')}:
                       </h4>
-                     
+
                       {singleUser && singleUser.team
                         ? singleUser.team.cohort.program.name
                         : 'Unavailabe'}
                     </div>
                     <div className="flex">
                       <h4 className="font-bold text-base mr-4">
-                        {t('Stage(current)')}: 
-                          {singleUser && singleUser.team
-                        ? singleUser.team.cohort.phase.name
-                        : 'Unavailabe'}
+                        {t('Stage(current)')}:
+                        {singleUser && singleUser.team
+                          ? singleUser.team.cohort.phase.name
+                          : 'Unavailabe'}
                       </h4>
                     </div>
                     <div className="py-4 flex ">
