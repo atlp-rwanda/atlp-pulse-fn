@@ -27,4 +27,6 @@ COPY --from=builder /app/build /usr/share/nginx/html
 
 # command to run
 
+# command to run
+
 CMD [ "nginx", "-g", "daemon off;" ]

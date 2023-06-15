@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FullCalendar, { EventInput, EventContentArg } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { useTranslation } from 'react-i18next';
@@ -8,13 +8,16 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReactTooltip from 'react-tooltip';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { ADD_EVENT, GET_EVENTS } from '../Mutations/event';
+import moment from 'moment';
 /* istanbul ignore next */
 
 const initialData: EventInput[] = [
   {
     title: 'Event title 1',
-    start: '2022-07-21',
-    end: '2022-07-21',
+    start: '2023-06-12',
+    end: '2023-06-14',
     hostName: 'Samuel NISHIMWE',
     timeToStart: '14:00',
     timeToFinish: '16:00',
@@ -48,25 +51,58 @@ const Calendar = () => {
     timeToStart: '',
     timeToFinish: '',
   });
-  const [data, setData] = useState<EventInput[]>(initialData);
+  const [data, setData] = useState<EventInput[]>([]);
+  const [getEvents] = useLazyQuery(GET_EVENTS);
+  const [createEvent] = useMutation(ADD_EVENT);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+  useEffect(() => {
+    const fetchData = async () => {
+      /* istanbul ignore next */
+      try {
+        const { data: out } = await getEvents({
+          variables: {
+            authToken: localStorage.getItem('auth_token'),
+          },
+        });
+        let all = out.getEvents.map((one: EventInput) => ({
+          end: moment(one.end).format('YYYY-MM-DD'),
+          start: moment(one.start).format('YYYY-MM-DD'),
+          hostName: one.hostName,
+          timeToStart: one.timeToStart,
+          title: one.title,
+          timeToFinish: one.timeToEnd,
+        }));
+        setData(all);
+      } catch (error) {
+        console.log({ eventsError: data });
+        // toast.error(error?.message || 'Something went wrong');
+      }
+    };
+    fetchData();
+  }, []);
   const { t } = useTranslation();
-  const renderEvent = /* istanbul ignore next */ 
-  (e: EventContentArg) => (
+  const renderEvent =
     /* istanbul ignore next */
-    <div
-      data-html={true}
-      data-tip={`<div >  ${e.event.title} <br> ${e.event.extendedProps.hostName}  <br> ${e.event.extendedProps.timeToStart} - ${e.event.extendedProps.timeToFinish}</div> `}
-      className="bg-primary text-white max-w-full min-w-full overflow-auto text-xs md:text-sm"
-    >
-      <p className="px-3 py-1 ">{e.event.title}</p>
-      <p className="px-3 py-1 ">{e.event.extendedProps.hostName}</p>
-      <p className="px-3 py-1 ">
-        {e.event.extendedProps.timeToStart} -{' '}
-        {e.event.extendedProps.timeToFinish}
-      </p>
-      <ReactTooltip data-html={true} />
-    </div>
-  );
+
+    (e: EventContentArg) => (
+      /* istanbul ignore next */
+      <div
+        data-html={true}
+        data-tip={`<div>${e.event.title}<br> ${e.event.extendedProps.hostName}  <br> ${e.event.extendedProps.timeToStart} - ${e.event.extendedProps.timeToFinish}</div> `}
+        className="bg-primary text-white max-w-full min-w-full overflow-auto text-xs md:text-sm"
+      >
+        <p className="px-3 py-1 ">{e.event.title}</p>
+        <p className="px-3 py-1 ">{e.event.extendedProps.hostName}</p>
+        <p className="px-3 py-1 ">
+          {e.event.extendedProps.timeToStart} -{' '}
+          {e.event.extendedProps.timeToFinish}
+        </p>
+        <ReactTooltip data-html={true} />
+      </div>
+    );
 
   const removeModel = (e: any) => {
     e.preventDefault();
@@ -82,6 +118,9 @@ const Calendar = () => {
 
   const handleAddEvent = (e: any) => {
     e.preventDefault();
+    createEvent({
+      variables: { ...newEvent, authToken: localStorage.getItem('auth_token') },
+    });
     setData([...data, newEvent]);
     setNewEvent({
       title: '',
