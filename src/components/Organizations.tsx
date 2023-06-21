@@ -167,7 +167,7 @@ const Organizations = () => {
                     </thead>
                     <tbody>
                       {getData?.getOrganizations?.map(
-                        ({ id, name, description, admin: { email } }) => {
+                        ({ id, name, description, admin}) => {
                           return (
                             <tr key={id}>
                               <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
@@ -181,7 +181,7 @@ const Organizations = () => {
                               </td>
                               <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                 <p className="text-gray-900 dark:text-white whitespace-no-wrap">
-                                  {email}
+                                  {}
                                 </p>
                               </td>
                               <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">

@@ -139,8 +139,8 @@ export const EDIT_MEMBER_MUTATION = gql`
 `;
 
 export const INVITE_USER_MUTATION = gql`
-  mutation InviteUser($email: String!, $orgToken: String!) {
-    inviteUser(email: $email, orgToken: $orgToken)
+  mutation InviteUser($email: String!, $orgToken: String!, $type: String!) {
+    inviteUser(email: $email, orgToken: $orgToken, type: $type)
   }
 `;
 export const GET_TEAM_QUERY = gql`
