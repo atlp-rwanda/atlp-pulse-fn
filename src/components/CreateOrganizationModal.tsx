@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 import Button from './Buttons';
 
 export const AddOrganization = gql`
-  mutation AddOrganization($organizationInput: OrganizationInput) {
-    addOrganization(organizationInput: $organizationInput) {
+  mutation AddOrganization($organizationInput: OrganizationInput, $action: String) {
+    addOrganization(organizationInput: $organizationInput, action: $action) {
       id
     }
   }
@@ -34,6 +34,7 @@ export default function CreateOrganizationModal({
       toast.error(error.message.toString());
     },
     onCompleted() {
+      toast.success(t('Organization added successfully'));
       refetch();
       reset();
       removeModel();
@@ -42,7 +43,7 @@ export default function CreateOrganizationModal({
 
   async function addOrganization(data: any) {
     await addOrganizationMutation({
-      variables: { organizationInput: data },
+      variables: { organizationInput: data, action: 'new' },
     });
   }
 

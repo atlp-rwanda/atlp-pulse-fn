@@ -292,7 +292,7 @@ const AdminTraineeDashboard = () => {
 
       setTimeout(() => {
         setButtonLoading(false);
-        toast.success("Edit trainee's cohort successfully done!");
+        toast.success(data.editMember);
         removeEditModel();
       }, 500);
     },
