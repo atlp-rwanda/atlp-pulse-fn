@@ -10,7 +10,7 @@ import {
 import DataPagination from './DataPagination';
 
 interface TableData {
-  data: [any];
+  data: any[];
   columns: any;
   title: string;
 }

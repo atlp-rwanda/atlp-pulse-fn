@@ -1,44 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { gql, useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/Buttons';
 import DataTable from '../../components/DataTable';
-import useDocumentTitle from '../../hook/useDocumentTitle';
+import Spinner from '../../components/Spinner';
 
-const initialCoordinators = [
-  { id: 1, name: 'John Doe', email: 'john.doe@example.com' },
-  { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com' },
-];
+const GET_COORDINATORS = gql`
+  query Query {
+    getAllCoordinators {
+      email
+      profile {
+        name
+      }
+      organizations
+      role
+    }
+  }
+`;
+
+interface Coordinator {
+  email: string;
+  profile: {
+    name: string | null;
+  };
+  organizations: string[];
+  role: string;
+}
 
 export default function CoordinatorsPage() {
-  const [coordinators, setCoordinators] = useState(initialCoordinators);
   const { t } = useTranslation();
 
-  const handleAddCoordinator = () => {
-    // Handle adding a new coordinator
-    const newCoordinator = { id: coordinators.length + 1, name: '', email: '' };
-    setCoordinators([...coordinators, newCoordinator]);
-  };
+  const { loading, error, data } = useQuery(GET_COORDINATORS, {
+    pollInterval: 3000, // Refresh every 3 seconds
+  });
+  const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      const extractedCoordinators = data.getAllCoordinators
+        .map((coordinator: any) => ({
+          email: coordinator.email,
+          profile: coordinator.profile || { name: null },
+          organizations: coordinator.organizations || [],
+          role: coordinator.role,
+        }))
+        .filter((coordinator: Coordinator) => {
+          const orgName = localStorage.getItem('orgName') as string;
+          return coordinator.organizations.includes(orgName);
+        });
+      setCoordinators(extractedCoordinators);
+    }
+  }, [data]);
+
+  // eslint-disable-next-line no-console
+  console.log(data);
 
   const columns = [
-    { Header: t('name'), accessor: 'name' },
-    { Header: t('email'), accessor: 'email' },
+    {
+      Header: t('Name'),
+      accessor: 'profile.name',
+      Cell: ({ value }: any) => value || '-',
+    },
+    { Header: t('Email'), accessor: 'email' },
+    { Header: t('Organizations'), accessor: 'organizations' },
+    { Header: t('Role'), accessor: 'role' },
   ];
 
   return (
     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
       <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
-        <div className="space-x-8 lg:ml-10">
-          <Button variant="primary" size="lg" onClick={handleAddCoordinator}>
-            {t('Add Coordinator')}
-          </Button>
-        </div>
+        <div className="space-x-8 lg:ml-10" />
       </div>
       <div className="px-3 m d:px-8 w-screen overflow-x-auto">
-        <DataTable
-          columns={columns}
-          data={[coordinators]} 
-          title={t('Coordinators List')}
-        />
+        {loading ? (
+          <div className="flex justify-center items-center h-48">
+            <Spinner />
+            <div className="spinner" />
+          </div>
+        ) : (
+          <DataTable
+            columns={columns}
+            data={coordinators}
+            title={t('Coordinators List')}
+          />
+        )}
+        {coordinators.length === 0 && !loading && (
+          <div className="flex justify-center items-center h-48">
+            {t('No coordinators found.')}
+          </div>
+        )}
       </div>
     </div>
   );
