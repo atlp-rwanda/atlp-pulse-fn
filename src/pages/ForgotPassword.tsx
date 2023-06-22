@@ -74,7 +74,7 @@ export default function ForgotPassword() {
           },
         });
 
-        return;
+        
       } catch (error: any) {
         toast.error(error.message);
       }

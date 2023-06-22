@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
-import { fireEvent, render } from '@testing-library/react';
+import renderer, { act } from 'react-test-renderer';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import Grading from '../GradingSystem';
 
@@ -30,5 +30,53 @@ describe('Register an Organization', () => {
       </MemoryRouter>,
     );
     expect(removeModelMck).toBeCalledTimes(0);
+  });
+
+  it('Testing Grading component', async () => {
+    render(
+      <MemoryRouter>
+        <ApolloProvider>
+          <Grading />
+        </ApolloProvider>
+      </MemoryRouter>,
+    );
+
+    const gradeName = screen.getByPlaceholderText(
+      'Label. eg:Name of grading system',
+    );
+    const gradeDisc = screen.getByPlaceholderText('Grade description');
+    const grade = screen.getByPlaceholderText('Grade');
+    const gradeBtn = screen.getByTestId('gradeBtn');
+    const saveGrade = screen.getByTestId('saveGrade');
+
+    act(() => {
+      fireEvent.change(gradeName, {
+        target: { value: '' },
+      });
+    });
+    act(() => {
+      fireEvent.change(gradeDisc, {
+        target: { value: '' },
+      });
+    });
+    act(() => {
+      fireEvent.change(grade, {
+        target: { value: '' },
+      });
+    });
+
+    act(() => {
+      fireEvent.click(gradeBtn);
+      fireEvent.click(saveGrade);
+    });
+
+    // test empty input
+    expect(
+      await screen.findByText('Grade Name is required'),
+    ).toBeInTheDocument();
+
+    expect(
+      await screen.findByText('Description is required'),
+    ).toBeInTheDocument();
   });
 });

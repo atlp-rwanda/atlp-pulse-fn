@@ -232,6 +232,7 @@ Array [
             </button>
             <button
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="saveGrade"
               disabled={false}
               onClick={[Function]}
               type="submit"
@@ -488,7 +489,7 @@ Array [
                 </select>
                 <button
                   className="btn primary lg undefined"
-                  data-testid="removeModel"
+                  data-testid="gradeBtn"
                   disabled={false}
                   onClick={[Function]}
                   type="button"

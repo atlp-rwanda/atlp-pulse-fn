@@ -3,6 +3,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "module": "esnext",
+    "types": ["node", "jest"],
     "moduleResolution": "node",
     "lib": ["dom", "esnext"],
     "strict": true,

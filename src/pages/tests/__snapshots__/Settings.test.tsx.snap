@@ -35,16 +35,11 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           </div>
           <a
             className="ml-auto text-gray-600 text-xs md:text-base dark:text-dark-text-fill"
-            href="/dashboard/settings#link"
+            href="/dashboard/profile"
             onClick={[Function]}
           >
             <h4>
-              <a
-                href="/dashboard/profile"
-                onClick={[Function]}
-              >
-                Change
-              </a>
+              Change
             </h4>
           </a>
         </li>

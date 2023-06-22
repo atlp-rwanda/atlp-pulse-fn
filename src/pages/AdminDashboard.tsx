@@ -1,22 +1,21 @@
-import React,{useContext,useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
+import { useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
 import Chart from '../components/Chart';
 import Card from '../components/Card';
 // eslint-disable-next-line import/no-useless-path-segments
 import useDocumentTitle from '../hook/useDocumentTitle';
-import { useTranslation } from 'react-i18next';
 import Comingsoon from './Comingsoon';
 import Button from '../components/Buttons';
 import { UserContext } from '../hook/useAuth';
-import { useMutation } from '@apollo/client';
-import { toast } from 'react-toastify';
 import { INVITE_USER_MUTATION } from '../Mutations/manageStudentMutations';
-
 
 function SupAdDashboard() {
   const { user } = useContext(UserContext);
   const { t }: any = useTranslation();
-  
+
   const organizationToken = localStorage.getItem('orgToken');
 
   const [inviteTraineeModel, setInviteTraineeModel] = useState(false);
@@ -24,7 +23,7 @@ function SupAdDashboard() {
   const [buttonLoading, setButtonLoading] = useState(false);
 
   const inviteModel = () => {
-    let newState = !inviteTraineeModel;
+    const newState = !inviteTraineeModel;
     setInviteTraineeModel(newState);
   };
 
@@ -32,7 +31,7 @@ function SupAdDashboard() {
     variables: {
       email: inviteEmail,
       orgToken: organizationToken,
-      type: 'organisation'
+      type: 'organisation',
     },
     onCompleted: (data) => {
       setTimeout(() => {
@@ -52,9 +51,9 @@ function SupAdDashboard() {
   useDocumentTitle('Dashboard');
   return (
     <>
-          {/* =========================== Start::  InviteTraineeModel =============================== */}
+      {/* =========================== Start::  InviteTraineeModel =============================== */}
 
-          <div
+      <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           inviteTraineeModel === true ? 'block' : 'hidden'
         }`}
@@ -70,13 +69,16 @@ function SupAdDashboard() {
             <form className=" py-3 px-8">
               <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
                 <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
-                  {t('Fill in the email to invite an organisation to DevPulse.')}
+                  {t(
+                    'Fill in the email to invite an organisation to DevPulse.',
+                  )}
                 </h3>
               </div>
 
               <div className="text-white input my-3 h-9 ">
                 <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
                   <input
+                    data-testid="inviteInput"
                     value={inviteEmail}
                     onChange={(e) => {
                       setInviteEmail(e.target.value);
@@ -101,6 +103,7 @@ function SupAdDashboard() {
                 </Button>
 
                 <Button
+                  data-testid="invite"
                   variant="primary"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
@@ -118,46 +121,43 @@ function SupAdDashboard() {
         </div>
       </div>
       {/* =========================== End::  InviteTraineeModel =============================== */}
- 
-    <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
-      <div className="flex flex-row pb-8 justify-center">
-        <div className="lg:ml-56 w-[90%] pt-[8vh] h-[100%]">
-          {/* <div className="grid grid-cols-2 mb-12 md:mb-24 lg:mb-0 lg:grid-cols-4">
+
+      <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
+        <div className="flex flex-row pb-8 justify-center">
+          <div className="lg:ml-56 w-[90%] pt-[8vh] h-[100%]">
+            {/* <div className="grid grid-cols-2 mb-12 md:mb-24 lg:mb-0 lg:grid-cols-4">
             <Card text={t('Coordinators')} number={47} />
             <Card text={t('Trainees')} number={560} />
             <Card text={t('Cohorts')} number={8} />
             <Card text={t('Performance')} number={4} />
           </div>
           <Chart title={t('Overall performance')} /> */}
-             <div>
+            <div>
               {/* <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
                 <div className="flex items-left px-10 lg:px-60 pt-24 pb-8"> */}
-                  <div className="space-x-8 lg:ml-7 pt-5">
-              
+              <div className="space-x-8 lg:ml-7 pt-5">
+                {user?.role === 'coordinator' || undefined ? (
+                  ''
+                ) : (
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    data-testid="inviteModel"
+                    onClick={inviteModel}
+                  >
+                    {t('Invite an organization')}
+                  </Button>
+                )}
+              </div>
+            </div>
 
-                    {user?.role === 'coordinator' || undefined ? (
-                      ''
-                    ) : (
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        data-testid="inviteModel"
-                        onClick={inviteModel}
-                      >
-                        {t('Invite an organization')}
-                      </Button>
-                    )}
-                  </div>
-                </div>
-            
-              {/* </div>
+            {/* </div>
               </div> */}
-          
-          <Comingsoon title='Dashboard'/>
 
+            <Comingsoon title="Dashboard" />
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

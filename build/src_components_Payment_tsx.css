@@ -1,0 +1,22 @@
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.8.1_webpack@5.88.0/node_modules/css-loader/dist/cjs.js!./node_modules/.pnpm/postcss-loader@7.3.3_p3rxgk7mdowwycafuz4riksgva/node_modules/postcss-loader/dist/cjs.js!./src/style.css ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+.radio-toolbar input[type='radio'] {
+  display: none;
+}
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 4px 11px;
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.radio-toolbar input[type='radio']:checked + label {
+  color: red;
+}
+
+
+/*# sourceMappingURL=src_components_Payment_tsx.css.map*/
