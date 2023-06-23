@@ -109,7 +109,7 @@ export default function CreateCohortModal({
         setValue('programName', { value: undefined, label: undefined });
         setValue('phaseName', { value: undefined, label: undefined });
            
-        toast.success("Cohort Created successful");
+        toast.success(t("Cohort Created successful"));
       
       },
     });

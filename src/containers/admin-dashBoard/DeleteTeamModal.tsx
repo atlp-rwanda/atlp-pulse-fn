@@ -81,6 +81,8 @@ export default function DeleteTeamModal({
                                 onClick={() => {
                                     deleteTeam();
                                 }}
+                                loading={loading}
+
                             >
                                 {t('Delete')}
                             </Button>
