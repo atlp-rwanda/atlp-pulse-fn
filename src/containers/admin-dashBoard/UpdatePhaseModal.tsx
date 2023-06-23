@@ -61,7 +61,7 @@ export default function UpdatePhaseModal({
       refetch();
       removeModel();
       
-     toast.success("Phase Updated successful");
+     toast.success(t("Phase Updated successful"));
 
     },
   });

@@ -48,7 +48,7 @@ export default function CreateTeamModal({
             toast.error(error.message.toString());
         },
         onCompleted() {
-            toast.success("Team successfully added");
+            toast.success(t("Team successfully added"));
             refetch();
             removeModel();
         },

@@ -34,7 +34,7 @@ export default function DeleteProgramModal({
       /* istanbul ignore next */
       refetch();
       removeModel();
-      toast.success("Program deleted");
+      toast.success(t("Program deleted"));
 
     },
   });
@@ -87,6 +87,7 @@ export default function DeleteProgramModal({
                 onClick={() => {
                   deleteProgram();
                 }}
+                loading={loading}
               >
                 {t('Delete')}
               </Button>

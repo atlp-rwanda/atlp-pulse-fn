@@ -70,7 +70,7 @@ export default function UpdateCohortModal({
     onCompleted() {
       refetch();
       removeModel();
-      toast.success('Cohort Updated successful');
+      toast.success(t('Cohort Updated successful'));
     },
   });
 
