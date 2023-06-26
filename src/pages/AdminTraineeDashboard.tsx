@@ -28,6 +28,7 @@ import {
   GET_TEAM_QUERY,
   ADD_MEMBER_TO_TEAM,
 } from '../Mutations/manageStudentMutations';
+
 import { useLazyQuery, useMutation } from '@apollo/client';
 import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
@@ -286,11 +287,12 @@ const AdminTraineeDashboard = () => {
       orgToken: organizationToken,
     },
     onCompleted: (data) => {
+      console.log(data);
       handleToggle();
 
       setTimeout(() => {
         setButtonLoading(false);
-        toast.success("Edit trainee's cohort successfully done!");
+        toast.success(data.editMember);
         removeEditModel();
       }, 500);
     },
@@ -330,6 +332,7 @@ const AdminTraineeDashboard = () => {
     variables: {
       email: inviteEmail,
       orgToken: organizationToken,
+      type: 'user'
     },
     onCompleted: (data) => {
       setTimeout(() => {
