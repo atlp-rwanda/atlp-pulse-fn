@@ -3,9 +3,6 @@ name: Login to Digital Ocean and create a directory
 on:
   push:
     branches:
-      - circleci-project-setup
-  pull_request:
-    branches:
       - develop
 
 jobs:
@@ -21,7 +18,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:v1.0.3
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/atlp-pulse-fn:latest
     - name: Login to DO
       uses: appleboy/ssh-action@master
       with:
@@ -30,4 +27,6 @@ jobs:
         key: ${{ secrets.DO_KEY }}
         port: ${{ secrets.DO_PORT }}
         script: |
-          mkdir "$(date +%T)"
+          docker pull devpulse/atlp-pulse-fn:latest
+          docker run -p 4004:80 -d --add-host=devpulse-backend:161.35.150.208 devpulse/atlp-pulse-fn:latest
+
