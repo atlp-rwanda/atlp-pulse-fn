@@ -46,6 +46,9 @@ const UpdatedRatingDashboard = React.lazy(
 );
 const SupAdDashboard = React.lazy(() => import('../pages/SupAdDashboard'));
 const Calendar = React.lazy(() => import('../components/Calendar'));
+const CoordinatorsPage = React.lazy(
+  () => import('../containers/admin-dashBoard/CoordinatorModal'),
+);
 
 const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
@@ -76,8 +79,8 @@ function DashRoutes() {
             <Route path="/performance" element={<TraineePerfomance />} />
             <Route path="/attendance" element={<TraineeAttendance />} />
             <Route path="/attendance-details" element={<AttendanceDetails />} />
-            <Route path="/teams"   element={<AdminTeams />} />
-            <Route path="/cohorts"   element={<AdminCohorts />} />
+            <Route path="/teams" element={<AdminTeams />} />
+            <Route path="/cohorts" element={<AdminCohorts />} />
             <Route path="/phases" element={<AdminPhases />} />
             <Route path="/programs" element={<AdminPrograms />} />
             <Route path="/sessions" element={<AdminSession />} />
@@ -91,9 +94,10 @@ function DashRoutes() {
             <Route path="/profile/edit" element={<EditProfile />} />
             <Route path="*" element={<Error />} />
             <Route path="/super-admin" element={<SupAdDashboard />} />
-            <Route path="/settings"  element={<Settings />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
+            <Route path="/coordinators" element={<CoordinatorsPage />} />
           </Routes>
         </Suspense>
       </div>
