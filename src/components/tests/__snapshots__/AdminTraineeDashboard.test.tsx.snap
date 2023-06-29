@@ -1202,6 +1202,18 @@ Array [
                           </div>
                         </td>
                       </tr>
+                      <tr>
+                        <td
+                          colSpan={7}
+                          style={
+                            Object {
+                              "textAlign": "center",
+                            }
+                          }
+                        >
+                          loading...
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                   <div>

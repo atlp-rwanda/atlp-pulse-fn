@@ -1,0 +1,219 @@
+.frame {
+  align-items: stretch;
+  display: grid;
+  grid-template-rows: 1fr 90%;
+  gap: 1.5rem;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.frame .text_wrapper {
+  font-family: "Roboto-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.frame .div {
+  display: grid;
+  gap: 1rem 1.5rem;
+  position: relative;
+  width: 100%;
+  flex: 1;
+  grid-template-columns: 30% 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "remarks chat"
+    "remarks input";
+}
+
+.frame .div_2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  width: fit-content;
+}
+
+.frame .div_3 {
+  grid-area: remarks;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+.frame .div_4 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.frame .text_wrapper_2 {
+  font-family: "Roboto-Bold", Helvetica;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.frame .div_5 {
+  resize: none;
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: #989da2;
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  padding: 8px 12px;
+  position: relative;
+  width: 100%;
+}
+
+.frame .text_wrapper_3 {
+  font-family: "Roboto-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.frame .p {
+  flex: 1;
+  font-family: "Roboto-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.frame .div_6 {
+  grid-area: buttons;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.frame .text_wrapper_4 {
+  font-family: "Roboto-Regular", Helvetica;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.frame .div_7 {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  flex: 1;
+}
+
+.frame .div_8 {
+  grid-area: chat;
+  overflow: auto;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.messages {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+}
+
+.frame .frame_wrapper,
+.frame .div_wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.frame .frame_wrapper {
+  align-items: flex-start;
+}
+
+.frame .div_wrapper {
+  align-items: flex-end;
+}
+
+.frame .div_9,
+.frame .div_10 {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 3px 10px;
+  position: relative;
+  width: fit-content;
+  max-width: 90%;
+}
+
+.frame .div_11 {
+  grid-area: input;
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.frame .div_wrapper_2 {
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 5px 0px 0px 5px;
+  display: flex;
+  flex: 1;
+  padding: 8px 10px;
+  position: relative;
+}
+
+.frame .close_2 {
+  align-items: center;
+  border-radius: 0 0.5rem 0.5rem 0;
+  display: flex;
+  gap: 10px;
+  padding: 0.6rem 0.8rem;
+  position: relative;
+  width: fit-content;
+}
+
+.center_msg {
+  text-align: center;
+  font-size: .8rem;
+  width: 100%;
+}

@@ -51,6 +51,7 @@ const AdminTraineeDashboard = () => {
   const [editTraineeModel, setEditTraineeModel] = useState(false);
   const [inviteTraineeModel, setInviteTraineeModel] = useState(false);
   const [traineeData, setTraineeData] = useState<any[]>([]);
+  const [traineeLoading, setTraineeLoading] = useState<boolean>(true);
   const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
   const [cohortName, setCohortName] = useState('');
@@ -59,7 +60,9 @@ const AdminTraineeDashboard = () => {
   const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
   const [selectedOptionUpdate, setSelectedOptionUpdate] = useState<any>({});
-  const [selectedTeamOptionUpdate, setSelectedTeamOptionUpdate] = useState<any>({});
+  const [selectedTeamOptionUpdate, setSelectedTeamOptionUpdate] = useState<any>(
+    {},
+  );
   const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
   const [selectedTeamOption, setSelectedTeamOption] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
@@ -205,10 +208,14 @@ const AdminTraineeDashboard = () => {
             color="#148fb6"
             /* istanbul ignore next */
             onClick={() => {
-              setSelectedOptionUpdate({value:row.original.cohort,label:row.original.cohort});
-              setSelectedTeamOptionUpdate({value:row.original.team,label:row.original.team});
-              console.log(selectedOption2);
-              console.log(row.original.team);
+              setSelectedOptionUpdate({
+                value: row.original.cohort,
+                label: row.original.cohort,
+              });
+              setSelectedTeamOptionUpdate({
+                value: row.original.team,
+                label: row.original.team,
+              });
               removeEditModel();
               setEditEmail(row.original.email);
               setEditCohort(row.original.cohort);
@@ -325,7 +332,6 @@ const AdminTraineeDashboard = () => {
       orgToken: organizationToken,
     },
     onCompleted: (data) => {
-      console.log(data);
       handleToggle();
 
       setTimeout(() => {
@@ -372,7 +378,7 @@ const AdminTraineeDashboard = () => {
     variables: {
       email: inviteEmail,
       orgToken: organizationToken,
-      type: 'user'
+      type: 'user',
     },
     onCompleted: (data) => {
       setTimeout(() => {
@@ -402,12 +408,12 @@ const AdminTraineeDashboard = () => {
     getTraineesQuery({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        setTraineeLoading(false)
         setTraineeData(data.getTrainees);
 
     
         console.log(data);
       },
-
       onError: (error) => {
         toast.error(error.message);
       },
@@ -800,7 +806,10 @@ const AdminTraineeDashboard = () => {
                     noRegister={{
                       onChange: (e) => {
                         setSelectedOptionUpdate(e);
-                        setSelectedTeamOptionUpdate({value:'',label:'Select team'});
+                        setSelectedTeamOptionUpdate({
+                          value: '',
+                          label: 'Select team',
+                        });
                         setCohortName(e.value);
                         getTeam();
                       },
@@ -1050,6 +1059,7 @@ const AdminTraineeDashboard = () => {
                   <DataTable
                     data={traineeData?.length > 0 ? datum : [{}]}
                     columns={columns}
+                    loading={traineeLoading}
                     title={t('Trainees list')}
                   />
                 </div>

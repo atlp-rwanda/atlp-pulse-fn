@@ -13,9 +13,10 @@ interface TableData {
   data: any[];
   columns: any;
   title: string;
+  loading?: boolean;
 }
 
-function DataTable({ data, columns, title }: TableData) {
+function DataTable({ data, columns, title, loading }: TableData) {
   // const sortedData = React.useMemo(() => [...data], []);
   const sortedColumns = React.useMemo(() => [...columns], [columns]);
   const sortedData = data;
@@ -103,6 +104,16 @@ function DataTable({ data, columns, title }: TableData) {
                 </tr>
               );
             })}
+            {loading && (
+              <tr>
+                <td
+                  colSpan={columns.length || 100}
+                  style={{ textAlign: 'center' }}
+                >
+                  loading...
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <DataPagination

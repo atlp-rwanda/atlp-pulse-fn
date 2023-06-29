@@ -51,9 +51,6 @@ export default function CoordinatorsPage() {
     }
   }, [data]);
 
-  // eslint-disable-next-line no-console
-  console.log(data);
-
   const columns = [
     {
       Header: t('Name'),
