@@ -1,15 +1,20 @@
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Calendar from '../Calendar';
+
+const client = new ApolloClient({ cache: new InMemoryCache() });
 
 describe('Calendar Tests', () => {
   it('should open Calendar model', () => {
     const removeModelMck = jest.fn();
     const { getByTestId } = render(
-      <MemoryRouter>
-        <Calendar />
-      </MemoryRouter>,
+      <ApolloProvider client={client}>
+        <MemoryRouter>
+          <Calendar />
+        </MemoryRouter>
+      </ApolloProvider>,
     );
     const removeModel = getByTestId('removeModel');
     fireEvent.click(removeModel);
@@ -18,9 +23,11 @@ describe('Calendar Tests', () => {
   it('should handle add event', () => {
     const handleAddEventMck = jest.fn();
     const { getByTestId } = render(
-      <MemoryRouter>
-        <Calendar />
-      </MemoryRouter>,
+      <ApolloProvider client={client}>
+        <MemoryRouter>
+          <Calendar />
+        </MemoryRouter>
+      </ApolloProvider>,
     );
     const handleAddEvent = getByTestId('handleAddEvent');
     fireEvent.click(handleAddEvent);
@@ -29,9 +36,11 @@ describe('Calendar Tests', () => {
   it('should handle Date Click', () => {
     const handleDateClickMck = jest.fn();
     const { getByTestId } = render(
-      <MemoryRouter>
-        <Calendar />
-      </MemoryRouter>,
+      <ApolloProvider client={client}>
+        <MemoryRouter>
+          <Calendar />
+        </MemoryRouter>
+      </ApolloProvider>,
     );
     const handleDateClick = getByTestId('handleDateClick');
     fireEvent.click(handleDateClick);
@@ -41,9 +50,11 @@ describe('Calendar Tests', () => {
   it('should set new event', () => {
     const setNewEventMck = jest.fn();
     const { getByTestId } = render(
-      <MemoryRouter>
-        <Calendar />
-      </MemoryRouter>,
+      <ApolloProvider client={client}>
+        <MemoryRouter>
+          <Calendar />
+        </MemoryRouter>
+      </ApolloProvider>,
     );
     const setNewEvent = getByTestId('setNewEvent');
     fireEvent.click(setNewEvent);

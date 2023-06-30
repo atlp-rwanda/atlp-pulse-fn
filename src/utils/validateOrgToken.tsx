@@ -2,7 +2,8 @@
 /* eslint-disable no-else-return */
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
-import { toast } from 'react-toastify';
+import { toast, ToastContent } from 'react-toastify';
+// Rest of the code...
 import { useTranslation } from 'react-i18next';
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router';
@@ -20,7 +21,12 @@ const checkOrgTokenExpiration = async () => {
   if (expiration !== null && expiration.exp * 1000 < Date.now()) {
     localStorage.removeItem('orgToken');
     localStorage.removeItem('orgName');
-    toast.error(t('Your Org token has expired, try to login again'));
+    toast.error(
+      t(
+        'Your Org token has expired, try to login again',
+      ) as ToastContent<unknown>,
+    );
+
     logout();
     window.location.pathname = '/login/org';
     return false;

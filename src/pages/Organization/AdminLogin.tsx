@@ -8,7 +8,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContent } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';
 import { UserContext } from '../../hook/useAuth';
@@ -50,7 +50,7 @@ function AdminLogin() {
            /* istanbul ignore next */
           await client.resetStore();
            /* istanbul ignore next */
-          toast.success(t(`Welcome`));
+          toast.success(t(`Welcome`) as ToastContent<unknown>);
           if (state) {
             navigate(`${state}`);
           } else {

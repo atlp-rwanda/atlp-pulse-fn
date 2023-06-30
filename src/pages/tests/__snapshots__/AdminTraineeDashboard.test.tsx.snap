@@ -80,7 +80,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
+    className="h-screen w-screen z-20 bg-black bg-opacity-40 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
   >
     <div
       className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
@@ -138,21 +138,17 @@ Array [
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container css-319lph-ValueContainer"
+                    className="my-react-select__value-container my-react-select__value-container--has-value css-319lph-ValueContainer"
                   >
                     <div
-                      className="my-react-select__placeholder css-14el2xx-placeholder"
-                      id="react-select-2-placeholder"
-                    >
-                      Select cohort
-                    </div>
+                      className="my-react-select__single-value css-1jwi8f4-singleValue"
+                    />
                     <div
                       className="my-react-select__input-container css-6j8wv5-Input"
                       data-value=""
                     >
                       <input
                         aria-autocomplete="list"
-                        aria-describedby="react-select-2-placeholder"
                         aria-expanded={false}
                         aria-haspopup={true}
                         autoCapitalize="none"
@@ -244,21 +240,17 @@ Array [
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container css-319lph-ValueContainer"
+                    className="my-react-select__value-container my-react-select__value-container--has-value css-319lph-ValueContainer"
                   >
                     <div
-                      className="my-react-select__placeholder css-14el2xx-placeholder"
-                      id="react-select-3-placeholder"
-                    >
-                      Select team
-                    </div>
+                      className="my-react-select__single-value css-1jwi8f4-singleValue"
+                    />
                     <div
                       className="my-react-select__input-container css-6j8wv5-Input"
                       data-value=""
                     >
                       <input
                         aria-autocomplete="list"
-                        aria-describedby="react-select-3-placeholder"
                         aria-expanded={false}
                         aria-haspopup={true}
                         autoCapitalize="none"

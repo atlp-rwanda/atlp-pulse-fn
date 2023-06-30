@@ -9,6 +9,22 @@ import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import TraineeRatingDashboard from '../TraineeRatingDashboard';
 import { client } from '../../index';
 
+class ResizeObserverMock {
+  observe() {
+    this;
+  }
+
+  unobserve() {
+    this;
+  }
+
+  disconnect() {
+    this;
+  }
+}
+
+window.ResizeObserver = ResizeObserverMock;
+
 describe('TraineeRatingDashboard Tests', () => {
   const observe = jest.fn();
   const disconnect = jest.fn();
