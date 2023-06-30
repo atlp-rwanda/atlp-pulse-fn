@@ -30,7 +30,8 @@ export const getOrganizations = gql`
       admin {
         id
         email
-      }
+      },
+      status
     }
   }
 `;
@@ -41,6 +42,15 @@ mutation DeleteOrganization($deleteOrganizationId: ID!) {
     id
     name
     description
+  }
+}
+`;
+
+export const RegisterNewOrganization = gql`
+mutation RegisterNewOrganization($organizationInput: OrganizationInput, $action: String) {
+  RegisterNewOrganization(organizationInput: $organizationInput,action: $action) {
+    name
+    status
   }
 }
 `;
@@ -67,6 +77,8 @@ const Organizations = () => {
   const [deleteOrganizationModel, setDeleteOrganizationModel] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [removeTraineeModel, setRemoveTraineeModel] = useState(false);
+  const [approveOpen, setApproveOpen] = useState(false);
+  const [rejectOpen, setRejectOpen] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
   const [data, setData] = useState({
     id: '',
@@ -85,6 +97,16 @@ const Organizations = () => {
     setRemoveTraineeModel(newState);
   };
 
+  const approveModel = () => {
+    let newState = !approveOpen;
+    setApproveOpen(newState);
+  };
+
+  const rejectModel = () => {
+    let newState = !rejectOpen;
+    setRejectOpen(newState);
+  };
+
   const removeDeleteModel = () => {
     let newState = !deleteOrganizationModel;
     setDeleteOrganizationModel(newState);
@@ -101,6 +123,21 @@ const Organizations = () => {
     },
     onCompleted() {
       toast.success('Email Sent Successfully');
+      getRefetch();
+
+    },
+  });
+
+  const [RegisterOrganizationMutation] = useMutation(RegisterNewOrganization, {
+    onError(error) {
+      setIsLoad(false);
+      toast.error(error.message.toString());
+    },
+    onCompleted() {
+      setIsLoad(false);
+      toast.success('Email Sent Successfully');
+      getRefetch();
+
     },
   });
 
@@ -123,6 +160,19 @@ const Organizations = () => {
       variables: { organizationInput: data, action: 'resend' },
     });
   }
+
+  async function ApproveOrganization(data: any) {
+    await RegisterOrganizationMutation({
+      variables: { organizationInput: data, action: 'approve' },
+    });
+  }
+
+  async function RejectOrganization(data: any) {
+    await RegisterOrganizationMutation({
+      variables: { organizationInput: data, action: 'reject' },
+    });
+  }
+
 
   async function deleteOrganization(data: any) {
     await deleteOrganizationMutation({
@@ -235,13 +285,16 @@ const Organizations = () => {
                           {t('Description')}
                         </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                          {t('Status')}
+                        </th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Actions')}
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       {getData?.getOrganizations?.map(
-                        ({ id, name, description, admin}) => {
+                        ({ id, name, description, admin,status}) => {
                           return (
                             <tr key={id}>
                               <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
@@ -264,9 +317,17 @@ const Organizations = () => {
                                 </p>
                               </td>
                               <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                <p className="text-gray-900 dark:text-white whitespace-no-wrap break-words">
+                                  {status}
+                                </p>
+                              </td>
+                              <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                 <p className="flex gap-5 text-gray-900 dark:text-white whitespace-no-wrap break-words">
                                 
-                                  <Icon
+                          {status=='active'?(
+                            <>
+                            
+                            <Icon
             icon="mdi:refresh"
             width="30"
             height="30"
@@ -300,6 +361,44 @@ const Organizations = () => {
               removeDeleteModel();
           
             }}/>
+                            </>
+                          ):(
+                            <>
+                       <Button
+                                          variant="primary"
+                                          size="sm"
+                                          onClick={() => {
+                                            setData({
+                                              id: id,
+                                              name: name,
+                                              email: admin.email,
+                                              description: description,
+                                            });
+                               
+                                 approveModel();
+
+                                          } } >
+                                          {t('Approve')}
+                                        </Button>
+
+                                        <Button
+                                          variant="primary"
+                                          size="sm"
+                                          onClick={() => {
+                                            setData({
+                                              id: id,
+                                              name: name,
+                                              email: admin.email,
+                                              description: description,
+                                            });
+                               
+                                 rejectModel();
+
+                                          } } >
+                                          {t('Reject')}
+                                        </Button>
+                            </>
+                          )}       
                                 </p>
                               </td>
                             </tr>
@@ -316,6 +415,7 @@ const Organizations = () => {
       </div>
 
             {/* =========================== Start::  RemoveTraineeModel =============================== */}
+
 
             <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
@@ -371,7 +471,129 @@ const Organizations = () => {
         </div>
       </div>
       {/* =========================== End::  RemoveTraineeModel =============================== */}
+
+           {/* =========================== Start::  ApproveMode =============================== */}
+
+           <div
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          approveOpen === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
+          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
+            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+              {t('Send Invitation')}
+            </h3>
+            <hr className=" bg-primary border-b my-3 w-full" />
+          </div>
+          <div className="card-body">
+            <form className=" py-3 px-8">
+              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
+                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+                  {t(
+                    'Are you sure you want to Approve this organization?',
+                  )}
+                </h3>
+              </div>
+
+              <div className="w-full flex justify-between">
+                <Button
+                  data-testid="removeModel2"
+                  variant="info"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => approveModel()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="removeMemberFromCohort"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={()=>{
+                    setIsLoad(true)
+                   ApproveOrganization({ name:data?.name,email:data.email, description:data.description})
+                                          
+                    setTimeout(() => {
+                      approveModel()
+                    }, 5000);
+              
+                  }}
+                  loading={isLoad}
+                >
+                  {t('Proceed')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {/* =========================== End::  ApproveMode =============================== */}
+
+
+               {/* =========================== Start::  RejectModal =============================== */}
+
+               <div
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          rejectOpen === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
+          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
+            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+              {t('Send Invitation')}
+            </h3>
+            <hr className=" bg-primary border-b my-3 w-full" />
+          </div>
+          <div className="card-body">
+            <form className=" py-3 px-8">
+              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
+                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+                  {t(
+                    'Are you sure you want to Reject this organization?',
+                  )}
+                </h3>
+              </div>
+
+              <div className="w-full flex justify-between">
+                <Button
+                  data-testid="removeModel2"
+                  variant="info"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => rejectModel()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="removeMemberFromCohort"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={()=>{
+                    setIsLoad(true);
+                   RejectOrganization({ name:data?.name,email:data.email, description:data.description})
+    
+                    setTimeout(() => {
+                      rejectModel()
+                    }, 5000);
+              
+                  }}
+                  loading={isLoad}
+                >
+                  {t('Proceed')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {/* =========================== End::  RejectModal =============================== */}
+  
     </>
+
+    
   );
 };
 

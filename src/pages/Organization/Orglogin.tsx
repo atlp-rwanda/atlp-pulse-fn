@@ -36,10 +36,10 @@ function Orglogin() {
         toast.success('Welcome! Sign in to Continue');
         navigate('/users/login');
       },
-      onError() {
+      onError(error) {
         /* istanbul ignore next */
         setError('name', {
-          message: t('Incorrect Organisation Name'),
+          message: t(`${error.message}`),
         });
       },
     });
