@@ -5,8 +5,8 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 
 # Add the backend application in environment variables
-ENV BACKEND_URL=https://devpulse-backend.devpulse.co
-
+# ENV BACKEND_URL=https://devpulse-backend.devpulse.co
+ENV uri=mongodb+srv://pulse-prod-db-70e37aa6.mongo.ondigitalocean.com
 # copy package.json to the working directory for packages installation
 COPY package*.json ./
 

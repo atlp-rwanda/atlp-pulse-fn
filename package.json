@@ -5,7 +5,7 @@
   "main": "src/index.tsx",
   "engines": {
     "npm": "8.x",
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
     "dev": "webpack server",
