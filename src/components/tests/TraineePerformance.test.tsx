@@ -20,7 +20,5 @@ describe('View overall performance', () => {
         </ApolloProvider>
       </BrowserRouter>,
     );
-
-
   });
 });

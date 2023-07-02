@@ -6,7 +6,7 @@ const getInitialState = () => {
     /* istanbul ignore if */
     if (storedUser) return JSON.parse(storedUser);
   }
-  return { name: '', role: 'user', auth: false,notifications:[] };
+  return { name: '', role: 'user', auth: false, notifications: [] };
 };
 interface Props {
   children: ReactNode;
@@ -53,12 +53,12 @@ function UserProvider({ children, ...props }: Props) {
   const setName = (name: string) => {
     setUser({ ...user, name });
   };
-const setProfileImage = (profileImage: string) => {
-  setUser({ ...user, profileImage });
-}
-const setNotificationData=(data:any)=>{
-    setUser({...user,notifications:data})
-}
+  const setProfileImage = (profileImage: string) => {
+    setUser({ ...user, profileImage });
+  };
+  const setNotificationData = (data: any) => {
+    setUser({ ...user, notifications: data });
+  };
   const value = useMemo(
     () => ({
       user,

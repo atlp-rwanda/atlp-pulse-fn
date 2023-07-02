@@ -41,7 +41,6 @@ export default function Profile() {
         setData(data);
         setName(data.getProfile.name);
         setProfileImage(data.getProfile.avatar);
-
       } catch (error: any) {
         toast.error(error?.message || 'Something went wrong');
       }

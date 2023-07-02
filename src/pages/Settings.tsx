@@ -20,7 +20,9 @@ function Settings() {
     setTheme(value);
     localStorage.setItem('color-theme', colorTheme);
   };
-  const defaultTheme:any=localStorage.getItem('color-theme')?localStorage.getItem('color-theme'):"light"
+  const defaultTheme: any = localStorage.getItem('color-theme')
+    ? localStorage.getItem('color-theme')
+    : 'light';
   const userLang = window.navigator.language;
 
   const handleLanChange = (e: { target: { value: any } }) => {
@@ -52,7 +54,8 @@ function Settings() {
               </div>
               <Link
                 className="ml-auto text-gray-600 text-xs md:text-base dark:text-dark-text-fill"
-                to="/dashboard/profile">
+                to="/dashboard/profile"
+              >
                 <h4>{t('Change')}</h4>
               </Link>
             </li>

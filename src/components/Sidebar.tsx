@@ -19,6 +19,7 @@ import {
   UserGroupIcon,
   MoonIcon,
   MailIcon,
+  BriefcaseIcon,
 } from '@heroicons/react/solid';
 import {
   AcademicCapIcon,
@@ -168,6 +169,17 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
          
         </CheckRole>
 
+        {/* manger role */}
+        <CheckRole roles={['manager']}>
+          <SideNavLink
+            onClick={toggle}
+            name="Manager Card"
+            to="/dashboard/team-cards"
+          >
+            <BriefcaseIcon className="w-5 mr-2" />
+          </SideNavLink>
+        </CheckRole>
+
         {/* FOR TRAINEES */}
         <CheckRole roles={['trainee']}>
           <SideNavLink
@@ -192,6 +204,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           <FolderIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
+
         <SideNavLink onClick={toggle} name="Calendar" to="/dashboard/calendar">
           <CalendarIcon className="w-5 mr-2" />
         </SideNavLink>

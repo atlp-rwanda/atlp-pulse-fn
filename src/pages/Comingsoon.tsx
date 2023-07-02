@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
-export default function Comingsoon(props: { title: any; }) {
+export default function Comingsoon(props: { title: any }) {
   useDocumentTitle('Product');
   const { t } = useTranslation();
   return (

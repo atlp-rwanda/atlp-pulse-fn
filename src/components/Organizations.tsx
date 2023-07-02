@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import CreateOrganizationModal, { AddOrganization } from './CreateOrganizationModal';
+import CreateOrganizationModal, {
+  AddOrganization,
+} from './CreateOrganizationModal';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './Buttons';
@@ -30,29 +32,35 @@ export const getOrganizations = gql`
       admin {
         id
         email
-      },
+      }
       status
     }
   }
 `;
 
 export const DeleteOrganization = gql`
-mutation DeleteOrganization($deleteOrganizationId: ID!) {
-  deleteOrganization(id: $deleteOrganizationId) {
-    id
-    name
-    description
+  mutation DeleteOrganization($deleteOrganizationId: ID!) {
+    deleteOrganization(id: $deleteOrganizationId) {
+      id
+      name
+      description
+    }
   }
-}
 `;
 
 export const RegisterNewOrganization = gql`
-mutation RegisterNewOrganization($organizationInput: OrganizationInput, $action: String) {
-  RegisterNewOrganization(organizationInput: $organizationInput,action: $action) {
-    name
-    status
+  mutation RegisterNewOrganization(
+    $organizationInput: OrganizationInput
+    $action: String
+  ) {
+    RegisterNewOrganization(
+      organizationInput: $organizationInput
+      action: $action
+    ) {
+      name
+      status
+    }
   }
-}
 `;
 
 const Organizations = () => {
@@ -83,11 +91,9 @@ const Organizations = () => {
   const [data, setData] = useState({
     id: '',
     name: '',
-    email:'',
+    email: '',
     description: '',
-
   });
-
 
   const handleShowActions = () => {
     setShowActions(!showActions);
@@ -124,7 +130,6 @@ const Organizations = () => {
     onCompleted() {
       toast.success('Email Sent Successfully');
       getRefetch();
-
     },
   });
 
@@ -137,7 +142,6 @@ const Organizations = () => {
       setIsLoad(false);
       toast.success('Email Sent Successfully');
       getRefetch();
-
     },
   });
 
@@ -146,15 +150,12 @@ const Organizations = () => {
       toast.error(error.message.toString());
     },
     onCompleted() {
-      
       setIsLoad(false);
       toast.success('Organisation Deleted.');
-        getRefetch();
- 
+      getRefetch();
     },
   });
 
-  
   async function addOrganization(data: any) {
     await addOrganizationMutation({
       variables: { organizationInput: data, action: 'resend' },
@@ -172,7 +173,6 @@ const Organizations = () => {
       variables: { organizationInput: data, action: 'reject' },
     });
   }
-
 
   async function deleteOrganization(data: any) {
     await deleteOrganizationMutation({
@@ -229,10 +229,8 @@ const Organizations = () => {
                     setIsLoad(true);
                     deleteOrganization(data.id);
                     setTimeout(() => {
-         
-                    removeDeleteModel();
+                      removeDeleteModel();
                     }, 3000);
-     
                   }}
                   loading={isLoad}
                 >
@@ -294,7 +292,7 @@ const Organizations = () => {
                     </thead>
                     <tbody>
                       {getData?.getOrganizations?.map(
-                        ({ id, name, description, admin,status}) => {
+                        ({ id, name, description, admin, status }) => {
                           return (
                             <tr key={id}>
                               <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
@@ -323,82 +321,80 @@ const Organizations = () => {
                               </td>
                               <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                 <p className="flex gap-5 text-gray-900 dark:text-white whitespace-no-wrap break-words">
-                                
-                          {status=='active'?(
-                            <>
-                            
-                            <Icon
-            icon="mdi:refresh"
-            width="30"
-            height="30"
-           
-            cursor="pointer"
-            color="#148fb6"
-            /* istanbul ignore next */
-            onClick={() => {
-              setData({
-                id: id,
-                name: name,
-                email: admin.email,
-                description: description,
-              });
-              removeTraineeMod()
-            }}/>
-                                  <Icon
-            icon="mdi:close-circle-outline"
-            width="30"
-            height="30"
-            cursor="pointer"
-            color="#148fb6"
-            /* istanbul ignore next */
-            onClick={() => {
-              setData({
-                id: id,
-                name: name,
-                email: admin.email,
-                description: description,
-              });
-              removeDeleteModel();
-          
-            }}/>
-                            </>
-                          ):(
-                            <>
-                       <Button
-                                          variant="primary"
-                                          size="sm"
-                                          onClick={() => {
-                                            setData({
-                                              id: id,
-                                              name: name,
-                                              email: admin.email,
-                                              description: description,
-                                            });
-                               
-                                 approveModel();
+                                  {status == 'active' ? (
+                                    <>
+                                      <Icon
+                                        icon="mdi:refresh"
+                                        width="30"
+                                        height="30"
+                                        cursor="pointer"
+                                        color="#148fb6"
+                                        /* istanbul ignore next */
+                                        onClick={() => {
+                                          setData({
+                                            id: id,
+                                            name: name,
+                                            email: admin.email,
+                                            description: description,
+                                          });
+                                          removeTraineeMod();
+                                        }}
+                                      />
+                                      <Icon
+                                        icon="mdi:close-circle-outline"
+                                        width="30"
+                                        height="30"
+                                        cursor="pointer"
+                                        color="#148fb6"
+                                        /* istanbul ignore next */
+                                        onClick={() => {
+                                          setData({
+                                            id: id,
+                                            name: name,
+                                            email: admin.email,
+                                            description: description,
+                                          });
+                                          removeDeleteModel();
+                                        }}
+                                      />
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Button
+                                        variant="primary"
+                                        size="sm"
+                                        onClick={() => {
+                                          setData({
+                                            id: id,
+                                            name: name,
+                                            email: admin.email,
+                                            description: description,
+                                          });
 
-                                          } } >
-                                          {t('Approve')}
-                                        </Button>
+                                          approveModel();
+                                        }}
+                                      >
+                                        {t('Approve')}
+                                      </Button>
 
-                                        <Button
-                                          variant="primary"
-                                          size="sm"
-                                          onClick={() => {
-                                            setData({
-                                              id: id,
-                                              name: name,
-                                              email: admin.email,
-                                              description: description,
-                                            });
-                               
-                                 rejectModel();
+                                      <Button
+                                        variant="primary"
+                                        size="sm"
+                                        onClick={() => {
+                                          setData({
+                                            id: id,
+                                            name: name,
+                                            email: admin.email,
+                                            description: description,
+                                          });
 
-                                          } } >
-                                          {t('Reject')}
-                                        </Button>
-                            </>
-                          )}       
+                                          rejectModel();
+                                        }}
+                                      >
+                                        {t('Reject')}
+                                      </Button>
+                                    </>
+                                  )}
                                 </p>
                               </td>
                             </tr>
@@ -414,10 +410,9 @@ const Organizations = () => {
         </div>
       </div>
 
-            {/* =========================== Start::  RemoveTraineeModel =============================== */}
+      {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
-
-            <div
+      <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           removeTraineeModel === true ? 'block' : 'hidden'
         }`}
@@ -454,12 +449,15 @@ const Organizations = () => {
                   size="sm"
                   data-testid="removeMemberFromCohort"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={()=>{
-                    addOrganization({ name:data?.name,email:data.email, description:data.description})
+                  onClick={() => {
+                    addOrganization({
+                      name: data?.name,
+                      email: data.email,
+                      description: data.description,
+                    });
                     setTimeout(() => {
-                      removeTraineeMod()
+                      removeTraineeMod();
                     }, 5000);
-              
                   }}
                   loading={loading}
                 >
@@ -472,9 +470,9 @@ const Organizations = () => {
       </div>
       {/* =========================== End::  RemoveTraineeModel =============================== */}
 
-           {/* =========================== Start::  ApproveMode =============================== */}
+      {/* =========================== Start::  ApproveMode =============================== */}
 
-           <div
+      <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           approveOpen === true ? 'block' : 'hidden'
         }`}
@@ -490,9 +488,7 @@ const Organizations = () => {
             <form className=" py-3 px-8">
               <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
                 <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
-                  {t(
-                    'Are you sure you want to Approve this organization?',
-                  )}
+                  {t('Are you sure you want to Approve this organization?')}
                 </h3>
               </div>
 
@@ -511,14 +507,17 @@ const Organizations = () => {
                   size="sm"
                   data-testid="removeMemberFromCohort"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={()=>{
-                    setIsLoad(true)
-                   ApproveOrganization({ name:data?.name,email:data.email, description:data.description})
-                                          
+                  onClick={() => {
+                    setIsLoad(true);
+                    ApproveOrganization({
+                      name: data?.name,
+                      email: data.email,
+                      description: data.description,
+                    });
+
                     setTimeout(() => {
-                      approveModel()
+                      approveModel();
                     }, 5000);
-              
                   }}
                   loading={isLoad}
                 >
@@ -531,10 +530,9 @@ const Organizations = () => {
       </div>
       {/* =========================== End::  ApproveMode =============================== */}
 
+      {/* =========================== Start::  RejectModal =============================== */}
 
-               {/* =========================== Start::  RejectModal =============================== */}
-
-               <div
+      <div
         className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           rejectOpen === true ? 'block' : 'hidden'
         }`}
@@ -550,9 +548,7 @@ const Organizations = () => {
             <form className=" py-3 px-8">
               <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
                 <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
-                  {t(
-                    'Are you sure you want to Reject this organization?',
-                  )}
+                  {t('Are you sure you want to Reject this organization?')}
                 </h3>
               </div>
 
@@ -571,14 +567,17 @@ const Organizations = () => {
                   size="sm"
                   data-testid="removeMemberFromCohort"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={()=>{
+                  onClick={() => {
                     setIsLoad(true);
-                   RejectOrganization({ name:data?.name,email:data.email, description:data.description})
-    
+                    RejectOrganization({
+                      name: data?.name,
+                      email: data.email,
+                      description: data.description,
+                    });
+
                     setTimeout(() => {
-                      rejectModel()
+                      rejectModel();
                     }, 5000);
-              
                   }}
                   loading={isLoad}
                 >
@@ -590,10 +589,7 @@ const Organizations = () => {
         </div>
       </div>
       {/* =========================== End::  RejectModal =============================== */}
-  
     </>
-
-    
   );
 };
 

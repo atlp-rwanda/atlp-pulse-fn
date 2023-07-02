@@ -10,7 +10,6 @@ import UpdatePhaseModal from './UpdatePhaseModal';
 import DeletePhaseModal from './DeletePhaseModal';
 import { PartialUser } from './Cohorts';
 
-
 export interface Phase {
   id: string;
   name: string;
@@ -18,13 +17,13 @@ export interface Phase {
 }
 
 export const getAllPhases = gql`
-query Query($orgToken: String!) {
-  getAllPhases(orgToken: $orgToken) {
-    description
-    name
-    id
+  query Query($orgToken: String!) {
+    getAllPhases(orgToken: $orgToken) {
+      description
+      name
+      id
+    }
   }
-}
 `;
 
 function ActionButtons({
@@ -120,15 +119,10 @@ function AdminPhases() {
   ];
 
   const phaseListData = getData
-    ? getData.getAllPhases.map(
-        ({
-          name,
-          description,
-        }) => ({
-          name,
-          description,
-        }),
-      )
+    ? getData.getAllPhases.map(({ name, description }) => ({
+        name,
+        description,
+      }))
     : [{}];
 
   const removeModel = () => {

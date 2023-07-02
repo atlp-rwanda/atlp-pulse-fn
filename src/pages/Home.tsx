@@ -38,18 +38,18 @@ function LandingPage() {
               </em>
             </p>
             {!user?.auth ? (
-            <div className="w-full text-center justify-center items-center mt-8">
-            <Link to="/signup/org">
-              <Button
-                variant="primary"
-                size="lg"
-                style="mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
-              >
-                {' '}
-                  {t('Get Started')}{' '}
-              </Button>
-              </Link>
-            </div>
+              <div className="w-full text-center justify-center items-center mt-8">
+                <Link to="/signup/org">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    style="mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
+                  >
+                    {' '}
+                    {t('Get Started')}{' '}
+                  </Button>
+                </Link>
+              </div>
             ) : (
               ' '
             )}

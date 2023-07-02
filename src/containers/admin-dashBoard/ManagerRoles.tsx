@@ -28,7 +28,7 @@ const AdminSission = () => {
 
   const [showRoles, setShowRoles] = useState(false);
   const [roleName, setRoleName] = useState('');
-  const [selectedUser, setSelectedUser] = useState({id: '', role: ''})
+  const [selectedUser, setSelectedUser] = useState({ id: '', role: '' });
   const [err, setErr] = useState();
   const [selectedRole, setSelectedRole] = useState('');
   const [subTitle, setSubTitle] = useState('Available roles');
@@ -74,40 +74,42 @@ const AdminSission = () => {
     }
   }, [tabName]);
 
-  const removeAssignModel =  /* istanbul ignore next */(user: any) => {
+  const removeAssignModel = /* istanbul ignore next */ (user: any) => {
     /* istanbul ignore next */
-    setSelectedUser({id: user.id, role: user.role});
-     /* istanbul ignore next */
+    setSelectedUser({ id: user.id, role: user.role });
+    /* istanbul ignore next */
     let newState = !deleteModel;
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     setDeleteModel(newState);
   };
 
-  const handleShowRole =  /* istanbul ignore next */() => {
-     /* istanbul ignore next */
+  const handleShowRole = /* istanbul ignore next */ () => {
+    /* istanbul ignore next */
     setShowRoles(!showRoles);
- /* istanbul ignore next */
+    /* istanbul ignore next */
     if (showRoles) setSubTitle('Available Roles');
-     /* istanbul ignore next */
-    else setSubTitle('Manage Roles');
+    /* istanbul ignore next */ else setSubTitle('Manage Roles');
   };
 
   const [handleCreateRole] = useMutation(CREATE_ROLE_MUTATION, {
     variables: { name: roleName },
     /* istanbul ignore next */
-    onCompleted:  /* istanbul ignore next */(data) => {
+    onCompleted: /* istanbul ignore next */ (data) => {
       /* istanbul ignore next */
       setToggle(!toggle);
-       /* istanbul ignore next */
+      /* istanbul ignore next */
       let newState = !addMemberModel;
-       /* istanbul ignore next */
-      setTimeout( /* istanbul ignore next */() => {
-         /* istanbul ignore next */
-        setAddMemberModel(newState);
-      }, 1000);
+      /* istanbul ignore next */
+      setTimeout(
+        /* istanbul ignore next */ () => {
+          /* istanbul ignore next */
+          setAddMemberModel(newState);
+        },
+        1000,
+      );
     },
-    onError:  /* istanbul ignore next */(err) => {
-       /* istanbul ignore next */
+    onError: /* istanbul ignore next */ (err) => {
+      /* istanbul ignore next */
       console.log('Error ', err);
     },
   });
@@ -116,7 +118,7 @@ const AdminSission = () => {
   const handleSelectRole = (e: any, name: any) => {
     /* istanbul ignore next */
     e.preventDefault();
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     setSelectedRole(name);
   };
 
@@ -142,7 +144,7 @@ const AdminSission = () => {
       }, 1000);
     },
     /* istanbul ignore next */
-    onError: /* istanbul ignore next */(err) => {
+    onError: /* istanbul ignore next */ (err) => {
       /* istanbul ignore next */
       toast.error(err.message);
     },
@@ -264,20 +266,22 @@ const AdminSission = () => {
                   <div>
                     <div className="flex justify-center">
                       <div className="flex flex-wrap">
-                        {allRoless.filter((item)=>item.name!=selectedUser.role).map((obj: any, index: any) => (
-                          <div
-                            key={index}
-                            onClick={(e) => handleSelectRole(e, obj.name)}
-                            className="border-solid active:bg-sky-500 rounded-xl border-2 border-sky-500 flex justify-center cursor-pointer m-2 "
-                          >
-                            <button
-                              type="button"
-                              className="p-2  hover:bg-sky-500 focus:bg-sky-500 focus:ring-4 focus:ring-sky-700 focus:outline-none rounded-lg"
+                        {allRoless
+                          .filter((item) => item.name != selectedUser.role)
+                          .map((obj: any, index: any) => (
+                            <div
+                              key={index}
+                              onClick={(e) => handleSelectRole(e, obj.name)}
+                              className="border-solid active:bg-sky-500 rounded-xl border-2 border-sky-500 flex justify-center cursor-pointer m-2 "
                             >
-                              {obj.name}
-                            </button>
-                          </div>
-                        ))}
+                              <button
+                                type="button"
+                                className="p-2  hover:bg-sky-500 focus:bg-sky-500 focus:ring-4 focus:ring-sky-700 focus:outline-none rounded-lg"
+                              >
+                                {obj.name}
+                              </button>
+                            </div>
+                          ))}
                       </div>
                     </div>
                   </div>

@@ -25,11 +25,12 @@ function Signup() {
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
-  const tooglePassword = /* istanbul ignore next */ 
-  () => {
+  const tooglePassword =
     /* istanbul ignore next */
-    setPasswordShown(!passwordShown);
-  };
+    () => {
+      /* istanbul ignore next */
+      setPasswordShown(!passwordShown);
+    };
   const {
     register,
     handleSubmit,
@@ -49,8 +50,8 @@ function Signup() {
       orgToken: originalToken,
     },
 
-    onError: /* istanbul ignore next */ 
-    (err) => {
+    /* istanbul ignore next */
+    onError: (err) => {
       /* istanbul ignore next */
       if (err.message === 'expired organization token') {
         toast.error('Your signup link has expired');
@@ -71,14 +72,14 @@ function Signup() {
         navigate('/register-successful');
       }, 2000);
     },
-    onError: /* istanbul ignore next */
-     (err) => {
-       /* istanbul ignore next */
-       setTimeout(() => {
-         setButtonLoading(false);
-         toast.error(err.message);
-       }, 1000);
-     },
+    /* istanbul ignore next */
+    onError: (err) => {
+      /* istanbul ignore next */
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.error(err.message);
+      }, 1000);
+    },
   });
   /* istanbul ignore next */
   const onSubmit = async (userInput: any) => {

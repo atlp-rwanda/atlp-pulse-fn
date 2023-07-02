@@ -73,8 +73,6 @@ export default function ForgotPassword() {
             token: originalToken,
           },
         });
-
-        
       } catch (error: any) {
         toast.error(error.message);
       }
