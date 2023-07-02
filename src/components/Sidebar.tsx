@@ -19,12 +19,14 @@ import {
   UserGroupIcon,
   MoonIcon,
   MailIcon,
+  BriefcaseIcon,
 } from '@heroicons/react/solid';
 import {
   AcademicCapIcon,
   BookOpenIcon,
   CogIcon,
 } from '@heroicons/react/outline';
+
 import ProgramIcon from './ProgramIcon';
 import Tooltip from './ToolTip';
 import { UserContext } from '../hook/useAuth';
@@ -78,9 +80,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             name="Trainees"
           >
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          
-        </SideNavLink>
-          
+          </SideNavLink>
         </CheckRole>
 
         {/* FOR ADMINS */}
@@ -137,12 +137,21 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <KeyIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink onClick={toggle} name="Docs" to="/dashboard/adminDocs">
-          <FolderIcon className="w-5 mr-2 " />
+            <FolderIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
 
         {/* FOR COORDINATORS */}
         <CheckRole roles={['coordinator']}>
+          {/* team cards */}
+          <SideNavLink
+            onClick={toggle}
+            name="Teams"
+            to="/dashboard/cards"
+          >
+            <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill " />
+          </SideNavLink>
+
           <SideNavLink
             onClick={toggle}
             to="/dashboard/sessions"
@@ -159,12 +168,22 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             to="/dashboard/attendance"
           >
             <ClipboardCheckIcon className="w-5 mr-2 " />
-            </SideNavLink>
-
-          <SideNavLink onClick={toggle} name="Docs" to="/dashboard/coordinatorDocs">
-             <FolderIcon className="w-5 mr-2" />
           </SideNavLink>
-         
+
+          <SideNavLink
+            onClick={toggle}
+            name="Docs"
+            to="/dashboard/coordinatorDocs"
+          >
+            <FolderIcon className="w-5 mr-2" />
+          </SideNavLink>
+        </CheckRole>
+
+        {/* manger role */}
+        <CheckRole roles={['manager']}>
+          <SideNavLink onClick={toggle} name="Teams" to="/dashboard/team-cards">
+            <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
         </CheckRole>
 
         {/* FOR TRAINEES */}
@@ -188,9 +207,10 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </SideNavLink>
 
           <SideNavLink onClick={toggle} name="Docs" to="/dashboard/traineeDocs">
-          <FolderIcon className="w-5 mr-2 " />
+            <FolderIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
+
         <SideNavLink onClick={toggle} name="Calendar" to="/dashboard/calendar">
           <CalendarIcon className="w-5 mr-2" />
         </SideNavLink>
@@ -202,7 +222,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SupportIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
-        
+
         {/* <SideNavLink onClick={toggle} name="Docs" to="/dashboard/docs">
           <FolderIcon className="w-5 mr-2 " />
         </SideNavLink>

@@ -253,7 +253,7 @@ function AdminCohort() {
         }),
     },
   ];
-   /* istanbul ignore next */
+  /* istanbul ignore next */
   const cohortData = getData?.getAllCohorts.map(
     /* istanbul ignore next */
     ({
@@ -280,7 +280,7 @@ function AdminCohort() {
   return (
     <>
       {/* =========================== Start:: CreateCohortModel =============================== */}
-      
+
       <CreateCohortModal
         data={getData}
         createCohortModel={createCohortModal}
@@ -288,7 +288,7 @@ function AdminCohort() {
         refetch={getRefetch}
       />
       <UpdateCohortModal
-       /* istanbul ignore next */
+        /* istanbul ignore next */
         data={getData}
         updateCohortModal={updateCohortModal}
         currentCohort={currentCohort}
@@ -302,7 +302,7 @@ function AdminCohort() {
       />
 
       <CohortTraineeModal
-       /* istanbul ignore next */
+        /* istanbul ignore next */
         cohortTraineeModal={cohortTrainneModal}
         currentCohort={currentCohort}
         refetch={getRefetch}
@@ -315,7 +315,7 @@ function AdminCohort() {
       />
 
       <DeleteCohortModal
-       /* istanbul ignore next */
+        /* istanbul ignore next */
         deleteCohortModal={deleteCohortModal}
         currentCohort={currentCohort}
         removeModel={removeDeleteModel}
@@ -323,7 +323,7 @@ function AdminCohort() {
       />
 
       <CohortTeamsModel
-       /* istanbul ignore next */
+        /* istanbul ignore next */
         cohortTeamsModel={cohortTeamsModel}
         currentCohort={currentCohort}
         removeModel={

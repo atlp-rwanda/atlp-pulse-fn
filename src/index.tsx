@@ -13,8 +13,7 @@ import React, { Suspense } from 'react';
 import * as ReactDOMClient from 'react-dom/client';
 import Skeleton from './components/Skeleton';
 import './i18n.ts';
-import './index.css';
-
+import './index.css'
 import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

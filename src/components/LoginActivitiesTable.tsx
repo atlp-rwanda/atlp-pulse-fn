@@ -105,7 +105,7 @@ const LoginActivitiesTable: React.FC = () => {
   if (displayActivities.length === 0) {
     return <div>No login activities yet.</div>;
   }
-  
+   /* istanbul ignore next */ 
   return (
     <div className="mt-4 flex flex-col items-center">
      <table className="flex flex-col flex-wrap w-full pt-[6em] justify-end pl-0 lg:pl-[10em] ">

@@ -7,19 +7,18 @@ import Button from '../../components/Buttons';
 import { PartialUser } from './Cohorts';
 import { Phase } from './Phases';
 
-
 export const UpdatePhase = gql`
-mutation UpdatePhase(
-    $updatePhaseId: ID!, 
-    $orgToken: String, 
-    $name: String, 
+  mutation UpdatePhase(
+    $updatePhaseId: ID!
+    $orgToken: String
+    $name: String
     $description: String
-    ) {
+  ) {
     updatePhase(
-        id: $updatePhaseId, 
-        orgToken: $orgToken, 
-        name: $name, 
-        description: $description
+      id: $updatePhaseId
+      orgToken: $orgToken
+      name: $name
+      description: $description
     ) {
       id
     }
@@ -63,17 +62,18 @@ export default function UpdatePhaseModal({
       
      toast.success(t("Phase Updated successful") as TFunction);
 
+      
     },
   });
 
   const orgToken = localStorage.getItem('orgToken');
-   /* istanbul ignore next */
+  /* istanbul ignore next */
   const managers = data?.getAllUsers?.filter((user) => user.role === 'manager');
- /* istanbul ignore next */
+  /* istanbul ignore next */
   async function updatePhase(data: any) {
-   /* istanbul ignore next */
+    /* istanbul ignore next */
     const newData = { ...data };
-      /* istanbul ignore next */
+    /* istanbul ignore next */
     newData.managerEmail && (newData.managerEmail = newData.managerEmail.value);
     /* istanbul ignore next */
     Object.keys(newData).forEach((field) => {
@@ -83,7 +83,7 @@ export default function UpdatePhaseModal({
     });
     /* istanbul ignore next */
     newData.updatePhaseId = currentPhase?.id;
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     orgToken && (newData.orgToken = orgToken);
     /* istanbul ignore next */
     await updatePhaseMutation({ variables: newData });
@@ -147,9 +147,9 @@ export default function UpdatePhaseModal({
                 size="sm"
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="remove"
-                 /* istanbul ignore next */
+                /* istanbul ignore next */
                 onClick={() => {
-                   /* istanbul ignore next */
+                  /* istanbul ignore next */
                   removeModel();
                   reset();
                 }}

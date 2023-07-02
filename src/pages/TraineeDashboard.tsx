@@ -4,7 +4,6 @@ import Chart from '../components/Chart';
 import Card from '../components/Card';
 import Comingsoon from './Comingsoon';
 
-
 function SupAdDashboard() {
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
@@ -18,7 +17,7 @@ function SupAdDashboard() {
           </div>
           <Chart title={t('Overall performance')} /> */}
 
-          <Comingsoon title='Dashboard'/>
+          <Comingsoon title="Dashboard" />
         </div>
       </div>
     </div>

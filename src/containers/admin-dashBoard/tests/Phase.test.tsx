@@ -21,7 +21,7 @@ describe('Phases tests', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-  jest.setTimeout(5000)
+  jest.setTimeout(5000);
   it('Renders Phases Page', async () => {
     render(
       <MemoryRouter>

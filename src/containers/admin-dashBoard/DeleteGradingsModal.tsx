@@ -44,10 +44,11 @@ export default function DeleteGradingsModal({
                 size="sm"
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="delete"
-                 /* istanbul ignore next */
+                /* istanbul ignore next */
                 onClick={
-                   /* istanbul ignore next */
-                  () => removeModel()}
+                  /* istanbul ignore next */
+                  () => removeModel()
+                }
               >
                 {t('Cancel')}
               </Button>
@@ -57,13 +58,14 @@ export default function DeleteGradingsModal({
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="confirmDeleteBtn"
                 onClick={
-                   /* istanbul ignore next */
+                  /* istanbul ignore next */
                   () => {
-                  /* istanbul ignore next */
-                  deleteFunc();
-                  /* istanbul ignore next */
-                  setValue('');
-                }}
+                    /* istanbul ignore next */
+                    deleteFunc();
+                    /* istanbul ignore next */
+                    setValue('');
+                  }
+                }
               >
                 {t('Delete')}
               </Button>

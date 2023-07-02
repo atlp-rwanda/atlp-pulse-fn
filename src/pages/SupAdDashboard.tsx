@@ -20,7 +20,7 @@ function SupAdDashboard() {
           </div>
           <Chart title="Organizations" /> */}
 
-          <Comingsoon title='Dashboard'/>
+          <Comingsoon title="Dashboard" />
         </div>
       </div>
     </div>

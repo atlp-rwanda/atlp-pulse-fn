@@ -32,6 +32,7 @@ export interface Team {
   id: string;
   name: string;
   cohort: Cohort;
+  ttl: any;
 }
 
 export const getAllTeam = gql`
@@ -51,6 +52,24 @@ export const getAllTeam = gql`
         }
         name
       }
+
+      ttl {
+        email
+        profile {
+          name
+          lastName
+          firstName
+        }
+      }
+
+      ttl {
+        email
+        profile {
+          name
+          lastName
+          firstName
+        }
+      }
     }
 
     getAllCohorts(orgToken: $orgToken) {
@@ -67,6 +86,13 @@ export const getAllTeam = gql`
       }
       startDate
       endDate
+    }
+
+    getAllUsers(orgToken: $orgToken) {
+      id
+      email
+      role
+      organizations
     }
   }
 `;
@@ -145,6 +171,7 @@ function AdminTeams() {
     data?: {
       getAllTeams: Team[];
       getAllCohorts: Cohort[];
+      getAllUsers: any;
     };
     loading: boolean;
     error?: any;
@@ -177,6 +204,7 @@ function AdminTeams() {
     { Header: t('Cohort'), accessor: 'cohortName' },
     { Header: t('Program'), accessor: 'programName' },
     { Header: t('Coordinator'), accessor: 'coordinator' },
+    { Header: t('ttl'), accessor: 'ttlEmail' },
 
     {
       Header: t('action'),
@@ -193,7 +221,7 @@ function AdminTeams() {
     },
   ];
 
-  const teamData = getData?.getAllTeams.map(({ name, cohort }) => ({
+  const teamData = getData?.getAllTeams.map(({ name, cohort, ttl }) => ({
     name,
     cohortName: cohort?.name,
     coordinator: cohort?.coordinator?.email
@@ -201,6 +229,7 @@ function AdminTeams() {
       : 'Not Assigned',
     phase: cohort?.phase.name,
     programName: cohort?.program?.name,
+    ttlEmail: ttl?.profile && ttl.profile.name ? ttl.profile.name : ttl?.email,
   }));
 
   return (

@@ -6,21 +6,12 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 
 export const AddPhase = gql`
-mutation AddPhase(
-  $name: String!
-  $description: String!
-  $orgToken: String!
-) {
-  addPhase(
-    name: $name
-    description: $description
-    orgToken: $orgToken
-  ) {
-    id
+  mutation AddPhase($name: String!, $description: String!, $orgToken: String!) {
+    addPhase(name: $name, description: $description, orgToken: $orgToken) {
+      id
+    }
   }
-}
 `;
-
 
 export default function CreatePhaseModal({
   createPhaseModel,
@@ -52,7 +43,7 @@ export default function CreatePhaseModal({
     },
   });
 
- /* istanbul ignore next */
+  /* istanbul ignore next */
   async function addPhase(data: any) {
     /* istanbul ignore next */
     const newData = { ...data };
@@ -65,15 +56,14 @@ export default function CreatePhaseModal({
     });
     /* istanbul ignore next */
     await addPhaseMutation({
-       /* istanbul ignore next */
-      variables: { orgToken: localStorage.getItem('orgToken'),...newData },
-       /* istanbul ignore next */
+      /* istanbul ignore next */
+      variables: { orgToken: localStorage.getItem('orgToken'), ...newData },
+      /* istanbul ignore next */
       onCompleted() {
         reset();
          toast.success(t("Phase Created successful") as TFunction);
       },
     });
- 
   }
 
   return (
@@ -136,7 +126,7 @@ export default function CreatePhaseModal({
                 onClick={() => {
                   removeModel();
 
-                /* istanbul ignore next */
+                  /* istanbul ignore next */
                   reset();
                 }}
                 disabled={loading}
