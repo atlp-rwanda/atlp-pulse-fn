@@ -1,10 +1,36 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-alert */
+/* eslint-disable react/function-component-definition */
+/* eslint-disable no-console */
 import { LogoutIcon } from '@heroicons/react/solid';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { useLazyQuery } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider,HttpLink,from, useQuery, gql } from '@apollo/client';
+import {onError} from '@apollo/client/link/error'
 import { UserContext } from '../hook/useAuth';
-import { GET_PROFILE } from '../Mutations/User';
+import { GET_LOGIN_ACTIVITIES } from '../Mutations/manageStudentMutations';
+
+
+const errorLink=onError(({graphQLErrors, networkError})=>{
+  if(graphQLErrors){
+    graphQLErrors.map(({message,path})=>{
+      alert(`Graphql error ${message}`);
+    });
+  }
+});
+
+const link =from([
+  errorLink,
+  new HttpLink({uri:"https://devpulse-backend-pr-100.onrender.com/"})
+])
+
+
+// Create the Apollo Client instance
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link
+});
 
 function ProfileDropdown({
   handleShowProfileDropdown,
@@ -15,7 +41,7 @@ function ProfileDropdown({
   const { t } = useTranslation();
 
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4">
+      <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4">
       <div
         className="bg-dark-20 w-full h-full absolute top-0 left-0 z-1"
         role="button"
@@ -66,12 +92,31 @@ function ProfileDropdown({
             onClick={logout}
           >
             <LogoutIcon className="w-4 h-4 mt-1 cursor-pointer " />
-            <p className="font-boldml-1 cursor-pointer">{t('Sign out')}</p>
+            <p className="font-bold ml-1 cursor-pointer">{t('Sign out')}</p>
+          </div>
+
+          <div>
+          <ApolloProvider client={client}>
+
+            <Link
+
+              to="/dashboard/loginActivities" 
+              className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
+            >
+              <p className="font-bold ml-1 cursor-pointer">{t('Login Activities')}</p>
+            </Link>
+            </ApolloProvider>
+
           </div>
         </div>
-      </div>
-    </div>
+      </div>      </div>
   );
 }
 
 export default ProfileDropdown;
+
+
+
+
+
+

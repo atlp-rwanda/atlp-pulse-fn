@@ -1,4 +1,6 @@
-import { gql } from '@apollo/client';
+// import { gql } from '@apollo/client';
+import { gql,ApolloClient, InMemoryCache } from '@apollo/client';
+
 import GET_PROFILE from './User';
 
 export const GET_USERS_QUERY = gql`
@@ -77,9 +79,11 @@ export const GET_COHORTS_QUERY = gql`
   }
 `;
 
+
 export const GET_TRAINEE_PROFILE = gql`
   query GetProfile {
     getProfile {
+    
       firstName
       name
       city
@@ -90,9 +94,30 @@ export const GET_TRAINEE_PROFILE = gql`
       avatar
       coverImage
       lastName
+      
     }
   }
 `;
+
+export const GET_LOGIN_ACTIVITIES = gql`
+query Query {
+  getProfile {
+    activity {
+      
+      date
+      country_code
+      country_name
+      city
+      IPv4
+      state
+      latitude
+      longitude
+      postal
+      failed
+    }
+  }
+}`
+;
 
 export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
   mutation AddMemberToCohort(

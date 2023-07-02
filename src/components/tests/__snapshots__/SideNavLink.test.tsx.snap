@@ -30,8 +30,7 @@ exports[`DashHeader test  Should render the sidebar with setings as active 1`] =
       className="mb-4 hover:text-primary transition-all group-hover:transition-all"
     >
       <a
-        aria-current="page"
-        className="flex flex-row font-bold text-primary dark:text-primary"
+        className="flex flex-row dark:text-dark-text-fill"
         href="/dashboard/"
         onClick={[Function]}
       >
