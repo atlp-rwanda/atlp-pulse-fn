@@ -63,6 +63,19 @@ exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
           </div>
         </div>
       </div>
+      <div>
+        <a
+          className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
+          href="/dashboard/loginActivities"
+          onClick={[Function]}
+        >
+          <p
+            className="font-bold ml-1 cursor-pointer"
+          >
+            Login Activities
+          </p>
+        </a>
+      </div>
       <div
         className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100 "
       >
@@ -80,12 +93,13 @@ exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
           />
         </svg>
         <p
-          className="font-boldml-1 cursor-pointer"
+          className="font-bold ml-1 cursor-pointer"
         >
           Sign out
         </p>
       </div>
     </div>
   </div>
+        
 </div>
 `;
