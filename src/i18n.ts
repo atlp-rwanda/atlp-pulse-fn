@@ -18,6 +18,8 @@ i18n
     },
     debug: false,
     whitelist: availableLanguages,
+    ns: ['translation'],
+    defaultNS: 'translation',
     interpolation: {
       escapeValue: false,
     },
