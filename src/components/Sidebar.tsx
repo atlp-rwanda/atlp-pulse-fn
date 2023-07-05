@@ -37,11 +37,14 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   useEffect(() => {}, [togglei]);
   return (
     <div
-      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
+      className={`${style} overflow-auto flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
     >
       <div className="pr-8 list-none">
         <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard/">
           <ChartPieIcon className="w-5 mr-2 " />
+        </SideNavLink>
+        <SideNavLink onClick={toggle} name="Tickets" to="/dashboard/tickets">
+          <MailIcon className="w-5 mr-2 " />
         </SideNavLink>
 
         {/* FOR SUPER ADMINS */}
@@ -52,10 +55,6 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             to="/dashboard/organizations"
           >
             <HomeIcon className="w-5 mr-2 " />
-          </SideNavLink>
-
-          <SideNavLink onClick={toggle} name="Tickets" to="/dashboard/tickets">
-            <MailIcon className="w-5 mr-2 " />
           </SideNavLink>
 
           <SideNavLink

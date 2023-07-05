@@ -110,8 +110,9 @@ function Notification({
                 >
                   <img
                     src={
-                      notification.sender.profile.avatar
-                        ? notification.sender.profile.avatar
+                      notification?.sender?.profile &&
+                      notification?.sender?.profile.avatar
+                        ? notification?.sender?.profile.avatar
                         : Avatar
                     }
                     alt="oldMan"
@@ -123,20 +124,37 @@ function Notification({
                     onClick={() => {
                       markRead(notification.id);
 
-                      if (user.role === 'superAdmin') {
-                        navigate('/dashboard/tickets');
-                      } else if (user.role === 'trainee') {
+                      if (
+                        notification.message.includes(
+                          'Ticket has been sent to you.',
+                        ) ||
+                        notification.message.includes(
+                          'A reply on ticket has been sent.',
+                        )
+                      ) {
+                        const ticketId: string =
+                          notification.message.split(' ')[
+                            notification.message.split(' ').length - 1
+                          ];
+                        handleShowNotification();
+                        return navigate(`/dashboard/tickets/${ticketId}`);
+                      }
+
+                      if (user.role === 'trainee') {
                         navigate('/dashboard/performance');
                       } else {
                         navigate('/dashboard/ratings');
                       }
 
-                      handleShowNotification();
+                      return handleShowNotification();
                     }}
                     data-testid={index === 0 && 'read'}
                   >
                     <p className="font-bold dark:text-white">
-                      {notification.sender.profile.name}
+                      {notification.sender.profile &&
+                      notification.sender.profile.name
+                        ? notification.sender.profile.name
+                        : notification.sender.email}
                     </p>
                     <p className="text-[#111827] dark:text-white text-[12px]">
                       {notification.message}

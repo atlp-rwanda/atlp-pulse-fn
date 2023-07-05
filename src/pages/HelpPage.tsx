@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import { TFunction, useTranslation } from 'react-i18next';
+import { toast, ToastContent } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { useMutation, gql } from '@apollo/client';
 import Button from '../components/Buttons';
 import ButtonLoading from '../components/ButtonLoading';
@@ -16,10 +16,6 @@ function Help() {
   });
   const [createTicket, { data, loading, error }] = useMutation(CREATE_TICKET);
 
-  if (error) {
-    toast.success(error.message);
-  }
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const res = await createTicket({
@@ -31,12 +27,14 @@ function Help() {
           message: '',
         });
         toast.success(
-          t(`Message successfully received! We will get back to you shortly.`) as TFunction
+          t(
+            `Message successfully received! We will get back to you shortly.`,
+          ) as ToastContent<unknown>,
         );
       },
       onError(error) {
         /* istanbul ignore next */
-        toast.error(t(`${error.message}`) as TFunction);
+        toast.error(t(`${error.message}`) as ToastContent<unknown>);
       },
     });
   };
@@ -49,7 +47,7 @@ function Help() {
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
       <div className="flex flex-row justify-center pt-[12vh]">
         <div className="rounded-lg sm:w-[90%] md:w-[70%] lg:w-[50%] lg:ml-[38vh] mt-5 lg:mr-[2vh] lg:mb-10 p-6 bg-white dark:bg-dark-bg">
-          <h2 className="mb-10 text-4xl font-bold dark:text:white">
+          <h2 className="text-4xl font-bold dark:text:white mb-10">
             {t('Support')}
           </h2>
           <form action="#none" onSubmit={handleSubmit} data-testid="loginForm">

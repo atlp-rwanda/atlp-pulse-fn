@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { BellIcon } from '@heroicons/react/solid';
-import { useLazyQuery, useSubscription } from '@apollo/client';
+import { useLazyQuery, useSubscription, gql } from '@apollo/client';
 import { toast } from 'react-toastify';
 import Logo from '../assets/logo.svg';
 import LogoWhite from '../assets/logoWhite.svg';
@@ -18,13 +18,35 @@ import {
   NotificationSubscription,
 } from '../Mutations/notificationMutation';
 
+export const TICKETS_NOTS_SUB = gql`
+  subscription OnTicket {
+    sendNotsOnTickets {
+      id
+      message
+      createdAt
+      read
+      receiver
+
+      sender {
+        id
+        email
+        role
+        profile {
+          name
+        }
+      }
+    }
+  }
+`;
+
 function DashHeader() {
   /* istanbul ignore next */
   const [showNotification, setShowNotification] = useState(false);
   const [showProfileDropdown, setShowprofileDropdown] = useState(false);
   const [profileData, setProfileData] = useState<any>();
   const [getProfile] = useLazyQuery(GET_PROFILE);
-  const { user, setNotificationData } = useContext(UserContext);
+  const { user, setNotificationData, addNotification } =
+    useContext(UserContext);
   const [getNotification] = useLazyQuery(getAllNotification);
 
   const notifications = user?.notifications;
@@ -35,6 +57,13 @@ function DashHeader() {
   /* istanbul ignore next */
   const handleClick = () => setNav(!nav);
   const handleShowNotification = () => setShowNotification(!showNotification);
+
+  useSubscription(TICKETS_NOTS_SUB, {
+    onData: (data: any) => {
+      if (user.userId === data.data.data.sendNotsOnTickets.receiver)
+        addNotification(data.data.data.sendNotsOnTickets);
+    },
+  });
 
   const { data, loading } = useSubscription(NotificationSubscription, {
     onData: (data) => {
@@ -136,8 +165,9 @@ function DashHeader() {
               .length ? (
               <div className="inline-flex absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900">
                 {
-                  notifications?.filter((item: any) => `${item.read}` === 'false')
-                    .length
+                  notifications?.filter(
+                    (item: any) => `${item.read}` === 'false',
+                  ).length
                 }
               </div>
             ) : (
