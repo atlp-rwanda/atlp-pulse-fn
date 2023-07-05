@@ -17,7 +17,8 @@ import {
   TemplateIcon,
   RefreshIcon,
   UserGroupIcon,
-  MoonIcon
+  MoonIcon,
+  MailIcon,
 } from '@heroicons/react/solid';
 import {
   AcademicCapIcon,
@@ -53,7 +54,16 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <HomeIcon className="w-5 mr-2 " />
           </SideNavLink>
 
-          <SideNavLink onClick={toggle} name="Admins" data-testid="keppi" to="/dashboard/admins">
+          <SideNavLink onClick={toggle} name="Tickets" to="/dashboard/tickets">
+            <MailIcon className="w-5 mr-2 " />
+          </SideNavLink>
+
+          <SideNavLink
+            onClick={toggle}
+            name="Admins"
+            data-testid="keppi"
+            to="/dashboard/admins"
+          >
             <UsersIcon className="w-5 mr-2 " />
           </SideNavLink>
           <SideNavLink onClick={toggle} name="Domains" to="/dashboard/domains">
@@ -174,9 +184,14 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
         <SideNavLink onClick={toggle} name="Docs" to="/dashboard/docs">
           <FolderIcon className="w-5 mr-2 " />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Help" to="/dashboard/support">
-          <SupportIcon className="w-5 mr-2 " />
-        </SideNavLink>
+
+        <CheckRole
+          roles={['trainee', 'admin', 'coordinator', 'manager', 'user']}
+        >
+          <SideNavLink onClick={toggle} name="Help" to="/dashboard/support">
+            <SupportIcon className="w-5 mr-2 " />
+          </SideNavLink>
+        </CheckRole>
         {/* Add icons */}
         <div className="flex flex-row ml-10 mt-auto list-none">
           <li className="px-2">

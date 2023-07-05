@@ -122,9 +122,15 @@ function Notification({
                     className="flex flex-col w-full gap-[5px] cursor-pointer"
                     onClick={() => {
                       markRead(notification.id);
-                      user.role === 'trainee'
-                        ? navigate('/dashboard/performance')
-                        : navigate('/dashboard/ratings');
+
+                      if (user.role === 'superAdmin') {
+                        navigate('/dashboard/tickets');
+                      } else if (user.role === 'trainee') {
+                        navigate('/dashboard/performance');
+                      } else {
+                        navigate('/dashboard/ratings');
+                      }
+
                       handleShowNotification();
                     }}
                     data-testid={index === 0 && 'read'}
@@ -148,7 +154,7 @@ function Notification({
                           : 'border-border-dark dark:border-white border-[1px]'
                       }  mt-[7px] mb-[10px]`}
                     />
-                    
+
                     <XIcon
                       className="border-border-dark dark:fill-white h-[20px] w-[20px] cursor-pointer"
                       onClick={() => {
