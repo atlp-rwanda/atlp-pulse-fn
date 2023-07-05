@@ -89,7 +89,7 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b">
+      <div className="w-screen h-[8vh] z-20 bg-white dark:bg-dark-bg fixed border-b">
         <div className="px-3 flex items-center w-full h-full">
           <div className="flex px-5 lg:hidden">
             <div

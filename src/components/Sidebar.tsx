@@ -26,6 +26,7 @@ import {
   BookOpenIcon,
   CogIcon,
 } from '@heroicons/react/outline';
+
 import ProgramIcon from './ProgramIcon';
 import Tooltip from './ToolTip';
 import { UserContext } from '../hook/useAuth';
@@ -38,7 +39,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   useEffect(() => {}, [togglei]);
   return (
     <div
-      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
+      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2 z-10 `}
     >
       <div className="pr-8 list-none">
         <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard/">
@@ -145,6 +146,11 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
 
         {/* FOR COORDINATORS */}
         <CheckRole roles={['coordinator']}>
+          {/* team cards */}
+          <SideNavLink onClick={toggle} name="Teams" to="/dashboard/team-cards">
+            <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill " />
+          </SideNavLink>
+
           <SideNavLink
             onClick={toggle}
             to="/dashboard/sessions"
@@ -171,12 +177,8 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
 
         {/* manger role */}
         <CheckRole roles={['manager']}>
-          <SideNavLink
-            onClick={toggle}
-            name="Manager Card"
-            to="/dashboard/team-cards"
-          >
-            <BriefcaseIcon className="w-5 mr-2" />
+          <SideNavLink onClick={toggle} name="Teams" to="/dashboard/team-cards">
+            <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
 

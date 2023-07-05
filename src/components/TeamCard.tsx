@@ -10,15 +10,19 @@ const Card = ({
   stylebg,
   stylebg1,
   rating,
+  grade,
+  teamname,
 }: {
   stylebg: string;
   stylebg1: string;
   rating: string;
+  grade: string;
+  teamname: string;
 }) => {
   return (
     <div>
       <div
-        className={`${stylebg}   font-lexend   w-[500px] h-[300px] rounded-md px-10 mr-11 py-7 
+        className={`${stylebg}   font-lexend w-[350px] h-[300px]   md:w-[500px] md:h-[300px]  rounded-md px-3 md:p-10 mr-11 py-7 
       `}
       >
         <div className="flex justify-between  py-1">
@@ -29,10 +33,12 @@ const Card = ({
             >
               LG
             </h1>
-            <h1 className=" text-3xl ml-3 ">Legends</h1>
+            <h1 className=" text-xl md:text-2xl ml-3 ">{teamname}</h1>
           </div>
           <div>
-            <h1 className={`${rating} font-lexend font-bold text-3xl`}>A +</h1>
+            <h1 className={`${rating} font-lexend font-bold text-3xl`}>
+              {grade}
+            </h1>
           </div>
         </div>
 
@@ -50,18 +56,18 @@ const Card = ({
             <p className="text-gray-500 font-medium flex items-center ">TTL</p>
           </div>
 
-          <div className="flex">
+          <div className="flex pb-0 items-center text-center ">
             <UserGroupIcon className="w-5" />
-            <h1 className="text-green-700 ml-2 mr-2">Active: 18</h1> |
-            <h1 className="text-red-500 text ml-2"> Drop: 2</h1>
+            <h1 className="text-green-700 ml-2 mr-2 mb-0">Active: 18</h1> |
+            <h1 className="text-red-500 text ml-2 pb-0"> Drop: 2</h1>
           </div>
 
           <div>
-            <h1 className="ml-3">Week 3 in Phase 1</h1>
+            <h1 className="ml-3 pt-2">Week 3 in Phase 1</h1>
           </div>
 
           <div>
-            <h1 className="flex">
+            <h1 className="flex mt-2">
               <ArrowUpIcon className="w-5 transform rotate-45 text-green-700" />
               Qty: <span className="text-green-700">1.5</span>
               <ArrowDownIcon className="w-5 ml-2 transform -rotate-45 text-red-700" />
