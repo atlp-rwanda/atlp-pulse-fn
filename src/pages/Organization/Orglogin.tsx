@@ -9,10 +9,20 @@ import Button from '../../components/Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import LOGIN_ORGANIZATION_MUTATION from './LoginOrganisationMutation';
 import ButtonLoading from '../../components/ButtonLoading';
+import './orgName.css';
+// import { input } from '@testing-library/user-event/dist/types/event/input';
 
 function Orglogin() {
   useDocumentTitle('Login');
   const { t } = useTranslation();
+  const [name, setName] = useState('');
+  const formatVariable = async (e: any) => {
+    const value: string = String(e.target.value);
+    if (!value.includes('.devpulse.org')) {
+      e.target.value = `${e.target.value}.devpulse.org`;
+      setName(e.target.value);
+    }
+  };
   const [OrgLogin, { loading }] = useMutation(LOGIN_ORGANIZATION_MUTATION);
   const {
     register,
@@ -31,8 +41,14 @@ function Orglogin() {
       onCompleted({ loginOrg }) {
         /* istanbul ignore next */
         localStorage.setItem('orgToken', loginOrg.token);
+        let value: string = String(orgInput.name);
+        if (!value.includes('.devpulse.org')) {
+          value = `${orgInput.name}.devpulse.org`;
+        }
+        // console.log(value)
         /* istanbul ignore next */
-        localStorage.setItem('orgName', orgInput.name);
+        // TODO:
+        localStorage.setItem('orgName', value);
         toast.success('Welcome! Sign in to Continue');
         navigate('/users/login');
       },
@@ -44,6 +60,9 @@ function Orglogin() {
       },
     });
   };
+  const names = name.replace(/ /gi, '').toLowerCase();
+  // console.log('Bye Brother hey', names)
+  const completeOrgUrl = `${names}`;
 
   return (
     <div className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans">
@@ -59,15 +78,24 @@ function Orglogin() {
           className="space-y-6 mt-4"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div>
+          <div className="orgName">
             <input
+              placeholder={t('your-organization')}
               type="text"
+              value={name}
               data-testid="orgName"
               {...register('name', {
                 required: 'Organisation name is required',
               })}
-              placeholder={t('your-organization.devpulse.co')}
-              className="w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              className="inputStyle inputOne w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
+            />
+            <input
+              placeholder={t('.devpulse.org')}
+              disabled
+              className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
             />
           </div>
           <div className="-mt-6">

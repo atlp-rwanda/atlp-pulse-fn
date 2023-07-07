@@ -1,0 +1,16 @@
+.orgName {
+  display: flex;
+}
+.inputStyle {
+  /* -webkit-appearance: none; */
+  outline: none;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: none;
+}
+.inputOne {
+  flex: 1;
+}
+.inputTwo {
+  flex: 2;
+}
