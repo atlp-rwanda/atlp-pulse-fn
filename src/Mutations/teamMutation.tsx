@@ -17,11 +17,63 @@ export default GET_TEAMS;
 
 export const ADD_TEAMS = gql`
   mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!) {
-    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken) {
+    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken,statingPhase:DateTime!) {
       name
       cohort {
         name
       }
+    }
+  }
+`;
+
+export const GET_TEAMS_CARDS = gql`
+  query Query($orgToken: String!) {
+    getAllTeams(orgToken: $orgToken) {
+      name
+      manager {
+        email
+        team {
+          ttl {
+            email
+          }
+        }
+      }
+      ttl {
+        email
+      }
+      avgRatings {
+        quantity
+        quality
+        attendance
+      }
+      members {
+        profile {
+          name
+        }
+      }
+      active
+      startingPhase
+      cohort {
+        name
+        phase {
+          name
+          id
+        }
+        startDate
+        endDate
+        program {
+          name
+          manager {
+            email
+            profile {
+              name
+              lastName
+              firstName
+            }
+          }
+        }
+      }
+      id
     }
   }
 `;

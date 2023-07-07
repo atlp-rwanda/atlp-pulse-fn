@@ -12,12 +12,26 @@ const Card = ({
   rating,
   grade,
   teamname,
+  manager,
+  ttl,
+  phase,
+  week,
+  att,
+  Qty,
+  Qnty,
 }: {
   stylebg: string;
   stylebg1: string;
   rating: string;
   grade: string;
   teamname: string;
+  manager: string;
+  ttl: string;
+  phase: string;
+  week: number;
+  att: number;
+  Qty: number;
+  Qnty: number;
 }) => {
   return (
     <div>
@@ -44,7 +58,7 @@ const Card = ({
 
         <div className=" font-josefin  ml-12 mb-0 mt-3">
           <div>
-            <h1>MBALANYA Didas</h1>
+            <h1>{manager}</h1>
             <p className="text-gray-500 font-medium flex items-center ">
               Manager
               <div className="bg-green-700 h-2 w-2 rounded-full ml-3"></div>
@@ -52,7 +66,7 @@ const Card = ({
           </div>
 
           <div>
-            <h1>Alex axel MUCYO</h1>
+            <h1>{ttl}</h1>
             <p className="text-gray-500 font-medium flex items-center ">TTL</p>
           </div>
 
@@ -63,17 +77,19 @@ const Card = ({
           </div>
 
           <div>
-            <h1 className="ml-3 pt-2">Week 3 in Phase 1</h1>
+            <h1 className="ml-3 pt-2">
+              Week {week} in {phase}
+            </h1>
           </div>
 
           <div>
             <h1 className="flex mt-2">
               <ArrowUpIcon className="w-5 transform rotate-45 text-green-700" />
-              Qty: <span className="text-green-700">1.5</span>
+              Qty: <span className="text-green-700">{Qty}</span>
               <ArrowDownIcon className="w-5 ml-2 transform -rotate-45 text-red-700" />
-              Qnty: <span className="text-red-500">0.1</span>
+              Qnty: <span className="text-red-500">{Qnty}</span>
               <ArrowUpIcon className="w-5 ml-2 transform rotate-45 text-green-700" />
-              Atten: <span className="text-green-700">1.5</span>
+              Atten: <span className="text-green-700">{att}</span>
             </h1>
           </div>
         </div>
