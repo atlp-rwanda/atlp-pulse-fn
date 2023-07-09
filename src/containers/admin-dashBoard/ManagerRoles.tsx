@@ -54,6 +54,7 @@ const AdminSission = () => {
   const handletrainee = () => {
     setTabName('trainee');
   };
+
   /* istanbul ignore next */
   const removeModel = () => {
     let newState = !addMemberModel;
@@ -156,6 +157,8 @@ const AdminSission = () => {
     },
   });
 
+  console.log('fetchdata2', fetchData2);
+
   useEffect(() => {
     fetchData2({
       fetchPolicy: 'network-only',
@@ -171,6 +174,9 @@ const AdminSission = () => {
           newUsers[index].role = user.role;
           newUsers[index].email = user.email;
           newUsers[index].id = user.id;
+          if (user.role === 'ttl') {
+            newUsers[index].role = 'ttl'; // Update the role to 'ttl'
+          }
         });
         /* istanbul ignore next */
         setallRoles(data?.getAllRoles);
@@ -240,6 +246,9 @@ const AdminSission = () => {
     },
     {
       name: 'admin',
+    },
+    {
+      name: 'ttl',
     },
   ];
   /* istanbul ignore next */
