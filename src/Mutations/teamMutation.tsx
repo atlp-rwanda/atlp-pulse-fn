@@ -16,8 +16,8 @@ export const GET_TEAMS = gql`
 export default GET_TEAMS;
 
 export const ADD_TEAMS = gql`
-  mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!) {
-    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken,statingPhase:DateTime!) {
+  mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!,  $startingPhase: DateTime!, $managerEmail: String!, $ttlEmail: Sring! ) {
+    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken,statingPhase: $startingPhase, managerEmail: $managerEmail, ttlEmail: $ttlEmail) {
       name
       cohort {
         name

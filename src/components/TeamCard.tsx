@@ -91,14 +91,51 @@ function Card({
 
           <div>
             <h1 className="flex mt-2">
-              <ArrowUpIcon
-                className={`${arrowColor}   w-5 ml-2 transform` }
-              />
-              Qty: <span className="text-green-700">{Qty}</span>
-              <ArrowDownIcon className={`${arrowColor}   w-5 ml-2 transform ` } />
-              Qnty: <span className="text-red-500">{Qnty}</span>
-              <ArrowUpIcon className={`${arrowColor}   w-5 ml-2 transform ` } />
-              Atten: <span className="text-green-700">{att}</span>
+              {Qty >= 1 ? (
+                <ArrowUpIcon
+                  className={`${'text-green-500 rotate-45'} w-5 ml-2 transform`}
+                />
+              ) : (
+                <ArrowDownIcon
+                  className={`${'text-red-500 -rotate-45'} w-5 ml-2 transform`}
+                />
+              )}
+              Qty:{' '}
+              <span
+                className={`${Qty >= 1 ? 'text-green-700' : 'text-red-500'}`}
+              >
+                {typeof Qty === 'number' ? Qty.toFixed(1) : Qty}
+              </span>
+              {Qnty >= 1 ? (
+                <ArrowUpIcon
+                  className={`${'text-green-500 rotate-45'} w-5 ml-2 transform`}
+                />
+              ) : (
+                <ArrowDownIcon
+                  className={`${'text-red-500 -rotate-45'} w-5 ml-2 transform`}
+                />
+              )}{' '}
+              Qnty:{' '}
+              <span
+                className={`${Qnty >= 1 ? 'text-green-700' : 'text-red-500'}`}
+              >
+                {typeof Qnty === 'number' ? Qnty.toFixed(1) : Qnty}
+              </span>
+              {att >= 1 ? (
+                <ArrowUpIcon
+                  className={`${'text-green-500 rotate-45'} w-5 ml-2 transform`}
+                />
+              ) : (
+                <ArrowDownIcon
+                  className={`${'text-red-500 -rotate-45'} w-5 ml-2 transform`}
+                />
+              )}
+              Atten:{' '}
+              <span
+                className={`${att >= 1 ? 'text-green-700' : 'text-red-500'}`}
+              >
+                {typeof att === 'number' ? att.toFixed(1) : att}
+              </span>
             </h1>
           </div>
         </div>

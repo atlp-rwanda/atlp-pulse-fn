@@ -6,14 +6,23 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { Team, Cohort } from './Teams';
+import { PartialUser } from './Cohorts';
 
 export const AddTeam = gql`
-  mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!) {
-    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken) {
+  mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!, $startingPhase: DateTime!, $managerEmail: String!, $ttlEmail: String! ) {
+    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken, startingPhase: $startingPhase, managerEmail: $managerEmail,ttlEmail: $ttlEmail) {
       name
       cohort {
         name
       }
+      startingPhase
+      manager {
+      email
+    }
+    
+    ttl {
+      email
+    }
     }
   }
 `;
@@ -27,6 +36,7 @@ export default function CreateTeamModal({
   data?: {
     getAllTeams: Team[];
     getAllCohorts: Cohort[];
+    getAllUsers: PartialUser[];
   };
   createTeamModel: boolean;
   removeModel: Function;
@@ -54,11 +64,20 @@ export default function CreateTeamModal({
     },
   });
   /* istanbul ignore next */
-
+  const managers = data?.getAllUsers?.filter(
+    /* istanbul ignore next */
+    (user) => user.role === 'manager',
+  );
+  const ttl = data?.getAllUsers?.filter(
+    /* istanbul ignore next */
+    (user) => user.role === 'ttl',
+  );
   /* istanbul ignore next */
   async function addTeam(data: any) {
     const newData = { ...data };
     newData.cohortName && (newData.cohortName = newData.cohortName.value);
+    newData.managerEmail && (newData.managerEmail = newData.managerEmail.value);
+    newData.ttlEmail && (newData.ttlEmail = newData.ttlEmail.value);
 
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {
@@ -73,6 +92,8 @@ export default function CreateTeamModal({
         reset();
         setValue('coordinatorEmail', { value: undefined, label: undefined });
         setValue('cohortName', { value: undefined, label: undefined });
+        setValue('managerEmail', { value: undefined, label: undefined });
+        setValue('ttlEmail', { value: undefined, label: undefined });
       },
     });
   }
@@ -109,7 +130,59 @@ export default function CreateTeamModal({
                 </p>
               )}
             </div>
+            <div className="input my-5 h-9 ">
+              <div className="grouped-input flex items-center h-full w-full rounded-md">
+                <ControlledSelect
+                  placeholder={t('Manager Email')}
+                  register={{
+                    control,
+                    name: 'managerEmail',
+                    rules: {
+                      required: `${t('The Manager email is required')}`,
+                    },
+                  }}
+                  options={ttl?.map(
+                    /* istanbul ignore next */
+                    ({ email }) => ({
+                      value: email,
+                      label: email,
+                    }),
+                  )}
+                />
+              </div>
+              {errors?.ttlEmail && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.ttlEmail?.message?.toString()}
+                </p>
+              )}
+            </div>
 
+            <div className="input my-5 h-9 ">
+              <div className="grouped-input flex items-center h-full w-full rounded-md">
+                <ControlledSelect
+                  placeholder={t('TTL Email')}
+                  register={{
+                    control,
+                    name: 'ttlEmail',
+                    rules: {
+                      required: `${t('The ttl email is required')}`,
+                    },
+                  }}
+                  options={managers?.map(
+                    /* istanbul ignore next */
+                    ({ email }) => ({
+                      value: email,
+                      label: email,
+                    }),
+                  )}
+                />
+              </div>
+              {errors?.managerEmail && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.managerEmail?.message?.toString()}
+                </p>
+              )}
+            </div>
             <div className="input my-5 h-9 ">
               <ControlledSelect
                 placeholder={t('Choose a Cohort')}
@@ -126,6 +199,24 @@ export default function CreateTeamModal({
               {errors?.programName && (
                 <p className="font-thin text-[12px] text-red-300">
                   {errors?.programName?.message?.toString()}
+                </p>
+              )}
+            </div>
+
+            <div className="input my-5 h-9 ">
+              <div className="grouped-input flex items-center h-full w-full rounded-md">
+                <input
+                  type="text"
+                  className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
+                  placeholder={t('starting Phase')}
+                  {...register('startingPhase', {
+                    required: `${t('The starting phase is required')}`,
+                  })}
+                />
+              </div>
+              {errors?.startingPhase && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.name?.message?.toString()}
                 </p>
               )}
             </div>

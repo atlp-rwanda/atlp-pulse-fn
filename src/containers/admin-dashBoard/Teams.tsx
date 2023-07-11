@@ -11,6 +11,7 @@ import DeleteTeamModal from './DeleteTeamModal';
 import UpdateTeamModal from './UpdateTeamModal';
 import TeamTraineeModal from './TeamTraineeModal';
 import CreateTeamModal from './CreateTeamModal';
+import { PartialUser } from './Cohorts';
 
 export interface Cohort {
   id: string;
@@ -21,6 +22,7 @@ export interface Cohort {
   coordinator: {
     email: string;
   };
+
   program: {
     name: string;
   };
@@ -28,10 +30,19 @@ export interface Cohort {
   endDate: string | Date;
 }
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
+
 export interface Team {
   id: string;
   name: string;
   cohort: Cohort;
+  manager: User
+  ttl: User
 }
 
 export const getAllTeam = gql`
@@ -48,8 +59,17 @@ export const getAllTeam = gql`
         }
         program {
           name
+          manager {
+            email
+          }
         }
+       
         name
+      
+        ttl {
+          email
+        }
+        startingPhase
       }
     }
 
@@ -67,6 +87,11 @@ export const getAllTeam = gql`
       }
       startDate
       endDate
+    }
+    getAllUsers(orgToken: $orgToken) {
+      id
+      email
+      role
     }
   }
 `;
@@ -145,6 +170,7 @@ function AdminTeams() {
     data?: {
       getAllTeams: Team[];
       getAllCohorts: Cohort[];
+      getAllUsers: PartialUser[];
     };
     loading: boolean;
     error?: any;
@@ -177,6 +203,8 @@ function AdminTeams() {
     { Header: t('Cohort'), accessor: 'cohortName' },
     { Header: t('Program'), accessor: 'programName' },
     { Header: t('Coordinator'), accessor: 'coordinator' },
+    { Header: t('Manager'), accessor: 'manager' },
+    { Header: t('ttl'), accessor: 'ttl' },
 
     {
       Header: t('action'),
@@ -193,7 +221,7 @@ function AdminTeams() {
     },
   ];
 
-  const teamData = getData?.getAllTeams.map(({ name, cohort }) => ({
+  const teamData = getData?.getAllTeams.map(({ name, cohort, manager,ttl }) => ({
     name,
     cohortName: cohort?.name,
     coordinator: cohort?.coordinator?.email
@@ -201,6 +229,8 @@ function AdminTeams() {
       : 'Not Assigned',
     phase: cohort?.phase.name,
     programName: cohort?.program?.name,
+    manager: manager ? manager.email : 'Not Assigned',
+    ttl: ttl ? ttl.email : 'Not Assigned',
   }));
 
   return (

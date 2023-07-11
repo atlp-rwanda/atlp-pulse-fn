@@ -72,65 +72,79 @@ function ManagerCard() {
     );
     return weeks;
   };
-  
+
   const teamData =
-  data &&
-  data.getAllTeams.map((team: any) => {
-    const Qnty = team.avgRatings.quantity || 0;
-    const Qty = team.avgRatings.quality || 0;
-    const att = team.avgRatings.attendance || 0;
-    const average = (Qnty + Qty + att) / 3;
-    let stylebg = '';
-    let grade = '';
-    let stylebg1 = '';
-    let rating = '';
+    data &&
+    data.getAllTeams.map((team: any) => {
+      const Qnty = isNaN(team.avgRatings.quantity)
+        ? 0
+        : parseFloat(team.avgRatings.quantity);
+      const Qty = isNaN(team.avgRatings.quality)
+        ? 0
+        : parseFloat(team.avgRatings.quality);
+      const att = isNaN(team.avgRatings.attendance)
+        ? 0
+        : parseFloat(team.avgRatings.attendance);
 
-    if (average >= 1.8 && average <= 2) {
-      stylebg = 'bg-green-100';
-      grade = 'A+';
-      stylebg1 = 'bg-green-300 text-green-500';
-      rating = 'text-green-700';
+      console.log('Qnty + Qty + att', Qnty + Qty + att);
 
-    } else if (average >= 1.3 && average < 1.8) {
-      stylebg = 'bg-green-100';
-      grade = 'A';
-      rating = 'text-green-700'; 
-    } else if (average >= 1 && average < 1.3) {
-      stylebg = 'bg-yellow-100';
-      grade = 'B+';
-      stylebg1 = 'bg-yellow-300 text-yellow-300';
-      rating = 'text-yellow-700';
-    }
-    else if (average >= 0.5 && average < 1) {
-      stylebg = 'bg-yellow-100';
-      grade = 'B';
-      stylebg1 = 'bg-yellow-300 text-yellow-300';
-      rating = 'text-yellow-700';
-    } else {
-      stylebg = 'bg-red-400';
-      grade = 'C';
-      stylebg1 = 'bg-red-400 text-red-300';
-      rating = 'text-red-700';
-    }
-    const arrowColor = Qty && Qnty && att > 1 ? 'text-green-500 rotate-45'  : 'text-red-500 rotate-45' ;
-    return {
-      stylebg,
-      stylebg1,
-      rating,
-      grade,
-      teamname: team.name,
-      manager: team?.manager?.profile ? team.manager.profile.name : team?.manager?.email,
-      ttl: team?.ttl?.profile ? team.ttl.profile.name : team?.ttl?.email,
-      phase: team.cohort.phase.name,
-      week: calculateWeeks(team.startingPhase) > 0 ? calculateWeeks(team.startingPhase) : 0,
-      att,
-      Qty,
-      Qnty,
-      active: team?.members.length,
-      drop: 0,
-      arrowColor,
-    };
-  });
+      const average = (Qnty + Qty + att) / 3;
+      let stylebg: string;
+      let stylebg1: string = '';
+      let grade: string;
+
+      let rating: string;
+
+      if (average >= 1.8 && average <= 2) {
+        stylebg = 'bg-green-100';
+        grade = 'A+';
+        stylebg1 = 'bg-green-300 text-green-700';
+        rating = 'text-green-700';
+      } else if (average >= 1.3 && average < 1.8) {
+        stylebg = 'bg-green-100';
+        grade = 'A';
+        stylebg1 = 'bg-green-300 text-green-700';
+        rating = 'text-green-700';
+      } else if (average >= 1 && average < 1.3) {
+        stylebg = 'bg-yellow-100';
+        grade = 'B+';
+        stylebg1 = 'bg-yellow-300 text-yellow-700';
+        rating = 'text-yellow-700';
+      } else if (average >= 0.5 && average < 1) {
+        stylebg = 'bg-yellow-100';
+        grade = 'B';
+        stylebg1 = 'bg-yellow-300 text-yellow-700';
+        rating = 'text-yellow-700';
+      } else {
+        stylebg = 'bg-red-300';
+        grade = 'C';
+        stylebg1 = 'bg-red-400 text-red-700';
+        rating = 'text-red-700';
+      }
+
+      return {
+        stylebg,
+        stylebg1,
+        rating,
+        grade,
+        teamname: team.name,
+        manager: team?.manager?.profile
+          ? team.manager.profile.name
+          : team?.manager?.email,
+        ttl: team?.ttl?.profile ? team.ttl.profile.name : team?.ttl?.email,
+        phase: team.cohort.phase.name,
+        week:
+          calculateWeeks(team.startingPhase) > 0
+            ? calculateWeeks(team.startingPhase)
+            : 0,
+        att,
+        Qty,
+        Qnty,
+        active: team?.members.length,
+        drop: 0,
+      };
+    });
+
   return (
     <div
       className="pt-24 px-4 md:px-0 md:ml-40
