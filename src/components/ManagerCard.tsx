@@ -61,8 +61,6 @@ function ManagerCard() {
     },
   });
 
-  data && data?.getAllTeams.map((team: any) => console.log(team));
-
   const calculateWeeks = (startingPhase: string) => {
     const currentDay = new Date();
     const startDate = new Date(startingPhase);
@@ -85,8 +83,6 @@ function ManagerCard() {
       const att = isNaN(team.avgRatings.attendance)
         ? 0
         : parseFloat(team.avgRatings.attendance);
-
-      console.log('Qnty + Qty + att', Qnty + Qty + att);
 
       const average = (Qnty + Qty + att) / 3;
       let stylebg: string;
