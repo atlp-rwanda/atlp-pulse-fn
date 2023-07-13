@@ -6,14 +6,7 @@ export const GET_TEAMS_CARDS = gql`
   query GetAllTeams($orgToken: String!) {
     getAllTeams(orgToken: $orgToken) {
       name
-      manager {
-        email
-        profile {
-          name
-          lastName
-          firstName
-        }
-      }
+
       ttl {
         email
       }
@@ -46,6 +39,18 @@ export const GET_TEAMS_CARDS = gql`
               lastName
               firstName
             }
+          }
+        }
+
+        coordinator {
+          email
+          profile {
+            name
+            firstName
+            lastName
+          }
+          team {
+            name
           }
         }
       }
@@ -124,9 +129,9 @@ function ManagerCard() {
         rating,
         grade,
         teamname: team.name,
-        manager: team?.manager?.profile
-          ? team.manager.profile.name
-          : team?.manager?.email,
+        manager: team?.cohort?.coordinator?.profile
+          ? team.cohort.coordinator.profile.name
+          : team?.cohort.coordinator?.email,
         ttl: team?.ttl?.profile ? team.ttl.profile.name : team?.ttl?.email,
         phase: team.cohort.phase.name,
         week:

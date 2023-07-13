@@ -32,7 +32,6 @@ export interface Team {
   id: string;
   name: string;
   cohort: Cohort;
-  manager: any;
   ttl: any;
 }
 
@@ -54,14 +53,6 @@ export const getAllTeam = gql`
         name
       }
 
-      manager {
-        email
-        profile {
-          name
-          lastName
-          firstName
-        }
-      }
       ttl {
         email
         profile {
@@ -204,7 +195,6 @@ function AdminTeams() {
     { Header: t('Cohort'), accessor: 'cohortName' },
     { Header: t('Program'), accessor: 'programName' },
     { Header: t('Coordinator'), accessor: 'coordinator' },
-    { Header: t('Manager'), accessor: 'managerEmail' },
     { Header: t('ttl'), accessor: 'ttlEmail' },
 
     {
@@ -222,25 +212,16 @@ function AdminTeams() {
     },
   ];
 
-  const teamData = getData?.getAllTeams.map(
-    ({ name, cohort, manager, ttl }) => ({
-      name,
-      cohortName: cohort?.name,
-      coordinator: cohort?.coordinator?.email
-        ? cohort?.coordinator?.email
-        : 'Not Assigned',
-      phase: cohort?.phase.name,
-      programName: cohort?.program?.name,
-
-      managerEmail:
-        manager?.profile && manager.profile.name
-          ? manager.profile.name
-          : manager?.email,
-
-      ttlEmail:
-        ttl?.profile && ttl.profile.name ? ttl.profile.name : ttl?.email,
-    }),
-  );
+  const teamData = getData?.getAllTeams.map(({ name, cohort, ttl }) => ({
+    name,
+    cohortName: cohort?.name,
+    coordinator: cohort?.coordinator?.email
+      ? cohort?.coordinator?.email
+      : 'Not Assigned',
+    phase: cohort?.phase.name,
+    programName: cohort?.program?.name,
+    ttlEmail: ttl?.profile && ttl.profile.name ? ttl.profile.name : ttl?.email,
+  }));
 
   return (
     <>

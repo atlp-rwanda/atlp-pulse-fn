@@ -66,13 +66,16 @@ function Card({
           <div>
             <h1>{manager}</h1>
             <p className="text-gray-500 font-medium flex items-center ">
-              Manager
+              {manager ? 'Manager' : 'No Manager'}
             </p>
           </div>
 
           <div>
             <h1>{ttl}</h1>
-            <p className="text-gray-500 font-medium flex items-center ">TTL</p>
+            <p className="text-gray-500 font-medium flex items-center ">
+              {' '}
+              {ttl ? 'TTL' : 'No TTL'}
+            </p>
           </div>
 
           <div className="flex pb-0 items-center text-center ">

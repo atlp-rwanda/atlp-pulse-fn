@@ -13,7 +13,6 @@ export const AddTeam = gql`
     $cohortName: String!
     $orgToken: String!
     $startingPhase: DateTime!
-    $managerEmail: String!
     $ttlEmail: String!
   ) {
     addTeam(
@@ -21,7 +20,6 @@ export const AddTeam = gql`
       cohortName: $cohortName
       orgToken: $orgToken
       startingPhase: $startingPhase
-      managerEmail: $managerEmail
       ttlEmail: $ttlEmail
     ) {
       name
@@ -92,8 +90,6 @@ export default function CreateTeamModal({
         reset();
         setValue('coordinatorEmail', { value: undefined, label: undefined });
         setValue('cohortName', { value: undefined, label: undefined });
-        // change
-        setValue('managerEmail', { value: undefined, label: undefined });
         setValue('ttlEmail', { value: undefined, label: undefined });
       },
     });
@@ -148,34 +144,6 @@ export default function CreateTeamModal({
               {errors?.programName && (
                 <p className="font-thin text-[12px] text-red-300">
                   {errors?.programName?.message?.toString()}
-                </p>
-              )}
-            </div>
-
-            <div className="input my-5 h-9">
-              <div className="grouped-input flex items-center h-full w-full rounded-md">
-                <ControlledSelect
-                  placeholder={t('Manager Email')}
-                  register={{
-                    control,
-                    name: 'managerEmail',
-                    rules: {
-                      required: `${t('The Manager email is required')}`,
-                    },
-                  }}
-                  options={
-                    data?.getAllUsers
-                      ?.filter((user: any) => user.role === 'manager')
-                      ?.map((user: any) => ({
-                        value: user.email,
-                        label: user.email,
-                      })) ?? []
-                  }
-                />
-              </div>
-              {errors?.managerEmail && (
-                <p className="font-thin text-[12px] text-red-300">
-                  {errors?.managerEmail?.message?.toString()}
                 </p>
               )}
             </div>
