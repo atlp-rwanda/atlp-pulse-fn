@@ -26,6 +26,7 @@ const AdminCohorts = React.lazy(() => import('./admin-dashBoard/Cohorts'));
 const AdminPrograms = React.lazy(() => import('./admin-dashBoard/Programs'));
 const AdminSession = React.lazy(() => import('./admin-dashBoard/Sessions'));
 const AdminPhases = React.lazy(() => import('./admin-dashBoard/Phases'));
+
 const AdminManageRoles = React.lazy(
   () => import('./admin-dashBoard/ManagerRoles'),
 );
@@ -54,6 +55,8 @@ const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
 const Organizations = React.lazy(() => import('../components/Organizations'));
+const HelpPage = React.lazy(() => import('../pages/HelpPage'));
+const Tickets = React.lazy(() => import('../pages/Tickets'));
 import Skeleton from '../components/Skeleton';
 import Square from '../Skeletons/Square';
 
@@ -98,6 +101,8 @@ function DashRoutes() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
             <Route path="/coordinators" element={<CoordinatorsPage />} />
+            <Route path="/support" element={<HelpPage />} />
+            <Route path="/tickets" element={<Tickets />} />
           </Routes>
         </Suspense>
       </div>
