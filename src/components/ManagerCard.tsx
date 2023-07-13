@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import Card from './TeamCard';
 
 export const GET_TEAMS_CARDS = gql`
@@ -13,7 +14,7 @@ export const GET_TEAMS_CARDS = gql`
       avgRatings {
         quantity
         quality
-        attendance
+        professional_Skills
       }
       members {
         profile {
@@ -60,6 +61,8 @@ export const GET_TEAMS_CARDS = gql`
 `;
 
 function ManagerCard() {
+  const { t } = useTranslation();
+
   const { data, loading, error, refetch } = useQuery(GET_TEAMS_CARDS, {
     variables: {
       orgToken: localStorage.getItem('orgToken'),
@@ -85,11 +88,11 @@ function ManagerCard() {
       const Qty = isNaN(team.avgRatings.quality)
         ? 0
         : parseFloat(team.avgRatings.quality);
-      const att = isNaN(team.avgRatings.attendance)
+      const skills = isNaN(team.avgRatings.professional_Skills)
         ? 0
-        : parseFloat(team.avgRatings.attendance);
+        : parseFloat(team.avgRatings.professional_Skills);
 
-      const average = (Qnty + Qty + att) / 3;
+      const average = (Qnty + Qty + skills) / 3;
       let stylebg: string;
       let stylebg1: string = '';
       let grade: string;
@@ -138,7 +141,7 @@ function ManagerCard() {
           calculateWeeks(team.startingPhase) > 0
             ? calculateWeeks(team.startingPhase)
             : 0,
-        att,
+        skills,
         Qty,
         Qnty,
         active: team?.members.length,

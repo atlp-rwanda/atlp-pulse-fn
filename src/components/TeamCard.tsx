@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useTranslation } from 'react-i18next';
 import {
   UserGroupIcon,
   ArrowUpIcon,
@@ -16,7 +16,7 @@ function Card({
   ttl,
   phase,
   week,
-  att,
+  skills,
   Qty,
   Qnty,
   active,
@@ -32,13 +32,14 @@ function Card({
   ttl: string;
   phase: string;
   week: number;
-  att: number;
+  skills: number;
   Qty: number;
   Qnty: number;
   active: number;
   drop: number;
   arrowColor: string;
 }) {
+  const { t } = useTranslation();
   return (
     <div>
       <div
@@ -66,7 +67,7 @@ function Card({
           <div>
             <h1>{manager}</h1>
             <p className="text-gray-500 font-medium flex items-center ">
-              {manager ? 'Manager' : 'No Manager'}
+              {manager ? `${t('Manager')}` : `${t('NoManager')}`}
             </p>
           </div>
 
@@ -74,21 +75,25 @@ function Card({
             <h1>{ttl}</h1>
             <p className="text-gray-500 font-medium flex items-center ">
               {' '}
-              {ttl ? 'TTL' : 'No TTL'}
+              {ttl ? `${t('TTL')}` : `${t('No TTL')}`}
             </p>
           </div>
 
           <div className="flex pb-0 items-center text-center ">
             <UserGroupIcon className="w-5" />
             <h1 className="text-green-700 ml-2 mr-2 mb-0">
-              Active: {active}
+              {t('Active')}: {active}
             </h1>{' '}
-            |<h1 className="text-red-500 text ml-2 pb-0"> Drop: {drop}</h1>
+            |
+            <h1 className="text-red-500 text ml-2 pb-0">
+              {' '}
+              {t('Drop')}: {drop}
+            </h1>
           </div>
 
           <div>
             <h1 className="ml-3 pt-2">
-              Week {week} in {phase}
+              {t('Week')} {week} {t('in')} {phase}
             </h1>
           </div>
 
@@ -124,7 +129,7 @@ function Card({
               >
                 {typeof Qnty === 'number' ? Qnty.toFixed(1) : Qnty}
               </span>
-              {att >= 1 ? (
+              {skills >= 1 ? (
                 <ArrowUpIcon
                   className={`${'text-green-500 rotate-45'} w-5 ml-2 transform`}
                 />
@@ -133,11 +138,11 @@ function Card({
                   className={`${'text-red-500 -rotate-45'} w-5 ml-2 transform`}
                 />
               )}
-              Atten:{' '}
+              P.Skills:{' '}
               <span
-                className={`${att >= 1 ? 'text-green-700' : 'text-red-500'}`}
+                className={`${skills >= 1 ? 'text-green-700' : 'text-red-500'}`}
               >
-                {typeof att === 'number' ? att.toFixed(1) : att}
+                {typeof skills === 'number' ? skills.toFixed(1) : skills}
               </span>
             </h1>
           </div>

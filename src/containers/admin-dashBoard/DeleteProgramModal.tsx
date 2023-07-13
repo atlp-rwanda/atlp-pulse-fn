@@ -34,12 +34,8 @@ export default function DeleteProgramModal({
       /* istanbul ignore next */
       refetch();
       removeModel();
-<<<<<<< HEAD
       toast.success(t("Program deleted")  as TFunction);
 
-=======
-      toast.success(t('Program deleted'));
->>>>>>> af2151e (create dashboard cards)
     },
   });
   const orgToken = localStorage.getItem('orgToken');

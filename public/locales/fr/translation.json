@@ -414,5 +414,17 @@
   "Submitting Ratings": "Soumettre des évaluations",
   "Reviewing and Editing Ratings": "Revoir et modifier les évaluations",
   "Best Practices for Effective Rating": "Meilleures pratiques pour une évaluation efficace",
-  "Troubleshooting and FAQs": "Dépannage et FAQ"
+  "Troubleshooting and FAQs": "Dépannage et FAQ",
+  "Active": "Active",
+  "Week": "Semaine",
+  "in": "dans",
+  "No Manager": "il n'y a pas de gestionnaire",
+  "Drop": "Abandonné",
+  "TTL": "chef d'équipe",
+  "No TTL": "pas de chef d'équipe",
+  "Teams": "Équipes",
+  "ttlemail": "email du chef d'équipe",
+  "startDate": "date de début",
+  "The ttl email is required": "email du chef d'équipe  est requis",
+  "startDaterequikred": "date de début est requis "
 }

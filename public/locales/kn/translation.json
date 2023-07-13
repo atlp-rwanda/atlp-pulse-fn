@@ -398,5 +398,17 @@
   "Submitting Ratings": "Kohereza amanota",
   "Reviewing and Editing Ratings": "Kugenzura no guhindura amanota",
   "Best Practices for Effective Rating": "Imikorere myiza mu gusuzuma abahugurwa",
-  "Troubleshooting and FAQs": "Gukosora ibitagenze neza n'ibibazo bikunda kwibazwa"
+  "Troubleshooting and FAQs": "Gukosora ibitagenze neza n'ibibazo bikunda kwibazwa",
+  "Active": "Abakora",
+  "Week": "Icyumweru cya",
+  "in": "muri",
+  "No Manager": "Nta muyobozi",
+  "Drop": "Abavuyemo",
+  "TTL": "uhagarariye itsinda",
+  "No TTL": "nta muyobozi w'itsinda",
+  "Teams": "Amakipe",
+  "ttlemail": "imeri yumuyobozi witsinda",
+  "startDate": "Italiki yogutangira",
+  "The ttl email is required": "imeri yumuyobozi witsinda irakenewe",
+  "startDaterequikred": "Italiki yogutangira irakenewe"
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -61,7 +62,7 @@ export default function CreateTeamModal({
       toast.error(error.message.toString());
     },
     onCompleted() {
-      toast.success(t('Team successfully added'));
+      toast.success(t('Team successfully added') as TFunction);
       refetch();
       removeModel();
     },
@@ -151,7 +152,7 @@ export default function CreateTeamModal({
             <div className="input my-5 h-9">
               <div className="grouped-input flex items-center h-full w-full rounded-md">
                 <ControlledSelect
-                  placeholder={t('TTL Email')}
+                  placeholder={t('ttlemail')}
                   register={{
                     control,
                     name: 'ttlEmail',
@@ -182,9 +183,9 @@ export default function CreateTeamModal({
                   type="text"
                   onFocus={(e) => (e.target.type = 'date')}
                   className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
-                  placeholder={t('Starting Date')}
+                  placeholder={t('startDate')}
                   {...register('startingPhase', {
-                    required: `${t('The startingDate is required')}`,
+                    required: `${t('startDaterequikred')}`,
                   })}
                 />
               </div>

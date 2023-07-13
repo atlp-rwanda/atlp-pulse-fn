@@ -62,7 +62,7 @@ export default function UpdatePhaseModal({
       
      toast.success(t("Phase Updated successful") as TFunction);
 
-      toast.success(t('Phase Updated successful'));
+      toast.success(t('Phase Updated successful') as TFunction);
     },
   });
 
