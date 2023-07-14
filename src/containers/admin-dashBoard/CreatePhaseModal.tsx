@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 
@@ -70,7 +70,7 @@ export default function CreatePhaseModal({
        /* istanbul ignore next */
       onCompleted() {
         reset();
-         toast.success(t("Phase Created successful"));
+         toast.success(t("Phase Created successful") as TFunction);
       },
     });
  

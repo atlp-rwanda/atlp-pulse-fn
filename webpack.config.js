@@ -22,6 +22,11 @@ module.exports = () => {
       port: 3001,
       compress: true,
     },
+    resolve: {
+      alias: {
+        'chart.js': 'chart.js/auto',
+      },
+    },
     module: {
       rules: [
         {

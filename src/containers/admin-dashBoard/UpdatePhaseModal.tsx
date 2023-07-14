@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { PartialUser } from './Cohorts';
@@ -61,7 +61,7 @@ export default function UpdatePhaseModal({
       refetch();
       removeModel();
       
-     toast.success(t("Phase Updated successful"));
+     toast.success(t("Phase Updated successful") as TFunction);
 
     },
   });

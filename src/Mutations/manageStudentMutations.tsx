@@ -23,6 +23,7 @@ export const GET_TRAINEES_QUERY = gql`
         avatar
         id
         name
+        githubUsername
       }
       email
       team {
@@ -92,6 +93,19 @@ export const GET_TRAINEE_PROFILE = gql`
       lastName
     }
   }
+`;
+
+export const GET_GITHUB_STATISTICS = gql`
+query GitHubActivity($organisation: String!, $username: String!) {
+  gitHubActivity(organisation: $organisation, username: $username) {
+    totalCommits
+    pullRequest {
+      closed
+      merged
+      opened
+    }
+  }
+}
 `;
 
 export const ADD_MEMBER_TO_COHORT_MUTATION = gql`

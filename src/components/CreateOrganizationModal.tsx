@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from './Buttons';
 
@@ -34,7 +34,7 @@ export default function CreateOrganizationModal({
       toast.error(error.message.toString());
     },
     onCompleted() {
-      toast.success(t('Organization added successfully'));
+      toast.success(t('Organization added successfully') as TFunction);
       refetch();
       reset();
       removeModel();

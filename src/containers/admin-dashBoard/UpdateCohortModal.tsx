@@ -2,7 +2,7 @@ import { gql, useMutation } from '@apollo/client';
 import { format } from 'date-fns';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
@@ -70,7 +70,7 @@ export default function UpdateCohortModal({
     onCompleted() {
       refetch();
       removeModel();
-      toast.success(t('Cohort Updated successful'));
+      toast.success(t('Cohort Updated successful') as TFunction);
     },
   });
 

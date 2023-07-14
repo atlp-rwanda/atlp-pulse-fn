@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Team } from './Teams';
@@ -29,7 +29,7 @@ export default function DeleteTeamModal({
         },
         onCompleted() {
             refetch();
-            toast.success(t('Team deleted successfully'));
+            toast.success(t('Team deleted successfully') as TFunction);
             removeModel();
         },
     });

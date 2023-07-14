@@ -17,6 +17,9 @@ import Button from './../components/Buttons';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
 import Avatar from '../assets/avatar.png';
+import Chart from 'chart.js/auto';
+import { Doughnut } from "react-chartjs-2";
+
 
 import {
   GET_USERS_QUERY,
@@ -27,11 +30,15 @@ import {
   INVITE_USER_MUTATION,
   GET_TEAM_QUERY,
   ADD_MEMBER_TO_TEAM,
+  GET_GITHUB_STATISTICS
 } from '../Mutations/manageStudentMutations';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
 import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
+import { onError } from '@apollo/client/link/error';
+import GitHubActivityChart from '../components/chartGitHub';
+import Spinner from '../components/Spinner';
 const organizationToken = localStorage.getItem('orgToken');
 
 const AdminTraineeDashboard = () => {
@@ -67,6 +74,8 @@ const AdminTraineeDashboard = () => {
   const teamsOptions: any = [];
   const traineeOptions: any = [];
   const teamOptions: any = [];
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
 
   function PaperComponent(props: PaperProps) {
     return (
@@ -78,13 +87,35 @@ const AdminTraineeDashboard = () => {
       </Draggable>
     );
   }
+
+   const [getGitHubStatistics]= useLazyQuery(GET_GITHUB_STATISTICS, {
+    onCompleted: (data) => {
+      console.log(data);
+      setGitHubStatistics(data.gitHubActivity);
+      setIsLoaded(false);
+    },
+    onError: (error) => {
+
+      setIsLoaded(false);
+    },
+  });
+
+
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = (rowData: any) => {
+  const handleClickOpen = async (rowData: any) => {
+    setIsLoaded(true);
     const filteredUser = traineeData.filter((item) => item.email == rowData);
     setTraineeDetails(filteredUser[0]);
-
     setOpen(true);
+     getGitHubStatistics({
+        variables: {
+          organisation: localStorage.getItem('orgName'),
+          username: filteredUser[0].profile.githubUsername,
+        }
+     });
+
+ 
   };
 
   const handleClose = () => {
@@ -145,6 +176,9 @@ const AdminTraineeDashboard = () => {
       return { ...provided, opacity, transition };
     },
   };
+
+ 
+
 
   const columns = [
     { Header: t('name'), accessor: 'name' },
@@ -231,6 +265,10 @@ const AdminTraineeDashboard = () => {
       cohort: cohortName,
     },
   });
+
+
+
+
   function getTeam() {
     getTeamQuery({
       fetchPolicy: 'network-only',
@@ -304,6 +342,8 @@ const AdminTraineeDashboard = () => {
     },
   });
 
+
+
   const [removeMemberFromCohort] = useMutation(
     REMOVE_MEMBER_FROM_COHORT_MUTATION,
     {
@@ -363,6 +403,9 @@ const AdminTraineeDashboard = () => {
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
         setTraineeData(data.getTrainees);
+
+    
+        console.log(data);
       },
 
       onError: (error) => {
@@ -422,6 +465,7 @@ const AdminTraineeDashboard = () => {
           aria-labelledby="draggable-dialog-title"
           className="rounded-lg"
           fullWidth
+        
         >
           <DialogContent className="dark:bg-dark-bg font-sans">
             <DialogContentText className=" dark:bg-dark-bg font-sans">
@@ -598,6 +642,51 @@ const AdminTraineeDashboard = () => {
                     </i>
                   </p>
                 </div>
+                <div
+                  className="text-sm font-sans"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                  
+                  }}
+                >
+
+               
+                {isLoaded?(
+                  <p>
+                
+                    <div className="flex justify-center items-center h-48">
+                    <i>
+                   Loading gitHub statistics...
+                    </i>
+            <Spinner />
+            <div className="spinner" />
+          </div>
+                  </p>
+                ):(
+                  <div className='flex '>
+                  <div className='flex flex-col'>
+            
+                    <i className='text-2xl '>
+               
+                    {gitHubStatistics?.totalCommits} total commits
+                  
+                    </i>
+                 
+    
+                </div>
+                <div className='flex flex-col'>
+                <div>
+                <GitHubActivityChart data={gitHubStatistics} />
+    </div>
+                </div>
+                </div>
+                )}  
+                </div>
+
                 <Button
                   data-testid="removeInviteModel"
                   variant="info"
@@ -972,5 +1061,7 @@ const AdminTraineeDashboard = () => {
     </>
   );
 };
+
+
 
 export default AdminTraineeDashboard;
