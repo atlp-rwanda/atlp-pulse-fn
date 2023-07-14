@@ -20,17 +20,18 @@ const errorLink=onError(({graphQLErrors, networkError})=>{
   }
 });
 
-const link =from([
-  errorLink,
-  new HttpLink({uri:"https://devpulse-backend-pr-100.onrender.com/"})
-])
+// const link =from([
+//   errorLink,
+//   new HttpLink({uri:"http://localhost:4000/"})
+// ])
 
 
 // Create the Apollo Client instance
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link
-});
+
+// const client = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   link
+// });
 
 function ProfileDropdown({
   handleShowProfileDropdown,
@@ -96,7 +97,7 @@ function ProfileDropdown({
           </div>
 
           <div>
-          <ApolloProvider client={client}>
+          {/* <ApolloProvider client={client}> */}
 
             <Link
 
@@ -105,7 +106,7 @@ function ProfileDropdown({
             >
               <p className="font-bold ml-1 cursor-pointer">{t('Login Activities')}</p>
             </Link>
-            </ApolloProvider>
+            {/* </ApolloProvider> */}
 
           </div>
         </div>
