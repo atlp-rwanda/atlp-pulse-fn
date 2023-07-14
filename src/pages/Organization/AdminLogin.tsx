@@ -48,6 +48,7 @@ function AdminLogin() {
 
   const onSubmit = async (userInput: any) => {
     userInput.orgToken = orgToken;
+
     try {
       setLoading(true);
       const redirect = searchParams.get('redirect');
@@ -105,7 +106,7 @@ function AdminLogin() {
           }
         },
       });
-    } catch (error: any) {
+    } catch (error) {
       /* istanbul ignore next */
       setError('password', {
         type: 'custom',

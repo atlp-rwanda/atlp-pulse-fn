@@ -8,7 +8,23 @@ export const GET_EVENTS = gql`
       start
       timeToEnd
       timeToStart
+      guests
       title
+      guests
+    }
+  }
+`;
+export const GET_ACCEPTED_EVENTS = gql`
+  query GetAcceptedEvents($authToken: String) {
+    getAcceptedEvents(authToken: $authToken) {
+      end
+      hostName
+      start
+      timeToEnd
+      timeToStart
+      guests
+      title
+      guests
     }
   }
 `;
@@ -21,6 +37,7 @@ export const ADD_EVENT = gql`
     $timeToFinish: String!
     $hostName: String!
     $start: String!
+    $guests: [String!]!
     $authToken: String
   ) {
     createEvent(
@@ -30,6 +47,7 @@ export const ADD_EVENT = gql`
       timeToEnd: $timeToFinish
       hostName: $hostName
       start: $start
+      guests: $guests
       authToken: $authToken
     ) {
       end
@@ -38,6 +56,28 @@ export const ADD_EVENT = gql`
       timeToEnd
       title
       timeToStart
+      guests
     }
   }
 `;
+
+export const SEND_INVITATION_EMAIL = gql`
+  mutation SendInvitationEmail($email: String!, $title: String!) {
+    sendInvitationEmail(email: $email, title: $title) {
+      email
+      title
+    }
+  }
+`;
+
+export const GET_ALL_COHORTS = gql`
+  query($orgToken: String) {
+    getAllCohorts(orgToken: $orgToken) {
+      name
+    }
+  }
+`;
+
+
+
+

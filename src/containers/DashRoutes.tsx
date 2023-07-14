@@ -28,6 +28,9 @@ const AdminCohorts = React.lazy(() => import('./admin-dashBoard/Cohorts'));
 const AdminPrograms = React.lazy(() => import('./admin-dashBoard/Programs'));
 const AdminSession = React.lazy(() => import('./admin-dashBoard/Sessions'));
 const AdminPhases = React.lazy(() => import('./admin-dashBoard/Phases'));
+const InvitationConfirm = React.lazy(
+  () => import('../pages/InvitationConfirm'),
+);
 const AdminManageRoles = React.lazy(
   () => import('./admin-dashBoard/ManagerRoles'),
 );
@@ -153,6 +156,8 @@ function DashRoutes() {
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
             <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
+
+            <Route path="/calendar/confirm" element={<InvitationConfirm />} />
           </Routes>
         </Suspense>
       </main>
