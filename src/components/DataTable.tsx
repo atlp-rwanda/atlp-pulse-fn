@@ -53,18 +53,19 @@ function DataTable({ data, columns, title, loading }: TableData) {
 
   return (
     <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
-      <div className=" flex items-center justify-between pb-6">
+      <div className="flex items-center justify-between pb-6 ">
         <div>
-          <h2 className="text-gray-800 dark:text-white font-semibold text-xl">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
             {t(title)}
           </h2>
           {/* <span className="text-xs text-gray-600">Current cohort</span> */}
           <input
             defaultValue={globalFilter || ''}
             placeholder="Filter"
-            className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+            className="px-5 py-2 mt-4 font-sans text-xs border border-gray-300 rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
             /* istanbul ignore next */
-            onChange={(e) => setGlobalFilter(e.target.value)}
+            onChange={(e) => 
+              setGlobalFilter(e.target.value)}
           />
         </div>
       </div>
