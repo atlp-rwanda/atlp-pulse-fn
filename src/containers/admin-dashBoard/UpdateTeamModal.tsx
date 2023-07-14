@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Team, Cohort } from './Teams';
@@ -45,7 +45,7 @@ export default function UpdateTeamModal({
             toast.error(error.message.toString());
         },
         onCompleted() {
-            toast.success(t('Team updated successfully'));
+            toast.success(t('Team updated successfully') as TFunction);
             refetch();
             removeModel();
         },

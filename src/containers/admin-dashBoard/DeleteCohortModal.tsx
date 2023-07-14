@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Cohort } from './Cohorts';
@@ -33,7 +33,7 @@ export default function DeleteCohortModal({
     onCompleted() {
       refetch();
       removeModel();
-      toast.success(t("Cohort deleted successfully"));
+      toast.success(t("Cohort deleted successfully") as TFunction);
     },
   });
   const orgToken = localStorage.getItem('orgToken');

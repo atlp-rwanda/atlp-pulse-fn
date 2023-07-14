@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
@@ -48,7 +48,7 @@ export default function CreateTeamModal({
             toast.error(error.message.toString());
         },
         onCompleted() {
-            toast.success(t("Team successfully added"));
+            toast.success(t("Team successfully added") as TFunction);
             refetch();
             removeModel();
         },

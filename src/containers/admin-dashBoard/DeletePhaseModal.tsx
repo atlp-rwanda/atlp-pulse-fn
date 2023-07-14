@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Phase } from './Phases';
@@ -37,7 +37,7 @@ export default function DeletePhaseModal({
       /* istanbul ignore next */
       refetch();
       removeModel();
-      toast.success(t("Phase deleted successfully"));
+      toast.success(t("Phase deleted successfully")  as TFunction);
     },
   });
   const orgToken = localStorage.getItem('orgToken');

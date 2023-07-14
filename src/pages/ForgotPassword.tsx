@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaPen, FaAddressBook, FaLock } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
@@ -41,7 +41,7 @@ export default function ForgotPassword() {
     onCompleted: (data) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.success(t('You have Successfully reset your password!'));
+        toast.success(t('You have Successfully reset your password!') as TFunction);
         navigate('/login/org');
       }, 2000);
     },

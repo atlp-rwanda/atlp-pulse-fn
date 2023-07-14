@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Program } from './Programs';
@@ -34,7 +34,7 @@ export default function DeleteProgramModal({
       /* istanbul ignore next */
       refetch();
       removeModel();
-      toast.success(t("Program deleted"));
+      toast.success(t("Program deleted")  as TFunction);
 
     },
   });

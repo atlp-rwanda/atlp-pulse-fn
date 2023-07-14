@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { useMutation, gql } from '@apollo/client';
 import Button from '../components/Buttons';
 import ButtonLoading from '../components/ButtonLoading';
@@ -31,12 +31,12 @@ function Help() {
           message: '',
         });
         toast.success(
-          t(`Message successfully received! We will get back to you shortly.`),
+          t(`Message successfully received! We will get back to you shortly.`) as TFunction
         );
       },
       onError(error) {
         /* istanbul ignore next */
-        toast.error(t(`${error.message}`));
+        toast.error(t(`${error.message}`) as TFunction);
       },
     });
   };

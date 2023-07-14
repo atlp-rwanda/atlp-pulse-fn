@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { useTranslation,TFunction } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
@@ -108,8 +108,9 @@ export default function CreateCohortModal({
         setValue('coordinatorEmail', { value: undefined, label: undefined });
         setValue('programName', { value: undefined, label: undefined });
         setValue('phaseName', { value: undefined, label: undefined });
-           
-        toast.success(t("Cohort Created successful"));
+
+
+        toast.success(t("Cohort Created successful") as TFunction);
       
       },
     });
