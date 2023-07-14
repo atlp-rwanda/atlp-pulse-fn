@@ -18,4 +18,13 @@ export const GET_PROFILE = gql`
   }
 `;
 
+export const GET_USERS = gql`
+query GetUserEmails {
+  GetUserEmails {
+    email
+  }
+}
+`;
+
 export default GET_PROFILE;
+

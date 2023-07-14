@@ -46,7 +46,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
-
 const httpLink = createHttpLink({
   uri: process.env.BACKEND_URL || 'http://localhost:4000',
 });
@@ -57,7 +56,6 @@ const wsLink = new WebSocketLink({
     reconnect: true,
   },
 });
-
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('auth_token');
 

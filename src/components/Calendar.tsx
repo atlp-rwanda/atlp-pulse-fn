@@ -8,25 +8,158 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReactTooltip from 'react-tooltip';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { ADD_EVENT, GET_EVENTS } from '../Mutations/event';
+import { useLazyQuery, useMutation, gql } from '@apollo/client';
+import { ADD_EVENT, GET_ACCEPTED_EVENTS, GET_EVENTS } from '../Mutations/event';
 import moment from 'moment';
+import { GET_TRAINEES_QUERY } from '../Mutations/manageStudentMutations';
+import { SEND_INVITATION_EMAIL } from '../Mutations/event';
+import Select from 'react-select';
+
 /* istanbul ignore next */
+
+function formatDate(dateString: string | number | Date) {
+  if (!dateString) {
+    return '';
+  }
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day = `${date.getDate()}`.padStart(2, '0');
+  return `${day}-${month}-${year}`;
+}
+const sendInvitationEmail = (email: String, title: String, start: any, hostName: String, timeToStart:any, timeToFinish:any) => {
+  const [sendInvitationEmailMutation] = useMutation(SEND_INVITATION_EMAIL);
+ 
+  const formattedStartDate = formatDate(start);
+  sendInvitationEmailMutation({
+    variables: {
+      email: email,
+      title: title,
+      start:start,
+      hostName: hostName,
+      timeToStart:timeToStart,
+      timeToFinish:timeToFinish
+
+
+    },
+  })
+    .then((response) => {
+      // Handle the response
+    })
+    .catch((error) => {
+      // Handle any errors
+    });
+    console.log("dfgfsd", start)
+};
+
+
+
+const newEventTemp = {
+  title: '',
+  start: '',
+  end: '',
+  hostName: '',
+  guests: [],
+  timeToStart: '',
+  timeToFinish: '',
+};
+
+
 
 const Calendar = () => {
   useDocumentTitle('Calendar');
+  const [openEvent, setOpenEvent] = useState(false);
   const [addEventModel, setAddEventModel] = useState(false);
-  const [newEvent, setNewEvent] = useState({
-    title: '',
-    start: '',
-    end: '',
-    hostName: '',
-    timeToStart: '',
-    timeToFinish: '',
-  });
+  const [newEvent, setNewEvent] = useState(newEventTemp);
   const [data, setData] = useState<EventInput[]>([]);
   const [getEvents] = useLazyQuery(GET_EVENTS);
-  const [createEvent] = useMutation(ADD_EVENT);
+  const [getAcceptedEvents] = useLazyQuery(GET_ACCEPTED_EVENTS);
+  const [eventDetails, setEventDetails] = useState({
+    title: '',
+    hostname: '',
+    extendedProps: {
+      guests: [],
+    },
+  });
+  const [createEvent] = useMutation(ADD_EVENT, {
+    update(cache, { data: { createEvent } }) {
+      /* istanbul ignore next */
+      const eventData = cache.readQuery<{ getEvents: EventInput[] }>({
+        query: GET_EVENTS,
+      });
+
+      if (eventData && eventData.getEvents) {
+        const { getEvents } = eventData;
+        cache.writeQuery({
+          query: GET_EVENTS,
+          data: { getEvents: [...getEvents, createEvent] },
+        });
+      }
+    },
+  });
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [users, setUsers] = useState<{ id: string; email: string }[]>([]);
+  const customStyles = {
+    /* istanbul ignore next */
+    option: (provided: any, state: any) => ({
+      ...provided,
+      borderBottom: '1px dotted pink',
+      color: state.isSelected ? 'red' : '#148FB6',
+    }),
+    valueLabel: (styles: any) => ({
+      ...styles,
+      text: 'white',
+    }),
+    control: (styles: any) => ({
+      ...styles,
+      height: 20,
+      width: 370,
+      backgroundColor: '#374151',
+      borderColor: 'rgb(20 143 182)',
+      text: 'white',
+    }),
+    /* istanbul ignore next */
+    singleValue: (provided: any, state: any) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      /* istanbul ignore next */
+      return { ...provided, opacity, transition };
+    },
+  };
+
+  const organizationToken = localStorage.getItem('orgToken');
+
+  const [getTrainees, { data: queryData }] = useLazyQuery(GET_TRAINEES_QUERY, {
+    variables: {
+      orgToken: organizationToken,
+    },
+  });
+  /* istanbul ignore next */
+  useEffect(() => {
+    if (queryData?.getTrainees) {
+      setUsers(queryData.getTrainees);
+    }
+  }, [queryData]);
+  console.log('we are  users', users);
+  useEffect(() => {
+    getTrainees();
+  }, [queryData]);
+
+  const traineeOptions = users.map((user: any) => ({
+    value: user.email,
+    label: user.email,
+    id: user.id,
+  }));
+  /* istanbul ignore next */
+  const handleUserChange = (event: any) => {
+    if (event) {
+      const selectedIds = event.map((user: any) => user.id);
+      setSelectedUsers(selectedIds);
+      console.log('Selected IDs:', selectedIds);
+    }
+  };
+ /* istanbul ignore next */
   useEffect(() => {
     const fetchData = async () => {
       /* istanbul ignore next */
@@ -36,72 +169,129 @@ const Calendar = () => {
             authToken: localStorage.getItem('auth_token'),
           },
         });
-        let all = out.getEvents.map((one: EventInput) => ({
-          end: moment(one.end).format('YYYY-MM-DD'),
-          start: moment(one.start).format('YYYY-MM-DD'),
-          hostName: one.hostName,
-          timeToStart: one.timeToStart,
-          title: one.title,
-          timeToFinish: one.timeToEnd,
-        }));
+        const { data: outAccepted } = await getAcceptedEvents({
+          variables: {
+            authToken: localStorage.getItem('auth_token'),
+          },
+        });
+
+        let all = [...out.getEvents, ...outAccepted.getAcceptedEvents].map(
+          (one: EventInput) => ({
+            end: moment(one.end).format('YYYY-MM-DD'),
+            start: moment(one.start).format('YYYY-MM-DD'),
+            hostName: one.hostName,
+            guests: one.guests,
+            timeToStart: one.timeToStart,
+            title: one.title,
+            timeToFinish: one.timeToEnd,
+          }),
+
+        );
         setData(all);
+        console.log('all', all);
       } catch (error) {
         console.log({ eventsError: data });
-        // toast.error(error?.message || 'Something went wrong');
       }
     };
     fetchData();
   }, []);
   const { t } = useTranslation();
+  /* istanbul ignore next */
+  const handleEdit = (event: any) => {
+    setSelectedEvent(event);
+  };
+  // handle open & close event
+/* istanbul ignore next */
+  const handleOpenEvent = (e: any) => {
+    setEventDetails(e);
+    setOpenEvent(!openEvent);
+    console.log('guests', e.extendedProps);
+  };
+  // handle
+/* istanbul ignore next */
+  const removeEvent = (e: any) => {
+    e.preventDefault();
+    const newState = !openEvent;
+    setOpenEvent(newState);
+  };
   const renderEvent =
     /* istanbul ignore next */
 
     (e: EventContentArg) => (
       /* istanbul ignore next */
       <div
+        onClick={() => handleOpenEvent(e.event)}
         data-html={true}
-        data-tip={`<div>${e.event.title}<br> ${e.event.extendedProps.hostName}  <br> ${e.event.extendedProps.timeToStart} - ${e.event.extendedProps.timeToFinish}</div> `}
-        className="bg-primary text-white max-w-full min-w-full overflow-auto text-xs md:text-sm"
+        data-tip={`<div>${e.event.title}<br> ${e.event.extendedProps.hostName}  <br> ${e.event.extendedProps.timeToStart} - ${e.event.extendedProps.timeToFinish}  </div> `}
+        className=" bg-primary text-white max-w-full min-w-full overflow-auto text-xs md:text-sm"
       >
         <p className="px-3 py-1 ">{e.event.title}</p>
         <p className="px-3 py-1 ">{e.event.extendedProps.hostName}</p>
+        {/* <p className="px-3 py-1 ">{e.event.extendedProps.guests}</p> */}
         <p className="px-3 py-1 ">
           {e.event.extendedProps.timeToStart} -{' '}
           {e.event.extendedProps.timeToFinish}
         </p>
+        <div className="absolute bottom-0 right-0 flex items-center">
+        </div>
         <ReactTooltip data-html={true} />
       </div>
     );
-
+  /* istanbul ignore next */
   const removeModel = (e: any) => {
     e.preventDefault();
     const newState = !addEventModel;
     setAddEventModel(newState);
   };
-
+  /* istanbul ignore next */
   const handleDateClick = () => {
     const newState = !addEventModel;
     setAddEventModel(newState);
   };
   /* istanbul ignore next */
-
+  
   const handleAddEvent = (e: any) => {
     e.preventDefault();
+ 
+    
+    const updatedNewEvent = {
+       ...newEvent, 
+       guests: selectedUsers,
+       
+     };
     createEvent({
-      variables: { ...newEvent, authToken: localStorage.getItem('auth_token') },
-    });
-    setData([...data, newEvent]);
-    setNewEvent({
-      title: '',
-      start: '',
-      end: '',
-      hostName: '',
-      timeToStart: '',
-      timeToFinish: '',
-    });
+      variables: {
+        ...updatedNewEvent,
+        authToken: localStorage.getItem('auth_token'),
+      },
+    })
+      .then(() => {
+        
+        // Send invitation email to the selected guest
+        selectedUsers.forEach((guestEmail: string) => {
+          sendInvitationEmail(guestEmail, 
+            updatedNewEvent.title, 
+            updatedNewEvent.start,
+            updatedNewEvent.hostName, 
+            updatedNewEvent.timeToStart, 
+            updatedNewEvent.timeToFinish);
+        });
+        
+      })
+      
+    
+      .catch((error) => {
+        console.log('errorrrr', error);
+      });
+      console.log( moment( updatedNewEvent.start).format('YYYY-MM-DD'))
+
+    setData([...data, updatedNewEvent]);
+    setNewEvent(newEventTemp);
+    setSelectedUsers([]);
     setTimeout(() => {
       setAddEventModel(false);
     }, 1000);
+    console.log('Iam new event', updatedNewEvent);
   };
 
   return (
@@ -112,20 +302,20 @@ const Calendar = () => {
           addEventModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
+        <div className="bg-white dark:bg-dark-bg w-1/2 sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
             <h3 className="font-bold text-sm dark:text-white text-center w-11/12">
               {t('Add event')}
             </h3>
-            <hr className=" bg-primary border-gray-300 my-3 w-full" />
+            <hr className=" bg-primary border-b my-3 w-full" />
           </div>
           <div className="card-body">
             {/* istanbul ignore next */}
             <form
               data-testid="handleAddEvent"
               className=" py-3 px-8"
-              onSubmit /* istanbul ignore next */={(e) =>
-                /* istanbul ignore next */
+              /* istanbul ignore next */ 
+              onSubmit ={(e) =>
                 handleAddEvent(e)
               }
             >
@@ -164,6 +354,17 @@ const Calendar = () => {
                 </div>
               </div>
 
+              <Select
+                placeholder={t('Choose guest')}
+                className="my-react-select-container"
+                classNamePrefix="my-react-select"
+                isSearchable
+                styles={customStyles}
+                isMulti
+                options={traineeOptions}
+                onChange={handleUserChange}
+              />
+
               <div className="input my-3 h-9 ">
                 <div className="grouped-input flex items-center h-full w-full rounded-md">
                   <DatePicker
@@ -200,7 +401,7 @@ const Calendar = () => {
                 <div className="grouped-input flex items-center h-full w-full rounded-md">
                   <input
                     type="time"
-                    name="hostName"
+                    name="starttime"
                     className="dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('Start time')}
                     value={newEvent.timeToStart}
@@ -216,7 +417,7 @@ const Calendar = () => {
                 <div className="grouped-input flex items-center h-full w-full rounded-md">
                   <input
                     type="time"
-                    name="hostName"
+                    name="endtime"
                     className="dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('End time')}
                     value={newEvent.timeToFinish}
@@ -231,7 +432,7 @@ const Calendar = () => {
               <div className="w-full flex justify-between">
                 <button
                   data-testid="removeModel"
-                  className="py-2 w-[40%] md:w-1/3 bg-violet-400 rounded font-sans text-sm text-white"
+                  className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
                   onClick={(e) => removeModel(e)}
                 >
                   {t('cancel')}
@@ -241,6 +442,7 @@ const Calendar = () => {
                 </button>
               </div>
             </form>
+            <div className="grouped-input flex items-center h-full w-full rounded-md"></div>
           </div>
         </div>
       </div>
@@ -257,6 +459,7 @@ const Calendar = () => {
         >
           {t('Add event')}
         </button>
+
         <FullCalendar
           eventContent={renderEvent}
           events={data}
