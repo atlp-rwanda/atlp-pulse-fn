@@ -5,8 +5,8 @@ interface Props {
   children: React.ReactNode;
   style?: any;
   onClick?: () => void;
-  variant: string;
-  size: string;
+  variant?: string;
+  size?: string;
   type?: any;
   disabled?: boolean;
   loading?: boolean;

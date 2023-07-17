@@ -221,7 +221,6 @@ const AdminSission = () => {
           className="text-red-500 whitespace-no-wrap cursor-pointer"
           onClick={/* istanbul ignore next */() => {
             /* istanbul ignore next */
-            console.log(row.original.role);
             removeAssignModel(row.original);
           }}
         >

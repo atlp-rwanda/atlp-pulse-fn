@@ -38,7 +38,7 @@ export default function CohortTraineeModal({
     {
       variables: {
         orgToken: organizationToken,
-        cohort: currentCohort ? currentCohort.name : '',
+        cohort: currentCohort?.name ? currentCohort?.name : '',
       },
     },
   );

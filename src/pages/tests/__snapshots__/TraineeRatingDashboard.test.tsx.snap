@@ -482,7 +482,20 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                         </thead>
                         <tbody
                           role="rowgroup"
-                        />
+                        >
+                          <tr>
+                            <td
+                              colSpan={9}
+                              style={
+                                Object {
+                                  "textAlign": "center",
+                                }
+                              }
+                            >
+                              loading...
+                            </td>
+                          </tr>
+                        </tbody>
                       </table>
                       <div>
                         <table

@@ -231,7 +231,7 @@ const TraineeRatingDashboard = () => {
                 <div className="px-3 md:px-8 mt-28">
                   {data.length !== 0 ? (
                     <DataTable
-                      data={data}
+                      data={ratings}
                       columns={columns}
                       title={t('Performance Ratings')}
                     />

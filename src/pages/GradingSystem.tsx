@@ -79,7 +79,9 @@ const GradingSystem = () => {
   const handleClick = () => setNav(!nav);
   useDocumentTitle('Grading System');
   let dataValues: any = [];
-  !loading &&
+
+  useEffect(() => {
+    !loading &&
     data?.getRatingSystems &&
     data?.getRatingSystems.forEach((rating: any) => {
       for (let i = 0; i < rating.grade.length; i++) {
@@ -94,6 +96,8 @@ const GradingSystem = () => {
         dataValues.push(ratingObj);
       }
     });
+  }, [loading, data])
+
   let fileteredData;
   const [formData, setFormData] = useState({
     label: '',
@@ -216,9 +220,7 @@ const GradingSystem = () => {
                   <input
                     type="text"
                     name="name"
-                    {...register('name', {
-                      required: 'Grade Name is required',
-                    })}
+                    {...register('name', { required: 'Grade is required' })}
                     className=" dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholder={t('Label. eg:Name of grading system')}
                   />

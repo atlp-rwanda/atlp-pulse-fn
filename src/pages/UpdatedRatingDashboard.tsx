@@ -1,20 +1,38 @@
-/* eslint-disable */
 import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { gql, useLazyQuery, useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
 import DataTable from '../components/DataTable';
 import Sidebar from '../components/Sidebar';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import Button from './../components/Buttons';
+import Button from '../components/Buttons';
 import { REJECT_RATING, APPROVE_RATING } from '../Mutations/Ratings';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { gql } from '@apollo/client';
-import { toast } from 'react-toastify';
-
-import Square from '../Skeletons/Square';
 
 const organizationToken = localStorage.getItem('orgToken');
-const UpdatedRatingDashboard = () => {
+const GET_USERS = gql`
+  query Query($orgToken: String) {
+    fetchRatingsForAdmin(orgToken: $orgToken) {
+      sprint
+      quantity
+      quantityRemark
+      quality
+      qualityRemark
+      professional_Skills
+      professionalRemark
+      user {
+        id
+        role
+        email
+      }
+      cohort {
+        name
+      }
+    }
+  }
+`;
+
+function UpdatedRatingDashboard() {
   /* istanbul ignore next */
   useDocumentTitle('Updated Ratings');
   const { t } = useTranslation();
@@ -27,39 +45,19 @@ const UpdatedRatingDashboard = () => {
     id: '',
     sprint: '',
   });
-  const GET_USERS = gql`
-    query Query($orgToken: String) {
-      fetchRatingsForAdmin(orgToken: $orgToken) {
-        sprint
-        quantity
-        quantityRemark
-        quality
-        qualityRemark
-        professional_Skills
-        professionalRemark
-        user {
-          id
-          role
-          email
-        }
-        cohort {
-          name
-        }
-      }
-    }
-  `;
+
   /* istanbul ignore next */
   const handleToggle = () => {
     setToggle(!toggle);
   };
 
   const removeApproveModel = () => {
-    let newState = !approveModel;
+    const newState = !approveModel;
     setApproveModel(newState);
   };
 
   const removeRejectModel = () => {
-    let newState = !rejectModel;
+    const newState = !rejectModel;
     setRejectModel(newState);
   };
   const [nav, setNav] = useState(false);
@@ -77,6 +75,7 @@ const UpdatedRatingDashboard = () => {
       Header: `${t('Actions')}`,
       accessor: '',
       /* istanbul ignore next */
+      // eslint-disable-next-line react/no-unstable-nested-components
       Cell: ({ row }: any) => (
         /* istanbul ignore next */
         <div className="flex relative flex-row align-middle  justify-center items-center">
@@ -166,8 +165,8 @@ const UpdatedRatingDashboard = () => {
       removeRejectModel();
     },
     /* istanbul ignore next */
-    onCompleted: /* istanbul ignore next */
-     (data) => {
+    /* istanbul ignore next */
+    onCompleted: (data) => {
       /* istanbul ignore next */
       toast.success('Successfully rejected!');
       /* istanbul ignore next */
@@ -181,7 +180,6 @@ const UpdatedRatingDashboard = () => {
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
         setRatings(data.fetchRatingsForAdmin);
-        handleToggle();
       },
       onError: (error) => {
         toast.error(error?.message || 'Something went wrong');
@@ -314,6 +312,6 @@ const UpdatedRatingDashboard = () => {
       </div>
     </>
   );
-};
+}
 
 export default UpdatedRatingDashboard;

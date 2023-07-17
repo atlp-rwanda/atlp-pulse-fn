@@ -6,7 +6,7 @@ import {
   createHttpLink,
   from,
   InMemoryCache,
-  split
+  split,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import React, { Suspense } from 'react';
@@ -19,7 +19,7 @@ import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserProvider from './hook/useAuth';
-import {WebSocketLink} from '@apollo/client/link/ws';
+import { WebSocketLink } from '@apollo/client/link/ws';
 import { t } from 'i18next';
 import { getMainDefinition } from '@apollo/client/utilities';
 const App = React.lazy(() => import('./App'));
@@ -52,14 +52,12 @@ const httpLink = createHttpLink({
   uri: process.env.BACKEND_URL || 'http://localhost:4000',
 });
 
-const wsLink =new WebSocketLink({
+const wsLink = new WebSocketLink({
   uri: process.env.WS_BACKEND_URL || 'ws://localhost:4000',
-  options:{
-    reconnect:true,
-  }
+  options: {
+    reconnect: true,
+  },
 });
-
-
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('auth_token');
@@ -72,16 +70,17 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const splitLink=split(
-  ({query})=>{
-    const definition=getMainDefinition(query);
-    return(
-      definition.kind === "OperationDefinition" &&
-      definition.operation ==="subscription"
-    )
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
   },
   wsLink,
-  from([errorLink, authLink.concat(httpLink)]));
+  from([errorLink, authLink.concat(httpLink)]),
+);
 
 export const client = new ApolloClient({
   link: splitLink,

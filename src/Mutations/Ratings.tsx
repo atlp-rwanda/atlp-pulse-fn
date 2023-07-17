@@ -28,36 +28,52 @@ export const GET_RATINGS = gql`
     }
   }
 `;
-export const RATING_BY_COHORT = gql `
-query GetAllCohorts( $cohortName: String) {
-  fetchRatingByCohort(  CohortName: $cohortName) {
-    sprint
-    quantity
-    approved
-    coordinator
-    average
-    cohort {
-      name
-      id
-      phase {
+export const RATING_BY_COHORT = gql`
+  query GetAllCohorts($cohortName: String) {
+    fetchRatingByCohort(CohortName: $cohortName) {
+      sprint
+      quantity
+      approved
+      coordinator
+      average
+      cohort {
         name
+        id
+        phase {
+          name
+        }
+      }
+      user {
+        id
+        email
+        profile {
+          name
+        }
+      }
+      quantityRemark
+      bodyQuantity
+      quality
+      qualityRemark
+      bodyQuality
+      professional_Skills
+      professionalRemark
+      bodyProfessional
+      feedbacks {
+        sender {
+          email
+          id
+          profile {
+            avatar
+            name
+          }
+          role
+        }
+        content
+        createdAt
       }
     }
-    user {
-      id
-      email
-    }
-    quantityRemark
-    bodyQuantity
-    quality
-    qualityRemark
-    bodyQuality
-    professional_Skills
-    professionalRemark
-    bodyProfessional
   }
-}
-`
+`;
 export const FETCH_ALL_RATINGS = gql`
   query FetchAllRatings($orgToken: String) {
     fetchAllRatings(orgToken: $orgToken) {
@@ -85,33 +101,74 @@ export const FETCH_ALL_RATINGS = gql`
 `;
 
 export const ADD_RATING = gql`
-mutation AddRatings($user: String!, $sprint: Int!, $quantity: String!, $quality: String!, $cohort: String!, $professionalSkills: String!, $orgToken: String!, $quantityRemark: String, $bodyQuality: String, $qualityRemark: String, $bodyQuantity: String, $professionalRemark: String, $bodyProfessional: String) {
-  addRatings(user: $user, sprint: $sprint, quantity: $quantity, quality: $quality, cohort: $cohort, professional_Skills: $professionalSkills, orgToken: $orgToken, quantityRemark: $quantityRemark, bodyQuality: $bodyQuality, qualityRemark: $qualityRemark, bodyQuantity: $bodyQuantity, professionalRemark: $professionalRemark, bodyProfessional: $bodyProfessional) {
-    user {
-      id
-      email
-    }
-    sprint
-    cohort {
-      name
-      id
-      phase {
-        name
+  mutation AddRatings(
+    $user: String!
+    $sprint: Int!
+    $quantity: String!
+    $quality: String!
+    $cohort: String!
+    $professionalSkills: String!
+    $orgToken: String!
+    $quantityRemark: String
+    $bodyQuality: String
+    $qualityRemark: String
+    $bodyQuantity: String
+    $professionalRemark: String
+    $bodyProfessional: String
+  ) {
+    addRatings(
+      user: $user
+      sprint: $sprint
+      quantity: $quantity
+      quality: $quality
+      cohort: $cohort
+      professional_Skills: $professionalSkills
+      orgToken: $orgToken
+      quantityRemark: $quantityRemark
+      bodyQuality: $bodyQuality
+      qualityRemark: $qualityRemark
+      bodyQuantity: $bodyQuantity
+      professionalRemark: $professionalRemark
+      bodyProfessional: $bodyProfessional
+    ) {
+      user {
+        id
+        email
       }
+      sprint
+      cohort {
+        name
+        id
+        phase {
+          name
+        }
+      }
+      quantity
+      quantityRemark
+      feedbacks {
+        sender {
+          email
+          id
+          profile {
+            avatar
+            name
+          }
+          role
+        }
+        content
+        createdAt
+      }
+      bodyQuantity
+      quality
+      qualityRemark
+      bodyQuality
+      professional_Skills
+      professionalRemark
+      bodyProfessional
+      approved
+      coordinator
     }
-    quantity
-    quantityRemark
-    bodyQuantity
-    quality
-    qualityRemark
-    bodyQuality
-    professional_Skills
-    professionalRemark
-    bodyProfessional
-    approved
-    coordinator
   }
-}
 `;
 
 export const UPDATE_RATING = gql`
@@ -149,6 +206,49 @@ export const UPDATE_RATING = gql`
   }
 `;
 
+export const ADD_FEEDBACK = gql`
+  mutation AddRatingFeedback($sprint: String, $user: String, $content: String) {
+    AddRatingFeedback(sprint: $sprint, user: $user, content: $content) {
+      sender {
+        email
+        id
+        role
+      }
+      createdAt
+      content
+    }
+  }
+`;
+export const GET_FEEDBACK_SUBSCRIPTION = gql`
+  subscription Newfeedback($sprint: String, $user: String) {
+    newfeedback(sprint: $sprint, user: $user) {
+      sender {
+        email
+        id
+        role
+      }
+      createdAt
+      content
+    }
+  }
+`;
+export const GET_FEEDBACKS_SUBSCRIPTION = gql`
+  subscription Newfeedbacks($sprintUser: String) {
+    newfeedbacks(sprint_user: $sprintUser) {
+      sprint
+      user
+      data {
+        content
+        createdAt
+        sender {
+          email
+          id
+          role
+        }
+      }
+    }
+  }
+`;
 export const APPROVE_RATING = gql`
   mutation Mutation($user: String!, $sprint: Int!) {
     approveRating(user: $user, sprint: $sprint) {
@@ -176,6 +276,7 @@ export const TRAINEE_RATING = gql`
     fetchRatingsTrainee {
       user {
         id
+        email
       }
       sprint
       quantity
@@ -189,6 +290,25 @@ export const TRAINEE_RATING = gql`
         phase {
           name
         }
+        coordinator {
+          email
+          profile {
+            name
+          }
+        }
+      }
+      feedbacks {
+        sender {
+          email
+          id
+          profile {
+            avatar
+            name
+          }
+          role
+        }
+        content
+        createdAt
       }
     }
   }
@@ -228,35 +348,35 @@ export const GET_COORDINATOR_COHORTS_QUERY = gql`
 
 export const GET_ALL_TRAINEES = gql`
   query GetAllUsers($orgToken: String) {
-  getAllUsers(orgToken: $orgToken) {
-    role
-    email
-    team {
-      name
-      cohort {
-        endDateb
-        startDate
-        phase {
-          name
-        }
+    getAllUsers(orgToken: $orgToken) {
+      role
+      email
+      team {
         name
-        program {
-          organization {
+        cohort {
+          endDateb
+          startDate
+          phase {
             name
           }
           name
-          manager {
-            role
-            email
-            profile {
+          program {
+            organization {
               name
-              firstName
-              lastName
+            }
+            name
+            manager {
+              role
+              email
+              profile {
+                name
+                firstName
+                lastName
+              }
             }
           }
         }
       }
     }
   }
-}
 `;

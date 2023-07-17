@@ -1,33 +1,13 @@
-/* eslint-disable */
 import React, { useEffect, Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Button from './Buttons';
-import { useNavigate } from 'react-router';
-import { IoIosArrowBack } from 'react-icons/io';
-import { GET_USERS } from '../Mutations/Ratings';
-import {
-  ADD_REPLY,
-  GET_REPLIES,
-  REMOVE_REPLY,
-  UPDATE_TO_REPLY,
-} from '../Mutations/replyMutation';
-import { phase, cohort, sprint, people as trainee } from '../dummyData/ratings';
-import { useLazyQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Transition, Dialog } from '@headlessui/react';
-import { gql } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
-import { dataItem } from 'react-widgets/cjs/Accessors';
-const TraineePerfomanceDetails = () => {
-  const navigate = useNavigate();
+import { UPDATE_TO_REPLY } from '../Mutations/replyMutation';
+import Button from './Buttons';
+
+function TraineePerfomanceDetails() {
   const organizationToken = localStorage.getItem('orgToken');
-  const [replyData, setReplyData] = useState({
-    userEmail: '',
-    bodyQuantity: '',
-    bodyQuality: '',
-    bodyProfessional: '',
-    id: '',
-  });
   const [rows, setRows] = useState({
     user: '',
     bodyQuantity: '',
@@ -36,32 +16,12 @@ const TraineePerfomanceDetails = () => {
     id: '',
   });
 
-  const [trainee, setTrainee] = useState<any>([]);
-  const [selectedTrainee, setSelectedTrainee] = useState(trainee[0]);
-  const [coordinator, setCoordinator] = useState({ coordinator: '' });
-
-  const [nav, setNav] = useState();
-  let [isOpen, setIsOpen] = useState(false);
-  let [isOpen2, setIsOpen2] = useState(false);
-  let [isOpen3, setIsOpen3] = useState(false);
-  const [showActions, setShowActions] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
+  const [isOpen3, setIsOpen3] = useState(false);
   const [toggle, setToggle] = useState(false);
 
   const [ratings, setRatings] = useState<any>([]);
-  useEffect(() => {
-    const data: any = sessionStorage.getItem('data');    
-    const getData = JSON.parse(data);
-    
-    setRatings(getData);
-    
-  }, []);
-
-  const closeModel = () => {
-    setIsOpen(false);
-    setIsOpen2(false);
-    setIsOpen3(false);
-    setShowActions(false);
-  };
 
   const openModal = () => {
     setIsOpen(true);
@@ -72,13 +32,45 @@ const TraineePerfomanceDetails = () => {
   const openModalProfessional = () => {
     setIsOpen3(true);
   };
-  const handleUpdate = (e: any) => {
-    e.preventDefault();
-    updateToReply();
-    handleToggle();
-    closeModel();
+  const handleToggle = () => {
+    setToggle(!toggle);
   };
-  const handleUpdateRow = (e: any) => {
+
+  const [updateToReply] = useMutation(UPDATE_TO_REPLY, {
+    variables: {
+      user: ratings.user_id,
+      sprint: ratings.user_sprint,
+      bodyQuantity: rows?.bodyQuantity,
+      bodyQuality: rows?.bodyQuality,
+      bodyProfessional: rows?.bodyProfessional,
+      orgToken: organizationToken,
+    },
+    onError: () => {
+      toast.error('Unable to proceed');
+      openModal();
+      openModalQuality();
+      openModalProfessional();
+    },
+    onCompleted: () => {
+      handleToggle();
+      toast.success('Reply sent successfully');
+    },
+  });
+
+  useEffect(() => {
+    const data: any = sessionStorage.getItem('data');
+    const getData = JSON.parse(data);
+
+    setRatings(getData);
+  }, []);
+
+  const closeModel = () => {
+    setIsOpen(false);
+    setIsOpen2(false);
+    setIsOpen3(false);
+  };
+
+  const handleUpdate = (e: any) => {
     e.preventDefault();
     updateToReply();
     handleToggle();
@@ -90,10 +82,6 @@ const TraineePerfomanceDetails = () => {
     handleToggle();
     closeModel();
   };
-  const handleClick = () => setNav(nav);
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -101,51 +89,11 @@ const TraineePerfomanceDetails = () => {
     updateToReply();
     closeModel();
   };
-  const [updateToReply] = useMutation(UPDATE_TO_REPLY, {
-    variables: {
-      user: ratings.user_id,
-      sprint: ratings.user_sprint,
-      bodyQuantity: rows?.bodyQuantity,
-      bodyQuality: rows?.bodyQuality,
-      bodyProfessional: rows?.bodyProfessional,
-      orgToken: organizationToken,
-    },
-    onError: (err) => {
-      toast.error('Unable to proceed');
-      openModal();
-      openModalQuality();
-      openModalProfessional();
-    },
-    onCompleted: ({ updateToReply }) => {
-      handleToggle();
-      toast.success('Reply sent successfully');
-    },
-  });
-  const [createReply] = useMutation(ADD_REPLY, {
-    variables: {
-      user: ratings.user_id,
-      sprint: ratings.user_sprint,
-      bodyQuantity: rows.bodyQuantity.toString(),
-      bodyQuality: rows.bodyQuality.toString(),
-      bodyProfessional: rows.bodyProfessional.toString(),
-    },
-    onError: (err) => {
-      toast.error('Unable to procced');
-    },
-    onCompleted: ({ createReply }) => {
-      handleToggle();
-      toast.success('Reply sent successfully');
-    },
-  });
-  const [getUsers] = useLazyQuery(GET_USERS, {
-    variables: {
-      email: coordinator,
-    },
-  });
 
   const { t } = useTranslation();
   return (
     <div>
+      {/* trainee perfomance */}
       <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">
         <table className="lg:w-9/12 md:w-11/12 lg:h-[70%] md:h-[60%] md:ml-0 lg:ml-32 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 ">
           <thead>
@@ -159,7 +107,7 @@ const TraineePerfomanceDetails = () => {
               <th className="lg:py-3 md:py-2 text-left text-[#6B7280] dark:text-dark-text-fill">
                 {t('Remarks')}
               </th>
-              <th className="lg:py-3 md:py-2"></th>
+              <th className="lg:py-3 md:py-2"> </th>
             </tr>
           </thead>
           <tbody className=" text-center ">
@@ -288,6 +236,7 @@ const TraineePerfomanceDetails = () => {
                               placeholder="Type a reply ..."
                             />
                             <button
+                              type="button"
                               className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 rounded-tl-lg rounded-br-lg md:mt-3 text-white font-semibold cursor-pointer float-right"
                               onClick={handleSubmit}
                             >
@@ -299,6 +248,7 @@ const TraineePerfomanceDetails = () => {
 
                       <div className="bg-white dark:bg-dark-bg">
                         <button
+                          type="button"
                           onClick={closeModel}
                           className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 md:mt-3 rounded-md text-white font-semibold cursor-pointer"
                         >
@@ -313,9 +263,9 @@ const TraineePerfomanceDetails = () => {
           </div>
         </Dialog>
       </Transition>
-      {/* The end of my modal for quantity*/}
+      {/* The end of my modal for quantity */}
 
-      {/* This is my modal  for quality remark*/}
+      {/* This is my modal  for quality remark */}
       <Transition
         appear
         show={isOpen2}
@@ -380,6 +330,7 @@ const TraineePerfomanceDetails = () => {
                               placeholder="Type a reply ..."
                             />
                             <button
+                              type="button"
                               className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 rounded-tl-lg rounded-br-lg md:mt-3 text-white font-semibold cursor-pointer float-right"
                               onClick={handleSubmit}
                             >
@@ -391,6 +342,7 @@ const TraineePerfomanceDetails = () => {
 
                       <div className="bg-white dark:bg-dark-bg">
                         <button
+                          type="button"
                           onClick={closeModel}
                           className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 md:mt-3 rounded-md text-white font-semibold cursor-pointer"
                         >
@@ -407,7 +359,7 @@ const TraineePerfomanceDetails = () => {
       </Transition>
       {/* The end of my modal for quality remarks */}
 
-      {/* This is my modal  for professional remark*/}
+      {/* This is my modal  for professional remark */}
       <Transition
         appear
         show={isOpen3}
@@ -472,6 +424,7 @@ const TraineePerfomanceDetails = () => {
                               placeholder="Type a reply ..."
                             />
                             <button
+                              type="button"
                               className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 rounded-tl-lg rounded-br-lg md:mt-3 text-white font-semibold cursor-pointer float-right"
                               onClick={handleSubmit}
                             >
@@ -483,6 +436,7 @@ const TraineePerfomanceDetails = () => {
 
                       <div className="bg-white dark:bg-dark-bg">
                         <button
+                          type="button"
                           onClick={closeModel}
                           className="flex mt-2 bg-primary px-4 md:py-2 sm:py-1 md:mt-3 rounded-md text-white font-semibold cursor-pointer"
                         >
@@ -518,7 +472,7 @@ const TraineePerfomanceDetails = () => {
             </thead>
             <tbody className=" text-center">
               <tr className="text-light-text bg-light-bg dark:bg-dark-bg dark:text-dark-text-fill  ">
-                <td className="py-3 px-10">{'Grade'}</td>
+                <td className="py-3 px-10">{t('Grade')}</td>
                 <td className=" ">1</td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
@@ -530,6 +484,7 @@ const TraineePerfomanceDetails = () => {
             </tbody>
           </table>
           <button
+            type="button"
             className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
             onClick={openModal}
           >
@@ -562,6 +517,7 @@ const TraineePerfomanceDetails = () => {
             </tbody>
           </table>
           <button
+            type="button"
             className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
             onClick={openModal}
           >
@@ -583,7 +539,7 @@ const TraineePerfomanceDetails = () => {
             <tbody className=" text-center">
               <tr className="text-light-text bg-light-bg dark-bg dark:bg-dark-bg dark:text-dark-text-fill ">
                 <td className="py-3 px-10">{t('Grade')}</td>
-                <td className=" "></td>
+                <td className=""> </td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill ">
                 <td className="py-10 px-10 text-left">{t('Remark')}</td>
@@ -594,6 +550,7 @@ const TraineePerfomanceDetails = () => {
             </tbody>
           </table>
           <button
+            type="button"
             className="px-4 py-1 ml-40 mt-4 rounded-md dark:text-dark-text-fill text-center bg-primary text-white  text-sm"
             onClick={openModal}
           >
@@ -603,6 +560,6 @@ const TraineePerfomanceDetails = () => {
       </div>
     </div>
   );
-};
+}
 
 export default TraineePerfomanceDetails;
