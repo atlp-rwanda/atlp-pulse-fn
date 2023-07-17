@@ -387,5 +387,16 @@
   "Team successfully added": "Ikipe yavuguruwe",
   "Program deleted": "Porogaramu yasibwe",
   "Cohort Updated successful": "Icyiciro Yavuguruwe neza",
-  "Phase Updated successful": "Igihembwe cyavuguruwe neza"
+  "Phase Updated successful": "Igihembwe cyavuguruwe neza",
+  "Doc introduction Coordinator":"Iyi paji itanga inyandiko zuzuye z'uburyo bwo gusuzuma neza abahugurwa muri sisitemu. Nk'umuhuzabikorwa, gutanga amanota y'ukuri kandi y'ubushishozi bigira uruhare runini mugukurikirana no gusuzuma iterambere ry'abahugurwa. Iyi nyandiko izagufasha gusobanukirwa intambwe zifashishwa mugusuzuma abahugurwa,no gusobanukirwa neza imikorere ya DevPulse ",
+  "How to Rate Trainees":"Uko wasuzuma abahugurwa",
+  "Docs contents":"Ibirimo",
+  "Accessing Trainee Ratings": "Kugera aho basuzumira abahugurwa ",
+  "Understanding the Rating Scale": "Gusobanukirwa ibipimo bigenderwaho mugutanga amanota",
+  "Criteria for Rating Trainees": "Ibigenderwaho mu guha amanota uhugurwa",
+  "Providing Constructive Feedback": "Gutanga ibisubizo byubaka",
+  "Submitting Ratings": "Kohereza amanota",
+  "Reviewing and Editing Ratings": "Kugenzura no guhindura amanota",
+  "Best Practices for Effective Rating": "Imikorere myiza mu gusuzuma abahugurwa",
+  "Troubleshooting and FAQs": "Gukosora ibitagenze neza n'ibibazo bikunda kwibazwa"
 }

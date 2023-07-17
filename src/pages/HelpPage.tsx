@@ -49,7 +49,7 @@ function Help() {
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
       <div className="flex flex-row justify-center pt-[12vh]">
         <div className="rounded-lg sm:w-[90%] md:w-[70%] lg:w-[50%] lg:ml-[38vh] mt-5 lg:mr-[2vh] lg:mb-10 p-6 bg-white dark:bg-dark-bg">
-          <h2 className="text-4xl font-bold dark:text:white mb-10">
+          <h2 className="mb-10 text-4xl font-bold dark:text:white">
             {t('Support')}
           </h2>
           <form action="#none" onSubmit={handleSubmit} data-testid="loginForm">

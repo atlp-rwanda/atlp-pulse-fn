@@ -39,7 +39,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
     <div
       className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
     >
-      <div className="list-none pr-8">
+      <div className="pr-8 list-none">
         <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard/">
           <ChartPieIcon className="w-5 mr-2 " />
         </SideNavLink>
@@ -79,7 +79,9 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             name="Trainees"
           >
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
-          </SideNavLink>
+          
+        </SideNavLink>
+          
         </CheckRole>
 
         {/* FOR ADMINS */}
@@ -135,6 +137,9 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           >
             <KeyIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
+          <SideNavLink onClick={toggle} name="Docs" to="/dashboard/adminDocs">
+          <FolderIcon className="w-5 mr-2 " />
+          </SideNavLink>
         </CheckRole>
 
         {/* FOR COORDINATORS */}
@@ -152,10 +157,15 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           <SideNavLink
             onClick={toggle}
             name="Attendance"
-            to="/dashboard/attendance-rating"
+            to="/dashboard/attendance"
           >
             <ClipboardCheckIcon className="w-5 mr-2 " />
+            </SideNavLink>
+
+          <SideNavLink onClick={toggle} name="Docs" to="/dashboard/coordinatorDocs">
+             <FolderIcon className="w-5 mr-2" />
           </SideNavLink>
+         
         </CheckRole>
 
         {/* FOR TRAINEES */}
@@ -177,11 +187,24 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           >
             <TrendingUpIcon className="w-5 mr-2 " />
           </SideNavLink>
+
+          <SideNavLink onClick={toggle} name="Docs" to="/dashboard/traineeDocs">
+          <FolderIcon className="w-5 mr-2 " />
+          </SideNavLink>
         </CheckRole>
         <SideNavLink onClick={toggle} name="Calendar" to="/dashboard/calendar">
           <CalendarIcon className="w-5 mr-2" />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Docs" to="/dashboard/docs">
+
+        <CheckRole
+          roles={['trainee', 'admin', 'coordinator', 'manager', 'user']}
+        >
+          <SideNavLink onClick={toggle} name="Help" to="/dashboard/support">
+            <SupportIcon className="w-5 mr-2 " />
+          </SideNavLink>
+        </CheckRole>
+        
+        {/* <SideNavLink onClick={toggle} name="Docs" to="/dashboard/docs">
           <FolderIcon className="w-5 mr-2 " />
         </SideNavLink>
 
@@ -193,7 +216,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </SideNavLink>
         </CheckRole>
         {/* Add icons */}
-        <div className="flex flex-row ml-10 mt-auto list-none">
+        <div className="flex flex-row mt-auto ml-10 list-none">
           <li className="px-2">
             <NavLink to="#link">
               <Tooltip message="Logout">

@@ -463,7 +463,7 @@ const AdminTraineeDashboard = () => {
   return (
     <>
       {/* =========================== Start::  InviteTraineeModel =============================== */}
-      <div className=" dark:bg-dark-bg rounded-lg">
+      <div className="rounded-lg dark:bg-dark-bg">
         <Dialog
           open={open}
           onClose={handleClose}
@@ -473,9 +473,9 @@ const AdminTraineeDashboard = () => {
           fullWidth
         
         >
-          <DialogContent className="dark:bg-dark-bg font-sans">
-            <DialogContentText className=" dark:bg-dark-bg font-sans">
-              <div className="font-bold text-sm dark:text-white text-center  dark:bg-dark-bg font-sans">
+          <DialogContent className="font-sans dark:bg-dark-bg">
+            <DialogContentText className="font-sans dark:bg-dark-bg">
+              <div className="font-sans text-sm font-bold text-center dark:text-white dark:bg-dark-bg">
                 <div className="bg-[#4aa5be] h-[150px]">
                   <img
                     className="absolute top-[80px] left-[40px] border-4 border-white font-sans"
@@ -508,7 +508,7 @@ const AdminTraineeDashboard = () => {
                 </h2>
 
                 <div
-                  className="text-sm font-sans"
+                  className="font-sans text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -532,7 +532,7 @@ const AdminTraineeDashboard = () => {
                   </p>
                 </div>
                 <div
-                  className="text-sm font-sans"
+                  className="font-sans text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -553,7 +553,7 @@ const AdminTraineeDashboard = () => {
                   </p>
                 </div>
                 <div
-                  className="text-sm font-sans"
+                  className="font-sans text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -577,7 +577,7 @@ const AdminTraineeDashboard = () => {
                 </div>
 
                 <div
-                  className="text-sm font-sans"
+                  className="font-sans text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -600,7 +600,7 @@ const AdminTraineeDashboard = () => {
                 </div>
 
                 <div
-                  className="text-sm font-sans"
+                  className="font-sans text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -624,7 +624,7 @@ const AdminTraineeDashboard = () => {
                   </p>
                 </div>
                 <div
-                  className="text-sm font-sans"
+                  className="font-sans text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -714,23 +714,23 @@ const AdminTraineeDashboard = () => {
           inviteTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Send Invitation')}
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
-              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t('Fill in the email to invite a user to DevPulse.')}
                 </h3>
               </div>
 
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     value={inviteEmail}
                     onChange={(e) => {
@@ -738,13 +738,13 @@ const AdminTraineeDashboard = () => {
                     }}
                     type="email"
                     name="email"
-                    className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
                     placeholder={t('email')}
                   />
                 </div>
               </div>
 
-              <div className="w-full flex justify-between">
+              <div className="flex justify-between w-full">
                 <Button
                   data-testid="removeInviteModel"
                   variant="info"
@@ -781,25 +781,25 @@ const AdminTraineeDashboard = () => {
           editTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Edit Trainee')}
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
-              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t(
                     'Choose a different cohort for the trainee from the dropdown below.',
                   )}
                 </h3>
               </div>
 
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <ControlledSelect
                     placeholder={t('Select cohort')}
                     defaultValue={selectedOptionUpdate}
@@ -818,8 +818,8 @@ const AdminTraineeDashboard = () => {
                   />
                 </div>
               </div>
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <ControlledSelect
                     placeholder={t('Select team')}
                     defaultValue={selectedTeamOptionUpdate}
@@ -835,7 +835,7 @@ const AdminTraineeDashboard = () => {
                 </div>
               </div>
 
-              <div className="w-full flex justify-between">
+              <div className="flex justify-between w-full">
                 <Button
                   data-testid="removeModel1"
                   variant="info"
@@ -876,24 +876,24 @@ const AdminTraineeDashboard = () => {
           removeTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Remove Trainee')}
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
-              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t(
                     'Are you sure you want to remove trainee from this cohort?',
                   )}
                 </h3>
               </div>
 
-              <div className="w-full flex justify-between">
+              <div className="flex justify-between w-full">
                 <Button
                   data-testid="removeModel2"
                   variant="info"
@@ -934,17 +934,17 @@ const AdminTraineeDashboard = () => {
           registerTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Add Trainee')}
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
-              <div className="input my-3 h-9 ">
-                <div className="grouped-input flex items-center h-full w-full rounded-md">
+            <form className="px-8 py-3 ">
+              <div className="my-3 input h-9 ">
+                <div className="flex items-center w-full h-full rounded-md grouped-input">
                   <Select
                     placeholder={t('choose trainee')}
                     className="my-react-select-container"
@@ -961,8 +961,8 @@ const AdminTraineeDashboard = () => {
                 </div>
               </div>
 
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <ControlledSelect
                     placeholder={t('Select cohort')}
                     defaultValue={selectedOption}
@@ -978,8 +978,8 @@ const AdminTraineeDashboard = () => {
                 </div>
               </div>
 
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <ControlledSelect
                     placeholder={t('Select Team')}
                     defaultValue={selectedTeamOption}
@@ -993,7 +993,7 @@ const AdminTraineeDashboard = () => {
                 </div>
               </div>
 
-              <div className="w-full flex justify-between">
+              <div className="flex justify-between w-full">
                 <Button
                   data-testid="removeModel"
                   variant="info"
@@ -1028,8 +1028,8 @@ const AdminTraineeDashboard = () => {
           <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
-                <div className="flex items-left px-10 lg:px-60 pt-24 pb-8">
+              <div className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg">
+                <div className="flex px-10 pt-24 pb-8 items-left lg:px-60">
                   <div className="space-x-8 lg:ml-7">
                     <Button
                       variant="primary"

@@ -403,6 +403,17 @@
   "Team successfully added": "Équipe ajoutée avec succès",
   "Program deleted": "Programme supprimé",
   "Cohort Updated successful": "Cohorte Mise à jour réussie",
-  "Phase Updated successful": "Phase Mise à jour réussie"
+  "Phase Updated successful": "Phase Mise à jour réussie",
+  "Doc introduction Coordinator":"Cette page fournit une documentation complète sur la manière d'évaluer efficacement les stagiaires au sein du système. En tant que coordinateur, votre capacité à fournir des évaluations précises et pertinentes joue un rôle crucial dans le suivi et l'évaluation de la progression des stagiaires. Ce guide vous guidera à travers les étapes nécessaires pour évaluer les stagiaires et vous permettra de tirer le meilleur parti des fonctionnalités de DevPulse",
+  "How to Rate Trainees":"Comment évaluer les stagiaires",
+  "Docs contents":"Table des matières",
+  "Accessing Trainee Ratings": "Accéder aux évaluations des stagiaires",
+  "Understanding the Rating Scale": "Comprendre l'échelle d'évaluation",
+  "Criteria for Rating Trainees": "Critères d'évaluation des stagiaires",
+  "Providing Constructive Feedback": "Fournir des commentaires constructifs",
+  "Submitting Ratings": "Soumettre des évaluations",
+  "Reviewing and Editing Ratings": "Revoir et modifier les évaluations",
+  "Best Practices for Effective Rating": "Meilleures pratiques pour une évaluation efficace",
+  "Troubleshooting and FAQs": "Dépannage et FAQ"
 }
 

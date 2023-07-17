@@ -18,7 +18,7 @@ function Sidebar({ style }: { style: string }) {
     <div
       className={`${style} flex-col fixed h-[100%] pt-16 bg-white dark:bg-dark-bg border-r p-4`}
     >
-      <div className="list-none pr-8">
+      <div className="pr-8 list-none">
         <li className="mb-4 hover:text-primary">
           <NavLink to="to" className="flex flex-row">
             <ChartPieIcon className="w-5 mr-2 dark:text-dark-text-fill" />
@@ -66,7 +66,7 @@ function Sidebar({ style }: { style: string }) {
           </NavLink>
         </li>
       </div>
-      <div className="flex flex-row ml-10 mt-auto list-none">
+      <div className="flex flex-row mt-auto ml-10 list-none">
         <li>
           <NavLink to="to">
             <AdjustmentsIcon className="w-5 mr-2 hover:text-primary dark:text-dark-text-fill" />
