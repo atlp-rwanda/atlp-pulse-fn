@@ -33,6 +33,9 @@ const AdminManageRoles = React.lazy(
 const AdminTraineeDashboard = React.lazy(
   () => import('../pages/AdminTraineeDashboard'),
 );
+const TtlTraineeDashboard = React.lazy(
+  () => import('../pages/ttlTraineeDashboard'),
+);
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
 );
@@ -45,6 +48,10 @@ const Calendar = React.lazy(() => import('../components/Calendar'));
 const CoordinatorsPage = React.lazy(
   () => import('../containers/admin-dashBoard/CoordinatorModal'),
 );
+const TtlsPage = React.lazy(
+  () => import('../containers/admin-dashBoard/TtlsModal'),
+);
+
 const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
@@ -108,6 +115,7 @@ function DashRoutes() {
             <Route path="/organizations" element={<Organizations />} />
             <Route path="/coordinators" element={<CoordinatorsPage />} />
             <Route path="/docs/admin" element={<AdminDocs />} />
+            <Route path="/ttls" element={<TtlsPage />} />
             <Route path="/coordinatorDocs" element={<CoordinatorDocs />} />
             <Route path="/docs/trainee" element={<TraineeDocs />} />
             <Route path="/docs" element={<OthersDocs />} />
@@ -119,6 +127,7 @@ function DashRoutes() {
             <Route path="/loginActivities" element={<LoginActivitiesTable />} />
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
+            <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
           </Routes>
         </Suspense>
       </main>

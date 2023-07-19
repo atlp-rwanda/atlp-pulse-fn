@@ -70,9 +70,8 @@ function AdminLogin() {
           /* istanbul ignore next */
           toast.success(t(`Welcome`) as ToastContent<unknown>);
           /* istanbul ignore next */
-          if (state) {
-            navigate(`${state}`);
-          } else if (data.loginUser) {
+
+          if (data.loginUser) {
             redirect
               ? navigate(`${redirect}`)
               : data.loginUser.user.role === 'superAdmin'
@@ -83,6 +82,8 @@ function AdminLogin() {
               ? navigate(`/trainees`)
               : data.loginUser.user.role === 'manager'
               ? navigate(`/coordinators`)
+              : data.loginUser.user.role === 'ttl'
+              ? navigate('/ttl-trainees')
               : navigate('/performance');
           } else {
             navigate('/dashboard');

@@ -3,12 +3,7 @@ import { gql } from '@apollo/client';
 export const GET_TEAMS = gql`
   query Query($orgToken: String) {
     getAllTeams(orgToken: $orgToken) {
-      cohort {
-        name
-        coordinator {
-          email
-        }
-      }
+      id
       name
     }
   }
@@ -16,9 +11,22 @@ export const GET_TEAMS = gql`
 export default GET_TEAMS;
 
 export const ADD_TEAMS = gql`
-
-  mutation Mutation($name: String!, $cohortName: String!, $orgToken: String!,  $startingPhase: DateTime!, $managerEmail: String!, $ttlEmail: Sring! ) {
-    addTeam(name: $name, cohortName: $cohortName, orgToken: $orgToken,statingPhase: $startingPhase, managerEmail: $managerEmail, ttlEmail: $ttlEmail) 
+  mutation Mutation(
+    $name: String!
+    $cohortName: String!
+    $orgToken: String!
+    $startingPhase: DateTime!
+    $managerEmail: String!
+    $ttlEmail: String!
+  ) {
+    addTeam(
+      name: $name
+      cohortName: $cohortName
+      orgToken: $orgToken
+      startingPhase: $startingPhase
+      managerEmail: $managerEmail
+      ttlEmail: $ttlEmail
+    ) {
       name
       cohort {
         name
