@@ -1,15 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Button from '../../components/Buttons';
+import Loader2 from '../../components/loaders/loader2';
 
 export default function MakeDefaultModal({
   makeDefaultModal,
   removeModel,
   makeDefaultFunc,
+  loading,
 }: {
   makeDefaultModal: boolean;
   removeModel: Function;
   makeDefaultFunc: Function;
+  loading: boolean;
 }) {
   const { t } = useTranslation();
 
@@ -33,35 +36,39 @@ export default function MakeDefaultModal({
                 {t('reallyMakeDefaultGrading')}
               </h2>
             </div>
-            <div className="w-full flex justify-between">
-              <Button
-                variant="info"
-                size="sm"
-                style="w-[30%] md:w-1/4 text-sm font-sans"
-                data-testid="delete"
-                onClick={
-                  /* istanbul ignore next */
-                  () => removeModel()
-                }
-              >
-                {t('No')}
-              </Button>
-              <Button
-                variant="success"
-                size="sm"
-                style="w-[30%] md:w-1/4 text-sm font-sans"
-                data-testid="confirmDeleteBtn"
-                onClick={
-                  /* istanbul ignore next */
-                  () => {
+            {!loading ? (
+              <div className="w-full flex justify-between">
+                <Button
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5"
+                  data-testid="delete"
+                  onClick={
                     /* istanbul ignore next */
-                    makeDefaultFunc();
+                    () => removeModel()
                   }
-                }
-              >
-                {t('Yes')}
-              </Button>
-            </div>
+                >
+                  {t('No')}
+                </Button>
+                <Button
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600"
+                  data-testid="confirmDeleteBtn"
+                  onClick={
+                    /* istanbul ignore next */
+                    () => {
+                      /* istanbul ignore next */
+                      makeDefaultFunc();
+                    }
+                  }
+                >
+                  {t('Yes')}
+                </Button>
+              </div>
+            ) : (
+              <div className="w-full flex justify-center">
+                <Loader2 />
+              </div>
+            )}
           </form>
         </div>
       </div>

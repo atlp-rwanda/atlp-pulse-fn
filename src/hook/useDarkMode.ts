@@ -18,6 +18,7 @@ const useDarkMode = () => {
     const root = window.document.documentElement;
     root.classList.remove(colorTheme);
     root.classList.add(theme);
+    root.setAttribute("data-theme", theme);
   }, [theme]);
 
   return [colorTheme, setTheme] as const;

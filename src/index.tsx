@@ -34,7 +34,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         return;
       } else if (extensions?.code === 'ORG_JWT_EXPIRED') {
         window.location.pathname = '/login/org';
-        localStorage.removeItem('orgTpken');
+        localStorage.removeItem('orgToken');
         localStorage.removeItem('orgName');
         localStorage.removeItem('auth');
         localStorage.removeItem('auth_token');

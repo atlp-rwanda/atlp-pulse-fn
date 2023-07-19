@@ -41,9 +41,9 @@ describe('Register an Organization', () => {
     );
 
     const gradeName = screen.getByPlaceholderText(
-      'Label. eg:Name of grading system',
+      'Label eg: Name of grading system',
     );
-    const gradeDisc = screen.getByPlaceholderText('Grade description');
+    const gradeDisc = screen.getByPlaceholderText('description');
     const grade = screen.getByPlaceholderText('Grade');
     const gradeBtn = screen.getByTestId('gradeBtn');
     const saveGrade = screen.getByTestId('saveGrade');

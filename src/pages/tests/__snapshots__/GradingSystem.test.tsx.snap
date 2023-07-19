@@ -14,7 +14,7 @@ Array [
         <h3
           className="font-bold text-xl dark:text-white text-center w-11/12"
         >
-          DeleteGRADINGSYSTEM
+          Delete Grading System
         </h3>
         <hr
           className=" bg-primary border-gray-400 my-3 w-full"
@@ -59,7 +59,6 @@ Array [
       </div>
     </div>
   </div>,
-  ";",
   <div
     className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
   >
@@ -121,7 +120,7 @@ Array [
     className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 xl:w-4/12 rounded-lg p-4 pb-8"
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 xl:w-5/12 rounded-lg p-4 pb-8 overflow-auto max-h-full"
     >
       <div
         className="card-title w-full flex flex-wrap justify-center items-center "
@@ -132,14 +131,14 @@ Array [
           Add Grading System
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className="bg-primary border-b my-3 w-full"
         />
       </div>
       <div
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className="py-3 px-8"
           onSubmit={[Function]}
         >
           <div
@@ -149,80 +148,154 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className=" dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                className="dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                defaultValue=""
                 name="name"
-                onBlur={[Function]}
                 onChange={[Function]}
-                placeholder="Label. eg:Name of grading system"
+                placeholder="Label eg: Name of grading system"
+                required={true}
                 type="text"
               />
             </div>
           </div>
           <div
-            className="text-left mb-1 pl-4"
-          />
-          <div
-            className="input my-3 h-9 "
+            className="flex flex-wrap gap-3"
           >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+            <label
+              className="undefined flex-1 min-w-max"
             >
               <input
-                className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                name="percentage"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Grading Ranges"
-                type="text"
+                defaultChecked={true}
+                onClick={[Function]}
+                type="checkbox"
               />
-            </div>
-          </div>
-          <div
-            className="text-left mb-1 pl-4"
-          />
-          <div
-            className="input my-3 h-9 "
-          >
-            <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+              <div
+                className="undefined"
+              >
+                <div
+                  className="undefined"
+                >
+                   
+                </div>
+                <span>
+                  Add Percentage
+                </span>
+              </div>
+            </label>
+            <label
+              className="undefined flex-1 min-w-max"
             >
               <input
-                className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                name="description"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder=" Grade description"
-                type="text"
+                defaultChecked={false}
+                onClick={[Function]}
+                type="checkbox"
               />
-            </div>
+              <div
+                className="undefined"
+              >
+                <div
+                  className="undefined"
+                >
+                   
+                </div>
+                <span>
+                  Require Description
+                </span>
+              </div>
+            </label>
           </div>
           <div
-            className="text-left mb-1 pl-4"
-          />
-          <div
-            className="input my-3 h-9 "
+            className="my-3"
           >
             <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+              className="box"
             >
-              <input
-                className=" dark:bg-dark-tertiary border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
-                name="grade"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Grade"
-                type="text"
-              />
+              <div>
+                <div
+                  className="flex flex-col gap-2 p-3 bg-gray-100 dark:bg-gray-700 rounded-md"
+                >
+                  <div
+                    className="flex flex-col gap-3 "
+                  >
+                    <input
+                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                      defaultValue=""
+                      onChange={[Function]}
+                      placeholder="Grade"
+                      required={true}
+                    />
+                    <div
+                      className="flex justify-between gap-2 items-center flex-wrap"
+                    >
+                      <p
+                        className="text-center"
+                        style={
+                          Object {
+                            "flex": 1,
+                          }
+                        }
+                      >
+                        Percentage
+                      </p>
+                      <div
+                        className="flex justify-between gap-2 items-center flex-wrap max-w-full"
+                        style={
+                          Object {
+                            "flex": 99999,
+                          }
+                        }
+                      >
+                        <input
+                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                          onChange={[Function]}
+                          placeholder="Minimum"
+                          required={true}
+                          type="number"
+                        />
+                        <input
+                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                          onChange={[Function]}
+                          placeholder="Maximum"
+                          required={true}
+                          type="number"
+                        />
+                      </div>
+                    </div>
+                    <textarea
+                      className="w-full h-auto rounded-md appearance-none relative block px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                      data-testid="input-element"
+                      defaultValue=""
+                      onChange={[Function]}
+                      placeholder="description"
+                      required={false}
+                      style={
+                        Object {
+                          "minHeight": "4pc",
+                          "resize": "vertical",
+                        }
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
-            className="text-left mb-1 pl-4"
-          />
+            className="flex justify-end"
+          >
+            <button
+              className="bg-blue-400 text-white sm m-0 px-3 py-0.5 rounded-md"
+              onClick={[Function]}
+              type="button"
+            >
+              Add Grade
+            </button>
+          </div>
           <div
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-3"
               data-testid="removeModel"
               disabled={false}
               onClick={[Function]}
@@ -231,10 +304,9 @@ Array [
               Cancel
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-3"
               data-testid="saveGrade"
               disabled={false}
-              onClick={[Function]}
               type="submit"
             >
               Save
@@ -454,12 +526,9 @@ Array [
                   value=""
                 >
                   <option
-                    selected={true}
                     value=""
                   >
-                     
-                    ---Select Grading System---
-                     
+                     ---Select Grading System--- 
                   </option>
                 </select>
                 <button
@@ -478,11 +547,6 @@ Array [
             <div
               className="px-3 md:px-8"
             >
-              <h2
-                className="text-gray-800 dark:text-white font-semibold text-xl"
-              >
-                Available gradings
-              </h2>
               <div
                 className="px-3 m d:px-8 w-screen overflow-x-auto"
               >
@@ -549,34 +613,25 @@ Array [
                           >
                             action
                           </th>
+                          <th
+                            className=" thead"
+                            colSpan={1}
+                            onClick={[Function]}
+                            role="columnheader"
+                            style={
+                              Object {
+                                "cursor": "pointer",
+                              }
+                            }
+                            title="Toggle SortBy"
+                          >
+                            More
+                          </th>
                         </tr>
                       </thead>
                       <tbody
                         role="rowgroup"
-                      >
-                        <tr
-                          className=" bg-white dark:bg-dark-bg} "
-                          role="row"
-                        >
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          />
-                          <td
-                            className="data-cell"
-                            role="cell"
-                          >
-                            <button
-                              className="btn primary sm px-4 py-0 text-sm"
-                              disabled={false}
-                              onClick={[Function]}
-                              type="button"
-                            >
-                              Make default
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
+                      />
                     </table>
                     <div>
                       <table
@@ -589,7 +644,7 @@ Array [
                             className="w-full py-2"
                           >
                             <td
-                              colSpan={2}
+                              colSpan={3}
                             >
                               <div
                                 className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto"
@@ -653,7 +708,7 @@ Array [
                                     <strong>
                                       1
                                        of
-                                       1
+                                       0
                                     </strong>
                                      
                                   </span>

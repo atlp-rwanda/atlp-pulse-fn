@@ -12,7 +12,7 @@ import {
 
 import Avatar from '../assets/avatar.png';
 import { UserContext } from '../hook/useAuth';
-  /* istanbul ignore next */
+/* istanbul ignore next */
 function Notification({
   handleShowNotification,
 }: {
@@ -56,8 +56,9 @@ function Notification({
         markAsReadId: id,
       },
     });
- }
-   /* istanbul ignore next */
+  }
+
+  /* istanbul ignore next */
   function markAllRead(): void {
     setNotificationData(
       notifications?.map((notification: any) => {

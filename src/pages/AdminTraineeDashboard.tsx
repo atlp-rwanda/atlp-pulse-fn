@@ -114,7 +114,7 @@ const AdminTraineeDashboard = () => {
      getGitHubStatistics({
         variables: {
           organisation: localStorage.getItem('orgName'),
-          username: filteredUser[0].profile.githubUsername,
+          username: filteredUser[0].profile?.githubUsername,
         }
      });
 
@@ -673,7 +673,7 @@ const AdminTraineeDashboard = () => {
           </div>
                   </p>
                 ):(
-                  <div className={traineeDetails?.profile && traineeDetails?.profile.githubUsername ?"flex":'hidden '}>
+                  <div className={traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?"flex":'hidden '}>
                   <div className='flex flex-col'>
             
                     <i className='text-2xl '>
@@ -686,7 +686,7 @@ const AdminTraineeDashboard = () => {
                 </div>
                 <div className='flex flex-col'>
                 <div>
-           {     traineeDetails?.profile && traineeDetails?.profile.githubUsername ?(
+           {     traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?(
   <GitHubActivityChart data={gitHubStatistics} />
            ):
            (

@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import useAutosizeTextArea from './autosize';
 
 type props = {
@@ -15,8 +9,10 @@ type props = {
   defaultValue?: string;
   id?: string;
   className?: string;
+  minHeight?: string;
+  maxHeight?: string;
   placeholder?: string;
-  onChange?: (arg: any) => any;
+  onChange?: (arg: React.ChangeEvent<HTMLTextAreaElement>) => any;
 };
 
 function TextArea({
@@ -26,6 +22,8 @@ function TextArea({
   className = '',
   id,
   disabled,
+  minHeight,
+  maxHeight,
   defaultValue = '',
   name,
   required,
@@ -51,7 +49,11 @@ function TextArea({
     <textarea
       ref={textAreaRef}
       id={id}
-      style={{ resize }}
+      style={{
+        resize,
+        minHeight: minHeight ?? '4pc',
+        maxHeight: maxHeight ?? 'auto',
+      }}
       placeholder={placeholder}
       className={className}
       required={required}
