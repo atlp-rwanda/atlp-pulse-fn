@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
@@ -49,6 +49,10 @@ function SupAdDashboard() {
   });
 
   useDocumentTitle('Dashboard');
+
+  useEffect(() => {
+    localStorage.setItem('inviteEmail', inviteEmail);
+  }, [inviteEmail]);
   return (
     <>
       {/* =========================== Start::  InviteTraineeModel =============================== */}

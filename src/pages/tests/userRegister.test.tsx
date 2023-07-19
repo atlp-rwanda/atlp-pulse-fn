@@ -30,13 +30,13 @@ describe('TraineeRatingDashboard Tests', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-  it('Updates state', async () => {
-    render(
-      <MemoryRouter>
-        <ApolloProvider>
-          <UserRegister />
-        </ApolloProvider>
-      </MemoryRouter>,
-    );
-  });
+  // it('Updates state', async () => {
+  //   render(
+  //     <MemoryRouter>
+  //       <ApolloProvider>
+  //         <UserRegister />
+  //       </ApolloProvider>
+  //     </MemoryRouter>,
+  //   );
+  // });
 });

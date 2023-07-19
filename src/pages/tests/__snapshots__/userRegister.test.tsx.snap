@@ -18,38 +18,10 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
       <div
         className="border-2 w-10 bg-primary border-primary inline-block mb-2"
       />
-      <div
-        className="flex justify-center my-2"
-      >
-        <a
-          className="border-2 border-gray-200 rounded-full p-3 mx-1"
-          href="#link"
-        >
-          <svg
-            className="text-sm dark:text-white"
-            fill="currentColor"
-            height="1em"
-            stroke="currentColor"
-            strokeWidth="0"
-            style={
-              Object {
-                "color": undefined,
-              }
-            }
-            viewBox="0 0 488 512"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-            />
-          </svg>
-        </a>
-      </div>
       <p
         className="text-gray-400 my-3 dark:text-dark-text-fill "
       >
-        or use your email account
+        use your email account
       </p>
       <div
         className="flex flex-col items-center"
@@ -236,6 +208,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Email"
+              readOnly={true}
               type="email"
             />
           </div>

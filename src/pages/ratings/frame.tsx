@@ -79,15 +79,15 @@ export default function Frame({ rows, allFeeds }: props) {
         <div className={css.div_3}>
           <div className={css.div_4}>
             <div className={css.text_wrapper_2}>{t('Quality')}</div>
-            <div className={`${css.div_5}`}>{rows.qualityremark}</div>
+            <div className={css.div_5}>{rows.qualityremark}</div>
           </div>
           <div className={css.div_4}>
             <div className={css.text_wrapper_2}>{t('Quantity')}</div>
-            <div className={`${css.div_5}`}>{rows.quantityremark}</div>
+            <div className={css.div_5}>{rows.quantityremark}</div>
           </div>
           <div className={css.div_4}>
             <div className={css.text_wrapper_2}>{t('Professional Skills')}</div>
-            <div className={`${css.div_5}`}>{rows.professionalRemark}</div>
+            <div className={css.div_5}>{rows.professionalRemark}</div>
           </div>
         </div>
 

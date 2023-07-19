@@ -19,12 +19,15 @@ module.exports = () => {
     },
     devServer: {
       historyApiFallback: true,
-      port: 3002,
+      port: 3001,
       compress: true,
     },
     resolve: {
       alias: {
         'chart.js': 'chart.js/auto',
+      },
+      fallback: {
+        crypto: require.resolve('crypto-browserify'),
       },
     },
     module: {

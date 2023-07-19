@@ -2,6 +2,7 @@
 import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+
 import { useTranslation } from 'react-i18next';
 import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
 import { FiEyeOff } from 'react-icons/fi';
@@ -14,6 +15,7 @@ import { UserContext } from '../../hook/useAuth';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import { SIGN_UP_MUTATION, GET_SIGNUP_ORGANIZATION } from './Mutations';
 import ControlledSelect from '../../components/ControlledSelect';
+import jwt_decode from 'jwt-decode';
 
 function Signup() {
   const token: any = window.location.href.substring(
@@ -38,6 +40,7 @@ function Signup() {
     setError,
     control,
     controller,
+    setValue,
   }: any = useForm();
 
   const { UserSignup } = useContext(UserContext);
@@ -81,8 +84,160 @@ function Signup() {
       }, 1000);
     },
   });
+
+  /* istanbul ignore next */
+  const isDateOfBirthValid = (dateOfBirth: string) => {
+    const currentDate = new Date();
+    const dob = new Date(dateOfBirth);
+
+    // Calculate the age difference
+    const ageDifference = currentDate.getTime() - dob.getTime();
+
+    // Calculate age based on milliseconds
+    const age = Math.floor(ageDifference / (1000 * 60 * 60 * 24 * 365));
+
+    // Check if the user is at least 18 years old
+    return age >= 18;
+  };
+
+  const commonPasswords = [
+    123456,
+    'password',
+    12345678,
+    'qwerty',
+    123456789,
+    12345,
+    1234,
+    111111,
+    1234567,
+    'dragon',
+    123123,
+    'baseball',
+    'abc123',
+    'football',
+    'monkey',
+    'letmein',
+    696969,
+    'shadow',
+    'master',
+    666666,
+    'qwertyuiop',
+    123321,
+    'mustang',
+    1234567890,
+    'michael',
+    654321,
+    'pussy',
+    'superman',
+    '1qaz2wsx',
+    7777777,
+    'fuckyou',
+    121212,
+    '000000',
+    'qazwsx',
+    '123qwe',
+    'killer',
+    'trustno1',
+    'jordan',
+    'jennifer',
+    'zxcvbnm',
+    'asdfgh',
+    'hunter',
+    'buster',
+    'soccer',
+    'harley',
+    'batman',
+    'andrew',
+    'tigger',
+    'sunshine',
+    'iloveyou',
+    'fuckme',
+    2000,
+    'charlie',
+    'robert',
+    'thomas',
+    'hockey',
+    'ranger',
+    'daniel',
+    'starwars',
+    'klaster',
+    112233,
+    'george',
+    'asshole',
+    'computer',
+    'michelle',
+    'jessica',
+    'pepper',
+    1111,
+    'zxcvbn',
+    555555,
+    11111111,
+    131313,
+    'freedom',
+    777777,
+    'pass',
+    'fuck',
+    'maggie',
+    159753,
+    'aaaaaa',
+    'ginger',
+    'princess',
+    'joshua',
+    'cheese',
+    'amanda',
+    'summer',
+    'love',
+    'ashley',
+    6969,
+    'nicole',
+    'chelsea',
+    'biteme',
+    'matthew',
+    'access',
+    'yankees',
+    987654321,
+    'dallas',
+    'austin',
+    'thunder',
+    'taylor',
+    'matrix',
+  ];
+  const isStrongPassword = (password: any) => {
+    // Check if the password length is at least 8 characters
+    if (password.length < 8) {
+      return false;
+    }
+    if (commonPasswords.includes(password.toLowerCase())) {
+      return false;
+    }
+    if (commonPasswords.includes(password.toUpperCase())) {
+      return false;
+    }
+    if (!/\d/.test(password)) {
+      return false;
+    }
+
+    // Check if the password contains at least one special character
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return false;
+    }
+    return true;
+  };
   /* istanbul ignore next */
   const onSubmit = async (userInput: any) => {
+    const isAdult = isDateOfBirthValid(userInput.dateOfBirth);
+    if (!isAdult) {
+      toast.error('You must be at least 18 years old to sign up.');
+      return;
+    }
+    const isPasswordStrong = isStrongPassword(userInput.password);
+    if (!isPasswordStrong) {
+      toast.error(
+        'Password is too weak or too common. Please choose a stronger password.',
+      );
+      return;
+    }
+
     setButtonLoading(true);
     setTimeout(async () => {
       try {
@@ -104,6 +259,7 @@ function Signup() {
       }
     }, 2000);
   };
+
   /* istanbul ignore next */
   const customStyles = {
     option: (provided: any, state: any) => ({
@@ -136,8 +292,20 @@ function Signup() {
   ];
 
   useEffect(() => {
+    interface TokenPayload {
+      email: string;
+    }
+    // Get the email from the token and set it as the initial value for the email input field
+    const getEmailFromToken = async () => {
+      let decodedToken: TokenPayload = await jwt_decode(originalToken);
+      const emailFromToken = decodedToken.email;
+
+      // Set the email value in the email input field
+      setValue('email', emailFromToken);
+    };
     getOrganizationName();
-  }, []);
+    getEmailFromToken();
+  }, [setValue]);
 
   return (
     <div className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center">
@@ -147,16 +315,16 @@ function Signup() {
             {t('Sign up using')}
           </h2>
           <div className="border-2 w-10 bg-primary border-primary inline-block mb-2" />
-          <div className="flex justify-center my-2">
+          {/* <div className="flex justify-center my-2">
             <a
               href="#link"
               className="border-2 border-gray-200 rounded-full p-3 mx-1"
             >
               <FaGoogle className="text-sm dark:text-white" />
             </a>
-          </div>
+          </div> */}
           <p className="text-gray-400 my-3 dark:text-dark-text-fill ">
-            {t('or use your email account')}
+            {t('use your email account')}
           </p>
           <div className="flex flex-col items-center">
             <form
@@ -225,6 +393,7 @@ function Signup() {
                   {...register('email', { required: 'Email is required' })}
                   placeholder={t('Email')}
                   className="bg-gray-100 outline-none text-sm flex-1 text-gray-400 dark:border-white dark:bg-dark-bg dark:text-white  "
+                  readOnly
                 />
               </div>
               {errors.email && (
