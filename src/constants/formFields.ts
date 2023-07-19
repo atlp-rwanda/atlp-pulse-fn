@@ -49,6 +49,16 @@ const profileFields = [
     isRequired: false,
     placeholder: 'Your Telephone Number',
   },
+  {
+    labelText: 'Github Username', 
+    labelFor: 'github-username',
+    id: 'github-username',
+    name: 'githubUsername',
+    type: 'text',
+    autoComplete: 'github-username',
+    isRequired: false,
+    placeholder: 'Your Github Username',
+  },
 ];
 
 export const passwordFields = [

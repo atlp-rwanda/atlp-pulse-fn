@@ -356,7 +356,7 @@ Array [
         className="hidden lg:flex flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2"
       >
         <div
-          className="list-none pr-8"
+          className="pr-8 list-none"
         >
           <li
             className="mb-4 hover:text-primary transition-all group-hover:transition-all"
@@ -415,62 +415,8 @@ Array [
               </span>
             </a>
           </li>
-          <li
-            className="mb-4 hover:text-primary transition-all group-hover:transition-all"
-          >
-            <a
-              className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/docs"
-              onClick={[Function]}
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 mr-2 "
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                />
-              </svg>
-              <span
-                className="text-base "
-              >
-                Docs
-              </span>
-            </a>
-          </li>
-          <li
-            className="mb-4 hover:text-primary transition-all group-hover:transition-all"
-          >
-            <a
-              className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/support"
-              onClick={[Function]}
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 mr-2 "
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clipRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  fillRule="evenodd"
-                />
-              </svg>
-              <span
-                className="text-base "
-              >
-                Help
-              </span>
-            </a>
-          </li>
           <div
-            className="flex flex-row ml-10 mt-auto list-none"
+            className="flex flex-row mt-auto ml-10 list-none"
           >
             <li
               className="px-2"
@@ -596,16 +542,16 @@ Array [
                 className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
               >
                 <div
-                  className=" flex items-center justify-between pb-6"
+                  className="flex items-center justify-between pb-6 "
                 >
                   <div>
                     <h2
-                      className="text-gray-800 dark:text-white font-semibold text-xl"
+                      className="text-xl font-semibold text-gray-800 dark:text-white"
                     >
                       Developers list
                     </h2>
                     <input
-                      className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+                      className="px-5 py-2 mt-4 font-sans text-xs border border-gray-300 rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
                       defaultValue=""
                       onChange={[Function]}
                       placeholder="Filter"
@@ -1067,21 +1013,21 @@ Array [
                 className="css-1f43avz-a11yText-A11yText"
               />
               <div
-                className="my-react-select__control css-6zplfg-control"
+                className="my-react-select__control css-1an72ab-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
                 <div
-                  className="my-react-select__value-container css-319lph-ValueContainer"
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
                 >
                   <div
-                    className="my-react-select__placeholder css-14el2xx-placeholder"
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
                     id="react-select-2-placeholder"
                   >
                     Select Phase Name
                   </div>
                   <div
-                    className="my-react-select__input-container css-6j8wv5-Input"
+                    className="my-react-select__input-container css-qbdosj-Input"
                     data-value=""
                   >
                     <input
@@ -1126,11 +1072,11 @@ Array [
                   className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                 >
                   <span
-                    className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                   />
                   <div
                     aria-hidden="true"
-                    className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                     onMouseDown={[Function]}
                     onTouchEnd={[Function]}
                   >
@@ -1172,21 +1118,21 @@ Array [
                   className="css-1f43avz-a11yText-A11yText"
                 />
                 <div
-                  className="my-react-select__control css-6zplfg-control"
+                  className="my-react-select__control css-1an72ab-control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container css-319lph-ValueContainer"
+                    className="my-react-select__value-container css-1fdsijx-ValueContainer"
                   >
                     <div
-                      className="my-react-select__placeholder css-14el2xx-placeholder"
+                      className="my-react-select__placeholder css-1jqq78o-placeholder"
                       id="react-select-3-placeholder"
                     >
                       Select Coordinator
                     </div>
                     <div
-                      className="my-react-select__input-container css-6j8wv5-Input"
+                      className="my-react-select__input-container css-qbdosj-Input"
                       data-value=""
                     >
                       <input
@@ -1231,11 +1177,11 @@ Array [
                     className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                   >
                     <span
-                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                     />
                     <div
                       aria-hidden="true"
-                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
@@ -1275,21 +1221,21 @@ Array [
                 className="css-1f43avz-a11yText-A11yText"
               />
               <div
-                className="my-react-select__control css-6zplfg-control"
+                className="my-react-select__control css-1an72ab-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
                 <div
-                  className="my-react-select__value-container css-319lph-ValueContainer"
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
                 >
                   <div
-                    className="my-react-select__placeholder css-14el2xx-placeholder"
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
                     id="react-select-4-placeholder"
                   >
                     Select Program Name
                   </div>
                   <div
-                    className="my-react-select__input-container css-6j8wv5-Input"
+                    className="my-react-select__input-container css-qbdosj-Input"
                     data-value=""
                   >
                     <input
@@ -1334,11 +1280,11 @@ Array [
                   className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                 >
                   <span
-                    className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                   />
                   <div
                     aria-hidden="true"
-                    className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                     onMouseDown={[Function]}
                     onTouchEnd={[Function]}
                   >
@@ -1477,21 +1423,21 @@ Array [
                 className="css-1f43avz-a11yText-A11yText"
               />
               <div
-                className="my-react-select__control css-6zplfg-control"
+                className="my-react-select__control css-1an72ab-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
                 <div
-                  className="my-react-select__value-container css-319lph-ValueContainer"
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
                 >
                   <div
-                    className="my-react-select__placeholder css-14el2xx-placeholder"
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
                     id="react-select-5-placeholder"
                   >
                     Phase Name
                   </div>
                   <div
-                    className="my-react-select__input-container css-6j8wv5-Input"
+                    className="my-react-select__input-container css-qbdosj-Input"
                     data-value=""
                   >
                     <input
@@ -1536,11 +1482,11 @@ Array [
                   className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                 >
                   <span
-                    className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                   />
                   <div
                     aria-hidden="true"
-                    className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                     onMouseDown={[Function]}
                     onTouchEnd={[Function]}
                   >
@@ -1582,21 +1528,21 @@ Array [
                   className="css-1f43avz-a11yText-A11yText"
                 />
                 <div
-                  className="my-react-select__control css-6zplfg-control"
+                  className="my-react-select__control css-1an72ab-control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container css-319lph-ValueContainer"
+                    className="my-react-select__value-container css-1fdsijx-ValueContainer"
                   >
                     <div
-                      className="my-react-select__placeholder css-14el2xx-placeholder"
+                      className="my-react-select__placeholder css-1jqq78o-placeholder"
                       id="react-select-6-placeholder"
                     >
                       Select Coordinator
                     </div>
                     <div
-                      className="my-react-select__input-container css-6j8wv5-Input"
+                      className="my-react-select__input-container css-qbdosj-Input"
                       data-value=""
                     >
                       <input
@@ -1641,11 +1587,11 @@ Array [
                     className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                   >
                     <span
-                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                     />
                     <div
                       aria-hidden="true"
-                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
@@ -1685,21 +1631,21 @@ Array [
                 className="css-1f43avz-a11yText-A11yText"
               />
               <div
-                className="my-react-select__control css-6zplfg-control"
+                className="my-react-select__control css-1an72ab-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
                 <div
-                  className="my-react-select__value-container css-319lph-ValueContainer"
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
                 >
                   <div
-                    className="my-react-select__placeholder css-14el2xx-placeholder"
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
                     id="react-select-7-placeholder"
                   >
                     Program Name
                   </div>
                   <div
-                    className="my-react-select__input-container css-6j8wv5-Input"
+                    className="my-react-select__input-container css-qbdosj-Input"
                     data-value=""
                   >
                     <input
@@ -1744,11 +1690,11 @@ Array [
                   className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                 >
                   <span
-                    className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                   />
                   <div
                     aria-hidden="true"
-                    className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                     onMouseDown={[Function]}
                     onTouchEnd={[Function]}
                   >
@@ -1836,16 +1782,16 @@ Array [
       className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[60%]"
     >
       <div
-        className=" flex items-center justify-between pb-6"
+        className="flex items-center justify-between pb-6 "
       >
         <div>
           <h2
-            className="text-gray-800 dark:text-white font-semibold text-xl"
+            className="text-xl font-semibold text-gray-800 dark:text-white"
           >
             Trainees list
           </h2>
           <input
-            className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+            className="px-5 py-2 mt-4 font-sans text-xs border border-gray-300 rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
             defaultValue=""
             onChange={[Function]}
             placeholder="Filter"

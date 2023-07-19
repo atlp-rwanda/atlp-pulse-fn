@@ -108,6 +108,24 @@ query GitHubActivity($organisation: String!, $username: String!) {
 }
 `;
 
+
+export const GET_ORGANISATION = gql`
+query GetOrganization($name: String!) {
+  getOrganization(name: $name) {
+    name
+    activeRepos
+    gitHubOrganisation
+    description
+
+  }
+}
+`;
+
+
+
+
+
+
 export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
   mutation AddMemberToCohort(
     $cohortName: String!
@@ -121,6 +139,30 @@ export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
     )
   }
 `;
+
+export const ADD_REPO = gql`
+mutation addActiveRepostoOrganization($name: String!, $repoUrl: String!) {
+  addActiveRepostoOrganization(name: $name, repoUrl: $repoUrl) {
+    name
+}
+}
+`;
+
+export const REMOVE_REPO = gql`
+mutation deleteActiveRepostoOrganization($name: String!, $repoUrl: String!) {
+  deleteActiveRepostoOrganization(name: $name, repoUrl: $repoUrl) {
+    name
+}
+}
+`;
+
+export const UPDATE_ORGANISATION_NAME=gql`
+mutation updateGithubOrganisation($name: String!, $gitHubOrganisation: String!) {
+  updateGithubOrganisation(name: $name, gitHubOrganisation: $gitHubOrganisation) {
+    name
+}
+}
+`
 
 export const REMOVE_MEMBER_FROM_COHORT_MUTATION = gql`
   mutation RemoveMemberFromCohort(

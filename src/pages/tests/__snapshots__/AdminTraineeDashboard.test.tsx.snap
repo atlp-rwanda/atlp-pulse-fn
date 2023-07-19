@@ -3,49 +3,49 @@
 exports[`AdminTraineeDashboard Tests Renders AdminTraineeDashboard 1`] = `
 Array [
   <div
-    className=" dark:bg-dark-bg rounded-lg"
+    className="rounded-lg dark:bg-dark-bg"
   />,
   <div
     className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
     >
       <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
+        className="flex flex-wrap items-center justify-center w-full card-title "
       >
         <h3
-          className="font-bold text-sm dark:text-white text-center w-11/12 "
+          className="w-11/12 text-sm font-bold text-center dark:text-white "
         >
           Send Invitation
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className="w-full my-3 border-b bg-primary"
         />
       </div>
       <div
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className="px-8 py-3 "
         >
           <div
-            className="card-title w-full flex  flex-wrap justify-center items-center  "
+            className="flex flex-wrap items-center justify-center w-full card-title "
           >
             <h3
-              className="font-bold text-sm dark:text-white text-center w-11/12 "
+              className="w-11/12 text-sm font-bold text-center dark:text-white "
             >
               Fill in the email to invite a user to DevPulse.
             </h3>
           </div>
           <div
-            className="text-white input my-3 h-9 "
+            className="my-3 text-white input h-9 "
           >
             <div
-              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full text-white rounded-md grouped-input"
             >
               <input
-                className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
                 name="email"
                 onChange={[Function]}
                 placeholder="email"
@@ -55,7 +55,7 @@ Array [
             </div>
           </div>
           <div
-            className="w-full flex justify-between"
+            className="flex justify-between w-full"
           >
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
@@ -83,40 +83,40 @@ Array [
     className="h-screen w-screen z-20 bg-black bg-opacity-40 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
     >
       <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
+        className="flex flex-wrap items-center justify-center w-full card-title "
       >
         <h3
-          className="font-bold text-sm dark:text-white text-center w-11/12 "
+          className="w-11/12 text-sm font-bold text-center dark:text-white "
         >
           Edit Trainee
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className="w-full my-3 border-b bg-primary"
         />
       </div>
       <div
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className="px-8 py-3 "
         >
           <div
-            className="card-title w-full flex  flex-wrap justify-center items-center  "
+            className="flex flex-wrap items-center justify-center w-full card-title "
           >
             <h3
-              className="font-bold text-sm dark:text-white text-center w-11/12 "
+              className="w-11/12 text-sm font-bold text-center dark:text-white "
             >
               Choose a different cohort for the trainee from the dropdown below.
             </h3>
           </div>
           <div
-            className="text-white input my-3 h-9 "
+            className="my-3 text-white input h-9 "
           >
             <div
-              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full text-white rounded-md grouped-input"
             >
               <div
                 className="my-react-select-container css-b62m3t-container"
@@ -133,18 +133,18 @@ Array [
                   className="css-1f43avz-a11yText-A11yText"
                 />
                 <div
-                  className="my-react-select__control css-6zplfg-control"
+                  className="my-react-select__control css-1an72ab-control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container my-react-select__value-container--has-value css-319lph-ValueContainer"
+                    className="my-react-select__value-container my-react-select__value-container--has-value css-1fdsijx-ValueContainer"
                   >
                     <div
-                      className="my-react-select__single-value css-1jwi8f4-singleValue"
+                      className="my-react-select__single-value css-1v6as4q-singleValue"
                     />
                     <div
-                      className="my-react-select__input-container css-6j8wv5-Input"
+                      className="my-react-select__input-container css-qbdosj-Input"
                       data-value=""
                     >
                       <input
@@ -188,11 +188,11 @@ Array [
                     className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                   >
                     <span
-                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                     />
                     <div
                       aria-hidden="true"
-                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
@@ -215,10 +215,10 @@ Array [
             </div>
           </div>
           <div
-            className="text-white input my-3 h-9 "
+            className="my-3 text-white input h-9 "
           >
             <div
-              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full text-white rounded-md grouped-input"
             >
               <div
                 className="my-react-select-container css-b62m3t-container"
@@ -235,18 +235,18 @@ Array [
                   className="css-1f43avz-a11yText-A11yText"
                 />
                 <div
-                  className="my-react-select__control css-6zplfg-control"
+                  className="my-react-select__control css-1an72ab-control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container my-react-select__value-container--has-value css-319lph-ValueContainer"
+                    className="my-react-select__value-container my-react-select__value-container--has-value css-1fdsijx-ValueContainer"
                   >
                     <div
-                      className="my-react-select__single-value css-1jwi8f4-singleValue"
+                      className="my-react-select__single-value css-1v6as4q-singleValue"
                     />
                     <div
-                      className="my-react-select__input-container css-6j8wv5-Input"
+                      className="my-react-select__input-container css-qbdosj-Input"
                       data-value=""
                     >
                       <input
@@ -290,11 +290,11 @@ Array [
                     className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                   >
                     <span
-                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                     />
                     <div
                       aria-hidden="true"
-                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
@@ -317,7 +317,7 @@ Array [
             </div>
           </div>
           <div
-            className="w-full flex justify-between"
+            className="flex justify-between w-full"
           >
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
@@ -345,37 +345,37 @@ Array [
     className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
     >
       <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
+        className="flex flex-wrap items-center justify-center w-full card-title "
       >
         <h3
-          className="font-bold text-sm dark:text-white text-center w-11/12 "
+          className="w-11/12 text-sm font-bold text-center dark:text-white "
         >
           Remove Trainee
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className="w-full my-3 border-b bg-primary"
         />
       </div>
       <div
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className="px-8 py-3 "
         >
           <div
-            className="card-title w-full flex  flex-wrap justify-center items-center  "
+            className="flex flex-wrap items-center justify-center w-full card-title "
           >
             <h3
-              className="font-bold text-sm dark:text-white text-center w-11/12 "
+              className="w-11/12 text-sm font-bold text-center dark:text-white "
             >
               Are you sure you want to remove trainee from this cohort?
             </h3>
           </div>
           <div
-            className="w-full flex justify-between"
+            className="flex justify-between w-full"
           >
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
@@ -404,31 +404,31 @@ Array [
     className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
     >
       <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
+        className="flex flex-wrap items-center justify-center w-full card-title "
       >
         <h3
-          className="font-bold text-sm dark:text-white text-center w-11/12 "
+          className="w-11/12 text-sm font-bold text-center dark:text-white "
         >
           Add Trainee
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className="w-full my-3 border-b bg-primary"
         />
       </div>
       <div
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className="px-8 py-3 "
         >
           <div
-            className="input my-3 h-9 "
+            className="my-3 input h-9 "
           >
             <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full rounded-md grouped-input"
             >
               <div
                 className="my-react-select-container css-b62m3t-container"
@@ -445,21 +445,21 @@ Array [
                   className="css-1f43avz-a11yText-A11yText"
                 />
                 <div
-                  className="my-react-select__control css-w7xt41-control"
+                  className="my-react-select__control css-1dsw3my-control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container css-319lph-ValueContainer"
+                    className="my-react-select__value-container css-1fdsijx-ValueContainer"
                   >
                     <div
-                      className="my-react-select__placeholder css-14el2xx-placeholder"
+                      className="my-react-select__placeholder css-1jqq78o-placeholder"
                       id="react-select-4-placeholder"
                     >
                       choose trainee
                     </div>
                     <div
-                      className="my-react-select__input-container css-6j8wv5-Input"
+                      className="my-react-select__input-container css-qbdosj-Input"
                       data-value=""
                     >
                       <input
@@ -504,11 +504,11 @@ Array [
                     className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                   >
                     <span
-                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                     />
                     <div
                       aria-hidden="true"
-                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
@@ -531,10 +531,10 @@ Array [
             </div>
           </div>
           <div
-            className="text-white input my-3 h-9 "
+            className="my-3 text-white input h-9 "
           >
             <div
-              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full text-white rounded-md grouped-input"
             >
               <div
                 className="my-react-select-container css-b62m3t-container"
@@ -551,21 +551,21 @@ Array [
                   className="css-1f43avz-a11yText-A11yText"
                 />
                 <div
-                  className="my-react-select__control css-6zplfg-control"
+                  className="my-react-select__control css-1an72ab-control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container css-319lph-ValueContainer"
+                    className="my-react-select__value-container css-1fdsijx-ValueContainer"
                   >
                     <div
-                      className="my-react-select__placeholder css-14el2xx-placeholder"
+                      className="my-react-select__placeholder css-1jqq78o-placeholder"
                       id="react-select-5-placeholder"
                     >
                       Select cohort
                     </div>
                     <div
-                      className="my-react-select__input-container css-6j8wv5-Input"
+                      className="my-react-select__input-container css-qbdosj-Input"
                       data-value=""
                     >
                       <input
@@ -610,11 +610,11 @@ Array [
                     className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                   >
                     <span
-                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                     />
                     <div
                       aria-hidden="true"
-                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
@@ -637,10 +637,10 @@ Array [
             </div>
           </div>
           <div
-            className="text-white input my-3 h-9 "
+            className="my-3 text-white input h-9 "
           >
             <div
-              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full text-white rounded-md grouped-input"
             >
               <div
                 className="my-react-select-container css-b62m3t-container"
@@ -657,21 +657,21 @@ Array [
                   className="css-1f43avz-a11yText-A11yText"
                 />
                 <div
-                  className="my-react-select__control css-6zplfg-control"
+                  className="my-react-select__control css-1an72ab-control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="my-react-select__value-container css-319lph-ValueContainer"
+                    className="my-react-select__value-container css-1fdsijx-ValueContainer"
                   >
                     <div
-                      className="my-react-select__placeholder css-14el2xx-placeholder"
+                      className="my-react-select__placeholder css-1jqq78o-placeholder"
                       id="react-select-6-placeholder"
                     >
                       Select Team
                     </div>
                     <div
-                      className="my-react-select__input-container css-6j8wv5-Input"
+                      className="my-react-select__input-container css-qbdosj-Input"
                       data-value=""
                     >
                       <input
@@ -716,11 +716,11 @@ Array [
                     className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
                   >
                     <span
-                      className="my-react-select__indicator-separator css-1okebmr-indicatorSeparator"
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
                     />
                     <div
                       aria-hidden="true"
-                      className="my-react-select__indicator my-react-select__dropdown-indicator css-tlfecz-indicatorContainer"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
                       onMouseDown={[Function]}
                       onTouchEnd={[Function]}
                     >
@@ -743,7 +743,7 @@ Array [
             </div>
           </div>
           <div
-            className="w-full flex justify-between"
+            className="flex justify-between w-full"
           >
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
@@ -778,7 +778,7 @@ Array [
         className="hidden lg:flex flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2"
       >
         <div
-          className="list-none pr-8"
+          className="pr-8 list-none"
         >
           <li
             className="mb-4 hover:text-primary transition-all group-hover:transition-all"
@@ -837,62 +837,8 @@ Array [
               </span>
             </a>
           </li>
-          <li
-            className="mb-4 hover:text-primary transition-all group-hover:transition-all"
-          >
-            <a
-              className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/docs"
-              onClick={[Function]}
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 mr-2 "
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                />
-              </svg>
-              <span
-                className="text-base "
-              >
-                Docs
-              </span>
-            </a>
-          </li>
-          <li
-            className="mb-4 hover:text-primary transition-all group-hover:transition-all"
-          >
-            <a
-              className="flex flex-row dark:text-dark-text-fill"
-              href="/dashboard/support"
-              onClick={[Function]}
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 mr-2 "
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clipRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  fillRule="evenodd"
-                />
-              </svg>
-              <span
-                className="text-base "
-              >
-                Help
-              </span>
-            </a>
-          </li>
           <div
-            className="flex flex-row ml-10 mt-auto list-none"
+            className="flex flex-row mt-auto ml-10 list-none"
           >
             <li
               className="px-2"
@@ -989,10 +935,10 @@ Array [
       >
         <div>
           <div
-            className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden"
+            className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg"
           >
             <div
-              className="flex items-left px-10 lg:px-60 pt-24 pb-8"
+              className="flex px-10 pt-24 pb-8 items-left lg:px-60"
             >
               <div
                 className="space-x-8 lg:ml-7"
@@ -1027,16 +973,16 @@ Array [
                 className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
               >
                 <div
-                  className=" flex items-center justify-between pb-6"
+                  className="flex items-center justify-between pb-6 "
                 >
                   <div>
                     <h2
-                      className="text-gray-800 dark:text-white font-semibold text-xl"
+                      className="text-xl font-semibold text-gray-800 dark:text-white"
                     >
                       Trainees list
                     </h2>
                     <input
-                      className="border-gray-300 dark:bg-dark-tertiary dark:text-white border py-2 mt-4 rounded outline-none px-5 font-sans text-xs w-52 md:w-96"
+                      className="px-5 py-2 mt-4 font-sans text-xs border border-gray-300 rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
                       defaultValue=""
                       onChange={[Function]}
                       placeholder="Filter"
