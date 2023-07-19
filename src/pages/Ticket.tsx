@@ -93,17 +93,12 @@ function Ticket() {
   return (
     <div className="flex flex-col grow items-center justify-center bg-white dark:bg-dark-frame-bg">
       <div className="flex flex-col items-center bg-[#e0e7ff] dark:bg-dark-bg py-8 px-8 overflow-hidden shadow-xl sm:w-[90%] md:w-[60%] lg:w-[40%] mt-20  lg:mb-10 rounded">
-        
         {!ticket ? null : (
           <>
-          
-            <div className=' w-full '>
-
-            <h2 className="text-4xl font-bold dark:text:white mb-3 text-center">
-              {ticket?.subject}
-            </h2>
-  
-
+            <div className=" w-full ">
+              <h2 className="text-4xl font-bold dark:text:white mb-3 text-center">
+                {ticket?.subject}
+              </h2>
             </div>
 
             <div className="w-full">
@@ -111,58 +106,50 @@ function Ticket() {
                 {ticket?.message}
               </p>
               <div className="flex  flex-col items-start md:flex-row  justify-between md:items-end">
+                <div className="mb-0 flex flex-row  ">
+                  <h2 className="text-xl text-[black]  py-0.5 rounded dark:text-white font-bold   ">
+                    status :
+                  </h2>
 
-              <div className='mb-0 flex flex-row  '>
-               <h2 className="text-xl text-[black]  py-0.5 rounded dark:text-white font-bold   ">
-               status :
-              </h2>
-
-                      {ticket && ticket.status === 'closed' ? (
-                             <h1 className=' flex items-center font-thin  text-red-700 ' >{t(`${ticket?.status}`)}</h1>
-                           ) : (
-
-                       <h1 className='  dark:text:white   font-thin flex items-center' >{t(`${ticket?.status}`)}</h1>
-
-                      )}
-
-               </div>
-
+                  {ticket && ticket.status === 'closed' ? (
+                    <h1 className=" flex items-center font-thin  text-red-700 ">
+                      {t(`${ticket?.status}`)}
+                    </h1>
+                  ) : (
+                    <h1 className="  dark:text:white   font-thin flex items-center">
+                      {t(`${ticket?.status}`)}
+                    </h1>
+                  )}
+                </div>
 
                 <span className="text-gray-500 block text-sm font-medium mt-1 mb-1 md:mt-4 py-0.5 rounded dark:text-white">
                   {timePassedCalculator(new Date(Number(ticket?.createdAt)))}
                 </span>
 
+                <div className="">
+                  <button
+                    onClick={() => navigate(-1)}
+                    type="button"
+                    className=" bg-[#E8EFE9] mr-2  dark:bg-black dark:text-white hover:bg-gray-400 font-normal py-1/2 mx-0 my-0 py-0 h-8 px-2 rounded"
+                  >
+                    &larr; {t('Go back')}
+                  </button>
 
-                <div className='' >
-
-                <button
-          onClick={() => navigate(-1)}
-          type="button"
-          className=" bg-[#E8EFE9] mr-2  dark:bg-black dark:text-white hover:bg-gray-400 font-normal py-1/2 mx-0 my-0 py-0 h-8 px-2 rounded"
-        >
-          &larr; {t('Go back')}
-        </button>
-                
-
-                
-
-                {user.role !== 'superAdmin' &&
-                  ticket &&
-                  ticket.status !== 'closed' && (
-                    <button
-                      type="button"
-                      className="bg-red-700 disabled:bg-red-200 text-white sm py-1/2 mx-0 my-0 py-0 h-8 text-sm  px-2 rounded"
-                      disabled={closingTicket}
-                      onClick={handleResolveTicket}
-                    >
-                      {closingTicket
-                        ? `${t('Processing...')}`
-                        : `${t('Resolve')}`}
-                    </button>
-                  )}
+                  {user.role !== 'superAdmin' &&
+                    ticket &&
+                    ticket.status !== 'closed' && (
+                      <button
+                        type="button"
+                        className="bg-red-700 disabled:bg-red-200 text-white sm py-1/2 mx-0 my-0 py-0 h-8 text-sm  px-2 rounded"
+                        disabled={closingTicket}
+                        onClick={handleResolveTicket}
+                      >
+                        {closingTicket
+                          ? `${t('Processing...')}`
+                          : `${t('Resolve')}`}
+                      </button>
+                    )}
                 </div>
-
-
               </div>
             </div>
           </>
@@ -172,20 +159,16 @@ function Ticket() {
 
         <div className="flex flex-col w-full gap-8 mt-3 mb-3">
           {replies?.map((reply: any) => (
-            <div key={reply.id} className={
-              user.userId !== reply.sender.id
-                ? 'self-end'
-                : ''
-            }>
+            <div
+              key={reply.id}
+              className={user.userId !== reply.sender.id ? 'self-end' : ''}
+            >
               <div className="flex flex-col gap-2">
-                <div   className={
-                  `flex items-center gap-2 ${
-                    user.userId !== reply.sender.id
-                    ? 'self-end'
-                    : ''
-                  }`
-                  
-                  }>
+                <div
+                  className={`flex items-center gap-2 ${
+                    user.userId !== reply.sender.id ? 'self-end' : ''
+                  }`}
+                >
                   <div className="reply__user-photo">
                     <img
                       className="w-8 cursor-pointer h-8 rounded-full"
@@ -213,7 +196,9 @@ function Ticket() {
                 >
                   <p
                     className={
-                      user.userId !== reply.sender.id ? 'dark:text-gray-500' : 'dark:text-gray-500'
+                      user.userId !== reply.sender.id
+                        ? 'dark:text-gray-500'
+                        : 'dark:text-gray-500'
                     }
                   >
                     {reply.replyMessage}

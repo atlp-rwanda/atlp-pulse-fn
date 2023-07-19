@@ -12,7 +12,7 @@ describe('<ProfileTabs/>', () => {
     const elem = render(
       <MemoryRouter>
         <MockedProvider mocks={[]}>
-          <ProfileTabs data={{ name: 'Fabrice',role:"test" }} />
+          <ProfileTabs data={{ name: 'Fabrice', role: 'test' }} />
         </MockedProvider>
       </MemoryRouter>,
     );

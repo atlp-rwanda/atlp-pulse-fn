@@ -58,17 +58,17 @@ function Card({
   };
 
   const renderChart = () => (
-      <Bar
-        data={chartData}
-        options={{
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
+    <Bar
+      data={chartData}
+      options={{
+        scales: {
+          y: {
+            beginAtZero: true,
           },
-        }}
-      />
-    );
+        },
+      }}
+    />
+  );
 
   React.useEffect(() => {
     renderChart();
@@ -82,7 +82,6 @@ function Card({
       >
         {/* Chart canvas element */}
         {renderChart()}
-
 
         <div className="flex justify-between  py-1">
           <div className="flex items-center">

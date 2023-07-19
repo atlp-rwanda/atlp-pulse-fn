@@ -160,13 +160,13 @@ export default function ProfileCoverpage({
             ? profileData?.getProfile?.avatar
             : Avatar
         }
-        className="w-20 md:w-28 h-20 md:h-28 m-4 relative ml-6 md:ml-20 mt-36 md:mt-12 rounded-full"
+        className="relative w-20 h-20 m-4 ml-6 rounded-full md:w-28 md:h-28 md:ml-20 mt-36 md:mt-12"
         alt="profile-avatar"
       />
-      <div className="flex h-full items-center justify-center bg-grey-lighter  -ml-10 md:-ml-12 mt-36 md:mt-20 z-0 mr-auto">
+      <div className="z-0 flex items-center justify-center h-full mr-auto -ml-10 bg-grey-lighter md:-ml-12 mt-36 md:mt-20">
         <div role="button">
           <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1">
-            <PencilAltIcon className="w-5 md:w-3 mr-1 mt-0 dark:text-dark-text-fill" />
+            <PencilAltIcon className="w-5 mt-0 mr-1 md:w-3 dark:text-dark-text-fill" />
             <span className="text-lg md:text-sm dark:text-dark-text-fill">
               <span className="hidden md:block">{t('Edit')} </span>
             </span>
@@ -195,9 +195,9 @@ export default function ProfileCoverpage({
           <span className="hidden md:block"> {t('Edit Profile')} </span>
         </Button>
       ) : (
-        <div className="flex w-full h-screen items-center justify-center bg-grey-lighter  ml-auto  mt-24">
+        <div className="flex items-center justify-center w-full h-screen mt-24 ml-auto bg-grey-lighter">
           <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2">
-            <CameraIcon className="w-6 mr-1 mt-0  dark:text-dark-text-fill" />
+            <CameraIcon className="w-6 mt-0 mr-1 dark:text-dark-text-fill" />
             <span className=" dark:text-dark-text-fill">
               <span className="hidden md:block">{t('Change Picture')} </span>
             </span>

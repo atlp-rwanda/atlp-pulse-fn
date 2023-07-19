@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Resume /> Renders Resume 1`] = `
+<div
+  className="w-full h-96"
+>
+  <div
+    className="pt-5 pb-5 space-x-8 lg:ml-7 downbuttons"
+  >
+    <button
+      className="btn primary lg undefined"
+      data-testid="registerModel"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Upload from your pc
+    </button>
+    <button
+      className="btn primary lg undefined"
+      data-testid="registerModel"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Add external link
+    </button>
+  </div>
+</div>
+`;

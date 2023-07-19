@@ -35,7 +35,7 @@ export default function DeletePhaseModal({
       /* istanbul ignore next */
       refetch();
       removeModel();
-      toast.success(t("Phase deleted successfully")  as TFunction);
+      toast.success(t('Phase deleted successfully') as TFunction);
     },
   });
   const orgToken = localStorage.getItem('orgToken');

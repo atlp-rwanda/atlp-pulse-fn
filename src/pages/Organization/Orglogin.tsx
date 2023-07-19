@@ -105,17 +105,17 @@ function Orglogin() {
   const completeOrgUrl = `${names}`;
 
   return (
-    <div className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans">
-      <div className="max-w-lg w-full mx-auto my-28 bg-indigo-100 dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none">
-        <div className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill ">
+    <div className="flex flex-col justify-center font-sans grow bg-neutral-100 dark:bg-dark-frame-bg">
+      <div className="w-full max-w-lg mx-auto bg-indigo-100 my-28 dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none">
+        <div className="text-2xl font-bold text-center text-black-600 dark:text-dark-text-fill ">
           {t('Sign in to your Organization')}
         </div>
-        <div className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs">
+        <div className="mt-2 font-semibold text-center text-md text-black-600 dark:text-dark-text-fill sm:text-xs">
           {t('Enter your organization’s Dev-Pulse URL')}
         </div>
         <form
           action="#none"
-          className="space-y-6 mt-4"
+          className="mt-4 space-y-6"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="orgName">
@@ -136,7 +136,7 @@ function Orglogin() {
                   width: inputWidth,
                   backgroundColor: 'rgb(224 231 255 / var(--tw-bg-opacity))',
                 }} // Set the width dynamically
-                className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-dark-bg"
+                className="w-full mt-1 rounded inputStyle inputOne border-primary dark:bg-dark-bg"
               />
             ) : (
               <input
@@ -155,7 +155,7 @@ function Orglogin() {
                   width: inputWidth,
                   backgroundColor: 'rgb(224 231 255 / var(--tw-bg-opacity))',
                 }} // Set the width dynamically
-                className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-dark-bg"
+                className="w-full mt-1 rounded inputStyle inputOne border-primary dark:bg-dark-bg"
               />
             )}
             <input
@@ -166,7 +166,7 @@ function Orglogin() {
                   // width: inputWidth,
                 }
               }
-              className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
+              className="w-full p-2 mt-1 border rounded inputStyle inputTwo border-primary dark:bg-dark-bg"
             />
           </div>
 
@@ -191,7 +191,7 @@ function Orglogin() {
               </Button>
             )}
           </div>
-          <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
+          <div className="w-full text-sm text-light-text dark:text-dark-text-fill">
             {t('Looking to register an organization instead?')}
             <Link to="/signup/org">
               <a href="#link" className="text-primary">

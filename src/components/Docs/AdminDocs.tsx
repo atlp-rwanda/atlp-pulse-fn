@@ -2,15 +2,15 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
+import { Icon } from '@iconify/react';
 import CoordinatorDocs from './CoordinatorDocs';
 import DataTable from '../DataTable';
 import Modal from './DocModel';
 import Button from '../Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import { useLazyQuery, useMutation } from '@apollo/client';
 import { ADD_DOCUMENTATION, ADD_SUB_DOCUMENTATION, DELETE_DOCUMENTATION, DELETE_SUB_DOCUMENTATION, GET_DOCUMENTATION, UPDATE_DOCUMENTATION } from '../../Mutations/manageStudentMutations';
-import { toast } from 'react-toastify';
-import { Icon } from '@iconify/react';
 
 
 function AdminDocs() {
@@ -190,8 +190,7 @@ function AdminDocs() {
         },
       });
     }
-    }else{
-      if(title===''||description===''||role===''){
+    }else if(title===''||description===''||role===''){
         toast.error(`${t('Please fill all fields')}`);
         setButtonLoading(false);
       }else{
@@ -202,7 +201,6 @@ function AdminDocs() {
         for: role,
       },
     });
-  }
   }
   };
 
@@ -261,7 +259,7 @@ function AdminDocs() {
 
   const page1 = (
     <>
-      <div className='ml-20 pb-5 md:ml-64'>
+      <div className='pb-5 ml-20 md:ml-64'>
       <Button variant="primary" size="lg" onClick={()=>{
         setIsSubDocument(false)
         setDocumentModel(!documentModel)
@@ -291,7 +289,7 @@ function AdminDocs() {
                   <div className="flex">
 <Icon
             icon="el:file-edit-alt"
-            className="mr-2 mt-4"
+            className="mt-4 mr-2"
             width="25"
             height="25"
             cursor="pointer"
@@ -326,7 +324,7 @@ function AdminDocs() {
                        <div className="flex flex-col items-start hidden " id={documentation.id} >
       <div className="w-full px-10 mb-4 ">
               
-              <div className="mt-5 ml-0 flex flex-col">
+              <div className="flex flex-col mt-5 ml-0">
               <span className='p-2 text-primary'>
               {documentation.for}
               </span>
@@ -351,7 +349,7 @@ function AdminDocs() {
 
       
             {documentation.subDocuments.map((subDocument: { title: any,description:any }) => (
-         <div className="flex px-10  items-start" >  
+         <div className="flex items-start px-10" >  
          <Button
              variant="primary"
              size="sm"
@@ -395,14 +393,7 @@ function AdminDocs() {
               ))
             } columns={columns} title={t('')} />
           </div>
-      <div className='flex '>
-     
-
-
-
-
-    
-      </div>
+      <div className='flex ' />
  
       </div>
 {/*     
@@ -465,9 +456,7 @@ function AdminDocs() {
                     }}
                     value={description}
                    className="w-full px-5 py-5 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
-                    >
-
-                    </textarea>
+                     />
                 </div>
               </div>
               <br />
@@ -533,9 +522,9 @@ function AdminDocs() {
         </div>
       </div>
 
-  <div className="overflow-auto flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg pt-28 text-light-text dark:text-dark-text-fill">
+  <div className="flex flex-col pl-10 overflow-auto grow bg-light-bg dark:bg-dark-frame-bg pt-28 text-light-text dark:text-dark-text-fill">
    
-    <div className='h-4  '>
+    <div className='h-4 '>
 
 
     {page1}

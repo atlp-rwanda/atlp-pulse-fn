@@ -50,7 +50,7 @@ const profileFields = [
     placeholder: 'Your Telephone Number',
   },
   {
-    labelText: 'Github Username', 
+    labelText: 'Github Username',
     labelFor: 'github-username',
     id: 'github-username',
     name: 'githubUsername',

@@ -21,12 +21,9 @@ const TraineeAttendance = React.lazy(
 const AttendanceDetails = React.lazy(
   () => import('../containers/Trainee/AttendanceDetails'),
 );
-const LoginActivitiesTable=React.lazy(
-  ()=>import( '../components/LoginActivitiesTable'),
-
+const LoginActivitiesTable = React.lazy(
+  () => import('../components/LoginActivitiesTable'),
 );
-
-
 
 const AdminTeams = React.lazy(() => import('./admin-dashBoard/Teams'));
 const AdminCohorts = React.lazy(() => import('./admin-dashBoard/Cohorts'));
@@ -75,7 +72,9 @@ const Ticket = React.lazy(() => import('../pages/Ticket'));
 const AllTickets = React.lazy(() => import('../pages/AllTickets'));
 
 const ManagersCards = React.lazy(() => import('../components/ManagerCard'));
-const CoordinatorCards= React.lazy(() =>import('../components/CoordinatorCard'));
+const CoordinatorCards = React.lazy(
+  () => import('../components/CoordinatorCard'),
+);
 
 import Skeleton from '../components/Skeleton';
 import Square from '../Skeletons/Square';
@@ -131,13 +130,11 @@ function DashRoutes() {
               <Route path=":ticketId" element={<Ticket />} />
             </Route>
             <Route path="/tickets" element={<Tickets />} />
-           <Route path="/loginActivities" element={<LoginActivitiesTable />} />
+            <Route path="/loginActivities" element={<LoginActivitiesTable />} />
 
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
-            
           </Routes>
-
         </Suspense>
       </div>
     </PrivateRoute>

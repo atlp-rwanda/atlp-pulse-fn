@@ -1,9 +1,9 @@
 .sm_card {
-  --active-color: #7A5EDC;
-  --gray-color: #CCD2E8;
+  --active-color: #7a5edc;
+  --gray-color: #ccd2e8;
   --dark-gray-color: #404040;
   --dark-light-gray-color: #868686;
-  --white-color: #F1F4FF;
+  --white-color: #f1f4ff;
 }
 
 .sm_card .label {
@@ -16,7 +16,7 @@
   align-items: center;
 }
 
-[data-theme=dark] .sm_card .label {
+[data-theme='dark'] .sm_card .label {
   border-color: var(--dark-gray-color);
   background-color: var(--dark-gray-color);
 }
@@ -32,7 +32,7 @@
   margin-right: 0.5rem;
 }
 
-[data-theme=dark] .sm_card .check {
+[data-theme='dark'] .sm_card .check {
   background-color: var(--dark-light-gray-color);
 }
 
@@ -46,21 +46,21 @@
   visibility: hidden;
 }
 
-.sm_card input:checked+.label {
+.sm_card input:checked + .label {
   color: var(--active-color);
   background-color: transparent;
   border: 1px solid currentColor;
   box-shadow: 0 0 6px -3px currentColor;
 }
 
-.sm_card input:checked+.label .check {
+.sm_card input:checked + .label .check {
   background-color: var(--active-color);
 }
 
-.sm_card input:checked+.label .check::after {
+.sm_card input:checked + .label .check::after {
   content: '✓';
   color: var(--white-color);
-  text-shadow: .5px 2px 0 var(--active-color);
+  text-shadow: 0.5px 2px 0 var(--active-color);
 }
 
 .firstHeight {

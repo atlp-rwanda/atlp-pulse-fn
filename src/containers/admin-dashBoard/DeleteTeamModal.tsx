@@ -22,18 +22,18 @@ export default function DeleteTeamModal({
   removeModel: Function;
   refetch: Function;
 }) {
-    const { t } = useTranslation();
-    const [deleteTeamMutation, { loading }] = useMutation(DeleteTeam, {
-        onError(error) {
-            toast.error(error.message.toString());
-        },
-        onCompleted() {
-            refetch();
-            toast.success(t('Team deleted successfully') as TFunction);
-            removeModel();
-        },
-    });
-    const orgToken = localStorage.getItem('orgToken');
+  const { t } = useTranslation();
+  const [deleteTeamMutation, { loading }] = useMutation(DeleteTeam, {
+    onError(error) {
+      toast.error(error.message.toString());
+    },
+    onCompleted() {
+      refetch();
+      toast.success(t('Team deleted successfully') as TFunction);
+      removeModel();
+    },
+  });
+  const orgToken = localStorage.getItem('orgToken');
 
   async function deleteTeam() {
     const data: any = {};

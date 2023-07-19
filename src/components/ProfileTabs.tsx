@@ -24,9 +24,10 @@ import { CountryComponent } from '../pages/Profile';
 
 import { GET_ALL_TRAINEES } from '../Mutations/Ratings';
 import { FaEdit, FaEraser, FaGithub, FaGithubSquare, FaPlusSquare, FaRemoveFormat } from 'react-icons/fa';
-import { ADD_REPO, GET_GITHUB_STATISTICS, GET_ORGANISATION, REMOVE_REPO, UPDATE_ORGANISATION_NAME } from '../Mutations/manageStudentMutations';
+import { ADD_REPO, GET_GITHUB_STATISTICS, GET_ORGANISATION, REMOVE_REPO, UPDATE_ORGANISATION_NAME, GET_TRAINEE_PROFILE, } from '../Mutations/manageStudentMutations';
 import Spinner from './Spinner';
 import GitHubActivityChart from './chartGitHub';
+import BookOpenIcon from '@heroicons/react/outline/BookOpenIcon';
 
 const organizationToken = localStorage.getItem('orgToken');
 const token = localStorage.getItem('orgToken');
@@ -57,11 +58,11 @@ export function EditPassword() {
   const [passwordFieldState, setPasswordField] = useState<fields>(fieldState);
 
   return (
-    <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
+    <div className="min-h-screen bg-light-bg dark:bg-dark-frame-bg lg:px-8">
       <div className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg">
         <div className="px-4">
           <form
-            className="mt-12 grid grid-cols-1 gap-4"
+            className="grid grid-cols-1 gap-4 mt-12"
             onSubmit={handleSubmit(onSubmit)}
           >
             {passwordFields.map((field) => (
@@ -109,6 +110,7 @@ export default function ProfileTabs({ data: profileData }: any) {
   const { t } = useTranslation();
   const tabs: Array<string> = ['About', 'Organizations'];
   const { user, setName } = useContext(UserContext);
+  const [traineeProfile, setTraineeProfile] = useState<any>({});
   const [traineeData, setTraineeData] = useState<any>([]);
   const [singleUser, setSingleUser] = useState<any>({});
   const [organisation, setOrganisation] = useState<any>({});
@@ -152,7 +154,11 @@ export default function ProfileTabs({ data: profileData }: any) {
     }
   });
 
-
+  const [fetchProfile] = useLazyQuery(GET_TRAINEE_PROFILE, {
+    variables: {
+      orgToken: organizationToken,
+    },
+  });
 
 
 
@@ -218,6 +224,13 @@ export default function ProfileTabs({ data: profileData }: any) {
     });
 
 
+    fetchProfile({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        setTraineeProfile(data.getProfile);
+        
+      },
+    });
 
   }, []);
 
@@ -323,7 +336,7 @@ export default function ProfileTabs({ data: profileData }: any) {
         <div className="lg:w-[40vw]">
           {/* Profile tabs option start */}
           <ul
-            className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
+            className="flex flex-row flex-wrap pt-3 pb-4 mb-0 text-black list-none dark:text-dark-text-fill"
             role="tablist"
           >
             {tabs.filter((tab) => {
@@ -339,7 +352,7 @@ export default function ProfileTabs({ data: profileData }: any) {
             }).map((tab) => (
               <li
                 key={tab}
-                className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+                className="flex-auto mr-2 -mb-px text-center last:mr-0"
               >
                 <a
                   className={`text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal ${
@@ -366,8 +379,8 @@ export default function ProfileTabs({ data: profileData }: any) {
           </ul>
           {/* Profile tabs option end */}
         </div>
-        <div className="relative flex flex-col min-w-0 break-words text-light-text dark:text-dark-text-fill  w-full rounded">
-          <div className="py-2 flex-auto">
+        <div className="relative flex flex-col w-full min-w-0 break-words rounded text-light-text dark:text-dark-text-fill">
+          <div className="flex-auto py-2">
             <div className="tab-content tab-space">
               {/* About section start */}
               <div
@@ -375,12 +388,12 @@ export default function ProfileTabs({ data: profileData }: any) {
                 className={openTab === 'About' ? 'block' : 'hidden'}
                 id="link1"
               >
-                <div className="grid md:grid-cols-6 gap-4 md:gap-6 ">
-                  <div className="px-4 py-2 flex flex-col md:col-span-3 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow w-100">
-                    <h2 className="text-xl font-bold my-2">
+                <div className="grid gap-4 md:grid-cols-6 md:gap-6 ">
+                  <div className="flex flex-col items-start justify-start px-4 py-2 bg-indigo-100 shadow md:col-span-3 dark:bg-dark-bg w-100">
+                    <h2 className="my-2 text-xl font-bold">
                       {profileData?.name || "Name not available"}{' '}
                     </h2>
-                    <div className="py-4 flex  justify-center">
+                    <div className="flex justify-center py-4">
                       <MailIcon className="w-6 mr-2 dark:text-dark-text-fill" />
                       {user?.email || "unavailable"}
                     </div>
@@ -388,7 +401,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                       <PhoneIcon className="w-6 mr-2 dark:text-dark-text-fill" />
                       {profileData?.phoneNumber || "unavailable"}
                     </div>
-                    <div className="py-4 flex ">
+                    <div className="flex py-4 ">
                       <HomeIcon className="w-6 mr-2 dark:text-dark-text-fill" />
                       {profileData?.city}
                       {/* istanbul ignore next */}
@@ -401,15 +414,26 @@ export default function ProfileTabs({ data: profileData }: any) {
                         <CountryComponent country={profileData.country} />
                       )}
                     </div>
-                    <div className="py-4 flex ">
+                    <div className="flex py-4 ">
                       <FaGithub className="w-6 mr-2 dark:text-dark-text-fill" />
                       {profileData?.githubUsername}
 
                     </div>
 
+                    <div className="flex py-4 ">
+                      <BookOpenIcon className="w-6 mr-2 dark:text-dark-text-fill" />
+                      <a
+                        href={traineeProfile.resume}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Resume
+                      </a>
+                    </div>
+
                   </div>
-                  <div className="px-4 py-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow">
-                    <h2 className="text-xl font-bold my-2">
+                  <div className="px-4 py-2 bg-indigo-100 shadow md:col-span-3 dark:bg-dark-bg">
+                    <h2 className="my-2 text-xl font-bold">
                       {t('Biography')}
                     </h2>
                     <p className='pt-4'>{profileData?.biography || 'No biography'}</p>
@@ -418,44 +442,44 @@ export default function ProfileTabs({ data: profileData }: any) {
                 {/* istanbul ignore next */}
                 {role && [].includes(role as never) &&
                 /* istanbul ignore next */
-                 <div className="grid m-1 p-2 -ml-2 -mr-2 relative">
-                  <div className="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl">
+                 <div className="relative grid p-2 m-1 -ml-2 -mr-2">
+                  <div className="flex items-start justify-start p-2 shadow bg-primary md:col-span-2 rounded-t-2xl">
                     <img
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                      className="absolute w-16 h-16 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-20 md:h-20 dark:bg-dark-bg border-primary"
                       src={Logo}
                       alt="logo"
                     />
-                    <div className="flex flex-col justify-start items-start ml-36">
-                      <h2 className="font-bold text-dark-text-fill text-center text-2xl md:text-3xl">
+                    <div className="flex flex-col items-start justify-start ml-36">
+                      <h2 className="text-2xl font-bold text-center text-dark-text-fill md:text-3xl">
                         {orgName}
                       </h2>
-                      <h3 className="font-bold text-dark-text-fill text-center text-sm md:text-lg ">
+                      <h3 className="text-sm font-bold text-center text-dark-text-fill md:text-lg ">
                         https://andela.pulse.com/
                       </h3>
                     </div>
                   </div>
-                  <div className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow ">
-                    <h3 className="text-2xl font-bold m-2  mb-4">
+                  <div className="flex flex-col items-start justify-start p-2 m-2 bg-indigo-100 shadow mt-9 dark:bg-dark-bg ">
+                    <h3 className="m-2 mb-4 text-2xl font-bold">
                       {/* You in the organization */}
                       {t('You in the organization')}
                     </h3>
                     <div className="flex">
-                      <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
+                      <h4 className="mr-4 text-base font-bold">{t('Role')}:</h4>
                       {user?.role}
                     </div>
-                    <div className="py-4 flex ">
-                      <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
+                    <div className="flex py-4 ">
+                      <h4 className="mr-4 text-base font-bold">{t('Team')}:</h4>
                       {singleUser && singleUser.team
                         ? singleUser.team.name
                         : 'Unavailabe'}
                     </div>
                   </div>
-                  <div className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow ">
-                    <h3 className="text-2xl font-bold m-2  mb-4">
+                  <div className="flex flex-col items-start justify-start p-2 m-2 mt-0 bg-indigo-100 shadow md:mt-9 dark:bg-dark-bg ">
+                    <h3 className="m-2 mb-4 text-2xl font-bold">
                       {t('Management')}
                     </h3>
-                    <div className="py-4 flex  justify-center">
-                      <h4 className="font-bold text-base mr-4">
+                    <div className="flex justify-center py-4">
+                      <h4 className="mr-4 text-base font-bold">
                         {t('program')}:
                       </h4>
                       {singleUser && singleUser.team
@@ -463,15 +487,15 @@ export default function ProfileTabs({ data: profileData }: any) {
                         : 'Unavailabe'}
                     </div>
                     <div className="flex">
-                      <h4 className="font-bold text-base mr-4">
+                      <h4 className="mr-4 text-base font-bold">
                         {t('Stage(current)')}:
                         {singleUser && singleUser.team
                           ? singleUser.team.cohort.phase.name
                           : 'Unavailabe'}
                       </h4>
                     </div>
-                    <div className="py-4 flex ">
-                      <h4 className="font-bold text-base mr-4">
+                    <div className="flex py-4 ">
+                      <h4 className="mr-4 text-base font-bold">
                         {t('Manager')}:
                       </h4>
 
@@ -533,13 +557,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                 )}
                 </div>
                 <div className={`grid md:grid-cols-5 gap-4 md:gap-6  ${profileData.test!='test'?user?.role !== 'admin'?'hidden':'':''}`}>
-                  <div className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow ">
-                    <h3 className="text-2xl font-bold m-2  mb-4">
+                  <div className="flex flex-col items-start justify-start p-2 bg-white shadow md:col-span-2 dark:bg-dark-bg ">
+                    <h3 className="m-2 mb-4 text-2xl font-bold">
                      Github Organisation
 
                     </h3>
                     <div className='flex items-center gap-10'>
-                    <div className="py-4 flex  justify-center">
+                    <div className="flex justify-center py-4">
                       <FaGithubSquare className="w-6 mr-2 dark:text-dark-text-fill" />
                       {organisation?.gitHubOrganisation}
                     </div>
@@ -553,9 +577,9 @@ export default function ProfileTabs({ data: profileData }: any) {
 
 
                   </div>
-                  <div className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow ">
+                  <div className="p-2 bg-white shadow md:col-span-3 dark:bg-dark-bg ">
                     <div className='flex justify-between'>
-                    <h2 className="text-xl font-bold m-2  mb-4">
+                    <h2 className="m-2 mb-4 text-xl font-bold">
                       Repository
 
                     </h2>
@@ -569,7 +593,7 @@ export default function ProfileTabs({ data: profileData }: any) {
               data-testid="change_password"
               children="Add New"
             />
-                    {/* <button className='flex justify-center items-center '>
+                    {/* <button className='flex items-center justify-center '>
                         Add New </button> */}
 
 
@@ -577,8 +601,8 @@ export default function ProfileTabs({ data: profileData }: any) {
                     </div>
                   <div>
                     {organisation?.activeRepos?.map((repo: any) => (
-                      <div className="flex justify-start items-start gap-10 items-center ml-5">
-                      <h2 className="font-bold text-dark-text-fill text-center ">
+                      <div className="flex items-start items-center justify-start gap-10 ml-5">
+                      <h2 className="font-bold text-center text-dark-text-fill ">
                         {repo}
                       </h2>
 
@@ -599,65 +623,65 @@ export default function ProfileTabs({ data: profileData }: any) {
                 className={openTab === 'Organizations' ? 'block' : 'hidden'}
                 id="link3"
               >
-                <div className="m-1 p-2 -ml-2 -mr-2 relative">
-                  <div className="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl">
+                <div className="relative p-2 m-1 -ml-2 -mr-2">
+                  <div className="flex items-start justify-start p-1 shadow bg-primary md:col-span-2 rounded-t-2xl">
                     <img
-                      className="w-12 h-12 md:w-16 md:h-16 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                      className="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
                       src={Logo}
                       alt="logo"
                     />
-                    <div className="flex flex-col justify-start items-start ml-36">
-                      <h2 className="font-bold text-dark-text-fill text-center text-lg md:text-xl">
+                    <div className="flex flex-col items-start justify-start ml-36">
+                      <h2 className="text-lg font-bold text-center text-dark-text-fill md:text-xl">
                         {profileData?.user?.organizations[0] || 'Unavailabe'}
                       </h2>
-                      <h3 className="font-bold text-dark-text-fill text-center text-sm md:text-lg ">
+                      <h3 className="text-sm font-bold text-center text-dark-text-fill md:text-lg ">
                         https://andela.pusle.com
                       </h3>
                     </div>
                   </div>
                   <div className='flex flex-row'>
-                    <div className="w-full p-4 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow ">
-                      <h3 className="text-2xl font-bold mb-4">
+                    <div className="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow dark:bg-dark-bg ">
+                      <h3 className="mb-4 text-2xl font-bold">
                         {t('You in the organization')}
                       </h3>
-                      <div className="pb-2 flex">
-                        <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
+                      <div className="flex pb-2">
+                        <h4 className="mr-4 text-base font-bold">{t('Role')}:</h4>
                         {user?.role}
                       </div>
 
                     </div>
                     {role && ['manager', 'coordinator', 'trainee'].includes(role as never) && (
-                      <div className="p-4 m-2 md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow w-full ">
-                        <h3 className="text-2xl font-bold mb-4">
+                      <div className="flex flex-col items-start justify-start w-full p-4 m-2 bg-indigo-100 shadow md:mt-6 dark:bg-dark-bg ">
+                        <h3 className="mb-4 text-2xl font-bold">
                           {t('Management')}
                         </h3>
                         {managementData.program && (
-                          <div className="pb-2 flex justify-center">
-                            <h4 className="font-bold text-base mr-2">
+                          <div className="flex justify-center pb-2">
+                            <h4 className="mr-2 text-base font-bold">
                               {t('Program')}:
                             </h4>
                             {managementData.program}
                           </div>
                         )}
                         {managementData.cohort && (
-                          <div className="pb-2 flex ">
-                            <h4 className="font-bold text-base mr-2">
+                          <div className="flex pb-2 ">
+                            <h4 className="mr-2 text-base font-bold">
                               {t('Cohort')}:
                             </h4>
                             {managementData.cohort}
                           </div>
                         )}
                         {managementData.team && (
-                          <div className="pb-2 flex ">
-                            <h4 className="font-bold text-base mr-2">
+                          <div className="flex pb-2 ">
+                            <h4 className="mr-2 text-base font-bold">
                               {t('Team')}:
                             </h4>
                             {managementData.team}
                           </div>
                         )}
                         {managementData.phase && (
-                          <div className="pb-2 flex ">
-                            <h4 className="font-bold text-base mr-2">
+                          <div className="flex pb-2 ">
+                            <h4 className="mr-2 text-base font-bold">
                               {t('Phase')}:
                             </h4>
                             {managementData.phase}
@@ -687,24 +711,24 @@ export default function ProfileTabs({ data: profileData }: any) {
     removeRepoModel === true ? 'block' : 'hidden'
   }`}
 >
-  <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-    <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-      <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+  <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+    <div className="flex flex-wrap items-center justify-center w-full card-title ">
+      <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
         {t('Remove Repo')}
       </h3>
-      <hr className=" bg-primary border-b my-3 w-full" />
+      <hr className="w-full my-3 border-b bg-primary" />
     </div>
     <div className="card-body">
-      <form className=" py-3 px-8">
-        <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-          <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+      <form className="px-8 py-3 ">
+        <div className="flex flex-wrap items-center justify-center w-full card-title ">
+          <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
 
               Are you sure you want to delete this repository,
 
           </h3>
         </div>
 
-        <div className="w-full flex justify-between">
+        <div className="flex justify-between w-full">
           <Button
             data-testid="removeModel2"
             variant="info"
@@ -745,23 +769,23 @@ export default function ProfileTabs({ data: profileData }: any) {
           repoModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               Add New Repository
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
-              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                 Fill in the repository name
                 </h3>
               </div>
 
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     value={repo}
                     onChange={(e) => {
@@ -769,13 +793,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                     }}
                     type="email"
                     name="email"
-                    className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
                     placeholder="enter repository name"
                   />
                 </div>
               </div>
 
-              <div className="w-full flex justify-between">
+              <div className="flex justify-between w-full">
                 <Button
                   data-testid="removeInviteModel"
                   variant="info"
@@ -816,23 +840,23 @@ export default function ProfileTabs({ data: profileData }: any) {
           orgModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               Add Edit Organisation
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
-              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                 Fill in the organisation name
                 </h3>
               </div>
 
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     value={org}
                     onChange={(e) => {
@@ -840,13 +864,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                     }}
                     type="email"
                     name="email"
-                    className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
                     placeholder="enter organisation name"
                   />
                 </div>
               </div>
 
-              <div className="w-full flex justify-between">
+              <div className="flex justify-between w-full">
                 <Button
                   data-testid="removeInviteModel"
                   variant="info"

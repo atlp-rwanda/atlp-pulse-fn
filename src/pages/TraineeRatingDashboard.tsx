@@ -214,7 +214,7 @@ function TraineeRatingDashboard() {
   ];
   const resetForm = () => {
     setRatingData(initialRatingData);
-    setSelectedSprint(sprint[0])
+    setSelectedSprint(sprint[0]);
   };
 
   /* istanbul ignore next */
@@ -237,7 +237,7 @@ function TraineeRatingDashboard() {
     onCompleted: () => {
       handleToggle();
       closeCancel();
-      resetForm()
+      resetForm();
       toast.success('Successfully done');
     },
   });

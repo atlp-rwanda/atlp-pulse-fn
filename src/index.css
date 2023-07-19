@@ -55,13 +55,12 @@ text-align: justify;
   font-style: normal;
   font-weight: 900;
   line-height: 100%; /* 35px */
-  
 }
-.card-image{
-justify-content: space-between;
-align-items: center;
-align-content: space-between;
-align-self: stretch;
+.card-image {
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+  align-self: stretch;
 }
 .card-text {
   color: var(--neutral-neutral-900, #424242);
@@ -72,11 +71,11 @@ font-weight: 400;
 line-height: 150%;
 text-align: justify;
 }
-.font{
+.font {
   font-family: Poppins;
 }
 .text-img {
-  color: var(--base-light, #FFF);
+  color: var(--base-light, #fff);
   font-family: Poppins;
   font-style: normal;
   font-weight: 400;
@@ -111,14 +110,13 @@ text-align: justify;
   max-height: 120px;
 } */
 
-
 /* input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 } */
 @layer components {
   .btn {
-    @apply font-bold py-2 px-4 m-2 rounded-md;
+    @apply px-4 py-2 m-2 font-bold rounded-md;
   }
   .sm {
     @apply px-2;
@@ -139,60 +137,60 @@ input[type='number']::-webkit-outer-spin-button {
   /*button colors: primary, info, success, danger, dark */
 
   .primary {
-    @apply bg-primary text-white font-semibold;
+    @apply font-semibold text-white bg-primary;
   }
   .primary:hover {
-    @apply bg-primary text-white font-semibold;
+    @apply font-semibold text-white bg-primary;
   }
 
   .transparentbtn {
-    @apply bg-transparent text-primary dark:text-dark-text-fill border border-primary dark:border-dark-text-fill;
+    @apply bg-transparent border text-primary dark:text-dark-text-fill border-primary dark:border-dark-text-fill;
   }
 
   .success {
-    @apply bg-green-500 text-white;
+    @apply text-white bg-green-500;
   }
   .success:hover {
-    @apply bg-green-600 text-white;
+    @apply text-white bg-green-600;
   }
 
   .info {
-    @apply bg-violet-400 text-white;
+    @apply text-white bg-violet-400;
   }
   .info:hover {
-    @apply bg-violet-500 text-white;
+    @apply text-white bg-violet-500;
   }
   .danger {
-    @apply bg-red-500 text-white;
+    @apply text-white bg-red-500;
   }
   .danger:hover {
-    @apply bg-red-600 text-white;
+    @apply text-white bg-red-600;
   }
 
   .dark {
-    @apply bg-white  text-white;
+    @apply text-white bg-white;
   }
   .dark:hover {
-    @apply bg-white text-white;
+    @apply text-white bg-white;
   }
   .thead {
-    @apply p-6 border-b-2 border-gray-400 bg-indigo-200 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider;
+    @apply p-6 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-indigo-200 border-b-2 border-gray-400 dark:bg-dark-tertiary dark:text-white;
   }
   .data-cell {
-    @apply px-5 py-5 border-b border-gray-400 bg-indigo-100 dark:bg-dark-bg text-sm;
+    @apply px-5 py-5 text-sm bg-indigo-100 border-b border-gray-400 dark:bg-dark-bg;
   }
   .my-react-select-container {
     width: 100%;
   }
   .my-react-select-container .my-react-select__control {
-    @apply border border-primary dark:border-primary pl-2 bg-white dark:bg-dark-bg dark:text-white rounded outline-none font-sans text-xs w-full;
+    @apply w-full pl-2 font-sans text-xs bg-white border rounded outline-none border-primary dark:border-primary dark:bg-dark-bg dark:text-white;
   }
   .my-react-select-container .my-react-select__control--is-focused {
     @apply shadow-none dark:bg-dark-bg;
   }
 
   .my-react-select-container .my-react-select__menu {
-    @apply bg-neutral-100  dark:bg-dark-bg border-2 border-neutral-300 dark:border-primary;
+    @apply border-2 bg-neutral-100 dark:bg-dark-bg border-neutral-300 dark:border-primary;
   }
 
   .my-react-select-container .my-react-select__option {

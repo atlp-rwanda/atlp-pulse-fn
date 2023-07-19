@@ -14,9 +14,10 @@ interface TableData {
   columns: any;
   title: string;
   loading?: boolean;
+  className?: string;
 }
 
-function DataTable({ data, columns, title, loading }: TableData) {
+function DataTable({ data, columns, title, loading, className }: TableData) {
   // const sortedData = React.useMemo(() => [...data], []);
   const sortedColumns = React.useMemo(() => [...columns], [columns]);
   const sortedData = data;
@@ -62,7 +63,7 @@ function DataTable({ data, columns, title, loading }: TableData) {
           <input
             defaultValue={globalFilter || ''}
             placeholder="Filter"
-            className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
+            className="px-5 py-2 mt-4 font-sans text-xs border rounded outline-none border-primary dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
             /* istanbul ignore next */
             onChange={(e) => setGlobalFilter(e.target.value)}
           />

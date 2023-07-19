@@ -34,8 +34,7 @@ export default function DeleteProgramModal({
       /* istanbul ignore next */
       refetch();
       removeModel();
-      toast.success(t("Program deleted")  as TFunction);
-
+      toast.success(t('Program deleted') as TFunction);
     },
   });
   const orgToken = localStorage.getItem('orgToken');

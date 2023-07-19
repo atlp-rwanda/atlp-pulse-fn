@@ -15,7 +15,10 @@
     "src/components",
     "custom.d.ts",
     "src/context/ThemeContextWrapper.tsx",
-    "src/pages/tests/TraineeRatingDashboard.test.tsx"
-, "src/pages/LandingPage.tsx", "src/pages/About.tsx", "src/tests/about.test.tsx"  ],
+    "src/pages/tests/TraineeRatingDashboard.test.tsx",
+    "src/pages/LandingPage.tsx",
+    "src/pages/About.tsx",
+    "src/tests/about.test.tsx"
+  ],
   "exclude": ["node_modules"]
 }

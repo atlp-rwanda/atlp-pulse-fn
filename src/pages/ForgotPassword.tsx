@@ -41,7 +41,9 @@ export default function ForgotPassword() {
     onCompleted: (data) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.success(t('You have Successfully reset your password!') as TFunction);
+        toast.success(
+          t('You have Successfully reset your password!') as TFunction,
+        );
         navigate('/login/org');
       }, 2000);
     },

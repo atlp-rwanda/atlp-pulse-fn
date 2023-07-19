@@ -80,7 +80,7 @@ function Testmoniol() {
   
     return (
       <>
-      <div className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative ">
+      <div className="relative flex-col block gap-10 my-20 md:hidden lg:mx-10 md:mx-20 ">
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
@@ -88,23 +88,23 @@ function Testmoniol() {
               currentIndex === index ? 'visible' : 'hidden'
             }`}
           >
-            <div className="flex flex-col sm:flex-row  mb-4 items-center">
+            <div className="flex flex-col items-center mb-4 sm:flex-row">
               <img className="md:w-1/4 sm:w-1/3" src={testimonial.image} alt="" />
   
               <ul>
-                <li className="text-xs mt-4 ml-3 text-neutral-600">{testimonial.name}</li>
-                <li className="text-xs mt-2 ml-3">{testimonial.role}</li>
+                <li className="mt-4 ml-3 text-xs text-neutral-600">{testimonial.name}</li>
+                <li className="mt-2 ml-3 text-xs">{testimonial.role}</li>
               </ul>
             </div>
             <p className="card-text text-neutral-900">{testimonial.content}</p>
           </div>
         ))}
        
-       <span className="absolute top-1/2 left-3 transform -translate-y-1/2  text-neutral-600 rounded-full bg-slate-50 p-1 drop-shadow-2xl opacity-50 ">
+       <span className="absolute p-1 transform -translate-y-1/2 rounded-full opacity-50 top-1/2 left-3 text-neutral-600 bg-slate-50 drop-shadow-2xl ">
         <AiOutlineLeft size={20} onClick={prevTestimonial} className="cursor-pointer" />
       </span>
 
-      <span className="absolute top-1/2 right-3 transform -translate-y-1/2 text-neutral-600 rounded-full bg-slate-50 p-1 drop-shadow-2xl opacity-50 ">
+      <span className="absolute p-1 transform -translate-y-1/2 rounded-full opacity-50 top-1/2 right-3 text-neutral-600 bg-slate-50 drop-shadow-2xl ">
   <AiOutlineRight size={20} onClick={nextTestimonial} className="cursor-pointer" />
 </span>
        
@@ -113,16 +113,16 @@ function Testmoniol() {
        
       </div>
 
-      <div className="hidden md:flex md:flex-row flex-col lg:mx-10 md:mx-20 my-20 gap-10 ">
+      <div className="flex-col hidden gap-10 my-20 md:flex md:flex-row lg:mx-10 md:mx-20 ">
         
         {testimonials.map((testimonial, index) => (
-            <div key={testimonial.id} className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl">
-            <div className="flex flex-col sm:flex-row  mb-4 items-center">
+            <div key={testimonial.id} className="p-8 bg-indigo-100 dark:bg-dark-bg lg:w-1/3 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl">
+            <div className="flex flex-col items-center mb-4 sm:flex-row">
               <img className="md:w-1/4 sm:w-1/3" src={testimonial.image} alt="" />
   
               <ul>
-                <li className="text-xs mt-4 ml-3 text-neutral-600">{testimonial.name}</li>
-                <li className="text-xs mt-2 ml-3">{testimonial.role}</li>
+                <li className="mt-4 ml-3 text-xs text-neutral-600">{testimonial.name}</li>
+                <li className="mt-2 ml-3 text-xs">{testimonial.role}</li>
               </ul>
             </div>
             <p className="card-text text-neutral-900">{testimonial.content}</p>
@@ -135,19 +135,19 @@ function Testmoniol() {
 
 function About({ styles }: any) {
     return (
-        <div className=" bg-white dark:bg-dark-bg  mt-auto">
-            <div className=' justify-between w-full h-full'>
+        <div className="mt-auto bg-white  dark:bg-dark-bg">
+            <div className='justify-between w-full h-full '>
                 <div>
-                    <h1 className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic">What you can do with us</h1>
+                    <h1 className="pt-10 pb-4 mb-5 italic text-center text-neutral-700 font lg:text-4xl md:text-2xl">What you can do with us</h1>
                 </div>
-                <div className="card-image lg:mx-10 sm:mx-5 md:flex flex">
+                <div className="flex card-image lg:mx-10 sm:mx-5 md:flex">
                     <div className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3">
                     
                         <h2 className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start">
                             Performance Management/Analytics
                         </h2>
                         <div>
-                    <div className="xl:hidden md:hidden mb-0 mt-4">
+                    <div className="mt-4 mb-0 xl:hidden md:hidden">
                         <img src={Frame} alt="frame" />
                     </div>
                         <p className='text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 ' >
@@ -164,7 +164,7 @@ function About({ styles }: any) {
                     </div>
 
                 </div>
-                <div className="flex card-image lg:mx-10 sm:mx-5 md:flex mt-10">
+                <div className="flex mt-10 card-image lg:mx-10 sm:mx-5 md:flex">
                     <div className="sm:hidden md:flex xl:flex lg:flex">
                         <img src={second} alt="second" />
                     </div>
@@ -190,13 +190,13 @@ function About({ styles }: any) {
                     </div>
                     
                 </div>
-                <div className="card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex flex">
+                <div className="flex card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex">
                 <div className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3">
                          <h2 className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center">
                             Continuous & Tight Feedback Loop
                         </h2>
                         <div>
-                        <div className="xl:hidden md:hidden mb-0 mt-4">
+                        <div className="mt-4 mb-0 xl:hidden md:hidden">
                         <img src={third} alt="thirdimage" />
                     </div>
                         <p className='text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 ' >
@@ -220,7 +220,7 @@ function About({ styles }: any) {
                          <h2 className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center">
                              Goal Tracking and Progress Monitoring
                          </h2>
-                         <div className="xl:hidden md:hidden mb-0 mt-4">
+                         <div className="mt-4 mb-0 xl:hidden md:hidden">
                          <img src={fourth} alt="fourthimage" />
                      </div>
                      <p className='text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 ' >
@@ -236,9 +236,9 @@ function About({ styles }: any) {
                      </div>
                  </div>
                 <div>
-                    <h1 className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl pt-8 italic">
+                    <h1 className="pt-8 italic text-center font text-neutral-700 lg:text-4xl sm:text-2xl">
                         Excellent human resources and companies</h1>
-                    <h1 className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl"> Come shape the future together </h1>
+                    <h1 className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl"> Come shape the future together </h1>
                 </div>
                 <Testmoniol/>
                 
