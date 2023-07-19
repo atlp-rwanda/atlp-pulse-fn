@@ -1011,7 +1011,7 @@ Array [
                       Trainees list
                     </h2>
                     <input
-                      className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
+                      className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
                       defaultValue=""
                       onChange={[Function]}
                       placeholder="Filter"
