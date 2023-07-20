@@ -21,6 +21,8 @@ RUN npm run build
 # Fetching the latest nginx image
 FROM nginx
 
+COPY beta_.conf /etc/nginx/conf.d/default.conf
+
 # Copying built assets from builder
 COPY --from=builder /app/build /usr/share/nginx/html
 
