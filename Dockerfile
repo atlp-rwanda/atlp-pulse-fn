@@ -6,6 +6,8 @@ WORKDIR /app
 
 # Add the backend application in environment variables
 ENV BACKEND_URL=https://beta-backend.devpulse.org
+
+ENV WS_BACKEND_URL=wss://beta-backend.devpulse.org
 # copy package.json to the working directory for packages installation
 COPY package*.json ./
 
