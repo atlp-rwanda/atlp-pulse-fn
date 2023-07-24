@@ -82,12 +82,12 @@ export default function CreatePhaseModal({
         createPhaseModel === true ? 'block' : 'hidden'
       }`}
     >
-      <div className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
+      <div className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
         <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
           <h3 className="font-bold text-sm dark:text-white text-center w-11/12 uppercase">
             {t('Add Phase')}
           </h3>
-          <hr className=" bg-primary border-b my-3 w-full" />
+          <hr className=" bg-primary border-gray-400 my-3 w-full" />
         </div>
         <div className="card-body">
           <form className=" py-3 px-8">
@@ -95,7 +95,7 @@ export default function CreatePhaseModal({
               <div className="grouped-input flex items-center h-full w-full rounded-md">
                 <input
                   type="text"
-                  className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
+                  className="border border-primary rounded outline-none px-5 dark:bg-dark-bg-frame dark:text-white font-sans text-xs py-2 w-full"
                   placeholder={t('name')}
                   {...register('name', {
                     required: `${t('The Phase name is required')}`,
@@ -113,7 +113,7 @@ export default function CreatePhaseModal({
               <div className="grouped-input flex items-center h-full w-full rounded-md">
                 <input
                   type="text"
-                  className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                  className="border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
                   placeholder={t('Description')}
                   {...register('description', {
                     required: `${t('The Description is required')}`,

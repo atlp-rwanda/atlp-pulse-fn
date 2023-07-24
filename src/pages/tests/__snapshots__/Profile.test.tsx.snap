@@ -24,7 +24,7 @@ Object {
               role="button"
             >
               <label
-                class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1"
+                class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1"
               >
                 <svg
                   aria-hidden="true"
@@ -64,7 +64,7 @@ Object {
             class="flex w-full h-screen items-center justify-center bg-grey-lighter  ml-auto  mt-24"
           >
             <label
-              class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-2"
+              class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2"
             >
               <svg
                 aria-hidden="true"
@@ -127,7 +127,7 @@ Object {
           </div>
         </div>
         <div
-          class=" lg:px-4 border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg"
+          class=" lg:px-4 border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg"
         >
           <div
             class="px-4"
@@ -414,7 +414,7 @@ Object {
             role="button"
           >
             <label
-              class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1"
+              class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1"
             >
               <svg
                 aria-hidden="true"
@@ -454,7 +454,7 @@ Object {
           class="flex w-full h-screen items-center justify-center bg-grey-lighter  ml-auto  mt-24"
         >
           <label
-            class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-2"
+            class="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2"
           >
             <svg
               aria-hidden="true"
@@ -517,7 +517,7 @@ Object {
         </div>
       </div>
       <div
-        class=" lg:px-4 border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg"
+        class=" lg:px-4 border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg"
       >
         <div
           class="px-4"
@@ -909,7 +909,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
             className="grid md:grid-cols-5 gap-4 md:gap-6 "
           >
             <div
-              className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+              className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
             >
               <h3
                 className="text-2xl font-bold m-2  mb-4"
@@ -991,7 +991,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               </div>
             </div>
             <div
-              className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+              className="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
             >
               <h2
                 className="text-xl font-bold m-2  mb-4"
@@ -1029,7 +1029,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               </div>
             </div>
             <div
-              className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+              className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
             >
               <h3
                 className="text-2xl font-bold m-2  mb-4"
@@ -1070,7 +1070,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               </div>
             </div>
             <div
-              className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+              className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
             >
               <h3
                 className="text-2xl font-bold m-2  mb-4"
@@ -1280,7 +1280,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               </div>
             </div>
             <div
-              className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+              className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
             >
               <h3
                 className="text-2xl font-bold m-2  mb-4"
@@ -1321,7 +1321,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               </div>
             </div>
             <div
-              className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+              className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
             >
               <h3
                 className="text-2xl font-bold m-2  mb-4"
@@ -1372,7 +1372,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
             className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
           >
             <div
-              className="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
+              className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
             >
               <div
                 className="px-4"
@@ -1460,7 +1460,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                     </div>
                   </div>
                   <button
-                    className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                    className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
                     data-testid="change_password"
                     disabled={false}
                     onClick={[Function]}

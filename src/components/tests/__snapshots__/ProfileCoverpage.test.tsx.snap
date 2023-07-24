@@ -21,7 +21,7 @@ exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
       role="button"
     >
       <label
-        className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1"
+        className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1"
       >
         <svg
           aria-hidden="true"
@@ -62,7 +62,7 @@ exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
     className="flex w-full h-screen items-center justify-center bg-grey-lighter  ml-auto  mt-24"
   >
     <label
-      className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-2"
+      className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2"
     >
       <svg
         aria-hidden="true"

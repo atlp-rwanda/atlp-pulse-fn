@@ -333,7 +333,7 @@ const Organizations = () => {
             height="30"
            
             cursor="pointer"
-            color="#148fb6"
+            color="#9e85f5"
             /* istanbul ignore next */
             onClick={() => {
               setData({
@@ -349,7 +349,7 @@ const Organizations = () => {
             width="30"
             height="30"
             cursor="pointer"
-            color="#148fb6"
+            color="#9e85f5"
             /* istanbul ignore next */
             onClick={() => {
               setData({

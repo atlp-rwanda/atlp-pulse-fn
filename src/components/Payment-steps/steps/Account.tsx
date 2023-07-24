@@ -133,7 +133,7 @@ const Account = () => {
               <div className="flex flex-col">
                 <Icon
                   icon="bi:credit-card-fill"
-                  color="#148fb6"
+                  color="#9e85f5"
                   width="59"
                   height="53"
                   data-testid="iconx"
@@ -160,7 +160,7 @@ const Account = () => {
                 <div className="flex flex-col  selection:bg-white">
                   <Icon
                     icon="la:cc-apple-pay"
-                    color="#148fb6"
+                    color="#9e85f5"
                     width="59"
                     height="53"
                   />
@@ -186,7 +186,7 @@ const Account = () => {
               <div className="flex flex-col">
                 <Icon
                   icon="fa:cc-paypal"
-                  color="#148fb6"
+                  color="#9e85f5"
                   width="59"
                   height="53"
                 />

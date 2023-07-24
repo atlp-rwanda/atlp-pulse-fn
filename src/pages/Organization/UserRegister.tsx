@@ -108,7 +108,7 @@ function Signup() {
     option: (provided: any, state: any) => ({
       ...provided,
       borderBottom: '1px dotted pink',
-      color: state.isSelected ? 'red' : '#148FB6',
+      color: state.isSelected ? 'red' : '#9e85f5',
     }),
     valueLabel: (styles: any) => ({
       ...styles,

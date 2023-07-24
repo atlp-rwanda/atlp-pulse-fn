@@ -152,7 +152,7 @@ function TraineeRatingDashboard() {
           <div className="cursor-pointer">
             <Icon
               icon="bx:edit-alt"
-              color="#148fb6"
+              color="#9e85f5"
               onClick={() => {
                 setShowActions(!showActions);
                 setRows({
@@ -185,7 +185,7 @@ function TraineeRatingDashboard() {
               icon="ant-design:comment-outlined"
               width="25"
               height="25"
-              color="#148fb6"
+              color="#9e85f5"
               onClick={() => {
                 setShowRemarks(!showRemarks);
                 setRows({

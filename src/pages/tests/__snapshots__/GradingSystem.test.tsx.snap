@@ -6,7 +6,7 @@ Array [
     className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
     >
       <div
         className="card-title w-full flex  flex-wrap justify-center items-center  "
@@ -17,7 +17,7 @@ Array [
           DeleteGRADINGSYSTEM
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className=" bg-primary border-gray-400 my-3 w-full"
         />
       </div>
       <div
@@ -64,7 +64,7 @@ Array [
     className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
     >
       <div
         className="card-title w-full flex  flex-wrap justify-center items-center  "
@@ -75,7 +75,7 @@ Array [
           MakeDefaultTitle
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className=" bg-primary border-gray-400 my-3 w-full"
         />
       </div>
       <div
@@ -487,7 +487,7 @@ Array [
                 className="px-3 m d:px-8 w-screen overflow-x-auto"
               >
                 <div
-                  className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
+                  className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
                 >
                   <div
                     className="flex items-center justify-between pb-6 "
@@ -499,7 +499,7 @@ Array [
                         Gradings List
                       </h2>
                       <input
-                        className="px-5 py-2 mt-4 font-sans text-xs border border-gray-300 rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
+                        className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
                         defaultValue=""
                         onChange={[Function]}
                         placeholder="Filter"
@@ -668,7 +668,7 @@ Array [
                                       onChange={[Function]}
                                       style={
                                         Object {
-                                          "border": "solid 0.1rem #4aa5be",
+                                          "border": "solid 0.1rem #9e85f5",
                                           "height": "30px",
                                           "paddingLeft": "1.2rem",
                                           "width": "50px",
@@ -683,7 +683,7 @@ Array [
                                     onChange={[Function]}
                                     style={
                                       Object {
-                                        "border": "solid 0.1rem #4aa5be",
+                                        "border": "solid 0.1rem #9e85f5",
                                         "height": "30px",
                                       }
                                     }

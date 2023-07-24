@@ -25,7 +25,7 @@
   "students": "abanyeshuri",
   "in any": "mu",
   "ed-tech organization": " bigo byigisha ibijyanye n'ikoranabuhanga",
-  "Get Started": "Tangira",
+  "Join Us": "Tangira",
   "Sign in to your Organization": "Injira muri kompanyi ubarizwamo",
   "Enter your organization’s Dev-Pulse URL": "Andika URL ya kompanyi ubarizwamo",
   "your-organization.devpulse.co": "kompanyi-ubarizwamo.devpulse.co",
@@ -409,5 +409,6 @@
   "Reviewing and Editing Ratings": "Kugenzura no guhindura amanota",
   "Best Practices for Effective Rating": "Imikorere myiza mu gusuzuma abahugurwa",
   "Troubleshooting and FAQs": "Gukosora ibitagenze neza n'ibibazo bikunda kwibazwa",
-  "Export": "Reba Amakuru"
+  "Export": "Reba Amakuru",
+  "Basic Settings":"Igenamiterere shingiro"
 }

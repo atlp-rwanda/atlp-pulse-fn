@@ -5,7 +5,7 @@ exports[`Organization Login Should render 1`] = `
   className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans"
 >
   <div
-    className="max-w-lg w-full mx-auto my-28 bg-white dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
+    className="max-w-lg w-full mx-auto my-28 bg-indigo-100 dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
   >
     <div
       className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill "
@@ -38,7 +38,7 @@ exports[`Organization Login Should render 1`] = `
       />
       <div>
         <button
-          className="btn primary lg w-full ml-0 hover:bg-cyan-700 text-sm"
+          className="btn primary lg w-full ml-0 hover:bg-violet-600 text-sm"
           data-testid="loginForm"
           disabled={false}
           type="submit"

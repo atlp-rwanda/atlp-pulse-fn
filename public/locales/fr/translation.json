@@ -27,7 +27,7 @@
   "students": "des étudiants",
   "in any": "dans toute",
   "ed-tech organization": " organisation d'éducation et de technologie",
-  "Get Started": "Commencez",
+  "Join Us": "Rejoignez-nous",
   "Sign in to your Organization": "Connectez-vous à votre organisation",
   "Enter your organization’s Dev-Pulse URL": "Entrez l'URL Dev-Pulse de votre organisation",
   "your-organization.devpulse.co": "votre-organisation.devpulse.co",
@@ -425,5 +425,6 @@
   "Reviewing and Editing Ratings": "Revoir et modifier les évaluations",
   "Best Practices for Effective Rating": "Meilleures pratiques pour une évaluation efficace",
   "Troubleshooting and FAQs": "Dépannage et FAQ",
-  "Export": "Exporter des données"
+  "Export": "Exporter des données",
+  "Basic Settings":"Paramètres de base"
 }

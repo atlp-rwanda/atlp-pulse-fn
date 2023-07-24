@@ -38,7 +38,7 @@ const AdminSission = () => {
     {
       Header: 'Action',
       accessor: '',
-      Cell: () => <Icon icon="entypo:dots-three-vertical" color="#148fb6" />,
+      Cell: () => <Icon icon="entypo:dots-three-vertical" color="#9e85f5" />,
     },
   ];
 
@@ -55,7 +55,7 @@ const AdminSission = () => {
             <h3 className="font-bold text-sm text-gray-700 text-center w-11/12 uppercase">
               {t('AddSession')}
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className=" bg-primary border-gray-400 my-3 w-full" />
           </div>
           <div className="card-body">
             <form className=" py-3 px-8">

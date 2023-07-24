@@ -5,8 +5,10 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import Home from '../assets/Home.png'
 
 import Button from '../components/Buttons';
+import About from './About';
 
 function LandingPage() {
   /* istanbul ignore next */
@@ -14,39 +16,23 @@ function LandingPage() {
   const { user } = useContext(UserContext);
   useDocumentTitle('Welcome');
   return (
-    <div className="hero">
+    <div className="">                 
       <Header styles="bg-opacity-50 dark:bg-opacity-50" />
-
-      <div className="hero w-full min-h-full flex flex-col justify-center grow items-center py-20">
-        <div className="grid h-full lg:grid-cols-2 w-full justify-around content-center pb-6">
-          <div className="flex h-full flex-col items-center justify-start  w-full px-4 py-2">
-            <h1 className="mt-28 sm:mt-20 text-3xl sm:text-4xl md:pl-10 md:text-6xl font-bold text-white dark:text-dark-text-fill font-lexend text-center md:text-left">
-              {t('Welcome to DevPulse')}
-            </h1>
-            <p className="text-2xl md:text-4xl lg:text-3xl mt-8 md:mt-8 lg:mt-8 w-full sm:w-3/4 md:w-4/5 lg:w-full md:px-0 lg:px-8 text-white dark:text-dark-text-fill font-sans text-center">
-              {t('The number one platform for')}
-              <em>
-                <b> {t('managing trainees')} </b>
-              </em>
-              {t('or')}
-              <em>
-                <b> {t('students')} </b>
-              </em>
-              {t('in any')}
-              <em>
-                <b> {t('ed-tech organization')} </b>
-              </em>
-            </p>
-            {!user?.auth ? (
-            <div className="w-full text-center justify-center items-center mt-8">
+      <div className="relative">
+        <img src={Home} alt=""/>
+        <p className='text-img absolute bottom-1/3 left-44 right-0 px-4 py-2'>
+         The brilliant performance management <br/> platform around the word.</p>
+         <div className='absolute items-center justify-start w-full text-2xl md:text-2xl lg:text-1xl md:mt-8 lg:mt-8 text-white top-2/3 right-96'>
+         {!user?.auth ? (
+            <div className=" w-full font absolute text-center justify-center items-center">
             <Link to="/signup/org">
               <Button
                 variant="primary"
                 size="lg"
-                style="mt-12 lg:mt-0 px-8 text-xl font-bold uppercase my-4"
+                style="lg:mt-0 px-8 rounded-2xl my-4"
               >
                 {' '}
-                  {t('Get Started')}{' '}
+                  {t('Join Us')}{' '}
               </Button>
               </Link>
             </div>
@@ -54,9 +40,10 @@ function LandingPage() {
               ' '
             )}
           </div>
-        </div>
       </div>
-      <Footer styles="dark:bg-opacity-75 bg-opacity-100" />
+      <About />
+      <Footer styles="dark:bg-opacity-75 bg-opacity-100 " />
+     
     </div>
   );
 }

@@ -73,7 +73,7 @@ Object {
                   class="grid md:grid-cols-5 gap-4 md:gap-6 "
                 >
                   <div
-                    class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+                    class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
                   >
                     <h3
                       class="text-2xl font-bold m-2  mb-4"
@@ -150,7 +150,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+                    class="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
                   >
                     <h2
                       class="text-xl font-bold m-2  mb-4"
@@ -188,7 +188,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                    class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
                   >
                     <h3
                       class="text-2xl font-bold m-2  mb-4"
@@ -229,7 +229,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                    class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
                   >
                     <h3
                       class="text-2xl font-bold m-2  mb-4"
@@ -418,7 +418,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                    class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
                   >
                     <h3
                       class="text-2xl font-bold m-2  mb-4"
@@ -459,7 +459,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                    class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
                   >
                     <h3
                       class="text-2xl font-bold m-2  mb-4"
@@ -510,7 +510,7 @@ Object {
                   class="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
                 >
                   <div
-                    class="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
+                    class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
                   >
                     <div
                       class="px-4"
@@ -591,7 +591,7 @@ Object {
                           </div>
                         </div>
                         <button
-                          class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                          class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
                           data-testid="change_password"
                           type="button"
                         >
@@ -871,7 +871,7 @@ Object {
                 class="grid md:grid-cols-5 gap-4 md:gap-6 "
               >
                 <div
-                  class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+                  class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
                 >
                   <h3
                     class="text-2xl font-bold m-2  mb-4"
@@ -948,7 +948,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+                  class="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
                 >
                   <h2
                     class="text-xl font-bold m-2  mb-4"
@@ -986,7 +986,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
                 >
                   <h3
                     class="text-2xl font-bold m-2  mb-4"
@@ -1027,7 +1027,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
                 >
                   <h3
                     class="text-2xl font-bold m-2  mb-4"
@@ -1216,7 +1216,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
                 >
                   <h3
                     class="text-2xl font-bold m-2  mb-4"
@@ -1257,7 +1257,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+                  class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
                 >
                   <h3
                     class="text-2xl font-bold m-2  mb-4"
@@ -1308,7 +1308,7 @@ Object {
                 class="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
               >
                 <div
-                  class="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
+                  class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
                 >
                   <div
                     class="px-4"
@@ -1389,7 +1389,7 @@ Object {
                         </div>
                       </div>
                       <button
-                        class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                        class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
                         data-testid="change_password"
                         type="button"
                       >
