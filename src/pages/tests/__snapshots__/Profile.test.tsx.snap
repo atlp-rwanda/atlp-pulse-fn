@@ -281,6 +281,30 @@ Object {
                 </div>
               </div>
               <div
+                class="flex flex-col justify-start items-start"
+              >
+                <label
+                  class="font-semibold mb-2"
+                  for="github-username"
+                >
+                  Github Username
+                </label>
+                <input
+                  class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                  id="github-username"
+                  name="githubUsername"
+                  placeholder="Your Github Username"
+                  type="text"
+                />
+                <div
+                  class=""
+                >
+                  <small
+                    class="text-red-600"
+                  />
+                </div>
+              </div>
+              <div
                 class="flex flex-col justify-start items-start mt-auto"
               >
                 <label
@@ -637,6 +661,30 @@ Object {
                 name="phoneNumber"
                 placeholder="Your Telephone Number"
                 type="phone"
+              />
+              <div
+                class=""
+              >
+                <small
+                  class="text-red-600"
+                />
+              </div>
+            </div>
+            <div
+              class="flex flex-col justify-start items-start"
+            >
+              <label
+                class="font-semibold mb-2"
+                for="github-username"
+              >
+                Github Username
+              </label>
+              <input
+                class="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                id="github-username"
+                name="githubUsername"
+                placeholder="Your Github Username"
+                type="text"
               />
               <div
                 class=""

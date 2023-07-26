@@ -649,7 +649,7 @@ const AdminTraineeDashboard = () => {
                   </p>
                 </div>
                 <div
-                  className="text-sm font-sans"
+                  className={"text-sm font-sans"}
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -673,7 +673,7 @@ const AdminTraineeDashboard = () => {
           </div>
                   </p>
                 ):(
-                  <div className='flex '>
+                  <div className={traineeDetails?.profile && traineeDetails?.profile.githubUsername ?"flex":'hidden '}>
                   <div className='flex flex-col'>
             
                     <i className='text-2xl '>
@@ -686,7 +686,14 @@ const AdminTraineeDashboard = () => {
                 </div>
                 <div className='flex flex-col'>
                 <div>
-                <GitHubActivityChart data={gitHubStatistics} />
+           {     traineeDetails?.profile && traineeDetails?.profile.githubUsername ?(
+  <GitHubActivityChart data={gitHubStatistics} />
+           ):
+           (
+<></>
+           )
+}
+              
     </div>
                 </div>
                 </div>

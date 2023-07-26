@@ -36,6 +36,7 @@ const UPDATE_PROFILE = gql`
     $biography: String
     $fileName: String
     $cover: String
+    $githubUsername: String
   ) {
     updateProfile(
       lastName: $lastName
@@ -47,6 +48,7 @@ const UPDATE_PROFILE = gql`
       biography: $biography
       fileName: $fileName
       cover: $cover
+      githubUsername: $githubUsername
     ) {
       id
       lastName

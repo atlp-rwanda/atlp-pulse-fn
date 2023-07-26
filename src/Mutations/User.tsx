@@ -13,6 +13,7 @@ export const GET_PROFILE = gql`
       cover
       name
       biography
+      githubUsername
     }
   }
 `;

@@ -358,6 +358,9 @@ export const GET_ALL_TRAINEES = gql`
           startDate
           phase {
             name
+            activeRepos
+            gitHubOrganisation
+            description
           }
           name
           program {
