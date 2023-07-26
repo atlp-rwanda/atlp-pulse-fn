@@ -177,8 +177,8 @@
   "program": "Programme",
   "cancel": "Annuler",
   "save": "Enregistrer",
-  "Available gradings":"Disponible classement",
-  "make default":"faire défaut",
+  "Available gradings": "Disponible classement",
+  "make default": "faire défaut",
   "register": "Enregistrez",
   "Developers Info": "Informations pour les développeurs",
   "role": "Rôle",
@@ -396,9 +396,9 @@
   "You have Successfully reset your password!": "Vous avez réinitialisé votre mot de passe avec succès!",
   "Reset your password": "Réinitialisez votre mot de passe",
   "Enter your email address": "Entrez votre adresse email",
-  "Phase deleted successfully":"Phase supprimée avec succès",
+  "Phase deleted successfully": "Phase supprimée avec succès",
   "Cohort deleted successfully": "Cohorte supprimée avec succès",
-  "Cohort Created successful":"Cohorte créée avec succès",
+  "Cohort Created successful": "Cohorte créée avec succès",
   "Phase Created successful": "Phase Création réussie",
   "Team successfully added": "Équipe ajoutée avec succès",
   "Program deleted": "Programme supprimé",
@@ -414,6 +414,6 @@
   "Submitting Ratings": "Soumettre des évaluations",
   "Reviewing and Editing Ratings": "Revoir et modifier les évaluations",
   "Best Practices for Effective Rating": "Meilleures pratiques pour une évaluation efficace",
-  "Troubleshooting and FAQs": "Dépannage et FAQ"
+  "Troubleshooting and FAQs": "Dépannage et FAQ",
+  "Export": "Exporter des données"
 }
-
