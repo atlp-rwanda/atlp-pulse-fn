@@ -37,7 +37,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5"
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -94,7 +94,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5"
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -103,7 +103,7 @@ Array [
               No
             </button>
             <button
-              className="btn success sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600"
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -117,38 +117,35 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center p-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 xl:w-5/12 rounded-lg p-4 pb-8 overflow-auto max-h-full"
+      className=" bg-indigo-100 dark:bg-neutral-900 w-full md:w-3/4 xl:w-5/12 rounded-lg p-0 sm:p-4 pb-8 overflow-auto max-h-full"
     >
       <div
         className="card-title w-full flex flex-wrap justify-center items-center "
       >
         <h3
-          className="font-bold text-sm dark:text-white text-center w-11/12 "
+          className="font-bold text-base dark:text-white text-center w-11/12 "
         >
           Add Grading System
         </h3>
-        <hr
-          className="bg-primary border-b my-3 w-full"
-        />
       </div>
       <div
         className="card-body"
       >
         <form
-          className="py-3 px-8"
+          className="py-3 px-4 md:px-8"
           onSubmit={[Function]}
         >
           <div
-            className="input my-3 h-9 "
+            className="input my-4 "
           >
             <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+              className="grouped-input flex items-center w-full rounded-md"
             >
               <input
-                className="dark:bg-dark-tertiary border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                className="border bg-light-bg dark:bg-neutral-700 bg-opacity-95 border-indigo-200 dark:border-neutral-700 rounded focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 dark:ring-0 outline-none px-5 font-sans text-sm py-2 w-full"
                 defaultValue=""
                 name="name"
                 onChange={[Function]}
@@ -205,27 +202,27 @@ Array [
             </label>
           </div>
           <div
-            className="my-3"
+            className="my-4"
           >
             <div
               className="box"
             >
               <div>
                 <div
-                  className="flex flex-col gap-2 p-3 bg-gray-100 dark:bg-gray-700 rounded-md"
+                  className="flex flex-col gap-2 p-3 bg-gray-700 bg-opacity-5 dark:bg-neutral-700 dark:bg-opacity-25 rounded-md"
                 >
                   <div
-                    className="flex flex-col gap-3 "
+                    className="flex flex-col gap-4 "
                   >
                     <input
-                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                      className="rounded-md appearance-none relative block w-full px-4 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
                       defaultValue=""
                       onChange={[Function]}
                       placeholder="Grade"
                       required={true}
                     />
                     <div
-                      className="flex justify-between gap-2 items-center flex-wrap"
+                      className="flex justify-between gap-3 items-center flex-wrap undefined"
                     >
                       <p
                         className="text-center"
@@ -246,14 +243,14 @@ Array [
                         }
                       >
                         <input
-                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
                           onChange={[Function]}
                           placeholder="Minimum"
                           required={true}
                           type="number"
                         />
                         <input
-                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
                           onChange={[Function]}
                           placeholder="Maximum"
                           required={true}
@@ -262,7 +259,7 @@ Array [
                       </div>
                     </div>
                     <textarea
-                      className="w-full h-auto rounded-md appearance-none relative block px-3 py-2 border border-primary dark:bg-gray-800 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                      className="w-full h-auto rounded-md appearance-none relative block px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
                       data-testid="input-element"
                       defaultValue=""
                       onChange={[Function]}
@@ -270,6 +267,7 @@ Array [
                       required={false}
                       style={
                         Object {
+                          "maxHeight": "auto",
                           "minHeight": "4pc",
                           "resize": "vertical",
                         }
@@ -281,36 +279,41 @@ Array [
             </div>
           </div>
           <div
-            className="flex justify-end"
+            className="flex justify-between flex-wrap"
           >
-            <button
-              className="bg-blue-400 text-white sm m-0 px-3 py-0.5 rounded-md"
-              onClick={[Function]}
-              type="button"
+            <div
+              className="flex justify-start"
             >
-              Add Grade
-            </button>
-          </div>
-          <div
-            className="w-full flex justify-between"
-          >
-            <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-3"
-              data-testid="removeModel"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
+              <button
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Add Grade
+              </button>
+            </div>
+            <div
+              className="flex justify-end gap-2 flex-1"
             >
-              Cancel
-            </button>
-            <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-3"
-              data-testid="saveGrade"
-              disabled={false}
-              type="submit"
-            >
-              Save
-            </button>
+              <button
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5"
+                data-testid="removeModel"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600"
+                data-testid="saveGrade"
+                disabled={false}
+                type="submit"
+              >
+                Save
+              </button>
+            </div>
           </div>
         </form>
       </div>
@@ -323,7 +326,7 @@ Array [
       className="flex flex-row"
     >
       <div
-        className="hidden lg:flex overflow-auto flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2"
+        className="hidden lg:flex flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2 z-10 "
       >
         <div
           className="pr-8 list-none"
@@ -515,13 +518,13 @@ Array [
             className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden"
           >
             <div
-              className="flex items-left px-7 lg:px-64 pt-24"
+              className="flex items-left lg:ml-60  px-3 md:px-8 pt-24"
             >
               <div
-                className="flex px-5 py-2 pb-8 w-fit"
+                className="flex flex-wrap gap-2 py-2 pb-8 max-w-full"
               >
                 <select
-                  className="flex bg-primary rounded-md py-2 px-1 text-white font-medium cursor-pointer"
+                  className="flex bg-primary rounded-md py-2 px-1 text-white font-medium cursor-pointer max-w-full"
                   onChange={[Function]}
                   value=""
                 >
@@ -532,7 +535,7 @@ Array [
                   </option>
                 </select>
                 <button
-                  className="btn primary lg undefined"
+                  className="btn primary lg m-0"
                   data-testid="gradeBtn"
                   disabled={false}
                   onClick={[Function]}
@@ -548,7 +551,7 @@ Array [
               className="px-3 md:px-8"
             >
               <div
-                className="px-3 m d:px-8 w-screen overflow-x-auto"
+                className="w-screen max-w-full"
               >
                 <div
                   className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"

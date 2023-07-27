@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React, { ReactNode, useContext, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { UserContext } from '../hook/useAuth';

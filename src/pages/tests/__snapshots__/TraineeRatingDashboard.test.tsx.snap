@@ -8,7 +8,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
     className="flex flex-row"
   >
     <div
-      className="hidden lg:flex overflow-auto flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2"
+      className="hidden lg:flex flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2 z-10 "
     >
       <div
         className="pr-8 list-none"
@@ -193,14 +193,14 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
       </div>
     </div>
     <div
-      className="w-full"
+      className="w-[100%]"
     >
       <div>
         <div
           className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden"
         >
           <div
-            className="flex flex-col w-3/5 mx-auto md:flex-row relative  justify-between px-2 md:px-5 lg:px-10 pt-24 pb-8 mt-4"
+            className="flex flex-col w-[80%] mx-auto  md:flex-row relative  justify-around  px-10 md:px-5 lg:px-10 pt-24 pb-8 mt-4"
           >
             <div
               className="flex flex-col md:ml-a w-40"
@@ -280,6 +280,16 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                     fillRule="evenodd"
                   />
                 </svg>
+              </button>
+            </div>
+            <div
+              className="py=0 px=0 mt-10  "
+            >
+              <button
+                className="bg-primary hover:bg-primary text-white  font-semibold hover:text-white py-2 px-2  border border-primary hover:border-transparent rounded  "
+                onClick={[Function]}
+              >
+                Export
               </button>
             </div>
           </div>

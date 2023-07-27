@@ -22,15 +22,28 @@ exports[`Organization Login Should render 1`] = `
       className="space-y-6 mt-4"
       onSubmit={[Function]}
     >
-      <div>
+      <div
+        className="orgName"
+      >
         <input
-          className="w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
+          className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-dark-bg"
           data-testid="orgName"
           name="name"
           onBlur={[Function]}
           onChange={[Function]}
-          placeholder="your-organization.devpulse.co"
+          placeholder="Your-organization"
+          style={
+            Object {
+              "width": "150px",
+            }
+          }
           type="text"
+          value=""
+        />
+        <input
+          className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
+          disabled={true}
+          placeholder=".devpulse.org"
         />
       </div>
       <div
