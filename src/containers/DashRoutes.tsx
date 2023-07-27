@@ -1,11 +1,10 @@
 /* eslint-disable */
 /* istanbul ignore file */
 
-import React,{Suspense, useState} from 'react';
-import {Routes, Route} from 'react-router-dom'
+import React, { Suspense, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';
-
 
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const Settings = React.lazy(() => import('../pages/Settings'));
@@ -56,12 +55,16 @@ const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
 const Organizations = React.lazy(() => import('../components/Organizations'));
-const Docs = React.lazy(()=>import('../pages/Docs'));
-const AdminDocs = React.lazy(()=>import('../components/Docs/AdminDocs'));
-const CoordinatorDocs = React.lazy(()=>import('../components/Docs/CoordinatorDocs'));
-const TraineeDocs = React.lazy(()=>import('../components/Docs/TraineeDocs'))
+const Docs = React.lazy(() => import('../pages/Docs'));
+const AdminDocs = React.lazy(() => import('../components/Docs/AdminDocs'));
+const CoordinatorDocs = React.lazy(
+  () => import('../components/Docs/CoordinatorDocs'),
+);
+const TraineeDocs = React.lazy(() => import('../components/Docs/TraineeDocs'));
 const HelpPage = React.lazy(() => import('../pages/HelpPage'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
+const Ticket = React.lazy(() => import('../pages/Ticket'));
+const AllTickets = React.lazy(() => import('../pages/AllTickets'));
 import Skeleton from '../components/Skeleton';
 import Square from '../Skeletons/Square';
 
@@ -106,11 +109,14 @@ function DashRoutes() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
             <Route path="/coordinators" element={<CoordinatorsPage />} />
-            <Route path="/adminDocs" element={<AdminDocs/>} />
-            <Route path="/coordinatorDocs" element={<CoordinatorDocs/>} />
-            <Route path="/traineeDocs" element={<TraineeDocs/>} />
+            <Route path="/adminDocs" element={<AdminDocs />} />
+            <Route path="/coordinatorDocs" element={<CoordinatorDocs />} />
+            <Route path="/traineeDocs" element={<TraineeDocs />} />
             <Route path="/support" element={<HelpPage />} />
-            <Route path="/tickets" element={<Tickets />} />
+            <Route path="/tickets" element={<Tickets />}>
+              <Route index element={<AllTickets />} />
+              <Route path=":ticketId" element={<Ticket />} />
+            </Route>
           </Routes>
         </Suspense>
       </div>

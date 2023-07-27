@@ -21,9 +21,9 @@
 
 @keyframes skeleton-loading {
   0% {
-    background-color: hsla(201, 11%, 65%, 0.76);
+    background-color: #f3f0f0;
   }
   100% {
-    background-color: hsl(0, 0%, 83%);
+    background-color: #dad8d8;
   }
 }
