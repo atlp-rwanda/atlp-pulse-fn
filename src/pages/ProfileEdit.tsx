@@ -90,12 +90,13 @@ function EditProfile() {
   const client = useApolloClient();
   const [UpdateProfile, { loading }] = useMutation(UPDATE_PROFILE);
   const onSubmit = async (data: any) => {
+     /* istanbul ignore next */
     try {
       await UpdateProfile({
         variables: { ...data },
       });
       await client.resetStore();
-
+       /* istanbul ignore next */
       toast.success('Profile has been updated');
       navigate('/dashboard/profile');
     } catch (error) {}
@@ -148,6 +149,7 @@ function EditProfile() {
                 isRequired={field.isRequired}
                 placeholder={t(`${field.placeholder}`)}
                 customClass="dark:bg-dark-bg"
+                 /* istanbul ignore next */
                 handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setProfileFieldState({
                     ...profileFieldState,

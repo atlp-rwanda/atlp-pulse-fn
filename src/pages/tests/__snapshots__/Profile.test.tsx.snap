@@ -837,7 +837,7 @@ Object {
 }
 `;
 
-exports[`Profile Page Renders the profile tabs 1`] = `
+exports[`Profile Page Renders the others role profile tabs 1`] = `
 <div
   className="flex flex-wrap lg:ml-60 lg:mr-8"
 >
@@ -876,20 +876,6 @@ exports[`Profile Page Renders the profile tabs 1`] = `
           Organizations
         </a>
       </li>
-      <li
-        className="-mb-px mr-2 last:mr-0 flex-auto text-center"
-      >
-        <a
-          className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
-          data-testid="tab-link"
-          data-toggle="tab"
-          href="#link1"
-          onClick={[Function]}
-          role="tablist"
-        >
-          Account
-        </a>
-      </li>
     </ul>
   </div>
   <div
@@ -909,14 +895,14 @@ exports[`Profile Page Renders the profile tabs 1`] = `
             className="grid md:grid-cols-5 gap-4 md:gap-6 "
           >
             <div
-              className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
+              className="px-4 py-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
             >
-              <h3
-                className="text-2xl font-bold m-2  mb-4"
+              <h2
+                className="text-xl font-bold my-2"
               >
                 Fabrice
                  
-              </h3>
+              </h2>
               <div
                 className="py-4 flex  justify-center"
               >
@@ -934,6 +920,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                     d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
                   />
                 </svg>
+                unavailable
               </div>
               <div
                 className="flex"
@@ -949,6 +936,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                     d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
                   />
                 </svg>
+                unavailable
               </div>
               <div
                 className="py-4 flex "
@@ -964,7 +952,6 @@ exports[`Profile Page Renders the profile tabs 1`] = `
                     d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
                   />
                 </svg>
-                ,
               </div>
               <div
                 className="py-4 flex "
@@ -991,125 +978,18 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               </div>
             </div>
             <div
-              className="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
+              className="px-4 py-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
             >
               <h2
-                className="text-xl font-bold m-2  mb-4"
+                className="text-xl font-bold my-2"
               >
-                Biography
                 Biography
               </h2>
-              <p>
-                Add biography
+              <p
+                className="pt-4"
+              >
+                No biography
               </p>
-            </div>
-          </div>
-          <div
-            className="grid m-1 p-2 -ml-2 -mr-2 relative"
-          >
-            <div
-              className="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
-            >
-              <img
-                alt="logo"
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
-                src={Object {}}
-              />
-              <div
-                className="flex flex-col justify-start items-start ml-36"
-              >
-                <h2
-                  className="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
-                />
-                <h3
-                  className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
-                >
-                  https://andela.pulse.com/
-                </h3>
-              </div>
-            </div>
-            <div
-              className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-            >
-              <h3
-                className="text-2xl font-bold m-2  mb-4"
-              >
-                You in the organization
-              </h3>
-              <div
-                className="py-4 flex  justify-center"
-              >
-                <h4
-                  className="font-bold text-base mr-4"
-                >
-                  Joined
-                  :
-                </h4>
-                Unavailabe
-              </div>
-              <div
-                className="flex"
-              >
-                <h4
-                  className="font-bold text-base mr-4"
-                >
-                  Role
-                  :
-                </h4>
-              </div>
-              <div
-                className="py-4 flex "
-              >
-                <h4
-                  className="font-bold text-base mr-4"
-                >
-                  Team
-                  :
-                </h4>
-                Unavailabe
-              </div>
-            </div>
-            <div
-              className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-            >
-              <h3
-                className="text-2xl font-bold m-2  mb-4"
-              >
-                Management
-              </h3>
-              <div
-                className="py-4 flex  justify-center"
-              >
-                <h4
-                  className="font-bold text-base mr-4"
-                >
-                  program
-                  :
-                </h4>
-                Unavailabe
-              </div>
-              <div
-                className="flex"
-              >
-                <h4
-                  className="font-bold text-base mr-4"
-                >
-                  Stage(current)
-                  :
-                  Unavailabe
-                </h4>
-              </div>
-              <div
-                className="py-4 flex "
-              >
-                <h4
-                  className="font-bold text-base mr-4"
-                >
-                  Manager
-                  :
-                </h4>
-                Unavailabe
-              </div>
             </div>
           </div>
           <div
@@ -1254,7 +1134,7 @@ exports[`Profile Page Renders the profile tabs 1`] = `
           id="link3"
         >
           <div
-            className="grid m-1 p-2 -ml-2 -mr-2 relative"
+            className="m-1 p-2 -ml-2 -mr-2 relative"
           >
             <div
               className="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
@@ -1280,86 +1160,682 @@ exports[`Profile Page Renders the profile tabs 1`] = `
               </div>
             </div>
             <div
-              className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
+              className="flex flex-row"
             >
-              <h3
-                className="text-2xl font-bold m-2  mb-4"
+              <div
+                className="grow p-4 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
               >
-                You in the organization
-              </h3>
+                <h3
+                  className="text-2xl font-bold mb-4"
+                >
+                  You in the organization
+                </h3>
+                <div
+                  className="pb-2 flex"
+                >
+                  <h4
+                    className="font-bold text-base mr-4"
+                  >
+                    Role
+                    :
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="hidden"
+          id="link2"
+        >
+          <div
+            className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
+          >
+            <div
+              className="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
+            >
+              <div
+                className="px-4"
+              >
+                <form
+                  className="mt-12 grid grid-cols-1 gap-4"
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="flex flex-col justify-start items-start"
+                  >
+                    <label
+                      className="font-semibold mb-2"
+                      htmlFor="current-password"
+                    >
+                      Current Password
+                    </label>
+                    <input
+                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                      id="current-password"
+                      name="current-password"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      placeholder="Enter your current password"
+                      type="passsword"
+                    />
+                    <div
+                      className=""
+                    >
+                      <small
+                        className="text-red-600"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-col justify-start items-start"
+                  >
+                    <label
+                      className="font-semibold mb-2"
+                      htmlFor="new-password"
+                    >
+                      New Password
+                    </label>
+                    <input
+                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                      id="new-password"
+                      name="new-password"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      placeholder="Enter new password"
+                      type="password"
+                    />
+                    <div
+                      className=""
+                    >
+                      <small
+                        className="text-red-600"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-col justify-start items-start"
+                  >
+                    <label
+                      className="font-semibold mb-2"
+                      htmlFor="confirm-password"
+                    >
+                      Confirm Password
+                    </label>
+                    <input
+                      className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  dark:bg-dark-bg"
+                      id="confirm-password"
+                      name="confirm-password"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      placeholder="Re-enter the new password"
+                      type="password"
+                    />
+                    <div
+                      className=""
+                    >
+                      <small
+                        className="text-red-600"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                    data-testid="change_password"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Change Password
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+  <div
+    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 top-0 left-0 bottom-0 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 "
+        >
+          Remove Repo
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="card-title w-full flex  flex-wrap justify-center items-center  "
+          >
+            <h3
+              className="font-bold text-sm dark:text-white text-center w-11/12 "
+            >
+              Are you sure you want to delete this repository,
+            </h3>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="removeModel2"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="removeMemberFromCohort"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Proceed
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 top-0 left-0 bottom-0 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 "
+        >
+          Add New Repository
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="card-title w-full flex  flex-wrap justify-center items-center  "
+          >
+            <h3
+              className="font-bold text-sm dark:text-white text-center w-11/12 "
+            >
+              Fill in the repository name
+            </h3>
+          </div>
+          <div
+            className="text-white input my-3 h-9 "
+          >
+            <div
+              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="email"
+                onChange={[Function]}
+                placeholder="enter repository name"
+                type="email"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="removeInviteModel"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 top-0 left-0 bottom-0 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 "
+        >
+          Add Edit Organisation
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="card-title w-full flex  flex-wrap justify-center items-center  "
+          >
+            <h3
+              className="font-bold text-sm dark:text-white text-center w-11/12 "
+            >
+              Fill in the organisation name
+            </h3>
+          </div>
+          <div
+            className="text-white input my-3 h-9 "
+          >
+            <div
+              className="text-white grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                name="email"
+                onChange={[Function]}
+                placeholder="enter organisation name"
+                type="email"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="removeInviteModel"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Edit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
+<div
+  className="flex flex-wrap lg:ml-60 lg:mr-8"
+>
+  <div
+    className="lg:w-[40vw]"
+  >
+    <ul
+      className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
+      role="tablist"
+    >
+      <li
+        className="-mb-px mr-2 last:mr-0 flex-auto text-center"
+      >
+        <a
+          className="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal bg-white dark:bg-dark-bg border-b-4 border-b-primary "
+          data-testid="tab-link"
+          data-toggle="tab"
+          href="#link1"
+          onClick={[Function]}
+          role="tablist"
+        >
+          About
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="relative flex flex-col min-w-0 break-words text-light-text dark:text-dark-text-fill  w-full rounded"
+  >
+    <div
+      className="py-2 flex-auto"
+    >
+      <div
+        className="tab-content tab-space"
+      >
+        <div
+          className="block"
+          id="link1"
+        >
+          <div
+            className="grid md:grid-cols-5 gap-4 md:gap-6 "
+          >
+            <div
+              className="px-4 py-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
+            >
+              <h2
+                className="text-xl font-bold my-2"
+              >
+                Fabrice
+                 
+              </h2>
               <div
                 className="py-4 flex  justify-center"
               >
-                <h4
-                  className="font-bold text-base mr-4"
+                <svg
+                  aria-hidden="true"
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Joined
-                  :
-                </h4>
-                Unavailabe
+                  <path
+                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  />
+                  <path
+                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  />
+                </svg>
+                unavailable
               </div>
               <div
                 className="flex"
               >
-                <h4
-                  className="font-bold text-base mr-4"
+                <svg
+                  aria-hidden="true"
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Role
-                  :
-                </h4>
+                  <path
+                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                  />
+                </svg>
+                unavailable
               </div>
               <div
                 className="py-4 flex "
               >
-                <h4
-                  className="font-bold text-base mr-4"
+                <svg
+                  aria-hidden="true"
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Team
-                  :
-                </h4>
-                Unavailabe
+                  <path
+                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                  />
+                </svg>
+              </div>
+              <div
+                className="py-4 flex "
+              >
+                <svg
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  strokeWidth="0"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
+                  }
+                  viewBox="0 0 496 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+                  />
+                </svg>
               </div>
             </div>
             <div
-              className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
+              className="px-4 py-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow"
+            >
+              <h2
+                className="text-xl font-bold my-2"
+              >
+                Biography
+              </h2>
+              <p
+                className="pt-4"
+              >
+                No biography
+              </p>
+            </div>
+          </div>
+          <div
+            className="text-sm font-sans hidden"
+            style={
+              Object {
+                "display": "flex",
+                "gap": "50px",
+                "justifyContent": "space-between",
+                "marginBottom": "20px",
+                "paddingBlock": "10px",
+              }
+            }
+          >
+            <p>
+              <div
+                className="flex justify-center items-center h-48 hidden"
+              >
+                <i>
+                  Loading gitHub statistics...
+                </i>
+                <div
+                  className="flex items-center justify-center  h-5 opacity-90"
+                >
+                  <div
+                    role="status"
+                  >
+                    <svg
+                      className="mr-1 ml-1 inline h-5 w-5 animate-spin fill-gray-300 text-gray-100 dark:text-gray-600"
+                      fill="none"
+                      viewBox="0 0 100 101"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                        fill="currentFill"
+                      />
+                    </svg>
+                    <span
+                      className="sr-only"
+                    >
+                      Loading...
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="spinner"
+                />
+              </div>
+            </p>
+          </div>
+          <div
+            className="grid md:grid-cols-5 gap-4 md:gap-6  hidden"
+          >
+            <div
+              className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow "
             >
               <h3
                 className="text-2xl font-bold m-2  mb-4"
               >
-                Management
+                Github Organisation
               </h3>
               <div
-                className="py-4 flex  justify-center"
+                className="flex items-center gap-10"
               >
-                <h4
-                  className="font-bold text-base mr-4"
+                <div
+                  className="py-4 flex  justify-center"
                 >
-                  Program
-                  :
-                </h4>
-                Unavailabe
+                  <svg
+                    className="w-6 mr-2 dark:text-dark-text-fill"
+                    fill="currentColor"
+                    height="1em"
+                    stroke="currentColor"
+                    strokeWidth="0"
+                    style={
+                      Object {
+                        "color": undefined,
+                      }
+                    }
+                    viewBox="0 0 448 512"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM277.3 415.7c-8.4 1.5-11.5-3.7-11.5-8 0-5.4.2-33 .2-55.3 0-15.6-5.2-25.5-11.3-30.7 37-4.1 76-9.2 76-73.1 0-18.2-6.5-27.3-17.1-39 1.7-4.3 7.4-22-1.7-45-13.9-4.3-45.7 17.9-45.7 17.9-13.2-3.7-27.5-5.6-41.6-5.6-14.1 0-28.4 1.9-41.6 5.6 0 0-31.8-22.2-45.7-17.9-9.1 22.9-3.5 40.6-1.7 45-10.6 11.7-15.6 20.8-15.6 39 0 63.6 37.3 69 74.3 73.1-4.8 4.3-9.1 11.7-10.6 22.3-9.5 4.3-33.8 11.7-48.3-13.9-9.1-15.8-25.5-17.1-25.5-17.1-16.2-.2-1.1 10.2-1.1 10.2 10.8 5 18.4 24.2 18.4 24.2 9.7 29.7 56.1 19.7 56.1 19.7 0 13.9.2 36.5.2 40.6 0 4.3-3 9.5-11.5 8-66-22.1-112.2-84.9-112.2-158.3 0-91.8 70.2-161.5 162-161.5S388 165.6 388 257.4c.1 73.4-44.7 136.3-110.7 158.3zm-98.1-61.1c-1.9.4-3.7-.4-3.9-1.7-.2-1.5 1.1-2.8 3-3.2 1.9-.2 3.7.6 3.9 1.9.3 1.3-1 2.6-3 3zm-9.5-.9c0 1.3-1.5 2.4-3.5 2.4-2.2.2-3.7-.9-3.7-2.4 0-1.3 1.5-2.4 3.5-2.4 1.9-.2 3.7.9 3.7 2.4zm-13.7-1.1c-.4 1.3-2.4 1.9-4.1 1.3-1.9-.4-3.2-1.9-2.8-3.2.4-1.3 2.4-1.9 4.1-1.5 2 .6 3.3 2.1 2.8 3.4zm-12.3-5.4c-.9 1.1-2.8.9-4.3-.6-1.5-1.3-1.9-3.2-.9-4.1.9-1.1 2.8-.9 4.3.6 1.3 1.3 1.8 3.3.9 4.1zm-9.1-9.1c-.9.6-2.6 0-3.7-1.5s-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3 1.1 1.5 1.1 3.3 0 4.1zm-6.5-9.7c-.9.9-2.4.4-3.5-.6-1.1-1.3-1.3-2.8-.4-3.5.9-.9 2.4-.4 3.5.6 1.1 1.3 1.3 2.8.4 3.5zm-6.7-7.4c-.4.9-1.7 1.1-2.8.4-1.3-.6-1.9-1.7-1.5-2.6.4-.6 1.5-.9 2.8-.4 1.3.7 1.9 1.8 1.5 2.6z"
+                    />
+                  </svg>
+                </div>
+                <svg
+                  className="w-6 mr-2 dark:text-dark-text-fill"
+                  fill="currentColor"
+                  height="1em"
+                  onClick={[Function]}
+                  stroke="currentColor"
+                  strokeWidth="0"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
+                  }
+                  viewBox="0 0 576 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"
+                  />
+                </svg>
               </div>
+            </div>
+            <div
+              className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow "
+            >
               <div
-                className="flex"
+                className="flex justify-between"
               >
-                <h4
-                  className="font-bold text-base mr-4"
+                <h2
+                  className="text-xl font-bold m-2  mb-4"
                 >
-                  Stage(current)
-                  :
-                  Unavailabe
-                </h4>
+                  Repository
+                </h2>
+                <button
+                  className="btn default md group relative md:w-1/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+                  data-testid="change_password"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Add New
+                </button>
               </div>
+              <div />
+            </div>
+          </div>
+        </div>
+        <div
+          className="hidden"
+          id="link3"
+        >
+          <div
+            className="m-1 p-2 -ml-2 -mr-2 relative"
+          >
+            <div
+              className="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
+            >
+              <img
+                alt="logo"
+                className="w-12 h-12 md:w-16 md:h-16 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
+                src={Object {}}
+              />
               <div
-                className="py-4 flex "
+                className="flex flex-col justify-start items-start ml-36"
               >
-                <h4
-                  className="font-bold text-base mr-4"
+                <h2
+                  className="font-bold text-dark-text-fill text-center text-lg md:text-xl"
                 >
-                  Manager
-                  :
-                </h4>
-                Unavailabe
+                  Andela
+                </h2>
+                <h3
+                  className="font-bold text-dark-text-fill text-center text-sm md:text-lg "
+                >
+                  https://andela.pusle.com
+                </h3>
+              </div>
+            </div>
+            <div
+              className="flex flex-row"
+            >
+              <div
+                className="grow p-4 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow "
+              >
+                <h3
+                  className="text-2xl font-bold mb-4"
+                >
+                  You in the organization
+                </h3>
+                <div
+                  className="pb-2 flex"
+                >
+                  <h4
+                    className="font-bold text-base mr-4"
+                  >
+                    Role
+                    :
+                  </h4>
+                </div>
               </div>
             </div>
           </div>

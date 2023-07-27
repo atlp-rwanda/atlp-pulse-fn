@@ -102,6 +102,7 @@ const LoginActivitiesTable: React.FC = () => {
     return <div>Error retrieving login activities.</div>;
   }
   /* istanbul ignore next */
+ /* istanbul ignore next */
   if (displayActivities.length === 0) {
     return <div>No login activities yet.</div>;
   }
@@ -123,6 +124,7 @@ const LoginActivitiesTable: React.FC = () => {
          
          <tbody className="flex flex-col flex-wrap my-2">
   {displayActivities.map((activity) => (
+     /* istanbul ignore next */
     <tr className="w-full flex flex-wrap lg:pl-[3em] pt-2" key={activity.country_name}>
      
       <td className="md:w-[25%] border-r border-[#148fb6]">

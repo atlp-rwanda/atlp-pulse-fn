@@ -5,6 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import Register from './../OrgRegister';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import '@testing-library/jest-dom'
 
 const client = new ApolloClient({ cache: new InMemoryCache() });
 

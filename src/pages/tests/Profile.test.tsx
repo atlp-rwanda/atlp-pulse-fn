@@ -4,6 +4,9 @@ import React from 'react';
 import * as ReactRouter from 'react-router';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import '@testing-library/jest-dom';
+
+
 import { ApolloProvider } from '@apollo/client';
 import ProfileTabs from '../../components/ProfileTabs';
 import Profile from '../Profile';
@@ -46,9 +49,29 @@ describe('Profile Page', () => {
     );
     expect(elem).toMatchSnapshot();
   });
-  it('Renders the profile tabs', () => {
+  it('Renders the superAdmin profile tabs', () => {
     const elem = renderer
+      .create(
+        <MemoryRouter>
+          <MockedProvider mocks={[]}>
+            <ProfileTabs data={{
+              name: 'Fabrice',
+              user: {
+                role: "superAdmin",
+                organizations: ["Andela"]
+              }
+            }} />
+          </MockedProvider>
+        </MemoryRouter>
+          
+      )
+      .toJSON();
 
+    expect(elem).toMatchSnapshot();
+  });
+
+  it('Renders the others role profile tabs', () => {
+    const elem = renderer
       .create(
         <MemoryRouter>
           <MockedProvider mocks={[]}>

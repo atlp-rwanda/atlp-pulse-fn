@@ -14,6 +14,36 @@ export const GET_PROFILE = gql`
       name
       biography
       githubUsername
+      user {
+        organizations
+        email
+        role
+        team {
+          name
+          cohort {
+            name
+            phase {
+              name
+            }
+            program {
+              name
+            }
+            startDate
+          }
+        }
+        cohort {
+          name
+          program {
+            name
+          }
+          phase {
+            name
+          }
+        }
+        program {
+          name
+        }
+      }
     }
   }
 `;

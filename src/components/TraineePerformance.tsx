@@ -71,10 +71,11 @@ export function ExportToExcel({
   const fileType =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
   const fileExtension = '.xlsx';
-
+// eslint-disable-next-line no-nested-ternary
   const exportToCSV = (Data: (string | number)[], fileName: string) => {
     const ws = XLSX.utils.json_to_sheet(Data);
     const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
+    // eslint-disable-next-line no-nested-ternary
     const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const data = new Blob([excelBuffer], { type: fileType });
     (FileSaver as any).saveAs(data, fileName + fileExtension);

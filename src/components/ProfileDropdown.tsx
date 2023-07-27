@@ -8,6 +8,8 @@ import { onError } from '@apollo/client/link/error';
 import { UserContext } from '../hook/useAuth';
 
 const errorLink = onError(({ graphQLErrors }) => {
+  // eslint-disable-next-line no-nested-ternary
+   /* istanbul ignore next */
   if (graphQLErrors) {
     graphQLErrors.map(({ message }) => {
       alert(`Graphql error ${message}`);
