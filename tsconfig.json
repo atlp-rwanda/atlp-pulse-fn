@@ -3,7 +3,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "module": "esnext",
-    "types": ["node","jest", "jest-dom", "testing-library__react"],
+    "types": ["node", "jest"],
     "typeRoots": ["node_modules/@types", "node_modules/@testing-library"],
     "moduleResolution": "node",
     "lib": ["dom", "esnext"],
