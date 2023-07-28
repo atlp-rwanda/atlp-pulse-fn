@@ -4,6 +4,7 @@
     "jsx": "react",
     "module": "esnext",
     "types": ["node", "jest"],
+    "typeRoots": ["node_modules/@types", "node_modules/@testing-library"],
     "moduleResolution": "node",
     "lib": ["dom", "esnext"],
     "strict": true,

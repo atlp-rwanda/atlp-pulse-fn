@@ -353,7 +353,7 @@ Array [
       className="flex flex-row"
     >
       <div
-        className="hidden lg:flex flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2"
+        className="hidden lg:flex overflow-auto flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2"
       >
         <div
           className="pr-8 list-none"
@@ -384,6 +384,35 @@ Array [
                 className="text-base "
               >
                 Dashboard
+              </span>
+            </a>
+          </li>
+          <li
+            className="mb-4 hover:text-primary transition-all group-hover:transition-all"
+          >
+            <a
+              className="flex flex-row dark:text-dark-text-fill"
+              href="/dashboard/tickets"
+              onClick={[Function]}
+            >
+              <svg
+                aria-hidden="true"
+                className="w-5 mr-2 "
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                />
+                <path
+                  d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                />
+              </svg>
+              <span
+                className="text-base "
+              >
+                Tickets
               </span>
             </a>
           </li>
