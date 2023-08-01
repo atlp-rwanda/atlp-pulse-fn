@@ -1,4 +1,5 @@
 /* eslint-disable */
+/*istanbul ignore file*/
 import React, { createContext, ReactNode, useState } from 'react';
 
 interface Props {

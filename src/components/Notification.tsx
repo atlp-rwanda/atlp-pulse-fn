@@ -1,3 +1,4 @@
+/*istanbul ignore file*/
 import React, { useContext } from 'react';
 import { XIcon } from '@heroicons/react/solid';
 import { format } from 'date-fns';

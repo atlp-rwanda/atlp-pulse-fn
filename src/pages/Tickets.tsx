@@ -37,8 +37,6 @@ function Tickets() {
       onError: async (error) => {
         toast.error(`${error.message}` as ToastContent<unknown>);
       },
-
-      // TODO Handle Error
     });
   };
 

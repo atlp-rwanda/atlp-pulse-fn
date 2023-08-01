@@ -91,52 +91,67 @@ function Ticket() {
   };
 
   return (
-    <div className="flex flex-col grow items-center bg-light-bg dark:bg-dark-frame-bg">
-      <div className="flex flex-col items-center bg-white dark:bg-dark-bg py-8 px-8 overflow-hidden shadow-xl sm:w-[90%] md:w-[70%] lg:w-[60%] lg:ml-[38vh] mt-20 lg:mr-[2vh] lg:mb-10 rounded">
-        <button
+    <div className="flex flex-col grow items-center justify-center bg-white dark:bg-dark-frame-bg">
+      <div className="flex flex-col items-center bg-[#e0e7ff] dark:bg-dark-bg py-8 px-8 overflow-hidden shadow-xl sm:w-[90%] md:w-[60%] lg:w-[40%] mt-20  lg:mb-10 rounded">
+        
+        {!ticket ? null : (
+          <>
+          
+            <div className=' w-full '>
+
+            <h2 className="text-4xl font-bold dark:text:white mb-3 text-center">
+              {ticket?.subject}
+            </h2>
+  
+
+            </div>
+
+            <div className="w-full">
+              <p className="text-gray-700 break-keep text-base dark:text-white border p-3 border-[gray] rounded-md">
+                {ticket?.message}
+              </p>
+              <div className="flex  flex-col items-start md:flex-row  justify-between md:items-end">
+
+              <div className='mb-0 flex flex-row  '>
+               <h2 className="text-xl text-[black]  py-0.5 rounded dark:text-white font-bold   ">
+               status :
+              </h2>
+
+                      {ticket && ticket.status === 'closed' ? (
+                             <h1 className=' flex items-center font-thin  text-red-700 ' >{t(`${ticket?.status}`)}</h1>
+                           ) : (
+
+                       <h1 className='  dark:text:white   font-thin flex items-center' >{t(`${ticket?.status}`)}</h1>
+
+                      )}
+
+               </div>
+
+
+                <span className="text-gray-500 block text-sm font-medium mt-1 mb-1 md:mt-4 py-0.5 rounded dark:text-white">
+                  {timePassedCalculator(new Date(Number(ticket?.createdAt)))}
+                </span>
+
+
+                <div className='' >
+
+                <button
           onClick={() => navigate(-1)}
           type="button"
-          className="bg-gray-300 self-start dark:bg-black dark:text-white hover:bg-gray-400 font-normal py-1 px-2 rounded"
+          className=" bg-[#E8EFE9] mr-2  dark:bg-black dark:text-white hover:bg-gray-400 font-normal py-1/2 mx-0 my-0 py-0 h-8 px-2 rounded"
         >
           &larr; {t('Go back')}
         </button>
-        {!ticket ? null : (
-          <>
-            <h2 className="text-4xl font-bold dark:text:white mb-3">
-              {ticket?.subject}
-            </h2>
-            <div className="font-bold text-medium text-center text-blue-600 mb-5">
-              {ticket?.user && ticket?.user.firstName}{' '}
-              {ticket?.user && ticket.user.lastName}
-              <span className="block text-sm font-thin text-gray-500 mt-0 dark:text-white">
-                {ticket?.user && ticket?.user.email}
-              </span>
-            </div>
+                
 
-            {ticket && ticket.status === 'closed' ? (
-              <span className="inline-flex items-center rounded-md bg-green-700 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-green-600/20 self-start">
-                {t(`${ticket?.status}`)}
-              </span>
-            ) : (
-              <span className="inline-flex items-center rounded-md bg-primary px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-blue-700/10 self-start">
-                {t(`${ticket?.status}`)}
-              </span>
-            )}
-            <div className="w-full">
-              <p className="text-gray-700 break-keep text-base dark:text-white">
-                {ticket?.message}
-              </p>
-              <div className="flex justify-between items-end">
-                <span className="text-gray-500 block text-sm font-medium mt-4 py-0.5 rounded dark:text-white">
-                  {timePassedCalculator(new Date(Number(ticket?.createdAt)))}
-                </span>
+                
 
                 {user.role !== 'superAdmin' &&
                   ticket &&
                   ticket.status !== 'closed' && (
                     <button
                       type="button"
-                      className="bg-red-700 disabled:bg-red-200 text-white sm py-1/2 mx-0 my-0 py-0 h-7 text-sm rounded"
+                      className="bg-red-700 disabled:bg-red-200 text-white sm py-1/2 mx-0 my-0 py-0 h-8 text-sm  px-2 rounded"
                       disabled={closingTicket}
                       onClick={handleResolveTicket}
                     >
@@ -145,18 +160,32 @@ function Ticket() {
                         : `${t('Resolve')}`}
                     </button>
                   )}
+                </div>
+
+
               </div>
             </div>
           </>
         )}
 
-        <hr className="w-48 h-1 mx-auto my-1/2 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
+        <hr className="w-full h-0.5 mx-auto my-1/2 bg-[gray] border-0 rounded md:my-4 dark:bg-gray-700" />
 
-        <div className="flex flex-col w-full gap-4 mt-4">
+        <div className="flex flex-col w-full gap-8 mt-3 mb-3">
           {replies?.map((reply: any) => (
-            <div key={reply.id}>
+            <div key={reply.id} className={
+              user.userId !== reply.sender.id
+                ? 'self-end'
+                : ''
+            }>
               <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2">
+                <div   className={
+                  `flex items-center gap-2 ${
+                    user.userId !== reply.sender.id
+                    ? 'self-end'
+                    : ''
+                  }`
+                  
+                  }>
                   <div className="reply__user-photo">
                     <img
                       className="w-8 cursor-pointer h-8 rounded-full"
@@ -164,7 +193,7 @@ function Ticket() {
                       alt="avatar"
                     />
                   </div>
-                  <div className="text-gray-500 mb-1/2 font-medium dark:text-white">
+                  <div className=" mb-1/2 font-medium dark:text-white">
                     {((reply.sender?.profile === null ||
                       reply.sender.id === user.userId) &&
                       'Me') ||
@@ -178,20 +207,20 @@ function Ticket() {
                 <div
                   className={
                     user.userId !== reply.sender.id
-                      ? 'bg-gray-100  rounded p-3'
-                      : 'bg-primary text-white rounded p-3'
+                      ? 'bg-[#EDEDED] rounded p-3 w-full'
+                      : 'bg-[#E8EFE9]  rounded p-3 w-fit'
                   }
                 >
                   <p
                     className={
-                      user.userId !== reply.sender.id ? 'text-gray-500' : ''
+                      user.userId !== reply.sender.id ? 'dark:text-gray-500' : 'dark:text-gray-500'
                     }
                   >
                     {reply.replyMessage}
                   </p>
                 </div>
 
-                <span className="text-gray-500 block text-sm font-medium -mt-2 rounded dark:text-white text-center">
+                <span className="text-gray-500 block text-xs  font-medium -mt-2 rounded dark:text-white text-left">
                   {timePassedCalculator(new Date(+reply.createdAt))}
                 </span>
               </div>
@@ -218,7 +247,7 @@ function Ticket() {
                   width: '100%',
                   padding: '12px 20px',
                   borderRadius: '4px',
-                  border: '1px solid #ccc',
+                  border: '1px solid #8667F2',
                   fontSize: '16px',
                   resize: 'none',
                 }}
@@ -237,7 +266,7 @@ function Ticket() {
                 variant="primary"
                 data-testid="loginForm"
                 size="lg"
-                style="btn primary sm ml-0 hover:bg-cyan-700 text-sm"
+                style="btn w-[100%]  text-white bg-[#8667F2] hover:bg-[#c7b9f9] sm ml-0  text-sm"
               >
                 {t('Send')}
               </Button>
