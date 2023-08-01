@@ -21,7 +21,13 @@ const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
 /* istanbul ignore next */
 const Pricing = React.lazy(() => import('../pages/Pricing'));
 /* istanbul ignore next */
+const About = React.lazy(() => import('../pages/Comingsoon'));
+/* istanbul ignore next */
 const Product = React.lazy(() => import('../pages/Comingsoon'));
+/* istanbul ignore next */
+const SignupOrgDocs = React.lazy(()=>import('../components/Docs/SignupOrgDocs'))
+/* istanbul ignore next */
+const SigninOrgDocs = React.lazy(()=>import('../components/Docs/SigninOrgDocs'))
 /* istanbul ignore next */
 const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
@@ -72,14 +78,13 @@ function MainRoutes() {
                 </ProtectedRoutes>
               }
             />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route
-              path="/product"
-              element={<Product title={'Productpage'} />}
-            />
-            <Route path="/noredirect" element={<Noredirect />} />
-            <Route path="/pricing-form" element={<Pay />} />
-            <Route path="/about" element={<Comingsoon title="About" />} />
+           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/about" element={<About title={'About Page'} />} />
+          <Route path="/product" element={<Product title={'Productpage'} />} />
+          <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
+          <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
+          <Route path="/noredirect" element={<Noredirect />} />
+          <Route path="/pricing-form" element={<Pay />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

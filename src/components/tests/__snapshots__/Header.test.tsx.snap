@@ -86,6 +86,17 @@ exports[`Header Tests Should render the header with home 1`] = `
             Product
           </a>
         </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/homePageDocs"
+            onClick={[Function]}
+          >
+            Docs
+          </a>
+        </li>
       </ul>
     </div>
     <div
@@ -217,6 +228,16 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         Product
+      </a>
+    </li>
+    <li
+      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    >
+      <a
+        href="/homePageDocs"
+        onClick={[Function]}
+      >
+        Docs
       </a>
     </li>
     <li
@@ -334,6 +355,17 @@ exports[`Header Tests Should render the header with no active 1`] = `
             Product
           </a>
         </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/homePageDocs"
+            onClick={[Function]}
+          >
+            Docs
+          </a>
+        </li>
       </ul>
     </div>
     <div
@@ -468,6 +500,16 @@ exports[`Header Tests Should render the header with no active 1`] = `
       </a>
     </li>
     <li
+      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    >
+      <a
+        href="/homePageDocs"
+        onClick={[Function]}
+      >
+        Docs
+      </a>
+    </li>
+    <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
@@ -570,6 +612,10 @@ exports[`Header Tests Should render the header with no active 2`] = `
             onClick={[Function]}
           >
             Product
+            href="/homePageDocs"
+            onClick={[Function]}
+          >
+            Docs
           </a>
         </li>
       </ul>
@@ -693,6 +739,16 @@ exports[`Header Tests Should render the header with no active 2`] = `
       </a>
     </li>
     <li
+      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    >
+      <a
+        href="/homePageDocs"
+        onClick={[Function]}
+      >
+        Docs
+      </a>
+    </li>
+    <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
       <a
@@ -800,6 +856,17 @@ exports[`Header Tests Should render the header with no active 3`] = `
             onClick={[Function]}
           >
             Product
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/homePageDocs"
+            onClick={[Function]}
+          >
+            Docs
           </a>
         </li>
       </ul>
@@ -933,6 +1000,16 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         Product
+      </a>
+    </li>
+    <li
+      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    >
+      <a
+        href="/homePageDocs"
+        onClick={[Function]}
+      >
+        Docs
       </a>
     </li>
     <li
@@ -1051,6 +1128,17 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
             Product
           </a>
         </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/homePageDocs"
+            onClick={[Function]}
+          >
+            Docs
+          </a>
+        </li>
       </ul>
     </div>
     <div
@@ -1182,6 +1270,16 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         Product
+      </a>
+    </li>
+    <li
+      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    >
+      <a
+        href="/homePageDocs"
+        onClick={[Function]}
+      >
+        Docs
       </a>
     </li>
     <li
@@ -1300,6 +1398,17 @@ exports[`Header Tests Should render the header with product active 1`] = `
             Product
           </a>
         </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/homePageDocs"
+            onClick={[Function]}
+          >
+            Docs
+          </a>
+        </li>
       </ul>
     </div>
     <div
@@ -1431,6 +1540,16 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         Product
+      </a>
+    </li>
+    <li
+      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    >
+      <a
+        href="/homePageDocs"
+        onClick={[Function]}
+      >
+        Docs
       </a>
     </li>
     <li

@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink , useLocation} from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { UserContext } from '../hook/useAuth';
 import Button from './Buttons';
@@ -15,7 +15,9 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   /* istanbul ignore next */
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
-
+  const location = useLocation()
+  const pathname = location.pathname.split("/")[1]
+  
   const goTo = orgToken ? '/users/login' : '/login/org';
 
   return (
@@ -44,6 +46,17 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 {t('Home')}
               </NavLink>
             </li>
+            <li className="px-5 text-xl dark:text-dark-text-fill">
+              <NavLink
+                className={(navData) => {
+                  if (navData.isActive) return 'text-primary';
+                  return '';
+                }}
+                to="/about"
+              >
+                {t('About')}
+              </NavLink>
+            </li>
             {!user?.auth ? (
               <li className="px-5 text-xl dark:text-dark-text-fill">
                 <NavLink
@@ -61,18 +74,18 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             )}
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
-                className={(navData) => {
-                  if (navData.isActive) return 'text-primary';
+                className={() => {
+                  if (pathname==="docs") return 'text-primary';
                   return '';
                 }}
-                to="/product"
+                to="/docs/org-signin"
               >
-                {t('Product')}
+                {t('Docs')}
               </NavLink>
             </li>
           </ul>
         </div>
-        <div className="hidden lg:flex lg:w-full justify-end ">
+        <div className="hidden lg:flex w-2/3 justify-end ">
           <ToggleThemeButton />
           <Link to={user?.auth ? '/dashboard' : goTo}>
             <Button variant="primary" size="lg">
@@ -134,6 +147,9 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             {t('Product')}
           </Link>
         </li>
+        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
+          <Link to="/docs/org-signin">{t('Docs')}</Link>
+        </li>
 
         <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
           <Link to={user?.auth ? '/dashboard' : goTo} className="w-full">
@@ -151,7 +167,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             {t('Logout')}
           </Button>
         ) : (
-          <Link to="/signup/org">
+          <Link to="/signupOrg">
             <Button variant="transparentbtn" size="lg" style="mr-8">
               {' '}
               {t('Register an organization')}{' '}
