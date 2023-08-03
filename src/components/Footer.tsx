@@ -9,7 +9,7 @@ import {
   FaPlayCircle,
 } from 'react-icons/fa';
 import i18next from 'i18next';
-import LogoFooter from '../assets/logoWhite.svg';
+import LogoFooter from '../assets/logo.svg';
 import getLanguage from '../utils/getLanguage';
 
 function Footer({ styles }: any) {
@@ -29,21 +29,21 @@ function Footer({ styles }: any) {
   }, []);
   return (
     <div
-      className={`w-full bg-primary dark:bg-dark-bg text-gray-300 mt-auto ${styles}`}
+      className={`w-full bg-indigo-100 dark:bg-dark-bg ${styles}`}
     >
       <div className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full">
         <div className="flex flex-col lg:flex-row items-center py-5">
           <div className="flex flex-col mr-12 lg:mr-0">
-            <div className="flex mb-2">
+            <div className="flex mb-2 ml-10">
               <img className="mr-2 lg:mr-0" src={LogoFooter} alt="logo" />
               <h1
-                className="text-3xl font-bold text-white dark:text-dark-text-fill"
+                className="text-3xl font-bold text-dark dark:text-dark-text-fill"
                 data-testid="pulse"
               >
                 PULSE
               </h1>
             </div>
-            <div className="flex border-none justify-around items-center ml-6 mt-4 cursor-pointer">
+            <div className="flex border-none justify-around items-center ml-16 mt-4 cursor-pointer">
               <FaFacebook className=" fa-xs " />
               <FaInstagram className=" " />
               <FaTwitter className="mr-1 " />
@@ -71,6 +71,7 @@ function Footer({ styles }: any) {
                 <li className="py-2 text-xs">{t('Help Center')}</li>
               </ul>
               <ul className="lg:flex lg:flex-col ml-[8vh] md:ml-[16vh] lg:ml-28 cursor-pointer">
+              <li className="py-2 text-sm font-bold">{t('Basic Settings')}</li>
                 <li className="py-2 text-xs">{t('Terms and conditions')}</li>
                 <li className="py-2 text-xs">{t('Privacy and Policies')}</li>
                 <select
@@ -81,7 +82,7 @@ function Footer({ styles }: any) {
                   onChange={(e) => {
                     changeLan(e);
                   }}
-                  className="bg-dark-bg mt-2 outline rounded-md px-2 py-1 text-white dark:text-dark-text-fill dark:bg-dark-bg "
+                  className="mt-2 outline rounded-md px-2 py-1 dark:text-dark-text-fill dark:bg-dark-bg "
                 >
                   <option value="en">English</option>
                   <option value="kn">Kinyarwanda</option>
@@ -91,7 +92,7 @@ function Footer({ styles }: any) {
             </div>
           </div>
         </div>
-        <div className=" lg:flex">
+        <div className=" lg:flex mr-10">
           <span className="px-4 lg:py-3 cursor-pointer text-lg">
             © {new Date().getFullYear()} Pulse Technologies
           </span>

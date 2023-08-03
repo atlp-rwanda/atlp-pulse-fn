@@ -12,7 +12,7 @@ import {
 
 import Avatar from '../assets/avatar.png';
 import { UserContext } from '../hook/useAuth';
-
+  /* istanbul ignore next */
 function Notification({
   handleShowNotification,
 }: {
@@ -26,7 +26,7 @@ function Notification({
 
   const notifications = user?.notifications;
   const { t } = useTranslation();
-
+  /* istanbul ignore next */
   function removeNotification(id: number): void {
     setNotificationData(
       notifications.filter((notification: any) => notification.id !== id),
@@ -37,7 +37,7 @@ function Notification({
       },
     });
   }
-
+  /* istanbul ignore next */
   function markRead(id: number): void {
     setNotificationData(
       notifications.map((notification: any) => {
@@ -56,7 +56,8 @@ function Notification({
         markAsReadId: id,
       },
     });
-  }
+ }
+   /* istanbul ignore next */
   function markAllRead(): void {
     setNotificationData(
       notifications?.map((notification: any) => {

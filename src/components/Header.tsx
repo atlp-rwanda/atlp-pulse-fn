@@ -48,7 +48,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               />
             )}
 
-            <h1 className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill">
+            <h1 className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill">
               PULSE
             </h1>
           </Link>
@@ -71,15 +71,15 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                   if (navData.isActive) return 'text-primary';
                   return '';
                 }}
-                to="/pricing"
+                to="/about"
               >
-                {t('Pricing')}
+                {t('About')}
               </NavLink>
             </li>
             ) : (
              ' '
             )}
-            <li className="px-5 text-xl dark:text-dark-text-fill">
+            {/* <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
                 className={(navData) => {
                   if (navData.isActive) return 'text-primary';
@@ -89,7 +89,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               >
                 {t('Product')}
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="hidden lg:flex lg:w-full justify-end ">

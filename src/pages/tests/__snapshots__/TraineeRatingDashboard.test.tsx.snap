@@ -294,7 +294,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                   className="px-3 md:px-8 mt-10"
                 >
                   <div
-                    className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
+                    className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
                   >
                     <div
                       className="flex items-center justify-between pb-6 "
@@ -306,7 +306,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                           Performance Ratings
                         </h2>
                         <input
-                          className="px-5 py-2 mt-4 font-sans text-xs border border-gray-300 rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
+                          className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
                           defaultValue=""
                           onChange={[Function]}
                           placeholder="Filter"
@@ -563,7 +563,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                                         onChange={[Function]}
                                         style={
                                           Object {
-                                            "border": "solid 0.1rem #4aa5be",
+                                            "border": "solid 0.1rem #9e85f5",
                                             "height": "30px",
                                             "paddingLeft": "1.2rem",
                                             "width": "50px",
@@ -578,7 +578,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                                       onChange={[Function]}
                                       style={
                                         Object {
-                                          "border": "solid 0.1rem #4aa5be",
+                                          "border": "solid 0.1rem #9e85f5",
                                           "height": "30px",
                                         }
                                       }

@@ -104,7 +104,7 @@ function Help() {
                 variant="primary"
                 data-testid="loginForm"
                 size="lg"
-                style="w-full ml-0 hover:bg-cyan-700 text-sm"
+                style="w-full ml-0 hover:bg-violet-600 text-sm"
               >
                 {' '}
                 {t('Send')}

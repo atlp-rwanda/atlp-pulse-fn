@@ -118,7 +118,7 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b">
+      <div className="w-screen h-[8vh] z-10 bg-indigo-100 dark:bg-dark-bg fixed border-b border-gray-300">
         <div className="px-3 flex items-center w-full h-full">
           <div className="flex px-5 lg:hidden">
             <div
@@ -149,7 +149,7 @@ function DashHeader() {
                   alt="logoWhite"
                 />
               )}
-              <h1 className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill">
+              <h1 className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill">
                 PULSE
               </h1>
             </Link>

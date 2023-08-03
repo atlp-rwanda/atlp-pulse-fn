@@ -49,7 +49,7 @@ export default function DeleteTeamModal({
             className={`h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 ${deleteTeamModal === true ? 'block' : 'hidden'
                 }`}
         >
-            <div className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
+            <div className="bg-indigo-400 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
                 <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
                     <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
                         {t('Delete Team')}

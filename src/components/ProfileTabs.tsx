@@ -57,7 +57,7 @@ export function EditPassword() {
   const [passwordFieldState, setPasswordField] = useState<fields>(fieldState);
   return (
     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
-      <div className="border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg">
+      <div className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg">
         <div className="px-4">
           <form
             className="mt-12 grid grid-cols-1 gap-4"
@@ -89,7 +89,7 @@ export function EditPassword() {
             <Button
               variant="default"
               size="md"
-              style="group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
+              style="group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
               /* istanbul ignore next */
               onClick={() => {}}
               data-testid="change_password"
@@ -322,7 +322,7 @@ export default function ProfileTabs({ data }: any) {
                 id="link1"
               >
                 <div className="grid md:grid-cols-5 gap-4 md:gap-6 ">
-                  <div className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow ">
+                  <div className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
                       {data?.name}{' '}
                     </h3>
@@ -347,7 +347,7 @@ export default function ProfileTabs({ data }: any) {
                  
                     </div>
                   </div>
-                  <div className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow">
+                  <div className="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow">
                     <h2 className="text-xl font-bold m-2  mb-4">
                       Biography
                       {t('Biography')}
@@ -371,7 +371,7 @@ export default function ProfileTabs({ data }: any) {
                       </h3>
                     </div>
                   </div>
-                  <div className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
+                  <div className="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
                       {/* You in the organization */}
                       {t('You in the organization')}
@@ -396,7 +396,7 @@ export default function ProfileTabs({ data }: any) {
                         : 'Unavailabe'}
                     </div>
                   </div>
-                  <div className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
+                  <div className="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
                       {t('Management')}
                     </h3>
@@ -563,7 +563,7 @@ export default function ProfileTabs({ data }: any) {
                       </h3>
                     </div>
                   </div>
-                  <div className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
+                  <div className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
                       {t('You in the organization')}
                     </h3>
@@ -586,7 +586,7 @@ export default function ProfileTabs({ data }: any) {
                         : 'Unavailabe'}
                     </div>
                   </div>
-                  <div className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-white  dark:bg-dark-bg shadow ">
+                  <div className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
                       {t('Management')}
                     </h3>

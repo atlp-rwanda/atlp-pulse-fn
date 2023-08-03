@@ -118,7 +118,7 @@ function EditProfile() {
           </ul>
         </div>
       </div>
-      <div className=" lg:px-4 border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg">
+      <div className=" lg:px-4 border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg">
         <div className="px-4">
           <Button
             variant="default"

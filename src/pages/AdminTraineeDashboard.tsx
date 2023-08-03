@@ -158,7 +158,7 @@ const AdminTraineeDashboard = () => {
     option: (provided: any, state: any) => ({
       ...provided,
       borderBottom: '1px dotted pink',
-      color: state.isSelected ? 'red' : '#148FB6',
+      color: state.isSelected ? 'red' : '#9e85f5',
     }),
     valueLabel: (styles: any) => ({
       ...styles,
@@ -205,7 +205,7 @@ const AdminTraineeDashboard = () => {
             width="25"
             height="25"
             cursor="pointer"
-            color="#148fb6"
+            color="#9e85f5"
             /* istanbul ignore next */
             onClick={() => {
               setSelectedOptionUpdate({
@@ -227,7 +227,7 @@ const AdminTraineeDashboard = () => {
             width="30"
             height="30"
             cursor="pointer"
-            color="#148fb6"
+            color="#9e85f5"
             /* istanbul ignore next */
             onClick={() => {
               removeTraineeMod();
@@ -241,7 +241,7 @@ const AdminTraineeDashboard = () => {
             width="30"
             height="30"
             cursor="pointer"
-            color="#148fb6"
+            color="#9e85f5"
             onClick={() => handleClickOpen(row.original.email)}
           />
         </div>
@@ -721,12 +721,12 @@ const AdminTraineeDashboard = () => {
           inviteTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+        <div className="w-full p-4 pb-8 bg-indigo-100 dark:bg-dark-bg rounded-lg  sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
             <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Send Invitation')}
             </h3>
-            <hr className="w-full my-3 border-b bg-primary" />
+            <hr className=" border-gray-400 my-3 w-full" />
           </div>
           <div className="card-body">
             <form className="px-8 py-3 ">
@@ -941,7 +941,7 @@ const AdminTraineeDashboard = () => {
           registerTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+        <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
             <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Add Trainee')}

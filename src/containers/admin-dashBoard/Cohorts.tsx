@@ -104,7 +104,7 @@ function ActionButtons({
           width="25"
           height="25"
           cursor="pointer"
-          color="#148fb6"
+          color="#9e85f5"
         />
       </div>
       <div
@@ -120,7 +120,7 @@ function ActionButtons({
           width="25"
           height="25"
           cursor="pointer"
-          color="#148fb6"
+          color="#9e85f5"
         />
       </div>
 
@@ -141,7 +141,7 @@ function ActionButtons({
           width="30"
           height="30"
           cursor="pointer"
-          color="#148fb6"
+          color="#9e85f5"
         />
       </div>
     </div>

@@ -124,8 +124,8 @@ function AdminLogin() {
   };
 
   return (
-    <div className="w-full text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:items-center sm:justify-center h-full">
-      <div className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
+    <div className="w-full text-center py-2 dark:bg-dark-frame-bg bg-gray-100  sm:flex sm:items-center sm:justify-center h-full">
+      <div className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl bg-indigo-100 dark:bg-dark-bg sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
         <div className="py-10 sm:py-8 ">
           <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
             {t('Welcome to')} {orgName}

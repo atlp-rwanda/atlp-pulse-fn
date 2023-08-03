@@ -3,10 +3,10 @@
 exports[`Admin Login Should render 1`] = `
 Array [
   <div
-    className="w-full text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:items-center sm:justify-center h-full"
+    className="w-full text-center py-2 dark:bg-dark-frame-bg bg-gray-100  sm:flex sm:items-center sm:justify-center h-full"
   >
     <div
-      className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8"
+      className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl bg-indigo-100 dark:bg-dark-bg sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8"
     >
       <div
         className="py-10 sm:py-8 "

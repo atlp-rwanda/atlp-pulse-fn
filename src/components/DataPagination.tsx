@@ -64,7 +64,7 @@ function DataPagination({
                         style={{
                           width: '50px',
                           height: '30px',
-                          border: 'solid 0.1rem #4aa5be',
+                          border: 'solid 0.1rem #9e85f5',
                           paddingLeft: '1.2rem',
                         }}
                       />
@@ -73,7 +73,7 @@ function DataPagination({
                       className="px-1/2 font-raleway rounded-md border border-primary dark:bg-primary"
                       value={pageSize}
                       onChange={(e) => setPageSize(Number(e.target.value))}
-                      style={{ height: '30px', border: 'solid 0.1rem #4aa5be' }}
+                      style={{ height: '30px', border: 'solid 0.1rem #9e85f5' }}
                     >
                       {[3, 5, 10, 25, 50, 100].map((pgSize) => (
                         <option key={pgSize} value={pgSize}>

@@ -112,12 +112,12 @@ const Calendar = () => {
           addEventModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
+        <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
             <h3 className="font-bold text-sm dark:text-white text-center w-11/12">
               {t('Add event')}
             </h3>
-            <hr className=" bg-primary border-b my-3 w-full" />
+            <hr className=" bg-primary border-gray-300 my-3 w-full" />
           </div>
           <div className="card-body">
             {/* istanbul ignore next */}
@@ -231,7 +231,7 @@ const Calendar = () => {
               <div className="w-full flex justify-between">
                 <button
                   data-testid="removeModel"
-                  className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
+                  className="py-2 w-[40%] md:w-1/3 bg-violet-400 rounded font-sans text-sm text-white"
                   onClick={(e) => removeModel(e)}
                 >
                   {t('cancel')}

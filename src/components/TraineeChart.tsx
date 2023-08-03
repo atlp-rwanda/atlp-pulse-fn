@@ -53,7 +53,7 @@ export const data = {
         { x: 16, y: 1.8 },
         { x: 18, y: 1.5 },
       ],
-      borderColor: '#148FB6',
+      borderColor: '#9e85f5',
       backgroundColor: '#1490b62f',
     },
   ],

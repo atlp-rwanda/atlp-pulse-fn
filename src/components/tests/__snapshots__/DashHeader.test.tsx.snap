@@ -2,7 +2,7 @@
 
 exports[`DashHeader test  Should render DashHeader 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b"
+  className="w-screen h-[8vh] z-10 bg-indigo-100 dark:bg-dark-bg fixed border-b border-gray-300"
 >
   <div
     className="px-3 flex items-center w-full h-full"
@@ -47,7 +47,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
           src={Object {}}
         />
         <h1
-          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill"
         >
           PULSE
         </h1>

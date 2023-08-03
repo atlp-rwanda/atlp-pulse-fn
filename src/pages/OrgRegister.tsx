@@ -64,7 +64,7 @@ export default function OrgRegister() {
         orgName={orgName}
       />
       <div className="md:flex md:flex-col md:items-center md:justify-center w-full min-h-screen -mt-3 -mb-16 xl:-mt-14  xl:-mb-28 text-left dark:bg-dark-frame-bg bg-gray-100 sm:flex sm:flex-row sm:items-center sm:justify-center">
-        <div className="bg-white sm:rounded-2xl py-8 md:py-0 md:shadow-2xl md:flex xl:w-3/4 md:w-[90%] md:max-w-4xl sm:w-full px-2 md:px-0 mx-20 md:mx-0 sm:shadow-none dark:shadow-2xl ">
+        <div className="bg-indigo-100 sm:rounded-2xl py-8 md:py-0 md:shadow-2xl md:flex xl:w-3/4 md:w-[90%] md:max-w-4xl sm:w-full px-2 md:px-0 mx-20 md:mx-0 sm:shadow-none dark:shadow-2xl ">
           <div className="2xl:w-3/5 md:w-screen md:pl-14 lg:pl-32 xl:pl-24 py-20 md:py-8 sm:w-full sm:p-2 dark:bg-dark-bg dark:rounded-tl-xl dark:rounded-bl-xl">
             <div className="">
               <h2 className="text-2xl ml-4 md:ml-0 lg:text-3xl pb-6 font-bold text-primary dark:text-dark-text-fill ">
@@ -86,7 +86,7 @@ export default function OrgRegister() {
                           message: 'Invalid email',
                         },
                       })}
-                      className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
+                      className="bg-indigo-100 outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
                     />
                   </div>
                   <div className="-mt-6">
@@ -109,7 +109,7 @@ export default function OrgRegister() {
                       onChange={(e) => {
                         setName(e.target.value);
                       }}
-                      className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
+                      className="bg-indigo-100 outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
                     />
                   </div>
                   <div className="-mt-6">
@@ -128,7 +128,7 @@ export default function OrgRegister() {
                       {...register('description', {
                         required: 'Description is required',
                       })}
-                      className="bg-white outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
+                      className="bg-indigo-100 outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
                     />
                   </div>
                   <div className="-mt-4">

@@ -165,7 +165,7 @@ export default function ProfileCoverpage({
       />
       <div className="flex h-full items-center justify-center bg-grey-lighter  -ml-10 md:-ml-12 mt-36 md:mt-20 z-0 mr-auto">
         <div role="button">
-          <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1">
+          <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1">
             <PencilAltIcon className="w-5 md:w-3 mr-1 mt-0 dark:text-dark-text-fill" />
             <span className="text-lg md:text-sm dark:text-dark-text-fill">
               <span className="hidden md:block">{t('Edit')} </span>
@@ -188,14 +188,14 @@ export default function ProfileCoverpage({
           onClick={() => handleEdit()}
           variant="default"
           size="md"
-          style="text-center ml-auto mr-4 mt-40 md:mt-24  rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1 md:p-2 flex flex-row"
+          style="text-center ml-auto mr-4 mt-40 md:mt-24  rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1 md:p-2 flex flex-row"
         >
           <PencilIcon className="w-6 mr-1 md:mr-2 dark:text-dark-text-fill " />
           <span className="hidden md:block"> {t('Edit Profile')} </span>
         </Button>
       ) : (
         <div className="flex w-full h-screen items-center justify-center bg-grey-lighter  ml-auto  mt-24">
-          <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-2">
+          <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2">
             <CameraIcon className="w-6 mr-1 mt-0  dark:text-dark-text-fill" />
             <span className=" dark:text-dark-text-fill">
               <span className="hidden md:block">{t('Change Picture')} </span>

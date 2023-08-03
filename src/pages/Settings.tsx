@@ -36,12 +36,12 @@ function Settings() {
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
       <div className="flex flex-row justify-center pt-[12vh]">
-        <div className="rounded-lg w-[90%] lg:w-80vh lg:ml-[38vh] lg:mr-[2vh] lg:mb-10 p-6 bg-white dark:bg-dark-bg">
+        <div className="rounded-lg w-[90%] lg:w-80vh lg:ml-[38vh] lg:mr-[2vh] lg:mb-10 p-6 bg-indigo-100 dark:bg-dark-bg">
           <h1 className="mb-4 font-bold text-xl dark:text-dark-text-fill">
             {t('Settings')}
           </h1>
           <div>
-            <li className="flex items-center border-b pt-2 pb-1">
+            <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
               <div className="w-[33vh]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Profile')}
@@ -56,7 +56,7 @@ function Settings() {
                 <h4>{t('Change')}</h4>
               </Link>
             </li>
-            <li className="flex items-center border-b pt-2 pb-1">
+            <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
               <div className="w-[33vh]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Appearance')}
@@ -69,13 +69,13 @@ function Settings() {
                 defaultValue={defaultTheme}
                 data-testid="themeChange"
                 onChange={(e) => handleThemeChange(e)}
-                className="ml-auto bg-white border px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
+                className="ml-auto bg-white border border-gray-400 px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
               >
                 <option value="light">{t('Light theme')}</option>
                 <option value="dark">{t('Dark theme')}</option>
               </select>
             </li>
-            <li className="flex items-center border-b pt-2 pb-1">
+            <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
               <div className="w-[33vh]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Language')}
@@ -96,7 +96,7 @@ function Settings() {
                 <option value="kn">Ikinyarwanda</option>
               </select>
             </li>
-            <li className="flex items-center border-b pt-2 pb-1">
+            <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
               <div className="w-[33vh]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Email notifications')}
@@ -109,7 +109,7 @@ function Settings() {
                 checked={emailEnabled}
                 data-testid="emailChange"
                 onChange={setEmailEnabled}
-                className={`ml-auto border ${
+                className={`ml-auto border border-gray-400  ${
                   emailEnabled ? 'dark:border-primary' : ''
                 } relative inline-flex h-6 w-12 items-center rounded-full`}
               >
@@ -122,7 +122,7 @@ function Settings() {
                 />
               </Switch>
             </li>
-            <li className="flex items-center border-b pt-2 pb-1">
+            <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
               <div className="w-[33vh]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Push notifications')}
@@ -135,7 +135,7 @@ function Settings() {
                 checked={pushEnabled}
                 data-testid="pushChange"
                 onChange={setPushEnabled}
-                className={` ml-auto border ${
+                className={` ml-auto border border-gray-400 ${
                   pushEnabled ? 'dark:border-primary' : ''
                 } relative inline-flex h-6 w-12 items-center rounded-full`}
               >
@@ -148,7 +148,7 @@ function Settings() {
                 />
               </Switch>
             </li>
-            <li className="flex items-center border-b pt-2 pb-1">
+            <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
               <div className="w-[33vh]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Privacy and Security')}

@@ -6,7 +6,7 @@ Array [
     className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
     >
       <div
         className="card-title w-full flex  flex-wrap justify-center items-center  "
@@ -17,7 +17,7 @@ Array [
           Add Phase
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className=" bg-primary border-gray-400 my-3 w-full"
         />
       </div>
       <div
@@ -33,7 +33,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
+                className="border border-primary rounded outline-none px-5 dark:bg-dark-bg-frame dark:text-white font-sans text-xs py-2 w-full"
                 name="name"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -49,7 +49,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                className="border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
                 name="description"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -89,7 +89,7 @@ Array [
     className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
     >
       <div
         className="card-title w-full flex  flex-wrap justify-center items-center  "
@@ -100,7 +100,7 @@ Array [
           Update Phase
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className=" bg-primary border-gray-400 my-3 w-full"
         />
       </div>
       <div
@@ -116,7 +116,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border border-primary rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs py-2 w-full"
+                className="border border-primary rounded outline-none px-5 dark:bg-dark-bg-frame dark:text-white font-sans text-xs py-2 w-full"
                 name="name"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -132,7 +132,7 @@ Array [
               className="grouped-input flex items-center h-full w-full rounded-md"
             >
               <input
-                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                className="border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
                 name="description"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -173,7 +173,7 @@ Array [
     className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
   >
     <div
-      className="bg-white dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
     >
       <div
         className="card-title w-full flex  flex-wrap justify-center items-center  "
@@ -184,7 +184,7 @@ Array [
           Delete Phase
         </h3>
         <hr
-          className=" bg-primary border-b my-3 w-full"
+          className=" bg-primary border-gray-400 my-3 w-full"
         />
       </div>
       <div
