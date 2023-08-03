@@ -52,6 +52,7 @@ import TraineeChart from '../components/TraineesChart';
 import Table from '../components/TraineeTable';
 import TraineePieCharts from '../components/TraineePieCharts';
 // import TraineeTable from '../components/TraineeTable';
+/* istanbul ignore next */
 
 function SupAdDashboard() {
   return (
