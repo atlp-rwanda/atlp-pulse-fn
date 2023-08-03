@@ -3,6 +3,7 @@ import CheckRole from '../utils/CheckRoles';
 import SupAdDashboard from './SupAdDashboard';
 import AdminDashboard from './AdminDashboard';
 import TraineeDashboard from './TraineeDashboard';
+import ManagerCard from '../components/ManagerCard';
 
 export function Dashboard() {
   return (
@@ -22,6 +23,9 @@ export function Dashboard() {
       <CheckRole roles={['coordinator']}>
         <AdminDashboard />
       </CheckRole>
+      <CheckRole roles={['manager']}>
+        <ManagerCard />
+      </CheckRole> 
     </>
   );
 }

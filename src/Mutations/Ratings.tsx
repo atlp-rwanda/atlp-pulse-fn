@@ -92,6 +92,13 @@ export const FETCH_ALL_RATINGS = gql`
       user {
         id
         email
+        profile{
+          firstName
+          lastName
+        }
+        team {
+          name
+        }
       }
       sprint
       quantity

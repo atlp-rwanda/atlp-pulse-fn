@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import React, { Suspense, useContext } from 'react';
+import React, { Suspense, useContext, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';
@@ -69,22 +69,27 @@ const OthersDocs = React.lazy(() => import('../components/Docs/OthersDocs'));
 const HelpPage = React.lazy(() => import('../pages/HelpPage'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
 const Ticket = React.lazy(() => import('../pages/Ticket'));
-const AllTickets = React.lazy(() => import('../pages/AllTickets'));
+const AllTickets = React.lazy(() => import('../pages/AllTickets'))
+const TeamDetails = React.lazy(() => import('../components/teamDetails'))
 const ManagersCards = React.lazy(() => import('../components/ManagerCard'));
 const CoordinatorCards = React.lazy(
   () => import('../components/CoordinatorCard'),
 );
 
+
 function DashRoutes() {
   const { toggleNav } = useContext(MenuContext);
 
+  const [nav, setNav] = useState(false);
+  const handleClick = () => setNav(!nav);
+  
   return (
     <PrivateRoute>
       <MenuProvider>
         <DashHeader />
         <Sidebar toggle={toggleNav} style="" />
       </MenuProvider>
-      <main className="page-main px-3 md:px-8 py-8 max-w-[100%] bg-light-bg dark:bg-dark-frame-bg">
+      <main className="px-3 md:px-8 py-8 max-w-[100%] bg-light-bg dark:bg-dark-frame-bg">
         <Suspense fallback={<Square />}>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -140,7 +145,11 @@ function DashRoutes() {
               <Route index element={<AllTickets />} />
               <Route path=":ticketId" element={<Ticket />} />
             </Route>
-            <Route path="/loginActivities" element={<LoginActivitiesTable />} />
+      
+           <Route path="/loginActivities" element={<LoginActivitiesTable />} />
+           
+            <Route path="/team/:teamname" element={<TeamDetails/>} />
+
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
             <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />

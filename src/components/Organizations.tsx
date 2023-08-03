@@ -260,7 +260,7 @@ const Organizations = () => {
           </div>
         </div>
         <div className="">
-          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-64">
+          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[100%] ">
             <div className=" flex items-center justify-between pb-6">
               <div>
                 <h2 className="text-gray-800 dark:text-white font-semibold">
@@ -270,7 +270,7 @@ const Organizations = () => {
             </div>
             <div>
               <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto ">
-                <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
+                <div className=" shadow rounded-lg overflow-hidden">
                   <table className="min-w-full leading-normal ">
                     <thead>
                       <tr>
@@ -414,7 +414,7 @@ const Organizations = () => {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
           removeTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
