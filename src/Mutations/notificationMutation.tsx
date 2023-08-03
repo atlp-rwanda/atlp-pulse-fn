@@ -59,3 +59,27 @@ export const markAllAsRead = gql`
     markAllAsRead
   }
 `;
+
+export const updatePushNotifications = gql`
+  mutation Mutation($updatePushNotificationsId: ID!) {
+    updatePushNotifications(id: $updatePushNotificationsId)
+  }
+`;
+
+export const updateEmailNotifications = gql`
+  mutation Mutation($updateEmailNotificationsId: ID!) {
+    updateEmailNotifications(id: $updateEmailNotificationsId)
+  }
+`;
+
+export const updatedEmailNotifications = gql`
+  query Query($getUpdatedEmailNotificationsId: ID!) {
+    getUpdatedEmailNotifications(id: $getUpdatedEmailNotificationsId)
+  }
+`;
+
+export const updatedPushNotifications = gql`
+  query Query($getUpdatedPushNotificationsId: ID!) {
+    getUpdatedPushNotifications(id: $getUpdatedPushNotificationsId)
+  }
+`;
