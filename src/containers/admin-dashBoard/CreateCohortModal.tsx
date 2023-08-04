@@ -28,7 +28,7 @@ export const AddCohort = gql`
     ) {
       id
       name
-      phase{
+      phase {
         name
       }
       coordinator {
@@ -53,7 +53,7 @@ export default function CreateCohortModal({
     getAllCohorts: Cohort[];
     getAllUsers: PartialUser[];
     getAllPrograms: PartialProgram[];
-    getAllPhases:PartialPhase[];
+    getAllPhases: PartialPhase[];
   };
   createCohortModel: boolean;
   removeModel: Function;
@@ -93,7 +93,6 @@ export default function CreateCohortModal({
       (newData.coordinatorEmail = newData.coordinatorEmail.value);
     newData.programName && (newData.programName = newData.programName.value);
     newData.phaseName && (newData.phaseName = newData.phaseName.value);
-
 
     Object.keys(newData).forEach((field) => {
       if (!newData[field] || newData[field] === '') {

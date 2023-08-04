@@ -6,14 +6,12 @@ import Button from '../../components/Buttons';
 import { Phase } from './Phases';
 
 export const DeletePhase = gql`
-    mutation DeletePhase($deletePhaseId: ID!, $orgToken: String) {
+  mutation DeletePhase($deletePhaseId: ID!, $orgToken: String) {
     deletePhase(id: $deletePhaseId, orgToken: $orgToken) {
       id
     }
   }
 `;
-
-
 
 export default function DeletePhaseModal({
   deletePhaseModal,
@@ -49,7 +47,6 @@ export default function DeletePhaseModal({
     orgToken && (data.orgToken = orgToken);
 
     await deletePhaseMutation({ variables: data });
-      
   }
 
   return (

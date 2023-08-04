@@ -72,6 +72,10 @@ const HelpPage = React.lazy(() => import('../pages/HelpPage'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
 const Ticket = React.lazy(() => import('../pages/Ticket'));
 const AllTickets = React.lazy(() => import('../pages/AllTickets'));
+
+const ManagersCards = React.lazy(() => import('../components/ManagerCard'));
+const CoordinatorCards= React.lazy(() =>import('../components/CoordinatorCard'));
+
 import Skeleton from '../components/Skeleton';
 import Square from '../Skeletons/Square';
 
@@ -127,6 +131,9 @@ function DashRoutes() {
             <Route path="/tickets" element={<Tickets />} />
            <Route path="/loginActivities" element={<LoginActivitiesTable />} />
 
+            <Route path="/team-cards" element={<ManagersCards />} />
+            <Route path="/cards" element={<CoordinatorCards />} />
+            
           </Routes>
 
         </Suspense>

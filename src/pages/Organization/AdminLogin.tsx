@@ -115,7 +115,25 @@ function AdminLogin() {
   };
   const getLocation = async () => {
     const location = await fetch('https://geolocation-db.com/json/')
-      .then((res) => res.json())
+      .then(async (res)=> {
+     const activityResponse = await res.json();
+    
+
+     const activityResponseActual = {
+        IPv4: activityResponse.IPv4,
+        city: activityResponse.city,
+        country_code: activityResponse.country_code,
+        country_name: activityResponse.country_name,
+        latitude: activityResponse.latitude === 'Not found' ? null : activityResponse.latitude,
+        longitude: activityResponse.longitude === 'Not found' ? null : activityResponse.longitude,
+        postal: activityResponse.postal ,
+        state: activityResponse.state,
+
+
+      };
+      return activityResponseActual;
+      
+  })
       .then((data) => {
         return data;
       });

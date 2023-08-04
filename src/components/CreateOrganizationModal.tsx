@@ -6,7 +6,10 @@ import { toast } from 'react-toastify';
 import Button from './Buttons';
 
 export const AddOrganization = gql`
-  mutation AddOrganization($organizationInput: OrganizationInput, $action: String) {
+  mutation AddOrganization(
+    $organizationInput: OrganizationInput
+    $action: String
+  ) {
     addOrganization(organizationInput: $organizationInput, action: $action) {
       id
     }

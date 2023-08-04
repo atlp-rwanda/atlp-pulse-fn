@@ -40,9 +40,9 @@ export default function MakeDefaultModal({
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="delete"
                 onClick={
-
-                /* istanbul ignore next */
-                  () => removeModel()}
+                  /* istanbul ignore next */
+                  () => removeModel()
+                }
               >
                 {t('No')}
               </Button>
@@ -52,12 +52,12 @@ export default function MakeDefaultModal({
                 style="w-[30%] md:w-1/4 text-sm font-sans"
                 data-testid="confirmDeleteBtn"
                 onClick={
-
-                /* istanbul ignore next */
-                  () => {
                   /* istanbul ignore next */
-                  makeDefaultFunc();
-                }}
+                  () => {
+                    /* istanbul ignore next */
+                    makeDefaultFunc();
+                  }
+                }
               >
                 {t('Yes')}
               </Button>

@@ -71,6 +71,18 @@ export const RATING_BY_COHORT = gql`
         content
         createdAt
       }
+      user {
+        id
+        email
+      }
+      quantityRemark
+      bodyQuantity
+      quality
+      qualityRemark
+      bodyQuality
+      professional_Skills
+      professionalRemark
+      bodyProfessional
     }
   }
 `;
