@@ -17,6 +17,8 @@ import devs from '../dummyData/developers2.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from "../components/Buttons";
 import Avatar from '../assets/avatar.png';
+import Chart from 'chart.js/auto';
+import { Doughnut } from 'react-chartjs-2';
 
 import {
   GET_USERS_QUERY,
@@ -947,9 +949,9 @@ function AdminTraineeDashboard() {
           registerTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
-            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+            <h3 className="w-11/12 text-md font-bold text-center dark:text-white text-[#5F49AC]">
               {t('Add Trainee')}
             </h3>
             <hr className="w-full my-3 border-b bg-primary" />
@@ -1017,10 +1019,9 @@ function AdminTraineeDashboard() {
                   {t('Cancel')}
                 </Button>
                 <Button
-                  variant="primary"
                   size="sm"
                   data-testid="saveButton"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[30%] md:w-1/4 text-sm bg-[#8667F2] text-white font-normal"
                   onClick={() => {
                     setButtonLoading(true);
                     addMemberToTeam();
