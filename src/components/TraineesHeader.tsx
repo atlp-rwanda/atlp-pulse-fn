@@ -72,7 +72,7 @@ function DashHeader() {
   });
 
   const { data, loading } = useSubscription(NotificationSubscription, {
-    onData: (data) => {
+    onData: (data:any) => {
       setNotificationData([data.data.data.newRating, ...notifications]);
     },
     variables: {

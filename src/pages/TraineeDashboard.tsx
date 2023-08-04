@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable func-names */
+/* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable react/no-unescaped-entities */
 
 /* eslint-disable react/jsx-no-bind */
@@ -7,14 +10,12 @@
 import React from 'react';
 import { t } from 'i18next';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import Card from '../components/Card';
-import Comingsoon from './Comingsoon';
-import TraineesHeader from '../components/TraineesHeader';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import TraineeChart from '../components/TraineesChart';
 import Table from '../components/TraineeTable';
-import TraineePieCharts from '../components/TraineePieCharts';
-// import TraineeTable from '../components/TraineeTable';
-/* istanbul ignore next */
+
+/* istanbul ignore file */
 
 function SupAdDashboard() {
   return (
@@ -35,58 +36,150 @@ function SupAdDashboard() {
             <p><RiArrowDropDownLine/></p>
 
           </div>
-         
-
-          </div>
-          <div className=' bg-[#B8CDBA] border-2 grid grid-cols-2 gap-2 max-w-[304px] max-h-[50px] rounded-lg ml-16 mb-10'>
-          <p>Cohort 26</p>
-          <p>Phase : 2</p>
-          </div>
-
-          <p className='text-2xl font-bold ml-20 my-10'> perfomance score</p>
-          <div>
-
-            
-          <TraineePieCharts/>
-          <p className='text-2xl font-bold ml-20 my-10'> Stats</p>
-
-          </div>
-          <div className='ml-8'>
-          <TraineeChart/>
+          <div className=" flex flex-row justify-start ml-12">
+            <div className="flex  bg-[#b8cdba] w-[222px] h-[48px]  items-center justify-center rounded-lg ">
+              <span className="mr-2 font-semibold text-xl ">Cohort 26</span>
+              <div className="h-5 border-2 bg-[#202020] mx-0 text-xl" />
+              <span className="mx-2  font-semibold text-xl "> Phase: 2</span>
+            </div>
           </div>
 
-          <div className=' bg-[#eaefff] flex border-2 items-center justify-center rounded-' style={{ width: '535px', height: '156px' }} >
-             <p className='font-bold m-5 ' style={{ width: '126.62px', height: '24px', fontSize: '14px' }}>From manager</p>
-                <div className=' p-4 font-light font-9' style={{ width: '308.39px', height: '61.67px', fontSize: '9px' }}>
-                Lorem Ipsum is simply dummy text of the printing and 
-typesetting industry. Lorem Ipsum has been the industry's 
-standard dummy text ever since the 1500s,
-                 </div>
-</div>
-         
-          
-          {/* <Comingsoon title='Dashboard'/> */}
-          <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Recents feedback</h1>
-            <div className="p-2 grid grid-cols-2 ">
-            <p className=" mb-4">Phase: 1 | Phase: 2 | Phase: 3</p>
-            <div className='flex justify-end'>
-                <div className='border-2 grid grid-cols-3 gap-2 max-w-[300px] rounded-lg'>
-                  <p className='flex items-center justify-center'>filter</p>
-                  <p className='flex items-center justify-center'>week1</p>
-                 <p className='flex items-center justify-center'> <RiArrowDropDownLine /></p>
+          <p className=" font-bold text-gray-700 ml-12 my-10 text-lg">
+            {' '}
+            Perfomance score
+          </p>
+          <div className=" flex flex-row ">
+            <div className="flex flex-row w-[90%]  justify-between ml-7  ">
+              <div className="flex flex-col w-[30%] ml-7   lg:flex-row">
+                <div className=" w-[130px]">
+                  <CircularProgressbar
+                    value={80}
+                    text={`${1.6}`}
+                    styles={buildStyles({
+                      pathColor: '#1b5e20',
+                      textColor: '#1b5e20',
+                    })}
+                  />
+                </div>
+
+                <div className=" flex flex-col justify-center ml-7">
+                  <ul className="list-disc ml-4">
+                    <li>Quantity</li>
+                  </ul>
+                  <p className="text-[#1b5e20] ml-2">Good</p>
                 </div>
               </div>
+              <div className="flex flex-col w-[30%]  flex-wrap   lg:flex-row">
+                <div className=" w-[130px]">
+                  <CircularProgressbar
+                    value={30}
+                    text={`${0.7}`}
+                    styles={buildStyles({
+                      pathColor: '#b71c1c',
+                      textColor: '#b71c1c',
+                    })}
+                  />
+                </div>
+
+                <div className=" flex flex-col justify-center ml-7">
+                  <ul className="list-disc ml-4">
+                    <li>Quality</li>
+                  </ul>
+                  <p className="text-[#b71c1c] ml-2">Need to improve</p>
+                </div>
+              </div>
+              <div className="flex flex-col w-[30%] flex-wrap  lg:flex-row ">
+                <div className=" w-[130px]">
+                  <CircularProgressbar
+                    value={50}
+                    text={`${1}`}
+                    styles={buildStyles({
+                      pathColor: '#ffeb3b',
+                      textColor: '#ffeb3b',
+                    })}
+                  />
+                </div>
+
+                <div className=" flex flex-col justify-center ml-7">
+                  <ul className="list-disc ml-4">
+                    <li>Professionalism</li>
+                  </ul>
+                  <p className=" text-[#ffeb3b] ml-2">Good</p>
+                </div>
+              </div>
+            </div>
           </div>
-            <Table data={[]} /> {/* Render 10 empty rows */}
+
+          <p className=" font-bol ml-12 my-10 text-lg"> Stats</p>
+          <div className=" flex flex-row justify-center items-center ">
+            <div className=" w-[100%] ">
+              <TraineeChart />
+            </div>
+          </div>
+          <div className="p-4 ml-12">
+            <h1 className="text-2xl font-bold mb-4 ">Recents feedback</h1>
+            <div className="p-2 grid grid-cols-2 ">
+              <div className="flex  items-center ">
+                <span
+                  className="mr-2 font-bold "
+                  style={{
+                    fontFamily: 'inter',
+                    fontSize: '14px',
+                    color: '#b1b1b1',
+                    borderBottom: '3px solid #6b6319',
+                    borderRadius: '1px',
+                  }}
+                >
+                  Phase : 1
+                </span>
+                <div className="h-5 border-2 bg-[#b1b1b1] mx-0" />
+                <span
+                  className="mx-2  font-bold"
+                  style={{
+                    fontFamily: 'inter',
+                    color: '#b1b1b1',
+                    fontSize: '14px',
+                  }}
+                >
+                  Phase : 2
+                </span>
+                <div className="h-5 border-2 bg-black mx-0" />
+                <span
+                  className="ml-2 font-bold"
+                  style={{
+                    fontFamily: 'inter',
+                    color: '#b1b1b1',
+                    fontSize: '14px',
+                  }}
+                >
+                  Phase : 3
+                </span>
+              </div>
+              <div className="flex justify-end">
+                <div className="border-2 grid grid-cols-3 gap-2 max-w-[300px] rounded-2xl p-1 mr-20">
+                  <span className="flex items-center justify-center">
+                    Filter
+                  </span>
+                  <span className="flex items-center justify-center">
+                    Week1
+                  </span>
+                  <span className="flex items-center justify-center">
+                    {' '}
+                    <RiArrowDropDownLine />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="">
+              <div className="font-bold text-gray-700 mr-10 my-10 w-[100%] text-lg ">
+                <Table data={[]} />
+              </div>
+            </div>
           </div>
         </div>
-        <TraineesHeader />
       </div>
     </div>
   );
 }
 
 export default SupAdDashboard;
-
-
