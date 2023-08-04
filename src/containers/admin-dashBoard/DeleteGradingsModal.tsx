@@ -1,20 +1,20 @@
-import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
-import { Cohort } from './Cohorts';
+import Loader2 from '../../components/loaders/loader2';
 
 export default function DeleteGradingsModal({
   deleteGradingModal,
   removeModel,
   deleteFunc,
   setValue,
+  loading,
 }: {
   deleteGradingModal: boolean;
   removeModel: Function;
   deleteFunc: Function;
   setValue: Function;
+  loading?: boolean;
 }) {
   const { t } = useTranslation();
 
@@ -27,7 +27,7 @@ export default function DeleteGradingsModal({
       <div className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
         <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
           <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
-            {t('DeleteGRADINGSYSTEM')}
+            {t('Delete Grading System')}
           </h3>
           <hr className=" bg-primary border-gray-400 my-3 w-full" />
         </div>
@@ -38,38 +38,36 @@ export default function DeleteGradingsModal({
                 {t('reallyRemoveGrading')}
               </h2>
             </div>
-            <div className="w-full flex justify-between">
-              <Button
-                variant="info"
-                size="sm"
-                style="w-[30%] md:w-1/4 text-sm font-sans"
-                data-testid="delete"
-                /* istanbul ignore next */
-                onClick={
+            {!loading ? (
+              <div className="w-full flex justify-between">
+                <Button
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5"
+                  data-testid="delete"
                   /* istanbul ignore next */
-                  () => removeModel()
-                }
-              >
-                {t('Cancel')}
-              </Button>
-              <Button
-                variant="danger"
-                size="sm"
-                style="w-[30%] md:w-1/4 text-sm font-sans"
-                data-testid="confirmDeleteBtn"
-                onClick={
+                  onClick={() => removeModel()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  data-testid="confirmDeleteBtn"
                   /* istanbul ignore next */
-                  () => {
-                    /* istanbul ignore next */
+                  onClick={() => {
                     deleteFunc();
-                    /* istanbul ignore next */
                     setValue('');
-                  }
-                }
-              >
-                {t('Delete')}
-              </Button>
-            </div>
+                  }}
+                >
+                  {t('Delete')}
+                </Button>
+              </div>
+            ) : (
+              <div className='"w-full flex justify-center'>
+                <Loader2 />
+              </div>
+            )}
           </form>
         </div>
       </div>

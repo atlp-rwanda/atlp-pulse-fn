@@ -1,18 +1,14 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import Button from './Buttons';
-import PerformanceData from '../dummyData/performance.json';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { TRAINEE_RATING } from '../Mutations/Ratings';
+import { useLazyQuery, gql, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
-import Pagination from './Pagination';
-
-import { gql, useQuery } from '@apollo/client';
-
 import * as FileSaver from 'file-saver';
 import XLSX from 'sheetjs-style';
+import Pagination from './Pagination';
+import PerformanceData from '../dummyData/performance.json';
+import { TRAINEE_RATING } from '../Mutations/Ratings';
+import Button from './Buttons';
 
 export const GET_RATINGS_DATA = gql`
   query FetchRatingsTrainee {
@@ -64,13 +60,13 @@ export const GET_RATINGS_DATA = gql`
   }
 `;
 
-export const ExportToExcel = ({
+export function ExportToExcel({
   Data,
   fileName,
 }: {
   Data: (string | number)[];
   fileName: string;
-}) => {
+}) {
   const { t } = useTranslation();
   const fileType =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -89,19 +85,18 @@ export const ExportToExcel = ({
       className=" btn primary
   sm
   px-4 py-1 text-sm  "
+      type="button"
       onClick={(e) => exportToCSV(Data, fileName)}
     >
       {t('Export')}
     </button>
   );
-};
+}
 
-const TraineePerfomance = () => {
+function TraineePerfomance() {
   const [usedata, setUserdata] = React.useState([]);
   const fileName = 'userInfo';
-  const { data, loading, error } = useQuery(GET_RATINGS_DATA, {});
-
-  console.log(usedata);
+  const { data } = useQuery(GET_RATINGS_DATA, {});
 
   useEffect(() => {
     if (data && data.fetchRatingsTrainee) {
@@ -171,14 +166,14 @@ const TraineePerfomance = () => {
                   {t('Performance score')}
                 </h2>
               </div>
-              <div className="flex ml-[-25px] px-7 py-2  mt-4"></div>
+              <div className="flex ml-[-25px] px-7 py-2  mt-4"> </div>
             </div>
 
             <div>
               <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
                 <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
                   <table className="min-w-full leading-normal">
-                    <thead className="dark:text-white "></thead>
+                    <thead className="dark:text-white "> </thead>
                     <tbody>
                       <tr>
                         <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
@@ -202,7 +197,7 @@ const TraineePerfomance = () => {
                           {t('Average')}
                         </th>
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {'Actions'}
+                          {t('Actions')}
                         </th>
                       </tr>
                       {ratings?.slice(firstContentIndex, lastContentIndex).map(
@@ -296,6 +291,7 @@ const TraineePerfomance = () => {
             <button
               onClick={prevPage}
               data-testid="prev"
+              type="button"
               className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
                 page === 1 && 'disabled'
               }`}
@@ -305,6 +301,7 @@ const TraineePerfomance = () => {
             <button
               onClick={() => setPage(1)}
               data-testid="page1"
+              type="button"
               className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
                 page === 1 && 'disabled'
               }`}
@@ -318,6 +315,7 @@ const TraineePerfomance = () => {
                   onClick={/* istanbul ignore next */ () => setPage(el)}
                   data-testid="page"
                   key={el}
+                  type="button"
                   className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
                     page === el ? 'active' : ''
                   }`}
@@ -329,6 +327,7 @@ const TraineePerfomance = () => {
             <button
               onClick={() => setPage(totalPages)}
               data-testid="page3"
+              type="button"
               className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
                 page === totalPages && 'disabled'
               }`}
@@ -338,6 +337,7 @@ const TraineePerfomance = () => {
             <button
               onClick={nextPage}
               data-testid="next"
+              type="button"
               className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
                 page === totalPages && 'disabled'
               }`}
@@ -349,6 +349,6 @@ const TraineePerfomance = () => {
       </div>
     </>
   );
-};
+}
 
 export default TraineePerfomance;

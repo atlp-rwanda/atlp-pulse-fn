@@ -78,7 +78,8 @@ function AddRatings({
   const closeCancel = () => {
     setIsOpen(false);
   };
-
+  
+  /* istanbul ignore next */
   return (
     <>
       <div className="mt-8">

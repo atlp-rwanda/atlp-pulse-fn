@@ -6,3 +6,4 @@ coverage
 dist
 buildcoverage
 .DS_Store
+pnpm-lock.yaml

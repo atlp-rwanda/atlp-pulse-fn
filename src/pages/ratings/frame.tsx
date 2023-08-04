@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
@@ -19,7 +18,13 @@ type messageProps = {
 function Message({ mine = false, content }: messageProps) {
   return (
     <div className={mine ? css.div_wrapper : css.frame_wrapper}>
-      <div className={mine ? `${css.div_10} bg-blue-200 dark:bg-blue-600` : `${css.div_9} bg-neutral-200 dark:bg-slate-500`}>
+      <div
+        className={
+          mine
+            ? `${css.div_10} bg-blue-200 dark:bg-blue-600`
+            : `${css.div_9} bg-neutral-200 dark:bg-slate-500`
+        }
+      >
         <p className={css.text_wrapper_4}>{content}</p>
       </div>
     </div>
@@ -107,6 +112,7 @@ export default function Frame({ rows, allFeeds }: props) {
             onChange={(e) => {
               setFeed(e.target.value);
             }}
+            minHeight="auto"
             className={`${css.div_wrapper_2} bg-stone-100 dark:bg-slate-700`}
             placeholder={t('Type a message')}
           />

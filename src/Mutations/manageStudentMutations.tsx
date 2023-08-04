@@ -25,7 +25,6 @@ export const GET_TRAINEES_QUERY = gql`
         avatar
         id
         name
-        githubUsername
       }
       email
       team {

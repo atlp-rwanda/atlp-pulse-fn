@@ -64,8 +64,7 @@ function DataTable({ data, columns, title, loading }: TableData) {
             placeholder="Filter"
             className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
             /* istanbul ignore next */
-            onChange={(e) => 
-              setGlobalFilter(e.target.value)}
+            onChange={(e) => setGlobalFilter(e.target.value)}
           />
         </div>
       </div>
@@ -96,7 +95,7 @@ function DataTable({ data, columns, title, loading }: TableData) {
                   : 'bg-white dark:bg-dark-bg';
 
               return (
-                <tr className={` ${rowTheme}} `} {...row.getRowProps()}>
+                <tr className={` ${rowTheme} `} {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td className="data-cell" {...cell.getCellProps()}>
                       {cell.render('Cell')}

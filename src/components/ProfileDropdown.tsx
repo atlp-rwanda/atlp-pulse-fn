@@ -1,20 +1,15 @@
-/* eslint-disable array-callback-return */
 /* eslint-disable no-alert */
-/* eslint-disable react/function-component-definition */
-/* eslint-disable no-console */
+/* eslint-disable array-callback-return */
 import { LogoutIcon } from '@heroicons/react/solid';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider,HttpLink,from, useQuery, gql } from '@apollo/client';
-import {onError} from '@apollo/client/link/error'
+import { onError } from '@apollo/client/link/error';
 import { UserContext } from '../hook/useAuth';
-import { GET_LOGIN_ACTIVITIES } from '../Mutations/manageStudentMutations';
 
-
-const errorLink=onError(({graphQLErrors, networkError})=>{
-  if(graphQLErrors){
-    graphQLErrors.map(({message,path})=>{
+const errorLink = onError(({ graphQLErrors }) => {
+  if (graphQLErrors) {
+    graphQLErrors.map(({ message }) => {
       alert(`Graphql error ${message}`);
     });
   }
@@ -29,7 +24,7 @@ function ProfileDropdown({
   const { t } = useTranslation();
 
   return (
-      <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4">
+    <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4">
       <div
         className="bg-dark-20 w-full h-full absolute top-0 left-0 z-1"
         role="button"
@@ -76,26 +71,15 @@ function ProfileDropdown({
             </div>
           </div>
           <div>
-
             <Link
-
-              to="/dashboard/loginActivities" 
+              to="/dashboard/loginActivities"
               className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
             >
-              <p className="font-bold ml-1 cursor-pointer">{t('Login Activities')}</p>
+              <p className="font-bold ml-1 cursor-pointer">
+                {t('Login Activities')}
+              </p>
             </Link>
           </div>
-          {/* <div>
-  {user?.hasLoginActivities ? (
-    <Link
-      to="/dashboard/loginActivities" 
-      className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
-    >
-      <p className="font-bold ml-1 cursor-pointer">{t('Login Activities')}</p>
-    </Link>
-  ) : null}
-</div> */}
-
           <div
             className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100 "
             onClick={logout}
@@ -103,10 +87,9 @@ function ProfileDropdown({
             <LogoutIcon className="w-4 h-4 mt-1 cursor-pointer " />
             <p className="font-bold ml-1 cursor-pointer">{t('Sign out')}</p>
           </div>
-
-          
         </div>
-      </div>      </div>
+      </div>
+    </div>
   );
 }
 
