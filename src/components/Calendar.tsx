@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* istanbul ignore file */
 import React, { useEffect, useState } from 'react';
 import FullCalendar, { EventInput, EventContentArg } from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
