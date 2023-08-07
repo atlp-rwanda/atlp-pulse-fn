@@ -190,7 +190,7 @@ export default function OrgRegister() {
               className="rounded bg-white text-primary ml-20 px-3 font-bold py-2 mt-3"
             >
               {name.replace(/ /gi, '').toLowerCase()}
-              <span>.pulse.org</span>
+              <span>.devpulse.org</span>
             </button>
           </div>
         </div>
