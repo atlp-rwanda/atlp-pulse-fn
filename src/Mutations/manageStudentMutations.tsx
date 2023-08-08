@@ -111,6 +111,84 @@ query GitHubActivity($organisation: String!, $username: String!) {
   }
 }
 `;
+
+export const ADD_DOCUMENTATION = gql`
+mutation AddDocumentation($title: String!, $for: String!, $description: String!) {
+  addDocumentation(title: $title, for: $for, description: $description) {
+    title
+    description
+    id
+    for
+    subDocuments {
+      description
+      title
+    }
+  }
+}
+`;
+
+export const ADD_SUB_DOCUMENTATION = gql`
+mutation AddSubDocumentation($id: ID!, $title: String!, $description: String!) {
+  addSubDocumentation(id: $id, title: $title, description: $description) {
+    description
+    id
+    title
+    
+  }
+}
+`;
+
+export const GET_DOCUMENTATION = gql`
+query GetDocumentations {
+  getDocumentations {
+    description
+    for
+    id
+    subDocuments {
+      description
+      title
+    }
+    title
+  }
+}
+`;
+
+export const UPDATE_DOCUMENTATION = gql`
+mutation UpdateDocumentation($id: ID!, $title: String, $for: String, $description: String) {
+  updateDocumentation(id: $id, title: $title, for: $for, description: $description) {
+    description
+    for
+    id
+    subDocuments {
+      description
+      title
+    }
+    title
+  }
+}
+`;
+
+export const DELETE_DOCUMENTATION = gql`
+mutation DeleteDocumentation($id: ID!) {
+  deleteDocumentation(id: $id)
+}
+`;
+
+export const DELETE_SUB_DOCUMENTATION = gql`
+mutation DeleteSubDocumentation($id: ID!, $title: String!, $description: String!) {
+  deleteSubDocumentation(id: $id, title: $title, description: $description) {
+    id
+    title
+    for
+    description
+    subDocuments {
+      description
+      title
+    }
+  }
+}
+`;
+
 export const GET_LOGIN_ACTIVITIES = gql`
 query Query {
   getProfile {

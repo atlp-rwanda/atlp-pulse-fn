@@ -27,6 +27,7 @@ const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
+const DashRoutes = React.lazy(() => import('../containers/DashRoutes'));
 
 function MainRoutes() {
   return (
@@ -34,6 +35,7 @@ function MainRoutes() {
       <Header />
       <Suspense fallback={<Skeleton />}>
         <Routes>
+        <Route path="/*" element={<DashRoutes />} />
           <Route path="/" element={<Home />} />
           <Route path="/register/:token" element={<UserRegister />} />
           <Route path="/register-successful" element={<Message />} />

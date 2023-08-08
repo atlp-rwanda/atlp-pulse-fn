@@ -136,7 +136,7 @@ function DashHeader() {
             </div>
           </div>
           <div className="flex items-center h-full lg:w-full">
-            <Link to="/dashboard/super-admin" className="flex flex-row lg:px-5">
+            <Link to="/super-admin" className="flex flex-row lg:px-5">
               {colorTheme === 'dark' ? (
                 <img
                   className="w-full cursor-pointer mr-2"

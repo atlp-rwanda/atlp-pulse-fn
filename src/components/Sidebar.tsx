@@ -42,10 +42,10 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
       className={`${style} overflow-auto flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
     >
       <div className="pr-8 list-none">
-        <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard/">
+        <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard">
           <ChartPieIcon className="w-5 mr-2 " />
         </SideNavLink>
-        <SideNavLink onClick={toggle} name="Tickets" to="/dashboard/tickets">
+        <SideNavLink onClick={toggle} name="Tickets" to="/tickets">
           <MailIcon className="w-5 mr-2 " />
         </SideNavLink>
 
@@ -54,7 +54,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           <SideNavLink
             onClick={toggle}
             name="Organizations"
-            to="/dashboard/organizations"
+            to="/organizations"
           >
             <HomeIcon className="w-5 mr-2 " />
           </SideNavLink>
@@ -63,20 +63,23 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             onClick={toggle}
             name="Admins"
             data-testid="keppi"
-            to="/dashboard/admins"
+            to="/admins"
           >
             <UsersIcon className="w-5 mr-2 " />
           </SideNavLink>
-          <SideNavLink onClick={toggle} name="Domains" to="/dashboard/domains">
+          <SideNavLink onClick={toggle} name="Domains" to="/domains">
             <GlobeAltIcon className="w-5 mr-2 " />
           </SideNavLink>
+          {/* <SideNavLink onClick={toggle} name="Docs" to="/coordinatorDocs">
+             <FolderIcon className="w-5 mr-2" />
+          </SideNavLink> */}
         </CheckRole>
 
         {/* FOR ADMINS & COORDINATORS */}
         <CheckRole roles={['admin', 'coordinator']}>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/trainees"
+            to="/trainees"
             name="Trainees"
           >
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
@@ -87,56 +90,56 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
         <CheckRole roles={['admin']}>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/coordinators"
+            to="/coordinators"
             name="Coordinators"
           >
             <UsersIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/teams" name="Teams">
+          <SideNavLink onClick={toggle} to="/teams" name="Teams">
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/cohorts" name="Cohorts">
+          <SideNavLink onClick={toggle} to="/cohorts" name="Cohorts">
             <AcademicCapIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/phases" name="Phases">
+          <SideNavLink onClick={toggle} to="/phases" name="Phases">
             <MoonIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/programs"
+            to="/programs"
             name="Programs"
           >
             <ProgramIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/admin/ratings"
+            to="/admin/ratings"
             name="Ratings"
           >
             <ClipboardListIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/updated-ratings"
+            to="/updated-ratings"
             name="Updated Ratings"
           >
             <RefreshIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/grading"
+            to="/grading"
             name="Grading System"
           >
             <TemplateIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/manage"
+            to="/manage"
             name="Roles & Access"
           >
             <KeyIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} name="Docs" to="/dashboard/adminDocs">
+          <SideNavLink onClick={toggle} name="Docs" to="/docs/admin">
             <FolderIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
@@ -147,41 +150,37 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           <SideNavLink
             onClick={toggle}
             name="Teams"
-            to="/dashboard/cards"
+            to="/cards"
           >
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill " />
           </SideNavLink>
 
           <SideNavLink
             onClick={toggle}
-            to="/dashboard/sessions"
+            to="/sessions"
             name="Sessions"
           >
             <BookOpenIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
-          <SideNavLink onClick={toggle} to="/dashboard/ratings" name="Ratings">
+          <SideNavLink onClick={toggle} to="/ratings" name="Ratings">
             <ClipboardListIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
           <SideNavLink
             onClick={toggle}
             name="Attendance"
-            to="/dashboard/attendance"
+            to="/attendance"
           >
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
 
-          <SideNavLink
-            onClick={toggle}
-            name="Docs"
-            to="/dashboard/coordinatorDocs"
-          >
-            <FolderIcon className="w-5 mr-2" />
+          <SideNavLink onClick={toggle} name="Docs" to="/docs">
+             <FolderIcon className="w-5 mr-2" />
           </SideNavLink>
         </CheckRole>
 
-        {/* manger role */}
-        <CheckRole roles={['manager']}>
-          <SideNavLink onClick={toggle} name="Teams" to="/dashboard/team-cards">
+            {/* manger role */}
+            <CheckRole roles={['manager']}>
+          <SideNavLink onClick={toggle} name="Teams" to="/team-cards">
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
@@ -191,7 +190,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           <SideNavLink
             onClick={toggle}
             name="Attendance"
-            to="/dashboard/attendance"
+            to="/attendance"
           >
             <ClipboardCheckIcon className="w-5 mr-2 " />
           </SideNavLink>
@@ -201,36 +200,36 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
               setTogglei(true);
             }}
             name="Performance"
-            to="/dashboard/performance"
+            to="/performance"
           >
             <TrendingUpIcon className="w-5 mr-2 " />
           </SideNavLink>
 
-          <SideNavLink onClick={toggle} name="Docs" to="/dashboard/traineeDocs">
+          <SideNavLink onClick={toggle} name="Docs" to="/docs/trainee">
             <FolderIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
 
-        <SideNavLink onClick={toggle} name="Calendar" to="/dashboard/calendar">
+        <SideNavLink onClick={toggle} name="Calendar" to="/calendar">
           <CalendarIcon className="w-5 mr-2" />
         </SideNavLink>
 
         <CheckRole
           roles={['trainee', 'admin', 'coordinator', 'manager', 'user']}
         >
-          <SideNavLink onClick={toggle} name="Help" to="/dashboard/support">
+          <SideNavLink onClick={toggle} name="Help" to="/support">
             <SupportIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
 
-        {/* <SideNavLink onClick={toggle} name="Docs" to="/dashboard/docs">
+        {/* <SideNavLink onClick={toggle} name="Docs" to="/docs">
           <FolderIcon className="w-5 mr-2 " />
         </SideNavLink>
 
         <CheckRole
           roles={['trainee', 'admin', 'coordinator', 'manager', 'user']}
         >
-          <SideNavLink onClick={toggle} name="Help" to="/dashboard/support">
+          <SideNavLink onClick={toggle} name="Help" to="/support">
             <SupportIcon className="w-5 mr-2 " />
           </SideNavLink>
         </CheckRole>
@@ -248,7 +247,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </li>
           <li className="px-2">
             <NavLink
-              to="/dashboard/settings"
+              to="/settings"
               className={(navData) => {
                 if (navData.isActive) {
                   return 'flex flex-row font-bold text-primary dark:text-primary';

@@ -54,7 +54,7 @@ function Settings() {
               </div>
               <Link
                 className="ml-auto text-gray-600 text-xs md:text-base dark:text-dark-text-fill"
-                to="/dashboard/profile"
+                to="/profile"
               >
                 <h4>{t('Change')}</h4>
               </Link>

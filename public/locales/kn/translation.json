@@ -422,5 +422,11 @@
   "ttlemail": "imeri yumuyobozi witsinda",
   "startDate": "Italiki yogutangira",
   "The ttl email is required": "imeri yumuyobozi witsinda irakenewe",
-  "startDaterequikred": "Italiki yogutangira irakenewe"
+  "startDaterequikred": "Italiki yogutangira irakenewe",
+  "Add Document": "Ongeraho inyandiko",
+  "Enter the title and description of the document you want to add": "Shyiramo izina n'ibisobanuro by'inyandiko wifuza ongera",
+  "Documentation updated successfully": "Inyandiko yavuguruwe neza",
+  "Please fill all fields": "Shyiramo Ibisabwa byose",
+  "Proceed": "Komeza",
+  "Update":"Vugurura"
 }

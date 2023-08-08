@@ -56,7 +56,7 @@ function ProfileDropdown({
                 <div className="flex flex-col w-full gap-[5px] cursor-pointer">
                   <Link
                     onClick={handleShowProfileDropdown}
-                    to="/dashboard/profile"
+                    to="/profile"
                     className="font-semibold text-gray-600 dark:text-white px-4 py-2 hover:bg-gray-600 hover:text-gray-200 dark:hover:bg-gray-300 dark:hover:text-gray-900"
                   >
                     {t('Profile')}
@@ -74,7 +74,7 @@ function ProfileDropdown({
           </div>
           <div>
             <Link
-              to="/dashboard/loginActivities"
+              to="/loginActivities"
               className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
             >
               <p className="font-bold ml-1 cursor-pointer">
