@@ -16,7 +16,7 @@ export default function Pricing() {
             className="flex items-center justify-center h-screen bg-light-bg dark:bg-dark-frame-bg md:-mt-16 md:-mb-44"
             key={item.id}
           >
-            <div className="dark:bg-dark-bg bg-gray-100 rounded-lg shadow-lg p-5 md:p-20 mx-2">
+            <div className="dark:bg-dark-bg bg-indigo-100 rounded-lg shadow-lg p-5 md:p-20 mx-2">
               <div className="text-center">
                 <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-light-text dark:text-dark-text-fill sm:text-5xl sm:leading-none md:text-6xl">
                   {item.title}

@@ -22,7 +22,7 @@
 /* 404 Page */
 .errorImg {
   background-image: linear-gradient(to top, #24243e, #302b63c9, #0f0c2945),
-    url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80');
+    url(https://res.cloudinary.com/deygsvbub/image/upload/v1691651478/Home_page_image_1_io1spq.png);
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -46,12 +46,12 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 36px */
+text-align: justify;
 }
 
 .header-style {
   color: var(--neutral-neutral-900, #424242);
   font-family: poppins;
-  font-size: 25px;
   font-style: normal;
   font-weight: 900;
   line-height: 100%; /* 35px */
@@ -70,6 +70,7 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: 150%;
+text-align: justify;
 }
 .font{
   font-family: Poppins;
@@ -77,10 +78,33 @@ line-height: 150%;
 .text-img {
   color: var(--base-light, #FFF);
   font-family: Poppins;
-  font-size: 45px;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
+}
+.hero {
+  background-image:
+    url('https://res.cloudinary.com/deygsvbub/image/upload/v1691651478/Home_page_image_1_io1spq.png');
+
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-attachment:fixed; 
+  background-size: cover;
+
+}
+
+ @supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */ 
+  .hero {
+    background-attachment: scroll;
+  }
+
+  
 }
 /* .m-width {
   max-width: 150px;
