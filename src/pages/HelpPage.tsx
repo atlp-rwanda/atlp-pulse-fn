@@ -42,12 +42,11 @@ function Help() {
   function handleOnChange(e: any) {
     setMsg({ ...msg, [e.target.name]: e.target.value });
   }
-
   return (
-    <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
+    <div className="flex flex-col grow bg-white  dark:bg-dark-frame-bg ">
       <div className="flex flex-row justify-center pt-[12vh]">
-        <div className="rounded-lg sm:w-[90%] md:w-[70%] lg:w-[50%] lg:ml-[38vh] mt-5 lg:mr-[2vh] lg:mb-10 p-6 bg-white dark:bg-dark-bg">
-          <h2 className="text-4xl font-bold dark:text:white mb-10">
+        <div className="rounded-lg sm:w-[90%] md:w-[60%] lg:w-[40%] mt-5  lg:mb-10 p-6 bg-[#e0e7ff] border-gray-400 dark:bg-dark-bg">
+          <h2 className="text-4xl font-bold dark:text:white mb-5 text-center">
             {t('Support')}
           </h2>
           <form action="#none" onSubmit={handleSubmit} data-testid="loginForm">
@@ -64,7 +63,7 @@ function Help() {
                   width: '100%',
                   padding: '12px 20px',
                   borderRadius: '4px',
-                  border: '1px solid #ccc',
+                  border: '1px solid #8667F2',
                   fontSize: '16px',
                   resize: 'none',
                 }}
@@ -72,7 +71,7 @@ function Help() {
               />
             </div>
 
-            <div className="relative mb-6">
+            <div className="relative mb-6 ">
               <label htmlFor="exampleFormControlTextarea13">
                 {t('Message')}
               </label>
@@ -85,13 +84,13 @@ function Help() {
                 style={{
                   width: '100%',
                   height: '150px',
-                  padding: '12px 20px',
+                  padding: '50px 20px',
                   borderRadius: '4px',
-                  border: '1px solid #ccc',
+                  border: '1px solid #8667F2',
                   fontSize: '16px',
                   resize: 'none',
                 }}
-                className="dark:bg-dark-bg"
+                className="dark:bg-dark-bg flex items-center"
                 required
               />
             </div>
@@ -101,13 +100,13 @@ function Help() {
             ) : (
               <Button
                 type="submit"
-                variant="primary"
+                
                 data-testid="loginForm"
                 size="lg"
-                style="w-full ml-0 hover:bg-violet-600 text-sm"
+                style="w-full ml-0 text-2xl   text-white bg-[#8667F2] hover:bg-[#c7b9f9] "
               >
                 {' '}
-                {t('Send')}
+                {t('Send')} 
               </Button>
             )}
           </form>

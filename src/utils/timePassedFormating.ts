@@ -25,7 +25,7 @@ function timePassedCalculator(date: any) {
   if (minutes > 0) return `${minutes} minutes ago.`;
 
   // Return Seconds
-  if (diffInMilliSeconds === 1) return 'A second ago';
+  if (diffInMilliSeconds < 30) return 'A few seconds ago';
   return `${Math.floor(diffInMilliSeconds)} seconds ago.`;
 }
 

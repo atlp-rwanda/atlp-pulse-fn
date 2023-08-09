@@ -30,8 +30,8 @@ function AllTickets() {
   }
 
   return (
-    <div className="flex flex-col grow items-center bg-light-bg dark:bg-dark-frame-bg">
-      <div className="flex flex-col items-center gap-4 sm:w-[90%] md:w-[70%] lg:w-[45%] lg:ml-[38vh] mt-5 lg:mr-[2vh] lg:mb-10 pt-12">
+    <div className="flex flex-col grow items-center bg-white dark:bg-dark-frame-bg">
+      <div className="flex flex-col items-center gap-4 sm:w-[90%] md:w-[70%] lg:w-[45%]  mt-5  lg:mb-10 pt-12">
         <h2 className="text-4xl font-bold dark:text:white mb-3">
           {t('Tickets')}
         </h2>
@@ -41,7 +41,7 @@ function AllTickets() {
             <div
               // eslint-disable-next-line no-underscore-dangle
               key={String(msg.id)}
-              className="w-full bg-white dark:bg-dark-bg rounded overflow-hidden shadow-xl"
+              className="w-full bg-[#e0e7ff] dark:bg-dark-bg rounded overflow-hidden mb-5"
             >
               <div className="px-6 pt-8 mb-6">
                 <div className="font-bold text-xl text-blue-600 mb-5">
@@ -78,7 +78,7 @@ function AllTickets() {
                   // eslint-disable-next-line no-underscore-dangle
                   onClick={() => handleSelectTicket(msg.id)}
                   type="button"
-                  className="bg-gray-300 dark:bg-black dark:text-white hover:bg-gray-400 font-normal py-1 px-2 rounded"
+                  className="bg-[#8667F2] text-white hover:bg-[#c7b9f9] font-normal py-1 px-2 rounded"
                 >
                   {t('Read more')}
                 </button>
