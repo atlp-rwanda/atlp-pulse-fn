@@ -98,16 +98,16 @@ function TraineePerfomanceDetails() {
         <table className="lg:w-9/12 md:w-11/12 lg:h-[70%] md:h-[60%] md:ml-0 lg:ml-32 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 ">
           <thead>
             <tr className="text-gray-300  bg-gray-100  dark:bg-dark-tertiary">
-              <th className="lg:py-3 md:py-2 lg:px-3 md:px-2  text-left  text-[#6B7280] dark:text-dark-text-fill ">
+              <th className="lg:py-3 md:py-2 lg:px-3 md:px-2  text-left  text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                 {t('Metric')}
               </th>
-              <th className="lg:py-3 md:py-2 lg:px-10 md:px-7 text-center text-[#6B7280] dark:text-dark-text-fill">
+              <th className="lg:py-3 md:py-2 lg:px-10 md:px-7 text-center text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                 {t('Grade')}
               </th>
-              <th className="lg:py-3 md:py-2 text-left text-[#6B7280] dark:text-dark-text-fill">
+              <th className="lg:py-3 md:py-2 text-left text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                 {t('Remarks')}
               </th>
-              <th className="lg:py-3 md:py-2"> </th>
+              <th className="lg:py-3 md:py-2 dark:bg-neutral-600"> </th>
             </tr>
           </thead>
           <tbody className=" text-center ">
@@ -462,10 +462,10 @@ function TraineePerfomanceDetails() {
           <table className=" rounded-lg w-7/12 h-[70%] overflow-hidden  md:shadow mt-[-40px]">
             <thead>
               <tr className="text-gray-300 dark:text-white  bg-gray-100 dark:bg-dark-tertiary ">
-                <th className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill ">
+                <th className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                   {t('Metric')}
                 </th>
-                <th className="py-2 px-10 text-center text-[#6B7280] dark:text-dark-text-fill">
+                <th className="py-2 px-10 text-center text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                   {t('Quantity')}
                 </th>
               </tr>
@@ -495,10 +495,10 @@ function TraineePerfomanceDetails() {
           <table className=" rounded-lg w-7/12 h-[70%] overflow-hidden  md:shadow mt-[-40px]">
             <thead>
               <tr className="text-gray-300 dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary">
-                <th className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill  ">
+                <th className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill  dark:bg-neutral-600">
                   {t('Metric')}
                 </th>
-                <th className="py-2 px-10 text-center text-[#6B7280] dark:text-dark-text-fill">
+                <th className="py-2 px-10 text-center text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                   {t('Quality')}
                 </th>
               </tr>
@@ -528,10 +528,10 @@ function TraineePerfomanceDetails() {
           <table className=" rounded-lg w-7/12 h-[70%] overflow-hidden  md:shadow mt-[-40px]">
             <thead>
               <tr className="text-gray-300  bg-gray-100 dark:bg-dark-tertiary ">
-                <th className="py-2 px-0 text-center text-[#6B7280] dark:text-dark-text-fill ">
+                <th className="py-2 px-0 text-center text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                   {t('Metric')}
                 </th>
-                <th className="py-4 px-10 text-justify  text-[#6B7280] dark:text-dark-text-fill">
+                <th className="py-4 px-10 text-justify  text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                   {t('Professional skills')}
                 </th>
               </tr>

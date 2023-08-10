@@ -177,27 +177,27 @@ function TraineePerfomance() {
                     <thead className="dark:text-white "> </thead>
                     <tbody>
                       <tr>
-                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Sprint')}
                         </th>
 
-                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Phase')}
                         </th>
-                        <th className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
+                        <th className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
                           {t('Quantity')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
                           {t('Quality')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
                           {t('Professional skills')}
                         </th>
 
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Average')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Actions')}
                         </th>
                       </tr>

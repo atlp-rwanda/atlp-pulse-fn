@@ -102,7 +102,7 @@ function DataTable({ data, columns, title, removeModel }: TableData) {
               // eslint-disable-next-line operator-linebreak
               const rowTheme =
                 row.index % 2 !== 0
-                  ? 'bg-light-bg dark:bg-dark-tertiary'
+                  ? 'bg-light-bg dark:bg-neutral-600'
                   : 'bg-white dark:bg-dark-bg';
 
               return (
