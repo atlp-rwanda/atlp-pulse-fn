@@ -3,8 +3,13 @@
 }
 
 .inputStyle {
-  /* -webkit-appearance: none; */
   outline: none;
   padding: 0; /* Remove padding on all sides */
   border: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.orgName:has(.inputStyle:-webkit-autofill, .inputStyle:-webkit-autofill:hover, .inputStyle:-webkit-autofill:focus) {
+  background-color: #eef5ff;
 }

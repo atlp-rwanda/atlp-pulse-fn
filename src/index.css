@@ -40,13 +40,13 @@
 }
 
 .text-style {
-color: var(--neutral-neutral-900, #424242);
-font-family: poppins;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%; /* 36px */
-text-align: justify;
+  color: var(--neutral-neutral-900, #424242);
+  font-family: poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 36px */
+  text-align: justify;
 }
 
 .header-style {
@@ -64,12 +64,12 @@ text-align: justify;
 }
 .card-text {
   color: var(--neutral-neutral-900, #424242);
-font-family: poppins;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%;
-text-align: justify;
+  font-family: poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: justify;
 }
 .font {
   font-family: Poppins;
@@ -83,7 +83,7 @@ text-align: justify;
 }
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-  url('https://res.cloudinary.com/bdushimi/image/upload/v1683554711/Andela_Rwanda_Engineers_zr7awr.jpg');
+    url('https://res.cloudinary.com/bdushimi/image/upload/v1683554711/Andela_Rwanda_Engineers_zr7awr.jpg');
 
   background-repeat: no-repeat;
   display: flex;
@@ -92,18 +92,15 @@ text-align: justify;
   height: 100vh;
   width: 100%;
   background-position: center;
-  background-attachment:fixed; 
+  background-attachment: fixed;
   background-size: cover;
-
 }
 
- @supports (-webkit-touch-callout: none) {
-  /* CSS specific to iOS devices */ 
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
   .hero {
     background-attachment: scroll;
   }
-
-  
 }
 /* .m-width {
   max-width: 150px;
@@ -354,4 +351,15 @@ input::-webkit-inner-spin-button {
 }
 th {
   max-width: 150px; /* Adjust as needed */
+}
+
+@media (max-width: 375px) {
+  .cardReg {
+    width: 80%;
+  }
+  .Terms {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
