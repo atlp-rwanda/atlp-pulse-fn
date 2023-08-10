@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<AdminTraineeDashboard /> Renders AdminTraineeDashboard 1`] = `
+exports[`AdminTraineeDashboard Tests Renders AdminTraineeDashboard 1`] = `
 Array [
   <div
     className="rounded-lg dark:bg-dark-bg"

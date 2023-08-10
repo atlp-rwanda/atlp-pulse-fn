@@ -1,10 +1,9 @@
+/* eslint-disable camelcase */
 /* istanbul ignore file */
-/* eslint-disable no-else-return */
-// eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
 import { toast, ToastContent } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../hook/useAuth';
 
 const checkTokenExpiration = async () => {
@@ -21,13 +20,13 @@ const checkTokenExpiration = async () => {
     toast.error(
       t('Your token has expired, try to login again') as ToastContent<unknown>,
     );
-    logout();
-    return false;
-  } else if (expiration !== null && expiration.exp * 1000 > Date.now()) {
-    return true;
-  } else {
+    logout('expired');
     return false;
   }
+  if (expiration !== null && expiration.exp * 1000 > Date.now()) {
+    return true;
+  }
+  return false;
 };
 
 export default checkTokenExpiration;

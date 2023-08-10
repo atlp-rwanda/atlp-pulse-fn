@@ -19,22 +19,22 @@ exports[`Organization Login Should render 1`] = `
     </div>
     <form
       action="#none"
-      className="space-y-6 mt-4"
+      className="space-y-6 mt-4 "
       onSubmit={[Function]}
     >
       <div
         className="orgName"
       >
         <input
-          className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-dark-bg"
+          className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-neutral-600"
           data-testid="orgName"
           name="name"
-          onBlur={[Function]}
           onChange={[Function]}
+          onKeyDown={[Function]}
           placeholder="Your-organization"
           style={
             Object {
-              "width": "150px",
+              "width": "130px",
             }
           }
           type="text"
@@ -44,6 +44,7 @@ exports[`Organization Login Should render 1`] = `
           className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
           disabled={true}
           placeholder=".devpulse.org"
+          style={Object {}}
         />
       </div>
       <div

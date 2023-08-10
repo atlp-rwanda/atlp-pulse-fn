@@ -2,14 +2,14 @@
 
 exports[`about tests Renders the HomePage  1`] = `
 <div
-  className=" bg-white dark:bg-dark-bg  mt-auto"
+  className=" bg-white   mt-auto dark:bg-dark-frame-bg"
 >
   <div
-    className=" justify-between w-full h-full"
+    className=" justify-between w-full h-full pb-5"
   >
     <div>
       <h1
-        className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic"
+        className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic  dark:text-slate-100"
       >
         What you can do with us
       </h1>
@@ -18,10 +18,10 @@ exports[`about tests Renders the HomePage  1`] = `
       className="card-image lg:mx-10 sm:mx-5 md:flex flex"
     >
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
       >
         <h2
-          className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start"
+          className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
         >
           Performance Management/Analytics
         </h2>
@@ -35,7 +35,7 @@ exports[`about tests Renders the HomePage  1`] = `
             />
           </div>
           <p
-            className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+            className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
           >
             Optimize your organization's potential with Performance Management/Analytics. Our cutting-edge solution uses data-driven insights to track and improve performance across your business. Set and monitor KPIs, identify areas for growth, and make informed decisions with our intuitive platform. Achieve remarkable results today!
           </p>
@@ -46,6 +46,7 @@ exports[`about tests Renders the HomePage  1`] = `
       >
         <img
           alt="frame"
+          className="rounded-2xl dark:opacity-80"
           src={Object {}}
         />
       </div>
@@ -58,15 +59,16 @@ exports[`about tests Renders the HomePage  1`] = `
       >
         <img
           alt="second"
+          className="rounded-2xl dark:opacity-80 "
           src={Object {}}
         />
       </div>
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
       >
         <div>
           <h2
-            className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+            className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
           >
             Talent Analytics and 
             <br />
@@ -81,7 +83,7 @@ exports[`about tests Renders the HomePage  1`] = `
             />
           </div>
           <p
-            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
           >
             Show up your workforce's potential with Talent Analytics and Reporting. Gain deep insights into your talent pool through data analysis. Identify top performers, discover hidden talent, and optimize your workforce with cutting-edge analytics tools. Utilize customizable reports and intuitive dashboards for a holistic view of your talent landscape. Make data-driven decisions to drive strategic talent management initiatives and achieve sustainable growth and success.
           </p>
@@ -92,10 +94,10 @@ exports[`about tests Renders the HomePage  1`] = `
       className="card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex flex"
     >
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
       >
         <h2
-          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
         >
           Continuous & Tight Feedback Loop
         </h2>
@@ -105,11 +107,12 @@ exports[`about tests Renders the HomePage  1`] = `
           >
             <img
               alt="thirdimage"
+              className="rounded-2xl dark:opacity-80"
               src={Object {}}
             />
           </div>
           <p
-            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4  dark:text-slate-300"
           >
             Unlock the potential of a Continuous & Tight Feedback Loop. Our innovative solution enables real-time feedback exchange between employees, fostering a culture of continuous improvement. Seamlessly capture feedback and address development areas promptly, driving success and productivity. Embrace the power of a Continuous & Tight Feedback Loop for enhanced performance.
           </p>
@@ -120,26 +123,28 @@ exports[`about tests Renders the HomePage  1`] = `
       >
         <img
           alt="thirdimage"
+          className="rounded-2xl dark:opacity-80"
           src={Object {}}
         />
       </div>
     </div>
     <div
-      className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10"
+      className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10 mb-20"
     >
       <div
         className="sm:hidden md:flex xl:flex lg:flex"
       >
         <img
           alt="fourthimage"
+          className="rounded-2xl dark:opacity-80"
           src={Object {}}
         />
       </div>
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
       >
         <h2
-          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
         >
           Goal Tracking and Progress Monitoring
         </h2>
@@ -148,33 +153,38 @@ exports[`about tests Renders the HomePage  1`] = `
         >
           <img
             alt="fourthimage"
+            className="rounded-2xl dark:opacity-80"
             src={Object {}}
           />
         </div>
         <p
-          className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+          className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
         >
           Achieve your goals with Goal Tracking and Progress Monitoring. Our solution empowers individuals and teams to set clear objectives, monitor progress, and stay accountable. Effortlessly define SMART goals, track milestones, and visualize progress in real-time on our user-friendly platform. Gain valuable insights, identify obstacles, and make data-driven adjustments for success. Whether you're an individual professional or a team leader, our tool will keep you focused, motivated, and on the path to accomplishing your goals.
         </p>
       </div>
     </div>
-    <div>
+    <div
+      className="px-5"
+    >
       <h1
-        className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl pt-8 italic"
+        className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100"
       >
         Excellent human resources and companies
       </h1>
       <h1
-        className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl"
+        className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl dark:text-slate-100"
       >
-         Come shape the future together 
+         
+        Come shape the future together
+         
       </h1>
     </div>
     <div
       className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative "
     >
       <div
-        className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl visible"
+        className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl visible"
       >
         <div
           className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -186,19 +196,19 @@ exports[`about tests Renders the HomePage  1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
             >
               Bernard Dushimimana
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs mt-2  dark:text-slate-300 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300 text-neutral-900"
         >
           I'm extremely impressed with Pulse and their performance management platform.
         Since using their services, it has been a game-changer for our organization.
@@ -213,7 +223,7 @@ exports[`about tests Renders the HomePage  1`] = `
         </p>
       </div>
       <div
-        className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
+        className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
       >
         <div
           className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -225,19 +235,19 @@ exports[`about tests Renders the HomePage  1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
             >
               Susan
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs mt-2  dark:text-slate-300 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300 text-neutral-900"
         >
           I'm delighted to share my positive experience with Pulse and their exceptional
         performance management platform. Implementing their services has led to remarkable
@@ -251,7 +261,7 @@ exports[`about tests Renders the HomePage  1`] = `
         </p>
       </div>
       <div
-        className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
+        className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
       >
         <div
           className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -263,29 +273,29 @@ exports[`about tests Renders the HomePage  1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
             >
               University of Rwanda
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs mt-2  dark:text-slate-300 ml-3"
             >
               organisation
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300 text-neutral-900"
         >
           
         We are thrilled with the services provided by Pulse. Their performance management platform
-                            has exceeded our expectations in every way. The user-friendly interface and comprehensive
-                            features have made tracking and monitoring our performance metrics a breeze. Pulse's
-                            data-driven insights have revolutionized our approach to performance management,
-                            enabling informed decisions and continuous improvement. The support team at Pulse has
-                            been exceptional, offering prompt and knowledgeable assistance whenever needed.
-                            I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
-                            management process and achieve outstanding results.
+        has exceeded our expectations in every way. The user-friendly interface and comprehensive
+        features have made tracking and monitoring our performance metrics a breeze. Pulse's
+        data-driven insights have revolutionized our approach to performance management,
+        enabling informed decisions and continuous improvement. The support team at Pulse has
+        been exceptional, offering prompt and knowledgeable assistance whenever needed.
+        I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
+        management process and achieve outstanding results.
         
         </p>
       </div>
@@ -339,7 +349,7 @@ exports[`about tests Renders the HomePage  1`] = `
       </span>
     </div>
     <div
-      className="hidden md:flex md:flex-row flex-col lg:mx-10 md:mx-20 my-20 gap-10 "
+      className="hidden md:flex md:flex-row flex-col  lg:mx-10 md:mx-20 my-20 gap-10 "
     >
       <div
         className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl"
@@ -354,19 +364,19 @@ exports[`about tests Renders the HomePage  1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
             >
               Bernard Dushimimana
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs  dark:text-slate-300  mt-2 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300  text-neutral-900"
         >
           I'm extremely impressed with Pulse and their performance management platform.
         Since using their services, it has been a game-changer for our organization.
@@ -393,19 +403,19 @@ exports[`about tests Renders the HomePage  1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
             >
               Susan
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs  dark:text-slate-300  mt-2 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300  text-neutral-900"
         >
           I'm delighted to share my positive experience with Pulse and their exceptional
         performance management platform. Implementing their services has led to remarkable
@@ -431,29 +441,29 @@ exports[`about tests Renders the HomePage  1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
             >
               University of Rwanda
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs  dark:text-slate-300  mt-2 ml-3"
             >
               organisation
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300  text-neutral-900"
         >
           
         We are thrilled with the services provided by Pulse. Their performance management platform
-                            has exceeded our expectations in every way. The user-friendly interface and comprehensive
-                            features have made tracking and monitoring our performance metrics a breeze. Pulse's
-                            data-driven insights have revolutionized our approach to performance management,
-                            enabling informed decisions and continuous improvement. The support team at Pulse has
-                            been exceptional, offering prompt and knowledgeable assistance whenever needed.
-                            I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
-                            management process and achieve outstanding results.
+        has exceeded our expectations in every way. The user-friendly interface and comprehensive
+        features have made tracking and monitoring our performance metrics a breeze. Pulse's
+        data-driven insights have revolutionized our approach to performance management,
+        enabling informed decisions and continuous improvement. The support team at Pulse has
+        been exceptional, offering prompt and knowledgeable assistance whenever needed.
+        I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
+        management process and achieve outstanding results.
         
         </p>
       </div>
@@ -464,14 +474,14 @@ exports[`about tests Renders the HomePage  1`] = `
 
 exports[`about tests Should render the about with no active 1`] = `
 <div
-  className=" bg-white dark:bg-dark-bg  mt-auto"
+  className=" bg-white   mt-auto dark:bg-dark-frame-bg"
 >
   <div
-    className=" justify-between w-full h-full"
+    className=" justify-between w-full h-full pb-5"
   >
     <div>
       <h1
-        className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic"
+        className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic  dark:text-slate-100"
       >
         What you can do with us
       </h1>
@@ -480,10 +490,10 @@ exports[`about tests Should render the about with no active 1`] = `
       className="card-image lg:mx-10 sm:mx-5 md:flex flex"
     >
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
       >
         <h2
-          className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start"
+          className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
         >
           Performance Management/Analytics
         </h2>
@@ -497,7 +507,7 @@ exports[`about tests Should render the about with no active 1`] = `
             />
           </div>
           <p
-            className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+            className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
           >
             Optimize your organization's potential with Performance Management/Analytics. Our cutting-edge solution uses data-driven insights to track and improve performance across your business. Set and monitor KPIs, identify areas for growth, and make informed decisions with our intuitive platform. Achieve remarkable results today!
           </p>
@@ -508,6 +518,7 @@ exports[`about tests Should render the about with no active 1`] = `
       >
         <img
           alt="frame"
+          className="rounded-2xl dark:opacity-80"
           src={Object {}}
         />
       </div>
@@ -520,15 +531,16 @@ exports[`about tests Should render the about with no active 1`] = `
       >
         <img
           alt="second"
+          className="rounded-2xl dark:opacity-80 "
           src={Object {}}
         />
       </div>
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
       >
         <div>
           <h2
-            className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+            className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
           >
             Talent Analytics and 
             <br />
@@ -543,7 +555,7 @@ exports[`about tests Should render the about with no active 1`] = `
             />
           </div>
           <p
-            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
           >
             Show up your workforce's potential with Talent Analytics and Reporting. Gain deep insights into your talent pool through data analysis. Identify top performers, discover hidden talent, and optimize your workforce with cutting-edge analytics tools. Utilize customizable reports and intuitive dashboards for a holistic view of your talent landscape. Make data-driven decisions to drive strategic talent management initiatives and achieve sustainable growth and success.
           </p>
@@ -554,10 +566,10 @@ exports[`about tests Should render the about with no active 1`] = `
       className="card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex flex"
     >
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
       >
         <h2
-          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
         >
           Continuous & Tight Feedback Loop
         </h2>
@@ -567,11 +579,12 @@ exports[`about tests Should render the about with no active 1`] = `
           >
             <img
               alt="thirdimage"
+              className="rounded-2xl dark:opacity-80"
               src={Object {}}
             />
           </div>
           <p
-            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4  dark:text-slate-300"
           >
             Unlock the potential of a Continuous & Tight Feedback Loop. Our innovative solution enables real-time feedback exchange between employees, fostering a culture of continuous improvement. Seamlessly capture feedback and address development areas promptly, driving success and productivity. Embrace the power of a Continuous & Tight Feedback Loop for enhanced performance.
           </p>
@@ -582,26 +595,28 @@ exports[`about tests Should render the about with no active 1`] = `
       >
         <img
           alt="thirdimage"
+          className="rounded-2xl dark:opacity-80"
           src={Object {}}
         />
       </div>
     </div>
     <div
-      className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10"
+      className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10 mb-20"
     >
       <div
         className="sm:hidden md:flex xl:flex lg:flex"
       >
         <img
           alt="fourthimage"
+          className="rounded-2xl dark:opacity-80"
           src={Object {}}
         />
       </div>
       <div
-        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+        className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
       >
         <h2
-          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+          className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
         >
           Goal Tracking and Progress Monitoring
         </h2>
@@ -610,33 +625,38 @@ exports[`about tests Should render the about with no active 1`] = `
         >
           <img
             alt="fourthimage"
+            className="rounded-2xl dark:opacity-80"
             src={Object {}}
           />
         </div>
         <p
-          className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+          className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
         >
           Achieve your goals with Goal Tracking and Progress Monitoring. Our solution empowers individuals and teams to set clear objectives, monitor progress, and stay accountable. Effortlessly define SMART goals, track milestones, and visualize progress in real-time on our user-friendly platform. Gain valuable insights, identify obstacles, and make data-driven adjustments for success. Whether you're an individual professional or a team leader, our tool will keep you focused, motivated, and on the path to accomplishing your goals.
         </p>
       </div>
     </div>
-    <div>
+    <div
+      className="px-5"
+    >
       <h1
-        className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl pt-8 italic"
+        className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100"
       >
         Excellent human resources and companies
       </h1>
       <h1
-        className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl"
+        className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl dark:text-slate-100"
       >
-         Come shape the future together 
+         
+        Come shape the future together
+         
       </h1>
     </div>
     <div
       className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative "
     >
       <div
-        className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl visible"
+        className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl visible"
       >
         <div
           className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -648,19 +668,19 @@ exports[`about tests Should render the about with no active 1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
             >
               Bernard Dushimimana
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs mt-2  dark:text-slate-300 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300 text-neutral-900"
         >
           I'm extremely impressed with Pulse and their performance management platform.
         Since using their services, it has been a game-changer for our organization.
@@ -675,7 +695,7 @@ exports[`about tests Should render the about with no active 1`] = `
         </p>
       </div>
       <div
-        className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
+        className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
       >
         <div
           className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -687,19 +707,19 @@ exports[`about tests Should render the about with no active 1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
             >
               Susan
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs mt-2  dark:text-slate-300 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300 text-neutral-900"
         >
           I'm delighted to share my positive experience with Pulse and their exceptional
         performance management platform. Implementing their services has led to remarkable
@@ -713,7 +733,7 @@ exports[`about tests Should render the about with no active 1`] = `
         </p>
       </div>
       <div
-        className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
+        className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
       >
         <div
           className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -725,29 +745,29 @@ exports[`about tests Should render the about with no active 1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
             >
               University of Rwanda
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs mt-2  dark:text-slate-300 ml-3"
             >
               organisation
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300 text-neutral-900"
         >
           
         We are thrilled with the services provided by Pulse. Their performance management platform
-                            has exceeded our expectations in every way. The user-friendly interface and comprehensive
-                            features have made tracking and monitoring our performance metrics a breeze. Pulse's
-                            data-driven insights have revolutionized our approach to performance management,
-                            enabling informed decisions and continuous improvement. The support team at Pulse has
-                            been exceptional, offering prompt and knowledgeable assistance whenever needed.
-                            I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
-                            management process and achieve outstanding results.
+        has exceeded our expectations in every way. The user-friendly interface and comprehensive
+        features have made tracking and monitoring our performance metrics a breeze. Pulse's
+        data-driven insights have revolutionized our approach to performance management,
+        enabling informed decisions and continuous improvement. The support team at Pulse has
+        been exceptional, offering prompt and knowledgeable assistance whenever needed.
+        I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
+        management process and achieve outstanding results.
         
         </p>
       </div>
@@ -801,7 +821,7 @@ exports[`about tests Should render the about with no active 1`] = `
       </span>
     </div>
     <div
-      className="hidden md:flex md:flex-row flex-col lg:mx-10 md:mx-20 my-20 gap-10 "
+      className="hidden md:flex md:flex-row flex-col  lg:mx-10 md:mx-20 my-20 gap-10 "
     >
       <div
         className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl"
@@ -816,19 +836,19 @@ exports[`about tests Should render the about with no active 1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
             >
               Bernard Dushimimana
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs  dark:text-slate-300  mt-2 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300  text-neutral-900"
         >
           I'm extremely impressed with Pulse and their performance management platform.
         Since using their services, it has been a game-changer for our organization.
@@ -855,19 +875,19 @@ exports[`about tests Should render the about with no active 1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
             >
               Susan
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs  dark:text-slate-300  mt-2 ml-3"
             >
               Sr.Manager
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300  text-neutral-900"
         >
           I'm delighted to share my positive experience with Pulse and their exceptional
         performance management platform. Implementing their services has led to remarkable
@@ -893,29 +913,29 @@ exports[`about tests Should render the about with no active 1`] = `
           />
           <ul>
             <li
-              className="text-xs mt-4 ml-3 text-neutral-600"
+              className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
             >
               University of Rwanda
             </li>
             <li
-              className="text-xs mt-2 ml-3"
+              className="text-xs  dark:text-slate-300  mt-2 ml-3"
             >
               organisation
             </li>
           </ul>
         </div>
         <p
-          className="card-text text-neutral-900"
+          className="card-text  dark:text-slate-300  text-neutral-900"
         >
           
         We are thrilled with the services provided by Pulse. Their performance management platform
-                            has exceeded our expectations in every way. The user-friendly interface and comprehensive
-                            features have made tracking and monitoring our performance metrics a breeze. Pulse's
-                            data-driven insights have revolutionized our approach to performance management,
-                            enabling informed decisions and continuous improvement. The support team at Pulse has
-                            been exceptional, offering prompt and knowledgeable assistance whenever needed.
-                            I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
-                            management process and achieve outstanding results.
+        has exceeded our expectations in every way. The user-friendly interface and comprehensive
+        features have made tracking and monitoring our performance metrics a breeze. Pulse's
+        data-driven insights have revolutionized our approach to performance management,
+        enabling informed decisions and continuous improvement. The support team at Pulse has
+        been exceptional, offering prompt and knowledgeable assistance whenever needed.
+        I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
+        management process and achieve outstanding results.
         
         </p>
       </div>

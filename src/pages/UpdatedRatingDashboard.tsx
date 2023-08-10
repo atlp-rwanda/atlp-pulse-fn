@@ -60,9 +60,6 @@ function UpdatedRatingDashboard() {
     const newState = !rejectModel;
     setRejectModel(newState);
   };
-  const [nav, setNav] = useState(false);
-  /* istanbul ignore next */
-  const handleClick = () => setNav(!nav);
   const data = ratings;
   /* istanbul ignore next */
   const columns = [
@@ -294,7 +291,6 @@ function UpdatedRatingDashboard() {
 
       <div className="flex flex-col h-screen bg-light-bg">
         <div className="flex flex-row">
-          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">

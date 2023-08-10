@@ -1,23 +1,20 @@
-/* eslint-disable */
 /* istanbul ignore file */
-
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DashHeader from '../components/DashHeader';
 import Sidebar from '../components/Sidebar';
+import PrivateRoute from '../utils/PrivateRoute';
+import Square from '../Skeletons/Square';
+import MenuProvider, { MenuContext } from '../hook/menuProvider';
 
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const Settings = React.lazy(() => import('../pages/Settings'));
 const PerformanceDetails = React.lazy(
   () => import('../containers/Trainee/PerformanceDetails'),
 );
-
 const TraineePerfomance = React.lazy(
   () => import('../components/TraineePerformance'),
 );
-// const TraineeAttendance = React.lazy(
-//   () => import('../components/TraineeAttendance'),
-// );
 const TraineeAttendanceTracker = React.lazy(
   () => import('../pages/TraineeAttendance'),
 );
@@ -27,28 +24,21 @@ const AttendanceDetails = React.lazy(
 const LoginActivitiesTable = React.lazy(
   () => import('../components/LoginActivitiesTable'),
 );
-
 const AdminTeams = React.lazy(() => import('./admin-dashBoard/Teams'));
 const AdminCohorts = React.lazy(() => import('./admin-dashBoard/Cohorts'));
 const AdminPrograms = React.lazy(() => import('./admin-dashBoard/Programs'));
 const AdminSession = React.lazy(() => import('./admin-dashBoard/Sessions'));
 const AdminPhases = React.lazy(() => import('./admin-dashBoard/Phases'));
-
 const AdminManageRoles = React.lazy(
   () => import('./admin-dashBoard/ManagerRoles'),
 );
-import Error from '../pages/Error';
-import PrivateRoute from '../utils/PrivateRoute';
-
 const AdminTraineeDashboard = React.lazy(
   () => import('../pages/AdminTraineeDashboard'),
 );
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
 );
-
 const AdminRatings = React.lazy(() => import('../pages/AdminRatings'));
-
 const UpdatedRatingDashboard = React.lazy(
   () => import('../pages/UpdatedRatingDashboard'),
 );
@@ -57,12 +47,10 @@ const Calendar = React.lazy(() => import('../components/Calendar'));
 const CoordinatorsPage = React.lazy(
   () => import('../containers/admin-dashBoard/CoordinatorModal'),
 );
-
 const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
 const EditProfile = React.lazy(() => import('../pages/ProfileEdit'));
 const Organizations = React.lazy(() => import('../components/Organizations'));
-const Docs = React.lazy(() => import('../pages/Docs'));
 const AdminDocs = React.lazy(() => import('../components/Docs/AdminDocs'));
 const CoordinatorDocs = React.lazy(
   () => import('../components/Docs/CoordinatorDocs'),
@@ -73,23 +61,21 @@ const HelpPage = React.lazy(() => import('../pages/HelpPage'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
 const Ticket = React.lazy(() => import('../pages/Ticket'));
 const AllTickets = React.lazy(() => import('../pages/AllTickets'));
-
 const ManagersCards = React.lazy(() => import('../components/ManagerCard'));
 const CoordinatorCards = React.lazy(
   () => import('../components/CoordinatorCard'),
 );
 
-import Skeleton from '../components/Skeleton';
-import Square from '../Skeletons/Square';
-
 function DashRoutes() {
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
+  const { toggleNav } = useContext(MenuContext);
+
   return (
     <PrivateRoute>
       <div data-testid="cohorts-route" className="flex flex-col min-h-screen">
-        <DashHeader />
-        <Sidebar toggle={handleClick} style="hidden lg:flex" />
+        <MenuProvider>
+          <DashHeader />
+          <Sidebar toggle={toggleNav} style="" />
+        </MenuProvider>
         <Suspense fallback={<Square />}>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -121,9 +107,8 @@ function DashRoutes() {
             />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<EditProfile />} />
-            <Route path="*" element={<Error />} />
+            {/* <Route path="*" element={<Error />} /> */}
             <Route path="/super-admin" element={<SupAdDashboard />} />
-            <Route path="/settings" element={<Settings />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
             <Route path="/coordinators" element={<CoordinatorsPage />} />
@@ -136,9 +121,7 @@ function DashRoutes() {
               <Route index element={<AllTickets />} />
               <Route path=":ticketId" element={<Ticket />} />
             </Route>
-            <Route path="/tickets" element={<Tickets />} />
             <Route path="/loginActivities" element={<LoginActivitiesTable />} />
-
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
           </Routes>

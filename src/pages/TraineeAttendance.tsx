@@ -1,14 +1,10 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
-
+import { useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-
 import 'react-datepicker/dist/react-datepicker.css';
-
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { ADD_EVENT, GET_EVENTS } from '../Mutations/event';
 import { GET_ATTENDANCE, UPDATE_ATTENDANCE } from '../Mutations/Attendance';
 import Pagination from '../components/Pagination';
 import { toast } from 'react-toastify';
@@ -647,8 +643,13 @@ const TraineeAttendanceTracker = () => {
                 </div>
 
                 <div className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md   w-[50%]  lg:ml-56">
-                  <h2 className="font-bold mb-4 ">Attendance  Score Parcentage</h2>
-                  <h2 className="font-bold ml-2">Score Percentages (Percentages of trainee attendance at each score)</h2>
+                  <h2 className="font-bold mb-4 ">
+                    Attendance Score Parcentage
+                  </h2>
+                  <h2 className="font-bold ml-2">
+                    Score Percentages (Percentages of trainee attendance at each
+                    score)
+                  </h2>
                   <div className="">
                     <div className="flex flex-row    px-8">
                       <p className="text-right font-semibold ">0:</p>

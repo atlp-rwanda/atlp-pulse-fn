@@ -10,7 +10,7 @@ exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee A
     >
       <thead>
         <tr
-          className="text-gray-300  bg-gray-100  dark:bg-neutral-600"
+          className="text-gray-300  bg-gray-100  dark:bg-dark-tertiary"
         >
           <th
             className="lg:py-3 md:py-2 lg:px-3 md:px-2  text-left  text-[#6B7280] dark:text-dark-text-fill "
@@ -124,7 +124,7 @@ exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee A
       >
         <thead>
           <tr
-            className="text-gray-300 dark:text-white  bg-gray-100 dark:bg-neutral-600 "
+            className="text-gray-300 dark:text-white  bg-gray-100 dark:bg-dark-tertiary "
           >
             <th
               className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill "
@@ -185,7 +185,7 @@ exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee A
       >
         <thead>
           <tr
-            className="text-gray-300 dark:text-dark-text-fill bg-gray-100 dark:bg-neutral-600"
+            className="text-gray-300 dark:text-dark-text-fill bg-gray-100 dark:bg-dark-tertiary"
           >
             <th
               className="py-2 px-3 text-center text-[#6B7280] dark:text-dark-text-fill  "

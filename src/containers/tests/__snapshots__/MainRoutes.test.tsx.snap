@@ -5,7 +5,7 @@ exports[`Main Routes Should render 1`] = `
   className="flex flex-col min-h-screen"
 >
   <div
-    className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b undefined"
+    className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
   >
     <div
       className="px-3 flex justify-between items-center w-full h-full"
@@ -14,23 +14,46 @@ exports[`Main Routes Should render 1`] = `
         className="flex items-center h-full justify-between lg:w-full"
       >
         <a
-          className="flex flex-row lg:px-5"
+          className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
           href="/"
           onClick={[Function]}
         >
-          <img
-            alt="logo"
+          <svg
             className="w-full cursor-pointer mr-2"
-            src={Object {}}
-          />
+            fill="none"
+            height="36"
+            viewBox="0 0 59 36"
+            width="59"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="9.5"
+              cy="18.5"
+              r="5"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+              stroke="currentColor"
+              strokeWidth="5"
+            />
+            <circle
+              cx="52.5"
+              cy="18.5"
+              r="5"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
           <h1
-            className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+            className="text-3xl font-bold font-lexend"
           >
             PULSE
           </h1>
         </a>
         <ul
-          className="hidden lg:flex cursor-pointer"
+          className="hidden cursor-pointer lg:flex"
         >
           <li
             className="px-5 text-xl dark:text-dark-text-fill"
@@ -72,20 +95,22 @@ exports[`Main Routes Should render 1`] = `
         className="hidden lg:flex lg:w-full justify-end "
       >
         <button
-          className="px-4 mt-1 cursor-pointer"
+          className="min-w-fit px-4 cursor-pointer "
           id="theme-switch"
           onClick={[Function]}
           type="button"
         >
           <svg
             aria-hidden="true"
-            className="w-8"
+            className="w-8 "
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              clipRule="evenodd"
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fillRule="evenodd"
             />
           </svg>
         </button>
@@ -122,19 +147,22 @@ exports[`Main Routes Should render 1`] = `
         className="flex px-5 lg:hidden"
       >
         <button
-          className="px-3"
+          className="min-w-fit px-4 cursor-pointer "
+          id="theme-switch"
           onClick={[Function]}
           type="button"
         >
           <svg
             aria-hidden="true"
-            className="w-6 mr-2"
+            className="w-8 "
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              clipRule="evenodd"
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fillRule="evenodd"
             />
           </svg>
         </button>
@@ -164,7 +192,7 @@ exports[`Main Routes Should render 1`] = `
       className="hidden"
     >
       <li
-        className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+        className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary"
       >
         <a
           href="/"
@@ -174,7 +202,7 @@ exports[`Main Routes Should render 1`] = `
         </a>
       </li>
       <li
-        className="p-2 w-full dark:text-dark-text-fill"
+        className="w-full p-2 dark:text-dark-text-fill"
       >
         <a
           href="/pricing"
@@ -184,7 +212,7 @@ exports[`Main Routes Should render 1`] = `
         </a>
       </li>
       <li
-        className="p-2 w-full dark:text-dark-text-fill"
+        className="w-full p-2 dark:text-dark-text-fill"
       >
         <a
           className="w-full"
@@ -236,17 +264,40 @@ exports[`Main Routes Should render 1`] = `
           className="flex items-center h-full justify-between lg:w-full"
         >
           <a
-            className="flex flex-row lg:px-5"
+            className="flex flex-row lg:px-5 text-white dark:text-dark-text-fill"
             href="/"
             onClick={[Function]}
           >
-            <img
-              alt="logoWhite"
+            <svg
               className="w-full cursor-pointer mr-2"
-              src={Object {}}
-            />
+              fill="none"
+              height="36"
+              viewBox="0 0 59 36"
+              width="59"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="9.5"
+                cy="18.5"
+                r="5"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <path
+                d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+                stroke="currentColor"
+                strokeWidth="5"
+              />
+              <circle
+                cx="52.5"
+                cy="18.5"
+                r="5"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </svg>
             <h1
-              className="text-3xl font-bold font-lexend text-white dark:text-dark-text-fill"
+              className="text-3xl font-bold font-lexend"
             >
               PULSE
             </h1>
@@ -283,20 +334,22 @@ exports[`Main Routes Should render 1`] = `
           className="hidden lg:flex lg:w-full justify-end "
         >
           <button
-            className="px-4 mt-1 cursor-pointer"
+            className="min-w-fit px-4 cursor-pointer "
             id="theme-switch"
             onClick={[Function]}
             type="button"
           >
             <svg
               aria-hidden="true"
-              className="w-8"
+              className="w-8 text-white dark:text-inherit"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                clipRule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fillRule="evenodd"
               />
             </svg>
           </button>
@@ -330,22 +383,25 @@ exports[`Main Routes Should render 1`] = `
           </a>
         </div>
         <div
-          className="flex px-5 lg:hidden"
+          className="flex px-5 lg:hidden items-center"
         >
           <button
-            className="px-3"
+            className="min-w-fit px-4 cursor-pointer "
+            id="theme-switch"
             onClick={[Function]}
             type="button"
           >
             <svg
               aria-hidden="true"
-              className="w-6 mr-2"
+              className="w-8 w-6 text-white dark:text-inherit"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                clipRule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fillRule="evenodd"
               />
             </svg>
           </button>
@@ -423,20 +479,20 @@ exports[`Main Routes Should render 1`] = `
       </ul>
     </div>
     <div
-      className="hero relative"
+      className="relative hero"
     >
       <p
-        className="text-img absolute bottom-1/3 lg:left-44 lg:right-0 lg:text-5xl sm:text-2xl px-4 py-2 md:left-0 md:right-0"
+        className="absolute px-4 py-2 text-img bottom-1/3 lg:left-44 lg:right-0 lg:text-5xl sm:text-2xl md:left-0 md:right-0"
       >
         The brilliant performance management 
         <br />
          platform around the word.
       </p>
       <div
-        className="absolute items-center justify-start w-full text-2xl md:text-2xl lg:text-1xl md:mt-8 lg:mt-8 text-white top-2/3 lg:right-96"
+        className="absolute items-center justify-start w-full text-2xl text-white md:text-2xl lg:text-1xl md:mt-8 lg:mt-8 top-2/3 lg:right-96"
       >
         <div
-          className=" w-full font absolute text-center justify-center items-center"
+          className="absolute items-center justify-center w-full text-center font"
         >
           <a
             href="/signup/org"
@@ -456,14 +512,14 @@ exports[`Main Routes Should render 1`] = `
       </div>
     </div>
     <div
-      className=" bg-white dark:bg-dark-bg  mt-auto"
+      className=" bg-white   mt-auto dark:bg-dark-frame-bg"
     >
       <div
-        className=" justify-between w-full h-full"
+        className=" justify-between w-full h-full pb-5"
       >
         <div>
           <h1
-            className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic"
+            className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic  dark:text-slate-100"
           >
             What you can do with us
           </h1>
@@ -472,10 +528,10 @@ exports[`Main Routes Should render 1`] = `
           className="card-image lg:mx-10 sm:mx-5 md:flex flex"
         >
           <div
-            className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+            className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
           >
             <h2
-              className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start"
+              className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
             >
               Performance Management/Analytics
             </h2>
@@ -489,7 +545,7 @@ exports[`Main Routes Should render 1`] = `
                 />
               </div>
               <p
-                className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+                className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
               >
                 Optimize your organization's potential with Performance Management/Analytics. Our cutting-edge solution uses data-driven insights to track and improve performance across your business. Set and monitor KPIs, identify areas for growth, and make informed decisions with our intuitive platform. Achieve remarkable results today!
               </p>
@@ -500,6 +556,7 @@ exports[`Main Routes Should render 1`] = `
           >
             <img
               alt="frame"
+              className="rounded-2xl dark:opacity-80"
               src={Object {}}
             />
           </div>
@@ -512,15 +569,16 @@ exports[`Main Routes Should render 1`] = `
           >
             <img
               alt="second"
+              className="rounded-2xl dark:opacity-80 "
               src={Object {}}
             />
           </div>
           <div
-            className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+            className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
           >
             <div>
               <h2
-                className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+                className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
               >
                 Talent Analytics and 
                 <br />
@@ -535,7 +593,7 @@ exports[`Main Routes Should render 1`] = `
                 />
               </div>
               <p
-                className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+                className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
               >
                 Show up your workforce's potential with Talent Analytics and Reporting. Gain deep insights into your talent pool through data analysis. Identify top performers, discover hidden talent, and optimize your workforce with cutting-edge analytics tools. Utilize customizable reports and intuitive dashboards for a holistic view of your talent landscape. Make data-driven decisions to drive strategic talent management initiatives and achieve sustainable growth and success.
               </p>
@@ -546,10 +604,10 @@ exports[`Main Routes Should render 1`] = `
           className="card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex flex"
         >
           <div
-            className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+            className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
           >
             <h2
-              className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+              className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
             >
               Continuous & Tight Feedback Loop
             </h2>
@@ -559,11 +617,12 @@ exports[`Main Routes Should render 1`] = `
               >
                 <img
                   alt="thirdimage"
+                  className="rounded-2xl dark:opacity-80"
                   src={Object {}}
                 />
               </div>
               <p
-                className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+                className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4  dark:text-slate-300"
               >
                 Unlock the potential of a Continuous & Tight Feedback Loop. Our innovative solution enables real-time feedback exchange between employees, fostering a culture of continuous improvement. Seamlessly capture feedback and address development areas promptly, driving success and productivity. Embrace the power of a Continuous & Tight Feedback Loop for enhanced performance.
               </p>
@@ -574,26 +633,28 @@ exports[`Main Routes Should render 1`] = `
           >
             <img
               alt="thirdimage"
+              className="rounded-2xl dark:opacity-80"
               src={Object {}}
             />
           </div>
         </div>
         <div
-          className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10"
+          className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10 mb-20"
         >
           <div
             className="sm:hidden md:flex xl:flex lg:flex"
           >
             <img
               alt="fourthimage"
+              className="rounded-2xl dark:opacity-80"
               src={Object {}}
             />
           </div>
           <div
-            className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3"
+            className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
           >
             <h2
-              className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center"
+              className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
             >
               Goal Tracking and Progress Monitoring
             </h2>
@@ -602,33 +663,38 @@ exports[`Main Routes Should render 1`] = `
             >
               <img
                 alt="fourthimage"
+                className="rounded-2xl dark:opacity-80"
                 src={Object {}}
               />
             </div>
             <p
-              className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 "
+              className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
             >
               Achieve your goals with Goal Tracking and Progress Monitoring. Our solution empowers individuals and teams to set clear objectives, monitor progress, and stay accountable. Effortlessly define SMART goals, track milestones, and visualize progress in real-time on our user-friendly platform. Gain valuable insights, identify obstacles, and make data-driven adjustments for success. Whether you're an individual professional or a team leader, our tool will keep you focused, motivated, and on the path to accomplishing your goals.
             </p>
           </div>
         </div>
-        <div>
+        <div
+          className="px-5"
+        >
           <h1
-            className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl pt-8 italic"
+            className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100"
           >
             Excellent human resources and companies
           </h1>
           <h1
-            className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl"
+            className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl dark:text-slate-100"
           >
-             Come shape the future together 
+             
+            Come shape the future together
+             
           </h1>
         </div>
         <div
           className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative "
         >
           <div
-            className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl visible"
+            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl visible"
           >
             <div
               className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -640,19 +706,19 @@ exports[`Main Routes Should render 1`] = `
               />
               <ul>
                 <li
-                  className="text-xs mt-4 ml-3 text-neutral-600"
+                  className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
                 >
                   Bernard Dushimimana
                 </li>
                 <li
-                  className="text-xs mt-2 ml-3"
+                  className="text-xs mt-2  dark:text-slate-300 ml-3"
                 >
                   Sr.Manager
                 </li>
               </ul>
             </div>
             <p
-              className="card-text text-neutral-900"
+              className="card-text  dark:text-slate-300 text-neutral-900"
             >
               I'm extremely impressed with Pulse and their performance management platform.
         Since using their services, it has been a game-changer for our organization.
@@ -667,7 +733,7 @@ exports[`Main Routes Should render 1`] = `
             </p>
           </div>
           <div
-            className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
+            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
           >
             <div
               className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -679,19 +745,19 @@ exports[`Main Routes Should render 1`] = `
               />
               <ul>
                 <li
-                  className="text-xs mt-4 ml-3 text-neutral-600"
+                  className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
                 >
                   Susan
                 </li>
                 <li
-                  className="text-xs mt-2 ml-3"
+                  className="text-xs mt-2  dark:text-slate-300 ml-3"
                 >
                   Sr.Manager
                 </li>
               </ul>
             </div>
             <p
-              className="card-text text-neutral-900"
+              className="card-text  dark:text-slate-300 text-neutral-900"
             >
               I'm delighted to share my positive experience with Pulse and their exceptional
         performance management platform. Implementing their services has led to remarkable
@@ -705,7 +771,7 @@ exports[`Main Routes Should render 1`] = `
             </p>
           </div>
           <div
-            className="bg-indigo-100 dark:bg-dark-bg lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
+            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
           >
             <div
               className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -717,29 +783,29 @@ exports[`Main Routes Should render 1`] = `
               />
               <ul>
                 <li
-                  className="text-xs mt-4 ml-3 text-neutral-600"
+                  className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600"
                 >
                   University of Rwanda
                 </li>
                 <li
-                  className="text-xs mt-2 ml-3"
+                  className="text-xs mt-2  dark:text-slate-300 ml-3"
                 >
                   organisation
                 </li>
               </ul>
             </div>
             <p
-              className="card-text text-neutral-900"
+              className="card-text  dark:text-slate-300 text-neutral-900"
             >
               
         We are thrilled with the services provided by Pulse. Their performance management platform
-                            has exceeded our expectations in every way. The user-friendly interface and comprehensive
-                            features have made tracking and monitoring our performance metrics a breeze. Pulse's
-                            data-driven insights have revolutionized our approach to performance management,
-                            enabling informed decisions and continuous improvement. The support team at Pulse has
-                            been exceptional, offering prompt and knowledgeable assistance whenever needed.
-                            I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
-                            management process and achieve outstanding results.
+        has exceeded our expectations in every way. The user-friendly interface and comprehensive
+        features have made tracking and monitoring our performance metrics a breeze. Pulse's
+        data-driven insights have revolutionized our approach to performance management,
+        enabling informed decisions and continuous improvement. The support team at Pulse has
+        been exceptional, offering prompt and knowledgeable assistance whenever needed.
+        I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
+        management process and achieve outstanding results.
         
             </p>
           </div>
@@ -793,7 +859,7 @@ exports[`Main Routes Should render 1`] = `
           </span>
         </div>
         <div
-          className="hidden md:flex md:flex-row flex-col lg:mx-10 md:mx-20 my-20 gap-10 "
+          className="hidden md:flex md:flex-row flex-col  lg:mx-10 md:mx-20 my-20 gap-10 "
         >
           <div
             className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl"
@@ -808,19 +874,19 @@ exports[`Main Routes Should render 1`] = `
               />
               <ul>
                 <li
-                  className="text-xs mt-4 ml-3 text-neutral-600"
+                  className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
                 >
                   Bernard Dushimimana
                 </li>
                 <li
-                  className="text-xs mt-2 ml-3"
+                  className="text-xs  dark:text-slate-300  mt-2 ml-3"
                 >
                   Sr.Manager
                 </li>
               </ul>
             </div>
             <p
-              className="card-text text-neutral-900"
+              className="card-text  dark:text-slate-300  text-neutral-900"
             >
               I'm extremely impressed with Pulse and their performance management platform.
         Since using their services, it has been a game-changer for our organization.
@@ -847,19 +913,19 @@ exports[`Main Routes Should render 1`] = `
               />
               <ul>
                 <li
-                  className="text-xs mt-4 ml-3 text-neutral-600"
+                  className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
                 >
                   Susan
                 </li>
                 <li
-                  className="text-xs mt-2 ml-3"
+                  className="text-xs  dark:text-slate-300  mt-2 ml-3"
                 >
                   Sr.Manager
                 </li>
               </ul>
             </div>
             <p
-              className="card-text text-neutral-900"
+              className="card-text  dark:text-slate-300  text-neutral-900"
             >
               I'm delighted to share my positive experience with Pulse and their exceptional
         performance management platform. Implementing their services has led to remarkable
@@ -885,29 +951,29 @@ exports[`Main Routes Should render 1`] = `
               />
               <ul>
                 <li
-                  className="text-xs mt-4 ml-3 text-neutral-600"
+                  className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600"
                 >
                   University of Rwanda
                 </li>
                 <li
-                  className="text-xs mt-2 ml-3"
+                  className="text-xs  dark:text-slate-300  mt-2 ml-3"
                 >
                   organisation
                 </li>
               </ul>
             </div>
             <p
-              className="card-text text-neutral-900"
+              className="card-text  dark:text-slate-300  text-neutral-900"
             >
               
         We are thrilled with the services provided by Pulse. Their performance management platform
-                            has exceeded our expectations in every way. The user-friendly interface and comprehensive
-                            features have made tracking and monitoring our performance metrics a breeze. Pulse's
-                            data-driven insights have revolutionized our approach to performance management,
-                            enabling informed decisions and continuous improvement. The support team at Pulse has
-                            been exceptional, offering prompt and knowledgeable assistance whenever needed.
-                            I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
-                            management process and achieve outstanding results.
+        has exceeded our expectations in every way. The user-friendly interface and comprehensive
+        features have made tracking and monitoring our performance metrics a breeze. Pulse's
+        data-driven insights have revolutionized our approach to performance management,
+        enabling informed decisions and continuous improvement. The support team at Pulse has
+        been exceptional, offering prompt and knowledgeable assistance whenever needed.
+        I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
+        management process and achieve outstanding results.
         
             </p>
           </div>
@@ -927,15 +993,38 @@ exports[`Main Routes Should render 1`] = `
             className="flex flex-col mr-12 lg:mr-0"
           >
             <div
-              className="flex mb-2 ml-10"
+              className="flex mb-2 ml-10 text-dark dark:text-dark-text-fill"
             >
-              <img
-                alt="logo"
-                className="mr-2 lg:mr-0"
-                src={Object {}}
-              />
+              <svg
+                className="w-full cursor-pointer mr-2"
+                fill="none"
+                height="36"
+                viewBox="0 0 59 36"
+                width="59"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="9.5"
+                  cy="18.5"
+                  r="5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                />
+                <circle
+                  cx="52.5"
+                  cy="18.5"
+                  r="5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
               <h1
-                className="text-3xl font-bold text-dark dark:text-dark-text-fill"
+                className="text-3xl font-bold"
                 data-testid="pulse"
               >
                 PULSE
@@ -1179,15 +1268,38 @@ exports[`Main Routes Should render 1`] = `
           className="flex flex-col mr-12 lg:mr-0"
         >
           <div
-            className="flex mb-2 ml-10"
+            className="flex mb-2 ml-10 text-dark dark:text-dark-text-fill"
           >
-            <img
-              alt="logo"
-              className="mr-2 lg:mr-0"
-              src={Object {}}
-            />
+            <svg
+              className="w-full cursor-pointer mr-2"
+              fill="none"
+              height="36"
+              viewBox="0 0 59 36"
+              width="59"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="9.5"
+                cy="18.5"
+                r="5"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <path
+                d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+                stroke="currentColor"
+                strokeWidth="5"
+              />
+              <circle
+                cx="52.5"
+                cy="18.5"
+                r="5"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </svg>
             <h1
-              className="text-3xl font-bold text-dark dark:text-dark-text-fill"
+              className="text-3xl font-bold"
               data-testid="pulse"
             >
               PULSE

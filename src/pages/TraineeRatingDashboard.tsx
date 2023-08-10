@@ -65,7 +65,6 @@ function TraineeRatingDashboard() {
 
   useDocumentTitle('Ratings');
   const { t } = useTranslation();
-  const [nav, setNav] = useState(false);
   const [trainee, setTrainee] = useState<any>([]);
   const [cohorts, setCohorts] = useState<any>([]);
   const [selectedCohort, setSelectedCohort] = useState(cohorts[0]);
@@ -92,7 +91,7 @@ function TraineeRatingDashboard() {
   });
   const [showActions, setShowActions] = useState(false);
   const [showRemarks, setShowRemarks] = useState(false);
-  const [ratingsByCohort, setRatingsByCohort] =useState<any[]>([]);
+  const [ratingsByCohort, setRatingsByCohort] = useState<any[]>([]);
   const [defaultGrading, setDefaultGrading] = useState<any[]>([]);
   const [query, setQuery] = useState('');
   const [toggle, setToggle] = useState(false);
@@ -101,22 +100,23 @@ function TraineeRatingDashboard() {
 
   useEffect(() => {
     if (ratingsByCohort) {
-      const customHeadings: UserDataItem[] =ratingsByCohort.map( (row: any) => ({
-        Email: row.user.email,
-        Quality: row.quality,
-        Qualityremark: row.qualityRemark,
-        Quantity: row.quantity,
-        Quantityremark: row.quantityRemark,
-        Professional: row.professional_Skills,
-        ProfessionalRemark: row.professionalRemark,
-        Sprint: row.sprint,
-        Cohort: row.cohort.name,
-        Feedback: row.feedbacks,
-      }));
+      const customHeadings: UserDataItem[] = ratingsByCohort.map(
+        (row: any) => ({
+          Email: row.user.email,
+          Quality: row.quality,
+          Qualityremark: row.qualityRemark,
+          Quantity: row.quantity,
+          Quantityremark: row.quantityRemark,
+          Professional: row.professional_Skills,
+          ProfessionalRemark: row.professionalRemark,
+          Sprint: row.sprint,
+          Cohort: row.cohort.name,
+          Feedback: row.feedbacks,
+        }),
+      );
       setUserdata(customHeadings);
     }
   }, [ratingsByCohort]);
- 
 
   /* istanbul ignore next */
   const addFeedbacks = (
@@ -152,8 +152,6 @@ function TraineeRatingDashboard() {
     setShowActions(false);
   };
 
-  /* istanbul ignore next */
-  const handleClick = () => setNav(!nav);
   /* istanbul ignore next */
   const handleToggle = () => {
     setToggle(!toggle);
@@ -366,11 +364,14 @@ function TraineeRatingDashboard() {
 
   const { data } = useQuery(GRADING_SYSTEM_QUERY);
   const handleSaveClick = () => {
-    if (ratingData.quality === ' null' && ratingData.quantity === 'null' && ratingData.professional === 'null') {
+    if (
+      ratingData.quality === ' null' &&
+      ratingData.quantity === 'null' &&
+      ratingData.professional === 'null'
+    ) {
       toast.error('Please provide ratings before saving.');
-      
     }
-  }
+  };
   /* istanbul ignore next */
   useEffect(() => {
     getCohortUsers();
@@ -404,7 +405,6 @@ function TraineeRatingDashboard() {
     <>
       <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row">
-          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-[100%]">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
@@ -524,8 +524,8 @@ function TraineeRatingDashboard() {
                   />
                   {/* ADD NEW RATING MODAL END */}
                   <div className="py=0 px=0 mt-10  ">
-                        <ExportToExcel data={usedata} fileName={fileName}  />
-                      </div>
+                    <ExportToExcel data={usedata} fileName={fileName} />
+                  </div>
                   {/* UPDATE MODAL START */}
                   <Transition
                     appear

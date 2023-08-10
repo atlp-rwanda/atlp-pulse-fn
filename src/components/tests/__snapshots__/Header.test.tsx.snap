@@ -2,7 +2,7 @@
 
 exports[`Header Tests Should render the header with home 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -11,23 +11,46 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="flex items-center h-full justify-between lg:w-full"
     >
       <a
-        className="flex flex-row lg:px-5"
+        className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
         href="/"
         onClick={[Function]}
       >
-        <img
-          alt="logo"
+        <svg
           className="w-full cursor-pointer mr-2"
-          src={Object {}}
-        />
+          fill="none"
+          height="36"
+          viewBox="0 0 59 36"
+          width="59"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="9.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+            stroke="currentColor"
+            strokeWidth="5"
+          />
+          <circle
+            cx="52.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
         <h1
-          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend"
         >
           PULSE
         </h1>
       </a>
       <ul
-        className="hidden lg:flex cursor-pointer"
+        className="hidden cursor-pointer lg:flex"
       >
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
@@ -69,20 +92,22 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="hidden lg:flex lg:w-full justify-end "
     >
       <button
-        className="px-4 mt-1 cursor-pointer"
+        className="min-w-fit px-4 cursor-pointer "
         id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-8"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -119,19 +144,22 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="px-3"
+        className="min-w-fit px-4 cursor-pointer "
+        id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-6 mr-2"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -161,7 +189,7 @@ exports[`Header Tests Should render the header with home 1`] = `
     className="hidden"
   >
     <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
         href="/"
@@ -171,7 +199,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         href="/pricing"
@@ -181,7 +209,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         className="w-full"
@@ -223,7 +251,7 @@ exports[`Header Tests Should render the header with home 1`] = `
 
 exports[`Header Tests Should render the header with no active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -232,23 +260,46 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="flex items-center h-full justify-between lg:w-full"
     >
       <a
-        className="flex flex-row lg:px-5"
+        className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
         href="/"
         onClick={[Function]}
       >
-        <img
-          alt="logo"
+        <svg
           className="w-full cursor-pointer mr-2"
-          src={Object {}}
-        />
+          fill="none"
+          height="36"
+          viewBox="0 0 59 36"
+          width="59"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="9.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+            stroke="currentColor"
+            strokeWidth="5"
+          />
+          <circle
+            cx="52.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
         <h1
-          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend"
         >
           PULSE
         </h1>
       </a>
       <ul
-        className="hidden lg:flex cursor-pointer"
+        className="hidden cursor-pointer lg:flex"
       >
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
@@ -289,20 +340,22 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="hidden lg:flex lg:w-full justify-end "
     >
       <button
-        className="px-4 mt-1 cursor-pointer"
+        className="min-w-fit px-4 cursor-pointer "
         id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-8"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -339,19 +392,22 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="px-3"
+        className="min-w-fit px-4 cursor-pointer "
+        id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-6 mr-2"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -381,7 +437,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
     className="hidden"
   >
     <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
         href="/"
@@ -391,7 +447,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         href="/pricing"
@@ -401,7 +457,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         className="w-full"
@@ -443,7 +499,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
 
 exports[`Header Tests Should render the header with no active 2`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -452,23 +508,46 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="flex items-center h-full justify-between lg:w-full"
     >
       <a
-        className="flex flex-row lg:px-5"
+        className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
         href="/"
         onClick={[Function]}
       >
-        <img
-          alt="logo"
+        <svg
           className="w-full cursor-pointer mr-2"
-          src={Object {}}
-        />
+          fill="none"
+          height="36"
+          viewBox="0 0 59 36"
+          width="59"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="9.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+            stroke="currentColor"
+            strokeWidth="5"
+          />
+          <circle
+            cx="52.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
         <h1
-          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend"
         >
           PULSE
         </h1>
       </a>
       <ul
-        className="hidden lg:flex cursor-pointer"
+        className="hidden cursor-pointer lg:flex"
       >
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
@@ -499,20 +578,22 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="hidden lg:flex lg:w-full justify-end "
     >
       <button
-        className="px-4 mt-1 cursor-pointer"
+        className="min-w-fit px-4 cursor-pointer "
         id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-8"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -545,19 +626,22 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="px-3"
+        className="min-w-fit px-4 cursor-pointer "
+        id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-6 mr-2"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -587,7 +671,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
     className="hidden"
   >
     <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
         href="/"
@@ -598,7 +682,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
     </li>
      
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         className="w-full"
@@ -626,9 +710,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       onClick={[Function]}
       type="button"
     >
-       
       Logout
-       
     </button>
   </ul>
 </div>
@@ -636,7 +718,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
 
 exports[`Header Tests Should render the header with no active 3`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -645,23 +727,46 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="flex items-center h-full justify-between lg:w-full"
     >
       <a
-        className="flex flex-row lg:px-5"
+        className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
         href="/"
         onClick={[Function]}
       >
-        <img
-          alt="logo"
+        <svg
           className="w-full cursor-pointer mr-2"
-          src={Object {}}
-        />
+          fill="none"
+          height="36"
+          viewBox="0 0 59 36"
+          width="59"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="9.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+            stroke="currentColor"
+            strokeWidth="5"
+          />
+          <circle
+            cx="52.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
         <h1
-          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend"
         >
           PULSE
         </h1>
       </a>
       <ul
-        className="hidden lg:flex cursor-pointer"
+        className="hidden cursor-pointer lg:flex"
       >
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
@@ -703,20 +808,22 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="hidden lg:flex lg:w-full justify-end "
     >
       <button
-        className="px-4 mt-1 cursor-pointer"
+        className="min-w-fit px-4 cursor-pointer "
         id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-8"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -753,19 +860,22 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="px-3"
+        className="min-w-fit px-4 cursor-pointer "
+        id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-6 mr-2"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -795,7 +905,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
     className="hidden"
   >
     <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
         href="/"
@@ -805,7 +915,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         href="/pricing"
@@ -815,7 +925,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         className="w-full"
@@ -857,7 +967,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
 
 exports[`Header Tests Should render the header with pricing active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -866,23 +976,46 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="flex items-center h-full justify-between lg:w-full"
     >
       <a
-        className="flex flex-row lg:px-5"
+        className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
         href="/"
         onClick={[Function]}
       >
-        <img
-          alt="logo"
+        <svg
           className="w-full cursor-pointer mr-2"
-          src={Object {}}
-        />
+          fill="none"
+          height="36"
+          viewBox="0 0 59 36"
+          width="59"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="9.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+            stroke="currentColor"
+            strokeWidth="5"
+          />
+          <circle
+            cx="52.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
         <h1
-          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend"
         >
           PULSE
         </h1>
       </a>
       <ul
-        className="hidden lg:flex cursor-pointer"
+        className="hidden cursor-pointer lg:flex"
       >
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
@@ -924,20 +1057,22 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="hidden lg:flex lg:w-full justify-end "
     >
       <button
-        className="px-4 mt-1 cursor-pointer"
+        className="min-w-fit px-4 cursor-pointer "
         id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-8"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -974,19 +1109,22 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="px-3"
+        className="min-w-fit px-4 cursor-pointer "
+        id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-6 mr-2"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -1016,7 +1154,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
     className="hidden"
   >
     <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
         href="/"
@@ -1026,7 +1164,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         href="/pricing"
@@ -1036,7 +1174,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         className="w-full"
@@ -1078,7 +1216,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
 
 exports[`Header Tests Should render the header with product active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1087,23 +1225,46 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="flex items-center h-full justify-between lg:w-full"
     >
       <a
-        className="flex flex-row lg:px-5"
+        className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
         href="/"
         onClick={[Function]}
       >
-        <img
-          alt="logo"
+        <svg
           className="w-full cursor-pointer mr-2"
-          src={Object {}}
-        />
+          fill="none"
+          height="36"
+          viewBox="0 0 59 36"
+          width="59"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="9.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M13.5 18.6112H18.2324C18.6625 18.6112 19.0444 18.3362 19.1808 17.9283L20.7981 13.0919C21.1151 12.1442 22.4728 12.1962 22.7164 13.1654L27.0802 30.5328C27.3478 31.5979 28.8876 31.5157 29.0403 30.4282L32.3788 6.64882C32.5367 5.52407 34.1498 5.49149 34.353 6.60894L38.013 26.7361C38.191 27.7149 39.5338 27.8616 39.9189 26.9442L43.1601 19.2241C43.316 18.8528 43.6794 18.6112 44.0821 18.6112H48.5"
+            stroke="currentColor"
+            strokeWidth="5"
+          />
+          <circle
+            cx="52.5"
+            cy="18.5"
+            r="5"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+        </svg>
         <h1
-          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend"
         >
           PULSE
         </h1>
       </a>
       <ul
-        className="hidden lg:flex cursor-pointer"
+        className="hidden cursor-pointer lg:flex"
       >
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
@@ -1145,20 +1306,22 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="hidden lg:flex lg:w-full justify-end "
     >
       <button
-        className="px-4 mt-1 cursor-pointer"
+        className="min-w-fit px-4 cursor-pointer "
         id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-8"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -1195,19 +1358,22 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="px-3"
+        className="min-w-fit px-4 cursor-pointer "
+        id="theme-switch"
         onClick={[Function]}
         type="button"
       >
         <svg
           aria-hidden="true"
-          className="w-6 mr-2"
+          className="w-8 "
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            clipRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fillRule="evenodd"
           />
         </svg>
       </button>
@@ -1237,7 +1403,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
     className="hidden"
   >
     <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
         href="/"
@@ -1247,7 +1413,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         href="/pricing"
@@ -1257,7 +1423,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       </a>
     </li>
     <li
-      className="p-2 w-full dark:text-dark-text-fill"
+      className="w-full p-2 dark:text-dark-text-fill"
     >
       <a
         className="w-full"

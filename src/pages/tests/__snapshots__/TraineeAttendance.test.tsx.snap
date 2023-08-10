@@ -36,6 +36,7 @@ Array [
             >
               <select
                 className="border-primary dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                data-testid="testWeek"
                 defaultValue=""
                 name="weeks"
                 onBlur={[Function]}
@@ -124,10 +125,10 @@ Array [
             />
           </div>
           <div
-            className=" dark:bg-dark-tertiary dark:text-white overflow-y-auto h-[50vh] overflow-x-hidden"
+            className=" dark:bg-dark-tertiary dark:text-white overflow-y-auto h-[50vh] overflow-scroll scrollbar-hidden"
           >
             <table
-              className="min-w-full divide-y divide-gray-200 dark:text-white overflow-x-hidden"
+              className="min-w-full divide-y divide-gray-200 dark:text-white overflow-scroll"
             >
               <thead
                 className="dark:bg-dark-tertiary dark:text-white"
@@ -152,17 +153,28 @@ Array [
             className="w-full flex justify-between mx-10px"
           >
             <button
-              className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
+              className="py-2 w-[40%] md:w-1/3 bg-primary rounded font-sans text-sm text-white"
               data-testid="removeModel"
               onClick={[Function]}
+              style={
+                Object {
+                  "height": "40px",
+                }
+              }
             >
               cancel
             </button>
             <button
               className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
+              disabled={false}
+              style={
+                Object {
+                  "height": "40px",
+                }
+              }
               type="submit"
             >
-              save
+              Save
             </button>
           </div>
         </form>
@@ -170,16 +182,16 @@ Array [
     </div>
   </div>,
   <div
-    className="bg-light-bg dark:bg-dark-frame-bg lg:px-8"
+    className="bg-light-bg dark:bg-dark-frame-bg lg:px-8 overflow-y-scroll pb-6"
   >
     <div
       className="px-3 md:px-8"
     >
       <div
-        className="flex ml-2 items-center justify-between py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px] h-[80%]"
+        className="flex ml-2 items-center justify-between py-4 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px] h-[80%]"
       >
         <div
-          className="flex ml-[-35px] px-7 py-2 mt-4"
+          className="flex ml-[-35px] px-7 py-2 mt-2 "
         >
           <h2>
             Attendance Tracker
@@ -190,6 +202,7 @@ Array [
         >
           <select
             className="flex text-black px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
+            data-testid="getWeek"
             onChange={[Function]}
           >
             <option>
@@ -246,7 +259,7 @@ Array [
                 className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto"
               >
                 <div
-                  className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-clip"
+                  className="w-full lg:min-w-full shadow rounded-lg  "
                 >
                   <table
                     className="min-w-full leading-normal"
@@ -341,25 +354,25 @@ Array [
             </div>
           </div>
           <div
-            className="flex   flex-row  items-center justify-center mt-4 w-[81vw]"
+            className="big0 flex   flex-row  items-center  mt-4 w-[81vw]"
           >
             <div
               className="big flex flex-col w-[50%] "
             >
               <div
-                className="bg-white flex flex-col justify-center   dark:bg-dark-bg border border-primary shadow-lg p-3 rounded-md w-full md:w-[97%] lg:ml-56"
+                className="bg-white flex flex-col justify-center    dark:bg-dark-bg border border-primary shadow-lg p-5 rounded-md w-full md:w-[97%] lg:ml-56"
               >
                 <h2
-                  className="font-bold mb-4 "
+                  className="font-bold "
                 >
                   Overview cohort 1
                 </h2>
                 <div>
                   <div
-                    className="flex flex-row justify-around "
+                    className="flex flex-row "
                   >
                     <div
-                      className="flex flex-row justify-center items-center "
+                      className="flex flex-row justify-center items-center  "
                     >
                       <p
                         className="text-right font-semibold"
@@ -368,7 +381,7 @@ Array [
                       </p>
                     </div>
                     <div
-                      className="flex flex-row justify-center items-center "
+                      className="flex flex-row justify-center items-center  "
                     >
                       <p
                         className="text-right font-semibold"
@@ -378,7 +391,7 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flex flex-row justify-around "
+                    className="flex flex-row  "
                   >
                     <div
                       className="flex flex-row justify-center items-center "
@@ -401,7 +414,7 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flex flex-row justify-around "
+                    className="flex flex-row "
                   >
                     <div
                       className="flex flex-row justify-center items-center "
@@ -425,16 +438,16 @@ Array [
                 </div>
               </div>
               <div
-                className="bg-white flex flex-col justify-center  dark:bg-dark-bg border mt-2 border-primary shadow-lg p-3 rounded-md w-full md:w-[97%] lg:ml-56"
+                className="bg-white flex flex-col justify-center   dark:bg-dark-bg border mt-2 border-primary shadow-lg p-5 rounded-md w-full md:w-[97%] lg:ml-56"
               >
                 <h2
                   className="font-bold mb-4 "
                 >
-                  Attendance Marks
+                  Attendance Scores
                 </h2>
                 <div>
                   <div
-                    className="flex flex-row justify-around "
+                    className="flex flex-row "
                   >
                     <div
                       className="flex flex-row justify-center items-center "
@@ -446,7 +459,7 @@ Array [
                       </p>
                     </div>
                     <div
-                      className="flex flex-row justify-center items-center "
+                      className="flex flex-row justify-center items-center px-2 "
                     >
                       <p
                         className="text-right font-semibold"
@@ -456,10 +469,10 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flex flex-row justify-around "
+                    className="flex flex-row "
                   >
                     <div
-                      className="flex flex-row justify-center items-center "
+                      className="flex flex-row "
                     >
                       <p
                         className="text-right font-semibold"
@@ -468,7 +481,7 @@ Array [
                       </p>
                     </div>
                     <div
-                      className="flex flex-row justify-center items-center "
+                      className="flex flex-row px-2"
                     >
                       <p
                         className="text-right font-semibold"
@@ -478,7 +491,7 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flex flex-row justify- "
+                    className="flex flex-row  "
                   >
                     <div
                       className="flex flex-row justify-center items-center "
@@ -490,7 +503,7 @@ Array [
                       </p>
                     </div>
                     <div
-                      className="flex flex-row justify-center items-center "
+                      className="flex flex-row justify-center items-center px-2"
                     >
                       <p
                         className="text-right font-semibold"
@@ -503,12 +516,17 @@ Array [
               </div>
             </div>
             <div
-              className=" big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md  w-full  md:w-[50%]  lg:ml-56"
+              className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md   w-[50%]  lg:ml-56"
             >
               <h2
                 className="font-bold mb-4 "
               >
-                Attendance Parcentage
+                Attendance Score Parcentage
+              </h2>
+              <h2
+                className="font-bold ml-2"
+              >
+                Score Percentages (Percentages of trainee attendance at each score)
               </h2>
               <div
                 className=""
@@ -551,7 +569,7 @@ Array [
                   <p
                     className="text-right font-semibold"
                   >
-                    2
+                    2:
                   </p>
                   <p
                     className="text-right ml-4"
@@ -566,7 +584,7 @@ Array [
                 className=" w-[100%] h-[30%] flex flex-row  mt-5 justify-around items-center"
               >
                 <div
-                  className=" w-[100px]"
+                  className=" w-[100px] flex flex-col justify-center items-center"
                 >
                   <svg
                     className="CircularProgressbar "
@@ -603,6 +621,7 @@ Array [
                       strokeWidth={8}
                       style={
                         Object {
+                          "stroke": "#8667f2",
                           "strokeDasharray": "289.02652413026095px 289.02652413026095px",
                           "strokeDashoffset": "289.02652413026095px",
                         }
@@ -610,7 +629,11 @@ Array [
                     />
                     <text
                       className="CircularProgressbar-text"
-                      style={Object {}}
+                      style={
+                        Object {
+                          "fill": "#8667f2",
+                        }
+                      }
                       x={50}
                       y={50}
                     >
@@ -620,11 +643,11 @@ Array [
                   <label
                     htmlFor="0"
                   >
-                     0 Attendants
+                     score 0
                   </label>
                 </div>
                 <div
-                  className=" w-[100px]"
+                  className=" w-[100px] flex flex-col justify-center items-center"
                 >
                   <svg
                     className="CircularProgressbar "
@@ -661,6 +684,7 @@ Array [
                       strokeWidth={8}
                       style={
                         Object {
+                          "stroke": "#8667f2",
                           "strokeDasharray": "289.02652413026095px 289.02652413026095px",
                           "strokeDashoffset": "289.02652413026095px",
                         }
@@ -668,7 +692,11 @@ Array [
                     />
                     <text
                       className="CircularProgressbar-text"
-                      style={Object {}}
+                      style={
+                        Object {
+                          "fill": "#8667f2",
+                        }
+                      }
                       x={50}
                       y={50}
                     >
@@ -678,11 +706,11 @@ Array [
                   <label
                     htmlFor="0"
                   >
-                     1 Attendants
+                     Score 1
                   </label>
                 </div>
                 <div
-                  className=" w-[100px]"
+                  className=" w-[100px] flex flex-col justify-center items-center"
                 >
                   <svg
                     className="CircularProgressbar "
@@ -719,6 +747,7 @@ Array [
                       strokeWidth={8}
                       style={
                         Object {
+                          "stroke": "#8667f2",
                           "strokeDasharray": "289.02652413026095px 289.02652413026095px",
                           "strokeDashoffset": "289.02652413026095px",
                         }
@@ -726,7 +755,11 @@ Array [
                     />
                     <text
                       className="CircularProgressbar-text"
-                      style={Object {}}
+                      style={
+                        Object {
+                          "fill": "#8667f2",
+                        }
+                      }
                       x={50}
                       y={50}
                     >
@@ -736,7 +769,7 @@ Array [
                   <label
                     htmlFor="0"
                   >
-                     2 Attendants
+                     Score 2
                   </label>
                 </div>
               </div>

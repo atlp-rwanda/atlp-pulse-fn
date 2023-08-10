@@ -15,7 +15,7 @@ exports[`Page Not Found Renders the 404 Page 1`] = `
       >
         <img
           alt="logo"
-          className="w-2 cursor-pointer mr-2 h-2 "
+          className="w-full cursor-pointer mr-2"
           src={Object {}}
         />
       </div>

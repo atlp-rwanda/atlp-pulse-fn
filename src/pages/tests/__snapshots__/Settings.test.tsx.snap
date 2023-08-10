@@ -35,7 +35,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           </div>
           <a
             className="ml-auto text-gray-600 text-xs md:text-base dark:text-dark-text-fill"
-            href="/dashboard/profile"
+            href="/profile"
             onClick={[Function]}
           >
             <h4>
@@ -63,7 +63,6 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           <select
             className="ml-auto bg-white border border-gray-400 px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
             data-testid="themeChange"
-            defaultValue="light"
             onChange={[Function]}
           >
             <option

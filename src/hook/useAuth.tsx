@@ -44,9 +44,10 @@ function UserProvider({ children, ...props }: Props) {
     }));
   };
   /* istanbul ignore next */
-  const logout = () => {
+  const logout = (reason: string = '') => {
     localStorage.removeItem('auth');
     localStorage.removeItem('auth_token');
+    if (reason !== 'expired') localStorage.setItem('loggedout', '1');
     setUser(() => ({ name: '', role: 'user', auth: false }));
   };
   /* istanbul ignore next */

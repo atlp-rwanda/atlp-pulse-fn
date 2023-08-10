@@ -33,7 +33,6 @@ function GradingSystem() {
   });
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
-  const [nav, setNav] = useState(false);
   const [value, setValue] = useState<any>('');
   const [deleteGradingModal, setDeleteGradingModal] = useState(false);
   const [removeMakeDefaultModal, setRemoveMakeDefaultModal] = useState(false);
@@ -53,7 +52,6 @@ function GradingSystem() {
     const newState = !addGradingSystemModel;
     setAddGradingSystemModel(newState);
   };
-  const handleClick = () => setNav(!nav);
 
   const [getGradings, { data, loading: gradeLoading }] = useLazyQuery(
     GRADING_SYSTEM_QUERY,
@@ -235,7 +233,6 @@ function GradingSystem() {
       {/* =========================== End:: GradingSystemModel =============================== */}
       <div className="flex flex-col h-screen">
         <div className="flex flex-row">
-          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">

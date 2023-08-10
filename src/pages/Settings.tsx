@@ -3,33 +3,42 @@ import i18next from 'i18next';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Switch } from '@headlessui/react';
-import { gql, useMutation, useQuery } from '@apollo/client';
-import useDarkMode from '../hook/useDarkMode';
+import { useMutation, useQuery } from '@apollo/client';
 import getLanguage from '../utils/getLanguage';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import { updatePushNotifications, updateEmailNotifications, updatedEmailNotifications, updatedPushNotifications} from '../Mutations/notificationMutation';
+import {
+  updatePushNotifications,
+  updateEmailNotifications,
+  updatedEmailNotifications,
+  updatedPushNotifications,
+} from '../Mutations/notificationMutation';
 import { UserContext } from '../hook/useAuth';
+import { ThemeContext } from '../hook/ThemeProvider';
 
 function Settings() {
   useDocumentTitle('Settings');
   const { t } = useTranslation();
   const lanRef = useRef<any>();
   const lan = getLanguage();
-  const [colorTheme, setTheme] = useDarkMode();
+  const { colorTheme, setTheme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
-  const [updateEmailNotificationsMutation] = useMutation(updateEmailNotifications);
-  const [updatePushNotificationsMutation] = useMutation(updatePushNotifications);
-  const { data : pushData} = useQuery(updatedPushNotifications, {
+  const [updateEmailNotificationsMutation] = useMutation(
+    updateEmailNotifications,
+  );
+  const [updatePushNotificationsMutation] = useMutation(
+    updatePushNotifications,
+  );
+  const { data: pushData } = useQuery(updatedPushNotifications, {
     variables: { getUpdatedPushNotificationsId: user?.userId },
   });
   const [pushEnabled, setPushEnabled] = useState(
-    pushData?.getUpdatedPushNotifications || false
+    pushData?.getUpdatedPushNotifications || false,
   );
   const { data } = useQuery(updatedEmailNotifications, {
     variables: { getUpdatedEmailNotificationsId: user?.userId },
   });
   const [emailEnabled, setEmailEnabled] = useState(
-    data?.getUpdatedEmailNotifications || false
+    data?.getUpdatedEmailNotifications || false,
   );
 
   const handleThemeChange = (e: { target: { value: any } }) => {
@@ -37,12 +46,7 @@ function Settings() {
     setTheme(value);
     localStorage.setItem('color-theme', colorTheme);
   };
-  const systemMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
-  const defaultTheme: any = localStorage.getItem('color-theme')
-    ? localStorage.getItem('color-theme')
-    : systemMode;
+  const defaultTheme: any = colorTheme;
   const userLang = window.navigator.language;
 
   const handleLanChange = (e: { target: { value: any } }) => {
@@ -52,24 +56,28 @@ function Settings() {
 
   const handleEmailNotificationChange = async () => {
     try {
-      const { data } = await updateEmailNotificationsMutation({ variables: { updateEmailNotificationsId: user?.userId } });
+      const { data } = await updateEmailNotificationsMutation({
+        variables: { updateEmailNotificationsId: user?.userId },
+      });
       setEmailEnabled((prevEmailEnabled: any) => !prevEmailEnabled);
       return data;
-    } catch (error : any) {
-      return `Error updating email notifications:${error}`
+    } catch (error: any) {
+      return `Error updating email notifications:${error}`;
     }
   };
 
   const handlePushNotificationChange = async () => {
     try {
-      const { data : pushData } = await updatePushNotificationsMutation({ variables: { updatePushNotificationsId: user?.userId } });
+      const { data: pushData } = await updatePushNotificationsMutation({
+        variables: { updatePushNotificationsId: user?.userId },
+      });
       setPushEnabled((prevPushEnabled: any) => !prevPushEnabled);
       return pushData;
-    } catch (error : any) {
-      return `Error updating push notifications: ${error}`
+    } catch (error: any) {
+      return `Error updating push notifications: ${error}`;
     }
   };
- 
+
   useEffect(() => {
     if (data?.getUpdatedEmailNotifications !== undefined) {
       setEmailEnabled(data.getUpdatedEmailNotifications);

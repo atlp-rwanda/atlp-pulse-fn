@@ -18,7 +18,6 @@ import XLSX from 'sheetjs-style';
 import { GET_RATINGS_DATA } from '../components/TraineePerformance';
 
 function classNames(...classes: any) {
-  
   return classes.filter(Boolean).join(' ');
 }
 
@@ -68,7 +67,6 @@ const TraineeRatingDashboard = () => {
 
   useDocumentTitle('Ratings');
   const { t } = useTranslation();
-  const [nav, setNav] = useState(false);
   const [trainee, setTrainee] = useState<any>([]);
   const [cohorts, setCohorts] = useState<any>([]);
   const [selectedPhase, setselectedPhase] = useState(phase[0]);
@@ -101,7 +99,6 @@ const TraineeRatingDashboard = () => {
   const [showActions, setShowActions] = useState(false);
   const [ratings, setRatings] = useState<any>([]);
   const [toggle, setToggle] = useState(false);
-  const handleClick = () => setNav(!nav);
   const closeModal = () => {
     setIsOpen(false);
     setShowActions(false);
@@ -109,10 +106,6 @@ const TraineeRatingDashboard = () => {
   const [usedata, setUserdata] = React.useState([]);
   const fileName = 'userInfo';
   const { data, loading, error } = useQuery(GET_RATINGS_DATA, {});
-
-
-
- 
 
   useEffect(() => {
     if (ratings) {
@@ -130,7 +123,6 @@ const TraineeRatingDashboard = () => {
       setUserdata(customHeadings);
     }
   }, [ratings]);
-
 
   const columns = [
     { Header: `${t('Email')}`, accessor: 'user[email]' },
@@ -293,7 +285,6 @@ const TraineeRatingDashboard = () => {
       {/* SELECT COHORT DROPDOWN START */}
       <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row">
-          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
@@ -301,7 +292,7 @@ const TraineeRatingDashboard = () => {
                   {data && !loading ? (
                     <>
                       <div className="ml-60 mb-14 ">
-                        <ExportToExcel data={usedata} fileName={fileName}  />
+                        <ExportToExcel data={usedata} fileName={fileName} />
                       </div>
                       <DataTable
                         data={ratings}
