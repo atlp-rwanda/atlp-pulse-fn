@@ -8,7 +8,8 @@
     "node": "18.x"
   },
   "scripts": {
-    "dev": "webpack server",
+    "dev2": "webpack server",
+    "dev": "webpack-dev-server --mode development",
     "build": "webpack",
     "test": "npm run update-snapshots && npx jest ",
     "update-snapshots": "jest --updateSnapshot",
