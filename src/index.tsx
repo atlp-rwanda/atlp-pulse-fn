@@ -9,11 +9,10 @@ import {
   split,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import React, { Suspense } from 'react';
+import React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
-import Skeleton from './components/Skeleton';
 import './i18n.ts';
-import './index.css'
+import './index.css';
 import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,7 +20,7 @@ import UserProvider from './hook/useAuth';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { t } from 'i18next';
 import { getMainDefinition } from '@apollo/client/utilities';
-const App = React.lazy(() => import('./App'));
+import App from './App';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -48,11 +47,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const httpLink = createHttpLink({
-  uri: process.env.BACKEND_URL || 'http://localhost:4000',
+  uri: process.env.BACKEND_URL || 'https://devpulse-backend.onrender.com/',
 });
 
 const wsLink = new WebSocketLink({
-  uri: process.env.WS_BACKEND_URL || 'ws://localhost:4000',
+  uri: process.env.WS_BACKEND_URL || 'wss://devpulse-backend.onrender.com/',
   options: {
     reconnect: true,
   },
@@ -91,11 +90,9 @@ const container = document.getElementById('tree')!;
 
 const root = ReactDOMClient.createRoot(container).render(
   <ApolloProvider client={client}>
-    <Suspense fallback={<Skeleton />}>
-      <UserProvider>
-        <App />
-        <ToastContainer theme="colored" />
-      </UserProvider>
-    </Suspense>
+    <UserProvider>
+      <App />
+      <ToastContainer theme="colored" />
+    </UserProvider>
   </ApolloProvider>,
 );
