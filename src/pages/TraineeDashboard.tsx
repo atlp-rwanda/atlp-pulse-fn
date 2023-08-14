@@ -1,64 +1,305 @@
+/* istanbul ignore file */
+/* eslint-disable no-console */
+/* eslint-disable prefer-const */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable radix */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable func-names */
 /* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable react/no-unescaped-entities */
-
 /* eslint-disable react/jsx-no-bind */
 
 /* istanbul ignore file */
 
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { t } from 'i18next';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import TraineeChart from '../components/TraineesChart';
 import Table from '../components/TraineeTable';
+import { TRAINEE_RATING } from '../Mutations/Ratings';
 
+const GET_PROFILE = gql`
+  query {
+    getProfile {
+      user {
+        team {
+          cohort {
+            name
+            phase {
+              name
+            }
+          }
+        }
+      }
+      firstName
+      lastName
+      phoneNumber
+      address
+      city
+      country
+      avatar
+      cover
+      name
+      biography
+      githubUsername
+    }
+  }
+`;
+const organizationToken = localStorage.getItem('orgToken');
 /* istanbul ignore file */
 
 function SupAdDashboard() {
-  return (
-    <div className="flex flex-col grow bg-white dark:bg-dark-frame-bg">
-      <div className="flex flex-row pb-8 justify-center">
-        <div className="h-[100%]">
-          {/* <div className="grid grid-cols-2 mb-12 md:mb-24 lg:mb-0 lg:grid-cols-4">
-            <Card text="Cohort" number={5} />
-            <Card text="Curret phase" number={2} />
-            <Card text="Perfomance" number={2} />
-            <Card text="Attendance" number={1} /> */}
-          {/* </div> */}
-          {/* <Chart title={t('Overall performance')} /> */}
-          <div className='flex justify-end'>
-          <div className=' border-2 grid grid-cols-3 gap-2 max-w-[300px] rounded-lg my-4 mr-4'>
-            <p>Period</p>
-            <p>Last Month</p>
-            <p><RiArrowDropDownLine/></p>
+  const [profileData, setProfileData] = useState<any>();
+  const [cohort, setCohort] = useState<any>();
+  const [phase, setPhase] = useState<any>();
+  const [sprint, setSprint] = useState<any>();
+  const [selectedSprint, setSelectedSprint] = useState('');
+  const [norating, setNorating] = useState(false);
 
-          </div>
-          <div className=" flex flex-row justify-start ml-12">
-            <div className="flex  bg-[#b8cdba] w-[222px] h-[48px]  items-center justify-center rounded-lg ">
-              <span className="mr-2 font-semibold text-xl ">Cohort 26</span>
-              <div className="h-5 border-2 bg-[#202020] mx-0 text-xl" />
-              <span className="mx-2  font-semibold text-xl "> Phase: 2</span>
+  const [quantityValue, setQuantityValue] = useState<any>();
+  const [qualityValue, setQualityValue] = useState<any>();
+  const [perfomanceValue, setPerfomanceValue] = useState<any>();
+
+  const { loading, error, data } = useQuery(TRAINEE_RATING);
+  const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
+/* istanbul ignore file */
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await getProfile();
+        setProfileData(data);
+        setCohort(data?.getProfile?.user?.team?.cohort?.name);
+        if (phase === undefined) {
+          setPhase(data?.getProfile?.user?.team?.cohort?.phase?.name);
+        }
+      } catch (error: any) {}
+    };
+    fetchData();
+  }, [phase, data]);
+  console.log('feedback', data?.feedbacks?.content);
+  console.log('feedback data:', data);
+
+  if (data?.fetchRatingsTrainee) {
+    data.fetchRatingsTrainee.forEach((rating: any) => {
+      if (rating.feedbacks && rating.feedbacks.length > 0) {
+        rating.feedbacks.forEach((feedback: any) => {
+          const feedbackContent = feedback.content;
+          console.log('Feedback Content:', feedbackContent);
+        });
+      }
+    });
+  }
+
+  useEffect(() => {
+    let traineeData = data?.fetchRatingsTrainee
+      ?.map(
+        (item: {
+          sprint: any;
+          quality: string;
+          quantity: string;
+          professional_Skills: string;
+          professionalRemark: any;
+          phase: any;
+        }) => ({
+          sprint: item.sprint,
+          quality: parseInt(item.quality),
+          quantity: parseInt(item.quantity),
+          professionalism: parseInt(item.professional_Skills),
+          phase: item.phase,
+        }),
+      )
+      .filter((item: any) => item.phase === phase);
+
+    if (traineeData?.length === 0) {
+      setQuantityValue(parseInt(data?.fetchRatingsTrainee[0]?.quantity));
+      setQualityValue(parseInt(data?.fetchRatingsTrainee[0]?.quality));
+      setPerfomanceValue(
+        parseInt(data?.fetchRatingsTrainee[0]?.professionalism),
+      );
+    }
+    if (data?.fetchRatingsTrainee?.length === 0) {
+      setQuantityValue('');
+      setQualityValue('');
+      setPerfomanceValue('');
+      setNorating(true);
+    }
+    if (traineeData?.length > 0) {
+      const totalPerformance = traineeData.reduce(
+        (acc: any, entry: any) => acc + entry.professionalism,
+        0,
+      );
+      const totalQuality = traineeData.reduce(
+        (acc: any, entry: any) => acc + entry.quality,
+        0,
+      );
+      const totalQuantity = traineeData.reduce(
+        (acc: any, entry: any) => acc + entry.quantity,
+        0,
+      );
+
+      const averagePerformance = isNaN(totalPerformance / traineeData.length)
+        ? 0
+        : totalPerformance / traineeData.length;
+      const averageQuality = isNaN(totalQuality / traineeData.length)
+        ? 0
+        : totalQuality / traineeData.length;
+      const averageQuantity = isNaN(totalQuantity / traineeData.length)
+        ? 0
+        : totalQuantity / traineeData.length;
+
+      setQuantityValue(averagePerformance);
+      setQualityValue(averageQuality);
+      setPerfomanceValue(averageQuantity);
+    }
+  }, [data, phase, qualityValue, quantityValue, perfomanceValue]);
+
+  const phases = [
+    ...new Set(data?.fetchRatingsTrainee?.map((data: any) => data?.phase)),
+  ];
+
+  const { t } = useTranslation();
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  const rating = data?.fetchRatingsTrainee[0];
+
+  const transformedData = data?.fetchRatingsTrainee?.map(
+    (item: {
+      sprint: any;
+      quality: string;
+      quantity: string;
+      professional_Skills: string;
+      phase: any;
+    }) => ({
+      sprint: item.sprint,
+      quality: parseInt(item.quality),
+      quantity: parseInt(item.quantity),
+      professionalism: parseInt(item.professional_Skills),
+      phase: item.phase,
+    }),
+  );
+
+  transformedData.sort((a: any, b: any) => a.sprint - b.sprint);
+
+  const totalPerformance = transformedData.reduce(
+    (acc: any, entry: any) => acc + entry.professionalism,
+    0,
+  );
+  const totalQuality = transformedData.reduce(
+    (acc: any, entry: any) => acc + entry.quality,
+    0,
+  );
+  const totalQuantity = transformedData.reduce(
+    (acc: any, entry: any) => acc + entry.quantity,
+    0,
+  );
+
+  const averagePerformance = isNaN(totalPerformance / transformedData.length)
+    ? 0
+    : totalPerformance / transformedData.length;
+  const averageQuality = isNaN(totalQuality / transformedData.length)
+    ? 0
+    : totalQuality / transformedData.length;
+  const averageQuantity = isNaN(totalQuantity / transformedData.length)
+    ? 0
+    : totalQuantity / transformedData.length;
+
+  const chartData = data?.fetchRatingsTrainee
+    ?.map(
+      (item: {
+        sprint: any;
+        quality: string;
+        quantity: string;
+        professional_Skills: string;
+        professionalRemark: any;
+        phase: any;
+        feedbacks: any;
+      }) => ({
+        sprint: item.sprint,
+        quality: parseInt(item.quality),
+        quantity: parseInt(item.quantity),
+        professionalism: parseInt(item.professional_Skills),
+        phase: item.phase,
+        comment: item.feedbacks[0]?.content,
+      }),
+    )
+    .filter((item: any) => item.phase === phase);
+
+  console.log('chart', chartData);
+
+  const getProgressBarStyles = (value: any) => {
+    let pathColor = '#b71c1c';
+    let textColor = '#b71c1c';
+
+    if (value > 1) {
+      pathColor = '#1b5e20';
+      textColor = '#1b5e20';
+    } else if (value === 1) {
+      pathColor = '#ffeb3b';
+      textColor = '#ffeb3b';
+    } else {
+      pathColor = '#b71c1c';
+      textColor = '#b71c1c';
+    }
+
+    return buildStyles({
+      pathColor,
+      textColor,
+    });
+  };
+
+  const handleSprintChange = (selectedSprint: any) => {
+    setSelectedSprint(selectedSprint);
+  };
+
+  return (
+    <div className="flex flex-col  grow dark:bg-dark-frame-bg ">
+      <div className="flex mx-4  flex-col justify-center  ">
+        <div className="lg:ml-1 w-[100%] pt-[8vh] h-[100%] mt-10  ">
+          <div className="">
+            <div className="flex bg-[#b8cdba] w-[30%] h-[48px] items-center justify-center  rounded-lg cohort-phase">
+              <span className="flex  bg-[#b8cdba] pl-2 items-center rounded-md font-semibold text-xl w-[30%]">
+                {cohort}
+              </span>
+              <span className="h-5 border-2 mx-1 text-xl cohort-bar"></span>
+
+              <span className="w-[45%] font-semibold text-xl pr-1 pl-3 c-phase ">
+                <select
+                  className="flex items-center bg-[#b8cdba] rounded-md font-semibold text-xl cursor-pointer "
+                  onChange={(e) => setPhase(e.target.value)}
+                  value={phase}
+                >
+                  {phases.map((phase: any, index) => (
+                    <option key={index} value={phase}>
+                      {phase}
+                    </option>
+                  ))}
+                </select>
+              </span>
             </div>
           </div>
 
-          <p className=" font-bold text-gray-700 ml-12 my-10 text-lg">
-            {' '}
-            Perfomance score
-          </p>
+          <p className=" font-bold  ml-12 my-10 text-lg"> Perfomance score</p>
           <div className=" flex flex-row ">
-            <div className="flex flex-row w-[90%]  justify-between ml-7  ">
-              <div className="flex flex-col w-[30%] ml-7   lg:flex-row">
+            <div className=" Progres-bar flex flex-row w-[90%]  justify-between ml-7  ">
+              <div className="  flex flex-col w-[30%] ml-7   lg:flex-row perfomance-bar">
                 <div className=" w-[130px]">
                   <CircularProgressbar
-                    value={80}
-                    text={`${1.6}`}
-                    styles={buildStyles({
-                      pathColor: '#1b5e20',
-                      textColor: '#1b5e20',
-                    })}
+                    value={(quantityValue / 2) * 100}
+                    text={`${quantityValue}`}
+                    styles={getProgressBarStyles(quantityValue)}
                   />
                 </div>
 
@@ -66,18 +307,33 @@ function SupAdDashboard() {
                   <ul className="list-disc ml-4">
                     <li>Quantity</li>
                   </ul>
-                  <p className="text-[#1b5e20] ml-2">Good</p>
+                  <p
+                    className={`ml-2 ${
+                      quantityValue > 1
+                        ? 'text-[#1b5e20]'
+                        : quantityValue === 1
+                        ? 'text-[#ffeb3b]'
+                        : 'text-[#b71c1c]'
+                    }`}
+                  >
+                    {norating ? (
+                      <h1>No ratings yet </h1>
+                    ) : quantityValue >= 1.5 ? (
+                      <h1>Very Good</h1>
+                    ) : quantityValue >= 1 ? (
+                      <h1>Good</h1>
+                    ) : (
+                      <h1>Need to improve</h1>
+                    )}
+                  </p>
                 </div>
               </div>
-              <div className="flex flex-col w-[30%]  flex-wrap   lg:flex-row">
+              <div className="flex flex-col w-[30%]  flex-wrap   lg:flex-row quality-bar ">
                 <div className=" w-[130px]">
                   <CircularProgressbar
-                    value={30}
-                    text={`${0.7}`}
-                    styles={buildStyles({
-                      pathColor: '#b71c1c',
-                      textColor: '#b71c1c',
-                    })}
+                    value={(qualityValue / 2) * 100}
+                    text={`${qualityValue}`}
+                    styles={getProgressBarStyles(qualityValue)}
                   />
                 </div>
 
@@ -85,18 +341,33 @@ function SupAdDashboard() {
                   <ul className="list-disc ml-4">
                     <li>Quality</li>
                   </ul>
-                  <p className="text-[#b71c1c] ml-2">Need to improve</p>
+                  <p
+                    className={`ml-2 ${
+                      qualityValue > 1
+                        ? 'text-[#1b5e20]'
+                        : qualityValue === 1
+                        ? 'text-[#ffeb3b]'
+                        : 'text-[#b71c1c]'
+                    }`}
+                  >
+                    {norating ? (
+                      <h1>No ratings yet </h1>
+                    ) : qualityValue >= 1.5 ? (
+                      <h1>Very Good</h1>
+                    ) : qualityValue >= 1 ? (
+                      <h1>Good</h1>
+                    ) : (
+                      <h1>Need to improve</h1>
+                    )}
+                  </p>
                 </div>
               </div>
-              <div className="flex flex-col w-[30%] flex-wrap  lg:flex-row ">
+              <div className="flex flex-col w-[30%] flex-wrap  lg:flex-row quantity-bar ">
                 <div className=" w-[130px]">
                   <CircularProgressbar
-                    value={50}
-                    text={`${1}`}
-                    styles={buildStyles({
-                      pathColor: '#ffeb3b',
-                      textColor: '#ffeb3b',
-                    })}
+                    value={(perfomanceValue / 2) * 100}
+                    text={`${perfomanceValue}`}
+                    styles={getProgressBarStyles(perfomanceValue)}
                   />
                 </div>
 
@@ -104,75 +375,64 @@ function SupAdDashboard() {
                   <ul className="list-disc ml-4">
                     <li>Professionalism</li>
                   </ul>
-                  <p className=" text-[#ffeb3b] ml-2">Good</p>
+                  <p
+                    className={`ml-2 ${
+                      perfomanceValue > 1
+                        ? 'text-[#1b5e20]'
+                        : perfomanceValue === 1
+                        ? 'text-[#ffeb3b]'
+                        : 'text-[#b71c1c]'
+                    }`}
+                  >
+                    {norating ? (
+                      <h1> No ratings yet</h1>
+                    ) : perfomanceValue >= 1.5 ? (
+                      <h1>Very Good</h1>
+                    ) : perfomanceValue >= 1 ? (
+                      <h1>Good</h1>
+                    ) : (
+                      <h1>Need to improve</h1>
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
           <p className=" font-bol ml-12 my-10 text-lg"> Stats</p>
-          <div className=" flex flex-row justify-center items-center ">
-            <div className=" w-[100%] ">
-              <TraineeChart />
-            </div>
+
+          <div className=" w-[100%] ">
+            <TraineeChart barChartData={chartData} />
           </div>
           <div className="p-4 ml-12">
             <h1 className="text-2xl font-bold mb-4 ">Recents feedback</h1>
-            <div className="p-2 grid grid-cols-2 ">
+            <div className="p-2 grid grid-cols-2 phases ">
               <div className="flex  items-center ">
-                <span
-                  className="mr-2 font-bold "
-                  style={{
-                    fontFamily: 'inter',
-                    fontSize: '14px',
-                    color: '#b1b1b1',
-                    borderBottom: '3px solid #6b6319',
-                    borderRadius: '1px',
-                  }}
-                >
-                  Phase : 1
-                </span>
-                <div className="h-5 border-2 bg-[#b1b1b1] mx-0" />
-                <span
-                  className="mx-2  font-bold"
-                  style={{
-                    fontFamily: 'inter',
-                    color: '#b1b1b1',
-                    fontSize: '14px',
-                  }}
-                >
-                  Phase : 2
-                </span>
-                <div className="h-5 border-2 bg-black mx-0" />
-                <span
-                  className="ml-2 font-bold"
-                  style={{
-                    fontFamily: 'inter',
-                    color: '#b1b1b1',
-                    fontSize: '14px',
-                  }}
-                >
-                  Phase : 3
-                </span>
-              </div>
-              <div className="flex justify-end">
-                <div className="border-2 grid grid-cols-3 gap-2 max-w-[300px] rounded-2xl p-1 mr-20">
-                  <span className="flex items-center justify-center">
-                    Filter
-                  </span>
-                  <span className="flex items-center justify-center">
-                    Week1
-                  </span>
-                  <span className="flex items-center justify-center">
-                    {' '}
-                    <RiArrowDropDownLine />
-                  </span>
-                </div>
+                {phases.map((phase: any, index) => (
+                  <>
+                    <span
+                      key={index}
+                      className="mr-2 font-bold "
+                      style={{
+                        cursor: 'pointer',
+                        fontFamily: 'inter',
+                        fontSize: '14px',
+                        color: '#b1b1b1',
+                        borderBottom: '3px solid #6b6319',
+                        borderRadius: '1px',
+                      }}
+                      onClick={() => setPhase(phase)}
+                    >
+                      {phase}
+                    </span>
+                    <div className="h-5 border-2 bg-[#b1b1b1] mx-0" />
+                  </>
+                ))}
               </div>
             </div>
-            <div className="">
+            <div className="trainee-table">
               <div className="font-bold text-gray-700 mr-10 my-10 w-[100%] text-lg ">
-                <Table data={[]} />
+                <Table dat={chartData} />
               </div>
             </div>
           </div>

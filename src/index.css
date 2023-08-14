@@ -443,3 +443,60 @@ th {
 .page-footer {
   grid-area: footer;
 }
+
+/* TRAINEE DASHBOARD */
+/*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
+@media screen and (max-width:575px) {
+  .Progres-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-left: 0;
+    /* background-color: #424242; */
+    width: 100%;
+    margin-left: 1rem;
+  }
+  .perfomance-bar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+  .quality-bar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-left: 2rem;
+  }
+  .quantity-bar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-left: 2rem;
+
+  }
+
+  .phases{
+    width: 100%;
+    /* background-color: #148fb6; */
+    display: flex;
+   flex-direction: column;
+  gap: 20px;
+
+  }  
+  .cohort-phase{
+    display: block;
+    width: 80%;
+  }
+  .cohort-bar{
+    display: none;
+  }
+ 
+}
+
+
+.trainee-table tr:nth-child(even){
+  background-color: #fcfdff;
+}
+  
