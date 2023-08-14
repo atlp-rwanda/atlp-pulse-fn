@@ -18,16 +18,16 @@ function Orglogin() {
   const { t } = useTranslation();
   const [name, setName] = useState('');
 
-  // const [inputWidth, setInputWidth] = useState('133px'); // Adjust the width as needed
   const [inputWidth, setInputWidth] = useState('133px'); // Adjust the width as needed
+  // const [inputWidth, setInputWidth] = useState('133px'); // Adjust the width as needed
   const handleNameChange = async (e: { target: { value: any } }) => {
     const newName = e.target.value;
     setName(newName);
     // Calculate the width based on the length of the entered text
-    const newWidth = `${Math.max(newName.length * 9)}px`; // Adjust minimum width here
-    setInputWidth(newWidth);
-    // const newWidth = Math.max(newName.length * 9);
-    // if (newWidth > 120) setInputWidth(`${newWidth}px`);
+    // const newWidth = `${Math.max(newName.length * 9)}px`; // Adjust minimum width here
+    // setInputWidth(newWidth);
+    const newWidth = Math.max(newName.length * 9);
+    if (newWidth > 120) setInputWidth(`${newWidth}px`);
   };
 
   const formatVariable = async (e: any) => {
