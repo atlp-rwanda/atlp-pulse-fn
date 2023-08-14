@@ -123,6 +123,9 @@ function Orglogin() {
             <input
               placeholder=".devpulse.org"
               disabled
+              style={{
+                backgroundColor: 'rgb(224 231 255 / var(--tw-bg-opacity))',
+              }}
               className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
             />
           </div>
