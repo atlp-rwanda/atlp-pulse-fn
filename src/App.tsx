@@ -6,9 +6,10 @@ import Skeleton from './components/Skeleton';
 import TicketsProvider from './hook/ticketsContext';
 import './index.css';
 
-const DashRoutes = React.lazy(() => import('./containers/DashRoutes'));
-const MainRoutes = React.lazy(() => import('./containers/Routes'));
-const LandingPage = React.lazy(() => import('./pages/Home'));
+import DashRoutes from './containers/DashRoutes';
+import MainRoutes from './containers/Routes';
+import LandingPage from './pages/Home';
+
 function App() {
   return (
     <div className="flex flex-col h-screen">

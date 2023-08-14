@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode, useContext, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { UserContext } from '../hook/useAuth';
 import checkTokenExpiration from '../utils/tokenValidation';
@@ -10,8 +10,13 @@ interface Props {
 }
 
 function CheckRole({ children, ...props }: Props) {
-  checkTokenExpiration();
-  checkOrgTokenExpiration();
+  useEffect(() => {
+    async function protectRoutes() {
+      checkTokenExpiration();
+      checkOrgTokenExpiration();
+    }
+    protectRoutes;
+  }, []);
   const orgToken: any = localStorage.getItem('orgToken');
   const { user } = useContext(UserContext);
   const location = useLocation();
