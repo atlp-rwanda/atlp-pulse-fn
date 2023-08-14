@@ -83,8 +83,8 @@ text-align: justify;
   line-height: 100%;
 }
 .hero {
-  background-image:
-    url('https://res.cloudinary.com/deygsvbub/image/upload/v1691651478/Home_page_image_1_io1spq.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  url('https://res.cloudinary.com/bdushimi/image/upload/v1683554711/Andela_Rwanda_Engineers_zr7awr.jpg');
 
   background-repeat: no-repeat;
   display: flex;
