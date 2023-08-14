@@ -15,8 +15,11 @@ const PerformanceDetails = React.lazy(
 const TraineePerfomance = React.lazy(
   () => import('../components/TraineePerformance'),
 );
-const TraineeAttendance = React.lazy(
-  () => import('../components/TraineeAttendance'),
+// const TraineeAttendance = React.lazy(
+//   () => import('../components/TraineeAttendance'),
+// );
+const TraineeAttendanceTracker = React.lazy(
+  () => import('../pages/TraineeAttendance'),
 );
 const AttendanceDetails = React.lazy(
   () => import('../containers/Trainee/AttendanceDetails'),
@@ -99,8 +102,12 @@ function DashRoutes() {
             />
             <Route path="/settings" element={<Settings />} />
             <Route path="/performance" element={<TraineePerfomance />} />
-            <Route path="/attendance" element={<TraineeAttendance />} />
-            <Route path="/attendance-details" element={<AttendanceDetails />} />
+            {/* <Route path="/attendance" element={<TraineeAttendance />} /> */}
+            <Route
+              path="/attendance-rating"
+              element={<TraineeAttendanceTracker />}
+            />
+            {/* <Route path="/attendance-details" element={<AttendanceDetails />} /> */}
             <Route path="/teams" element={<AdminTeams />} />
             <Route path="/cohorts" element={<AdminCohorts />} />
             <Route path="/phases" element={<AdminPhases />} />

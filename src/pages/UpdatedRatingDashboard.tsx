@@ -132,6 +132,7 @@ function UpdatedRatingDashboard() {
       orgToken: organizationToken,
     },
   });
+
   const [approveRating] = useMutation(APPROVE_RATING, {
     variables: {
       user: rows.id,

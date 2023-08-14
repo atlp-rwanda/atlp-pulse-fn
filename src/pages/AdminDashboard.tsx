@@ -3,8 +3,6 @@ import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
-import Chart from '../components/Chart';
-import Card from '../components/Card';
 // eslint-disable-next-line import/no-useless-path-segments
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Comingsoon from './Comingsoon';
