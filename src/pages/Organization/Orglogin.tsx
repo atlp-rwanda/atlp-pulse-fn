@@ -19,7 +19,7 @@ function Orglogin() {
   const [name, setName] = useState('');
 
   // const [inputWidth, setInputWidth] = useState('133px'); // Adjust the width as needed
-  const [inputWidth, setInputWidth] = useState('150px'); // Adjust the width as needed
+  const [inputWidth, setInputWidth] = useState('133px'); // Adjust the width as needed
   const handleNameChange = async (e: { target: { value: any } }) => {
     const newName = e.target.value;
     setName(newName);
