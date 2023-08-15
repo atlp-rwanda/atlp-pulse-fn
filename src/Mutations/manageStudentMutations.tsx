@@ -1,5 +1,5 @@
 // import { gql } from '@apollo/client';
-import { gql,ApolloClient, InMemoryCache } from '@apollo/client';
+import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
 import GET_PROFILE from './User';
 
@@ -24,12 +24,17 @@ export const GET_TRAINEES_QUERY = gql`
         biography
         avatar
         id
+        user {
+          id
+          status
+        }
         name
       }
       email
       team {
         name
         cohort {
+          id
           startDate
           program {
             name
@@ -79,11 +84,9 @@ export const GET_COHORTS_QUERY = gql`
   }
 `;
 
-
 export const GET_TRAINEE_PROFILE = gql`
   query GetProfile {
     getProfile {
-    
       firstName
       name
       city
@@ -94,61 +97,51 @@ export const GET_TRAINEE_PROFILE = gql`
       avatar
       coverImage
       lastName
-      
     }
   }
 `;
 
 export const GET_GITHUB_STATISTICS = gql`
-query GitHubActivity($organisation: String!, $username: String!) {
-  gitHubActivity(organisation: $organisation, username: $username) {
-    totalCommits
-    pullRequest {
-      closed
-      merged
-      opened
+  query GitHubActivity($organisation: String!, $username: String!) {
+    gitHubActivity(organisation: $organisation, username: $username) {
+      totalCommits
+      pullRequest {
+        closed
+        merged
+        opened
+      }
     }
   }
-}
 `;
 export const GET_LOGIN_ACTIVITIES = gql`
-query Query {
-  getProfile {
-    activity {
-      
-      date
-      country_code
-      country_name
-      city
-      IPv4
-      state
-      latitude
-      longitude
-      postal
-      failed
-
+  query Query {
+    getProfile {
+      activity {
+        date
+        country_code
+        country_name
+        city
+        IPv4
+        state
+        latitude
+        longitude
+        postal
+        failed
+      }
     }
   }
-}`
-;
-
-
-export const GET_ORGANISATION = gql`
-query GetOrganization($name: String!) {
-  getOrganization(name: $name) {
-    name
-    activeRepos
-    gitHubOrganisation
-    description
-
-  }
-}
 `;
 
-
-
-
-
+export const GET_ORGANISATION = gql`
+  query GetOrganization($name: String!) {
+    getOrganization(name: $name) {
+      name
+      activeRepos
+      gitHubOrganisation
+      description
+    }
+  }
+`;
 
 export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
   mutation AddMemberToCohort(
@@ -165,28 +158,34 @@ export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
 `;
 
 export const ADD_REPO = gql`
-mutation addActiveRepostoOrganization($name: String!, $repoUrl: String!) {
-  addActiveRepostoOrganization(name: $name, repoUrl: $repoUrl) {
-    name
-}
-}
+  mutation addActiveRepostoOrganization($name: String!, $repoUrl: String!) {
+    addActiveRepostoOrganization(name: $name, repoUrl: $repoUrl) {
+      name
+    }
+  }
 `;
 
 export const REMOVE_REPO = gql`
-mutation deleteActiveRepostoOrganization($name: String!, $repoUrl: String!) {
-  deleteActiveRepostoOrganization(name: $name, repoUrl: $repoUrl) {
-    name
-}
-}
+  mutation deleteActiveRepostoOrganization($name: String!, $repoUrl: String!) {
+    deleteActiveRepostoOrganization(name: $name, repoUrl: $repoUrl) {
+      name
+    }
+  }
 `;
 
-export const UPDATE_ORGANISATION_NAME=gql`
-mutation updateGithubOrganisation($name: String!, $gitHubOrganisation: String!) {
-  updateGithubOrganisation(name: $name, gitHubOrganisation: $gitHubOrganisation) {
-    name
-}
-}
-`
+export const UPDATE_ORGANISATION_NAME = gql`
+  mutation updateGithubOrganisation(
+    $name: String!
+    $gitHubOrganisation: String!
+  ) {
+    updateGithubOrganisation(
+      name: $name
+      gitHubOrganisation: $gitHubOrganisation
+    ) {
+      name
+    }
+  }
+`;
 
 export const REMOVE_MEMBER_FROM_COHORT_MUTATION = gql`
   mutation RemoveMemberFromCohort(

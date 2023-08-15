@@ -18,8 +18,7 @@ import { toast } from 'react-toastify';
 import Select from 'react-select';
 import Avatar from '../assets/avatar.png';
 import Chart from 'chart.js/auto';
-import { Doughnut } from "react-chartjs-2";
-
+import { Doughnut } from 'react-chartjs-2';
 
 import {
   GET_USERS_QUERY,
@@ -30,8 +29,9 @@ import {
   INVITE_USER_MUTATION,
   GET_TEAM_QUERY,
   ADD_MEMBER_TO_TEAM,
-  GET_GITHUB_STATISTICS
+  GET_GITHUB_STATISTICS,
 } from '../Mutations/manageStudentMutations';
+import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
 import ControlledSelect from '../components/ControlledSelect';
@@ -79,6 +79,12 @@ const AdminTraineeDashboard = () => {
   const teamOptions: any = [];
   const [isLoaded, setIsLoaded] = useState(false);
   const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
+  const [viewWeeklyRates, setViewWeeklyRates] = useState(false);
+  const [trainee, setTraineeName] = useState(null);
+  const [traineeEmail, setTraineeEmail] = useState(null);
+  const [traineeId, setTraineeId] = useState(null);
+  const [traineeCohort, setTraineeCohort] = useState(null);
+  const [traineeStatus, setTraineeStatus] = useState(null);
 
   function PaperComponent(props: PaperProps) {
     return (
@@ -91,18 +97,16 @@ const AdminTraineeDashboard = () => {
     );
   }
 
-   const [getGitHubStatistics]= useLazyQuery(GET_GITHUB_STATISTICS, {
+  const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     onCompleted: (data) => {
       console.log(data);
       setGitHubStatistics(data.gitHubActivity);
       setIsLoaded(false);
     },
     onError: (error) => {
-
       setIsLoaded(false);
     },
   });
-
 
   const [open, setOpen] = React.useState(false);
 
@@ -111,14 +115,12 @@ const AdminTraineeDashboard = () => {
     const filteredUser = traineeData.filter((item) => item.email == rowData);
     setTraineeDetails(filteredUser[0]);
     setOpen(true);
-     getGitHubStatistics({
-        variables: {
-          organisation: localStorage.getItem('orgName'),
-          username: filteredUser[0].profile?.githubUsername,
-        }
-     });
-
- 
+    getGitHubStatistics({
+      variables: {
+        organisation: localStorage.getItem('orgName'),
+        username: filteredUser[0].profile?.githubUsername,
+      },
+    });
   };
 
   const handleClose = () => {
@@ -180,9 +182,6 @@ const AdminTraineeDashboard = () => {
     },
   };
 
- 
-
-
   const columns = [
     { Header: t('name'), accessor: 'name' },
     { Header: t('email'), accessor: 'email' },
@@ -190,6 +189,34 @@ const AdminTraineeDashboard = () => {
     { Header: t('Team'), accessor: 'team' },
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
+    {
+      Header: t('View'),
+      accessor: '',
+      Cell: ({ row }: any) => (
+        <div
+          className={
+            ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
+          }
+        >
+          <Icon
+            icon="flat-color-icons:view-details"
+            width="30"
+            height="30"
+            cursor="pointer"
+            color="#9e85f5"
+            onClick={() => {
+              setViewWeeklyRates(true);
+              setTraineeName(row.original.name);
+              setTraineeEmail(row.original.email);
+              setTraineeId(row.original.userId);
+              setTraineeCohort(row.original.cohortId);
+              setTraineeStatus(row.original.userStatus);
+            }}
+          />
+        </div>
+      ),
+    },
+
     {
       Header: t('action'),
       accessor: '',
@@ -273,9 +300,6 @@ const AdminTraineeDashboard = () => {
     },
   });
 
-
-
-
   function getTeam() {
     getTeamQuery({
       fetchPolicy: 'network-only',
@@ -298,6 +322,9 @@ const AdminTraineeDashboard = () => {
       datum[index].team = data.team?.name;
       datum[index].cohort = data.team?.cohort?.name;
       datum[index].program = data.team?.cohort?.program?.name;
+      datum[index].userId = data.profile?.user?.id;
+      datum[index].cohortId = data.team?.cohort?.id;
+      datum[index].userStatus = data.profile?.user?.status;
     });
   }
 
@@ -347,8 +374,6 @@ const AdminTraineeDashboard = () => {
       }, 1000);
     },
   });
-
-
 
   const [removeMemberFromCohort] = useMutation(
     REMOVE_MEMBER_FROM_COHORT_MUTATION,
@@ -408,10 +433,9 @@ const AdminTraineeDashboard = () => {
     getTraineesQuery({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        setTraineeLoading(false)
+        setTraineeLoading(false);
         setTraineeData(data.getTrainees);
 
-    
         console.log(data);
       },
       onError: (error) => {
@@ -462,6 +486,16 @@ const AdminTraineeDashboard = () => {
 
   return (
     <>
+      <div className={viewWeeklyRates ? '' : 'hidden'}>
+        <ViewWeeklyRatings
+          traineeName={trainee}
+          traineeEmail={traineeEmail}
+          traineeId={traineeId}
+          traineeCohort={traineeCohort}
+          traineeStatus={traineeStatus}
+        />
+      </div>
+
       {/* =========================== Start::  InviteTraineeModel =============================== */}
       <div className="rounded-lg dark:bg-dark-bg">
         <Dialog
@@ -471,7 +505,6 @@ const AdminTraineeDashboard = () => {
           aria-labelledby="draggable-dialog-title"
           className="rounded-lg"
           fullWidth
-        
         >
           <DialogContent className="font-sans dark:bg-dark-bg">
             <DialogContentText className="font-sans dark:bg-dark-bg">
@@ -649,55 +682,49 @@ const AdminTraineeDashboard = () => {
                   </p>
                 </div>
                 <div
-                  className={"text-sm font-sans"}
+                  className={'text-sm font-sans'}
                   style={{
                     display: 'flex',
                     gap: '50px',
                     justifyContent: 'space-between',
                     paddingBlock: '10px',
                     marginBottom: '20px',
-                  
                   }}
                 >
-
-               
-                {isLoaded?(
-                  <p>
-                
-                    <div className="flex justify-center items-center h-48">
-                    <i>
-                   Loading gitHub statistics...
-                    </i>
-            <Spinner />
-            <div className="spinner" />
-          </div>
-                  </p>
-                ):(
-                  <div className={traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?"flex":'hidden '}>
-                  <div className='flex flex-col'>
-            
-                    <i className='text-2xl '>
-               
-                    {gitHubStatistics?.totalCommits} total commits
-                  
-                    </i>
-                 
-    
-                </div>
-                <div className='flex flex-col'>
-                <div>
-           {     traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?(
-  <GitHubActivityChart data={gitHubStatistics} />
-           ):
-           (
-<></>
-           )
-}
-              
-    </div>
-                </div>
-                </div>
-                )}  
+                  {isLoaded ? (
+                    <p>
+                      <div className="flex justify-center items-center h-48">
+                        <i>Loading gitHub statistics...</i>
+                        <Spinner />
+                        <div className="spinner" />
+                      </div>
+                    </p>
+                  ) : (
+                    <div
+                      className={
+                        traineeDetails?.profile &&
+                        traineeDetails?.profile?.githubUsername
+                          ? 'flex'
+                          : 'hidden '
+                      }
+                    >
+                      <div className="flex flex-col">
+                        <i className="text-2xl ">
+                          {gitHubStatistics?.totalCommits} total commits
+                        </i>
+                      </div>
+                      <div className="flex flex-col">
+                        <div>
+                          {traineeDetails?.profile &&
+                          traineeDetails?.profile?.githubUsername ? (
+                            <GitHubActivityChart data={gitHubStatistics} />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <Button
@@ -1078,7 +1105,5 @@ const AdminTraineeDashboard = () => {
     </>
   );
 };
-
-
 
 export default AdminTraineeDashboard;
