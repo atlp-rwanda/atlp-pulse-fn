@@ -115,6 +115,25 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               {!user?.auth ? t('Sign In') : t('Dashboard')}{' '}
             </Button>
           </Link>
+
+          {user?.auth ? (
+            <Button
+              variant="transparentbtn"
+              size="lg"
+              onClick={() => logout()}
+              style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+            >
+              {' '}
+              {t('Logout')}{' '}
+            </Button>
+          ) : (
+            <Link to="/signup/org">
+              <Button variant="bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill" size="lg" style="mr-8" >
+                {' '}
+                {t('Register an organization')}{' '}
+              </Button>
+            </Link>
+          )}
         
         </div>
         <div className="flex px-5 lg:hidden">
@@ -134,6 +153,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           </button>
         </div>
       </div>
+      
       <ul
         ref={ref}
         className={
@@ -158,6 +178,24 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             {!user?.auth ? t('Sign In') : t('Dashboard')}
           </Link>
         </li>
+        {user?.auth ? (
+          <Button
+            variant="transparentbtn"
+            size="lg"
+            onClick={() => logout()}
+            style="text-red-500 w-56 font-bolf dark:text-dark-text-fill ml-0 border border-red-600 dark:border-dark-text-fill"
+          >
+            {' '}
+            {t('Logout')}{' '}
+          </Button>
+        ) : (
+          <Link to="/signup/org">
+            <Button variant="transparentbtn  ml-0" size="lg" style="mr-8">
+              {' '}
+              {t('Register an organization')}{' '}
+            </Button>
+          </Link>
+        )}
       </ul>
     </div>
   );
