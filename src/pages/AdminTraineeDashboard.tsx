@@ -264,7 +264,7 @@ function AdminTraineeDashboard() {
       orgToken: organizationToken,
     },
   });
-  const { loading, data, refetch } = useQuery(GET_TRAINEES_QUERY, {
+  const { loading, data } = useQuery(GET_TRAINEES_QUERY, {
     variables: {
       orgToken: organizationToken,
     },
@@ -276,10 +276,9 @@ function AdminTraineeDashboard() {
 
   useEffect(() => {
     if (data && data.getTrainees) {
-      refetch();
       setAllTrainees(data.getTrainees);
     }
-  }, [data, registerTraineeModel, removeTraineeModel, toggle]);
+  }, [data]);
 
   const [getCohortsQuery] = useLazyQuery(GET_COHORTS_QUERY, {
     variables: {
