@@ -34,6 +34,9 @@ const AdminManageRoles = React.lazy(
 const AdminTraineeDashboard = React.lazy(
   () => import('../pages/AdminTraineeDashboard'),
 );
+const ViewTraineeRatings = React.lazy(
+  () => import('../pages/ratings/ViewTraineeRatings'),
+);
 const TtlTraineeDashboard = React.lazy(
   () => import('../pages/ttlTraineeDashboard'),
 );
