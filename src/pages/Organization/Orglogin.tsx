@@ -1,3 +1,4 @@
+// no-use-before-define
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -16,19 +17,34 @@ function Orglogin() {
   useDocumentTitle('Login');
   const { t } = useTranslation();
   const [name, setName] = useState('');
-  
 
-  const [inputWidth, setInputWidth] = useState('150px'); // Adjust the width as needed
-  const handleNameChange = (e: { target: { value: any; }; }) => {
+  let isNameEmpty = true;
+  const [inputWidth, setInputWidth] = useState('130px'); // Adjust the width as needed
+  // const [inputWidth, setInputWidth] = useState('133px'); // Adjust the width as needed
+  const handleNameChange = async (e: { target: { value: any } }) => {
     const newName = e.target.value;
     setName(newName);
+    if (newName === '') {
+      isNameEmpty = true;
+      setInputWidth(`130px`);
+    } else {
+      const newWidth = Math.max(newName.length * 11);
+
+      // console.log(newWidth)
+      setInputWidth(`${newWidth}px`);
+      isNameEmpty = false;
+    }
+    // console.log('1', name)
 
     // Calculate the width based on the length of the entered text
-    const newWidth = `${Math.max(newName.length * 9)}px`; // Adjust minimum width here
-    setInputWidth(newWidth);
+    // const newWidth = `${Math.max(newName.length * 9)}px`; // Adjust minimum width here
+    // setInputWidth(newWidth);
+
+    // setInputWidth(`${newWidth}px`);
   };
 
-  
+  // console.log('2', isNameEmpty);
+  // console.log('3', inputWidth)
 
   const formatVariable = async (e: any) => {
     const value: string = String(e.target.value);
@@ -46,8 +62,11 @@ function Orglogin() {
   }: any = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = async (orgInput: any) => {
+  const onSubmit = async (event: any) => {
     /* istanbul ignore next */
+    const orgInput = {
+      name,
+    };
     await OrgLogin({
       /* istanbul ignore next */
       variables: { orgInput },
@@ -55,11 +74,12 @@ function Orglogin() {
       onCompleted({ loginOrg }) {
         /* istanbul ignore next */
         localStorage.setItem('orgToken', loginOrg.token);
-        let value: string = String(orgInput.name);
+        let value: string = String(name);
+
         if (!value.includes('.devpulse.org')) {
-          value = `${orgInput.name}.devpulse.org`;
+          value = `${name}.devpulse.org`;
         }
-        // console.log(value)
+        // console.log(name)
         /* istanbul ignore next */
         // TODO:
         localStorage.setItem('orgName', value);
@@ -74,8 +94,14 @@ function Orglogin() {
       },
     });
   };
+  const handleKeyPress = async (event: any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      await onSubmit(event);
+    }
+  };
   const names = name.replace(/ /gi, '').toLowerCase();
-  // console.log('Bye Brother hey', names)
+  // console.log(names)
   const completeOrgUrl = `${names}`;
 
   return (
@@ -92,30 +118,57 @@ function Orglogin() {
           className="space-y-6 mt-4"
           onSubmit={handleSubmit(onSubmit)}
         >
-
-<div className="orgName">
-      <input
-        placeholder="Your-organization"
-        type="text"
-        value={name}
-        data-testid="orgName"
-        {...register('name', {
-          required: 'Organisation name is required',
-        })}
-        onChange={handleNameChange}
-        style={{ width: inputWidth }} // Set the width dynamically
-        className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-dark-bg"
-      />
-      <input
-        placeholder=".devpulse.org"
-        disabled
-        className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
-      />
-    </div>
-
-
-
-
+          <div className="orgName">
+            {!isNameEmpty ? (
+              <input
+                name="name"
+                placeholder="Your-organization"
+                type="text"
+                value={name}
+                data-testid="orgName"
+                // {...register('name', {
+                //   required: 'Organisation name is required',
+                // })}
+                onChange={handleNameChange}
+                onKeyDown={handleKeyPress}
+                style={{
+                  // paddingLeft: '25px',
+                  width: inputWidth,
+                  backgroundColor: 'rgb(224 231 255 / var(--tw-bg-opacity))',
+                }} // Set the width dynamically
+                className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-dark-bg"
+              />
+            ) : (
+              <input
+                name="name"
+                placeholder="Your-organization"
+                type="text"
+                value={name}
+                data-testid="orgName"
+                // {...register('name', {
+                //   required: 'Organisation name is required',
+                // })}
+                onChange={handleNameChange}
+                onKeyDown={handleKeyPress}
+                style={{
+                  // paddingLeft: '25px',
+                  width: inputWidth,
+                  backgroundColor: 'rgb(224 231 255 / var(--tw-bg-opacity))',
+                }} // Set the width dynamically
+                className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-dark-bg"
+              />
+            )}
+            <input
+              placeholder=".devpulse.org"
+              disabled
+              style={
+                {
+                  // width: inputWidth,
+                }
+              }
+              className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
+            />
+          </div>
 
           <div className="-mt-6">
             {errors.name && (
