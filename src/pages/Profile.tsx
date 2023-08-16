@@ -39,8 +39,8 @@ export default function Profile() {
       try {
         const { data } = await getProfile();
         setData(data);
-        setName(data.getProfile.name);
-        setProfileImage(data.getProfile.avatar);
+        setName(data.getProfile?.name);
+        setProfileImage(data.getProfile?.avatar);
       } catch (error: any) {
         toast.error(error?.message || 'Something went wrong');
       }
@@ -53,7 +53,7 @@ export default function Profile() {
         <>
           <ProfileCoverPage data={data?.getProfile} currentPage="viewProfile" />
           <div className="mt-2 p-6 h-full">
-            <ProfileTabs data={data?.getProfile} />
+            <ProfileTabs data={data?.getProfile || {}} />
           </div>
         </>
       ) : (

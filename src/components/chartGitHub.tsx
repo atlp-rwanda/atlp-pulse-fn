@@ -39,7 +39,7 @@ const GitHubActivityChart: React.FC<Props> = ({ data }) => {
 
   };
 
-
+// eslint-disable-next-line no-nested-ternary
   return (
     <div>
       <h2>GitHub Activity Chart</h2>

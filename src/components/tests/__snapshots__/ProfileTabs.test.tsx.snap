@@ -41,19 +41,6 @@ Object {
                 Organizations
               </a>
             </li>
-            <li
-              class="-mb-px mr-2 last:mr-0 flex-auto text-center"
-            >
-              <a
-                class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
-                data-testid="tab-link"
-                data-toggle="tab"
-                href="#link1"
-                role="tablist"
-              >
-                Account
-              </a>
-            </li>
           </ul>
         </div>
         <div
@@ -73,14 +60,14 @@ Object {
                   class="grid md:grid-cols-5 gap-4 md:gap-6 "
                 >
                   <div
-                    class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
+                    class="px-4 py-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
                   >
-                    <h3
-                      class="text-2xl font-bold m-2  mb-4"
+                    <h2
+                      class="text-xl font-bold my-2"
                     >
                       Fabrice
                        
-                    </h3>
+                    </h2>
                     <div
                       class="py-4 flex  justify-center"
                     >
@@ -98,6 +85,7 @@ Object {
                           d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
                         />
                       </svg>
+                      unavailable
                     </div>
                     <div
                       class="flex"
@@ -113,6 +101,7 @@ Object {
                           d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
                         />
                       </svg>
+                      unavailable
                     </div>
                     <div
                       class="py-4 flex "
@@ -128,7 +117,6 @@ Object {
                           d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
                         />
                       </svg>
-                      ,
                     </div>
                     <div
                       class="py-4 flex "
@@ -150,125 +138,18 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
+                    class="px-4 py-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
                   >
                     <h2
-                      class="text-xl font-bold m-2  mb-4"
+                      class="text-xl font-bold my-2"
                     >
-                      Biography
                       Biography
                     </h2>
-                    <p>
-                      Add biography
+                    <p
+                      class="pt-4"
+                    >
+                      No biography
                     </p>
-                  </div>
-                </div>
-                <div
-                  class="grid m-1 p-2 -ml-2 -mr-2 relative"
-                >
-                  <div
-                    class="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
-                  >
-                    <img
-                      alt="logo"
-                      class="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
-                      src="[object Object]"
-                    />
-                    <div
-                      class="flex flex-col justify-start items-start ml-36"
-                    >
-                      <h2
-                        class="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
-                      />
-                      <h3
-                        class="font-bold text-dark-text-fill text-center text-sm md:text-lg "
-                      >
-                        https://andela.pulse.com/
-                      </h3>
-                    </div>
-                  </div>
-                  <div
-                    class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-                  >
-                    <h3
-                      class="text-2xl font-bold m-2  mb-4"
-                    >
-                      You in the organization
-                    </h3>
-                    <div
-                      class="py-4 flex  justify-center"
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Joined
-                        :
-                      </h4>
-                      Unavailabe
-                    </div>
-                    <div
-                      class="flex"
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Role
-                        :
-                      </h4>
-                    </div>
-                    <div
-                      class="py-4 flex "
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Team
-                        :
-                      </h4>
-                      Unavailabe
-                    </div>
-                  </div>
-                  <div
-                    class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-                  >
-                    <h3
-                      class="text-2xl font-bold m-2  mb-4"
-                    >
-                      Management
-                    </h3>
-                    <div
-                      class="py-4 flex  justify-center"
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        program
-                        :
-                      </h4>
-                      Unavailabe
-                    </div>
-                    <div
-                      class="flex"
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Stage(current)
-                        :
-                        Unavailabe
-                      </h4>
-                    </div>
-                    <div
-                      class="py-4 flex "
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Manager
-                        :
-                      </h4>
-                      Unavailabe
-                    </div>
                   </div>
                 </div>
                 <div
@@ -392,7 +273,7 @@ Object {
                 id="link3"
               >
                 <div
-                  class="grid m-1 p-2 -ml-2 -mr-2 relative"
+                  class="m-1 p-2 -ml-2 -mr-2 relative"
                 >
                   <div
                     class="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
@@ -418,86 +299,26 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
+                    class="flex flex-row"
                   >
-                    <h3
-                      class="text-2xl font-bold m-2  mb-4"
-                    >
-                      You in the organization
-                    </h3>
                     <div
-                      class="py-4 flex  justify-center"
+                      class="grow p-4 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
                     >
-                      <h4
-                        class="font-bold text-base mr-4"
+                      <h3
+                        class="text-2xl font-bold mb-4"
                       >
-                        Joined
-                        :
-                      </h4>
-                      Unavailabe
-                    </div>
-                    <div
-                      class="flex"
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
+                        You in the organization
+                      </h3>
+                      <div
+                        class="pb-2 flex"
                       >
-                        Role
-                        :
-                      </h4>
-                    </div>
-                    <div
-                      class="py-4 flex "
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Team
-                        :
-                      </h4>
-                      Unavailabe
-                    </div>
-                  </div>
-                  <div
-                    class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-                  >
-                    <h3
-                      class="text-2xl font-bold m-2  mb-4"
-                    >
-                      Management
-                    </h3>
-                    <div
-                      class="py-4 flex  justify-center"
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Program
-                        :
-                      </h4>
-                      Unavailabe
-                    </div>
-                    <div
-                      class="flex"
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Stage(current)
-                        :
-                        Unavailabe
-                      </h4>
-                    </div>
-                    <div
-                      class="py-4 flex "
-                    >
-                      <h4
-                        class="font-bold text-base mr-4"
-                      >
-                        Manager
-                        :
-                      </h4>
-                      Unavailabe
+                        <h4
+                          class="font-bold text-base mr-4"
+                        >
+                          Role
+                          :
+                        </h4>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -839,19 +660,6 @@ Object {
               Organizations
             </a>
           </li>
-          <li
-            class="-mb-px mr-2 last:mr-0 flex-auto text-center"
-          >
-            <a
-              class="text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal "
-              data-testid="tab-link"
-              data-toggle="tab"
-              href="#link1"
-              role="tablist"
-            >
-              Account
-            </a>
-          </li>
         </ul>
       </div>
       <div
@@ -871,14 +679,14 @@ Object {
                 class="grid md:grid-cols-5 gap-4 md:gap-6 "
               >
                 <div
-                  class="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
+                  class="px-4 py-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow "
                 >
-                  <h3
-                    class="text-2xl font-bold m-2  mb-4"
+                  <h2
+                    class="text-xl font-bold my-2"
                   >
                     Fabrice
                      
-                  </h3>
+                  </h2>
                   <div
                     class="py-4 flex  justify-center"
                   >
@@ -896,6 +704,7 @@ Object {
                         d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
                       />
                     </svg>
+                    unavailable
                   </div>
                   <div
                     class="flex"
@@ -911,6 +720,7 @@ Object {
                         d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
                       />
                     </svg>
+                    unavailable
                   </div>
                   <div
                     class="py-4 flex "
@@ -926,7 +736,6 @@ Object {
                         d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
                       />
                     </svg>
-                    ,
                   </div>
                   <div
                     class="py-4 flex "
@@ -948,125 +757,18 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
+                  class="px-4 py-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow"
                 >
                   <h2
-                    class="text-xl font-bold m-2  mb-4"
+                    class="text-xl font-bold my-2"
                   >
-                    Biography
                     Biography
                   </h2>
-                  <p>
-                    Add biography
+                  <p
+                    class="pt-4"
+                  >
+                    No biography
                   </p>
-                </div>
-              </div>
-              <div
-                class="grid m-1 p-2 -ml-2 -mr-2 relative"
-              >
-                <div
-                  class="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
-                >
-                  <img
-                    alt="logo"
-                    class="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
-                    src="[object Object]"
-                  />
-                  <div
-                    class="flex flex-col justify-start items-start ml-36"
-                  >
-                    <h2
-                      class="font-bold text-dark-text-fill text-center text-2xl md:text-3xl"
-                    />
-                    <h3
-                      class="font-bold text-dark-text-fill text-center text-sm md:text-lg "
-                    >
-                      https://andela.pulse.com/
-                    </h3>
-                  </div>
-                </div>
-                <div
-                  class="p-2 m-2 mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-                >
-                  <h3
-                    class="text-2xl font-bold m-2  mb-4"
-                  >
-                    You in the organization
-                  </h3>
-                  <div
-                    class="py-4 flex  justify-center"
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Joined
-                      :
-                    </h4>
-                    Unavailabe
-                  </div>
-                  <div
-                    class="flex"
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Role
-                      :
-                    </h4>
-                  </div>
-                  <div
-                    class="py-4 flex "
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Team
-                      :
-                    </h4>
-                    Unavailabe
-                  </div>
-                </div>
-                <div
-                  class="p-2 m-2 mt-0 md:mt-9 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-                >
-                  <h3
-                    class="text-2xl font-bold m-2  mb-4"
-                  >
-                    Management
-                  </h3>
-                  <div
-                    class="py-4 flex  justify-center"
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      program
-                      :
-                    </h4>
-                    Unavailabe
-                  </div>
-                  <div
-                    class="flex"
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Stage(current)
-                      :
-                      Unavailabe
-                    </h4>
-                  </div>
-                  <div
-                    class="py-4 flex "
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Manager
-                      :
-                    </h4>
-                    Unavailabe
-                  </div>
                 </div>
               </div>
               <div
@@ -1190,7 +892,7 @@ Object {
               id="link3"
             >
               <div
-                class="grid m-1 p-2 -ml-2 -mr-2 relative"
+                class="m-1 p-2 -ml-2 -mr-2 relative"
               >
                 <div
                   class="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl"
@@ -1216,86 +918,26 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
+                  class="flex flex-row"
                 >
-                  <h3
-                    class="text-2xl font-bold m-2  mb-4"
-                  >
-                    You in the organization
-                  </h3>
                   <div
-                    class="py-4 flex  justify-center"
+                    class="grow p-4 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow "
                   >
-                    <h4
-                      class="font-bold text-base mr-4"
+                    <h3
+                      class="text-2xl font-bold mb-4"
                     >
-                      Joined
-                      :
-                    </h4>
-                    Unavailabe
-                  </div>
-                  <div
-                    class="flex"
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
+                      You in the organization
+                    </h3>
+                    <div
+                      class="pb-2 flex"
                     >
-                      Role
-                      :
-                    </h4>
-                  </div>
-                  <div
-                    class="py-4 flex "
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Team
-                      :
-                    </h4>
-                    Unavailabe
-                  </div>
-                </div>
-                <div
-                  class="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow "
-                >
-                  <h3
-                    class="text-2xl font-bold m-2  mb-4"
-                  >
-                    Management
-                  </h3>
-                  <div
-                    class="py-4 flex  justify-center"
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Program
-                      :
-                    </h4>
-                    Unavailabe
-                  </div>
-                  <div
-                    class="flex"
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Stage(current)
-                      :
-                      Unavailabe
-                    </h4>
-                  </div>
-                  <div
-                    class="py-4 flex "
-                  >
-                    <h4
-                      class="font-bold text-base mr-4"
-                    >
-                      Manager
-                      :
-                    </h4>
-                    Unavailabe
+                      <h4
+                        class="font-bold text-base mr-4"
+                      >
+                        Role
+                        :
+                      </h4>
+                    </div>
                   </div>
                 </div>
               </div>

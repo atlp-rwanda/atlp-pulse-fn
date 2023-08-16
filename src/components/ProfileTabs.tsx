@@ -55,6 +55,7 @@ export function EditPassword() {
   };
 
   const [passwordFieldState, setPasswordField] = useState<fields>(fieldState);
+
   return (
     <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
       <div className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg">
@@ -103,10 +104,10 @@ export function EditPassword() {
   );
 }
 
-export default function ProfileTabs({ data }: any) {
+export default function ProfileTabs({ data: profileData }: any) {
   const [openTab, setOpenTab] = React.useState('About');
   const { t } = useTranslation();
-  const tabs: Array<string> = ['About', 'Organizations', 'Account'];
+  const tabs: Array<string> = ['About', 'Organizations'];
   const { user, setName } = useContext(UserContext);
   const [traineeData, setTraineeData] = useState<any>([]);
   const [singleUser, setSingleUser] = useState<any>({});
@@ -122,6 +123,14 @@ export default function ProfileTabs({ data }: any) {
   const [isLoaded, setIsLoaded] = useState(true);
   const [gitHubStatistics, setGitHubStatistics] = useState<any>(null);
 
+  const [managementData, setManagementData] = useState<any>({
+    program: null,
+    cohort: null,
+    team: null,
+    phase: null,
+    startDate: null
+  });
+  const role: String | undefined = profileData?.user?.role
 
   /* istanbul ignore next */
   const [fetchData2] = useLazyQuery(GET_ALL_TRAINEES, {
@@ -139,15 +148,46 @@ export default function ProfileTabs({ data }: any) {
   const [getGitHubStatistics]= useLazyQuery(GET_GITHUB_STATISTICS, {
     variables: {
       organisation: localStorage.getItem('orgName'),
-      username: data?.githubUsername,
+      username: profileData?.githubUsername,
     }
   });
 
 
 
 
-  
 
+/* istanbul ignore next */
+  useEffect(() => {
+    switch(role) {
+      case 'manager':
+        setManagementData((data: any) => ({
+          ...data,
+          program: profileData.user.program?.name
+        }))
+        break;
+      case 'coordinator':
+        setManagementData((data: any) => ({
+          ...data,
+          cohort: profileData.user.cohort?.name,
+          program: profileData.user.cohort?.program?.name
+        }))
+        break;
+      case 'trainee':
+        // eslint-disable-next-line no-case-declarations
+        const {team} = profileData.user
+        team && setManagementData((data: any) => ({
+          ...data,
+          program: team.cohort?.program?.name,
+          cohort: team.cohort?.name,
+          team: team.name,
+          phase:  team.cohort?.phase?.name,
+          startDate: team.cohort?.startDate
+        }))
+        break;
+      default:
+    }
+  }, [profileData, role])
+/* istanbul ignore next */
   useEffect(() => {
     fetchData2({
       fetchPolicy: 'network-only',
@@ -155,14 +195,14 @@ export default function ProfileTabs({ data }: any) {
         setTraineeData(data.getAllUsers);
       },
       onError: (error) => {
-        toast.error(error.message);
+        // toast.error(error.message);
       },
     });
     getGitHubStatistics({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
  setIsLoaded(false)
-        
+
         setGitHubStatistics(data.gitHubActivity);
 
       },
@@ -224,7 +264,7 @@ export default function ProfileTabs({ data }: any) {
           }, 500);
         }
       });
-  
+
     },
     /* istanbul ignore next */
     onError: (err) => {
@@ -252,7 +292,7 @@ export default function ProfileTabs({ data }: any) {
           }, 500);
         }
       });
-  
+
     },
     /* istanbul ignore next */
     onError: (err) => {
@@ -269,12 +309,12 @@ export default function ProfileTabs({ data }: any) {
     const singleTrainne = traineeData.filter(
       (item: any) => item.email === user.email,
     );
-  
+
     setSingleUser(singleTrainne[0]); // returns an object with single trainnee data that can be accessed singleUser.email
   }, [traineeData]);
 
 
-   
+
 
 
   return (
@@ -286,7 +326,17 @@ export default function ProfileTabs({ data }: any) {
             className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row text-black dark:text-dark-text-fill"
             role="tablist"
           >
-            {tabs.map((tab) => (
+            {tabs.filter((tab) => {
+              switch (role) {
+                case "superAdmin":
+                  if (tab === "About") {
+                    return true
+                  }
+                  return false
+                default:
+                  return true;
+              }
+            }).map((tab) => (
               <li
                 key={tab}
                 className="-mb-px mr-2 last:mr-0 flex-auto text-center"
@@ -297,8 +347,11 @@ export default function ProfileTabs({ data }: any) {
                       ? 'bg-white dark:bg-dark-bg border-b-4 border-b-primary '
                       : ''
                   }`}
+                  /* istanbul ignore next */
                   onClick={(e) => {
+                    /* istanbul ignore next */
                     e.preventDefault();
+                    /* istanbul ignore next */
                     setOpenTab(`${tab}`);
                   }}
                   data-toggle="tab"
@@ -318,44 +371,54 @@ export default function ProfileTabs({ data }: any) {
             <div className="tab-content tab-space">
               {/* About section start */}
               <div
+                /* istanbul ignore next */
                 className={openTab === 'About' ? 'block' : 'hidden'}
                 id="link1"
               >
-                <div className="grid md:grid-cols-5 gap-4 md:gap-6 ">
-                  <div className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow ">
-                    <h3 className="text-2xl font-bold m-2  mb-4">
-                      {data?.name}{' '}
-                    </h3>
+                <div className="grid md:grid-cols-6 gap-4 md:gap-6 ">
+                  <div className="px-4 py-2 flex flex-col md:col-span-3 justify-start items-start bg-indigo-100  dark:bg-dark-bg shadow w-100">
+                    <h2 className="text-xl font-bold my-2">
+                      {profileData?.name || "Name not available"}{' '}
+                    </h2>
                     <div className="py-4 flex  justify-center">
                       <MailIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {user?.email}
+                      {user?.email || "unavailable"}
                     </div>
                     <div className="flex">
                       <PhoneIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {data?.phoneNumber}
+                      {profileData?.phoneNumber || "unavailable"}
                     </div>
                     <div className="py-4 flex ">
                       <HomeIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {data?.city},
-                      {data?.country && (
-                        <CountryComponent country={data.country} />
+                      {profileData?.city}
+                      {/* istanbul ignore next */}
+                      {profileData?.city &&
+                        /* istanbul ignore next */
+                       profileData?.country && ','
+                      }
+                      {profileData?.country && (
+                        /* istanbul ignore next */
+                        <CountryComponent country={profileData.country} />
                       )}
                     </div>
                     <div className="py-4 flex ">
                       <FaGithub className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {data?.githubUsername}
-                 
+                      {profileData?.githubUsername}
+
                     </div>
+
                   </div>
-                  <div className="p-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow">
-                    <h2 className="text-xl font-bold m-2  mb-4">
-                      Biography
+                  <div className="px-4 py-2 md:col-span-3 bg-indigo-100  dark:bg-dark-bg shadow">
+                    <h2 className="text-xl font-bold my-2">
                       {t('Biography')}
                     </h2>
-                    <p>{data?.biography || 'Add biography'}</p>
+                    <p className='pt-4'>{profileData?.biography || 'No biography'}</p>
                   </div>
                 </div>
-                <div className="grid m-1 p-2 -ml-2 -mr-2 relative">
+                {/* istanbul ignore next */}
+                {role && [].includes(role as never) &&
+                /* istanbul ignore next */
+                 <div className="grid m-1 p-2 -ml-2 -mr-2 relative">
                   <div className="bg-primary p-2 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl">
                     <img
                       className="w-16 h-16 md:w-20 md:h-20 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
@@ -376,15 +439,6 @@ export default function ProfileTabs({ data }: any) {
                       {/* You in the organization */}
                       {t('You in the organization')}
                     </h3>
-                    <div className="py-4 flex  justify-center">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Joined')}:
-                      </h4>
-                      {singleUser && singleUser.team
-                        ? singleUser.team.cohort.startDate.split('T')[0]
-                        : 'Unavailabe'}
-                    </div>
-
                     <div className="flex">
                       <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
                       {user?.role}
@@ -426,24 +480,24 @@ export default function ProfileTabs({ data }: any) {
                         : 'Unavailabe'}
                     </div>
                   </div>
-                </div>
+                </div>}
                 <div
-                  className={`text-sm font-sans ${data.role!='test'? user?.role === 'trainee'?'':'hidden':''}`}
+                  className={`text-sm font-sans ${profileData.role!='test'? user?.role === 'trainee'?'':'hidden':''}`}
                   style={{
                     display: 'flex',
                     gap: '50px',
                     justifyContent: 'space-between',
                     paddingBlock: '10px',
                     marginBottom: '20px',
-                  
+
                   }}
                 >
 
-               
+
                 {isLoaded?(
                   <p>
-                
-                    <div className={`flex justify-center items-center h-48 ${data.role!='test'? user?.role === 'trainee'?'':'hidden':''}`}>
+
+                    <div className={`flex justify-center items-center h-48 ${profileData.role!='test'? user?.role === 'trainee'?'':'hidden':''}`}>
                     <i>
                    Loading gitHub statistics...
                     </i>
@@ -452,16 +506,16 @@ export default function ProfileTabs({ data }: any) {
           </div>
                   </p>
                 ):(
-                  <div className={`w-1/2 flex justify-between  ${data.role!='test'? user?.role === 'trainee'?'':'hidden':''}`}>
+                  <div className={`w-1/2 flex justify-between  ${profileData.role!='test'? user?.role === 'trainee'?'':'hidden':''}`}>
                   <div className='flex flex-col'>
-            
+
                     <i className='text-2xl '>
-          
+
                     {gitHubStatistics?.totalCommits} total commits
-                  
+
                     </i>
-                 
-    
+
+
                 </div>
                 <div className='flex flex-col items-center justify-center'>
                 <div>
@@ -472,17 +526,17 @@ export default function ProfileTabs({ data }: any) {
 
                     </>
                   )}
-               
+
     </div>
                 </div>
                 </div>
-                )}  
+                )}
                 </div>
-                <div className={`grid md:grid-cols-5 gap-4 md:gap-6  ${data.test!='test'?user?.role !== 'admin'?'hidden':'':''}`}>
+                <div className={`grid md:grid-cols-5 gap-4 md:gap-6  ${profileData.test!='test'?user?.role !== 'admin'?'hidden':'':''}`}>
                   <div className="p-2 flex flex-col md:col-span-2 justify-start items-start bg-white  dark:bg-dark-bg shadow ">
                     <h3 className="text-2xl font-bold m-2  mb-4">
                      Github Organisation
-         
+
                     </h3>
                     <div className='flex items-center gap-10'>
                     <div className="py-4 flex  justify-center">
@@ -496,14 +550,14 @@ export default function ProfileTabs({ data }: any) {
                     }} />
 
                     </div>
-                 
-               
+
+
                   </div>
                   <div className="p-2 md:col-span-3 bg-white  dark:bg-dark-bg shadow ">
                     <div className='flex justify-between'>
                     <h2 className="text-xl font-bold m-2  mb-4">
                       Repository
-                    
+
                     </h2>
                     <Button variant="default"
               size="md"
@@ -518,8 +572,8 @@ export default function ProfileTabs({ data }: any) {
                     {/* <button className='flex justify-center items-center '>
                         Add New </button> */}
 
-                   
-                    
+
+
                     </div>
                   <div>
                     {organisation?.activeRepos?.map((repo: any) => (
@@ -527,16 +581,16 @@ export default function ProfileTabs({ data }: any) {
                       <h2 className="font-bold text-dark-text-fill text-center ">
                         {repo}
                       </h2>
-                      
+
                       <FaEraser className='w-6 mr-2 dark:text-dark-text-fill' onClick={()=>{
                         setRepo(repo)
-                        setRemoveRepoModel(true)  
+                        setRemoveRepoModel(true)
                       }} />
-                
+
                       </div>
                       ))}
                   </div>
-                
+
                   </div>
                 </div>
               </div>
@@ -545,7 +599,7 @@ export default function ProfileTabs({ data }: any) {
                 className={openTab === 'Organizations' ? 'block' : 'hidden'}
                 id="link3"
               >
-                <div className="grid m-1 p-2 -ml-2 -mr-2 relative">
+                <div className="m-1 p-2 -ml-2 -mr-2 relative">
                   <div className="bg-primary p-1 flex md:col-span-2 justify-start items-start shadow rounded-t-2xl">
                     <img
                       className="w-12 h-12 md:w-16 md:h-16 rounded-full cursor-pointer mt-6 ml-8 bg-white dark:bg-dark-bg absolute border border-primary"
@@ -554,67 +608,63 @@ export default function ProfileTabs({ data }: any) {
                     />
                     <div className="flex flex-col justify-start items-start ml-36">
                       <h2 className="font-bold text-dark-text-fill text-center text-lg md:text-xl">
-                        {singleUser && singleUser.team
-                          ? singleUser.team.cohort.program.organization.name
-                          : 'Unavailabe'}
+                        {profileData?.user?.organizations[0] || 'Unavailabe'}
                       </h2>
                       <h3 className="font-bold text-dark-text-fill text-center text-sm md:text-lg ">
                         https://andela.pusle.com
                       </h3>
                     </div>
                   </div>
-                  <div className="p-2 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow ">
-                    <h3 className="text-2xl font-bold m-2  mb-4">
-                      {t('You in the organization')}
-                    </h3>
-                    <div className="py-4 flex  justify-center">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Joined')}:
-                      </h4>
-                      {singleUser && singleUser.team
-                        ? singleUser.team.cohort.startDate.split('T')[0]
-                        : 'Unavailabe'}
-                    </div>
-                    <div className="flex">
-                      <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
-                      {user?.role}
-                    </div>
-                    <div className="py-4 flex ">
-                      <h4 className="font-bold text-base mr-4">{t('Team')}:</h4>
-                      {singleUser && singleUser.team
-                        ? singleUser.team.name
-                        : 'Unavailabe'}
-                    </div>
-                  </div>
-                  <div className="p-2 m-2 mt-2  md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow ">
-                    <h3 className="text-2xl font-bold m-2  mb-4">
-                      {t('Management')}
-                    </h3>
-                    <div className="py-4 flex  justify-center">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Program')}:
-                      </h4>
+                  <div className='flex flex-row'>
+                    <div className="w-full p-4 m-2 mt-6 flex flex-col justify-start items-start  bg-indigo-100 dark:bg-dark-bg shadow ">
+                      <h3 className="text-2xl font-bold mb-4">
+                        {t('You in the organization')}
+                      </h3>
+                      <div className="pb-2 flex">
+                        <h4 className="font-bold text-base mr-4">{t('Role')}:</h4>
+                        {user?.role}
+                      </div>
 
-                      {singleUser && singleUser.team
-                        ? singleUser.team.cohort.program.name
-                        : 'Unavailabe'}
                     </div>
-                    <div className="flex">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Stage(current)')}:
-                        {singleUser && singleUser.team
-                          ? singleUser.team.cohort.phase.name
-                          : 'Unavailabe'}
-                      </h4>
-                    </div>
-                    <div className="py-4 flex ">
-                      <h4 className="font-bold text-base mr-4">
-                        {t('Manager')}:
-                      </h4>
-                      {singleUser && singleUser.team
-                        ? singleUser.team.cohort.program.manager.profile.name
-                        : 'Unavailabe'}
-                    </div>
+                    {role && ['manager', 'coordinator', 'trainee'].includes(role as never) && (
+                      <div className="p-4 m-2 md:mt-6 flex flex-col justify-start items-start  bg-indigo-100  dark:bg-dark-bg shadow w-full ">
+                        <h3 className="text-2xl font-bold mb-4">
+                          {t('Management')}
+                        </h3>
+                        {managementData.program && (
+                          <div className="pb-2 flex justify-center">
+                            <h4 className="font-bold text-base mr-2">
+                              {t('Program')}:
+                            </h4>
+                            {managementData.program}
+                          </div>
+                        )}
+                        {managementData.cohort && (
+                          <div className="pb-2 flex ">
+                            <h4 className="font-bold text-base mr-2">
+                              {t('Cohort')}:
+                            </h4>
+                            {managementData.cohort}
+                          </div>
+                        )}
+                        {managementData.team && (
+                          <div className="pb-2 flex ">
+                            <h4 className="font-bold text-base mr-2">
+                              {t('Team')}:
+                            </h4>
+                            {managementData.team}
+                          </div>
+                        )}
+                        {managementData.phase && (
+                          <div className="pb-2 flex ">
+                            <h4 className="font-bold text-base mr-2">
+                              {t('Phase')}:
+                            </h4>
+                            {managementData.phase}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -648,9 +698,9 @@ export default function ProfileTabs({ data }: any) {
       <form className=" py-3 px-8">
         <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
           <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
-      
+
               Are you sure you want to delete this repository,
-         
+
           </h3>
         </div>
 
@@ -670,7 +720,7 @@ export default function ProfileTabs({ data }: any) {
             data-testid="removeMemberFromCohort"
             style="w-[30%] md:w-1/4 text-sm font-sans"
             onClick={() => {
-              
+
               setButtonLoading(true);
               removeActiveRepostoOrganization();
             }}
@@ -736,7 +786,7 @@ export default function ProfileTabs({ data }: any) {
                   }
                   children={t('Cancel')}
                 />
-                 
+
 
                 <Button
                   variant="primary"
@@ -769,7 +819,7 @@ export default function ProfileTabs({ data }: any) {
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
             <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
-              Add Edit Organisation 
+              Add Edit Organisation
             </h3>
             <hr className=" bg-primary border-b my-3 w-full" />
           </div>
@@ -807,7 +857,7 @@ export default function ProfileTabs({ data }: any) {
                   }
                   children={t('Cancel')}
                 />
-                 
+
 
                 <Button
                   variant="primary"

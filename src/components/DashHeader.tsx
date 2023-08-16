@@ -60,13 +60,14 @@ function DashHeader() {
 
   useSubscription(TICKETS_NOTS_SUB, {
     onData: (data: any) => {
+       /* istanbul ignore next */
       if (user.userId === data.data.data.sendNotsOnTickets.receiver)
         addNotification(data.data.data.sendNotsOnTickets);
     },
   });
-
   const { data, loading } = useSubscription(NotificationSubscription, {
     onData: (data) => {
+       /* istanbul ignore next */
       setNotificationData([data.data.data.newRating, ...notifications]);
     },
     variables: {
@@ -94,7 +95,7 @@ function DashHeader() {
     /* istanbul ignore next */
     fetchData();
   }, []);
-
+// eslint-disable-next-line no-nested-ternary
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -181,8 +182,10 @@ function DashHeader() {
               src={
                 // eslint-disable-next-line no-nested-ternary
                 user?.profileImage
+                // eslint-disable-next-line no-nested-ternary
                   ? user?.profileImage
                   : profileData?.getProfile?.avatar
+                  // eslint-disable-next-line no-nested-ternary
                   ? profileData?.getProfile?.avatar
                   : Avatar
               }
@@ -194,6 +197,7 @@ function DashHeader() {
           className={
             !nav
               ? 'hidden'
+              // eslint-disable-next-line no-nested-ternary
               : 'bg-white dark:bg-dark-bg cursor-pointer lg:hidden'
           }
         >

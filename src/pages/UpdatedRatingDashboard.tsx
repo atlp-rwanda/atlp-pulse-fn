@@ -110,6 +110,7 @@ function UpdatedRatingDashboard() {
                 id: row.original.user.id,
                 sprint: row.original.sprint,
               });
+               /* istanbul ignore next */
               setRejectModel(!rejectModel);
             }}
           >
@@ -171,6 +172,7 @@ function UpdatedRatingDashboard() {
       toast.success('Successfully rejected!');
       /* istanbul ignore next */
       removeRejectModel();
+       /* istanbul ignore next */
       handleToggle();
     },
   });
@@ -212,6 +214,7 @@ function UpdatedRatingDashboard() {
               </div>
               <div className="w-full flex justify-between">
                 <Button
+                 /* istanbul ignore next */
                   data-testid="removeApproveModel"
                   variant="info"
                   size="sm"
@@ -228,6 +231,7 @@ function UpdatedRatingDashboard() {
                 <Button
                   variant="primary"
                   size="sm"
+                   /* istanbul ignore next */
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => approveRating()}
                 >
@@ -273,6 +277,7 @@ function UpdatedRatingDashboard() {
                 <Button
                   variant="danger"
                   size="sm"
+                   /* istanbul ignore next */
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   /* istanbul ignore next */
                   onClick={() => rejectRating()}

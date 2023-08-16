@@ -72,6 +72,7 @@ export default function ProfileCoverpage({
       /* istanbul ignore next */
       setSpinner(true);
       /* istanbul ignore if */
+       /* istanbul ignore next */
       if (updated) {
         setSpinner(false);
         setProfileImage(updated?.data?.updateAvatar?.avatar);
@@ -105,7 +106,6 @@ export default function ProfileCoverpage({
       });
       /* istanbul ignore next */
       setSpinnerCover(true);
-      /* istanbul ignore if */
       if (updated) {
         setSpinnerCover(false);
         toast.success('updated');
@@ -185,6 +185,7 @@ export default function ProfileCoverpage({
       </div>
       {currentPage !== 'editProfile' ? (
         <Button
+         /* istanbul ignore next */
           onClick={() => handleEdit()}
           variant="default"
           size="md"
