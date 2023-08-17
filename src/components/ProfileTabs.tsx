@@ -141,13 +141,13 @@ export default function ProfileTabs({ data: profileData }: any) {
 
   const [fetchOrgData] = useLazyQuery(GET_ORGANISATION, {
     variables: {
-      name: orgName,
+      name: orgName?.split('.')[0],
     },
   });
 
   const [getGitHubStatistics]= useLazyQuery(GET_GITHUB_STATISTICS, {
     variables: {
-      organisation: localStorage.getItem('orgName'),
+      organisation: localStorage.getItem('orgName')?.split('.')[0],
       username: profileData?.githubUsername,
     }
   });

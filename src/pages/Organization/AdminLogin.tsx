@@ -61,7 +61,7 @@ function AdminLogin() {
           if (state) {
             navigate(`${state}`);
           } else {
-            navigate('/dashboard/');
+            navigate('/dashboard');
           }
           /* istanbul ignore if */
           if (data.loginUser) {
@@ -69,14 +69,14 @@ function AdminLogin() {
             /* istanbul ignore next */
             {
               data.loginUser.user.role === 'superAdmin'
-                ? navigate(`/dashboard/organizations`)
+                ? navigate(`/organizations`)
                 : data.loginUser.user.role === 'admin'
-                ? navigate(`/dashboard/trainees`)
+                ? navigate(`/trainees`)
                 : data.loginUser.user.role === 'coordinator'
-                ? navigate(`/dashboard/trainees`)
+                ? navigate(`/trainees`)
                 : data.loginUser.user.role === 'manager'
-                ? navigate(`/dashboard/coordinators`)
-                : navigate('/dashboard/performance');
+                ? navigate(`/coordinators`)
+                : navigate('/performance');
             }
           }
           /* istanbul ignore next */

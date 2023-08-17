@@ -163,14 +163,13 @@ function Notification({
                           ];
                            /* istanbul ignore next */
                         handleShowNotification();
-                        return navigate(`/dashboard/tickets/${ticketId}`);
+                        return navigate(`/tickets/${ticketId}`);
                       }
                       /* istanbul ignore next */
                       if (user.role === 'trainee') {
-                        navigate('/dashboard/performance');
+                        navigate('/performance');
                       } else {
-                         /* istanbul ignore next */
-                        navigate('/dashboard/ratings');
+                        navigate('/ratings');
                       }
                          /* istanbul ignore next */
                       return handleShowNotification();

@@ -327,5 +327,10 @@
   "Manager": "Manager",
   "Drop": "Drop",
   "TTL": "TTL",
-  "No TTL": "No TTL"
+  "No TTL": "No TTL",
+  "Add Document":"Add Document",
+  "Enter the title and description of the document you want to add":"Enter the title and description of the document you want to add",
+  "Documentation updated successfully":"Documentation updated successfully",
+  "Please fill all fields":"Please fill all fields"
+
 }

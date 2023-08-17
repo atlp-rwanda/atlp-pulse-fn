@@ -12,7 +12,7 @@ import { GET_DOCUMENTATION } from '../../Mutations/manageStudentMutations';
 import { UserContext } from '../../hook/useAuth';
 
 function TraineeDocs() {
-  useDocumentTitle('Trainee Documentation');
+  useDocumentTitle('Documentation');
   const { user } = useContext(UserContext);
   const { t } = useTranslation();
   const [selectedContent, setSelectedContent] = useState<any | null>(null);
@@ -35,8 +35,7 @@ function TraineeDocs() {
       fetchPolicy: 'network-only',
       
         onCompleted: (data) => {
-
-            setDocumentations(user.role==='trainee'?data.getDocumentations.filter((documentation:any)=>documentation.for==="trainee"):data.getDocumentations.filter((documentation:any)=>documentation.for!=='trainee'));
+            setDocumentations(user.role==='trainee'?data.getDocumentations.filter((documentation:any)=>documentation.for===user.role):data.getDocumentations.filter((documentation:any)=>documentation.for!=="trainee"));
     
         },
         onError: (error) => {

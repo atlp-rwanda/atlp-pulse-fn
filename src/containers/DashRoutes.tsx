@@ -68,6 +68,7 @@ const CoordinatorDocs = React.lazy(
   () => import('../components/Docs/CoordinatorDocs'),
 );
 const TraineeDocs = React.lazy(() => import('../components/Docs/TraineeDocs'));
+const OthersDocs = React.lazy(() => import('../components/Docs/OthersDocs'));
 const HelpPage = React.lazy(() => import('../pages/HelpPage'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
 const Ticket = React.lazy(() => import('../pages/Ticket'));
@@ -89,7 +90,7 @@ function DashRoutes() {
         <Sidebar toggle={handleClick} style="hidden lg:flex" />
         <Suspense fallback={<Square />}>
           <Routes>
-            <Route path="" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/trainees" element={<AdminTraineeDashboard />} />
             <Route path="/ratings" element={<TraineeRatingDashboard />} />
             <Route path="/admin/ratings" element={<AdminRatings />} />
@@ -120,9 +121,10 @@ function DashRoutes() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
             <Route path="/coordinators" element={<CoordinatorsPage />} />
-            <Route path="/adminDocs" element={<AdminDocs />} />
+            <Route path="/docs/admin" element={<AdminDocs />} />
             <Route path="/coordinatorDocs" element={<CoordinatorDocs />} />
-            <Route path="/traineeDocs" element={<TraineeDocs />} />
+            <Route path="/docs/trainee" element={<TraineeDocs />} />
+            <Route path="/docs" element={<OthersDocs />} />
             <Route path="/support" element={<HelpPage />} />
             <Route path="/tickets" element={<Tickets />}>
               <Route index element={<AllTickets />} />
