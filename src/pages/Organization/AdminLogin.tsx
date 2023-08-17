@@ -93,11 +93,7 @@ function AdminLogin() {
               type: 'custom',
               message: t('Invalid credentials'),
             });
-            /* istanbul ignore next */
-            setError('email', {
-              type: 'custom',
-              message: t('Invalid credentials'),
-            });
+        
           }
         },
       });
@@ -107,11 +103,7 @@ function AdminLogin() {
         type: 'custom',
         message: t('Invalid credentials'),
       });
-      /* istanbul ignore next */
-      setError('email', {
-        type: 'custom',
-        message: t('Invalid credentials'),
-      });
+  
     }
   };
   const getLocation = async () => {
@@ -172,7 +164,15 @@ function AdminLogin() {
               onSubmit={handleSubmit(onSubmit)}
               data-testid="loginForm"
             >
-              <div className="w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center mb-2 dark:bg-dark-bg ">
+                   {errors.password && errors.password.message===t('Invalid credentials') ? (
+                  <small className="text-red-600">
+                    {errors.password.message}
+                  </small>
+                ) : (
+                  ''
+                )}
+              <div className="w-full border border-gray rounded-md bg-gray-100 p-2 my-2 flex items-center mb-2 dark:bg-dark-bg ">
+
                 <FaRegEnvelope className="text-gray-400 mr-2" />
                 <input
                   data-testid="email"
@@ -208,7 +208,7 @@ function AdminLogin() {
                 </div>
               </div>
               <div className="text-left mb-1 pl-4">
-                {errors.password ? (
+                {errors.password && errors.password.message!==t('Invalid credentials') ? (
                   <small className="text-red-600">
                     {errors.password.message}
                   </small>

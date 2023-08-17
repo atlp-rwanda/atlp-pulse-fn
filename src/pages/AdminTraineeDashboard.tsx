@@ -113,7 +113,7 @@ const AdminTraineeDashboard = () => {
     setOpen(true);
      getGitHubStatistics({
         variables: {
-          organisation: localStorage.getItem('orgName'),
+          organisation: localStorage.getItem('orgName')?.split('.')[0],
           username: filteredUser[0].profile?.githubUsername,
         }
      });
