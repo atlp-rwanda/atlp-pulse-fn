@@ -92,6 +92,24 @@ function AdminLogin() {
           } else {
             navigate('/dashboard');
           }
+          /* istanbul ignore if */
+          if (data.loginUser) {
+            //navigate to ${state},in case you want to make it default (/dashboard),
+            /* istanbul ignore next */
+            {
+              data.loginUser.user.role === 'superAdmin'
+                ? navigate(`/organizations`)
+                : data.loginUser.user.role === 'admin'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'coordinator'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'manager'
+                ? navigate(`/coordinators`)
+                : navigate('/performance');
+            }
+          }
+          /* istanbul ignore next */
+          return;
         },
         onError: (err) => {
           /* istanbul ignore next */
