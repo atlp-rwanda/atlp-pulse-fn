@@ -648,6 +648,44 @@ const AdminTraineeDashboard = () => {
                     </i>
                   </p>
                 </div>
+
+                  {/* Show resume URL for admins and managers */}
+                  {user &&
+                  (user.role === 'admin' || user.role === 'coordinator') && (
+                    <div
+                      className="font-sans text-sm"
+                      style={{
+                        display: 'flex',
+                        gap: '50px',
+                        justifyContent: 'space-between',
+                        paddingBlock: '10px',
+                        marginBottom: '20px',
+                        borderBottom: '0.5px solid #EAECEE',
+                      }}
+                    >
+                      <h3>
+                        <b>RESUME</b>
+                        {''}
+                      </h3>
+                      <p>
+                        {traineeDetails?.profile?.resume ? (
+                          <a
+                            href={traineeDetails.profile.resume}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            View Resume
+                          </a>
+                        ) : (
+                          'Unavailable'
+                        )}
+                      </p>
+                    </div>
+                  )}
+
+
+
+                
                 <div
                   className={"text-sm font-sans"}
                   style={{
@@ -664,7 +702,7 @@ const AdminTraineeDashboard = () => {
                 {isLoaded?(
                   <p>
                 
-                    <div className="flex justify-center items-center h-48">
+                    <div className="flex items-center justify-center h-48">
                     <i>
                    Loading gitHub statistics...
                     </i>
@@ -721,12 +759,12 @@ const AdminTraineeDashboard = () => {
           inviteTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="w-full p-4 pb-8 bg-indigo-100 dark:bg-dark-bg rounded-lg  sm:w-3/4 xl:w-4/12">
+        <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
             <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Send Invitation')}
             </h3>
-            <hr className=" border-gray-400 my-3 w-full" />
+            <hr className="w-full my-3 border-gray-400 " />
           </div>
           <div className="card-body">
             <form className="px-8 py-3 ">

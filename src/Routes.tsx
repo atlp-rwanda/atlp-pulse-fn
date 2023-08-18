@@ -43,13 +43,9 @@ function MainRoutes() {
           <Route path="/login/org" element={<Orglogin />} />
           <Route path="*" element={<Error />} />
           <Route path="/noredirect" element={<Noredirect />} />
-
-
-
         </Routes>
         <Footer />
       </Router>
-      
     </div>
   );
 }

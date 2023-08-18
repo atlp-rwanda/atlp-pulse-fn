@@ -1,11 +1,10 @@
 .orgName {
-    display: flex;
-  }
-  
-  .inputStyle {
-    /* -webkit-appearance: none; */
-    outline: none;
-    padding: 0; /* Remove padding on all sides */
-    border: none;
-  }
-  
+  display: flex;
+}
+
+.inputStyle {
+  /* -webkit-appearance: none; */
+  outline: none;
+  padding: 0; /* Remove padding on all sides */
+  border: none;
+}

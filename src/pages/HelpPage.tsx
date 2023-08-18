@@ -43,10 +43,10 @@ function Help() {
     setMsg({ ...msg, [e.target.name]: e.target.value });
   }
   return (
-    <div className="flex flex-col grow bg-white  dark:bg-dark-frame-bg ">
+    <div className="flex flex-col bg-white grow dark:bg-dark-frame-bg ">
       <div className="flex flex-row justify-center pt-[12vh]">
         <div className="rounded-lg sm:w-[90%] md:w-[60%] lg:w-[40%] mt-5  lg:mb-10 p-6 bg-[#e0e7ff] border-gray-400 dark:bg-dark-bg">
-          <h2 className="text-4xl font-bold dark:text:white mb-5 text-center">
+          <h2 className="mb-5 text-4xl font-bold text-center dark:text:white">
             {t('Support')}
           </h2>
           <form action="#none" onSubmit={handleSubmit} data-testid="loginForm">
@@ -90,7 +90,7 @@ function Help() {
                   fontSize: '16px',
                   resize: 'none',
                 }}
-                className="dark:bg-dark-bg flex items-center"
+                className="flex items-center dark:bg-dark-bg"
                 required
               />
             </div>
@@ -100,13 +100,12 @@ function Help() {
             ) : (
               <Button
                 type="submit"
-                
                 data-testid="loginForm"
                 size="lg"
                 style="w-full ml-0 text-2xl   text-white bg-[#8667F2] hover:bg-[#c7b9f9] "
               >
                 {' '}
-                {t('Send')} 
+                {t('Send')}
               </Button>
             )}
           </form>

@@ -65,9 +65,9 @@ function Card({
 
         <div className=" font-josefin  ml-12 mb-0 mt-3">
           <div>
-            <h1>{ coordinator}</h1>
+            <h1>{coordinator}</h1>
             <p className="text-gray-500 font-medium flex items-center ">
-              { coordinator ? `${t('Coordinator')}` : `${t('Nocoordinator')}`}
+              {coordinator ? `${t('Coordinator')}` : `${t('Nocoordinator')}`}
             </p>
           </div>
 

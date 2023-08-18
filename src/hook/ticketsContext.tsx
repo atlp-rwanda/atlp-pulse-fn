@@ -10,7 +10,7 @@ interface Props {
 const initialState: Array<any> | null = null;
 
 export const TicketsContext = createContext<any>(initialState);
-  /* istanbul ignore next */
+/* istanbul ignore next */
 export function TicketsProvider({ children }: Props) {
   const [tickets, setTickets] = useState<any>(initialState);
   /* istanbul ignore next */

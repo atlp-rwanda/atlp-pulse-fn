@@ -31,18 +31,18 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
     <div
       className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b ${props?.styles}`}
     >
-      <div className="px-3 flex justify-between items-center w-full h-full">
-        <div className="flex items-center h-full justify-between lg:w-full">
+      <div className="flex items-center justify-between w-full h-full px-3">
+        <div className="flex items-center justify-between h-full lg:w-full">
           <Link to="/" className="flex flex-row lg:px-5">
             {colorTheme === 'dark' ? (
               <img
-                className="w-full cursor-pointer mr-2"
+                className="w-full mr-2 cursor-pointer"
                 src={Logo}
                 alt="logo"
               />
             ) : (
               <img
-                className="w-full cursor-pointer mr-2"
+                className="w-full mr-2 cursor-pointer"
                 src={LogoWhite}
                 alt="logoWhite"
               />
@@ -52,7 +52,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               PULSE
             </h1>
           </Link>
-          <ul className="hidden lg:flex cursor-pointer">
+          <ul className="hidden cursor-pointer lg:flex">
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
                 to="/"
@@ -92,7 +92,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             </li>
           </ul>
         </div>
-        <div className="hidden lg:flex lg:w-full justify-end ">
+        <div className="justify-end hidden lg:flex lg:w-full ">
           <button
             type="button"
             id="theme-switch"
@@ -155,18 +155,18 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             : 'absolute bg-white dark:bg-dark-bg w-1/8 justify-end px-8 m-1 right-0 lg:hidden'
         }
       >
-        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
+        <li className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary">
           <Link to="/">{t('Home')}</Link>
         </li>
         {!user?.auth ? (
-          <li className="p-2 w-full dark:text-dark-text-fill">
+          <li className="w-full p-2 dark:text-dark-text-fill">
             <Link to="/pricing">Pricing</Link>
           </li>
         ) : (
           ' '
         )}
 
-        <li className="p-2 w-full dark:text-dark-text-fill">
+        <li className="w-full p-2 dark:text-dark-text-fill">
           <Link to="/product" className="w-full">
             {t('Product')}
           </Link>

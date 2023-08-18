@@ -33,7 +33,7 @@ export default function DeleteCohortModal({
     onCompleted() {
       refetch();
       removeModel();
-      toast.success(t("Cohort deleted successfully") as TFunction);
+      toast.success(t('Cohort deleted successfully') as TFunction);
     },
   });
   const orgToken = localStorage.getItem('orgToken');

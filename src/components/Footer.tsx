@@ -28,9 +28,7 @@ function Footer({ styles }: any) {
     }
   }, []);
   return (
-    <div
-      className={`w-full bg-indigo-100 dark:bg-dark-bg ${styles}`}
-    >
+    <div className={`w-full bg-indigo-100 dark:bg-dark-bg ${styles}`}>
       <div className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full">
         <div className="flex flex-col lg:flex-row items-center py-5">
           <div className="flex flex-col mr-12 lg:mr-0">
@@ -71,7 +69,9 @@ function Footer({ styles }: any) {
                 <li className="py-2 text-xs">{t('Help Center')}</li>
               </ul>
               <ul className="lg:flex lg:flex-col ml-[8vh] md:ml-[16vh] lg:ml-28 cursor-pointer">
-              <li className="py-2 text-sm font-bold">{t('Basic Settings')}</li>
+                <li className="py-2 text-sm font-bold">
+                  {t('Basic Settings')}
+                </li>
                 <li className="py-2 text-xs">{t('Terms and conditions')}</li>
                 <li className="py-2 text-xs">{t('Privacy and Policies')}</li>
                 <select

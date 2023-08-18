@@ -227,10 +227,12 @@ const AdminSission = () => {
       Cell: ({ row }: any) => (
         <p
           className="text-red-500 whitespace-no-wrap cursor-pointer"
-          onClick={/* istanbul ignore next */() => {
-            /* istanbul ignore next */
-            removeAssignModel(row.original);
-          }}
+          onClick={
+            /* istanbul ignore next */ () => {
+              /* istanbul ignore next */
+              removeAssignModel(row.original);
+            }
+          }
         >
           {t('Assign')}
         </p>

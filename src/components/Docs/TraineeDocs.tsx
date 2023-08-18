@@ -3,11 +3,11 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLazyQuery } from '@apollo/client';
 import DataTable from '../DataTable';
 import Modal from './DocModel';
 import Button from '../Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import { useLazyQuery } from '@apollo/client';
 import { GET_DOCUMENTATION } from '../../Mutations/manageStudentMutations';
 import { UserContext } from '../../hook/useAuth';
 
@@ -347,7 +347,6 @@ function TraineeDocs() {
 }
 
 export default TraineeDocs;
-
 
 
 

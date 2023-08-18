@@ -59,10 +59,6 @@ export default function UpdatePhaseModal({
     onCompleted() {
       refetch();
       removeModel();
-      
-     toast.success(t("Phase Updated successful") as TFunction);
-
-      
     },
   });
 
@@ -100,20 +96,20 @@ export default function UpdatePhaseModal({
         UpdatePhaseModal === true ? 'block' : 'hidden'
       }`}
     >
-      <div className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
-        <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-          <h3 className="font-bold text-sm dark:text-white text-center w-11/12 uppercase">
+      <div className="w-screen p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg md:w-1/2 xl:w-4/12">
+        <div className="flex flex-wrap items-center justify-center w-full card-title ">
+          <h3 className="w-11/12 text-sm font-bold text-center uppercase dark:text-white">
             {t('Update Phase')}
           </h3>
-          <hr className=" bg-primary border-gray-400 my-3 w-full" />
+          <hr className="w-full my-3 border-gray-400  bg-primary" />
         </div>
         <div className="card-body">
-          <form className=" py-3 px-8">
-            <div className="input my-5 h-9 ">
-              <div className="grouped-input flex items-center h-full w-full rounded-md">
+          <form className="px-8 py-3 ">
+            <div className="my-5 input h-9 ">
+              <div className="flex items-center w-full h-full rounded-md grouped-input">
                 <input
                   type="text"
-                  className="border border-primary rounded outline-none px-5 dark:bg-dark-bg-frame dark:text-white font-sans text-xs py-2 w-full"
+                  className="w-full px-5 py-2 font-sans text-xs border rounded outline-none border-primary dark:bg-dark-bg-frame dark:text-white"
                   placeholder={t('name')}
                   {...register('name')}
                 />
@@ -124,11 +120,11 @@ export default function UpdatePhaseModal({
                 </p>
               )}
             </div>
-            <div className="input my-5 h-9 ">
-              <div className="grouped-input flex items-center h-full w-full rounded-md">
+            <div className="my-5 input h-9 ">
+              <div className="flex items-center w-full h-full rounded-md grouped-input">
                 <input
                   type="text"
-                  className="border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                  className="w-full px-5 py-2 font-sans text-xs border rounded outline-none border-primary dark:bg-dark-bg-frame dark:text-white"
                   placeholder={t('Description')}
                   {...register('description', {
                     required: `${t('The Description is required')}`,
@@ -141,7 +137,7 @@ export default function UpdatePhaseModal({
                 </p>
               )}
             </div>
-            <div className="w-full flex justify-between">
+            <div className="flex justify-between w-full">
               <Button
                 variant="info"
                 size="sm"

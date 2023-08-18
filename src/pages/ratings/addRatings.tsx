@@ -61,7 +61,7 @@ function AddRatings({
   const handleSubmit = (e: any) => {
     e.preventDefault();
     createRatings()?.then(() => {
-      setSelectedUser('')
+      setSelectedUser('');
     });
     setIsOpen(false);
   };
@@ -78,7 +78,7 @@ function AddRatings({
   const closeCancel = () => {
     setIsOpen(false);
   };
-  
+
   /* istanbul ignore next */
   return (
     <>

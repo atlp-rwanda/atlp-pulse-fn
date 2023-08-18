@@ -108,47 +108,50 @@ function AdminLogin() {
   };
   const getLocation = async () => {
     const location = await fetch('https://geolocation-db.com/json/')
-      .then(async (res)=> {
-     const activityResponse = await res.json();
-    
+      .then(async (res) => {
+        const activityResponse = await res.json();
 
-     const activityResponseActual = {
-        IPv4: activityResponse.IPv4,
-        city: activityResponse.city,
-        country_code: activityResponse.country_code,
-        country_name: activityResponse.country_name,
-        latitude: activityResponse.latitude === 'Not found' ? null : activityResponse.latitude,
-        longitude: activityResponse.longitude === 'Not found' ? null : activityResponse.longitude,
-        postal: activityResponse.postal ,
-        state: activityResponse.state,
-
-
-      };
-      return activityResponseActual;
-      
-  })
+        const activityResponseActual = {
+          IPv4: activityResponse.IPv4,
+          city: activityResponse.city,
+          country_code: activityResponse.country_code,
+          country_name: activityResponse.country_name,
+          latitude:
+            activityResponse.latitude === 'Not found'
+              ? null
+              : activityResponse.latitude,
+          longitude:
+            activityResponse.longitude === 'Not found'
+              ? null
+              : activityResponse.longitude,
+          postal: activityResponse.postal,
+          state: activityResponse.state,
+        };
+        return activityResponseActual;
+      })
       .then((data) => {
         return data;
       });
     const date = new Date().toString();
-    return { date, ...location }|| null;
+    return { date, ...location } || null;
   };
 
   return (
-    <div className="w-full text-center py-2 dark:bg-dark-frame-bg bg-gray-100  sm:flex sm:items-center sm:justify-center h-full">
-      <div className="md:rounded-xl md:shadow-xl md:w-full mt-20 sm:max-w-xl bg-indigo-100 dark:bg-dark-bg sm:rounded-none sm:shadow-none dark:shadow-2xl mb-8">
+    <div className="w-full h-full py-2 text-center bg-gray-100 dark:bg-dark-frame-bg sm:flex sm:items-center sm:justify-center">
+      <div className="mt-20 mb-8 bg-indigo-100 md:rounded-xl md:shadow-xl md:w-full sm:max-w-xl dark:bg-dark-bg sm:rounded-none sm:shadow-none dark:shadow-2xl">
         <div className="py-10 sm:py-8 ">
           {/* <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
             {t('Welcome to')} {orgName}
           </h2> */}
-       <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
-  {t('Welcome to')} {orgName ? orgName.charAt(0).toUpperCase() + orgName.slice(1).toLowerCase() : ''}
-</h2>
-
-
+          <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
+            {t('Welcome to')}{' '}
+            {orgName
+              ? orgName.charAt(0).toUpperCase() + orgName.slice(1).toLowerCase()
+              : ''}
+          </h2>
 
           <div className="border-[1px] w-10 bg-primary border-primary inline-block mb-2" />
-          <div className=" text-sm text-center dark:text-dark-text-fill">
+          <div className="text-sm text-center dark:text-dark-text-fill">
             <Link
               to="/login/org"
               className="mx-1 text-primary"
@@ -171,25 +174,25 @@ function AdminLogin() {
                 ) : (
                   ''
                 )}
-              <div className="w-full border border-gray rounded-md bg-gray-100 p-2 my-2 flex items-center mb-2 dark:bg-dark-bg ">
+              <div className="flex items-center w-full p-2 my-2 mb-2 bg-gray-100 border rounded-md border-gray dark:bg-dark-bg ">
 
-                <FaRegEnvelope className="text-gray-400 mr-2" />
+                <FaRegEnvelope className="mr-2 text-gray-400" />
                 <input
                   data-testid="email"
                   type="email"
                   {...register('email', { required: 'Email is required' })}
                   placeholder={t('Email')}
-                  className="bg-gray-100 outline-none text-sm flex-1 px-2 dark:border-white dark:bg-dark-bg dark:text-white "
+                  className="flex-1 px-2 text-sm bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white "
                 />
               </div>
-              <div className="text-left mb-1 pl-4">
+              <div className="pl-4 mb-1 text-left">
                 {errors.email && (
                   <small className="text-red-600">{errors.email.message}</small>
                 )}
               </div>
 
-              <div className="md:w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center  mb-2 dark:border-white dark:bg-dark-bg">
-                <MdLockOutline className="text-gray-400 mr-2 " />
+              <div className="flex items-center p-2 my-4 mb-2 bg-gray-100 border rounded-md md:w-full border-gray dark:border-white dark:bg-dark-bg">
+                <MdLockOutline className="mr-2 text-gray-400 " />
                 <input
                   data-testid="password"
                   type={passwordShown ? 'text' : 'password'}
@@ -197,7 +200,7 @@ function AdminLogin() {
                     required: 'Password is required',
                   })}
                   placeholder={t('Password')}
-                  className="bg-gray-100 outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
+                  className="flex-1 text-sm bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white"
                 />
                 <div className="text-gray-400 cursor-pointer onClick= {()=> handleShowPassword}">
                   {passwordShown ? (
@@ -207,7 +210,7 @@ function AdminLogin() {
                   )}
                 </div>
               </div>
-              <div className="text-left mb-1 pl-4">
+              <div className="pl-4 mb-1 text-left">
                 {errors.password && errors.password.message!==t('Invalid credentials') ? (
                   <small className="text-red-600">
                     {errors.password.message}
@@ -216,7 +219,7 @@ function AdminLogin() {
                   ''
                 )}
               </div>
-              <div className="flex w-64 justify-between rounded mb-5 mt-5">
+              <div className="flex justify-between w-64 mt-5 mb-5 rounded">
                 <label
                   htmlFor="checkbox"
                   className="flex items-center text-xs dark:text-dark-text-fill "
@@ -224,7 +227,7 @@ function AdminLogin() {
                   <input
                     type="checkbox"
                     name="remember"
-                    className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
+                    className="mr-1 dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
                   />
                   {t('Remember me')}
                 </label>

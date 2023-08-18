@@ -7,10 +7,17 @@
     "axe/aria": [
       "default",
       {
-        "aria-required-children": "off"
+        "aria-required-children": "off",
+        "aria-required-parent": "off"
       }
     ],
     "axe/name-role-value": "off",
-    "button-type": "off"
+    "button-type": "off",
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-active": "off"
+      }
+    ]
   }
 }

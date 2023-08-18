@@ -9,7 +9,7 @@
 }
 
 .frame .text_wrapper {
-  font-family: "Roboto-Bold", Helvetica;
+  font-family: 'Roboto-Bold', Helvetica;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0;
@@ -29,8 +29,8 @@
   grid-template-columns: 30% 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas:
-    "remarks chat"
-    "remarks input";
+    'remarks chat'
+    'remarks input';
 }
 
 .frame .div_2 {
@@ -61,7 +61,7 @@
 }
 
 .frame .text_wrapper_2 {
-  font-family: "Roboto-Bold", Helvetica;
+  font-family: 'Roboto-Bold', Helvetica;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0;
@@ -86,7 +86,7 @@
 }
 
 .frame .text_wrapper_3 {
-  font-family: "Roboto-Regular", Helvetica;
+  font-family: 'Roboto-Regular', Helvetica;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0;
@@ -99,7 +99,7 @@
 
 .frame .p {
   flex: 1;
-  font-family: "Roboto-Regular", Helvetica;
+  font-family: 'Roboto-Regular', Helvetica;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0;
@@ -118,7 +118,7 @@
 }
 
 .frame .text_wrapper_4 {
-  font-family: "Roboto-Regular", Helvetica;
+  font-family: 'Roboto-Regular', Helvetica;
   letter-spacing: 0;
   line-height: normal;
   margin-top: -1px;
@@ -214,6 +214,6 @@
 
 .center_msg {
   text-align: center;
-  font-size: .8rem;
+  font-size: 0.8rem;
   width: 100%;
 }

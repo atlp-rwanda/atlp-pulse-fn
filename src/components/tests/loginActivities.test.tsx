@@ -41,16 +41,14 @@ describe('LoginActivities', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <LoginActivitiesTable />
-      </MockedProvider>
+      </MockedProvider>,
     );
-
   });
   it('displays loading state while fetching login activities', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        
         <LoginActivitiesTable />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     expect(screen.getByText('Loading login activities...')).toBeTruthy();
@@ -63,56 +61,46 @@ describe('LoginActivities', () => {
         variables: { page: 1 },
       },
       error: new Error('Failed to fetch login activities'),
-
     };
 
     render(
       <MockedProvider mocks={[errorMock]} addTypename={false}>
         <LoginActivitiesTable />
-      </MockedProvider>
-
+      </MockedProvider>,
     );
+  });
 
-});
-
-it('sorts login activities when table headers are clicked', async () => {
-  render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <LoginActivitiesTable />
-    </MockedProvider>
-  );
-
-});
-
-it('paginates login activities when navigating to different pages', async () => {
-  render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <LoginActivitiesTable />
-    </MockedProvider>
-  );
-
-});
-
-it('filters login activities based on search criteria or filters', async () => {
-  render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <LoginActivitiesTable />
-    </MockedProvider>
-  );
-});
-
-it('displays responsive design for different screen sizes', async () => {
-  render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <MemoryRouter initialEntries={['/']}>
+  it('sorts login activities when table headers are clicked', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
         <LoginActivitiesTable />
-      </MemoryRouter>
-    </MockedProvider>
+      </MockedProvider>,
+    );
+  });
 
-  );
+  it('paginates login activities when navigating to different pages', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <LoginActivitiesTable />
+      </MockedProvider>,
+    );
+  });
 
+  it('filters login activities based on search criteria or filters', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <LoginActivitiesTable />
+      </MockedProvider>,
+    );
+  });
+
+  it('displays responsive design for different screen sizes', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <MemoryRouter initialEntries={['/']}>
+          <LoginActivitiesTable />
+        </MemoryRouter>
+      </MockedProvider>,
+    );
+  });
 });
-
-});
-
-   

@@ -43,8 +43,8 @@ function Input({
   /* Format error message end */
 
   return (
-    <div className="flex flex-col justify-start items-start">
-      <label htmlFor={labelFor} className="font-semibold mb-2">
+    <div className="flex flex-col items-start justify-start">
+      <label htmlFor={labelFor} className="mb-2 font-semibold">
         {t(labelText)}
       </label>
       <input

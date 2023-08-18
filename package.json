@@ -15,7 +15,8 @@
     "coverage": "jest --collect-coverage --silent -u",
     "lint": "npx eslint src/**/*.{tsx,ts} --fix",
     "format": "npx prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "kill": "sudo kill -9 $(sudo lsof -t -i :3001)"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,7 @@
     "@mui/material": "^5.14.0",
     "@mui/styled-engine": "^5.13.2",
     "@mui/x-data-grid": "^5.17.26",
+    "@react-pdf-viewer/core": "^3.12.0",
     "@testing-library/dom": "^8.20.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/node": "^20.4.2",
@@ -59,6 +61,7 @@
     "axios": "^0.27.2",
     "chart.js": "^4.3.0",
     "cleave.js": "^1.6.0",
+    "cloudinary": "^1.39.0",
     "cloudinary-react": "^1.8.1",
     "copy-webpack-plugin": "^11.0.0",
     "crypto-browserify": "^3.12.0",
@@ -86,6 +89,8 @@
     "react-hook-form": "^7.45.2",
     "react-i18next": "^11.18.6",
     "react-icons": "^4.10.1",
+    "react-pdf": "^7.3.3",
+    "react-pdf-js": "^5.1.0",
     "react-router": "^6.14.1",
     "react-router-dom": "^6.14.1",
     "react-select": "^5.7.4",
@@ -97,7 +102,8 @@
     "sheetjs-style": "^0.15.8",
     "sinon": "^14.0.2",
     "subscriptions-transport-ws": "^0.11.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "url-polyfill": "^1.1.12"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -110,7 +116,7 @@
     "@types/enzyme": "^3.10.13",
     "@types/faker": "5.5.3",
     "@types/jest": "^29.5.3",
-    "@types/react": "^18.2.15",
+    "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/react-dropzone": "^5.1.0",
     "@types/react-router-dom": "^5.3.3",
