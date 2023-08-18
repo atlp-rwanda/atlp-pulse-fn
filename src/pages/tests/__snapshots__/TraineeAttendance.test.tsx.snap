@@ -1,0 +1,750 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
+Array [
+  <div
+    className=" w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm min-h-[100%] absolute flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8 "
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12"
+        >
+          Take Attendance
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body  bg-white dark:bg-dark-bg"
+      >
+        <form
+          className=" py-3 px-8"
+          data-testid="handleAddEvent"
+          onSubmit={[Function]}
+        >
+          <div
+            className="input my-3 h-12  felx flex-col"
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <select
+                className="border-primary dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                defaultValue=""
+                name="weeks"
+                onBlur={[Function]}
+                onChange={[Function]}
+              >
+                <option
+                  value=""
+                >
+                  Select week
+                </option>
+                <option
+                  value="1"
+                >
+                  Week 1
+                </option>
+                <option
+                  value="2"
+                >
+                  Week 2
+                </option>
+                <option
+                  value="3"
+                >
+                  Week 3
+                </option>
+                <option
+                  value="4"
+                >
+                  Week 4
+                </option>
+              </select>
+            </div>
+             
+            <p
+              className="text-red-500 text-xs mb-8"
+            />
+          </div>
+          <div
+            className="input my-3 h-12  flex flex-col"
+          >
+            <div
+              className="grouped-input flex items-center h-full  w-full rounded-md"
+            >
+              <select
+                className="border-primary dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
+                data-testid="getDay"
+                defaultValue=""
+                name="days"
+                onBlur={[Function]}
+                onChange={[Function]}
+              >
+                <option
+                  value=""
+                >
+                  Select day
+                </option>
+                <option
+                  value="Monday"
+                >
+                  Monday
+                </option>
+                <option
+                  value="Tuesday"
+                >
+                  Tuesday
+                </option>
+                <option
+                  value="Wednesday"
+                >
+                  Wednesday
+                </option>
+                <option
+                  value="Thursday"
+                >
+                  Thursday
+                </option>
+                <option
+                  value="Friday"
+                >
+                  Friday
+                </option>
+              </select>
+            </div>
+            <p
+              className="text-red-500 text-xs mb-4"
+            />
+          </div>
+          <div
+            className=" dark:bg-dark-tertiary dark:text-white overflow-y-auto h-[50vh] overflow-x-hidden"
+          >
+            <table
+              className="min-w-full divide-y divide-gray-200 dark:text-white overflow-x-hidden"
+            >
+              <thead
+                className="dark:bg-dark-tertiary dark:text-white"
+              >
+                <tr>
+                  <th
+                    className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider dark:bg-dark-tertiary dark:text-white"
+                  >
+                    Trainee
+                  </th>
+                  <th
+                    className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider dark:bg-dark-tertiary dark:text-white"
+                  >
+                    Score
+                  </th>
+                </tr>
+              </thead>
+              <tbody />
+            </table>
+          </div>
+          <div
+            className="w-full flex justify-between mx-10px"
+          >
+            <button
+              className="py-2 w-[40%] md:w-1/3 bg-[#31699C] rounded font-sans text-sm text-white"
+              data-testid="removeModel"
+              onClick={[Function]}
+            >
+              cancel
+            </button>
+            <button
+              className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
+              type="submit"
+            >
+              save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="bg-light-bg dark:bg-dark-frame-bg lg:px-8"
+  >
+    <div
+      className="px-3 md:px-8"
+    >
+      <div
+        className="flex ml-2 items-center justify-between py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px] h-[80%]"
+      >
+        <div
+          className="flex ml-[-35px] px-7 py-2 mt-4"
+        >
+          <h2>
+            Attendance Tracker
+          </h2>
+        </div>
+        <div
+          className="flex justify-left"
+        >
+          <select
+            className="flex text-black px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
+            onChange={[Function]}
+          >
+            <option>
+              Select Week
+            </option>
+            <option
+              value="0"
+            >
+              Week 1
+            </option>
+            <option
+              value="1"
+            >
+              Week 2
+            </option>
+            <option
+              value="2"
+            >
+              Week 3
+            </option>
+            <option
+              value="3"
+            >
+              Week 4
+            </option>
+          </select>
+          <h2
+            className="mx-3 bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer"
+            data-testid="submitAttend"
+            onClick={[Function]}
+          >
+            Submit Attendance
+          </h2>
+        </div>
+      </div>
+      <div
+        className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
+      >
+        <div
+          className="px-3 md:px-8"
+        >
+          <div
+            className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px]"
+          >
+            <div
+              className=""
+            >
+              <div
+                className="flex ml-2 items-center justify-between"
+              />
+            </div>
+            <div>
+              <div
+                className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto"
+              >
+                <div
+                  className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-clip"
+                >
+                  <table
+                    className="min-w-full leading-normal"
+                  >
+                    <thead
+                      className="rounded-lg"
+                    >
+                      <tr
+                        className=""
+                      >
+                        <th
+                          className="border border-gray-300 p-2"
+                          rowSpan={2}
+                        >
+                          Trainee
+                        </th>
+                        <th
+                          className="border border-gray-300 p-2"
+                          colSpan={5}
+                        >
+                          1
+                        </th>
+                      </tr>
+                      <tr
+                        className=""
+                      >
+                        <th
+                          className="border border-gray-300 "
+                        >
+                          Mon
+                        </th>
+                        <th
+                          className="border border-gray-300 p-2"
+                        >
+                          Tue
+                        </th>
+                        <th
+                          className="border border-gray-300 p-2"
+                        >
+                          Wed
+                        </th>
+                        <th
+                          className="border border-gray-300 p-2"
+                        >
+                          Thu
+                        </th>
+                        <th
+                          className="border border-gray-300 p-2"
+                        >
+                          Fri
+                        </th>
+                      </tr>
+                    </thead>
+                    <p>
+                      loading
+                    </p>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div
+              className="flex items-center justify-center gap-1 mt-12 mb-0"
+            >
+              <button
+                className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent disabled"
+                data-testid="prev"
+                onClick={[Function]}
+              >
+                ←
+              </button>
+              <button
+                className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent disabled"
+                data-testid="page1"
+                onClick={[Function]}
+              >
+                1
+              </button>
+              <button
+                className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent false"
+                data-testid="page3"
+                onClick={[Function]}
+              >
+                0
+              </button>
+              <button
+                className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent false"
+                data-testid="next"
+                onClick={[Function]}
+              >
+                →
+              </button>
+            </div>
+          </div>
+          <div
+            className="flex   flex-row  items-center justify-center mt-4 w-[81vw]"
+          >
+            <div
+              className="big flex flex-col w-[50%] "
+            >
+              <div
+                className="bg-white flex flex-col justify-center   dark:bg-dark-bg border border-primary shadow-lg p-3 rounded-md w-full md:w-[97%] lg:ml-56"
+              >
+                <h2
+                  className="font-bold mb-4 "
+                >
+                  Overview cohort 1
+                </h2>
+                <div>
+                  <div
+                    className="flex flex-row justify-around "
+                  >
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        trainees:
+                      </p>
+                    </div>
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        0
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-row justify-around "
+                  >
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        weeks:
+                      </p>
+                    </div>
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                         
+                        1
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-row justify-around "
+                  >
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        Phase:
+                      </p>
+                    </div>
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        II
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="bg-white flex flex-col justify-center  dark:bg-dark-bg border mt-2 border-primary shadow-lg p-3 rounded-md w-full md:w-[97%] lg:ml-56"
+              >
+                <h2
+                  className="font-bold mb-4 "
+                >
+                  Attendance Marks
+                </h2>
+                <div>
+                  <div
+                    className="flex flex-row justify-around "
+                  >
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        0
+                      </p>
+                    </div>
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        Didn't attend and didn't communicate
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-row justify-around "
+                  >
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        1:
+                      </p>
+                    </div>
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        Didn't attend but communicated
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="flex flex-row justify- "
+                  >
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        2:
+                      </p>
+                    </div>
+                    <div
+                      className="flex flex-row justify-center items-center "
+                    >
+                      <p
+                        className="text-right font-semibold"
+                      >
+                        Attended
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className=" big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md  w-full  md:w-[50%]  lg:ml-56"
+            >
+              <h2
+                className="font-bold mb-4 "
+              >
+                Attendance Parcentage
+              </h2>
+              <div
+                className=""
+              >
+                <div
+                  className="flex flex-row    px-8"
+                >
+                  <p
+                    className="text-right font-semibold "
+                  >
+                    0:
+                  </p>
+                  <p
+                    className="text-right ml-4"
+                  >
+                     
+                    0
+                    %
+                  </p>
+                </div>
+                <div
+                  className="flex flex-row px-8 "
+                >
+                  <p
+                    className="text-right font-semibold"
+                  >
+                    1:
+                  </p>
+                  <p
+                    className="text-right ml-4"
+                  >
+                     
+                    0
+                    %
+                  </p>
+                </div>
+                <div
+                  className="flex flex-row px-8"
+                >
+                  <p
+                    className="text-right font-semibold"
+                  >
+                    2
+                  </p>
+                  <p
+                    className="text-right ml-4"
+                  >
+                     
+                    0
+                    %
+                  </p>
+                </div>
+              </div>
+              <div
+                className=" w-[100%] h-[30%] flex flex-row  mt-5 justify-around items-center"
+              >
+                <div
+                  className=" w-[100px]"
+                >
+                  <svg
+                    className="CircularProgressbar "
+                    data-test-id="CircularProgressbar"
+                    style={Object {}}
+                    viewBox="0 0 100 100"
+                  >
+                    <path
+                      className="CircularProgressbar-trail"
+                      d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                      fillOpacity={0}
+                      strokeWidth={8}
+                      style={
+                        Object {
+                          "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                          "strokeDashoffset": "0px",
+                        }
+                      }
+                    />
+                    <path
+                      className="CircularProgressbar-path"
+                      d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                      fillOpacity={0}
+                      strokeWidth={8}
+                      style={
+                        Object {
+                          "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                          "strokeDashoffset": "289.02652413026095px",
+                        }
+                      }
+                    />
+                    <text
+                      className="CircularProgressbar-text"
+                      style={Object {}}
+                      x={50}
+                      y={50}
+                    >
+                      0%
+                    </text>
+                  </svg>
+                  <label
+                    htmlFor="0"
+                  >
+                     0 Attendants
+                  </label>
+                </div>
+                <div
+                  className=" w-[100px]"
+                >
+                  <svg
+                    className="CircularProgressbar "
+                    data-test-id="CircularProgressbar"
+                    style={Object {}}
+                    viewBox="0 0 100 100"
+                  >
+                    <path
+                      className="CircularProgressbar-trail"
+                      d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                      fillOpacity={0}
+                      strokeWidth={8}
+                      style={
+                        Object {
+                          "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                          "strokeDashoffset": "0px",
+                        }
+                      }
+                    />
+                    <path
+                      className="CircularProgressbar-path"
+                      d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                      fillOpacity={0}
+                      strokeWidth={8}
+                      style={
+                        Object {
+                          "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                          "strokeDashoffset": "289.02652413026095px",
+                        }
+                      }
+                    />
+                    <text
+                      className="CircularProgressbar-text"
+                      style={Object {}}
+                      x={50}
+                      y={50}
+                    >
+                      0%
+                    </text>
+                  </svg>
+                  <label
+                    htmlFor="0"
+                  >
+                     1 Attendants
+                  </label>
+                </div>
+                <div
+                  className=" w-[100px]"
+                >
+                  <svg
+                    className="CircularProgressbar "
+                    data-test-id="CircularProgressbar"
+                    style={Object {}}
+                    viewBox="0 0 100 100"
+                  >
+                    <path
+                      className="CircularProgressbar-trail"
+                      d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                      fillOpacity={0}
+                      strokeWidth={8}
+                      style={
+                        Object {
+                          "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                          "strokeDashoffset": "0px",
+                        }
+                      }
+                    />
+                    <path
+                      className="CircularProgressbar-path"
+                      d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                      fillOpacity={0}
+                      strokeWidth={8}
+                      style={
+                        Object {
+                          "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                          "strokeDashoffset": "289.02652413026095px",
+                        }
+                      }
+                    />
+                    <text
+                      className="CircularProgressbar-text"
+                      style={Object {}}
+                      x={50}
+                      y={50}
+                    >
+                      0%
+                    </text>
+                  </svg>
+                  <label
+                    htmlFor="0"
+                  >
+                     2 Attendants
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
