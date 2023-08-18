@@ -8,15 +8,33 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReactTooltip from 'react-tooltip';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import { useLazyQuery, useMutation, gql } from '@apollo/client';
+import {
+  useLazyQuery,
+  useMutation,
+  gql,
+  ApolloClient,
+  InMemoryCache,
+  useQuery,
+} from '@apollo/client';
 import { ADD_EVENT, GET_ACCEPTED_EVENTS, GET_EVENTS } from '../Mutations/event';
 import moment from 'moment';
 import { GET_TRAINEES_QUERY } from '../Mutations/manageStudentMutations';
 import { SEND_INVITATION_EMAIL } from '../Mutations/event';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Draggable from 'react-draggable';
+import Button from './Buttons';
 
 /* istanbul ignore next */
 
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  // Add your GraphQL endpoint here...
+});
 function formatDate(dateString: string | number | Date) {
   if (!dateString) {
     return '';
@@ -27,20 +45,25 @@ function formatDate(dateString: string | number | Date) {
   const day = `${date.getDate()}`.padStart(2, '0');
   return `${day}-${month}-${year}`;
 }
-const sendInvitationEmail = (email: String, title: String, start: any, hostName: String, timeToStart:any, timeToFinish:any) => {
+const sendInvitationEmail = (
+  email: String,
+  title: String,
+  start: any,
+  hostName: String,
+  timeToStart: any,
+  timeToFinish: any,
+) => {
   const [sendInvitationEmailMutation] = useMutation(SEND_INVITATION_EMAIL);
- 
+
   const formattedStartDate = formatDate(start);
   sendInvitationEmailMutation({
     variables: {
       email: email,
       title: title,
-      start:start,
+      start: start,
       hostName: hostName,
-      timeToStart:timeToStart,
-      timeToFinish:timeToFinish
-
-
+      timeToStart: timeToStart,
+      timeToFinish: timeToFinish,
     },
   })
     .then((response) => {
@@ -49,10 +72,8 @@ const sendInvitationEmail = (email: String, title: String, start: any, hostName:
     .catch((error) => {
       // Handle any errors
     });
-    console.log("dfgfsd", start)
+  console.log('dfgfsd', start);
 };
-
-
 
 const newEventTemp = {
   title: '',
@@ -64,11 +85,10 @@ const newEventTemp = {
   timeToFinish: '',
 };
 
-
-
 const Calendar = () => {
   useDocumentTitle('Calendar');
   const [openEvent, setOpenEvent] = useState(false);
+  console.log('?????', openEvent);
   const [addEventModel, setAddEventModel] = useState(false);
   const [newEvent, setNewEvent] = useState(newEventTemp);
   const [data, setData] = useState<EventInput[]>([]);
@@ -81,11 +101,23 @@ const Calendar = () => {
       guests: [],
     },
   });
+  function PaperComponent(props: PaperProps) {
+    return (
+      <Draggable
+        handle="#draggable-dialog-title"
+        cancel={'[class*="MuiDialogContent-root"]'}
+      >
+        <Paper {...props} />
+      </Draggable>
+    );
+  }
   const [createEvent] = useMutation(ADD_EVENT, {
     update(cache, { data: { createEvent } }) {
       /* istanbul ignore next */
-      const eventData = cache.readQuery<{ getEvents: EventInput[] }>({
-        query: GET_EVENTS,
+      const { data: eventData } = useQuery(GET_EVENTS, {
+        variables: {
+          authToken: localStorage.getItem('auth_token'),
+        },
       });
 
       if (eventData && eventData.getEvents) {
@@ -97,7 +129,10 @@ const Calendar = () => {
       }
     },
   });
-  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const [selectedEvent, setSelectedEvent] = useState<EventContentArg | null>(
+    null,
+  );
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [users, setUsers] = useState<{ id: string; email: string }[]>([]);
   const customStyles = {
@@ -135,31 +170,36 @@ const Calendar = () => {
       orgToken: organizationToken,
     },
   });
+
   /* istanbul ignore next */
   useEffect(() => {
+    console.log('!!!!!!', queryData);
     if (queryData?.getTrainees) {
       setUsers(queryData.getTrainees);
     }
   }, [queryData]);
   console.log('we are  users', users);
+  console.log('getevents', getEvents);
   useEffect(() => {
     getTrainees();
   }, [queryData]);
-
+  console.log(users);
   const traineeOptions = users.map((user: any) => ({
     value: user.email,
     label: user.email,
     id: user.id,
+    email: user.email,
   }));
   /* istanbul ignore next */
   const handleUserChange = (event: any) => {
     if (event) {
-      const selectedIds = event.map((user: any) => user.id);
+      const selectedIds = event.map((user: any) => user.email);
+      console.log('Event ID', event);
       setSelectedUsers(selectedIds);
       console.log('Selected IDs:', selectedIds);
     }
   };
- /* istanbul ignore next */
+  /* istanbul ignore next */
   useEffect(() => {
     const fetchData = async () => {
       /* istanbul ignore next */
@@ -185,7 +225,6 @@ const Calendar = () => {
             title: one.title,
             timeToFinish: one.timeToEnd,
           }),
-
         );
         setData(all);
         console.log('all', all);
@@ -201,18 +240,205 @@ const Calendar = () => {
     setSelectedEvent(event);
   };
   // handle open & close event
-/* istanbul ignore next */
+  /* istanbul ignore next */
+
   const handleOpenEvent = (e: any) => {
     setEventDetails(e);
+    setSelectedEvent(e);
     setOpenEvent(!openEvent);
-    console.log('guests', e.extendedProps);
+    console.log('guests', e.extendedProps.start);
+    console.log('event', e._instance.range);
+  };
+  const handleCloseEvent = () => {
+    setSelectedEvent(null);
+    setOpenEvent(false);
   };
   // handle
-/* istanbul ignore next */
+  /* istanbul ignore next */
   const removeEvent = (e: any) => {
     e.preventDefault();
     const newState = !openEvent;
     setOpenEvent(newState);
+  };
+  // eslint-disable-next-line react/prop-types
+  interface EventModalProps {
+    event: any;
+    onClose: () => void;
+  }
+  // eslint-disable-next-line react/prop-types
+  const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
+    console.log('hello ho are you.....', event);
+    // useEffect(() => {
+    //   return () => {
+    //     console.log('CLOSE EVENT MODEL .....');
+    //   };
+    // });
+
+    return (
+      <div className="rounded-lg dark:bg-dark-bg">
+        <Dialog
+          open={openEvent}
+          onClose={onClose}
+          PaperComponent={PaperComponent}
+          aria-labelledby="draggable-dialog-title"
+          className="rounded-lg"
+          fullWidth
+        >
+          <DialogContent className="font-sans dark:bg-dark-bg">
+            <DialogContentText className="font-sans dark:bg-dark-bg">
+              <div className="font-sans text-sm font-bold text-center dark:text-white dark:bg-dark-bg">
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginTop: '30px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>Title</b>{' '}
+                  </h3>
+                  <p>
+                    <i> {event?.title}</i>
+                  </p>
+                </div>
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginTop: '30px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>Hostname</b>
+                  </h3>
+                  <p>{event?.extendedProps.hostName}</p>
+                </div>
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>Guests</b>{' '}
+                  </h3>
+                  <p>
+                    <i> {event?.extendedProps.guests.join('\n')}</i>
+                  </p>
+                </div>
+
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>Start Date</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {moment(event?._instance.range.start).format(
+                        'YYYY-MM-DD',
+                      )}
+                    </i>
+                  </p>
+                </div>
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b> End Date</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {moment(event?._instance.range.end).format('YYYY-MM-DD')}
+                    </i>
+                  </p>
+                </div>
+
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>Start Time</b>{' '}
+                  </h3>
+                  <p>
+                    <i> {event?.extendedProps.timeToStart}</i>
+                  </p>
+                </div>
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>End Time</b>{' '}
+                  </h3>
+                  <p>
+                    <i> {event?.extendedProps.timeToFinish}</i>
+                  </p>
+                </div>
+
+                <Button
+                  data-testid="removeInviteModel"
+                  variant="info"
+                  size="sm"
+                  style="w-[20%] md:w-1/4 text-sm font-sans"
+                  onClick={onClose}
+                >
+                  {t('Close')}
+                </Button>
+              </div>
+            </DialogContentText>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
   };
   const renderEvent =
     /* istanbul ignore next */
@@ -222,7 +448,7 @@ const Calendar = () => {
       <div
         onClick={() => handleOpenEvent(e.event)}
         data-html={true}
-        data-tip={`<div>${e.event.title}<br> ${e.event.extendedProps.hostName}  <br> ${e.event.extendedProps.timeToStart} - ${e.event.extendedProps.timeToFinish}  </div> `}
+        data-tip={`<div>${e.event.title}<br> ${e.event.extendedProps.hostName} <br>${e.event.extendedProps.guests}  <br> ${e.event.extendedProps.timeToStart} - ${e.event.extendedProps.timeToFinish}  </div> `}
         className=" bg-primary text-white max-w-full min-w-full overflow-auto text-xs md:text-sm"
       >
         <p className="px-3 py-1 ">{e.event.title}</p>
@@ -232,9 +458,8 @@ const Calendar = () => {
           {e.event.extendedProps.timeToStart} -{' '}
           {e.event.extendedProps.timeToFinish}
         </p>
-        <div className="absolute bottom-0 right-0 flex items-center">
-        </div>
-        <ReactTooltip data-html={true} />
+        <div className="absolute bottom-0 right-0 flex items-center"></div>
+        <ReactTooltip ata-html={true} />
       </div>
     );
   /* istanbul ignore next */
@@ -248,17 +473,15 @@ const Calendar = () => {
     const newState = !addEventModel;
     setAddEventModel(newState);
   };
+
   /* istanbul ignore next */
-  
+
   const handleAddEvent = (e: any) => {
     e.preventDefault();
- 
-    
     const updatedNewEvent = {
-       ...newEvent, 
-       guests: selectedUsers,
-       
-     };
+      ...newEvent,
+      guests: selectedUsers,
+    };
     createEvent({
       variables: {
         ...updatedNewEvent,
@@ -266,24 +489,23 @@ const Calendar = () => {
       },
     })
       .then(() => {
-        
         // Send invitation email to the selected guest
         selectedUsers.forEach((guestEmail: string) => {
-          sendInvitationEmail(guestEmail, 
-            updatedNewEvent.title, 
+          sendInvitationEmail(
+            guestEmail,
+            updatedNewEvent.title,
             updatedNewEvent.start,
-            updatedNewEvent.hostName, 
-            updatedNewEvent.timeToStart, 
-            updatedNewEvent.timeToFinish);
+            updatedNewEvent.hostName,
+            updatedNewEvent.timeToStart,
+            updatedNewEvent.timeToFinish,
+          );
         });
-        
       })
-      
-    
+
       .catch((error) => {
         console.log('errorrrr', error);
       });
-      console.log( moment( updatedNewEvent.start).format('YYYY-MM-DD'))
+    console.log(moment(updatedNewEvent.start).format('YYYY-MM-DD'));
 
     setData([...data, updatedNewEvent]);
     setNewEvent(newEventTemp);
@@ -314,10 +536,8 @@ const Calendar = () => {
             <form
               data-testid="handleAddEvent"
               className=" py-3 px-8"
-              /* istanbul ignore next */ 
-              onSubmit ={(e) =>
-                handleAddEvent(e)
-              }
+              /* istanbul ignore next */
+              onSubmit={(e) => handleAddEvent(e)}
             >
               <div className="input my-3 h-9 ">
                 <div className="grouped-input flex items-center h-full w-full rounded-md">
@@ -372,6 +592,7 @@ const Calendar = () => {
                     placeholderText={t('Start Date')}
                     style={{ marginRight: '10px' }}
                     selected={newEvent.start}
+                    minDate={new Date()}
                     onChange /* istanbul ignore next */={(start: any) =>
                       /* istanbul ignore next */ setNewEvent({
                         ...newEvent,
@@ -389,6 +610,7 @@ const Calendar = () => {
                     placeholderText={t('End Date')}
                     style={{ marginRight: '10px' }}
                     selected={newEvent.end}
+                    minDate={newEvent.start}
                     onChange=/* istanbul ignore next */ {(end: any) =>
                       /* istanbul ignore next */
                       setNewEvent({ ...newEvent, end })
@@ -448,24 +670,29 @@ const Calendar = () => {
       </div>
       {/* =========================== End::  RegisterTraineeModel =============================== */}
 
-      <div className="px-4 pb-20  w-full dark:bg-dark-frame-bg dark:text-white h-full overflow-y-scroll">
-        <div className="w-full flex justify-center text-xl md:text-4xl dark:text-primary mb-10">
-          <h2>{t('Calendar')}</h2>
+      <div className="px-4 pb-10 md:pb-20 sm:pb-0 dark:bg-dark-frame-bg dark:text-white">
+        <div className="w-full flex flex-col items-center text-xl md:text-4xl dark:text-primary mb-6 md:mb-10">
+          <h2 className="mb-2 md:mb-4">{t('Calendar')}</h2>
+          <button
+            data-testid="handleDateClick"
+            className="text-white py-2 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 bg-primary rounded"
+            onClick={handleDateClick}
+          >
+            {t('Add event')}
+          </button>
         </div>
-        <button
-          data-testid="handleDateClick"
-          className="text-white py-2 w-1/2 md:w-1/3 bg-primary rounded"
-          onClick={handleDateClick}
-        >
-          {t('Add event')}
-        </button>
 
-        <FullCalendar
-          eventContent={renderEvent}
-          events={data}
-          plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-        />
+        <div className="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
+          <FullCalendar
+            eventContent={renderEvent}
+            events={data}
+            plugins={[dayGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+          />
+        </div>
+        {openEvent && (
+          <EventModal event={selectedEvent} onClose={handleCloseEvent} />
+        )}
       </div>
     </>
   );

@@ -826,7 +826,7 @@ function AdminTraineeDashboard() {
           <div className="card-body">
             <form className="px-8 py-3 ">
               <div className="flex flex-wrap items-center justify-center w-full card-title ">
-                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white">
                   {t(
                     'Choose a different cohort for the trainee from the dropdown below.',
                   )}

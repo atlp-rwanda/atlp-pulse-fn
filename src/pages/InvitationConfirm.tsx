@@ -21,7 +21,7 @@ function InvitationConfirm() {
       setTimeout(() => {
         toast.success(data.inviteUser);
         // inviteModel();
-        navigate('/dashboard/calendar');
+        navigate('/calendar');
       }, 1000);
     },
     onError: (err) => {

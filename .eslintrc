@@ -21,6 +21,7 @@
   "plugins": ["react", "@typescript-eslint"],
   "ignorePatterns": ["/root/webpack.config.js"],
   "rules": {
+    "react/prop-types": "off",
     "no-console": ["error"],
     "import/extensions": "off",
     "react/jsx-filename-extension": 0,

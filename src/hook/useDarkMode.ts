@@ -22,19 +22,8 @@ export const setThemeHeader = (newTheme: ThemeType, oldTheme?: ThemeType) => {
 };
 
 const useDarkMode = () => {
-<<<<<<< HEAD
   const [colorTheme, changeTheme] = useState<ThemeType>(getInitialTheme());
   setThemeHeader(colorTheme);
-=======
-  const [theme, setTheme] = useState(getInitialState);
-  const colorTheme = theme === 'dark' ? 'light' : 'dark';
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove(colorTheme);
-    root.classList.add(theme);
-    root.setAttribute('data-theme', theme);
-  }, [theme]);
->>>>>>> f2b9701 (github activity (#244))
 
   return [colorTheme, changeTheme] as const;
 };

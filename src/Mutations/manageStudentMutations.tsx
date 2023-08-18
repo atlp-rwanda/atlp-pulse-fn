@@ -35,6 +35,7 @@ export const GET_TRAINEES_QUERY = gql`
         githubUsername
         resume
       }
+      id
       email
       team {
         name
@@ -328,6 +329,31 @@ export const EDIT_MEMBER_MUTATION = gql`
 export const INVITE_USER_MUTATION = gql`
   mutation InviteUser($email: String!, $orgToken: String!, $type: String!) {
     inviteUser(email: $email, orgToken: $orgToken, type: $type)
+  }
+`;
+export const ACCEPT_EVENT_MUTATION = gql`
+  mutation RespondToEventInvitation(
+    $eventId: ID!
+    $status: String!
+    $reason: String!
+    $authToken: String
+  ) {
+    respondToEventInvitation(
+      eventId: $eventId
+      status: $status
+      reason: $reason
+      authToken: $authToken
+    ) {
+      title
+      timeToStart
+      timeToEnd
+      invitationStatus
+      invitationReason
+      hostName
+      guests
+      end
+      start
+    }
   }
 `;
 export const GET_TEAM_QUERY = gql`
