@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import i18next from 'i18next';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Switch } from '@headlessui/react';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import useDarkMode from '../hook/useDarkMode';
 import getLanguage from '../utils/getLanguage';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import { updatePushNotifications, updateEmailNotifications, updatedEmailNotifications, updatedPushNotifications} from '../Mutations/notificationMutation';
+import { UserContext } from '../hook/useAuth';
 
 function Settings() {
   useDocumentTitle('Settings');
@@ -13,8 +16,22 @@ function Settings() {
   const lanRef = useRef<any>();
   const lan = getLanguage();
   const [colorTheme, setTheme] = useDarkMode();
-  const [emailEnabled, setEmailEnabled] = useState(false);
-  const [pushEnabled, setPushEnabled] = useState(false);
+  const { user } = useContext(UserContext);
+  const [updateEmailNotificationsMutation] = useMutation(updateEmailNotifications);
+  const [updatePushNotificationsMutation] = useMutation(updatePushNotifications);
+  const { data : pushData} = useQuery(updatedPushNotifications, {
+    variables: { getUpdatedPushNotificationsId: user?.userId },
+  });
+  const [pushEnabled, setPushEnabled] = useState(
+    pushData?.getUpdatedPushNotifications || false
+  );
+  const { data } = useQuery(updatedEmailNotifications, {
+    variables: { getUpdatedEmailNotificationsId: user?.userId },
+  });
+  const [emailEnabled, setEmailEnabled] = useState(
+    data?.getUpdatedEmailNotifications || false
+  );
+
   const handleThemeChange = (e: { target: { value: any } }) => {
     const { value } = e.target;
     setTheme(value);
@@ -29,6 +46,39 @@ function Settings() {
     const { value } = e.target;
     i18next.changeLanguage(value);
   };
+
+  const handleEmailNotificationChange = async () => {
+    try {
+      const { data } = await updateEmailNotificationsMutation({ variables: { updateEmailNotificationsId: user?.userId } });
+      setEmailEnabled((prevEmailEnabled: any) => !prevEmailEnabled);
+      return data;
+    } catch (error : any) {
+      return `Error updating email notifications:${error}`
+    }
+  };
+
+  const handlePushNotificationChange = async () => {
+    try {
+      const { data : pushData } = await updatePushNotificationsMutation({ variables: { updatePushNotificationsId: user?.userId } });
+      setPushEnabled((prevPushEnabled: any) => !prevPushEnabled);
+      return pushData;
+    } catch (error : any) {
+      return `Error updating push notifications: ${error}`
+    }
+  };
+ 
+  useEffect(() => {
+    if (data?.getUpdatedEmailNotifications !== undefined) {
+      setEmailEnabled(data.getUpdatedEmailNotifications);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (pushData?.getUpdatedPushNotifications !== undefined) {
+      setPushEnabled(pushData.getUpdatedPushNotifications);
+    }
+  }, [pushData]);
+
   useEffect(() => {
     if (lanRef.current) {
       lanRef.current.value = lan;
@@ -111,8 +161,8 @@ function Settings() {
               <Switch
                 checked={emailEnabled}
                 data-testid="emailChange"
-                onChange={setEmailEnabled}
-                className={`ml-auto border border-gray-400  ${
+                onChange={handleEmailNotificationChange}
+                className={`ml-auto border ${
                   emailEnabled ? 'dark:border-primary' : ''
                 } relative inline-flex h-6 w-12 items-center rounded-full`}
               >
@@ -137,8 +187,8 @@ function Settings() {
               <Switch
                 checked={pushEnabled}
                 data-testid="pushChange"
-                onChange={setPushEnabled}
-                className={` ml-auto border border-gray-400 ${
+                onChange={handlePushNotificationChange}
+                className={` ml-auto border ${
                   pushEnabled ? 'dark:border-primary' : ''
                 } relative inline-flex h-6 w-12 items-center rounded-full`}
               >

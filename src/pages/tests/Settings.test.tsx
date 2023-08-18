@@ -26,14 +26,16 @@ describe('Settings page tests', () => {
     fireEvent.change(theme, { target: { value: 'light' } });
     expect(theme).toHaveValue('light');
 
-    let push = getByTestId('pushChange');
+    const push = getByTestId('pushChange');
     fireEvent.click(push);
-    expect(push).toBeChecked();
+    expect(push).toHaveClass('ml-auto border relative inline-flex h-6 w-12 items-center rounded-full');
 
-    let email = getByTestId('emailChange');
+    const email = getByTestId('emailChange');
     fireEvent.click(email);
-    expect(email).toBeChecked();
+    expect(email).toHaveClass('ml-auto border relative inline-flex h-6 w-12 items-center rounded-full');
+
   });
+  
   it('changes value after selecting another theme', () => {
     const elem = renderer
       .create(

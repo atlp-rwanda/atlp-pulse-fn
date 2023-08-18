@@ -54,10 +54,11 @@ function LandingPage() {
                 </Button>
               </Link>
             </div>
-          ) : (
-            ' '
-          )}
-        </div>
+            ) : (
+              ' '
+            )}
+
+          </div>
       </div>
       <About />
       <Footer styles="dark:bg-opacity-75 bg-opacity-100 " />
