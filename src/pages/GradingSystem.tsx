@@ -239,7 +239,7 @@ function GradingSystem() {
                 <div className="flex items-left">
                   <div className="flex flex-wrap gap-2 py-2 pb-8 max-w-full">
                     <select
-                      className="flex bg-primary rounded-md py-2 px-1 text-white font-medium cursor-pointer max-w-full"
+                      className="flex max-w-full px-1 py-2 font-medium text-white rounded-md cursor-pointer bg-primary"
                       value={value}
                       onChange={(event) => {
                         const value = event.target.value.split('----');
@@ -315,10 +315,10 @@ function GradingSystem() {
                         </div>
                       </div>
                       <div>
-                        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4">
-                          <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-x-auto">
+                        <div className="px-4 py-4 -mx-4 sm:-mx-8 sm:px-8">
+                          <div className="inline-block w-full overflow-x-auto rounded-lg shadow lg:min-w-full">
                             <table className="min-w-full leading-normal">
-                              <thead className=" w-full px-32">
+                              <thead className="w-full px-32 ">
                                 <tr>
                                   <th className="p-6 border-b-2 border-gray-200 bg-indigo-200 dark:bg-neutral-600 sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     {t('grade')}
@@ -343,28 +343,28 @@ function GradingSystem() {
                                         className={`${rowTheme} `}
                                         key={item.grade}
                                       >
-                                        <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                          <div className="flex sm:justify-center items-center">
+                                        <td className="px-5 py-5 text-sm border-b border-gray-200 dark:border-dark-tertiary">
+                                          <div className="flex items-center sm:justify-center">
                                             <div className="">
-                                              <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
+                                              <p className="text-center text-gray-900 whitespace-no-wrap dark:text-white">
                                                 {item.grade}
                                               </p>
                                             </div>
                                           </div>
                                         </td>
-                                        <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                          <div className="flex sm:justify-center items-center">
+                                        <td className="px-5 py-5 text-sm border-b border-gray-200 dark:border-dark-tertiary">
+                                          <div className="flex items-center sm:justify-center">
                                             <div className="">
-                                              <p className="text-gray-900 items-center dark:text-white whitespace-no-wrap">
+                                              <p className="items-center text-gray-900 whitespace-no-wrap dark:text-white">
                                                 {item.range}
                                               </p>
                                             </div>
                                           </div>
                                         </td>
-                                        <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
-                                          <div className="flex sm:justify-center items-center">
+                                        <td className="px-5 py-5 text-sm border-b border-gray-200 dark:border-dark-tertiary">
+                                          <div className="flex items-center sm:justify-center">
                                             <div className="">
-                                              <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
+                                              <p className="text-center text-gray-900 whitespace-no-wrap dark:text-white">
                                                 {item.description}
                                               </p>
                                             </div>

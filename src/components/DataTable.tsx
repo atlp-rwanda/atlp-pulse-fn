@@ -65,7 +65,11 @@ function DataTable({ data, columns, title, loading }: TableData) {
           <input
             defaultValue={globalFilter || ''}
             placeholder="Filter"
+<<<<<<< HEAD
             className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+=======
+            className="px-5 py-2 mt-4 font-sans text-xs border rounded outline-none border-primary dark:bg-dark-tertiary dark:text-white w-52 md:w-96"
+>>>>>>> f2b9701 (github activity (#244))
             /* istanbul ignore next */
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
