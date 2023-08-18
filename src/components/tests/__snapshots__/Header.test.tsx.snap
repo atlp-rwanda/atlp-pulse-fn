@@ -21,7 +21,7 @@ exports[`Header Tests Should render the header with home 1`] = `
           src={Object {}}
         />
         <h1
-          className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
         >
           PULSE
         </h1>
@@ -46,10 +46,21 @@ exports[`Header Tests Should render the header with home 1`] = `
         >
           <a
             className=""
-            href="/about"
+            href="/pricing"
             onClick={[Function]}
           >
-            About
+            Pricing
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/product"
+            onClick={[Function]}
+          >
+            Product
           </a>
         </li>
       </ul>
@@ -231,7 +242,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
           src={Object {}}
         />
         <h1
-          className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
         >
           PULSE
         </h1>
@@ -255,10 +266,21 @@ exports[`Header Tests Should render the header with no active 1`] = `
         >
           <a
             className=""
-            href="/about"
+            href="/pricing"
             onClick={[Function]}
           >
-            About
+            Pricing
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/product"
+            onClick={[Function]}
+          >
+            Product
           </a>
         </li>
       </ul>
@@ -440,7 +462,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
           src={Object {}}
         />
         <h1
-          className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
         >
           PULSE
         </h1>
@@ -460,6 +482,17 @@ exports[`Header Tests Should render the header with no active 2`] = `
           </a>
         </li>
          
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/product"
+            onClick={[Function]}
+          >
+            Product
+          </a>
+        </li>
       </ul>
     </div>
     <div
@@ -622,7 +655,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
           src={Object {}}
         />
         <h1
-          className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
         >
           PULSE
         </h1>
@@ -647,10 +680,21 @@ exports[`Header Tests Should render the header with no active 3`] = `
         >
           <a
             className=""
-            href="/about"
+            href="/pricing"
             onClick={[Function]}
           >
-            About
+            Pricing
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/product"
+            onClick={[Function]}
+          >
+            Product
           </a>
         </li>
       </ul>
@@ -832,7 +876,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
           src={Object {}}
         />
         <h1
-          className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
         >
           PULSE
         </h1>
@@ -855,11 +899,23 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
-            className=""
-            href="/about"
+            aria-current="page"
+            className="text-primary"
+            href="/pricing"
             onClick={[Function]}
           >
-            About
+            Pricing
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/product"
+            onClick={[Function]}
+          >
+            Product
           </a>
         </li>
       </ul>
@@ -1041,7 +1097,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
           src={Object {}}
         />
         <h1
-          className="text-3xl font-bold font-lexend text-dark dark:text-dark-text-fill"
+          className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill"
         >
           PULSE
         </h1>
@@ -1065,10 +1121,22 @@ exports[`Header Tests Should render the header with product active 1`] = `
         >
           <a
             className=""
-            href="/about"
+            href="/pricing"
             onClick={[Function]}
           >
-            About
+            Pricing
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            aria-current="page"
+            className="text-primary"
+            href="/product"
+            onClick={[Function]}
+          >
+            Product
           </a>
         </li>
       </ul>

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* eslint-disable */
 import React, { useState, Fragment, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,11 +12,57 @@ import { useLazyQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
 import { Listbox, Combobox, Transition, Dialog } from '@headlessui/react';
+import { gql, useQuery } from '@apollo/client';
+import * as FileSaver from 'file-saver';
+import XLSX from 'sheetjs-style';
+import { GET_RATINGS_DATA } from '../components/TraineePerformance';
 
 function classNames(...classes: any) {
-  /* istanbul ignore next */
+  
   return classes.filter(Boolean).join(' ');
 }
+
+export const ExportToExcel = ({
+  data,
+  fileName,
+}: {
+  data: any[];
+  fileName: string;
+}) => {
+  const { t } = useTranslation();
+  const fileType =
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  const fileExtension = '.xlsx';
+
+  const exportToCSV = (Data: any[], fileName: string) => {
+    const ws = XLSX.utils.json_to_sheet(Data);
+    // Set column widths (adjust the width values as needed)
+    ws['!cols'] = [
+      { wch: 35 },
+      { wch: 15 },
+      { wch: 15 },
+      { wch: 15 },
+      { wch: 15 },
+      { wch: 15 },
+      { wch: 20 },
+      { wch: 15 },
+      { wch: 15 },
+    ];
+    const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const data = new Blob([excelBuffer], { type: fileType });
+    (FileSaver as any).saveAs(data, fileName + fileExtension);
+  };
+
+  return (
+    <button
+      className="bg-primary hover:bg-primary text-white  font-semibold hover:text-white py-2 px-2  border border-primary hover:border-transparent rounded  "
+      onClick={(e) => exportToCSV(data, fileName)}
+    >
+      {t('Export')}
+    </button>
+  );
+};
 const TraineeRatingDashboard = () => {
   const organizationToken = localStorage.getItem('orgToken');
 
@@ -54,14 +101,37 @@ const TraineeRatingDashboard = () => {
   const [showActions, setShowActions] = useState(false);
   const [ratings, setRatings] = useState<any>([]);
   const [toggle, setToggle] = useState(false);
-
   const handleClick = () => setNav(!nav);
   const closeModal = () => {
     setIsOpen(false);
     setShowActions(false);
   };
+  const [usedata, setUserdata] = React.useState([]);
+  const fileName = 'userInfo';
+  const { data, loading, error } = useQuery(GET_RATINGS_DATA, {});
 
-  const data = ratings;
+
+
+ 
+
+  useEffect(() => {
+    if (ratings) {
+      const customHeadings = ratings.map((row: any) => ({
+        Email: row.user.email,
+        Quality: row.quality,
+        Qualityremark: row.qualityRemark,
+        Quantity: row.quantity,
+        Quantityremark: row.quantityRemark,
+        Professional: row.professional_Skills,
+        ProfessionalRemark: row.professionalRemark,
+        Sprint: row.sprint,
+        Cohort: row.cohort.name,
+      }));
+      setUserdata(customHeadings);
+    }
+  }, [ratings]);
+
+
   const columns = [
     { Header: `${t('Email')}`, accessor: 'user[email]' },
     { Header: `${t('Cohort')}`, accessor: 'cohort[name]' },
@@ -107,7 +177,6 @@ const TraineeRatingDashboard = () => {
       orgToken: organizationToken,
     },
   });
-
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
@@ -208,7 +277,7 @@ const TraineeRatingDashboard = () => {
                     </table>
                     <div className="flex justify-center mt-4">
                       <button
-                        className="bg-primary text-white font-semibold py-2 px-4 border border-primary hover:border-transparent rounded"
+                        className="bg-transparent text-primary font-semibold py-2 px-4 border border-primary hover:border-transparent rounded"
                         onClick={() => setShowActions(!showActions)}
                       >
                         {t('Cancel')}
@@ -229,12 +298,17 @@ const TraineeRatingDashboard = () => {
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
                 <div className="px-3 md:px-8 mt-28">
-                  {data.length !== 0 ? (
-                    <DataTable
-                      data={ratings}
-                      columns={columns}
-                      title={t('Performance Ratings')}
-                    />
+                  {data && !loading ? (
+                    <>
+                      <div className="ml-60 mb-14 ">
+                        <ExportToExcel data={usedata} fileName={fileName}  />
+                      </div>
+                      <DataTable
+                        data={ratings}
+                        columns={columns}
+                        title={t('Performance Ratings')}
+                      />
+                    </>
                   ) : (
                     <div className="text-center mt-7 text-lg uppercase">
                       <Square></Square>

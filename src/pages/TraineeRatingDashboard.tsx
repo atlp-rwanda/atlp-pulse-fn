@@ -30,6 +30,7 @@ import DataTable from '../components/DataTable';
 import GRADING_SYSTEM_QUERY from './GradingSystemQuery';
 import AddRatings from './ratings/addRatings';
 import CoordinatorRemarks from './ratings/CoordinatorRemarks';
+import { ExportToExcel } from './AdminRatings';
 
 function classNames(...classes: any) {
   /* istanbul ignore next */
@@ -45,6 +46,18 @@ const initialRatingData = {
   professionalRemark: '',
   userEmail: '',
   average: '',
+};
+
+type UserDataItem = {
+  Email: any;
+  Quality: any;
+  Qualityremark: any;
+  Quantity: any;
+  Quantityremark: any;
+  Professional: any;
+  ProfessionalRemark: any;
+  Sprint: any;
+  Cohort: any;
 };
 
 function TraineeRatingDashboard() {
@@ -79,10 +92,31 @@ function TraineeRatingDashboard() {
   });
   const [showActions, setShowActions] = useState(false);
   const [showRemarks, setShowRemarks] = useState(false);
-  const [ratingsByCohort, setRatingsByCohort] = useState<any[]>([]);
+  const [ratingsByCohort, setRatingsByCohort] =useState<any[]>([]);
   const [defaultGrading, setDefaultGrading] = useState<any[]>([]);
   const [query, setQuery] = useState('');
   const [toggle, setToggle] = useState(false);
+  const [usedata, setUserdata] = React.useState<UserDataItem[]>([]);
+  const fileName = 'userInfo';
+
+  useEffect(() => {
+    if (ratingsByCohort) {
+      const customHeadings: UserDataItem[] =ratingsByCohort.map( (row: any) => ({
+        Email: row.user.email,
+        Quality: row.quality,
+        Qualityremark: row.qualityRemark,
+        Quantity: row.quantity,
+        Quantityremark: row.quantityRemark,
+        Professional: row.professional_Skills,
+        ProfessionalRemark: row.professionalRemark,
+        Sprint: row.sprint,
+        Cohort: row.cohort.name,
+        Feedback: row.feedbacks,
+      }));
+      setUserdata(customHeadings);
+    }
+  }, [ratingsByCohort]);
+ 
 
   /* istanbul ignore next */
   const addFeedbacks = (
@@ -331,7 +365,12 @@ function TraineeRatingDashboard() {
   }
 
   const { data } = useQuery(GRADING_SYSTEM_QUERY);
-
+  const handleSaveClick = () => {
+    if (ratingData.quality === ' null' && ratingData.quantity === 'null' && ratingData.professional === 'null') {
+      toast.error('Please provide ratings before saving.');
+      
+    }
+  }
   /* istanbul ignore next */
   useEffect(() => {
     getCohortUsers();
@@ -366,10 +405,10 @@ function TraineeRatingDashboard() {
       <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row">
           <Sidebar toggle={handleClick} style="hidden lg:flex" />
-          <div className="w-full">
+          <div className="w-[100%]">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
-                <div className="flex flex-col w-3/5 mx-auto md:flex-row relative  justify-between px-2 md:px-5 lg:px-10 pt-24 pb-8 mt-4">
+                <div className="flex flex-col w-[80%] mx-auto  md:flex-row relative  justify-around  px-10 md:px-5 lg:px-10 pt-24 pb-8 mt-4">
                   {/* SELECT COHORT DROPDOWN START */}
                   <div className="flex flex-col md:ml-a w-40">
                     <Listbox
@@ -484,7 +523,9 @@ function TraineeRatingDashboard() {
                     setRatingData={setRatingData}
                   />
                   {/* ADD NEW RATING MODAL END */}
-
+                  <div className="py=0 px=0 mt-10  ">
+                        <ExportToExcel data={usedata} fileName={fileName}  />
+                      </div>
                   {/* UPDATE MODAL START */}
                   <Transition
                     appear

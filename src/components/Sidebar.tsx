@@ -39,7 +39,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   useEffect(() => {}, [togglei]);
   return (
     <div
-      className={`${style} overflow-auto flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2`}
+      className={`${style} flex-col fixed h-[100%] pt-[3vh] lg:pt-[11vh] bg-white dark:bg-dark-bg border-r p-2 z-10 `}
     >
       <div className="pr-8 list-none">
         <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard">
@@ -181,6 +181,13 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             {/* manger role */}
             <CheckRole roles={['manager']}>
           <SideNavLink onClick={toggle} name="Teams" to="/team-cards">
+            <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
+          </SideNavLink>
+        </CheckRole>
+
+        {/* manger role */}
+        <CheckRole roles={['manager']}>
+          <SideNavLink onClick={toggle} name="Teams" to="/dashboard/team-cards">
             <UserGroupIcon className="w-5 mr-2 dark:text-dark-text-fill" />
           </SideNavLink>
         </CheckRole>
