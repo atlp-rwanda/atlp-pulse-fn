@@ -146,7 +146,7 @@ function GradingSystem() {
               setDefaultGrade(ID);
               makeGradeDefaultModel();
             }}
-            style="px-4 py-0 text-sm"
+            style="px-4 py-0 text-sm "
           >
             {t('Make default')}
           </Button>
@@ -238,11 +238,11 @@ function GradingSystem() {
           <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
-              <div className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg">
-                <div className="flex px-3 pt-24 items-left lg:ml-60 md:px-8">
-                  <div className="flex flex-wrap max-w-full gap-2 py-2 pb-8">
+              <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
+                <div className="flex items-left lg:ml-60  px-3 md:px-8 pt-24">
+                  <div className="flex flex-wrap gap-2 py-2 pb-8 max-w-full">
                     <select
-                      className="flex max-w-full px-1 py-2 font-medium text-white rounded-md cursor-pointer bg-primary"
+                      className="flex bg-primary rounded-md py-2 px-1 text-white font-medium cursor-pointer max-w-full"
                       value={value}
                       onChange={(event) => {
                         const value = event.target.value.split('----');
@@ -293,10 +293,10 @@ function GradingSystem() {
                 {value !== 'custom' && value !== '' ? (
                   <div className="px-3 md:px-8">
                     <div className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
-                      <div className="flex items-center justify-between pb-6 ">
-                        <div className="flex flex-wrap items-center justify-between w-full gap-2">
+                      <div className=" flex items-center justify-between pb-6">
+                        <div className="flex items-center flex-wrap gap-2 justify-between w-full ">
                           <h2
-                            className="overflow-hidden text-xl font-semibold text-gray-800 dark:text-white text-ellipsis"
+                            className="text-gray-800  dark:text-white font-semibold text-xl overflow-hidden text-ellipsis"
                             style={{
                               WebkitLineClamp: '1',
                               lineClamp: '1',
@@ -318,18 +318,18 @@ function GradingSystem() {
                         </div>
                       </div>
                       <div>
-                        <div className="px-4 py-4 -mx-4 sm:-mx-8 sm:px-8">
-                          <div className="inline-block w-full overflow-x-auto rounded-lg shadow lg:min-w-full">
+                        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4">
+                          <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-x-auto">
                             <table className="min-w-full leading-normal">
-                              <thead className="w-full px-32 ">
+                              <thead className=" w-full px-32">
                                 <tr>
-                                  <th className="p-6 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-indigo-200 border-b-2 border-gray-200 dark:bg-dark-tertiary sm:text-center dark:text-white">
+                                  <th className="p-6 border-b-2 border-gray-200 bg-indigo-200 dark:bg-neutral-600 sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     {t('grade')}
                                   </th>
-                                  <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-indigo-200 border-b-2 border-gray-200 dark:bg-dark-tertiary sm:text-center dark:text-white">
+                                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-indigo-200 dark:bg-neutral-600 sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     {t('Approximate Range')}
                                   </th>
-                                  <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-indigo-200 border-b-2 border-gray-200 dark:bg-dark-tertiary sm:text-center dark:text-white md:table-cell">
+                                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-indigo-200 dark:bg-neutral-600 sm:text-center text-left text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell tracking-wider">
                                     {t('Grade Description')}
                                   </th>
                                 </tr>
@@ -346,28 +346,28 @@ function GradingSystem() {
                                         className={`${rowTheme} `}
                                         key={item.grade}
                                       >
-                                        <td className="px-5 py-5 text-sm border-b border-gray-200 dark:border-dark-tertiary">
-                                          <div className="flex items-center sm:justify-center">
+                                        <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
+                                          <div className="flex sm:justify-center items-center">
                                             <div className="">
-                                              <p className="text-center text-gray-900 whitespace-no-wrap dark:text-white">
+                                              <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
                                                 {item.grade}
                                               </p>
                                             </div>
                                           </div>
                                         </td>
-                                        <td className="px-5 py-5 text-sm border-b border-gray-200 dark:border-dark-tertiary">
-                                          <div className="flex items-center sm:justify-center">
+                                        <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
+                                          <div className="flex sm:justify-center items-center">
                                             <div className="">
-                                              <p className="items-center text-gray-900 whitespace-no-wrap dark:text-white">
+                                              <p className="text-gray-900 items-center dark:text-white whitespace-no-wrap">
                                                 {item.range}
                                               </p>
                                             </div>
                                           </div>
                                         </td>
-                                        <td className="px-5 py-5 text-sm border-b border-gray-200 dark:border-dark-tertiary">
-                                          <div className="flex items-center sm:justify-center">
+                                        <td className="px-5 py-5 border-b border-gray-200 dark:border-dark-tertiary text-sm">
+                                          <div className="flex sm:justify-center items-center">
                                             <div className="">
-                                              <p className="text-center text-gray-900 whitespace-no-wrap dark:text-white">
+                                              <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
                                                 {item.description}
                                               </p>
                                             </div>

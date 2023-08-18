@@ -268,24 +268,24 @@ const Organizations = () => {
               </div>
             </div>
             <div>
-              <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+              <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto ">
                 <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
-                  <table className="min-w-full leading-normal">
+                  <table className="min-w-full leading-normal ">
                     <thead>
                       <tr>
-                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('name')}
                         </th>
-                        <th className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="px-5  border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Admin')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Description')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Status')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Actions')}
                         </th>
                       </tr>

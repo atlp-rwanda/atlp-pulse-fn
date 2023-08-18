@@ -22,7 +22,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
 
   const handleTheme = () => {
     /* istanbul ignore next */
-    localStorage.setItem('color-theme', colorTheme);
+    window.localStorage.setItem('color-theme', colorTheme);
     setTheme(colorTheme);
   };
   const goTo = orgToken ? '/users/login' : '/login/org';
@@ -65,17 +65,17 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               </NavLink>
             </li>
             {!user?.auth ? (
-            <li className="px-5 text-xl dark:text-dark-text-fill">
-              <NavLink
-                className={(navData) => {
-                  if (navData.isActive) return 'text-primary';
-                  return '';
-                }}
-                to="/pricing"
-              >
-                {t('Pricing')}
-              </NavLink>
-            </li>
+              <li className="px-5 text-xl dark:text-dark-text-fill">
+                <NavLink
+                  className={(navData) => {
+                    if (navData.isActive) return 'text-primary';
+                    return '';
+                  }}
+                  to="/pricing"
+                >
+                  {t('Pricing')}
+                </NavLink>
+              </li>
             ) : (
               ' '
             )}

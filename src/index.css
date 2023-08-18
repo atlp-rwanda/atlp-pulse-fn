@@ -174,7 +174,7 @@ input[type='number']::-webkit-outer-spin-button {
     @apply text-white bg-white;
   }
   .thead {
-    @apply p-6 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-indigo-200 border-b-2 border-gray-400 dark:bg-dark-tertiary dark:text-white;
+    @apply p-6 border-b-2 border-gray-400 bg-indigo-200 dark:bg-neutral-600 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider;
   }
   .data-cell {
     @apply px-5 py-5 text-sm bg-indigo-100 border-b border-gray-400 dark:bg-dark-bg;
