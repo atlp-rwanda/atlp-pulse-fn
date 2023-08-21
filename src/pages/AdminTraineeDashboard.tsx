@@ -629,85 +629,56 @@ function AdminTraineeDashboard() {
                     </i>
                   </p>
                 </div>
-
-                {/* Show resume URL for admins and managers */}
-                {user &&
-                  (user.role === 'admin' || user.role === 'coordinator') && (
-                    <div
-                      className="font-sans text-sm"
-                      style={{
-                        display: 'flex',
-                        gap: '50px',
-                        justifyContent: 'space-between',
-                        paddingBlock: '10px',
-                        marginBottom: '20px',
-                        borderBottom: '0.5px solid #EAECEE',
-                      }}
-                    >
-                      <h3>
-                        <b>RESUME</b>
-                        
-                      </h3>
-                      <p>
-                        {traineeDetails?.profile?.resume ? (
-                          <a
-                            href={traineeDetails.profile.resume}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View Resume
-                          </a>
-                        ) : (
-                          'Unavailable'
-                        )}
-                      </p>
-                    </div>
-                  )}
-
                 <div
-                  className="text-sm font-sans"
+                  className={"text-sm font-sans"}
                   style={{
                     display: 'flex',
                     gap: '50px',
                     justifyContent: 'space-between',
                     paddingBlock: '10px',
                     marginBottom: '20px',
+                  
                   }}
                 >
-                  {isLoaded ? (
-                    <p>
-                      <div className="flex items-center justify-center h-48">
-                        <i>Loading gitHub statistics...</i>
-                        <Spinner />
-                        <div className="spinner" />
-                      </div>
-                    </p>
-                  ) : (
-                    <div
-                      className={
-                        traineeDetails?.profile &&
-                        traineeDetails?.profile?.githubUsername
-                          ? 'flex'
-                          : 'hidden '
-                      }
-                    >
-                      <div className="flex flex-col">
-                        <i className="text-2xl ">
-                          {gitHubStatistics?.totalCommits} total commits
-                        </i>
-                      </div>
-                      <div className="flex flex-col">
-                        <div>
-                          {traineeDetails?.profile &&
-                          traineeDetails?.profile?.githubUsername ? (
-                            <GitHubActivityChart data={gitHubStatistics} />
-                          ) : (
-                            <></>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+
+               
+                {isLoaded?(
+                  <p>
+                
+                    <div className="flex items-center justify-center h-48">
+                    <i>
+                   Loading gitHub statistics...
+                    </i>
+            <Spinner />
+            <div className="spinner" />
+          </div>
+                  </p>
+                ):(
+                  <div className={traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?"flex":'hidden '}>
+                  <div className='flex flex-col'>
+            
+                    <i className='text-2xl '>
+               
+                    {gitHubStatistics?.totalCommits} total commits
+                  
+                    </i>
+                 
+    
+                </div>
+                <div className='flex flex-col'>
+                <div>
+           {     traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?(
+  <GitHubActivityChart data={gitHubStatistics} />
+           ):
+           (
+<></>
+           )
+}
+              
+    </div>
+                </div>
+                </div>
+                )}  
                 </div>
 
                 <Button
