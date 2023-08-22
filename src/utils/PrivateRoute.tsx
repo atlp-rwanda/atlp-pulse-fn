@@ -18,14 +18,20 @@ function CheckRole({ children, ...props }: Props) {
     }
     protectRoutes;
   }, []);
+  const loggedout = localStorage.getItem('loggedout');
   const orgToken: any = localStorage.getItem('orgToken');
   const { user } = useContext(UserContext);
   const location = useLocation();
+  const params =
+    loggedout !== '1' && location.pathname !== '/users/login'
+      ? `?redirect=${location.pathname}${location.search}`
+      : '';
+  localStorage.removeItem('loggedout');
   if (user?.auth) return <React.Fragment {...props}>{children}</React.Fragment>;
   return (
     <Navigate
       {...props}
-      to={orgToken ? '/users/login' : '/login/org'}
+      to={orgToken ? `/users/login${params}` : '/login/org'}
       state={location.pathname}
     />
   );

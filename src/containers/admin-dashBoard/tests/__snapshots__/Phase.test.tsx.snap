@@ -89,34 +89,34 @@ Array [
     className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
   >
     <div
-      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+      className="w-screen p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg md:w-1/2 xl:w-4/12"
     >
       <div
-        className="card-title w-full flex  flex-wrap justify-center items-center  "
+        className="flex flex-wrap items-center justify-center w-full card-title "
       >
         <h3
-          className="font-bold text-sm dark:text-white text-center w-11/12 uppercase"
+          className="w-11/12 text-sm font-bold text-center uppercase dark:text-white"
         >
           Update Phase
         </h3>
         <hr
-          className=" bg-primary border-gray-400 my-3 w-full"
+          className="w-full my-3 border-gray-400  bg-primary"
         />
       </div>
       <div
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className="px-8 py-3 "
         >
           <div
-            className="input my-5 h-9 "
+            className="my-5 input h-9 "
           >
             <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full rounded-md grouped-input"
             >
               <input
-                className="border border-primary rounded outline-none px-5 dark:bg-dark-bg-frame dark:text-white font-sans text-xs py-2 w-full"
+                className="w-full px-5 py-2 font-sans text-xs border rounded outline-none border-primary dark:bg-dark-bg-frame dark:text-white"
                 name="name"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -126,13 +126,13 @@ Array [
             </div>
           </div>
           <div
-            className="input my-5 h-9 "
+            className="my-5 input h-9 "
           >
             <div
-              className="grouped-input flex items-center h-full w-full rounded-md"
+              className="flex items-center w-full h-full rounded-md grouped-input"
             >
               <input
-                className="border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                className="w-full px-5 py-2 font-sans text-xs border rounded outline-none border-primary dark:bg-dark-bg-frame dark:text-white"
                 name="description"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -142,7 +142,7 @@ Array [
             </div>
           </div>
           <div
-            className="w-full flex justify-between"
+            className="flex justify-between w-full"
           >
             <button
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"

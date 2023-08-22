@@ -25,8 +25,6 @@ const AdminSission = () => {
     setDeleteSessionModel(newState);
   };
 
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
 
   const data = SessionData;
   const columns = [
@@ -276,7 +274,6 @@ const AdminSission = () => {
       {/* =========================== End::  update Session Model =============================== */}
       <div className="flex flex-col h-screen">
         <div className="flex flex-row">
-          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">

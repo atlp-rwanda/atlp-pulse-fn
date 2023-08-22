@@ -18,8 +18,7 @@ import { toast } from 'react-toastify';
 import Select from 'react-select';
 import Avatar from '../assets/avatar.png';
 import Chart from 'chart.js/auto';
-import { Doughnut } from "react-chartjs-2";
-
+import { Doughnut } from 'react-chartjs-2';
 
 import {
   GET_USERS_QUERY,
@@ -30,7 +29,7 @@ import {
   INVITE_USER_MUTATION,
   GET_TEAM_QUERY,
   ADD_MEMBER_TO_TEAM,
-  GET_GITHUB_STATISTICS
+  GET_GITHUB_STATISTICS,
 } from '../Mutations/manageStudentMutations';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
@@ -91,18 +90,16 @@ const AdminTraineeDashboard = () => {
     );
   }
 
-   const [getGitHubStatistics]= useLazyQuery(GET_GITHUB_STATISTICS, {
+  const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     onCompleted: (data) => {
       console.log(data);
       setGitHubStatistics(data.gitHubActivity);
       setIsLoaded(false);
     },
     onError: (error) => {
-
       setIsLoaded(false);
     },
   });
-
 
   const [open, setOpen] = React.useState(false);
 
@@ -111,14 +108,12 @@ const AdminTraineeDashboard = () => {
     const filteredUser = traineeData.filter((item) => item.email == rowData);
     setTraineeDetails(filteredUser[0]);
     setOpen(true);
-     getGitHubStatistics({
-        variables: {
-          organisation: localStorage.getItem('orgName')?.split('.')[0],
-          username: filteredUser[0].profile?.githubUsername,
-        }
-     });
-
- 
+    getGitHubStatistics({
+      variables: {
+        organisation: localStorage.getItem('orgName')?.split('.')[0],
+        username: filteredUser[0].profile?.githubUsername,
+      },
+    });
   };
 
   const handleClose = () => {
@@ -151,9 +146,6 @@ const AdminTraineeDashboard = () => {
     setToggle(!toggle);
   };
 
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
-
   const customStyles = {
     option: (provided: any, state: any) => ({
       ...provided,
@@ -179,9 +171,6 @@ const AdminTraineeDashboard = () => {
       return { ...provided, opacity, transition };
     },
   };
-
- 
-
 
   const columns = [
     { Header: t('name'), accessor: 'name' },
@@ -273,9 +262,6 @@ const AdminTraineeDashboard = () => {
     },
   });
 
-
-
-
   function getTeam() {
     getTeamQuery({
       fetchPolicy: 'network-only',
@@ -348,8 +334,6 @@ const AdminTraineeDashboard = () => {
     },
   });
 
-
-
   const [removeMemberFromCohort] = useMutation(
     REMOVE_MEMBER_FROM_COHORT_MUTATION,
     {
@@ -408,10 +392,9 @@ const AdminTraineeDashboard = () => {
     getTraineesQuery({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
-        setTraineeLoading(false)
+        setTraineeLoading(false);
         setTraineeData(data.getTrainees);
 
-    
         console.log(data);
       },
       onError: (error) => {
@@ -471,7 +454,6 @@ const AdminTraineeDashboard = () => {
           aria-labelledby="draggable-dialog-title"
           className="rounded-lg"
           fullWidth
-        
         >
           <DialogContent className="font-sans dark:bg-dark-bg">
             <DialogContentText className="font-sans dark:bg-dark-bg">
@@ -649,8 +631,8 @@ const AdminTraineeDashboard = () => {
                   </p>
                 </div>
 
-                  {/* Show resume URL for admins and managers */}
-                  {user &&
+                {/* Show resume URL for admins and managers */}
+                {user &&
                   (user.role === 'admin' || user.role === 'coordinator') && (
                     <div
                       className="font-sans text-sm"
@@ -683,59 +665,50 @@ const AdminTraineeDashboard = () => {
                     </div>
                   )}
 
-
-
-                
                 <div
-                  className={"text-sm font-sans"}
+                  className={'text-sm font-sans'}
                   style={{
                     display: 'flex',
                     gap: '50px',
                     justifyContent: 'space-between',
                     paddingBlock: '10px',
                     marginBottom: '20px',
-                  
                   }}
                 >
-
-               
-                {isLoaded?(
-                  <p>
-                
-                    <div className="flex items-center justify-center h-48">
-                    <i>
-                   Loading gitHub statistics...
-                    </i>
-            <Spinner />
-            <div className="spinner" />
-          </div>
-                  </p>
-                ):(
-                  <div className={traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?"flex":'hidden '}>
-                  <div className='flex flex-col'>
-            
-                    <i className='text-2xl '>
-               
-                    {gitHubStatistics?.totalCommits} total commits
-                  
-                    </i>
-                 
-    
-                </div>
-                <div className='flex flex-col'>
-                <div>
-           {     traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?(
-  <GitHubActivityChart data={gitHubStatistics} />
-           ):
-           (
-<></>
-           )
-}
-              
-    </div>
-                </div>
-                </div>
-                )}  
+                  {isLoaded ? (
+                    <p>
+                      <div className="flex items-center justify-center h-48">
+                        <i>Loading gitHub statistics...</i>
+                        <Spinner />
+                        <div className="spinner" />
+                      </div>
+                    </p>
+                  ) : (
+                    <div
+                      className={
+                        traineeDetails?.profile &&
+                        traineeDetails?.profile?.githubUsername
+                          ? 'flex'
+                          : 'hidden '
+                      }
+                    >
+                      <div className="flex flex-col">
+                        <i className="text-2xl ">
+                          {gitHubStatistics?.totalCommits} total commits
+                        </i>
+                      </div>
+                      <div className="flex flex-col">
+                        <div>
+                          {traineeDetails?.profile &&
+                          traineeDetails?.profile?.githubUsername ? (
+                            <GitHubActivityChart data={gitHubStatistics} />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <Button
@@ -1070,7 +1043,6 @@ const AdminTraineeDashboard = () => {
 
       <div className="flex flex-col h-screen">
         <div className="flex flex-row">
-          <Sidebar toggle={handleClick} style="hidden lg:flex" />
           <div className="w-full">
             <div>
               <div className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg">
@@ -1116,7 +1088,5 @@ const AdminTraineeDashboard = () => {
     </>
   );
 };
-
-
 
 export default AdminTraineeDashboard;

@@ -7,13 +7,16 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
 import Settings from '../Settings';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
+import ThemeProvider from '../../hook/ThemeProvider';
 
 describe('Settings page tests', () => {
   it('changes value after selecting another theme', () => {
     const { getByTestId } = render(
       <BrowserRouter>
         <ApolloProvider>
-          <Settings />
+          <ThemeProvider>
+            <Settings />
+          </ThemeProvider>
         </ApolloProvider>
       </BrowserRouter>,
     );

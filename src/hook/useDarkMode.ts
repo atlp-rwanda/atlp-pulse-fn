@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-const getInitialState = () => {
+export type ThemeType = 'dark' | 'light';
+
+export const getInitialTheme = (): ThemeType | any => {
   if (typeof window !== 'undefined' && window.localStorage) {
     const storedPrefs = window.localStorage.getItem('color-theme');
     if (storedPrefs) return storedPrefs;
@@ -11,17 +13,19 @@ const getInitialState = () => {
   return 'light';
 };
 
-const useDarkMode = () => {
-  const [theme, setTheme] = useState(getInitialState);
-  const colorTheme = theme === 'dark' ? 'light' : 'dark';
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove(colorTheme);
-    root.classList.add(theme);
-    root.setAttribute('data-theme', theme);
-  }, [theme]);
+export const setThemeHeader = (newTheme: ThemeType, oldTheme?: ThemeType) => {
+  const root = window.document.documentElement;
+  localStorage.setItem('color-theme', newTheme);
+  if (oldTheme) root.classList.remove(oldTheme);
+  root.classList.add(newTheme);
+  root.setAttribute('data-theme', newTheme);
+};
 
-  return [colorTheme, setTheme] as const;
+const useDarkMode = () => {
+  const [colorTheme, changeTheme] = useState<ThemeType>(getInitialTheme());
+  setThemeHeader(colorTheme);
+
+  return [colorTheme, changeTheme] as const;
 };
 
 export default useDarkMode;

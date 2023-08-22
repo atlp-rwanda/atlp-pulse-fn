@@ -1,12 +1,14 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { MenuContext } from '../hook/menuProvider';
 
 interface Props {
   to: string;
-  name: string;
+  name?: string;
   children: ReactNode;
   onClick: () => void;
+  className?: string;
   // any props that come into the component
 }
 
@@ -15,26 +17,28 @@ export default function SideNavLink({
   name,
   onClick,
   children,
+  className = '',
   ...props
 }: Props) {
   const { t } = useTranslation();
+  const { minimized } = useContext(MenuContext);
   return (
-    <li
-      className="mb-4 hover:text-primary transition-all group-hover:transition-all"
-      {...props}
-    >
+    <li className={`${className}`} {...props}>
       <NavLink
         onClick={onClick}
         to={to}
-        className={(navData) => {
-          if (navData.isActive) {
-            return 'flex flex-row font-bold text-primary dark:text-primary';
-          }
-          return 'flex flex-row dark:text-dark-text-fill';
-        }}
+        className={(navData) =>
+          `py-2 mb-1 pl-4 pr-5 transition-all group-hover:transition-all hover:bg-black hover:bg-opacity-10 dark:hover:bg-opacity-30 flex flex-row gap-4 ${
+            navData.isActive ? 'font-bold text-primary' : ''
+          }`
+        }
       >
         {children}
-        <span className="text-base ">{t(name)}</span>
+        {name && (
+          <span className={`text-base ${minimized ? 'lg:hidden' : ''}`}>
+            {t(name)}
+          </span>
+        )}
       </NavLink>
     </li>
   );

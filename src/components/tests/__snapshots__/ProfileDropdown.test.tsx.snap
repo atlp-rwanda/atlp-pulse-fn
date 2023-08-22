@@ -47,7 +47,7 @@ exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
             >
               <a
                 className="font-semibold text-gray-600 dark:text-white px-4 py-2 hover:bg-gray-600 hover:text-gray-200 dark:hover:bg-gray-300 dark:hover:text-gray-900"
-                href="/dashboard/profile"
+                href="/profile"
                 onClick={[Function]}
               >
                 Profile
@@ -66,7 +66,7 @@ exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
       <div>
         <a
           className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
-          href="/dashboard/loginActivities"
+          href="/loginActivities"
           onClick={[Function]}
         >
           <p

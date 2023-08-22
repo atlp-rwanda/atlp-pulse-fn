@@ -1,56 +1,36 @@
 import React, { forwardRef, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
-
-import { MenuIcon, SunIcon, XIcon } from '@heroicons/react/outline';
-import { MoonIcon } from '@heroicons/react/solid';
-import Logo from '../assets/logo.svg';
-import LogoWhite from '../assets/logoWhite.svg';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { UserContext } from '../hook/useAuth';
-import useDarkMode from '../hook/useDarkMode';
-
 import Button from './Buttons';
 import WithClickOutside from './WithClickOutside';
+import LogoIcon from './logoIcon';
+import ToggleThemeButton from './TogglethemeIcon';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const orgToken: any = localStorage.getItem('orgToken');
   const { t } = useTranslation();
-  const [colorTheme, setTheme] = useDarkMode();
+
   /* istanbul ignore next */
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
 
-  const handleTheme = () => {
-    /* istanbul ignore next */
-    window.localStorage.setItem('color-theme', colorTheme);
-    setTheme(colorTheme);
-  };
   const goTo = orgToken ? '/users/login' : '/login/org';
 
   return (
     <div
-      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed border-b ${props?.styles}`}
+      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed ${props?.className}`}
+      style={props?.style}
     >
-      <div className="flex items-center justify-between w-full h-full px-3">
-        <div className="flex items-center justify-between h-full lg:w-full">
-          <Link to="/" className="flex flex-row lg:px-5">
-            {colorTheme === 'dark' ? (
-              <img
-                className="w-full mr-2 cursor-pointer"
-                src={Logo}
-                alt="logo"
-              />
-            ) : (
-              <img
-                className="w-full mr-2 cursor-pointer"
-                src={LogoWhite}
-                alt="logoWhite"
-              />
-            )}
-
-            <h1 className="text-3xl font-bold font-lexend text-primary dark:text-dark-text-fill">
-              PULSE
-            </h1>
+      <div className="px-3 flex justify-between items-center w-full h-full">
+        <div className="flex items-center h-full justify-between lg:w-full">
+          <Link
+            to="/"
+            className="flex flex-row lg:px-5 text-primary dark:text-dark-text-fill"
+          >
+            <LogoIcon />
+            <h1 className="text-3xl font-bold font-lexend">PULSE</h1>
           </Link>
           <ul className="hidden cursor-pointer lg:flex">
             <li className="px-5 text-xl dark:text-dark-text-fill">
@@ -92,19 +72,8 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             </li>
           </ul>
         </div>
-        <div className="justify-end hidden lg:flex lg:w-full ">
-          <button
-            type="button"
-            id="theme-switch"
-            className="px-4 mt-1 cursor-pointer"
-            onClick={() => handleTheme()}
-          >
-            {colorTheme === 'dark' ? (
-              <MoonIcon className="w-8" />
-            ) : (
-              <SunIcon className="w-8 text-dark-text-fill" />
-            )}
-          </button>
+        <div className="hidden lg:flex lg:w-full justify-end ">
+          <ToggleThemeButton />
           <Link to={user?.auth ? '/dashboard' : goTo}>
             <Button variant="primary" size="lg">
               {' '}
@@ -131,13 +100,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           )}
         </div>
         <div className="flex px-5 lg:hidden">
-          <button type="button" className="px-3" onClick={() => handleTheme()}>
-            {colorTheme === 'dark' ? (
-              <MoonIcon className="w-6 mr-2" />
-            ) : (
-              <SunIcon className="w-6 mr-2 text-dark-text-fill" />
-            )}
-          </button>
+          <ToggleThemeButton />
           <button type="button" onClick={handleClick}>
             {!open ? (
               <MenuIcon className="w-7 dark:text-dark-text-fill" />
@@ -185,8 +148,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             onClick={() => logout()}
             style="text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
           >
-            {' '}
-            {t('Logout')}{' '}
+            {t('Logout')}
           </Button>
         ) : (
           <Link to="/signup/org">

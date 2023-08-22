@@ -1,70 +1,49 @@
 import React, { forwardRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
-
-import { MenuIcon, SunIcon, XIcon } from '@heroicons/react/outline';
-import { MoonIcon } from '@heroicons/react/solid';
-import Logo from '../assets/logo.svg';
-import LogoWhite from '../assets/logoWhite.svg';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { UserContext } from '../hook/useAuth';
-import useDarkMode from '../hook/useDarkMode';
-
 import Button from './Buttons';
 import WithClickOutside from './WithClickOutside';
+import ToggleThemeButton from './TogglethemeIcon';
+import LogoIcon from './logoIcon';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const orgToken: any = localStorage.getItem('orgToken');
   const { t } = useTranslation();
-  const [colorTheme, setTheme] = useDarkMode();
+
   /* istanbul ignore next */
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
 
-  const handleTheme = () => {
-    /* istanbul ignore next */
-    localStorage.setItem('color-theme', colorTheme);
-    setTheme(colorTheme);
-  };
   const goTo = orgToken ? '/users/login' : '/login/org';
- // scroll behaviour to header
- const [showElm, setShowElm] = useState(false);
- useEffect(() => {
-   const handleScroll = () => {
-     const scrollPosition = window.scrollY;
-     scrollPosition >= 50 ? setShowElm(true) : setShowElm(false);
-   };
-   window.addEventListener('scroll', handleScroll);
+  // scroll behaviour to header
+  const [showElm, setShowElm] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      scrollPosition >= 50 ? setShowElm(true) : setShowElm(false);
+    };
+    window.addEventListener('scroll', handleScroll);
 
-   return () => {
-     window.removeEventListener('scroll', handleScroll);
-   };
- }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <div
       className={`w-screen h-[8vh] z-10 dark:bg-dark-bg fixed ${props?.styles}
-      ${
-        showElm && 'bg-indigo-300 dark:bg-card-dark' }`}
+      ${showElm && 'bg-indigo-300 dark:bg-card-dark'}`}
     >
       <div className="px-3 flex justify-between items-center w-full h-full">
         <div className="flex items-center h-full justify-between lg:w-full">
-          <Link to="/" className="flex flex-row lg:px-5">
-            {colorTheme === 'dark' ? (
-              <img
-                className="w-full cursor-pointer mr-2"
-                src={LogoWhite}
-                alt="logoWhite"
-              />
-            ) : (
-              <img
-                className="w-full cursor-pointer mr-2"
-                src={LogoWhite}
-                alt="logoWhite"
-              />
-            )}
+          <Link
+            to="/"
+            className="flex flex-row lg:px-5 text-white dark:text-dark-text-fill"
+          >
+            <LogoIcon />
 
-            <h1 className="text-3xl font-bold font-lexend text-white dark:text-dark-text-fill">
-              PULSE
-            </h1>
+            <h1 className="text-3xl font-bold font-lexend">PULSE</h1>
           </Link>
           <ul className="hidden lg:flex cursor-pointer">
             <li className="px-5 text-xl dark:text-dark-text-fill">
@@ -79,36 +58,24 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
               </NavLink>
             </li>
             {!user?.auth ? (
-            <li className="px-5 text-xl text-white dark:text-dark-text-fill">
-              <NavLink
-                className={(navData) => {
-                  if (navData.isActive) return 'text-primary';
-                  return '';
-                }}
-                to="/about"
-              >
-                {t('About')}
-              </NavLink>
-            </li>
+              <li className="px-5 text-xl text-white dark:text-dark-text-fill">
+                <NavLink
+                  className={(navData) => {
+                    if (navData.isActive) return 'text-primary';
+                    return '';
+                  }}
+                  to="/about"
+                >
+                  {t('About')}
+                </NavLink>
+              </li>
             ) : (
-             ' '
+              ' '
             )}
-            
           </ul>
         </div>
         <div className="hidden lg:flex lg:w-full justify-end ">
-          <button
-            type="button"
-            id="theme-switch"
-            className="px-4 mt-1 cursor-pointer"
-            onClick={() => handleTheme()}
-          >
-            {colorTheme === 'dark' ? (
-              <MoonIcon className="w-8" />
-            ) : (
-              <SunIcon className="w-8 text-dark-text-fill" />
-            )}
-          </button>
+          <ToggleThemeButton className="text-white dark:text-inherit" />
           <Link to={user?.auth ? '/dashboard' : goTo}>
             <Button variant="primary" size="lg">
               {' '}
@@ -128,22 +95,19 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             </Button>
           ) : (
             <Link to="/signup/org">
-              <Button variant="bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill" size="lg" style="mr-8" >
+              <Button
+                variant="bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill"
+                size="lg"
+                style="mr-8"
+              >
                 {' '}
                 {t('Register an organization')}{' '}
               </Button>
             </Link>
           )}
-        
         </div>
-        <div className="flex px-5 lg:hidden">
-          <button type="button" className="px-3" onClick={() => handleTheme()}>
-            {colorTheme === 'dark' ? (
-              <MoonIcon className="w-6 mr-2" />
-            ) : (
-              <SunIcon className="w-6 mr-2 text-dark-text-fill" />
-            )}
-          </button>
+        <div className="flex px-5 lg:hidden items-center">
+          <ToggleThemeButton className="w-6 text-white dark:text-inherit" />
           <button type="button" onClick={handleClick}>
             {!open ? (
               <MenuIcon className="w-7 dark:text-dark-text-fill" />
@@ -153,7 +117,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           </button>
         </div>
       </div>
-      
+
       <ul
         ref={ref}
         className={
@@ -166,11 +130,11 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           <Link to="/">{t('Home')}</Link>
         </li>
         {!user?.auth ? (
-        <li className="p-2 w-full dark:text-dark-text-fill">
-          <Link to="/About">About</Link>
-        </li>
+          <li className="p-2 w-full dark:text-dark-text-fill">
+            <Link to="/About">About</Link>
+          </li>
         ) : (
-        ' '
+          ' '
         )}
         <li className="p-2 w-56 text-center dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md">
           <Link to={user?.auth ? '/dashboard' : goTo} className="w-full">

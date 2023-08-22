@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const WithClickOutside = (WrappedComponent: any) => {
-  const Component = ({ styles }: any) => {
+  const Component = ({ styles, ...props }: any) => {
     const [open, setOpen] = useState(false);
     const location = useLocation();
 
@@ -36,6 +36,7 @@ const WithClickOutside = (WrappedComponent: any) => {
         setOpen={setOpen}
         ref={newRef}
         styles={styles}
+        {...props}
       />
     );
   };

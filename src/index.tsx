@@ -11,7 +11,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
-import './i18n.ts';
+import './i18n';
 import './index.css';
 import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
@@ -21,6 +21,7 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 import { t } from 'i18next';
 import { getMainDefinition } from '@apollo/client/utilities';
 import App from './App';
+import ThemeProvider from './hook/ThemeProvider'
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -90,9 +91,11 @@ const container = document.getElementById('tree')!;
 
 const root = ReactDOMClient.createRoot(container).render(
   <ApolloProvider client={client}>
-    <UserProvider>
-      <App />
-      <ToastContainer theme="colored" />
-    </UserProvider>
+    <ThemeProvider>
+      <UserProvider>
+        <App />
+        <ToastContainer theme="colored" />
+      </UserProvider>
+    </ThemeProvider>
   </ApolloProvider>,
 );

@@ -1,13 +1,17 @@
 /* eslint-disable */
 import { useApolloClient, useMutation } from '@apollo/client';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
+import { FaRegEnvelope, FaRegEye } from 'react-icons/fa';
 import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 import { toast, ToastContent } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';
@@ -37,11 +41,14 @@ function AdminLogin() {
   const { state } = useLocation();
   const [LoginUser, { loading }] = useMutation(LOGIN_MUTATION);
   const client = useApolloClient();
+  const [searchParams] = useSearchParams();
+
   const onSubmit = async (userInput: any) => {
     userInput.orgToken = orgToken;
     try {
+      const redirect = searchParams.get('redirect');
       const activity = await getLocation();
-      const { data }: any = await LoginUser({
+      await LoginUser({
         variables: {
           loginInput: {
             ...userInput,
@@ -49,6 +56,7 @@ function AdminLogin() {
           },
         },
 
+        /* istanbul ignore next */
         onCompleted: async (data) => {
           /* istanbul ignore next */
           toast.success(data.addMemberToCohort);
@@ -58,32 +66,26 @@ function AdminLogin() {
           await client.resetStore();
           /* istanbul ignore next */
           toast.success(t(`Welcome`) as ToastContent<unknown>);
+          /* istanbul ignore next */
           if (state) {
             navigate(`${state}`);
+          } else if (data.loginUser) {
+            redirect
+              ? navigate(`${redirect}`)
+              : data.loginUser.user.role === 'superAdmin'
+              ? navigate(`/organizations`)
+              : data.loginUser.user.role === 'admin'
+              ? navigate(`/trainees`)
+              : data.loginUser.user.role === 'coordinator'
+              ? navigate(`/trainees`)
+              : data.loginUser.user.role === 'manager'
+              ? navigate(`/coordinators`)
+              : navigate('/performance');
           } else {
             navigate('/dashboard');
           }
-          /* istanbul ignore if */
-          if (data.loginUser) {
-            //navigate to ${state},in case you want to make it default (/dashboard),
-            /* istanbul ignore next */
-            {
-              data.loginUser.user.role === 'superAdmin'
-                ? navigate(`/organizations`)
-                : data.loginUser.user.role === 'admin'
-                ? navigate(`/trainees`)
-                : data.loginUser.user.role === 'coordinator'
-                ? navigate(`/trainees`)
-                : data.loginUser.user.role === 'manager'
-                ? navigate(`/coordinators`)
-                : navigate('/performance');
-            }
-          }
-          /* istanbul ignore next */
-          return;
         },
         onError: (err) => {
-          console.log(err);
           /* istanbul ignore next */
           if (err.message.toLowerCase() !== 'invalid credential') {
             toast.error(err.message);
@@ -93,7 +95,6 @@ function AdminLogin() {
               type: 'custom',
               message: t('Invalid credentials'),
             });
-        
           }
         },
       });
@@ -103,7 +104,6 @@ function AdminLogin() {
         type: 'custom',
         message: t('Invalid credentials'),
       });
-  
     }
   };
   const getLocation = async () => {
@@ -129,9 +129,7 @@ function AdminLogin() {
         };
         return activityResponseActual;
       })
-      .then((data) => {
-        return data;
-      });
+      .then((data) => data);
     const date = new Date().toString();
     return { date, ...location } || null;
   };
@@ -140,16 +138,12 @@ function AdminLogin() {
     <div className="w-full h-full py-2 text-center bg-gray-100 dark:bg-dark-frame-bg sm:flex sm:items-center sm:justify-center">
       <div className="mt-20 mb-8 bg-indigo-100 md:rounded-xl md:shadow-xl md:w-full sm:max-w-xl dark:bg-dark-bg sm:rounded-none sm:shadow-none dark:shadow-2xl">
         <div className="py-10 sm:py-8 ">
-          {/* <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
-            {t('Welcome to')} {orgName}
-          </h2> */}
           <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
             {t('Welcome to')}{' '}
             {orgName
               ? orgName.charAt(0).toUpperCase() + orgName.slice(1).toLowerCase()
               : ''}
           </h2>
-
           <div className="border-[1px] w-10 bg-primary border-primary inline-block mb-2" />
           <div className="text-sm text-center dark:text-dark-text-fill">
             <Link
@@ -167,15 +161,15 @@ function AdminLogin() {
               onSubmit={handleSubmit(onSubmit)}
               data-testid="loginForm"
             >
-                   {errors.password && errors.password.message===t('Invalid credentials') ? (
-                  <small className="text-red-600">
-                    {errors.password.message}
-                  </small>
-                ) : (
-                  ''
-                )}
+              {errors.password &&
+              errors.password.message === t('Invalid credentials') ? (
+                <small className="text-red-600">
+                  {errors.password.message}
+                </small>
+              ) : (
+                ''
+              )}
               <div className="flex items-center w-full p-2 my-2 mb-2 bg-gray-100 border rounded-md border-gray dark:bg-dark-bg ">
-
                 <FaRegEnvelope className="mr-2 text-gray-400" />
                 <input
                   data-testid="email"
@@ -211,7 +205,8 @@ function AdminLogin() {
                 </div>
               </div>
               <div className="pl-4 mb-1 text-left">
-                {errors.password && errors.password.message!==t('Invalid credentials') ? (
+                {errors.password &&
+                errors.password.message !== t('Invalid credentials') ? (
                   <small className="text-red-600">
                     {errors.password.message}
                   </small>
