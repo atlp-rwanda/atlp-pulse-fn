@@ -9,16 +9,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Draggable from 'react-draggable';
-import DataTable from '../components/DataTable';
-import Sidebar from '../components/Sidebar';
-import devs from '../dummyData/developers2.json';
-import useDocumentTitle from '../hook/useDocumentTitle';
-import Button from './../components/Buttons';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import DataTable from '../components/DataTable';
+import devs from '../dummyData/developers2.json';
+import useDocumentTitle from '../hook/useDocumentTitle';
+import Button from "../components/Buttons";
 import Avatar from '../assets/avatar.png';
-import Chart from 'chart.js/auto';
-import { Doughnut } from 'react-chartjs-2';
 
 import {
   GET_USERS_QUERY,
@@ -32,15 +30,14 @@ import {
   GET_GITHUB_STATISTICS,
 } from '../Mutations/manageStudentMutations';
 
-import { useLazyQuery, useMutation } from '@apollo/client';
 import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
-import { onError } from '@apollo/client/link/error';
 import GitHubActivityChart from '../components/chartGitHub';
 import Spinner from '../components/Spinner';
+
 const organizationToken = localStorage.getItem('orgToken');
 
-const AdminTraineeDashboard = () => {
+function AdminTraineeDashboard() {
   useDocumentTitle('Trainees');
   const { t }: any = useTranslation();
   const { user } = useContext(UserContext);
@@ -122,23 +119,23 @@ const AdminTraineeDashboard = () => {
 
   /* istanbul ignore next */
   const removeTraineeMod = () => {
-    let newState = !removeTraineeModel;
+    const newState = !removeTraineeModel;
     setRemoveTraineeModel(newState);
   };
 
   const removeModel = () => {
-    let newState = !registerTraineeModel;
+    const newState = !registerTraineeModel;
     setRegisterTraineeModel(newState);
   };
 
   /* istanbul ignore next */
   const removeEditModel = () => {
-    let newState = !editTraineeModel;
+    const newState = !editTraineeModel;
     setEditTraineeModel(newState);
   };
 
   const inviteModel = () => {
-    let newState = !inviteTraineeModel;
+    const newState = !inviteTraineeModel;
     setInviteTraineeModel(newState);
   };
   /* istanbul ignore next */
@@ -185,7 +182,7 @@ const AdminTraineeDashboard = () => {
       Cell: ({ row }: any) => (
         <div
           className={
-            ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
+            ` items-center${  traineeData?.length > 0 ? ' flex' : ' hidden'}`
           }
         >
           <Icon
@@ -239,7 +236,7 @@ const AdminTraineeDashboard = () => {
   ];
 
   const data = devs;
-  let datum: any = [];
+  const datum: any = [];
   const [getUsers] = useLazyQuery(GET_USERS_QUERY, {
     variables: {
       orgToken: organizationToken,
@@ -647,7 +644,7 @@ const AdminTraineeDashboard = () => {
                     >
                       <h3>
                         <b>RESUME</b>
-                        {''}
+                        
                       </h3>
                       <p>
                         {traineeDetails?.profile?.resume ? (
@@ -666,7 +663,7 @@ const AdminTraineeDashboard = () => {
                   )}
 
                 <div
-                  className={'text-sm font-sans'}
+                  className="text-sm font-sans"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -846,9 +843,7 @@ const AdminTraineeDashboard = () => {
                         setSelectedTeamOptionUpdate(e);
                       },
                     }}
-                    options={teamsOptions.filter((option: any) => {
-                      return option.value !== editTeam;
-                    })}
+                    options={teamsOptions.filter((option: any) => option.value !== editTeam)}
                   />
                 </div>
               </div>
@@ -1087,6 +1082,6 @@ const AdminTraineeDashboard = () => {
       </div>
     </>
   );
-};
+}
 
 export default AdminTraineeDashboard;
