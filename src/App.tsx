@@ -6,9 +6,9 @@ import Skeleton from './components/Skeleton';
 import TicketsProvider from './hook/ticketsContext';
 import './index.css';
 
+import MainRoutes from './containers/Routes';
+import LandingPage from './pages/Home';
 
-const MainRoutes = React.lazy(() => import('./containers/Routes'));
-const LandingPage = React.lazy(() => import('./pages/Home'));
 function App() {
   return (
     <div className="flex flex-col h-screen">
@@ -16,13 +16,10 @@ function App() {
         <FormProvider>
           <Router>
             <ScrollToTop>
-              <Suspense fallback={<Skeleton />}>
-                <Routes>
-                  <Route path="/" element={<LandingPage />} />
-                  <Route path="/*" element={<MainRoutes />} />
-
-                </Routes>
-              </Suspense>
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/*" element={<MainRoutes />} />
+              </Routes>
             </ScrollToTop>
           </Router>
         </FormProvider>
