@@ -89,6 +89,17 @@ exports[`Main Routes Should render 1`] = `
               Product
             </a>
           </li>
+          <li
+            className="px-5 text-xl dark:text-dark-text-fill"
+          >
+            <a
+              className=""
+              href="/homePageDocs"
+              onClick={[Function]}
+            >
+              Docs
+            </a>
+          </li>
         </ul>
       </div>
       <div
@@ -223,6 +234,16 @@ exports[`Main Routes Should render 1`] = `
         </a>
       </li>
       <li
+        className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      >
+        <a
+          href="/homePageDocs"
+          onClick={[Function]}
+        >
+          Docs
+        </a>
+      </li>
+      <li
         className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
       >
         <a
@@ -326,6 +347,17 @@ exports[`Main Routes Should render 1`] = `
                 onClick={[Function]}
               >
                 About
+              </a>
+            </li>
+            <li
+              className="px-5 text-xl dark:text-dark-text-fill"
+            >
+              <a
+                className=""
+                href="/homePageDocs"
+                onClick={[Function]}
+              >
+                Docs
               </a>
             </li>
           </ul>
@@ -451,7 +483,32 @@ exports[`Main Routes Should render 1`] = `
           </a>
         </li>
         <li
+<<<<<<< HEAD
           className="p-2 w-56 text-center dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md"
+=======
+          className="p-2 w-full dark:text-dark-text-fill"
+        >
+          <a
+            className="w-full"
+            href="/product"
+            onClick={[Function]}
+          >
+            Product
+          </a>
+        </li>
+        <li
+          className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+        >
+          <a
+            href="/homePageDocs"
+            onClick={[Function]}
+          >
+            Docs
+          </a>
+        </li>
+        <li
+          className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
+>>>>>>> 6aef51c (Added Documentation for the Home Page)
         >
           <a
             className="w-full"
@@ -1255,6 +1312,7 @@ exports[`Main Routes Should render 1`] = `
       </div>
     </div>
   </div>
+<<<<<<< HEAD
   <div
     className="w-full bg-indigo-100 dark:bg-dark-bg undefined"
   >
@@ -1529,5 +1587,7 @@ exports[`Main Routes Should render 1`] = `
       </div>
     </div>
   </div>
+=======
+>>>>>>> f7fb7e7 (Added Documentation for the Home Page)
 </div>
 `;

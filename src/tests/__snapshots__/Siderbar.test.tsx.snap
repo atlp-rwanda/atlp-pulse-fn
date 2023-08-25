@@ -79,6 +79,17 @@ exports[`<Home /> Renders Home 1`] = `
               About
             </a>
           </li>
+          <li
+            className="px-5 text-xl dark:text-dark-text-fill"
+          >
+            <a
+              className=""
+              href="/homePageDocs"
+              onClick={[Function]}
+            >
+              Docs
+            </a>
+          </li>
         </ul>
       </div>
       <div
@@ -202,7 +213,28 @@ exports[`<Home /> Renders Home 1`] = `
         </a>
       </li>
       <li
-        className="p-2 w-56 text-center dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md"
+        className="p-2 w-full dark:text-dark-text-fill"
+      >
+        <a
+          className="w-full"
+          href="/product"
+          onClick={[Function]}
+        >
+          Product
+        </a>
+      </li>
+      <li
+        className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+      >
+        <a
+          href="/homePageDocs"
+          onClick={[Function]}
+        >
+          Docs
+        </a>
+      </li>
+      <li
+        className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
       >
         <a
           className="w-full"

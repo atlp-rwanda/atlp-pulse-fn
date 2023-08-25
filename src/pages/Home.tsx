@@ -15,7 +15,7 @@ function LandingPage() {
   useDocumentTitle('Welcome');
   return (
     <div className="">
-      <Navbar styles="bg-opacity-100 dark:bg-opacity-100" />
+      <Navbar styles="bg-opacity-100 dark:bg-opacity-100 " />
       <div className="relative hero">
         <p className="absolute px-4 py-2 text-img bottom-1/3 lg:left-44 lg:right-0 lg:text-5xl sm:text-2xl md:left-0 md:right-0">
           The brilliant performance management <br /> platform around the word.

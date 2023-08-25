@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink , useLocation} from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { UserContext } from '../hook/useAuth';
 import Button from './Buttons';
@@ -13,6 +13,8 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { t } = useTranslation();
 
   /* istanbul ignore next */
+  const location = useLocation()
+  const pathname = location.pathname.split("/")[1]
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
 
@@ -36,7 +38,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
       ${showElm && 'bg-indigo-300 dark:bg-card-dark'}`}
     >
       <div className="px-3 flex justify-between items-center w-full h-full">
-        <div className="flex items-center h-full justify-between lg:w-full">
+        <div className="flex items-center h-full justify-between lg:w-[60%]">
           <Link
             to="/"
             className="flex flex-row lg:px-5 text-white dark:text-dark-text-fill"
@@ -72,9 +74,33 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             ) : (
               ' '
             )}
+             <li className="px-5 text-xl  text-white dark:text-dark-text-fill">
+                <NavLink
+                  className={(navData) => {
+                    if (navData.isActive) return 'text-primary';
+                    return '';
+                  }}
+                  to="/pricing"
+                >
+                  {t('Pricing')}
+                </NavLink>
+              </li>
+          
+             <li className="px-5 text-xl  text-white dark:text-dark-text-fill">
+              <NavLink
+                className={() => {
+                  if (pathname==="docs") return 'text-primary';
+                  return '';
+                }}
+                to="/docs/org-signin"
+              >
+                {t('Docs')}
+              </NavLink>
+            </li>
+            
           </ul>
         </div>
-        <div className="hidden lg:flex lg:w-full justify-end ">
+        <div className="hidden lg:flex lg:w-[300px] justify-end ">
           <ToggleThemeButton className="text-white dark:text-inherit" />
           <Link to={user?.auth ? '/dashboard' : goTo}>
             <Button variant="primary" size="lg">
