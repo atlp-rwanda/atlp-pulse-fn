@@ -25,6 +25,7 @@ import {
   GET_TRAINEES_QUERY,
   GET_COHORTS_QUERY,
   REMOVE_MEMBER_FROM_COHORT_MUTATION,
+  DROP_TRAINEE,
   EDIT_MEMBER_MUTATION,
   INVITE_USER_MUTATION,
   GET_TEAM_QUERY,
@@ -48,6 +49,9 @@ const AdminTraineeDashboard = () => {
 
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [removeTraineeModel, setRemoveTraineeModel] = useState(false);
+  const [dropTraineeModel, setDropTraineeModel] = useState(false);
+  
+
   const [editTraineeModel, setEditTraineeModel] = useState(false);
   const [inviteTraineeModel, setInviteTraineeModel] = useState(false);
   const [traineeData, setTraineeData] = useState<any[]>([]);
@@ -85,6 +89,38 @@ const AdminTraineeDashboard = () => {
   const [traineeId, setTraineeId] = useState(null);
   const [traineeCohort, setTraineeCohort] = useState(null);
   const [traineeStatus, setTraineeStatus] = useState(null);
+
+ // Define state variables to store reason and date
+ const [reason, setReason] = useState('');
+ const [date, setDate] = useState('');
+
+ // Function to handle the reason input change
+ const handleReasonChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+   setReason(event.target.value);
+ };
+
+ // Function to handle the date input change
+ const handleDateChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+   setDate(event.target.value);
+ };
+
+ // Function to remove the member from the cohort
+//  const dropMemberFromCohort = () => {
+//    // You can now use the reason and date variables in this function
+//    console.log('Reason:', reason);
+//    console.log('Date:', date);
+
+//    // Assuming you have some logic to remove the trainee here
+//    // After the removal is successful, you can reset the form and loading state
+//    setReason('');
+//    setDate('');
+//    setButtonLoading(false);
+
+//    // Rest of your removeMemberFromCohort logic here
+//  };
+
+
+
 
   function PaperComponent(props: PaperProps) {
     return (
@@ -136,6 +172,10 @@ const AdminTraineeDashboard = () => {
   const removeModel = () => {
     let newState = !registerTraineeModel;
     setRegisterTraineeModel(newState);
+  };
+  const dropModel = () => {
+    let newState = !dropTraineeModel;
+    setDropTraineeModel(newState);
   };
 
   /* istanbul ignore next */
@@ -399,6 +439,33 @@ const AdminTraineeDashboard = () => {
     },
   );
 
+
+
+  const [dropMemberFromCohort] = useMutation(
+    DROP_TRAINEE,
+    {
+      variables: {
+        traineeId: traineeDetails,
+        reason: reason,
+        date: date,
+      },
+      onCompleted: (data) => {
+        setTimeout(() => {
+          setButtonLoading(false);
+          toast.success(data.dropMemberFromCohort);
+          dropModel();
+        }, 1000);
+      },
+      onError: (err) => {
+        setTimeout(() => {
+          setButtonLoading(false);
+          toast.error(err.message);
+        }, 500);
+      },
+    },
+  );
+
+
   const [inviteUser] = useMutation(INVITE_USER_MUTATION, {
     variables: {
       email: inviteEmail,
@@ -483,6 +550,11 @@ const AdminTraineeDashboard = () => {
       teamOptions[index].label = team?.name;
     });
   }
+  
+
+
+
+
 
   return (
     <>
@@ -1057,6 +1129,150 @@ const AdminTraineeDashboard = () => {
       </div>
       {/* =========================== End::  AddTraineeModel =============================== */}
 
+      {/* =========================== Start::  delete TraineeModel =============================== */}
+{/* 
+      <div
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+          dropTraineeModel === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+          <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+              {t('Drop Trainee')}
+            </h3>
+            <hr className="w-full my-3 border-b bg-primary" />
+          </div>
+          <div className="card-body">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+                  {t(
+                    'Are you sure you want to drop trainee ?',
+                  )}
+                </h3>
+              </div>
+
+              <div className="flex justify-between w-full">
+                <Button
+                  data-testid="dropModel"
+                  variant="info"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => dropModel()}
+                >
+                  {t('drop')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="removeMemberFromCohort"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    setButtonLoading(true);
+                    if (deleteEmail && deleteFromCohort) {
+                      removeMemberFromCohort();
+                    } else {
+                      toast.error('Please select the trainee again ');
+                    }
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('Proceed')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div> */}
+
+<div
+  className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+    dropTraineeModel === true ? 'block' : 'hidden'
+  }`}
+>
+  <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+    <div className="flex flex-wrap items-center justify-center w-full card-title">
+      <h3 className="w-11/12 text-sm font-bold text-center dark:text-white">
+        {t('Drop Trainee')}
+      </h3>
+      <hr className="w-full my-3 border-b bg-primary" />
+    </div>
+    <div className="card-body">
+      <form className="px-8 py-3">
+        <div className="flex flex-wrap items-center justify-center w-full card-title">
+          <h3 className="w-11/12 text-sm font-bold text-center dark:text-white">
+            {t('Are you sure you want to drop trainee ?')}
+          </h3>
+        </div>
+
+        {/* Reason Field */}
+        <div className="mb-4">
+          <label className="block text-sm font-bold text-gray-700 dark:text-white" htmlFor="reason">
+            {t('Reason')}
+          </label>
+          <input
+            type="text"
+            id="reason"
+            name="reason"
+            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+            // You can add onChange event handler to capture the reason input value
+          />
+        </div>
+
+        {/* Date Field */}
+        <div className="mb-4">
+          <label className="block text-sm font-bold text-gray-700 dark:text-white" htmlFor="date">
+            {t('Date')}
+          </label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+            // You can add onChange event handler to capture the date input value
+          />
+        </div>
+
+        <div className="flex justify-between w-full">
+          <Button
+            data-testid="dropModel"
+            variant="info"
+            size="sm"
+            style="w-[30%] md:w-1/4 text-sm font-sans"
+            onClick={() => dropModel()}
+          >
+            {t('drop')}
+          </Button>
+          <Button
+            variant="primary"
+            size="sm"
+            data-testid="dropMemberFromCohort"
+            style="w-[30%] md:w-1/4 text-sm font-sans"
+            onClick={() => {
+              setButtonLoading(true);
+              if (deleteEmail && deleteFromCohort) {
+                // You can also pass the reason and date values to the removeMemberFromCohort function
+                dropMemberFromCohort();
+              } else {
+                toast.error('Please select the trainee again ');
+              }
+            }}
+            loading={buttonLoading}
+          >
+            {t('Proceed')}
+          </Button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+      {/* =========================== End::  deleteTraineeModel =============================== */}
+
+
+
+
       <div className="flex flex-col h-screen">
         <div className="flex flex-row">
           <Sidebar toggle={handleClick} style="hidden lg:flex" />
@@ -1087,6 +1303,17 @@ const AdminTraineeDashboard = () => {
                         {t('Invite')}
                       </Button>
                     )}
+                    
+                    <Button
+                    variant="primary"
+                    size="lg"
+                    data-testid="dropModel"
+                    onClick={dropModel}
+                  >
+                    {' '}
+                    {t('Drop')}
+                  </Button>
+                    
                   </div>
                 </div>
                 <div className="px-3 md:px-8">

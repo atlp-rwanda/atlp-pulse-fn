@@ -148,7 +148,12 @@ export const ADD_MEMBER_TO_COHORT_MUTATION = gql`
     $cohortName: String!
     $email: String!
     $orgToken: String!
-  ) {
+  ) 
+{
+
+
+
+  
     addMemberToCohort(
       cohortName: $cohortName
       email: $email
@@ -187,6 +192,13 @@ export const UPDATE_ORGANISATION_NAME = gql`
   }
 `;
 
+export const DROP_TRAINEE = gql`
+  mutation dropTrainee($traineeId: String!, $reason: String!,  date: DateTime!) 
+  {
+    dropTrainee(traineeId: $traineeId, reason: $reason,date: $date) 
+    
+  }`;
+
 export const REMOVE_MEMBER_FROM_COHORT_MUTATION = gql`
   mutation RemoveMemberFromCohort(
     $teamName: String!
@@ -199,7 +211,12 @@ export const REMOVE_MEMBER_FROM_COHORT_MUTATION = gql`
       email: $email
     )
   }
+  
+    
+
+  
 `;
+
 
 export const EDIT_MEMBER_MUTATION = gql`
   mutation EditMember(
@@ -274,3 +291,6 @@ export const GET_TEAM_TRAINEE_QUERY = gql`
     }
   }
 `;
+
+
+
