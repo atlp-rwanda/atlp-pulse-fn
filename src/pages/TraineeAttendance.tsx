@@ -1,26 +1,25 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { GET_ATTENDANCE, UPDATE_ATTENDANCE } from '../Mutations/Attendance';
-import Pagination from '../components/Pagination';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import Pagination from '../components/Pagination';
+import { GET_ATTENDANCE, UPDATE_ATTENDANCE } from '../Mutations/Attendance';
 import 'react-circular-progressbar/dist/styles.css';
 import ButtonLoading from '../components/ButtonLoading';
 
 /* istanbul ignore next */
-const TraineeAttendanceTracker = () => {
+function TraineeAttendanceTracker() {
   const [submittingAttendance, setSubmittingAttendance] = useState(false);
 
   const [addEventModel, setAddEventModel] = useState(false);
   const [emailsAndStatuses, setemailsAndStatuses] = useState<any[]>([]);
   let week: any = [];
-  const { loading, error, data } = useQuery(GET_ATTENDANCE);
+  const { loading, data } = useQuery(GET_ATTENDANCE);
   const [selectedWeek, setSelectedWeek] = useState<number>(0);
 
   useEffect(() => {
@@ -32,13 +31,11 @@ const TraineeAttendanceTracker = () => {
         /* istanbul ignore next */
         function extractEmailsAndStatus(traineeData: any) {
           return traineeData.map(
-            (item: { traineeId: any; traineeEmail: any; status: any }) => {
-              return {
-                traineeId: item.traineeId,
-                traineeEmail: item.traineeEmail,
-                status: item.status,
-              };
-            },
+            (item: { traineeId: any; traineeEmail: any; status: any }) => ({
+              traineeId: item.traineeId,
+              traineeEmail: item.traineeEmail,
+              status: item.status,
+            }),
           );
         }
 
@@ -74,11 +71,9 @@ const TraineeAttendanceTracker = () => {
     count: emailsAndStatuses.length,
   });
 
-  const [attendanceData, setAttendanceData] = useState<any>({});
   const [days, setDays] = useState<any>();
   const [weeks, setweeks] = useState();
   const [createAttend] = useMutation(UPDATE_ATTENDANCE);
-  const [getTraineeAttendance, setGetTraineeAttendance] = useState<any[]>([]);
 
   const [getAttend] = useLazyQuery(GET_ATTENDANCE, {
     variables: {
@@ -106,11 +101,10 @@ const TraineeAttendanceTracker = () => {
     handleSubmit,
     register,
     formState: { errors },
-    setError,
   }: any = useForm();
   /* istanbul ignore next */
   const handleTakeAttedValue = (event: any, TraineeId: any) => {
-    const value = event.target.value;
+    const { value } = event.target;
     setUpdateAttend((prevState) => {
       const existingTraineeIndex = prevState.trainees.findIndex(
         (trainee) => trainee.traineeId === TraineeId,
@@ -121,7 +115,7 @@ const TraineeAttendanceTracker = () => {
         updatedTrainees[existingTraineeIndex].traineeId = TraineeId;
         updatedTrainees[existingTraineeIndex].status[0].value = value;
         return { ...prevState, trainees: updatedTrainees };
-      } else {
+      } 
         const emptyTraineeIndex = prevState.trainees.findIndex(
           (trainee) => trainee.traineeId === '',
         );
@@ -131,34 +125,30 @@ const TraineeAttendanceTracker = () => {
           updatedTrainees[emptyTraineeIndex].traineeId = TraineeId;
           updatedTrainees[emptyTraineeIndex].status[0].value = value;
           return { ...prevState, trainees: updatedTrainees };
-        } else {
+        } 
           const newTrainee = {
             traineeId: TraineeId,
-            status: [{ value: value }],
+            status: [{ value }],
           };
           const updatedTrainees = [...prevState.trainees, newTrainee];
           return { ...prevState, trainees: updatedTrainees };
-        }
-      }
+        
+      
     });
   };
 
   // handle take day
   const handleDays = (e: any) => {
     setDays(e.target.value);
-    setUpdateAttend((prevState) => {
-      return { ...prevState, days: e.target.value };
-    });
+    setUpdateAttend((prevState) => ({ ...prevState, days: e.target.value }));
   };
 
   const handelWeeks = (e: any) => {
     setweeks(e.target.value);
-    setUpdateAttend((prevState) => {
-      return { ...prevState, week: e.target.value };
-    });
+    setUpdateAttend((prevState) => ({ ...prevState, week: e.target.value }));
   };
   /* istanbul ignore next */
-  const onSubmit = async (e: any) => {
+  const onSubmit = async () => {
     try {
       setSubmittingAttendance(true);
       await createAttend({
@@ -189,10 +179,10 @@ const TraineeAttendanceTracker = () => {
   let one = 0;
   emailsAndStatuses.forEach((item) => {
     /* istanbul ignore next */
-    for (let i = 0; i < item.status.length; i++) {
-      if (item.status[i].value === 0) {
+    for (const element of item.status) {
+      if (element.value === 0) {
         zeo++;
-      } else if (item.status[i].value === 1) {
+      } else if (element.value === 1) {
         one++;
       } else {
         two++;
@@ -349,6 +339,7 @@ const TraineeAttendanceTracker = () => {
 
                 <div className="w-full flex justify-between mx-10px">
                   <button
+                    type='button'
                     data-testid="removeModel"
                     className="py-2 w-[40%] md:w-1/3 bg-primary rounded font-sans text-sm text-white"
                     style={{ height: '40px' }} // Apply a fixed height to the button
@@ -366,7 +357,7 @@ const TraineeAttendanceTracker = () => {
                       {t('Save')}
                     </button>
                   ) : (
-                    <ButtonLoading style={'rounded py-2 w-[40%]'} />
+                    <ButtonLoading style="rounded py-2 w-[40%]" />
                   )}
                 </div>
               </form>
@@ -385,7 +376,6 @@ const TraineeAttendanceTracker = () => {
                 data-testid="getWeek"
                 className="flex text-black px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
                 onChange={(event) => {
-                  const week: any = Number(event.target.value) + 1;
                   setSelectedWeek(Number(event.target.value));
                 }}
               >
@@ -396,6 +386,7 @@ const TraineeAttendanceTracker = () => {
                 <option value="3">{t('Week 4')}</option>
               </select>
               <h2
+                aria-hidden
                 data-testid="submitAttend"
                 className="mx-3 bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer"
                 onClick={handleToggleModal} // Add this onClick event
@@ -408,7 +399,7 @@ const TraineeAttendanceTracker = () => {
             <div className="px-3 md:px-8">
               <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px]">
                 <div className="">
-                  <div className="flex ml-2 items-center justify-between"></div>
+                  <div className="flex ml-2 items-center justify-between" />
                 </div>
                 <div>
                   <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
@@ -516,6 +507,7 @@ const TraineeAttendanceTracker = () => {
                 </div>
                 <div className="flex items-center justify-center gap-1 mt-12 mb-0">
                   <button
+                    type='button'
                     onClick={prevPage}
                     data-testid="prev"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -525,6 +517,7 @@ const TraineeAttendanceTracker = () => {
                     &larr;
                   </button>
                   <button
+                    type='button'
                     onClick={() => setPage(1)}
                     data-testid="page1"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -535,6 +528,7 @@ const TraineeAttendanceTracker = () => {
                   </button>
                   {gaps.paginationGroup.map((el) => (
                     <button
+                    type='button'
                       onClick={() => setPage(el)}
                       data-testid="page2"
                       key={el}
@@ -546,6 +540,7 @@ const TraineeAttendanceTracker = () => {
                     </button>
                   ))}
                   <button
+                    type='button'
                     onClick={() => setPage(totalPages)}
                     data-testid="page3"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -555,6 +550,7 @@ const TraineeAttendanceTracker = () => {
                     {totalPages}
                   </button>
                   <button
+                    type='button'
                     onClick={nextPage}
                     data-testid="next"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -714,6 +710,6 @@ const TraineeAttendanceTracker = () => {
       </div>
     </>
   );
-};
+}
 
 export default TraineeAttendanceTracker;

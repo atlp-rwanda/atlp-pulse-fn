@@ -9,7 +9,7 @@ function AttendanceDetails() {
   return (
     <div className="bg-neutral-100 dark:bg-dark-frame-bg">
       <TraineeAttendaceDetails />
-      <TraineeComments />
+      {/* <TraineeComments /> */}
     </div>
   );
 }
