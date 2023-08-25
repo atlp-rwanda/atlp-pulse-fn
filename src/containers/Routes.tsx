@@ -34,11 +34,12 @@ import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
 import Comingsoon from '../pages/Comingsoon';
-const DashRoutes = React.lazy(() => import('../containers/DashRoutes'));
+import DashRoutes from '../containers/DashRoutes';
 
 function MainRoutes() {
   return (
     <div className="flex flex-col min-h-screen">
+      <Header />
       <Suspense fallback={<Skeleton />}>
         <Routes>
           <Route path="/*" element={<DashRoutes />} />
@@ -46,9 +47,7 @@ function MainRoutes() {
             path="/"
             element={
               <>
-                <Header />
                 <Outlet />
-                <Footer />
               </>
             }
           >
@@ -89,6 +88,7 @@ function MainRoutes() {
           <Route path="*" element={<Error />} />
         </Routes>
       </Suspense>
+      <Footer />
     </div>
   );
 }
