@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
 import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';
@@ -18,13 +18,15 @@ import ControlledSelect from '../../components/ControlledSelect';
 import jwt_decode from 'jwt-decode';
 
 function Signup() {
-  const token: any = window.location.href.substring(
-    window.location.href.lastIndexOf('/') + 1,
-  );
-  const originalToken: any = token.replaceAll('*', '.');
   useDocumentTitle('Login');
 
+  const {token} = useParams();
   const { t } = useTranslation();
+  // const token: any = window.location.href.substring(
+  //   window.location.href.lastIndexOf('/') + 1,
+  // );
+  const originalToken: any = token?.replaceAll('*', '.');
+
   const [passwordShown, setPasswordShown] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const tooglePassword =
@@ -33,6 +35,7 @@ function Signup() {
       /* istanbul ignore next */
       setPasswordShown(!passwordShown);
     };
+
   const {
     register,
     handleSubmit,
@@ -43,10 +46,7 @@ function Signup() {
     setValue,
   }: any = useForm();
 
-  const { UserSignup } = useContext(UserContext);
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const [Signup, { loading }] = useMutation(SIGN_UP_MUTATION);
 
   const [getOrganizationName] = useLazyQuery(GET_SIGNUP_ORGANIZATION, {
     variables: {
@@ -58,13 +58,13 @@ function Signup() {
       /* istanbul ignore next */
       if (err.message === 'expired organization token') {
         toast.error('Your signup link has expired');
-        navigate('/');
+        // navigate('/');
       } else {
-        navigate('/pageNotFound');
+        // navigate('/pageNotFound');
       }
     },
   });
-  const [SignupUser] = useMutation(SIGN_UP_MUTATION, {
+  const [SignupUser, {loading}] = useMutation(SIGN_UP_MUTATION, {
     /* istanbul ignore next */
     /* istanbul ignore next */
     onCompleted: (data) => {
@@ -297,8 +297,9 @@ function Signup() {
     }
     // Get the email from the token and set it as the initial value for the email input field
     const getEmailFromToken = async () => {
+      console.log(originalToken)
       let decodedToken: TokenPayload = await jwt_decode(originalToken);
-      const emailFromToken = decodedToken.email;
+      const emailFromToken = decodedToken?.email;
 
       // Set the email value in the email input field
       setValue('email', emailFromToken);
@@ -464,6 +465,7 @@ function Signup() {
       </div>
     </div>
   );
+  return <h1>sd</h1>
 }
 
 export default Signup;
