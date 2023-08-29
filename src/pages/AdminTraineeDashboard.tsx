@@ -15,10 +15,8 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import DataTable from '../components/DataTable';
 import devs from '../dummyData/developers2.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import Button from "../components/Buttons";
+import Button from '../components/Buttons';
 import Avatar from '../assets/avatar.png';
-import Chart from 'chart.js/auto';
-import { Doughnut } from 'react-chartjs-2';
 
 import {
   GET_USERS_QUERY,
@@ -183,9 +181,9 @@ function AdminTraineeDashboard() {
       accessor: '',
       Cell: ({ row }: any) => (
         <div
-          className={
-            ` items-center${  traineeData?.length > 0 ? ' flex' : ' hidden'}`
-          }
+          className={` items-center${
+            traineeData?.length > 0 ? ' flex' : ' hidden'
+          }`}
         >
           <Icon
             icon="el:file-edit-alt"
@@ -629,56 +627,84 @@ function AdminTraineeDashboard() {
                     </i>
                   </p>
                 </div>
+
+                {/* Show resume URL for admins and managers */}
+                {user &&
+                  (user.role === 'admin' || user.role === 'coordinator') && (
+                    <div
+                      className="font-sans text-sm"
+                      style={{
+                        display: 'flex',
+                        gap: '50px',
+                        justifyContent: 'space-between',
+                        paddingBlock: '10px',
+                        marginBottom: '20px',
+                        borderBottom: '0.5px solid #EAECEE',
+                      }}
+                    >
+                      <h3>
+                        <b>RESUME</b>
+                      </h3>
+                      <p>
+                        {traineeDetails?.profile?.resume ? (
+                          <a
+                            href={traineeDetails.profile.resume}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            View Resume
+                          </a>
+                        ) : (
+                          'Unavailable'
+                        )}
+                      </p>
+                    </div>
+                  )}
+
                 <div
-                  className={"text-sm font-sans"}
+                  className="text-sm font-sans"
                   style={{
                     display: 'flex',
                     gap: '50px',
                     justifyContent: 'space-between',
                     paddingBlock: '10px',
                     marginBottom: '20px',
-                  
                   }}
                 >
-
-               
-                {isLoaded?(
-                  <p>
-                
-                    <div className="flex items-center justify-center h-48">
-                    <i>
-                   Loading gitHub statistics...
-                    </i>
-            <Spinner />
-            <div className="spinner" />
-          </div>
-                  </p>
-                ):(
-                  <div className={traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?"flex":'hidden '}>
-                  <div className='flex flex-col'>
-            
-                    <i className='text-2xl '>
-               
-                    {gitHubStatistics?.totalCommits} total commits
-                  
-                    </i>
-                 
-    
-                </div>
-                <div className='flex flex-col'>
-                <div>
-           {     traineeDetails?.profile && traineeDetails?.profile?.githubUsername ?(
-  <GitHubActivityChart data={gitHubStatistics} />
-           ):
-           (
-<></>
-           )
-}
-              
-    </div>
-                </div>
-                </div>
-                )}  
+                  {isLoaded ? (
+                    <p>
+                      <div className="flex items-center justify-center h-48">
+                        <i>Loading gitHub statistics...</i>
+                        <Spinner />
+                        <div className="spinner" />
+                      </div>
+                    </p>
+                  ) : (
+                    <div
+                      className={
+                        traineeDetails?.profile &&
+                        traineeDetails?.profile?.githubUsername
+                          ? 'flex'
+                          : 'hidden '
+                      }
+                    >
+                      <div className="flex flex-col">
+                        <i className="text-2xl ">
+                          {gitHubStatistics?.totalCommits} total commits
+                        </i>
+                      </div>
+                      <div className="flex flex-col">
+                        <div>
+                          {traineeDetails?.profile &&
+                          traineeDetails?.profile?.githubUsername ? (
+                            <GitHubActivityChart data={gitHubStatistics} />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <Button
@@ -816,7 +842,9 @@ function AdminTraineeDashboard() {
                         setSelectedTeamOptionUpdate(e);
                       },
                     }}
-                    options={teamsOptions.filter((option: any) => option.value !== editTeam)}
+                    options={teamsOptions.filter(
+                      (option: any) => option.value !== editTeam,
+                    )}
                   />
                 </div>
               </div>
@@ -920,9 +948,9 @@ function AdminTraineeDashboard() {
           registerTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
-        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+        <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
-            <h3 className="w-11/12 text-md font-bold text-center dark:text-white text-[#5F49AC]">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Add Trainee')}
             </h3>
             <hr className="w-full my-3 border-b bg-primary" />
@@ -990,9 +1018,10 @@ function AdminTraineeDashboard() {
                   {t('Cancel')}
                 </Button>
                 <Button
+                  variant="primary"
                   size="sm"
                   data-testid="saveButton"
-                  style="w-[30%] md:w-1/4 text-sm bg-[#8667F2] text-white font-normal"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     setButtonLoading(true);
                     addMemberToTeam();

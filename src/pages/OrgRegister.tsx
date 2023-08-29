@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUser, FaRegEnvelope, FaPen } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+
 import Button from '../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import REGISTER_ORGANIZATION_REQUEST from './RegisterOrgMutation';
