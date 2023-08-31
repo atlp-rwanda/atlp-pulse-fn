@@ -100,7 +100,7 @@ export default function CreateTeamModal({
   /* istanbul ignore next */
   return (
     <div
-      className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+      className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
         createTeamModel === true ? 'block' : 'hidden'
       }`}
     >

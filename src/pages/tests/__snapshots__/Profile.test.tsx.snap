@@ -9,7 +9,7 @@ Object {
         class="h-full overflow-y-scroll bg-light-bg dark:bg-dark-frame-bg"
       >
         <div
-          class=" mt-[4.4rem] bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center"
+          class="bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] flex flex-row text-center  align-center items-center"
           style="background-image: url(https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80);"
         >
           <img
@@ -105,7 +105,7 @@ Object {
           </div>
         </div>
         <div
-          class="flex flex-wrap ml-4 lg:ml-64"
+          class="flex flex-wrap"
         >
           <div
             class="lg:w-[25vw] mt-3"
@@ -138,7 +138,7 @@ Object {
           </div>
         </div>
         <div
-          class=" lg:px-4 border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg"
+          class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full h-fit my-6 rounded-lg"
         >
           <div
             class="px-4"
@@ -150,7 +150,7 @@ Object {
                
               <a
                 class="flex flex-row"
-                href="/dashboard/profile"
+                href="/profile"
               >
                 <svg
                   aria-hidden="true"
@@ -410,7 +410,7 @@ Object {
       class="h-full overflow-y-scroll bg-light-bg dark:bg-dark-frame-bg"
     >
       <div
-        class=" mt-[4.4rem] bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] lg:ml-48 flex flex-row text-center  align-center items-center"
+        class="bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] flex flex-row text-center  align-center items-center"
         style="background-image: url(https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80);"
       >
         <img
@@ -506,7 +506,7 @@ Object {
         </div>
       </div>
       <div
-        class="flex flex-wrap ml-4 lg:ml-64"
+        class="flex flex-wrap"
       >
         <div
           class="lg:w-[25vw] mt-3"
@@ -539,7 +539,7 @@ Object {
         </div>
       </div>
       <div
-        class=" lg:px-4 border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg"
+        class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full h-fit my-6 rounded-lg"
       >
         <div
           class="px-4"
@@ -551,7 +551,7 @@ Object {
              
             <a
               class="flex flex-row"
-              href="/dashboard/profile"
+              href="/profile"
             >
               <svg
                 aria-hidden="true"
@@ -861,7 +861,7 @@ Object {
 
 exports[`Profile Page Renders the others role profile tabs 1`] = `
 <div
-  className="flex flex-wrap lg:ml-60 lg:mr-8"
+  className="flex flex-wrap"
 >
   <div
     className="lg:w-[40vw]"
@@ -1236,7 +1236,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
           id="link2"
         >
           <div
-            className="min-h-screen bg-light-bg dark:bg-dark-frame-bg lg:px-8"
+            className="bg-light-bg dark:bg-dark-frame-bg lg:px-8"
           >
             <div
               className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
@@ -1556,7 +1556,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
 
 exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
 <div
-  className="flex flex-wrap lg:ml-60 lg:mr-8"
+  className="flex flex-wrap"
 >
   <div
     className="lg:w-[40vw]"
@@ -1917,7 +1917,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
           id="link2"
         >
           <div
-            className="min-h-screen bg-light-bg dark:bg-dark-frame-bg lg:px-8"
+            className="bg-light-bg dark:bg-dark-frame-bg lg:px-8"
           >
             <div
               className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
@@ -2253,31 +2253,31 @@ Object {
               class="flex flex-row pb-8 justify-center"
             >
               <div
-                class="lg:ml-44 w-[90%] pt-[4vh] lg:pt-[6vh]"
+                class="w-[100%] "
               >
                 <div
-                  class="grid grid-cols-2 lg:grid-cols-4 px-4"
+                  class="grid grid-cols-2 lg:grid-cols-4 gap-4"
                 >
                   <div
-                    class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                    class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                   />
                   <div
-                    class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                    class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                   />
                   <div
-                    class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                    class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                   />
                   <div
-                    class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                    class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                   />
                 </div>
               </div>
             </div>
             <div
-              class="items-center px-4 "
+              class="items-center "
             >
               <div
-                class="w-[100%] h-[46vh] lg:h-[62vh] pb-14 lg:w-[84%] mx-auto lg:ml-52 lg:mr-2  mt-8 bottom-0 bg-gray-300 dark:bg-gray-600 rounded-lg animate-pulse"
+                class="w-[100%] h-[46vh] lg:h-[62vh] pb-14 mx-auto mt-8 bottom-0 bg-gray-300 dark:bg-gray-600 rounded-lg animate-pulse"
               />
             </div>
           </div>
@@ -2299,31 +2299,31 @@ Object {
             class="flex flex-row pb-8 justify-center"
           >
             <div
-              class="lg:ml-44 w-[90%] pt-[4vh] lg:pt-[6vh]"
+              class="w-[100%] "
             >
               <div
-                class="grid grid-cols-2 lg:grid-cols-4 px-4"
+                class="grid grid-cols-2 lg:grid-cols-4 gap-4"
               >
                 <div
-                  class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                  class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                 />
                 <div
-                  class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                  class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                 />
                 <div
-                  class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                  class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                 />
                 <div
-                  class=" bg-gray-300 py-4 dark:bg-gray-600 md:w-[70%] h-24 md:h-28 mx-2 md:ml-16 lg:ml-10 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+                  class=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
                 />
               </div>
             </div>
           </div>
           <div
-            class="items-center px-4 "
+            class="items-center "
           >
             <div
-              class="w-[100%] h-[46vh] lg:h-[62vh] pb-14 lg:w-[84%] mx-auto lg:ml-52 lg:mr-2  mt-8 bottom-0 bg-gray-300 dark:bg-gray-600 rounded-lg animate-pulse"
+              class="w-[100%] h-[46vh] lg:h-[62vh] pb-14 mx-auto mt-8 bottom-0 bg-gray-300 dark:bg-gray-600 rounded-lg animate-pulse"
             />
           </div>
         </div>

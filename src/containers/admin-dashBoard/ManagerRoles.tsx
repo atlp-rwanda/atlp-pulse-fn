@@ -16,12 +16,11 @@ import { toast } from 'react-toastify';
 
 const AdminSission = () => {
   const { t } = useTranslation();
-  const client = useApolloClient();
   useDocumentTitle('Roles & Access');
   const [addMemberModel, setAddMemberModel] = useState(false);
   const [deleteModel, setDeleteModel] = useState(false);
 
-  const [GetAllRoles, { loading }] = useLazyQuery(GET_ROLE_QUERY);
+  const [GetAllRoles] = useLazyQuery(GET_ROLE_QUERY);
   const [developers, setDevelopers] = useState(devs);
   const [tabName, setTabName] = useState('all');
   const [dataDev, setDataDev] = useState(rolemanagement);
@@ -39,27 +38,11 @@ const AdminSission = () => {
   const [allRoles, setallRoles] = useState<any>();
   let newUsers: any = [];
   /* istanbul ignore next */
-  const handleAll = () => {
-    setTabName('all');
-  };
   /* istanbul ignore next */
-  const handleAdmin = () => {
-    setTabName('admin');
-  };
   /* istanbul ignore next */
-  const handleCoord = () => {
-    setTabName('coordinator');
-  };
   /* istanbul ignore next */
-  const handletrainee = () => {
-    setTabName('trainee');
-  };
 
   /* istanbul ignore next */
-  const removeModel = () => {
-    let newState = !addMemberModel;
-    setAddMemberModel(newState);
-  };
   /* istanbul ignore next */
   const removeDeleteModel = (e: any) => {
     e.preventDefault();
@@ -84,18 +67,10 @@ const AdminSission = () => {
     setDeleteModel(newState);
   };
 
-  const handleShowRole = /* istanbul ignore next */ () => {
-    /* istanbul ignore next */
-    setShowRoles(!showRoles);
-    /* istanbul ignore next */
-    if (showRoles) setSubTitle('Available Roles');
-    /* istanbul ignore next */ else setSubTitle('Manage Roles');
-  };
-
   const [handleCreateRole] = useMutation(CREATE_ROLE_MUTATION, {
     variables: { name: roleName },
     /* istanbul ignore next */
-    onCompleted: /* istanbul ignore next */ (data) => {
+    onCompleted: /* istanbul ignore next */ () => {
       /* istanbul ignore next */
       setToggle(!toggle);
       /* istanbul ignore next */
@@ -131,7 +106,7 @@ const AdminSission = () => {
       name: selectedRole,
       orgToken: localStorage.getItem('orgToken'),
     },
-    onCompleted: (data) => {
+    onCompleted: () => {
       /* istanbul ignore next */
       toast.success('Role assigned successful');
       /* istanbul ignore next */
@@ -260,14 +235,13 @@ const AdminSission = () => {
         <>
           {/* =========================== Start::  delete Session Model =============================== */}
           <div
-            className={`min-h-screen w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 ${
+            className={`w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
               deleteModel === true ? 'block' : 'hidden'
             }`}
           >
             <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
               <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
                 <h3 className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12">
-                  {/* {t('Removerole')} */}
                   {t('Select role')}
                 </h3>
                 <hr className=" bg-primary border-b my-3 w-full" />
@@ -321,8 +295,8 @@ const AdminSission = () => {
             </div>
           </div>
           {/* =========================== End::  delete Session Model =============================== */}
-          <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen pb-16 overflow-y-auto overflow-x-hidden">
-            <div className="px-3 pt-24 md:px-8">
+          <div className="bg-light-bg dark:bg-dark-frame-bg pb-16 overflow-y-auto overflow-x-hidden">
+            <div>
               <DataTable
                 data={newUsers.length > 0 ? newUsers : users}
                 columns={columns}

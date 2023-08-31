@@ -46,7 +46,7 @@ export default function DeleteTeamModal({
 
   return (
     <div
-      className={`h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 ${
+      className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
         deleteTeamModal === true ? 'block' : 'hidden'
       }`}
     >

@@ -283,15 +283,15 @@ const TraineeRatingDashboard = () => {
         </Dialog>
       </Transition>
       {/* SELECT COHORT DROPDOWN START */}
-      <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg">
+      <div className="flex flex-col bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row">
           <div className="w-full">
             <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-                <div className="px-3 md:px-8 mt-28">
+              <div className="bg-light-bg dark:bg-dark-frame-bg ">
+                <div className="">
                   {data && !loading ? (
                     <>
-                      <div className="ml-60 mb-14 ">
+                      <div className="mb-10 ">
                         <ExportToExcel data={usedata} fileName={fileName} />
                       </div>
                       <DataTable

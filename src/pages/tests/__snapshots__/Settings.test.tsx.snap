@@ -5,10 +5,10 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
   className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg"
 >
   <div
-    className="flex flex-row justify-center pt-[12vh]"
+    className="flex flex-row justify-center pt-10"
   >
     <div
-      className="rounded-lg w-[90%] lg:w-80vh lg:ml-[38vh] lg:mr-[2vh] lg:mb-10 p-6 bg-indigo-100 dark:bg-dark-bg"
+      className="rounded-lg w-[90%] mb-10 p-6 bg-indigo-100 dark:bg-dark-bg"
     >
       <h1
         className="mb-4 font-bold text-xl dark:text-dark-text-fill"
@@ -20,7 +20,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           className="flex items-center border-b border-gray-400 pt-2 pb-1"
         >
           <div
-            className="w-[33vh]"
+            className="w-[33vw]"
           >
             <h1
               className="font-bold dark:text-dark-text-fill"
@@ -47,7 +47,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           className="flex items-center border-b border-gray-400 pt-2 pb-1"
         >
           <div
-            className="w-[33vh]"
+            className="w-[33vw]"
           >
             <h1
               className="font-bold dark:text-dark-text-fill"
@@ -81,7 +81,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           className="flex items-center border-b border-gray-400 pt-2 pb-1"
         >
           <div
-            className="w-[33vh]"
+            className="w-[33vw]"
           >
             <h1
               className="font-bold dark:text-dark-text-fill"
@@ -121,7 +121,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           className="flex items-center border-b border-gray-400 pt-2 pb-1"
         >
           <div
-            className="w-[33vh]"
+            className="w-[33vw]"
           >
             <h1
               className="font-bold dark:text-dark-text-fill"
@@ -156,7 +156,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           className="flex items-center border-b border-gray-400 pt-2 pb-1"
         >
           <div
-            className="w-[33vh]"
+            className="w-[33vw]"
           >
             <h1
               className="font-bold dark:text-dark-text-fill"
@@ -191,7 +191,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           className="flex items-center border-b border-gray-400 pt-2 pb-1"
         >
           <div
-            className="w-[33vh]"
+            className="w-[33vw]"
           >
             <h1
               className="font-bold dark:text-dark-text-fill"
@@ -218,7 +218,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           className="flex items-center pt-2 pb-1"
         >
           <div
-            className="w-[33vh]"
+            className="w-[33vw]"
           >
             <h1
               className="font-bold dark:text-dark-text-fill"

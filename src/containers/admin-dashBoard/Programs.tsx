@@ -197,12 +197,13 @@ function AdminPrograms() {
       />
       {/* =========================== End::  CreateProgramModel =============================== */}
 
-      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-        <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
-          <div className="space-x-8 lg:ml-10">
+      <div className="bg-light-bg dark:bg-dark-frame-bg ">
+        <div className="flex items-left pb-8">
+          <div className="flex gap-2">
             <Button
               variant="primary"
               size="lg"
+              style="m-0"
               onClick={removeModel}
               data-testid="removeModel"
             >
@@ -211,14 +212,13 @@ function AdminPrograms() {
             </Button>
           </div>
         </div>
-        <div className="px-3 md:px-8">
-          {!getLoading && (
-            <DataTable
-              data={programListData as [any]}
-              columns={programListColumns}
-              title="Program list"
-            />
-          )}
+        <div className="">
+          <DataTable
+            data={programListData as [any]}
+            columns={programListColumns}
+            title="Program list"
+            loading={getLoading}
+          />
         </div>
       </div>
     </>

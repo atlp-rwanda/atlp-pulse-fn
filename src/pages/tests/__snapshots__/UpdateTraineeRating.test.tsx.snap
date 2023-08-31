@@ -120,7 +120,7 @@ Array [
     </div>
   </div>,
   <div
-    className="flex flex-col h-screen bg-light-bg"
+    className="flex flex-col bg-light-bg"
   >
     <div
       className="flex flex-row"
@@ -130,13 +130,13 @@ Array [
       >
         <div>
           <div
-            className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden"
+            className="bg-light-bg dark:bg-dark-frame-bg "
           >
             <div
-              className="px-3 md:px-8 mt-20"
+              className=""
             >
               <div
-                className="text-center mt-48 text-lg uppercase"
+                className="text-center text-lg uppercase"
               >
                 <p>
                    

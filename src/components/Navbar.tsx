@@ -100,7 +100,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             
           </ul>
         </div>
-        <div className="hidden lg:flex lg:w-[300px] justify-end ">
+        <div className="hidden lg:flex justify-end ">
           <ToggleThemeButton className="text-white dark:text-inherit" />
           <Link to={user?.auth ? '/dashboard' : goTo}>
             <Button variant="primary" size="lg">

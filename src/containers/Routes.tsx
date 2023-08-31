@@ -25,21 +25,23 @@ const About = React.lazy(() => import('../pages/Comingsoon'));
 /* istanbul ignore next */
 const Product = React.lazy(() => import('../pages/Comingsoon'));
 /* istanbul ignore next */
-const SignupOrgDocs = React.lazy(()=>import('../components/Docs/SignupOrgDocs'))
+const SignupOrgDocs = React.lazy(
+  () => import('../components/Docs/SignupOrgDocs'),
+);
 /* istanbul ignore next */
-const SigninOrgDocs = React.lazy(()=>import('../components/Docs/SigninOrgDocs'))
+const SigninOrgDocs = React.lazy(
+  () => import('../components/Docs/SigninOrgDocs'),
+);
 /* istanbul ignore next */
 const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
-import Comingsoon from '../pages/Comingsoon';
 import DashRoutes from '../containers/DashRoutes';
 
 function MainRoutes() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
+    <div className="min-h-screen page-layout">
       <Suspense fallback={<Skeleton />}>
         <Routes>
           <Route path="/*" element={<DashRoutes />} />
@@ -47,7 +49,11 @@ function MainRoutes() {
             path="/"
             element={
               <>
-                <Outlet />
+                <Header />
+                <main className="page-main bg-light-bg dark:bg-dark-frame-bg">
+                  <Outlet />
+                </main>
+                <Footer />
               </>
             }
           >
@@ -77,18 +83,20 @@ function MainRoutes() {
                 </ProtectedRoutes>
               }
             />
-           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/about" element={<About title={'About Page'} />} />
-          <Route path="/product" element={<Product title={'Productpage'} />} />
-          <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
-          <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
-          <Route path="/noredirect" element={<Noredirect />} />
-          <Route path="/pricing-form" element={<Pay />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/about" element={<About title={'About Page'} />} />
+            <Route
+              path="/product"
+              element={<Product title={'Productpage'} />}
+            />
+            <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
+            <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
+            <Route path="/noredirect" element={<Noredirect />} />
+            <Route path="/pricing-form" element={<Pay />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
       </Suspense>
-      <Footer />
     </div>
   );
 }

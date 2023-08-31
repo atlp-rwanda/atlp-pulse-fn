@@ -123,7 +123,7 @@ function AdminPhases() {
         name,
         description,
       }))
-    : [{}];
+    : [[]];
 
   const removeModel = () => {
     const newState = !createPhaseModel;
@@ -160,12 +160,13 @@ function AdminPhases() {
 
       {/* =========================== End::  CreatePhaseModel =============================== */}
 
-      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-        <div className="flex items-right px-7 lg:px-60 pt-24 pb-8">
-          <div className="space-x-8 lg:ml-10">
+      <div className="bg-light-bg dark:bg-dark-frame-bg">
+        <div className="flex items-right pb-8">
+          <div className="flex gap-2">
             <Button
               variant="primary"
               size="lg"
+              style='m-0'
               onClick={removeModel}
               data-testid="removeModel"
             >
@@ -174,14 +175,13 @@ function AdminPhases() {
             </Button>
           </div>
         </div>
-        <div className="px-3 md:px-8">
-          {!getLoading && (
+        <div className="">
             <DataTable
-              data={phaseListData as [any]}
+              data={phaseListData as any [] ?? []}
               columns={phaseListColumns}
               title="Phase list"
+              loading={getLoading}
             />
-          )}
         </div>
       </div>
     </>

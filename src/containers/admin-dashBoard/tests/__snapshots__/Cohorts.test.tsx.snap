@@ -3,7 +3,7 @@
 exports[`Cohorts tests Snapshots Cohorts Page 1`] = `
 Array [
   <div
-    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 hidden"
   >
     <div
       className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
@@ -412,7 +412,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 hidden"
     data-testid="updateCohortModal"
   >
     <div
@@ -823,7 +823,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 hidden"
   >
     <div
       className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[60%]"
@@ -1157,7 +1157,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 hidden"
   >
     <div
       className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
@@ -1214,7 +1214,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen bg-black fixed bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 overflow-auto mt-10 p-4 hidden"
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto mt-10 p-4 hidden"
   >
     <div
       className="flex btn w-fit py-1 px-3 bg-primary font-bold rounded-full inline-block"
@@ -1231,16 +1231,16 @@ Array [
     </div>
   </div>,
   <div
-    className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden"
+    className="bg-light-bg dark:bg-dark-frame-bg"
   >
     <div
-      className="flex items-left px-7 lg:px-60 pt-24 pb-8"
+      className="flex items-left pb-8"
     >
       <div
-        className="space-x-8 lg:ml-10"
+        className="flex gap-2"
       >
         <button
-          className="btn primary lg undefined"
+          className="btn primary lg m-0"
           data-testid="removeModel"
           disabled={false}
           onClick={[Function]}
@@ -1252,9 +1252,7 @@ Array [
         </button>
       </div>
     </div>
-    <div
-      className="px-3 m d:px-8 w-screen overflow-x-auto"
-    />
+    <div />
   </div>,
 ]
 `;

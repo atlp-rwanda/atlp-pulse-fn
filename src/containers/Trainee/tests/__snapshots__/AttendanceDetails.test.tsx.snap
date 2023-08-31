@@ -6,10 +6,10 @@ exports[`Attendance Detailed page Renders the Attendance Detailed Page  1`] = `
 >
   <div>
     <div
-      className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center  min-h-screen "
+      className="bg-neutral-100 dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center"
     >
       <table
-        className="lg:w-9/12 md:w-11/12 lg:h-[70%] md:h-[60%] md:ml-0 lg:ml-32 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 mb-[-120px]"
+        className="dark:bg-dark-bg shadow-lg py-8 rounded-md"
       >
         <thead>
           <tr
@@ -243,8 +243,5 @@ exports[`Attendance Detailed page Renders the Attendance Detailed Page  1`] = `
       </div>
     </div>
   </div>
-  <div
-    className="bg-white dark:bg-dark-bg shadow-lg px-5 py-1 rounded-md w-[90%] mx-auto lg:w-[70%] lg:ml-60 mb-10 mt-80"
-  />
 </div>
 `;

@@ -115,25 +115,23 @@ function TraineeAttendanceTracker() {
         updatedTrainees[existingTraineeIndex].traineeId = TraineeId;
         updatedTrainees[existingTraineeIndex].status[0].value = value;
         return { ...prevState, trainees: updatedTrainees };
-      } 
-        const emptyTraineeIndex = prevState.trainees.findIndex(
-          (trainee) => trainee.traineeId === '',
-        );
+      }
+      const emptyTraineeIndex = prevState.trainees.findIndex(
+        (trainee) => trainee.traineeId === '',
+      );
 
-        if (emptyTraineeIndex !== -1) {
-          const updatedTrainees = [...prevState.trainees];
-          updatedTrainees[emptyTraineeIndex].traineeId = TraineeId;
-          updatedTrainees[emptyTraineeIndex].status[0].value = value;
-          return { ...prevState, trainees: updatedTrainees };
-        } 
-          const newTrainee = {
-            traineeId: TraineeId,
-            status: [{ value }],
-          };
-          const updatedTrainees = [...prevState.trainees, newTrainee];
-          return { ...prevState, trainees: updatedTrainees };
-        
-      
+      if (emptyTraineeIndex !== -1) {
+        const updatedTrainees = [...prevState.trainees];
+        updatedTrainees[emptyTraineeIndex].traineeId = TraineeId;
+        updatedTrainees[emptyTraineeIndex].status[0].value = value;
+        return { ...prevState, trainees: updatedTrainees };
+      }
+      const newTrainee = {
+        traineeId: TraineeId,
+        status: [{ value }],
+      };
+      const updatedTrainees = [...prevState.trainees, newTrainee];
+      return { ...prevState, trainees: updatedTrainees };
     });
   };
 
@@ -199,7 +197,7 @@ function TraineeAttendanceTracker() {
   return (
     <>
       <div
-        className={` w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm min-h-[100%] absolute flex items-center justify-center px-4 ${
+        className={` w-screen bg-black bg-opacity-30 backdrop-blur-sm min-h-[100%] fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
           addEventModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -339,7 +337,7 @@ function TraineeAttendanceTracker() {
 
                 <div className="w-full flex justify-between mx-10px">
                   <button
-                    type='button'
+                    type="button"
                     data-testid="removeModel"
                     className="py-2 w-[40%] md:w-1/3 bg-primary rounded font-sans text-sm text-white"
                     style={{ height: '40px' }} // Apply a fixed height to the button
@@ -366,15 +364,15 @@ function TraineeAttendanceTracker() {
         }
       </div>
       <div className="bg-light-bg dark:bg-dark-frame-bg lg:px-8 overflow-y-scroll pb-6">
-        <div className="px-3 md:px-8">
-          <div className="flex ml-2 items-center justify-between py-4 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px] h-[80%]">
-            <div className="flex ml-[-35px] px-7 py-2 mt-2 ">
+        <div className="">
+          <div className="flex items-center justify-between py-4 rounded-md w-full">
+            <div className="flex py-2 mt-2 ">
               <h2>{t('Attendance Tracker')}</h2>
             </div>
             <div className="flex justify-left">
               <select
                 data-testid="getWeek"
-                className="flex text-black px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
+                className="flex text-black px-4 py-2 rounded-md font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
                 onChange={(event) => {
                   setSelectedWeek(Number(event.target.value));
                 }}
@@ -395,14 +393,14 @@ function TraineeAttendanceTracker() {
               </h2>
             </div>
           </div>
-          <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8">
-            <div className="px-3 md:px-8">
-              <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px]">
+          <div className="bg-light-bg dark:bg-dark-frame-bg">
+            <div className="">
+              <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
                 <div className="">
-                  <div className="flex ml-2 items-center justify-between" />
+                  <div className="flex items-center justify-between" />
                 </div>
                 <div>
-                  <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
+                  <div className="py-2 overflow-x-auto">
                     <div className="w-full lg:min-w-full shadow rounded-lg  ">
                       <table className="min-w-full leading-normal">
                         <thead className="rounded-lg">
@@ -505,9 +503,9 @@ function TraineeAttendanceTracker() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-center gap-1 mt-12 mb-0">
+                <div className="flex items-center justify-center gap-1 mb-0">
                   <button
-                    type='button'
+                    type="button"
                     onClick={prevPage}
                     data-testid="prev"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -517,7 +515,7 @@ function TraineeAttendanceTracker() {
                     &larr;
                   </button>
                   <button
-                    type='button'
+                    type="button"
                     onClick={() => setPage(1)}
                     data-testid="page1"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -528,7 +526,7 @@ function TraineeAttendanceTracker() {
                   </button>
                   {gaps.paginationGroup.map((el) => (
                     <button
-                    type='button'
+                      type="button"
                       onClick={() => setPage(el)}
                       data-testid="page2"
                       key={el}
@@ -540,7 +538,7 @@ function TraineeAttendanceTracker() {
                     </button>
                   ))}
                   <button
-                    type='button'
+                    type="button"
                     onClick={() => setPage(totalPages)}
                     data-testid="page3"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -550,7 +548,7 @@ function TraineeAttendanceTracker() {
                     {totalPages}
                   </button>
                   <button
-                    type='button'
+                    type="button"
                     onClick={nextPage}
                     data-testid="next"
                     className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
@@ -561,9 +559,9 @@ function TraineeAttendanceTracker() {
                   </button>
                 </div>
               </div>
-              <div className="big0 flex   flex-row  items-center  mt-4 w-[81vw]">
-                <div className="big flex flex-col w-[50%] ">
-                  <div className="bg-white flex flex-col justify-center    dark:bg-dark-bg border border-primary shadow-lg p-5 rounded-md w-full md:w-[97%] lg:ml-56">
+              <div className="big0 flex flex-row mt-4 gap-2">
+                <div className="big flex flex-col w-[50%] flex-1 gap-2">
+                  <div className="bg-white flex flex-1 flex-col justify-center dark:bg-dark-bg border border-primary shadow-lg p-5 rounded-md w-full">
                     <h2 className="font-bold ">Overview cohort 1</h2>
                     <div>
                       <div className="flex flex-row ">
@@ -600,7 +598,7 @@ function TraineeAttendanceTracker() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white flex flex-col justify-center   dark:bg-dark-bg border mt-2 border-primary shadow-lg p-5 rounded-md w-full md:w-[97%] lg:ml-56">
+                  <div className="bg-white flex flex-1 flex-col justify-center dark:bg-dark-bg border border-primary shadow-lg p-5 rounded-md w-full">
                     <h2 className="font-bold mb-4 ">Attendance Scores</h2>
                     <div>
                       <div className="flex flex-row ">
@@ -638,7 +636,7 @@ function TraineeAttendanceTracker() {
                   </div>
                 </div>
 
-                <div className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md   w-[50%]  lg:ml-56">
+                <div className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md w-[50%]">
                   <h2 className="font-bold mb-4 ">
                     Attendance Score Parcentage
                   </h2>

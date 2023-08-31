@@ -289,12 +289,12 @@ function UpdatedRatingDashboard() {
       </div>
       {/* =========================== End::  rejectModel =============================== */}
 
-      <div className="flex flex-col h-screen bg-light-bg">
+      <div className="flex flex-col bg-light-bg">
         <div className="flex flex-row">
           <div className="w-full">
             <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-                <div className="px-3 md:px-8 mt-20">
+              <div className="bg-light-bg dark:bg-dark-frame-bg ">
+                <div className="">
                   {data?.length !== 0 ? (
                     <DataTable
                       data={data}
@@ -302,7 +302,7 @@ function UpdatedRatingDashboard() {
                       title={t('Performance Ratings')}
                     />
                   ) : (
-                    <div className="text-center mt-48 text-lg uppercase">
+                    <div className="text-center text-lg uppercase">
                       <p> {t('No updated ratings found')}</p>
                     </div>
                   )}

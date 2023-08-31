@@ -2,82 +2,118 @@
 
 exports[`Organization Login Should render 1`] = `
 <div
-  className="grow bg-neutral-100 dark:bg-dark-frame-bg flex flex-col justify-center font-sans"
+  className="grow  dark:bg-dark-frame-bg bg-indigo-50 flex flex-row font-sans"
 >
   <div
-    className="max-w-lg w-full mx-auto my-28 bg-indigo-100 dark:bg-dark-bg p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
+    className="hidden lg:flex w-[50%] h-full  flex-col justify-center items-center mt-10 "
   >
     <div
-      className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill "
+      className=" flex flex-col justify-center items-center "
     >
-      Sign in to your Organization
+      <div
+        className="relative flex flex-row justify-center"
+      >
+        <img
+          alt="pulses"
+          className="absolute inset-0 w-[41rem] h-[12rem] dark:hidden"
+          src={Object {}}
+        />
+        <p
+          className="relative w-[70%] text-gray-700 text-[1.9em] p-5 text-center italic font-bold  dark:text-dark-text-fill"
+        >
+          Boost your organization
+        </p>
+      </div>
+      <div
+        className="w-[30vw] h-[42vh]  flex flex-row "
+      >
+        <img
+          alt="functions"
+          className="w-sm dark:brightness-150"
+          src={Object {}}
+        />
+      </div>
     </div>
+  </div>
+  <div
+    className=" w-full  lg:w-[50%] lg:p-5 flex flex-row items-end p-5"
+  >
     <div
-      className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs"
-    >
-      Enter your organization’s Dev-Pulse URL
-    </div>
-    <form
-      action="#none"
-      className="space-y-6 mt-4 "
-      onSubmit={[Function]}
+      className="max-w-lg w-full mx-auto my-28 bg-indigo-100 dark:bg-dark-bg  p-5 sm:p-14 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
     >
       <div
-        className="orgName"
+        className="text-center  text-black-600 text-2xl font-bold dark:text-dark-text-fill "
       >
-        <input
-          className="inputStyle inputOne w-full border-primary rounded mt-1 dark:bg-neutral-600"
-          data-testid="orgName"
-          name="name"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          placeholder="Your-organization"
-          style={
-            Object {
-              "width": "130px",
+        Sign in to your Organization
+      </div>
+      <div
+        className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs"
+      >
+        Enter your organization’s Dev-Pulse URL
+      </div>
+      <form
+        action="#none"
+        className="space-y-6 mt-4"
+        onSubmit={[Function]}
+      >
+        <label
+          className="orgName bg-white dark:bg-neutral-600 rounded mt-1 py-1 px-2"
+          htmlFor=":r0:"
+        >
+          <input
+            className="inputStyle inputOne w-full border-primary rounded dark:bg-neutral-600"
+            data-testid="orgName"
+            id=":r0:"
+            name="name"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Your-organization"
+            style={
+              Object {
+                "width": "130px",
+              }
             }
-          }
-          type="text"
-          value=""
-        />
-        <input
-          className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
-          disabled={true}
-          placeholder=".devpulse.org"
-          style={Object {}}
-        />
-      </div>
-      <div
-        className="-mt-6"
-      />
-      <div>
-        <button
-          className="btn primary lg w-full ml-0 hover:bg-violet-600 text-sm"
-          data-testid="loginForm"
-          disabled={false}
-          type="submit"
-        >
-           
-          Continue
-        </button>
-      </div>
-      <div
-        className="w-full text-sm  text-light-text dark:text-dark-text-fill"
-      >
-        Looking to register an organization instead?
-        <a
-          href="/signup/org"
-          onClick={[Function]}
-        >
-          <a
-            className="text-primary"
-            href="#link"
+            type="text"
+            value=""
+          />
+          <span
+            className="inputStyle inputTwo w-full p-2 border border-primary rounded text-gray-400"
           >
-            Register a new organization
+            .devpulse.org
+          </span>
+        </label>
+        <div
+          className="-mt-6"
+        />
+        <div>
+          <button
+            className="btn primary lg w-full ml-0 hover:bg-violet-600 text-sm"
+            data-testid="loginForm"
+            disabled={false}
+            type="submit"
+          >
+             
+            Continue
+          </button>
+        </div>
+        <div
+          className="w-full text-sm  text-light-text dark:text-dark-text-fill"
+        >
+          Looking to register an organization instead?
+          <a
+            href="/signup/org"
+            onClick={[Function]}
+          >
+            <a
+              className="text-primary"
+              href="#link"
+            >
+              Register a new organization
+            </a>
           </a>
-        </a>
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 `;

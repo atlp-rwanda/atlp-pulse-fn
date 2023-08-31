@@ -153,7 +153,7 @@ function CoordinatorDocs() {
 
   const page1 = (
     <>
-      <div className="flex items-start ml-20 md:ml-72">
+      <div className="flex items-start">
         <Button
           variant="primary"
           size="sm"
@@ -182,7 +182,7 @@ function CoordinatorDocs() {
 
   const page2 = (
     <>
-      <div className="flex items-start ml-20 md:ml-72">
+      <div className="flex items-start">
         <Button
           variant="primary"
           size="sm"
@@ -216,7 +216,7 @@ function CoordinatorDocs() {
   );
 
   return (
-    <div className="flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg pt-28 text-light-text dark:text-dark-text-fill">
+    <div className="flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg text-light-text dark:text-dark-text-fill">
       {page1}
 
       {page2}

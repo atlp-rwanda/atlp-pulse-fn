@@ -307,9 +307,15 @@ function Signup() {
     getEmailFromToken();
   }, [setValue]);
 
+  // checking current logged in user
+  /* istanbul ignore next */
+  useEffect(() => {
+    if (localStorage.getItem('auth_token')) navigate('/dashboard');
+  }, []);
+
   return (
-    <div className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2  dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center">
-      <div className="  mt-3  w-full sm:mt-20 xs:mt-15 md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-bg  dark:rounded-none ">
+    <div className="md:flex md:flex-col md:items-center md:justify-center w-full grow text-center py-2 dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center">
+      <div className="w-full md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-bg dark:rounded-none ">
         <div className="py-10 sm:py-8 w-full m-auto  md:shadow-xl rounded-xl">
           <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">
             {t('Sign up using')}

@@ -56,7 +56,7 @@ function SupAdDashboard() {
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
           inviteTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -126,7 +126,7 @@ function SupAdDashboard() {
 
       <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row pb-8 justify-center">
-          <div className="lg:ml-56 w-[90%] pt-[8vh] h-[100%]">
+          <div className="w-[100%] h-[100%]">
             {/* <div className="grid grid-cols-2 mb-12 md:mb-24 lg:mb-0 lg:grid-cols-4">
             <Card text={t('Coordinators')} number={47} />
             <Card text={t('Trainees')} number={560} />
@@ -135,9 +135,9 @@ function SupAdDashboard() {
           </div>
           <Chart title={t('Overall performance')} /> */}
             <div>
-              {/* <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
+              {/* <div className="bg-light-bg dark:bg-dark-frame-bg  ">
                 <div className="flex items-left px-10 lg:px-60 pt-24 pb-8"> */}
-              <div className="space-x-8 lg:ml-7 pt-5">
+              <div className="flex gap-2 pt-5">
                 {user?.role === 'coordinator' || undefined ? (
                   ''
                 ) : (
@@ -145,6 +145,7 @@ function SupAdDashboard() {
                     variant="primary"
                     size="lg"
                     data-testid="inviteModel"
+                    style="m-0"
                     onClick={inviteModel}
                   >
                     {t('Invite an organization')}

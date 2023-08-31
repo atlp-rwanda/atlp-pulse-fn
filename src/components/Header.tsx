@@ -22,7 +22,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
 
   return (
     <div
-      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed ${props?.className}`}
+      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header ${props?.className}`}
       style={props?.style}
     >
       <div className="px-3 flex justify-between items-center w-full h-full">

@@ -6,7 +6,7 @@ import '../../../../test/jest/__mocks__/matchMedia';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import AdminPrograms from '../Programs';
+import AdminPrograms, { getAllPrograms } from '../Programs';
 
 describe('Cohorts tests', () => {
   it('Snapshots Cohorts Page', () => {

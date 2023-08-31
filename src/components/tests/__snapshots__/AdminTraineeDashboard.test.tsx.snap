@@ -6,7 +6,7 @@ Array [
     className="rounded-lg dark:bg-dark-bg"
   />,
   <div
-    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
+    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 hidden"
   >
     <div
       className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
@@ -80,7 +80,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen z-20 bg-black bg-opacity-40 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
+    className="h-screen w-screen bg-black bg-opacity-40 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 hidden"
   >
     <div
       className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
@@ -342,7 +342,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
+    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 hidden"
   >
     <div
       className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
@@ -401,7 +401,7 @@ Array [
     </div>
   </div>,
   <div
-    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 hidden"
+    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center  px-4 hidden"
   >
     <div
       className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
@@ -769,7 +769,7 @@ Array [
     </div>
   </div>,
   <div
-    className="flex flex-col h-screen"
+    className="flex flex-col"
   >
     <div
       className="flex flex-row"
@@ -779,16 +779,16 @@ Array [
       >
         <div>
           <div
-            className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg"
+            className="bg-light-bg dark:bg-dark-frame-bg"
           >
             <div
-              className="flex px-10 pt-24 pb-8 items-left lg:px-60"
+              className="flex pb-8 items-left "
             >
               <div
-                className="space-x-8 lg:ml-7"
+                className="flex gap-2"
               >
                 <button
-                  className="btn primary lg undefined"
+                  className="btn primary lg m-0"
                   data-testid="registerModel"
                   disabled={false}
                   onClick={[Function]}
@@ -800,7 +800,7 @@ Array [
                    
                 </button>
                 <button
-                  className="btn primary lg undefined"
+                  className="btn primary lg m-0"
                   data-testid="inviteModel"
                   disabled={false}
                   onClick={[Function]}
@@ -811,10 +811,10 @@ Array [
               </div>
             </div>
             <div
-              className="px-3 md:px-8"
+              className=""
             >
               <div
-                className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10"
+                className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] \\"lg:ml-60 mx-auto\\"} mb-10"
               >
                 <div
                   className="flex items-center justify-between pb-6 "

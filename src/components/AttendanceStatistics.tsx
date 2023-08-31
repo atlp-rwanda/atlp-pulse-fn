@@ -45,7 +45,7 @@ function BarChart() {
 //   };
 
   return (
-    <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px] px-3 md:px-8">
+    <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
     <div className="">
     hello
 

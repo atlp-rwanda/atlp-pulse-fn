@@ -58,7 +58,7 @@ export function EditPassword() {
   const [passwordFieldState, setPasswordField] = useState<fields>(fieldState);
 
   return (
-    <div className="min-h-screen bg-light-bg dark:bg-dark-frame-bg lg:px-8">
+    <div className="bg-light-bg dark:bg-dark-frame-bg lg:px-8">
       <div className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg">
         <div className="px-4">
           <form
@@ -331,7 +331,7 @@ export default function ProfileTabs({ data: profileData }: any) {
 
 
   return (
-    <div className="flex flex-wrap lg:ml-60 lg:mr-8">
+    <div className="flex flex-wrap">
       <>
         <div className="lg:w-[40vw]">
           {/* Profile tabs option start */}

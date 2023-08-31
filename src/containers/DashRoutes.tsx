@@ -69,11 +69,11 @@ function DashRoutes() {
 
   return (
     <PrivateRoute>
-      <div data-testid="cohorts-route" className="flex flex-col min-h-screen">
-        <MenuProvider>
-          <DashHeader />
-          <Sidebar toggle={toggleNav} style="" />
-        </MenuProvider>
+      <MenuProvider>
+        <DashHeader />
+        <Sidebar toggle={toggleNav} style="" />
+      </MenuProvider>
+      <main className="page-main px-3 md:px-8 py-8 max-w-[100%] bg-light-bg dark:bg-dark-frame-bg">
         <Suspense fallback={<Square />}>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -121,7 +121,7 @@ function DashRoutes() {
             <Route path="/cards" element={<CoordinatorCards />} />
           </Routes>
         </Suspense>
-      </div>
+      </main>
     </PrivateRoute>
   );
 }

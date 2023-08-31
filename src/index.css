@@ -45,7 +45,8 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 36px */
+  line-height: 150%;
+  /* 36px */
   text-align: justify;
 }
 
@@ -54,14 +55,17 @@
   font-family: poppins;
   font-style: normal;
   font-weight: 900;
-  line-height: 100%; /* 35px */
+  line-height: 100%;
+  /* 35px */
 }
+
 .card-image {
   justify-content: space-between;
   align-items: center;
   align-content: space-between;
   align-self: stretch;
 }
+
 .card-text {
   color: var(--neutral-neutral-900, #424242);
   font-family: poppins;
@@ -71,9 +75,11 @@
   line-height: 150%;
   text-align: justify;
 }
+
 .font {
   font-family: Poppins;
 }
+
 .text-img {
   color: var(--base-light, #fff);
   font-family: Poppins;
@@ -81,6 +87,7 @@
   font-weight: 400;
   line-height: 100%;
 }
+
 .hero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url('https://res.cloudinary.com/bdushimi/image/upload/v1683554711/Andela_Rwanda_Engineers_zr7awr.jpg');
@@ -97,11 +104,13 @@
 }
 
 @supports (-webkit-touch-callout: none) {
+
   /* CSS specific to iOS devices */
   .hero {
     background-attachment: scroll;
   }
 }
+
 /* .m-width {
   max-width: 150px;
   max-height: 120px;
@@ -115,6 +124,7 @@ input[type='number']::-webkit-outer-spin-button {
   .btn {
     @apply px-4 py-2 m-2 font-bold rounded-md;
   }
+
   .sm {
     @apply px-2;
   }
@@ -136,6 +146,7 @@ input[type='number']::-webkit-outer-spin-button {
   .primary {
     @apply font-semibold text-white bg-primary;
   }
+
   .primary:hover {
     @apply font-semibold text-white bg-primary;
   }
@@ -147,6 +158,7 @@ input[type='number']::-webkit-outer-spin-button {
   .success {
     @apply text-white bg-green-500;
   }
+
   .success:hover {
     @apply text-white bg-green-600;
   }
@@ -154,12 +166,15 @@ input[type='number']::-webkit-outer-spin-button {
   .info {
     @apply text-white bg-violet-400;
   }
+
   .info:hover {
     @apply text-white bg-violet-500;
   }
+
   .danger {
     @apply text-white bg-red-500;
   }
+
   .danger:hover {
     @apply text-white bg-red-600;
   }
@@ -167,21 +182,27 @@ input[type='number']::-webkit-outer-spin-button {
   .dark {
     @apply text-white bg-white;
   }
+
   .dark:hover {
     @apply text-white bg-white;
   }
+
   .thead {
     @apply p-6 border-b-2 border-gray-400 bg-indigo-200 dark:bg-neutral-600 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider;
   }
+
   .data-cell {
     @apply px-5 py-5 text-sm bg-indigo-100 border-b border-gray-400 dark:bg-dark-bg;
   }
+
   .my-react-select-container {
     width: 100%;
   }
+
   .my-react-select-container .my-react-select__control {
     @apply w-full pl-2 font-sans text-xs bg-white border rounded outline-none border-primary dark:border-primary dark:bg-dark-bg dark:text-white;
   }
+
   .my-react-select-container .my-react-select__control--is-focused {
     @apply shadow-none dark:bg-dark-bg;
   }
@@ -213,11 +234,13 @@ input[type='number']::-webkit-outer-spin-button {
   .my-react-select-container .my-react-select__single-value {
     @apply text-neutral-600 dark:text-neutral-200;
   }
+
   .my-react-select-container .my-react-select__placeholder {
     @apply text-[#9ca3af] dark:text-[#9ca3af];
     @apply bg-white dark:bg-dark-bg;
   }
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -266,6 +289,7 @@ input::-webkit-inner-spin-button {
   border-color: #fff transparent #fff transparent;
   animation: loader 2s linear infinite;
 }
+
 @keyframes loader {
   0% {
     transform: rotate(0deg);
@@ -282,6 +306,7 @@ input::-webkit-inner-spin-button {
   width: 80px;
   height: 80px;
 }
+
 .lds-ellipsis div {
   position: absolute;
   top: 33px;
@@ -291,42 +316,52 @@ input::-webkit-inner-spin-button {
   background: #fff;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
+
 .lds-ellipsis div:nth-child(1) {
   left: 8px;
   animation: lds-ellipsis1 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(2) {
   left: 8px;
   animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(3) {
   left: 32px;
   animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(4) {
   left: 56px;
   animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
   0% {
     transform: scale(0);
   }
+
   100% {
     transform: scale(1);
   }
 }
+
 @keyframes lds-ellipsis3 {
   0% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(0);
   }
 }
+
 @keyframes lds-ellipsis2 {
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(24px, 0);
   }
@@ -340,26 +375,70 @@ input::-webkit-inner-spin-button {
   .big0 {
     flex-direction: column;
   }
+
   .big {
     width: 100%;
   }
+
   .big2 {
-    margin-right: 10px;
-    margin-top: 10px;
-    width: 96%;
+    box-sizing: border-box;
+    width: 100%;
   }
 }
+
 th {
-  max-width: 150px; /* Adjust as needed */
+  max-width: 150px;
+  /* Adjust as needed */
 }
 
 @media (max-width: 375px) {
   .cardReg {
     width: 80%;
   }
+
   .Terms {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
   }
+}
+
+
+/* page layout style */
+.page-layout {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "side_nav main"
+    "footer footer";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.page-layout > * {
+  max-width: min(100%, 100vw);
+  box-sizing: border-box;
+}
+
+.page-header {
+  position: sticky;
+  top: 0;
+  grid-area: header;
+  z-index: 2;
+}
+
+.page-sideNav {
+  grid-area: side_nav;
+  width: max-content;
+  z-index: 1;
+}
+
+.page-main {
+  grid-area: main;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.page-footer {
+  grid-area: footer;
 }

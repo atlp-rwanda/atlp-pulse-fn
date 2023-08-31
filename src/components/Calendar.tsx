@@ -108,7 +108,7 @@ const Calendar = () => {
     <>
       {/* =========================== Start::  RegisterTraineeModel =========================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
           addEventModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -246,7 +246,7 @@ const Calendar = () => {
       </div>
       {/* =========================== End::  RegisterTraineeModel =============================== */}
 
-      <div className="pt-24 px-4 md:px-40 md:pl-80 pb-20  w-full dark:bg-dark-frame-bg dark:text-white h-full overflow-y-scroll">
+      <div className="px-4 pb-20  w-full dark:bg-dark-frame-bg dark:text-white h-full overflow-y-scroll">
         <div className="w-full flex justify-center text-xl md:text-4xl dark:text-primary mb-10">
           <h2>{t('Calendar')}</h2>
         </div>

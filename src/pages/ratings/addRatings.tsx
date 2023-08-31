@@ -82,7 +82,7 @@ function AddRatings({
   /* istanbul ignore next */
   return (
     <>
-      <div className="mt-8">
+      <div className="mt-2">
         <button
           type="button"
           onClick={openModal}
