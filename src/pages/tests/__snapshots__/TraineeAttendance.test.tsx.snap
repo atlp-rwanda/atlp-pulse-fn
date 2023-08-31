@@ -3,7 +3,7 @@
 exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
 Array [
   <div
-    className=" w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm min-h-[100%] absolute flex items-center justify-center px-4 hidden"
+    className=" w-screen bg-black bg-opacity-30 backdrop-blur-sm min-h-[100%] fixed top-0 left-0 z-20 flex items-center justify-center px-4 hidden"
   >
     <div
       className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8 "
@@ -161,6 +161,7 @@ Array [
                   "height": "40px",
                 }
               }
+              type="button"
             >
               cancel
             </button>
@@ -185,13 +186,13 @@ Array [
     className="bg-light-bg dark:bg-dark-frame-bg lg:px-8 overflow-y-scroll pb-6"
   >
     <div
-      className="px-3 md:px-8"
+      className=""
     >
       <div
-        className="flex ml-2 items-center justify-between py-4 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px] h-[80%]"
+        className="flex items-center justify-between py-4 rounded-md w-full"
       >
         <div
-          className="flex ml-[-35px] px-7 py-2 mt-2 "
+          className="flex py-2 mt-2 "
         >
           <h2>
             Attendance Tracker
@@ -201,7 +202,7 @@ Array [
           className="flex justify-left"
         >
           <select
-            className="flex text-black px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
+            className="flex text-black px-4 py-2 rounded-md font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
             data-testid="getWeek"
             onChange={[Function]}
           >
@@ -230,6 +231,7 @@ Array [
             </option>
           </select>
           <h2
+            aria-hidden={true}
             className="mx-3 bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer"
             data-testid="submitAttend"
             onClick={[Function]}
@@ -239,24 +241,24 @@ Array [
         </div>
       </div>
       <div
-        className="bg-light-bg dark:bg-dark-frame-bg min-h-screen lg:px-8"
+        className="bg-light-bg dark:bg-dark-frame-bg"
       >
         <div
-          className="px-3 md:px-8"
+          className=""
         >
           <div
-            className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-56 mt-[90px]"
+            className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full"
           >
             <div
               className=""
             >
               <div
-                className="flex ml-2 items-center justify-between"
+                className="flex items-center justify-between"
               />
             </div>
             <div>
               <div
-                className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto"
+                className="py-2 overflow-x-auto"
               >
                 <div
                   className="w-full lg:min-w-full shadow rounded-lg  "
@@ -321,12 +323,13 @@ Array [
               </div>
             </div>
             <div
-              className="flex items-center justify-center gap-1 mt-12 mb-0"
+              className="flex items-center justify-center gap-1 mb-0"
             >
               <button
                 className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent disabled"
                 data-testid="prev"
                 onClick={[Function]}
+                type="button"
               >
                 ←
               </button>
@@ -334,6 +337,7 @@ Array [
                 className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent disabled"
                 data-testid="page1"
                 onClick={[Function]}
+                type="button"
               >
                 1
               </button>
@@ -341,6 +345,7 @@ Array [
                 className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent false"
                 data-testid="page3"
                 onClick={[Function]}
+                type="button"
               >
                 0
               </button>
@@ -348,19 +353,20 @@ Array [
                 className="page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent false"
                 data-testid="next"
                 onClick={[Function]}
+                type="button"
               >
                 →
               </button>
             </div>
           </div>
           <div
-            className="big0 flex   flex-row  items-center  mt-4 w-[81vw]"
+            className="big0 flex flex-row mt-4 gap-2"
           >
             <div
-              className="big flex flex-col w-[50%] "
+              className="big flex flex-col w-[50%] flex-1 gap-2"
             >
               <div
-                className="bg-white flex flex-col justify-center    dark:bg-dark-bg border border-primary shadow-lg p-5 rounded-md w-full md:w-[97%] lg:ml-56"
+                className="bg-white flex flex-1 flex-col justify-center dark:bg-dark-bg border border-primary shadow-lg p-5 rounded-md w-full"
               >
                 <h2
                   className="font-bold "
@@ -438,7 +444,7 @@ Array [
                 </div>
               </div>
               <div
-                className="bg-white flex flex-col justify-center   dark:bg-dark-bg border mt-2 border-primary shadow-lg p-5 rounded-md w-full md:w-[97%] lg:ml-56"
+                className="bg-white flex flex-1 flex-col justify-center dark:bg-dark-bg border border-primary shadow-lg p-5 rounded-md w-full"
               >
                 <h2
                   className="font-bold mb-4 "
@@ -516,7 +522,7 @@ Array [
               </div>
             </div>
             <div
-              className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md   w-[50%]  lg:ml-56"
+              className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md w-[50%]"
             >
               <h2
                 className="font-bold mb-4 "

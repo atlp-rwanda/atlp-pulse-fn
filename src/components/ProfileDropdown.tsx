@@ -9,7 +9,7 @@ import { UserContext } from '../hook/useAuth';
 
 const errorLink = onError(({ graphQLErrors }) => {
   // eslint-disable-next-line no-nested-ternary
-   /* istanbul ignore next */
+  /* istanbul ignore next */
   if (graphQLErrors) {
     graphQLErrors.map(({ message }) => {
       alert(`Graphql error ${message}`);
@@ -36,7 +36,7 @@ function ProfileDropdown({
         onKeyDown={handleShowProfileDropdown}
         data-testid="keyClick"
       />
-      <div className="absolute top-[60px] right-0 left-0 ml-auto px-2 md:mx-0 md:left-auto md:right-[10px] z-2  w-full max-w-[220px] h-[calc(100%-70px)]">
+      <div className="absolute top-[60px] right-0 left-0 ml-auto px-2 md:mx-0 md:left-auto md:right-[10px] z-2  w-full max-w-[220px] min-w-fit h-[calc(100%-70px)]">
         <div className="flex flex-col flex-nowrap w-full h-max max-h-full bg-white shadow-xl border  dark:border-0 dark:bg-dark-tertiary rounded-[20px]">
           <div className="flex flex-col w-full p-3 border-border-dark dark:border-white border-b-[0.5px]">
             <p className="font-bold dark:text-white">{user?.name}</p>
@@ -75,7 +75,7 @@ function ProfileDropdown({
           <div>
             <Link
               to="/loginActivities"
-              className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
+              className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:text-gray-100"
             >
               <p className="font-bold ml-1 cursor-pointer">
                 {t('Login Activities')}

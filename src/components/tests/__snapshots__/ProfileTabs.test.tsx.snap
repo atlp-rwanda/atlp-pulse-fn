@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="flex flex-wrap lg:ml-60 lg:mr-8"
+        class="flex flex-wrap"
       >
         <div
           class="lg:w-[40vw]"
@@ -353,7 +353,7 @@ Object {
                 id="link2"
               >
                 <div
-                  class="min-h-screen bg-light-bg dark:bg-dark-frame-bg lg:px-8"
+                  class="bg-light-bg dark:bg-dark-frame-bg lg:px-8"
                 >
                   <div
                     class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"
@@ -650,7 +650,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="flex flex-wrap lg:ml-60 lg:mr-8"
+      class="flex flex-wrap"
     >
       <div
         class="lg:w-[40vw]"
@@ -997,7 +997,7 @@ Object {
               id="link2"
             >
               <div
-                class="min-h-screen bg-light-bg dark:bg-dark-frame-bg lg:px-8"
+                class="bg-light-bg dark:bg-dark-frame-bg lg:px-8"
               >
                 <div
                   class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg"

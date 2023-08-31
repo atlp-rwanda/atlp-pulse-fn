@@ -219,7 +219,7 @@ function GradingSystem() {
         loading={makeDefaultLoading}
       />
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center p-4 ${
+        className={`w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center p-4 ${
           addGradingSystemModel === true ? 'flex' : 'hidden'
         }`}
       >
@@ -231,12 +231,12 @@ function GradingSystem() {
         />
       </div>
       {/* =========================== End:: GradingSystemModel =============================== */}
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col">
         <div className="flex flex-row">
           <div className="w-full">
             <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-                <div className="flex items-left lg:ml-60  px-3 md:px-8 pt-24">
+              <div className="bg-light-bg dark:bg-dark-frame-bg ">
+                <div className="flex items-left">
                   <div className="flex flex-wrap gap-2 py-2 pb-8 max-w-full">
                     <select
                       className="flex bg-primary rounded-md py-2 px-1 text-white font-medium cursor-pointer max-w-full"
@@ -276,8 +276,8 @@ function GradingSystem() {
                   </div>
                 </div>
                 {value === '' && (
-                  <div className="px-3 md:px-8">
-                    <div className="w-screen max-w-full">
+                  <div className="">
+                    <div className="max-w-full">
                       <DataTable
                         columns={GradingsColumn}
                         loading={gradeLoading}
@@ -288,8 +288,8 @@ function GradingSystem() {
                   </div>
                 )}
                 {value !== 'custom' && value !== '' ? (
-                  <div className="px-3 md:px-8">
-                    <div className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[80%] lg:ml-60 mb-10">
+                  <div className="">
+                    <div className="bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mb-10">
                       <div className=" flex items-center justify-between pb-6">
                         <div className="flex items-center flex-wrap gap-2 justify-between w-full ">
                           <h2

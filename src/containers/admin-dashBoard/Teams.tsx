@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next';
 import Button from '../../components/Buttons';
 import DataTable from '../../components/DataTable';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import formatDate from '../../utils/formatDate';
-import CreateCohortModal from './CreateCohortModal';
 import DeleteTeamModal from './DeleteTeamModal';
 import UpdateTeamModal from './UpdateTeamModal';
 import TeamTraineeModal from './TeamTraineeModal';
@@ -269,12 +267,13 @@ function AdminTeams() {
 
       {/* =========================== End::  CreateCohortModel =============================== */}
 
-      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-        <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
-          <div className="space-x-8 lg:ml-10">
+      <div className="bg-light-bg dark:bg-dark-frame-bg">
+        <div className="flex items-left pb-8">
+          <div className="flex gap-2">
             <Button
               variant="primary"
               size="lg"
+              style="m-0"
               onClick={() => setCreateTeamModal(true)}
               data-testid="removeModel"
             >
@@ -283,14 +282,13 @@ function AdminTeams() {
             </Button>
           </div>
         </div>
-        <div className="px-3 m d:px-8 w-screen overflow-x-auto">
-          {!getLoading && (
-            <DataTable
-              columns={teamColumns}
-              data={teamData ? (teamData as [any]) : [{}]}
-              title={t('Teams list')}
-            />
-          )}
+        <div className="">
+          <DataTable
+            columns={teamColumns}
+            data={teamData ? (teamData as [any]) : []}
+            title={t('Teams list')}
+            loading={getLoading}
+          />
         </div>
       </div>
     </>

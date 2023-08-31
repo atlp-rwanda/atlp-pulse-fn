@@ -725,7 +725,7 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
           inviteTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -792,7 +792,7 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-40 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen bg-black bg-opacity-40 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
           editTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -885,7 +885,7 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
           removeTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -943,7 +943,7 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center  px-4 ${
           registerTraineeModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -1036,17 +1036,18 @@ function AdminTraineeDashboard() {
       </div>
       {/* =========================== End::  AddTraineeModel =============================== */}
 
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col">
         <div className="flex flex-row">
           <div className="w-full">
             <div>
-              <div className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg">
-                <div className="flex px-10 pt-24 pb-8 items-left lg:px-60">
-                  <div className="space-x-8 lg:ml-7">
+              <div className="bg-light-bg dark:bg-dark-frame-bg">
+                <div className="flex pb-8 items-left ">
+                  <div className="flex gap-2">
                     <Button
                       variant="primary"
                       size="lg"
                       data-testid="registerModel"
+                      style="m-0"
                       onClick={removeModel}
                     >
                       {' '}
@@ -1060,6 +1061,7 @@ function AdminTraineeDashboard() {
                         variant="primary"
                         size="lg"
                         data-testid="inviteModel"
+                        style="m-0"
                         onClick={inviteModel}
                       >
                         {t('Invite')}
@@ -1067,7 +1069,7 @@ function AdminTraineeDashboard() {
                     )}
                   </div>
                 </div>
-                <div className="px-3 md:px-8">
+                <div className="">
                   <DataTable
                     data={traineeData?.length > 0 ? datum : [{}]}
                     columns={columns}

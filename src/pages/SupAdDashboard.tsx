@@ -11,7 +11,7 @@ function SupAdDashboard() {
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
       <div className="flex flex-row pb-8 justify-center">
-        <div className="lg:ml-44 w-[90%] pt-[4vh] lg:pt-[6vh]">
+        <div className="">
           {/* <div className="grid grid-cols-2 lg:grid-cols-4">
             <Card text={t('All Organizations')} number={24} />
             <Card text={t('All Admins')} number={24} />

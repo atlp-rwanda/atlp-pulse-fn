@@ -118,7 +118,7 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="w-screen py-4 z-20 bg-indigo-100 dark:bg-dark-bg fixed">
+      <div className="w-screen py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header">
         <div className="px-3 flex items-center w-full ">
           <div className="flex px-5 lg:hidden">
             <div

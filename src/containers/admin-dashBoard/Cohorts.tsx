@@ -337,12 +337,13 @@ function AdminCohort() {
 
       {/* =========================== End::  CreateCohortModel =============================== */}
 
-      <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-        <div className="flex items-left px-7 lg:px-60 pt-24 pb-8">
-          <div className="space-x-8 lg:ml-10">
+      <div className="bg-light-bg dark:bg-dark-frame-bg">
+        <div className="flex items-left pb-8">
+          <div className="flex gap-2">
             <Button
               variant="primary"
               size="lg"
+              style="m-0"
               onClick={removeModel}
               data-testid="removeModel"
             >
@@ -351,7 +352,7 @@ function AdminCohort() {
             </Button>
           </div>
         </div>
-        <div className="px-3 m d:px-8 w-screen overflow-x-auto">
+        <div >
           {!getLoading && (
             <DataTable
               columns={cohortColumns}

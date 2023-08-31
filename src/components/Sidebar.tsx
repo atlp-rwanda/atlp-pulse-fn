@@ -34,12 +34,14 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   const { minimized, showNav } = useContext(MenuContext);
   const { t } = useTranslation();
   const { logout } = useContext(UserContext);
-  const [togglei, setTogglei] = useState(false);
-  useEffect(() => {}, [togglei]);
   return (
-    <div className={`${showNav ? 'block' : 'hidden'} lg:block`}>
+    <div
+      className={`${
+        showNav ? 'block' : 'hidden'
+      } lg:block page-sideNav fixed lg:static top-16 bottom-0`}
+    >
       <div
-        className={`${style} overflow-auto flex-col fixed h-[100%] pt-[8vh] lg:pt-[11vh] bg-indigo-100 dark:bg-dark-bg shadow-lg dark:shadow-border-dark`}
+        className={`${style} overflow-auto flex-col h-[100%] pt-2 bg-indigo-100 dark:bg-dark-bg shadow-lg lg:shadow-none dark:shadow-border-dark`}
       >
         <div className="list-none">
           <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard">
@@ -155,14 +157,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
               <ClipboardCheckIcon className="w-5 " />
             </SideNavLink>
-            <SideNavLink
-              onClick={() => {
-                toggle();
-                setTogglei(true);
-              }}
-              name="Performance"
-              to="/performance"
-            >
+            <SideNavLink onClick={toggle} name="Performance" to="/performance">
               <TrendingUpIcon className="w-5" />
             </SideNavLink>
 

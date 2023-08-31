@@ -94,8 +94,8 @@ function TraineePerfomanceDetails() {
   return (
     <div>
       {/* trainee perfomance */}
-      <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">
-        <table className="lg:w-9/12 md:w-11/12 lg:h-[70%] md:h-[60%] md:ml-0 lg:ml-32 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 ">
+      <div className="bg-neutral-100 dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">
+        <table className="dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 ">
           <thead>
             <tr className="text-gray-300  bg-gray-100  dark:bg-dark-tertiary">
               <th className="lg:py-3 md:py-2 lg:px-3 md:px-2  text-left  text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">

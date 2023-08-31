@@ -108,7 +108,7 @@ function EditProfile() {
   return (
     <div className="h-full overflow-y-scroll bg-light-bg dark:bg-dark-frame-bg">
       <ProfileCoverpage data={profile} currentPage="editProfile" />
-      <div className="flex flex-wrap ml-4 lg:ml-64">
+      <div className="flex flex-wrap">
         <div className="lg:w-[25vw] mt-3">
           <ul
             className="flex flex-row flex-wrap pt-3 pb-4 mb-0 text-black list-none dark:text-dark-text-fill"
@@ -146,7 +146,7 @@ function EditProfile() {
       </div>
       
       {tab === 0 && (
-       <div className=" lg:px-4 border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg">
+       <div className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full h-fit my-6 rounded-lg">
        <div className="px-4">
          <Button
            variant="default"
@@ -154,7 +154,7 @@ function EditProfile() {
            style="text-center mb-4 rounded-lg bg-primary text-white hover:bg-[#1eaad6] focus:outline-none p-1 mt-4"
          >
            {' '}
-           <Link to="/dashboard/profile" className="flex flex-row">
+           <Link to="/profile" className="flex flex-row">
              <ArrowLeftIcon className="w-6 p-1 mr-1 md:mr-2 dark:text-dark-text-fill" />
              {t('Back to Profile')}
            </Link>
@@ -256,7 +256,7 @@ function EditProfile() {
       )}
 
       {tab === 1 && (
-        <div className=" lg:px-4 border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[94vw] md:w-[96vw] lg:w-[75%] h-fit mx-4 lg:ml-72 my-6 rounded-lg">
+        <div className=" lg:px-4 border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full h-fit my-6 rounded-lg">
           <div>
             <Resume />
           </div>

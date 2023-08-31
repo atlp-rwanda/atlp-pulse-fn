@@ -5,10 +5,10 @@ exports[`<Resume /> Renders Resume 1`] = `
   className="w-full h-96"
 >
   <div
-    className="pt-5 pb-5 space-x-8 lg:ml-7 downbuttons"
+    className="pt-5 pb-5 flex gap-2 downbuttons"
   >
     <button
-      className="btn primary lg undefined"
+      className="btn primary lg m-0"
       data-testid="registerModel"
       disabled={false}
       onClick={[Function]}
@@ -17,7 +17,7 @@ exports[`<Resume /> Renders Resume 1`] = `
       Upload from your pc
     </button>
     <button
-      className="btn primary lg undefined"
+      className="btn primary lg m-0"
       data-testid="registerModel"
       disabled={false}
       onClick={[Function]}

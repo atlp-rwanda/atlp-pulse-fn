@@ -44,7 +44,7 @@ const AdminSission = () => {
     <>
       {/* =========================== Start:: add Session Model =============================== */}
       <div
-        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
           addSessionModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -276,13 +276,14 @@ const AdminSission = () => {
         <div className="flex flex-row">
           <div className="w-full">
             <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg  min-h-screen overflow-y-auto overflow-x-hidden">
-                <div className="flex items-left px-10 lg:px-60 pt-24 pb-8">
-                  <div className="space-x-8 lg:ml-7">
+              <div className="bg-light-bg dark:bg-dark-frame-bg  ">
+                <div className="flex items-left pb-8">
+                  <div className="flex gap-2">
                     <Button
                       variant="primary"
                       size="lg"
                       data-testid="registerModel"
+                      style="m-0"
                       onClick={removeModel}
                     >
                       {' '}
@@ -290,7 +291,7 @@ const AdminSission = () => {
                     </Button>
                   </div>
                 </div>
-                <div className="px-3 md:px-8">
+                <div className="">
                   <DataTable
                     data={data}
                     columns={columns}

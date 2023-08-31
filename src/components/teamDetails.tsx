@@ -70,13 +70,13 @@ export default function TeamDetailsModal({
 
   return (
     <div
-      className={`"bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden ${
+      className={`"bg-light-bg dark:bg-dark-frame-bg  ${
         teamDetailsModal === true ? 'block' : 'hidden'
       }`}
     >
       {!loading ? (
         <>
-          <div className="flex text-white bg-emerald-800 justify-between items-center w-40 h-30 pr-40  items-left lg:px-60 pt-24 pb-4 mb-8">
+          <div className="flex text-white bg-emerald-800 justify-between items-center w-40 h-30 pr-40  items-left lg:px-60 pb-4 mb-8">
             <div className="space-x-8 justify-between lg:ml-10 flex items-center">
               <h1 className="">{currentTeam?.name}</h1>
               <div className="border-r-2 h-6 border-white" />

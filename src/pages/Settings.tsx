@@ -98,14 +98,14 @@ function Settings() {
 
   return (
     <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
-      <div className="flex flex-row justify-center pt-[12vh]">
-        <div className="rounded-lg w-[90%] lg:w-80vh lg:ml-[38vh] lg:mr-[2vh] lg:mb-10 p-6 bg-indigo-100 dark:bg-dark-bg">
+      <div className="flex flex-row justify-center pt-10">
+        <div className="rounded-lg w-[90%] mb-10 p-6 bg-indigo-100 dark:bg-dark-bg">
           <h1 className="mb-4 font-bold text-xl dark:text-dark-text-fill">
             {t('Settings')}
           </h1>
           <div>
             <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
-              <div className="w-[33vh]">
+              <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Profile')}
                 </h1>
@@ -121,7 +121,7 @@ function Settings() {
               </Link>
             </li>
             <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
-              <div className="w-[33vh]">
+              <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Appearance')}
                 </h1>
@@ -130,7 +130,7 @@ function Settings() {
                 </p>
               </div>
               <select
-                defaultValue={defaultTheme}
+                value={defaultTheme}
                 data-testid="themeChange"
                 onChange={(e) => handleThemeChange(e)}
                 className="ml-auto bg-white border border-gray-400 px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
@@ -140,7 +140,7 @@ function Settings() {
               </select>
             </li>
             <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
-              <div className="w-[33vh]">
+              <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Language')}
                 </h1>
@@ -161,7 +161,7 @@ function Settings() {
               </select>
             </li>
             <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
-              <div className="w-[33vh]">
+              <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Email notifications')}
                 </h1>
@@ -187,7 +187,7 @@ function Settings() {
               </Switch>
             </li>
             <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
-              <div className="w-[33vh]">
+              <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Push notifications')}
                 </h1>
@@ -213,7 +213,7 @@ function Settings() {
               </Switch>
             </li>
             <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
-              <div className="w-[33vh]">
+              <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Privacy and Security')}
                 </h1>
@@ -229,7 +229,7 @@ function Settings() {
               </Link>
             </li>
             <li className="flex items-center pt-2 pb-1">
-              <div className="w-[33vh]">
+              <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
                   {t('Login Activity')}
                 </h1>

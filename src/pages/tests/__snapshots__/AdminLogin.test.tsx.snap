@@ -3,126 +3,128 @@
 exports[`Admin Login Should render 1`] = `
 Array [
   <div
-    className="w-full h-full py-2 text-center bg-gray-100 dark:bg-dark-frame-bg sm:flex sm:items-center sm:justify-center"
+    className="grow  dark:bg-dark-frame-bg bg-indigo-50 flex flex-row font-sans"
   >
     <div
-      className="mt-20 mb-8 bg-indigo-100 md:rounded-xl md:shadow-xl md:w-full sm:max-w-xl dark:bg-dark-bg sm:rounded-none sm:shadow-none dark:shadow-2xl"
+      className="hidden lg:flex w-[50%] h-full  flex-col justify-center items-center mt-10 "
     >
       <div
-        className="py-10 sm:py-8 "
+        className=" flex flex-col justify-center items-center "
       >
-        <h2
-          className="text-2xl font-bold text-primary dark:text-dark-text-fill "
-        >
-          Welcome to
-           
-        </h2>
         <div
-          className="border-[1px] w-10 bg-primary border-primary inline-block mb-2"
-        />
-        <div
-          className="text-sm text-center dark:text-dark-text-fill"
+          className="relative flex flex-row justify-center"
         >
-          <a
-            className="mx-1 text-primary"
-            data-testid="switch"
-            href="/login/org"
-            onClick={[Function]}
+          <img
+            alt="pulses"
+            className="absolute inset-0 w-[41rem] h-[12rem] dark:hidden"
+            src={Object {}}
+          />
+          <p
+            className="relative w-[70%] text-gray-700 text-[1.9em] p-5 text-center italic font-bold  dark:text-dark-text-fill"
           >
-            Switch
-             
-            your organization
-          </a>
+            Boost your organization
+          </p>
         </div>
         <div
-          className="flex flex-col items-center"
+          className="w-[30vw] h-[42vh]  flex flex-row "
         >
-          <form
-            action="#none"
-            data-testid="loginForm"
-            onSubmit={[Function]}
+          <img
+            alt="functions"
+            className="w-sm dark:brightness-150"
+            src={Object {}}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className=" w-full  lg:w-[50%] lg:p-5 flex flex-row items-end p-5"
+    >
+      <div
+        className="max-w-lg w-full mx-auto my-28 bg-indigo-100 dark:bg-dark-bg  p-5 sm:p-5 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
+      >
+        <div
+          className=""
+        >
+          <div
+            className="flex flex-col justify-center items-center"
           >
-            <div
-              className="flex items-center w-full p-2 my-2 mb-2 bg-gray-100 border rounded-md border-gray dark:bg-dark-bg "
+            <h2
+              className="text-2xl font-bold text-primary dark:text-dark-text-fill "
             >
-              <svg
-                className="mr-2 text-gray-400"
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                strokeWidth="0"
-                style={
-                  Object {
-                    "color": undefined,
-                  }
-                }
-                viewBox="0 0 512 512"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"
-                />
-              </svg>
-              <input
-                className="flex-1 px-2 text-sm bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white "
-                data-testid="email"
-                name="email"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Email"
-                type="email"
-              />
-            </div>
+              Welcome to
+               
+            </h2>
             <div
-              className="pl-4 mb-1 text-left"
+              className="border-[1px] w-10 bg-primary border-primary inline-block mb-2"
             />
-            <div
-              className="flex items-center p-2 my-4 mb-2 bg-gray-100 border rounded-md md:w-full border-gray dark:border-white dark:bg-dark-bg"
+          </div>
+          <div
+            className=" text-sm text-center dark:text-dark-text-fill"
+          >
+            <a
+              className="mx-1 text-primary"
+              data-testid="switch"
+              href="/login/org"
+              onClick={[Function]}
             >
-              <svg
-                className="mr-2 text-gray-400 "
-                fill="currentColor"
-                height="1em"
-                stroke="currentColor"
-                strokeWidth="0"
-                style={
-                  Object {
-                    "color": undefined,
-                  }
-                }
-                viewBox="0 0 24 24"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path
-                  d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z"
-                />
-              </svg>
-              <input
-                className="flex-1 text-sm bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white"
-                data-testid="password"
-                name="password"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Password"
-                type="password"
-              />
+              Switch
+               
+              your organization
+            </a>
+          </div>
+          <div
+            className="flex flex-col items-center"
+          >
+            <form
+              action="#none"
+              className="w-full"
+              data-testid="loginForm"
+              onSubmit={[Function]}
+            >
               <div
-                className="text-gray-400 cursor-pointer onClick= {()=> handleShowPassword}"
+                className="flex items-center w-full p-2 my-2 mb-2 bg-gray-100 border rounded-md border-gray dark:bg-dark-bg "
               >
                 <svg
-                  fill="none"
+                  className="mr-2 text-gray-400"
+                  fill="currentColor"
                   height="1em"
-                  onClick={[Function]}
                   stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
+                  strokeWidth="0"
+                  style={
+                    Object {
+                      "color": undefined,
+                    }
+                  }
+                  viewBox="0 0 512 512"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"
+                  />
+                </svg>
+                <input
+                  className="bg-gray-100 outline-none text-sm flex-1 px-2 dark:border-white dark:bg-dark-bg dark:text-white "
+                  data-testid="email"
+                  name="email"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  placeholder="Email"
+                  type="email"
+                />
+              </div>
+              <div
+                className="text-left mb-1 pl-4"
+              />
+              <div
+                className="md:w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center  mb-2 dark:border-white dark:bg-dark-bg"
+              >
+                <svg
+                  className="text-gray-400 mr-2 "
+                  fill="currentColor"
+                  height="1em"
+                  stroke="currentColor"
+                  strokeWidth="0"
                   style={
                     Object {
                       "color": undefined,
@@ -133,67 +135,113 @@ Array [
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                    d="M0 0h24v24H0z"
+                    fill="none"
                   />
-                  <line
-                    x1="1"
-                    x2="23"
-                    y1="1"
-                    y2="23"
+                  <path
+                    d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z"
                   />
                 </svg>
-              </div>
-            </div>
-            <div
-              className="pl-4 mb-1 text-left"
-            />
-            <div
-              className="flex justify-between w-64 mt-5 mb-5 rounded"
-            >
-              <label
-                className="flex items-center text-xs dark:text-dark-text-fill "
-                htmlFor="checkbox"
-              >
                 <input
-                  className="mr-1 dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
-                  name="remember"
-                  type="checkbox"
+                  className="bg-gray-100 outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
+                  data-testid="password"
+                  name="password"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  placeholder="Password"
+                  type="password"
                 />
-                Remember me
-              </label>
-              <a
-                className="text-xs dark:text-dark-text-fill "
-                href="/reset-password"
-                onClick={[Function]}
+                <div
+                  className="text-gray-400 cursor-pointer onClick= {()=> handleShowPassword}"
+                >
+                  <svg
+                    fill="none"
+                    height="1em"
+                    onClick={[Function]}
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    style={
+                      Object {
+                        "color": undefined,
+                      }
+                    }
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+                    />
+                    <line
+                      x1="1"
+                      x2="23"
+                      y1="1"
+                      y2="23"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                className="pl-4 mb-1 text-left"
+              />
+              <div
+                className="flex w-full flex-col sm:flex-row justify-between  items-center rounded mb-5 mt-5"
               >
-                Forgot Password?
-              </a>
-            </div>
-            <div
-              className="w-full justify-center ml-[-7px]"
-            >
-              <button
-                className="btn transparentbtn md  w-full bg-primary inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white"
-                disabled={false}
-                type="submit"
+                <div
+                  className="w-50%"
+                >
+                  <label
+                    className="flex items-center text-xs dark:text-dark-text-fill "
+                    htmlFor="checkbox"
+                  >
+                    <input
+                      className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
+                      name="remember"
+                      type="checkbox"
+                    />
+                    Remember me
+                  </label>
+                </div>
+                <div
+                  className="w-[50%] flex flex-row justify-end"
+                >
+                  <a
+                    className="text-xs dark:text-dark-text-fill "
+                    href="/reset-password"
+                    onClick={[Function]}
+                  >
+                    Forgot Password?
+                  </a>
+                </div>
+              </div>
+              <div
+                className="w-full justify-center ml-[-7px]"
               >
-                Sign In
-              </button>
-            </div>
-          </form>
-        </div>
-        <div
-          className="my-4 text-sm text-center dark:text-dark-text-fill"
-        >
-          First time here?
-          <a
-            className="mx-1 text-primary"
-            href="/signup/org"
-            onClick={[Function]}
+                <button
+                  className="btn transparentbtn md  w-full bg-primary inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white"
+                  disabled={false}
+                  type="submit"
+                >
+                  Sign In
+                </button>
+              </div>
+            </form>
+          </div>
+          <div
+            className="my-4 text-sm text-center dark:text-dark-text-fill"
           >
-            Register
-          </a>
-          your organization
+            First time here?
+            <a
+              className="mx-1 text-primary"
+              href="/signup/org"
+              onClick={[Function]}
+            >
+              Register
+            </a>
+            your organization
+          </div>
         </div>
       </div>
     </div>

@@ -403,12 +403,12 @@ function TraineeRatingDashboard() {
 
   return (
     <>
-      <div className="flex flex-col h-screen bg-light-bg dark:bg-dark-frame-bg">
+      <div className="flex flex-col bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row">
           <div className="w-[100%]">
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg max-h-full overflow-y-auto overflow-x-hidden">
-                <div className="flex flex-col w-[80%] mx-auto  md:flex-row relative  justify-around  px-10 md:px-5 lg:px-10 pt-24 pb-8 mt-4">
+                <div className="flex flex-col w-full mx-auto md:flex-row relative gap-x-4 items-end">
                   {/* SELECT COHORT DROPDOWN START */}
                   <div className="flex flex-col md:ml-a w-40">
                     <Listbox
@@ -523,7 +523,7 @@ function TraineeRatingDashboard() {
                     setRatingData={setRatingData}
                   />
                   {/* ADD NEW RATING MODAL END */}
-                  <div className="py=0 px=0 mt-10  ">
+                  <div className="mt-2">
                     <ExportToExcel data={usedata} fileName={fileName} />
                   </div>
                   {/* UPDATE MODAL START */}
@@ -560,7 +560,7 @@ function TraineeRatingDashboard() {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                           >
-                            <Dialog.Panel className="w-full overflow-auto lg:mx-60 xl:mx-96 h-[800px] md:h-[500px] transform  rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full overflow-auto lg:mx-60 xl:mx-96 md:h-[500px] transform h-fit rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
                               <form onSubmit={handleUpdate}>
                                 <Dialog.Title
                                   as="h3"
@@ -568,7 +568,7 @@ function TraineeRatingDashboard() {
                                 >
                                   {t('Update rating')}
                                 </Dialog.Title>
-                                <div className="bg-gray-100 dark:bg-dark-frame-bg rounded-md p-2 my-2 mt-6 md:mt-8 flex flex-col md:flex-row">
+                                <div className="bg-gray-100 dark:bg-dark-frame-bg rounded-md p-2 my-2 flex flex-col md:flex-row">
                                   <div className="mx-0 md:mx-2 my-1 w-full flex flex-col md:flex-col justify-start items-center ">
                                     <Button
                                       variant="default"
@@ -709,7 +709,7 @@ function TraineeRatingDashboard() {
                                     />
                                   </div>
                                 </div>
-                                <div className="mt-4 md:mt-8">
+                                <div className="">
                                   <button
                                     type="submit"
                                     className="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
@@ -743,8 +743,8 @@ function TraineeRatingDashboard() {
                 </div>
                 <div className="w-full">
                   <div>
-                    <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
-                      <div className="px-3 md:px-8 mt-10">
+                    <div className="bg-light-bg dark:bg-dark-frame-bg ">
+                      <div className="mt-10 ">
                         {data === 0 ? (
                           <div className="text-center mt-7 text-lg uppercase">
                             <p> {t('No ratings data found')}</p>

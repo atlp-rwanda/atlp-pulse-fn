@@ -190,11 +190,12 @@ const [buttonLoading, setButtonLoading] = useState(false);
     <>
       <div className="w-full h-96">
         {uploadType !== 0 && uploadType !== 1 && (
-          <div className="pt-5 pb-5 space-x-8 lg:ml-7 downbuttons">
+          <div className="pt-5 pb-5 flex gap-2 downbuttons">
             <Button
               variant="primary"
               size="lg"
               data-testid="registerModel"
+              style="m-0"
               onClick={() => {
                 setUploadType(0);
               }}
@@ -206,6 +207,7 @@ const [buttonLoading, setButtonLoading] = useState(false);
               variant="primary"
               size="lg"
               data-testid="registerModel"
+              style="m-0"
               onClick={() => {
                 setUploadType(1);
               }}
@@ -217,11 +219,12 @@ const [buttonLoading, setButtonLoading] = useState(false);
 
         {(uploadType === 0 || uploadType === 1) && (
           <div className="w-full">
-            <div className="space-x-8 lg:ml-7 upbuttons">
+            <div className="flex gap-2 upbuttons">
               <Button
                 variant="primary"
                 size="lg"
                 data-testid="registerModel"
+                style="m-0"
                 onClick={() => {
                   setUploadType(0);
                 }}
@@ -233,6 +236,7 @@ const [buttonLoading, setButtonLoading] = useState(false);
                 variant="primary"
                 size="lg"
                 data-testid="registerModel"
+                style="m-0"
                 onClick={() => {
                   setUploadType(1);
                 }}

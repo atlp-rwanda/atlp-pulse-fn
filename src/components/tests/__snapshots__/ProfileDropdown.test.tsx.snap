@@ -14,7 +14,7 @@ exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
     tabIndex={0}
   />
   <div
-    className="absolute top-[60px] right-0 left-0 ml-auto px-2 md:mx-0 md:left-auto md:right-[10px] z-2  w-full max-w-[220px] h-[calc(100%-70px)]"
+    className="absolute top-[60px] right-0 left-0 ml-auto px-2 md:mx-0 md:left-auto md:right-[10px] z-2  w-full max-w-[220px] min-w-fit h-[calc(100%-70px)]"
   >
     <div
       className="flex flex-col flex-nowrap w-full h-max max-h-full bg-white shadow-xl border  dark:border-0 dark:bg-dark-tertiary rounded-[20px]"
@@ -65,7 +65,7 @@ exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
       </div>
       <div>
         <a
-          className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:rounded-b-[20px] hover:text-gray-100"
+          className="w-full p-3 flex flex-row align-center justify-start text-gray-900 dark:text-gray-100 dark:hover:bg-gray-300 dark:hover:text-gray-900  hover:bg-gray-600 hover:text-gray-100"
           href="/loginActivities"
           onClick={[Function]}
         >

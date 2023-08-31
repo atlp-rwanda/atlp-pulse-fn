@@ -2,7 +2,7 @@
 
 exports[`Header Tests Should render the header with home 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -69,6 +69,17 @@ exports[`Header Tests Should render the header with home 1`] = `
         >
           <a
             className=""
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
             href="/pricing"
             onClick={[Function]}
           >
@@ -80,18 +91,7 @@ exports[`Header Tests Should render the header with home 1`] = `
         >
           <a
             className=""
-            href="/product"
-            onClick={[Function]}
-          >
-            Product
-          </a>
-        </li>
-        <li
-          className="px-5 text-xl dark:text-dark-text-fill"
-        >
-          <a
-            className=""
-            href="/homePageDocs"
+            href="/docs/org-signin"
             onClick={[Function]}
           >
             Docs
@@ -100,7 +100,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       </ul>
     </div>
     <div
-      className="hidden lg:flex lg:w-full justify-end "
+      className="hidden lg:flex w-2/3 justify-end "
     >
       <button
         className="min-w-fit px-4 cursor-pointer "
@@ -234,7 +234,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
-        href="/homePageDocs"
+        href="/docs/org-signin"
         onClick={[Function]}
       >
         Docs
@@ -253,7 +253,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       </a>
     </li>
     <a
-      href="/signup/org"
+      href="/signupOrg"
       onClick={[Function]}
     >
       <button
@@ -272,7 +272,7 @@ exports[`Header Tests Should render the header with home 1`] = `
 
 exports[`Header Tests Should render the header with no active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -338,6 +338,17 @@ exports[`Header Tests Should render the header with no active 1`] = `
         >
           <a
             className=""
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
             href="/pricing"
             onClick={[Function]}
           >
@@ -349,18 +360,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
         >
           <a
             className=""
-            href="/product"
-            onClick={[Function]}
-          >
-            Product
-          </a>
-        </li>
-        <li
-          className="px-5 text-xl dark:text-dark-text-fill"
-        >
-          <a
-            className=""
-            href="/homePageDocs"
+            href="/docs/org-signin"
             onClick={[Function]}
           >
             Docs
@@ -369,7 +369,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       </ul>
     </div>
     <div
-      className="hidden lg:flex lg:w-full justify-end "
+      className="hidden lg:flex w-2/3 justify-end "
     >
       <button
         className="min-w-fit px-4 cursor-pointer "
@@ -503,7 +503,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
-        href="/homePageDocs"
+        href="/docs/org-signin"
         onClick={[Function]}
       >
         Docs
@@ -522,7 +522,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       </a>
     </li>
     <a
-      href="/signup/org"
+      href="/signupOrg"
       onClick={[Function]}
     >
       <button
@@ -541,7 +541,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
 
 exports[`Header Tests Should render the header with no active 2`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -602,17 +602,24 @@ exports[`Header Tests Should render the header with no active 2`] = `
             Home
           </a>
         </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+        </li>
          
         <li
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
             className=""
-            href="/product"
-            onClick={[Function]}
-          >
-            Product
-            href="/homePageDocs"
+            href="/docs/org-signin"
             onClick={[Function]}
           >
             Docs
@@ -621,7 +628,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       </ul>
     </div>
     <div
-      className="hidden lg:flex lg:w-full justify-end "
+      className="hidden lg:flex w-2/3 justify-end "
     >
       <button
         className="min-w-fit px-4 cursor-pointer "
@@ -742,7 +749,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
-        href="/homePageDocs"
+        href="/docs/org-signin"
         onClick={[Function]}
       >
         Docs
@@ -774,7 +781,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
 
 exports[`Header Tests Should render the header with no active 3`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -841,6 +848,17 @@ exports[`Header Tests Should render the header with no active 3`] = `
         >
           <a
             className=""
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
             href="/pricing"
             onClick={[Function]}
           >
@@ -852,18 +870,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
         >
           <a
             className=""
-            href="/product"
-            onClick={[Function]}
-          >
-            Product
-          </a>
-        </li>
-        <li
-          className="px-5 text-xl dark:text-dark-text-fill"
-        >
-          <a
-            className=""
-            href="/homePageDocs"
+            href="/docs/org-signin"
             onClick={[Function]}
           >
             Docs
@@ -872,7 +879,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       </ul>
     </div>
     <div
-      className="hidden lg:flex lg:w-full justify-end "
+      className="hidden lg:flex w-2/3 justify-end "
     >
       <button
         className="min-w-fit px-4 cursor-pointer "
@@ -1006,7 +1013,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
-        href="/homePageDocs"
+        href="/docs/org-signin"
         onClick={[Function]}
       >
         Docs
@@ -1025,7 +1032,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       </a>
     </li>
     <a
-      href="/signup/org"
+      href="/signupOrg"
       onClick={[Function]}
     >
       <button
@@ -1044,7 +1051,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
 
 exports[`Header Tests Should render the header with pricing active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1109,6 +1116,17 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
+            className=""
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
             aria-current="page"
             className="text-primary"
             href="/pricing"
@@ -1122,18 +1140,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         >
           <a
             className=""
-            href="/product"
-            onClick={[Function]}
-          >
-            Product
-          </a>
-        </li>
-        <li
-          className="px-5 text-xl dark:text-dark-text-fill"
-        >
-          <a
-            className=""
-            href="/homePageDocs"
+            href="/docs/org-signin"
             onClick={[Function]}
           >
             Docs
@@ -1142,7 +1149,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       </ul>
     </div>
     <div
-      className="hidden lg:flex lg:w-full justify-end "
+      className="hidden lg:flex w-2/3 justify-end "
     >
       <button
         className="min-w-fit px-4 cursor-pointer "
@@ -1276,7 +1283,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
-        href="/homePageDocs"
+        href="/docs/org-signin"
         onClick={[Function]}
       >
         Docs
@@ -1295,7 +1302,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       </a>
     </li>
     <a
-      href="/signup/org"
+      href="/signupOrg"
       onClick={[Function]}
     >
       <button
@@ -1314,7 +1321,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
 
 exports[`Header Tests Should render the header with product active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg fixed undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1380,6 +1387,17 @@ exports[`Header Tests Should render the header with product active 1`] = `
         >
           <a
             className=""
+            href="/about"
+            onClick={[Function]}
+          >
+            About
+          </a>
+        </li>
+        <li
+          className="px-5 text-xl dark:text-dark-text-fill"
+        >
+          <a
+            className=""
             href="/pricing"
             onClick={[Function]}
           >
@@ -1390,20 +1408,8 @@ exports[`Header Tests Should render the header with product active 1`] = `
           className="px-5 text-xl dark:text-dark-text-fill"
         >
           <a
-            aria-current="page"
-            className="text-primary"
-            href="/product"
-            onClick={[Function]}
-          >
-            Product
-          </a>
-        </li>
-        <li
-          className="px-5 text-xl dark:text-dark-text-fill"
-        >
-          <a
             className=""
-            href="/homePageDocs"
+            href="/docs/org-signin"
             onClick={[Function]}
           >
             Docs
@@ -1412,7 +1418,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       </ul>
     </div>
     <div
-      className="hidden lg:flex lg:w-full justify-end "
+      className="hidden lg:flex w-2/3 justify-end "
     >
       <button
         className="min-w-fit px-4 cursor-pointer "
@@ -1546,7 +1552,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
     >
       <a
-        href="/homePageDocs"
+        href="/docs/org-signin"
         onClick={[Function]}
       >
         Docs
@@ -1565,7 +1571,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       </a>
     </li>
     <a
-      href="/signup/org"
+      href="/signupOrg"
       onClick={[Function]}
     >
       <button
