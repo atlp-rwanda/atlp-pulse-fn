@@ -40,9 +40,7 @@ const ViewTraineeRatings = React.lazy(
 const TtlTraineeDashboard = React.lazy(
   () => import('../pages/ttlTraineeDashboard'),
 );
-const ViewTraineeRatings = React.lazy(
-  () => import('../pages/ratings/ViewTraineeRatings'),
-);
+
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
 );

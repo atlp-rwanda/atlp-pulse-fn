@@ -12,6 +12,14 @@ export const GET_USERS_QUERY = gql`
   }
 `;
 
+  export const DROP_TRAINEE = gql`
+  mutation DropTrainee($traineeId: String!, $reason: String!, $date: DateTime!) {
+    dropTrainee(traineeId: $traineeId, reason: $reason, date: $date)
+  }
+`;
+  
+  
+
 export const GET_TRAINEES_QUERY = gql`
   query GetTrainees($orgToken: String) {
     getTrainees(orgToken: $orgToken) {
