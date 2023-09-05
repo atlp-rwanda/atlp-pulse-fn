@@ -1,3 +1,7 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable react/no-unstable-nested-components */
 /* istanbul ignore file */
 /* eslint-disable no-console */
 /* eslint-disable prefer-const */
@@ -15,15 +19,17 @@
 /* istanbul ignore file */
 
 import React, { useState, useEffect, useContext } from 'react';
-import { t } from 'i18next';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import TraineeChart from '../components/TraineesChart';
+import TraineeChart from '../components/TraineeDashboardChart';
 import Table from '../components/TraineeTable';
 import { TRAINEE_RATING } from '../Mutations/Ratings';
+// import { AiOutlineEye } from 'react-icons/ai';
+import Comment from '../components/ViewComment';
+
 
 const GET_PROFILE = gql`
   query {
@@ -56,6 +62,7 @@ const organizationToken = localStorage.getItem('orgToken');
 /* istanbul ignore file */
 
 function SupAdDashboard() {
+  const { t } = useTranslation();
   const [profileData, setProfileData] = useState<any>();
   const [cohort, setCohort] = useState<any>();
   const [phase, setPhase] = useState<any>();
@@ -69,7 +76,23 @@ function SupAdDashboard() {
 
   const { loading, error, data } = useQuery(TRAINEE_RATING);
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
-/* istanbul ignore file */
+  const columns = [
+    { Header: `${t('Sprint')}`, accessor: 'sprint' },
+    { Header: `${t('Quantity')}`, accessor: 'quantity' },
+    { Header: `${t('Quality')}`, accessor: 'quality' },
+    { Header: `${t('Professionalism')}`, accessor: 'professionalism' },
+    {
+      Header: `${t('Comment')}`,
+      accessor: '',
+      Cell: ({ row }: any) => (
+        <div className="flex items-center">
+          <div className="cursor-pointer">
+            <Comment remark={row.original.comment}/>
+          </div>
+        </div>
+      ),
+    },
+  ];
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -83,8 +106,6 @@ function SupAdDashboard() {
     };
     fetchData();
   }, [phase, data]);
-  console.log('feedback', data?.feedbacks?.content);
-  console.log('feedback data:', data);
 
   if (data?.fetchRatingsTrainee) {
     data.fetchRatingsTrainee.forEach((rating: any) => {
@@ -154,9 +175,24 @@ function SupAdDashboard() {
         ? 0
         : totalQuantity / traineeData.length;
 
-      setQuantityValue(averagePerformance);
-      setQualityValue(averageQuality);
-      setPerfomanceValue(averageQuantity);
+        const formattedPerformanceValue =
+  averagePerformance % 1 !== 0
+    ? averagePerformance?.toFixed(1)
+    : averagePerformance;
+
+    const formattedQuantityValue =
+    averageQuantity % 1 !== 0
+      ? averageQuantity?.toFixed(1)
+      : averageQuantity;
+
+      const formattedQualityValue =
+      averageQuality % 1 !== 0
+        ? averageQuality?.toFixed(1)
+        : averageQuality;
+
+      setQuantityValue(formattedQuantityValue);
+      setQualityValue(formattedQualityValue);
+      setPerfomanceValue(formattedPerformanceValue);
     }
   }, [data, phase, qualityValue, quantityValue, perfomanceValue]);
 
@@ -164,7 +200,6 @@ function SupAdDashboard() {
     ...new Set(data?.fetchRatingsTrainee?.map((data: any) => data?.phase)),
   ];
 
-  const { t } = useTranslation();
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -237,8 +272,6 @@ function SupAdDashboard() {
     )
     .filter((item: any) => item.phase === phase);
 
-  console.log('chart', chartData);
-
   const getProgressBarStyles = (value: any) => {
     let pathColor = '#b71c1c';
     let textColor = '#b71c1c';
@@ -267,26 +300,29 @@ function SupAdDashboard() {
   return (
     <div className="flex flex-col  grow dark:bg-dark-frame-bg ">
       <div className="flex mx-4  flex-col justify-center  ">
-        <div className="lg:ml-1 w-[100%] pt-[8vh] h-[100%] mt-10  ">
+        <div className="lg:ml-1 w-[100%] pt-[4vh] h-[100%]   ">
           <div className="">
-            <div className="flex bg-[#b8cdba] w-[30%] h-[48px] items-center justify-center  rounded-lg cohort-phase">
+            <div className="flex bg-[#b8cdba] w-[30%] h-[48px]  ml-10 items-center justify-center  rounded-lg cohort-phase">
               <span className="flex  bg-[#b8cdba] pl-2 items-center rounded-md font-semibold text-xl w-[30%]">
                 {cohort}
               </span>
               <span className="h-5 border-2 mx-1 text-xl cohort-bar"></span>
 
               <span className="w-[45%] font-semibold text-xl pr-1 pl-3 c-phase ">
-                <select
-                  className="flex items-center bg-[#b8cdba] rounded-md font-semibold text-xl cursor-pointer "
-                  onChange={(e) => setPhase(e.target.value)}
-                  value={phase}
-                >
-                  {phases.map((phase: any, index) => (
-                    <option key={index} value={phase}>
-                      {phase}
-                    </option>
-                  ))}
-                </select>
+              {rating && (
+  <select
+    className="flex items-center bg-[#b8cdba] rounded-md font-semibold text-xl cursor-pointer phasesss"
+    onChange={(e) => setPhase(e.target.value)}
+    value={phase}
+  >
+    {phases.map((phase: any, index) => (
+      <option key={index} value={phase}>
+        {phase}
+      </option>
+    ))}
+  </select>
+)}
+
               </span>
             </div>
           </div>
@@ -432,7 +468,39 @@ function SupAdDashboard() {
             </div>
             <div className="trainee-table">
               <div className="font-bold text-gray-700 mr-10 my-10 w-[100%] text-lg ">
-                <Table dat={chartData} />
+                {/* <Table dat={chartData} /> */}
+                {chartData.length !== 0 ? (
+                    <Table
+                      data={chartData}
+                      columns={columns}
+                      title={t('Team Members')}
+                    />
+                  ) : (
+                    <table className="min-w-full rounded-full">
+                      <thead>
+                        <tr>
+                          {columns.map((column, columnIndex) => (
+                            <th
+                              key={columnIndex}
+                              className="px-6 py-3 text-left text-xs font-medium text-gray-500 bg-[#B8CDBA] dark:bg- uppercase tracking-wider"
+                            >
+                              {column.Header}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td
+                            colSpan={columns.length}
+                            className="px-6 py-4 whitespace-nowrap text-center text-gray-500"
+                          >
+                            {t('No ratings  yet')}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  )}
               </div>
             </div>
           </div>

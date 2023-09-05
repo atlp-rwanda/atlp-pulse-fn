@@ -83,6 +83,8 @@ function AdminLogin() {
               ? navigate(`/trainees`)
               : data.loginUser.user.role === 'manager'
                ? navigate(`/dashboard`)
+               : data.loginUser.user.role === 'trainee'
+               ? navigate(`/dashboard`)
               : data.loginUser.user.role === 'ttl'
               ? navigate('/ttl-trainees')
               : navigate('/performance');

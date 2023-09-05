@@ -444,7 +444,21 @@ th {
   grid-area: footer;
 }
 
+
 /* TRAINEE DASHBOARD */
+/* View comment model */
+.blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(5px); 
+  z-index: 999; 
+  pointer-events: none; 
+}
+
 /*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
 @media screen and (max-width:575px) {
   .Progres-bar{
@@ -454,7 +468,6 @@ th {
     align-items: center;
     gap: 40px;
     margin-left: 0;
-    /* background-color: #424242; */
     width: 100%;
     margin-left: 1rem;
   }
@@ -479,7 +492,6 @@ th {
 
   .phases{
     width: 100%;
-    /* background-color: #148fb6; */
     display: flex;
    flex-direction: column;
   gap: 20px;
@@ -492,7 +504,9 @@ th {
   .cohort-bar{
     display: none;
   }
- 
+  .Trainee-chart{
+    display: none;
+  }
 }
 
 
@@ -500,3 +514,35 @@ th {
   background-color: #fcfdff;
 }
   
+/* TRAINEE DASHBOARD */
+/*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
+@media screen and (max-width:375px) {
+ 
+  .cohort-phase{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+ 
+  .cohort-bar{
+    display: none;
+    
+  }
+
+}
+/* TRAINEE DASHBOARD */
+/*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
+ @media screen and (max-width:393px) {
+ 
+  .cohort-phase{
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    height: 10vh;
+  }
+  .cohort-bar{
+    display: none;
+    
+  }
+
+} 
