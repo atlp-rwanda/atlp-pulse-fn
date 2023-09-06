@@ -311,7 +311,7 @@ function AdminTraineeDashboard() {
       datum[index] = {};
       datum[index].name = data.profile ? data.profile.name : 'undefined';
       datum[index].email = data.email;
-      datum[index].rating = '2';
+      datum[index].rating = data?.ratings?.at(-1)?.average || 0;
       datum[index].team = data.team?.name;
       datum[index].cohort = data.team?.cohort?.name;
       datum[index].program = data.team?.cohort?.program?.name;

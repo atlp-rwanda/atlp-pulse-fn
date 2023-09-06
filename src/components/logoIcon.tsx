@@ -1,9 +1,13 @@
 import React from 'react';
 
-function LogoIcon() {
+interface props {
+  className?: string;
+}
+
+function LogoIcon({ className = '' }: props) {
   return (
     <svg
-      className="w-full cursor-pointer mr-2"
+      className={`w-full cursor-pointer mr-2 ${className}`}
       width="59"
       height="36"
       viewBox="0 0 59 36"

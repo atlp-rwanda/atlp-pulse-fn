@@ -105,7 +105,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/programs" name="Programs">
               <ProgramIcon className="w-5" />
             </SideNavLink>
-            <SideNavLink onClick={toggle} to="/admin/ratings" name="Ratings">
+            <SideNavLink onClick={toggle} to="/ratings" name="Ratings">
               <ClipboardListIcon className="w-5" />
             </SideNavLink>
             <SideNavLink
