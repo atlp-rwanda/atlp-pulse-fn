@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink , useLocation} from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { UserContext } from '../hook/useAuth';
 import Button from './Buttons';
@@ -13,8 +13,8 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { t } = useTranslation();
 
   /* istanbul ignore next */
-  const location = useLocation()
-  const pathname = location.pathname.split("/")[1]
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[1];
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
 
@@ -34,7 +34,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   }, []);
   return (
     <div
-      className={`w-screen h-[8vh] z-10 dark:bg-dark-bg fixed ${props?.styles}
+      className={`w-screen h-[5em] z-10 dark:bg-dark-bg fixed ${props?.styles}
       ${showElm && 'bg-indigo-300 dark:bg-card-dark'}`}
     >
       <div className="px-3 flex justify-between items-center w-full h-full">
@@ -74,22 +74,22 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             ) : (
               ' '
             )}
-             <li className="px-5 text-xl  text-white dark:text-dark-text-fill">
-                <NavLink
-                  className={(navData) => {
-                    if (navData.isActive) return 'text-primary';
-                    return '';
-                  }}
-                  to="/pricing"
-                >
-                  {t('Pricing')}
-                </NavLink>
-              </li>
-          
-             <li className="px-5 text-xl  text-white dark:text-dark-text-fill">
+            <li className="px-5 text-xl  text-white dark:text-dark-text-fill">
+              <NavLink
+                className={(navData) => {
+                  if (navData.isActive) return 'text-primary';
+                  return '';
+                }}
+                to="/pricing"
+              >
+                {t('Pricing')}
+              </NavLink>
+            </li>
+
+            <li className="px-5 text-xl  text-white dark:text-dark-text-fill">
               <NavLink
                 className={() => {
-                  if (pathname==="docs") return 'text-primary';
+                  if (pathname === 'docs') return 'text-primary';
                   return '';
                 }}
                 to="/docs/org-signin"
@@ -97,7 +97,6 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                 {t('Docs')}
               </NavLink>
             </li>
-            
           </ul>
         </div>
         <div className="hidden lg:flex justify-end ">
@@ -132,7 +131,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             </Link>
           )}
         </div>
-        <div className="flex px-5 lg:hidden items-center">
+        <div className="flex px-3 lg:hidden items-center">
           <ToggleThemeButton className="w-6 text-white dark:text-inherit" />
           <button type="button" onClick={handleClick}>
             {!open ? (
