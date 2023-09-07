@@ -1,16 +1,16 @@
 import { Transition, Dialog } from '@headlessui/react';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useSubscription } from '@apollo/client';
-import Frame from './frame';
+import Frame, { rowsType } from './frame';
 import { GET_FEEDBACK_SUBSCRIPTION } from '../../Mutations/Ratings';
 
 type props = {
   showRemarks: boolean;
   closeModal: (..._: any) => any;
-  rows: any;
+  rows: rowsType | any;
 };
 
-function CoordinatorRemarks({ showRemarks, closeModal, rows }: props) {
+function RemarksModal({ showRemarks, closeModal, rows }: props) {
   const [allFeeds, setAllFeeds] = useState<any[]>(rows?.feedbacks);
 
   useEffect(() => {
@@ -68,4 +68,4 @@ function CoordinatorRemarks({ showRemarks, closeModal, rows }: props) {
   );
 }
 
-export default CoordinatorRemarks;
+export default RemarksModal;

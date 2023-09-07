@@ -37,6 +37,17 @@ type props = {
   allFeeds: any[];
 };
 
+export type rowsType = {
+  feedbacks: any[];
+  sprint: string | number;
+  id: string | number;
+  username: string;
+  user: string;
+  qualityremark: string;
+  quantityremark: string;
+  professionalRemark: string;
+};
+
 /* frame props */
 export default function Frame({ rows, allFeeds }: props) {
   const { t } = useTranslation();
@@ -47,9 +58,6 @@ export default function Frame({ rows, allFeeds }: props) {
   const [addFeedBack] = useMutation(ADD_FEEDBACK, {
     onError: (err) => {
       toast.error(err.message || 'something went wrong');
-    },
-    onCompleted: () => {
-      toast.success('feedback sent!');
     },
   });
 
