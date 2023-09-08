@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { gql, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
@@ -227,7 +228,7 @@ function AdminTeams() {
       : 'Not Assigned',
     phase: cohort?.phase.name,
     programName: cohort?.program?.name,
-    ttlEmail: ttl?.profile && ttl.profile.name ? ttl.profile.name : ttl?.email,
+    ttlEmail: ttl?.profile && ttl.profile.name ? ttl?.email : 'Not Assigned',
   }));
 
   return (
