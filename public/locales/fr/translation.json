@@ -443,5 +443,13 @@
   "Enter the title and description of the document you want to add": "Entrez le titre et la description du document que vous souhaitez ajouter",
   "Documentation updated successfully": "Documentation mise à jour avec succès",
   "Please fill all fields": "Veuillez remplir tous les champs",
-  "Boost your organization": "Augmentez la productivité de votre organisation avec Pulse"
+  "Boost your organization": "Augmentez la productivité de votre organisation avec Pulse",
+  "New Rating": "Nouvelle Note",
+  "Leave a feedback": "Laisser un commentaire",
+  "Feedback": "Commentaires",
+  "Feedback in general about the performance": "Commentaires en général sur les performances",
+  "Provide Quality range between 1-2": "Fournir une gamme de qualité entre 1-2",
+  "Provide Quantity range between 1-2": "Fournir une gamme de quantité comprise entre 1-2",
+  "Provide Professional_Skills range between 1-2": "Fournir une gamme de compétences professionnelles comprise entre 1-2",
+  "Sprint Ratings": "Sprint Notations"
 }
