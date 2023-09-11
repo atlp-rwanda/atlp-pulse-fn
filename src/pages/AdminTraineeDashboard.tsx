@@ -11,11 +11,11 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
-import { useLazyQuery, useMutation } from '@apollo/client';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import DataTable from '../components/DataTable';
 import devs from '../dummyData/developers2.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import Button from "../components/Buttons";
+import Button from '../components/Buttons';
 import Avatar from '../assets/avatar.png';
 
 import {
@@ -29,11 +29,13 @@ import {
   ADD_MEMBER_TO_TEAM,
   GET_GITHUB_STATISTICS,
 } from '../Mutations/manageStudentMutations';
+import { useNavigate } from 'react-router-dom';
 
 import ControlledSelect from '../components/ControlledSelect';
 import { UserContext } from '../hook/useAuth';
 import GitHubActivityChart from '../components/chartGitHub';
 import Spinner from '../components/Spinner';
+import { useTraineesContext } from '../hook/useTraineesData';
 
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -41,13 +43,11 @@ function AdminTraineeDashboard() {
   useDocumentTitle('Trainees');
   const { t }: any = useTranslation();
   const { user } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [removeTraineeModel, setRemoveTraineeModel] = useState(false);
   const [editTraineeModel, setEditTraineeModel] = useState(false);
   const [inviteTraineeModel, setInviteTraineeModel] = useState(false);
-  const [traineeData, setTraineeData] = useState<any[]>([]);
-  const [traineeLoading, setTraineeLoading] = useState<boolean>(true);
   const [allUserEmail, setAllUserEmail] = useState<any[]>([]);
   const [cohorts, setCohorts] = useState<any[]>([]);
   const [cohortName, setCohortName] = useState('');
@@ -59,7 +59,6 @@ function AdminTraineeDashboard() {
   const [selectedTeamOptionUpdate, setSelectedTeamOptionUpdate] = useState<any>(
     {},
   );
-  const [selectedOption2, setSelectedOption2] = useState<any[]>([]);
   const [selectedTeamOption, setSelectedTeamOption] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
   const [deleteFromCohort, setDeleteFromCohort] = useState('');
@@ -75,6 +74,7 @@ function AdminTraineeDashboard() {
   const teamOptions: any = [];
   const [isLoaded, setIsLoaded] = useState(false);
   const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
+  const { traineeData, setAllTrainees } = useTraineesContext();
 
   function PaperComponent(props: PaperProps) {
     return (
@@ -102,7 +102,9 @@ function AdminTraineeDashboard() {
 
   const handleClickOpen = async (rowData: any) => {
     setIsLoaded(true);
-    const filteredUser = traineeData.filter((item) => item.email == rowData);
+    const filteredUser = traineeData.filter(
+      (item: any) => item.email == rowData,
+    );
     setTraineeDetails(filteredUser[0]);
     setOpen(true);
     getGitHubStatistics({
@@ -177,13 +179,34 @@ function AdminTraineeDashboard() {
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
     {
-      Header: t('action'),
+      Header: t('View'),
       accessor: '',
       Cell: ({ row }: any) => (
         <div
           className={
-            ` items-center${  traineeData?.length > 0 ? ' flex' : ' hidden'}`
+            ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
           }
+        >
+          <button
+            className="bg-black text-white rounded-xl px-3"
+            onClick={() => {
+              navigate(`/trainees/${row.original.userId}`);
+            }}
+          >
+            {t('View')}
+          </button>
+        </div>
+      ),
+    },
+
+    {
+      Header: t('action'),
+      accessor: '',
+      Cell: ({ row }: any) => (
+        <div
+          className={` items-center${
+            traineeData?.length > 0 ? ' flex' : ' hidden'
+          }`}
         >
           <Icon
             icon="el:file-edit-alt"
@@ -235,18 +258,29 @@ function AdminTraineeDashboard() {
     },
   ];
 
-  const data = devs;
   const datum: any = [];
   const [getUsers] = useLazyQuery(GET_USERS_QUERY, {
     variables: {
       orgToken: organizationToken,
     },
   });
-  const [getTraineesQuery] = useLazyQuery(GET_TRAINEES_QUERY, {
+  const { loading, data, refetch } = useQuery(GET_TRAINEES_QUERY, {
     variables: {
       orgToken: organizationToken,
     },
+    fetchPolicy: 'network-only',
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
+
+  useEffect(() => {
+    if (data && data.getTrainees) {
+      refetch();
+      setAllTrainees(data.getTrainees);
+    }
+  }, [data, registerTraineeModel, removeTraineeModel, toggle]);
+
   const [getCohortsQuery] = useLazyQuery(GET_COHORTS_QUERY, {
     variables: {
       orgToken: organizationToken,
@@ -277,10 +311,11 @@ function AdminTraineeDashboard() {
       datum[index] = {};
       datum[index].name = data.profile ? data.profile.name : 'undefined';
       datum[index].email = data.email;
-      datum[index].rating = '2';
+      datum[index].rating = data?.ratings?.at(-1)?.average || 0;
       datum[index].team = data.team?.name;
       datum[index].cohort = data.team?.cohort?.name;
       datum[index].program = data.team?.cohort?.program?.name;
+      datum[index].userId = data.profile?.user?.id;
     });
   }
 
@@ -385,20 +420,6 @@ function AdminTraineeDashboard() {
         toast.error(error.message);
       },
     });
-
-    getTraineesQuery({
-      fetchPolicy: 'network-only',
-      onCompleted: (data) => {
-        setTraineeLoading(false);
-        setTraineeData(data.getTrainees);
-
-        console.log(data);
-      },
-      onError: (error) => {
-        toast.error(error.message);
-      },
-    });
-
     getCohortsQuery({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
@@ -644,7 +665,6 @@ function AdminTraineeDashboard() {
                     >
                       <h3>
                         <b>RESUME</b>
-                        
                       </h3>
                       <p>
                         {traineeDetails?.profile?.resume ? (
@@ -843,7 +863,9 @@ function AdminTraineeDashboard() {
                         setSelectedTeamOptionUpdate(e);
                       },
                     }}
-                    options={teamsOptions.filter((option: any) => option.value !== editTeam)}
+                    options={teamsOptions.filter(
+                      (option: any) => option.value !== editTeam,
+                    )}
                   />
                 </div>
               </div>
@@ -1073,7 +1095,7 @@ function AdminTraineeDashboard() {
                   <DataTable
                     data={traineeData?.length > 0 ? datum : [{}]}
                     columns={columns}
-                    loading={traineeLoading}
+                    loading={loading}
                     title={t('Trainees list')}
                   />
                 </div>

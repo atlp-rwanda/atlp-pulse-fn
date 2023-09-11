@@ -6,6 +6,7 @@ import Sidebar from '../components/Sidebar';
 import PrivateRoute from '../utils/PrivateRoute';
 import Square from '../Skeletons/Square';
 import MenuProvider, { MenuContext } from '../hook/menuProvider';
+import CheckRole from '../utils/CheckRoles';
 
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const Settings = React.lazy(() => import('../pages/Settings'));
@@ -35,6 +36,9 @@ const AdminTraineeDashboard = React.lazy(
 );
 const TtlTraineeDashboard = React.lazy(
   () => import('../pages/ttlTraineeDashboard'),
+);
+const ViewTraineeRatings = React.lazy(
+  () => import('../pages/ratings/ViewTraineeRatings'),
 );
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
@@ -85,8 +89,20 @@ function DashRoutes() {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/trainees" element={<AdminTraineeDashboard />} />
-            <Route path="/ratings" element={<TraineeRatingDashboard />} />
-            <Route path="/admin/ratings" element={<AdminRatings />} />
+            <Route path="/trainees/:userId" element={<ViewTraineeRatings />} />
+            <Route
+              path="/ratings"
+              element={
+                <>
+                  <CheckRole roles={['admin']}>
+                    <AdminRatings />
+                  </CheckRole>
+                  <CheckRole roles={['-admin']}>
+                    <TraineeRatingDashboard />
+                  </CheckRole>
+                </>
+              }
+            />
             <Route
               path="/updated-ratings"
               element={<UpdatedRatingDashboard />}

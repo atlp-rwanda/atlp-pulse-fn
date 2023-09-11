@@ -108,6 +108,9 @@ export const FETCH_ALL_RATINGS = gql`
         }
       }
       coordinator
+      feedbacks {
+        content
+      }
     }
   }
 `;

@@ -7,20 +7,23 @@ import './index.css';
 
 import MainRoutes from './containers/Routes';
 import LandingPage from './pages/Home';
+import { TraineesProvider } from './hook/useTraineesData';
 
 function App() {
   return (
     <div className="min-h-screen">
       <TicketsProvider>
         <FormProvider>
-          <Router>
-            <ScrollToTop>
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/*" element={<MainRoutes />} />
-              </Routes>
-            </ScrollToTop>
-          </Router>
+          <TraineesProvider>
+            <Router>
+              <ScrollToTop>
+                <Routes>
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/*" element={<MainRoutes />} />
+                </Routes>
+              </ScrollToTop>
+            </Router>
+          </TraineesProvider>
         </FormProvider>
       </TicketsProvider>
     </div>

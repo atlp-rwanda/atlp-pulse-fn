@@ -119,7 +119,7 @@
     "@types/enzyme": "^3.10.13",
     "@types/faker": "5.5.3",
     "@types/jest": "^29.5.3",
-    "@types/react": "^18.2.20",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/react-dropzone": "^5.1.0",
     "@types/react-router-dom": "^5.3.3",

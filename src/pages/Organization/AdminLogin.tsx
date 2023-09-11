@@ -24,7 +24,7 @@ import pulseStars from '../../assets/Property 1=Logo_flie (1).svg';
 function AdminLogin() {
   const orgToken: any = localStorage.getItem('orgToken');
   const orgName: any = localStorage.getItem('orgName');
-  console.log(orgName);
+  const [loading, setLoading] = useState(false);
 
   useDocumentTitle('Login');
   const { t } = useTranslation();
@@ -42,20 +42,21 @@ function AdminLogin() {
   const { login } = useContext(UserContext);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [LoginUser, { loading }] = useMutation(LOGIN_MUTATION);
+  const [LoginUser] = useMutation(LOGIN_MUTATION);
   const client = useApolloClient();
   const [searchParams] = useSearchParams();
 
   const onSubmit = async (userInput: any) => {
     userInput.orgToken = orgToken;
     try {
+      setLoading(true);
       const redirect = searchParams.get('redirect');
-      const activity = await getLocation();
+      // const activity = await getLocation();
       await LoginUser({
         variables: {
           loginInput: {
             ...userInput,
-            activity,
+            // activity, //disable geolocation 
           },
         },
 
@@ -108,6 +109,8 @@ function AdminLogin() {
         type: 'custom',
         message: t('Invalid credentials'),
       });
+    } finally {
+      setLoading(false);
     }
   };
   const getLocation = async () => {
@@ -196,9 +199,11 @@ function AdminLogin() {
               >
                 {errors.password &&
                 errors.password.message === t('Invalid credentials') ? (
-                  <small className="text-red-600">
-                    {errors.password.message}
-                  </small>
+                  <div className=" bg-red-400 rounded-md w-full text-center p-4 my-4">
+                    <small className="text-white">
+                      {errors.password.message}
+                    </small>
+                  </div>
                 ) : (
                   ''
                 )}
@@ -272,15 +277,19 @@ function AdminLogin() {
                     </Link>
                   </div>
                 </div>
-                <div className="w-full justify-center ml-[-7px]">
+                <div className="w-full justify-center">
                   {loading ? (
-                    <ButtonLoading style={'rounded-full inline-block'} />
+                    <ButtonLoading
+                      style={
+                        'rounded-md inline-block w-full sm:px-4 sm:py-2 opacity-50'
+                      }
+                    />
                   ) : (
                     <Button
                       type="submit"
                       variant="transparentbtn"
                       size="md"
-                      style=" w-full bg-primary inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white"
+                      style=" w-full bg-primary m-0 inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white"
                     >
                       {t('Sign In')}
                     </Button>
