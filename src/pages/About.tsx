@@ -10,6 +10,14 @@ import person from '../assets/person.png';
 import person2 from '../assets/person2.png';
 import ur from '../assets/ur.png';
 
+/*
+_____fixes to do_______
+[x] testimonials cards for tablets
+-What you can do with us cards large devices
+-hero text (center for small devices) and(left for large devices)
+
+*/
+
 const testimonials = [
   {
     id: 1,
@@ -103,10 +111,14 @@ function Testmoniol() {
                 <li className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600">
                   {testimonial.name}
                 </li>
-                <li className="text-xs mt-2  dark:text-slate-300 ml-3">{testimonial.role}</li>
+                <li className="text-xs mt-2  dark:text-slate-300 ml-3">
+                  {testimonial.role}
+                </li>
               </ul>
             </div>
-            <p className="card-text  dark:text-slate-300 text-neutral-900">{testimonial.content}</p>
+            <p className="card-text  dark:text-slate-300 text-neutral-900">
+              {testimonial.content}
+            </p>
           </div>
         ))}
 
@@ -127,11 +139,11 @@ function Testmoniol() {
         </span>
       </div>
 
-      <div className="hidden md:flex md:flex-row flex-col  lg:mx-10 md:mx-20 my-20 gap-10 ">
+      <div className="hidden md:flex md:flex-row flex-col  lg:mx-0 md:mx-0 my-20 gap-10 md:flex-wrap lg:flex-nowrap ">
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl"
+            className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl "
           >
             <div className="flex flex-col sm:flex-row  mb-4 items-center">
               <img
@@ -144,10 +156,14 @@ function Testmoniol() {
                 <li className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600">
                   {testimonial.name}
                 </li>
-                <li className="text-xs  dark:text-slate-300  mt-2 ml-3">{testimonial.role}</li>
+                <li className="text-xs  dark:text-slate-300  mt-2 ml-3">
+                  {testimonial.role}
+                </li>
               </ul>
             </div>
-            <p className="card-text  dark:text-slate-300  text-neutral-900">{testimonial.content}</p>
+            <p className="card-text  dark:text-slate-300  text-neutral-900">
+              {testimonial.content}
+            </p>
           </div>
         ))}
       </div>
@@ -160,13 +176,13 @@ function About({ styles }: any) {
     <div className=" bg-white   mt-auto dark:bg-dark-frame-bg">
       <div className=" justify-between w-full h-full pb-5">
         <div>
-          <h1 className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic  dark:text-slate-100">
+          <h1 className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4  dark:text-slate-100">
             What you can do with us
           </h1>
         </div>
-        <div className="card-image lg:mx-10 sm:mx-5 md:flex flex">
-          <div className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10">
-            <h2 className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200">
+        <div className="card-image lg:mx-10 sm:mx-5 md:flex ">
+          <div className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
+            <h2 className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200">
               Performance Management/Analytics
             </h2>
             <div>
@@ -185,26 +201,26 @@ function About({ styles }: any) {
           </div>
           <div className="sm:hidden md:flex xl:flex lg:flex">
             <img
-              className="rounded-2xl dark:opacity-80"
+              className="rounded-2xl dark:opacity-80 lg:max-h-[25em]"
               src={Frame}
               alt="frame"
             />
           </div>
         </div>
         <div className="flex card-image lg:mx-10 sm:mx-5 md:flex mt-10">
-          <div className="sm:hidden md:flex xl:flex lg:flex">
+          <div className="shadow-md sm:shadow-none max-h-fit sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
             <img
               className="rounded-2xl dark:opacity-80 "
               src={second}
               alt="second"
             />
           </div>
-          <div className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10">
+          <div className="max-h-fit sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
             <div>
-              <h2 className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
+              <h2 className="pt-3 header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
                 Talent Analytics and <br /> Reporting
               </h2>
-              <div className="xl:hidden md:hidden">
+              <div className="xl:hidden md:hidden max-h-[30em]">
                 <img src={second} alt="second" />
               </div>
               <p className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300">
@@ -221,12 +237,12 @@ function About({ styles }: any) {
           </div>
         </div>
         <div className="card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex flex">
-          <div className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10">
-            <h2 className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
+          <div className="shadow-md sm:shadow-none mx-auto sm:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
+            <h2 className="pt-3 header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
               Continuous & Tight Feedback Loop
             </h2>
             <div>
-              <div className="xl:hidden md:hidden mb-0 mt-4">
+              <div className="xl:hidden md:hidden mb-0 mt-4 lg:max-h-[25em]">
                 <img
                   className="rounded-2xl dark:opacity-80"
                   src={third}
@@ -243,7 +259,7 @@ function About({ styles }: any) {
               </p>
             </div>
           </div>
-          <div className="sm:hidden md:flex xl:flex lg:flex">
+          <div className="sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
             <img
               className="rounded-2xl dark:opacity-80"
               src={third}
@@ -252,15 +268,15 @@ function About({ styles }: any) {
           </div>
         </div>
         <div className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10 mb-20">
-          <div className="sm:hidden md:flex xl:flex lg:flex">
+          <div className="shadow-md sm:shadow-none sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
             <img
               className="rounded-2xl dark:opacity-80"
               src={fourth}
               alt="fourthimage"
             />
           </div>
-          <div className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10">
-            <h2 className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
+          <div className="mx-auto sm:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
+            <h2 className="pt-3 header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
               Goal Tracking and Progress Monitoring
             </h2>
             <div className="xl:hidden md:hidden mb-0 mt-4">
@@ -283,8 +299,8 @@ function About({ styles }: any) {
             </p>
           </div>
         </div>
-        <div className='px-5'  >
-          <h1 className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100">
+        <div className="px-5">
+          <h1 className="pt-3 text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100">
             Excellent human resources and companies
           </h1>
           <h1 className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl dark:text-slate-100">

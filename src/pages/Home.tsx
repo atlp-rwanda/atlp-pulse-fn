@@ -17,16 +17,18 @@ function LandingPage() {
     <div className="">
       <Navbar styles="bg-opacity-100 dark:bg-opacity-100 " />
       <div className="relative hero mx-auto ">
-        <p className="absolute px-4 py-2 text-center text-white bottom-1/3 lg:left-44 lg:right-0 lg:text-5xl sm:text-2xl md:left-0 md:right-0">
-          The brilliant performance management <br /> platform around the word.
-        </p>
-        <div className="absolute items-center justify-start w-full text-2xl text-white md:text-2xl lg:text-1xl md:mt-8 lg:mt-8 top-2/3 lg:right-0">
+        <p
+          className="absolute px-4 py-2  text-white bottom-1/3 lg:left-14 lg:right-0 lg:text-5xl sm:text-2xl md:left-0 md:right-0"
+          dangerouslySetInnerHTML={{ __html: t('hero txt') }}
+        />
+
+        <div className=" absolute items-center justify-start w-full text-2xl text-white md:text-2xl lg:text-1xl md:mt-8 lg:mt-4 top-2/3 lg:right-0">
           {!user?.auth ? (
-            <div className="absolute items-center justify-center w-full text-center font">
+            <div className="absolute items-center justify-left  text-center font flex ml-16">
               <Link to="/signup/org">
                 <Button
                   variant="secondary"
-                  size="lg"
+                  size="md"
                   style="lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4"
                 >
                   {' '}
