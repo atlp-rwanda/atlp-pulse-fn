@@ -57,6 +57,9 @@ export const GET_TRAINEES_QUERY = gql`
           }
         }
       }
+      ratings {
+        average
+      }
     }
   }
 `;
