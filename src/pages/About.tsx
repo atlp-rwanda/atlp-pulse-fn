@@ -10,14 +10,6 @@ import person from '../assets/person.png';
 import person2 from '../assets/person2.png';
 import ur from '../assets/ur.png';
 
-/*
-_____fixes to do_______
-[x] testimonials cards for tablets
--What you can do with us cards large devices
--hero text (center for small devices) and(left for large devices)
-
-*/
-
 const testimonials = [
   {
     id: 1,
@@ -239,7 +231,7 @@ function About({ styles }: any) {
             key={body}
             className={`mt-10 card-image lg:mx-10 sm:mx-5 md:flex ${orientation} `}
           >
-            <div className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
+            <div className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
               <h2 className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200">
                 {title}
               </h2>
