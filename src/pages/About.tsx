@@ -171,6 +171,59 @@ function Testmoniol() {
   );
 }
 
+const aboutCards = [
+  {
+    title: 'Performance Management/Analytics',
+    body: `Optimize your organization's potential with Performance
+                Management/Analytics. Our cutting-edge solution uses data-driven
+                insights to track and improve performance across your business.
+                Set and monitor KPIs, identify areas for growth, and make
+                informed decisions with our intuitive platform. Achieve
+                remarkable results today!`,
+    img: Frame,
+    orientation: 'flex-row',
+  },
+  {
+    title: ' Talent Analytics and Reporting',
+    body: `Show up your workforce's potential with Talent Analytics and
+                Reporting. Gain deep insights into your talent pool through data
+                analysis. Identify top performers, discover hidden talent, and
+                optimize your workforce with cutting-edge analytics tools.
+                Utilize customizable reports and intuitive dashboards for a
+                holistic view of your talent landscape. Make data-driven
+                decisions to drive strategic talent management initiatives and
+                achieve sustainable growth and success.`,
+    img: second,
+    orientation: 'flex-row-reverse',
+  },
+  {
+    title: ' Continuous & Tight Feedback Loop',
+    body: `Unlock the potential of a Continuous & Tight Feedback Loop. Our
+                innovative solution enables real-time feedback exchange between
+                employees, fostering a culture of continuous improvement.
+                Seamlessly capture feedback and address development areas
+                promptly, driving success and productivity. Embrace the power of
+                a Continuous & Tight Feedback Loop for enhanced performance.
+            `,
+    img: third,
+    orientation: 'flex-row',
+  },
+  {
+    title: ' Goal Tracking and Progress Monitoring',
+    body: `Achieve your goals with Goal Tracking and Progress Monitoring. Our
+              solution empowers individuals and teams to set clear objectives,
+              monitor progress, and stay accountable. Effortlessly define SMART
+              goals, track milestones, and visualize progress in real-time on
+              our user-friendly platform. Gain valuable insights, identify
+              obstacles, and make data-driven adjustments for success. Whether
+              you're an individual professional or a team leader, our tool will
+              keep you focused, motivated, and on the path to accomplishing your
+              goals.`,
+    img: fourth,
+    orientation: 'flex-row-reverse',
+  },
+];
+
 function About({ styles }: any) {
   return (
     <div className=" bg-white   mt-auto dark:bg-dark-frame-bg">
@@ -180,125 +233,35 @@ function About({ styles }: any) {
             What you can do with us
           </h1>
         </div>
-        <div className="card-image lg:mx-10 sm:mx-5 md:flex ">
-          <div className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
-            <h2 className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200">
-              Performance Management/Analytics
-            </h2>
-            <div>
-              <div className="xl:hidden md:hidden mb-0 mt-4">
-                <img src={Frame} alt="frame" />
-              </div>
-              <p className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300">
-                Optimize your organization's potential with Performance
-                Management/Analytics. Our cutting-edge solution uses data-driven
-                insights to track and improve performance across your business.
-                Set and monitor KPIs, identify areas for growth, and make
-                informed decisions with our intuitive platform. Achieve
-                remarkable results today!
-              </p>
-            </div>
-          </div>
-          <div className="sm:hidden md:flex xl:flex lg:flex">
-            <img
-              className="rounded-2xl dark:opacity-80 lg:max-h-[25em]"
-              src={Frame}
-              alt="frame"
-            />
-          </div>
-        </div>
-        <div className="flex card-image lg:mx-10 sm:mx-5 md:flex mt-10">
-          <div className="shadow-md sm:shadow-none max-h-fit sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
-            <img
-              className="rounded-2xl dark:opacity-80 "
-              src={second}
-              alt="second"
-            />
-          </div>
-          <div className="max-h-fit sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
-            <div>
-              <h2 className="pt-3 header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
-                Talent Analytics and <br /> Reporting
+
+        {aboutCards.map(({ title, body, img, orientation }) => (
+          <div
+            key={body}
+            className={`mt-10 card-image lg:mx-10 sm:mx-5 md:flex ${orientation} `}
+          >
+            <div className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
+              <h2 className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200">
+                {title}
               </h2>
-              <div className="xl:hidden md:hidden max-h-[30em]">
-                <img src={second} alt="second" />
+              <div>
+                <div className="xl:hidden md:hidden mb-0 mt-4">
+                  <img src={img} alt="frame" />
+                </div>
+                <p className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300">
+                  {body}
+                </p>
               </div>
-              <p className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300">
-                Show up your workforce's potential with Talent Analytics and
-                Reporting. Gain deep insights into your talent pool through data
-                analysis. Identify top performers, discover hidden talent, and
-                optimize your workforce with cutting-edge analytics tools.
-                Utilize customizable reports and intuitive dashboards for a
-                holistic view of your talent landscape. Make data-driven
-                decisions to drive strategic talent management initiatives and
-                achieve sustainable growth and success.
-              </p>
             </div>
-          </div>
-        </div>
-        <div className="card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex flex">
-          <div className="shadow-md sm:shadow-none mx-auto sm:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
-            <h2 className="pt-3 header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
-              Continuous & Tight Feedback Loop
-            </h2>
-            <div>
-              <div className="xl:hidden md:hidden mb-0 mt-4 lg:max-h-[25em]">
-                <img
-                  className="rounded-2xl dark:opacity-80"
-                  src={third}
-                  alt="thirdimage"
-                />
-              </div>
-              <p className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4  dark:text-slate-300">
-                Unlock the potential of a Continuous & Tight Feedback Loop. Our
-                innovative solution enables real-time feedback exchange between
-                employees, fostering a culture of continuous improvement.
-                Seamlessly capture feedback and address development areas
-                promptly, driving success and productivity. Embrace the power of
-                a Continuous & Tight Feedback Loop for enhanced performance.
-              </p>
-            </div>
-          </div>
-          <div className="sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
-            <img
-              className="rounded-2xl dark:opacity-80"
-              src={third}
-              alt="thirdimage"
-            />
-          </div>
-        </div>
-        <div className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10 mb-20">
-          <div className="shadow-md sm:shadow-none sm:hidden md:flex xl:flex lg:flex lg:max-h-[25em]">
-            <img
-              className="rounded-2xl dark:opacity-80"
-              src={fourth}
-              alt="fourthimage"
-            />
-          </div>
-          <div className="mx-auto sm:mx-0 bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2">
-            <h2 className="pt-3 header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200">
-              Goal Tracking and Progress Monitoring
-            </h2>
-            <div className="xl:hidden md:hidden mb-0 mt-4">
+            <div className="sm:hidden md:flex xl:flex lg:flex">
               <img
-                className="rounded-2xl dark:opacity-80"
-                src={fourth}
-                alt="fourthimage"
+                className="rounded-2xl dark:opacity-80 lg:max-h-[25em]"
+                src={img}
+                alt="frame"
               />
             </div>
-            <p className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300">
-              Achieve your goals with Goal Tracking and Progress Monitoring. Our
-              solution empowers individuals and teams to set clear objectives,
-              monitor progress, and stay accountable. Effortlessly define SMART
-              goals, track milestones, and visualize progress in real-time on
-              our user-friendly platform. Gain valuable insights, identify
-              obstacles, and make data-driven adjustments for success. Whether
-              you're an individual professional or a team leader, our tool will
-              keep you focused, motivated, and on the path to accomplishing your
-              goals.
-            </p>
           </div>
-        </div>
+        ))}
+
         <div className="px-5">
           <h1 className="pt-3 text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100">
             Excellent human resources and companies
