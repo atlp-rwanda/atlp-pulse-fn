@@ -50,12 +50,12 @@ function AdminLogin() {
     userInput.orgToken = orgToken;
     try {
       const redirect = searchParams.get('redirect');
-      const activity = await getLocation();
+      // const activity = await getLocation();
       await LoginUser({
         variables: {
           loginInput: {
             ...userInput,
-            activity,
+            // activity, //disable geolocation 
           },
         },
 
