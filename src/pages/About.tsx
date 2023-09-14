@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import Frame from '../assets/Frame.svg';
@@ -163,66 +163,42 @@ function Testmoniol() {
   );
 }
 
-const aboutCards = [
-  {
-    title: 'Performance Management/Analytics',
-    body: `Optimize your organization's potential with Performance
-                Management/Analytics. Our cutting-edge solution uses data-driven
-                insights to track and improve performance across your business.
-                Set and monitor KPIs, identify areas for growth, and make
-                informed decisions with our intuitive platform. Achieve
-                remarkable results today!`,
-    img: Frame,
-    orientation: 'flex-row',
-  },
-  {
-    title: ' Talent Analytics and Reporting',
-    body: `Show up your workforce's potential with Talent Analytics and
-                Reporting. Gain deep insights into your talent pool through data
-                analysis. Identify top performers, discover hidden talent, and
-                optimize your workforce with cutting-edge analytics tools.
-                Utilize customizable reports and intuitive dashboards for a
-                holistic view of your talent landscape. Make data-driven
-                decisions to drive strategic talent management initiatives and
-                achieve sustainable growth and success.`,
-    img: second,
-    orientation: 'flex-row-reverse',
-  },
-  {
-    title: ' Continuous & Tight Feedback Loop',
-    body: `Unlock the potential of a Continuous & Tight Feedback Loop. Our
-                innovative solution enables real-time feedback exchange between
-                employees, fostering a culture of continuous improvement.
-                Seamlessly capture feedback and address development areas
-                promptly, driving success and productivity. Embrace the power of
-                a Continuous & Tight Feedback Loop for enhanced performance.
-            `,
-    img: third,
-    orientation: 'flex-row',
-  },
-  {
-    title: ' Goal Tracking and Progress Monitoring',
-    body: `Achieve your goals with Goal Tracking and Progress Monitoring. Our
-              solution empowers individuals and teams to set clear objectives,
-              monitor progress, and stay accountable. Effortlessly define SMART
-              goals, track milestones, and visualize progress in real-time on
-              our user-friendly platform. Gain valuable insights, identify
-              obstacles, and make data-driven adjustments for success. Whether
-              you're an individual professional or a team leader, our tool will
-              keep you focused, motivated, and on the path to accomplishing your
-              goals.`,
-    img: fourth,
-    orientation: 'flex-row-reverse',
-  },
-];
-
 function About({ styles }: any) {
+  const { t } = useTranslation();
+
+  const aboutCards = [
+    {
+      title: t('performance'),
+      body: t('body1'),
+      img: Frame,
+      orientation: 'flex-row',
+    },
+    {
+      title: t('analytics'),
+      body: t('body2'),
+      img: second,
+      orientation: 'flex-row-reverse',
+    },
+    {
+      title: t('continuos'),
+      body: t('body3'),
+      img: third,
+      orientation: 'flex-row',
+    },
+    {
+      title: t('goal'),
+      body: t('body4'),
+      img: fourth,
+      orientation: 'flex-row-reverse',
+    },
+  ];
+
   return (
     <div className=" bg-white   mt-auto dark:bg-dark-frame-bg">
       <div className=" justify-between w-full h-full pb-5">
         <div>
           <h1 className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4  dark:text-slate-100">
-            What you can do with us
+            {t('hero2')}
           </h1>
         </div>
 

@@ -29,10 +29,9 @@ function LandingPage() {
                 <Button
                   variant="secondary"
                   size="md"
-                  style="lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4"
+                  style="lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal "
                 >
-                  {' '}
-                  {t('Join Us')}{' '}
+                  {t('Join Us')}
                 </Button>
               </Link>
             </div>

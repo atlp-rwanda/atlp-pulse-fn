@@ -156,7 +156,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         </li>
         {!user?.auth ? (
           <li className="p-2 w-full dark:text-dark-text-fill">
-            <Link to="/About">About</Link>
+            <Link to="/About"> {t('About')}</Link>
           </li>
         ) : (
           ' '
