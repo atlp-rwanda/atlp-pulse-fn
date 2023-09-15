@@ -1,7 +1,6 @@
 // import { gql } from '@apollo/client';
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
-import GET_PROFILE from './User';
 
 export const GET_USERS_QUERY = gql`
   query GetUsers($orgToken: String) {
