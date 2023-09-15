@@ -22,6 +22,10 @@ function TraineeAttendanceTracker() {
   const { loading, data } = useQuery(GET_ATTENDANCE);
   const [selectedWeek, setSelectedWeek] = useState<number>(0);
 
+
+ 
+ 
+  
   useEffect(() => {
     getAttend({
       fetchPolicy: 'network-only',
@@ -175,9 +179,14 @@ function TraineeAttendanceTracker() {
   let zeo = 0;
   let two = 0;
   let one = 0;
+
+
+
   emailsAndStatuses.forEach((item) => {
+    
     /* istanbul ignore next */
     for (const element of item.status) {
+      
       if (element.value === 0) {
         zeo++;
       } else if (element.value === 1) {
@@ -193,7 +202,9 @@ function TraineeAttendanceTracker() {
   const oneparc = Math.round((one / totalvalues) * 100);
   const twoparc = Math.round((two / totalvalues) * 100);
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(4);
+ 
+  
   return (
     <>
       <div
@@ -450,7 +461,9 @@ function TraineeAttendanceTracker() {
                             {emailsAndStatuses
                               .slice(firstContentIndex, lastContentIndex)
                               .map((item: any) => (
-                                <tr key={item.id}>
+                                
+                                <>
+                                 <tr key={item.id}>
                                   <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <div className="flex justify-center items-center">
                                       <div className="">
@@ -462,28 +475,29 @@ function TraineeAttendanceTracker() {
                                   </td>
                                   <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
                                     <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                                      {item.status[0]?.value ?? 0}
+                                    {item.status.find((day:any) => day.days === 'Monday') ? item.status.find((day:any) => day.days === 'Monday').value : 0}
                                     </p>
                                   </td>
 
                                   <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                      {item.status[1]?.value ?? 0}
+                                    {item.status.find((day:any) => day.days === 'Tuesday') ? item.status.find((day:any) => day.days === 'Tuesday').value : 0}
                                     </p>
                                   </td>
                                   <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                      {item.status[2]?.value ?? 0}
+                                    {item.status.find((day:any) => day.days === 'Wednesday') ? item.status.find((day:any) => day.days === 'Wednesday').value : 0}
                                     </p>
                                   </td>
                                   <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                      {item.status[3]?.value ?? 0}
+                                      {item.status.find((day:any) => day.days === 'Thursday') ? item.status.find((day:any) => day.days === 'Thursday').value : 0}
                                     </p>
                                   </td>
                                   <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                      {item.status[4]?.value ?? 0}
+                                    {item.status.find((day:any) => day.days === 'Friday') ? item.status.find((day:any) => day.days === 'Friday').value : 0}
+        
                                     </p>
                                   </td>
                                   {/* <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
@@ -496,6 +510,8 @@ function TraineeAttendanceTracker() {
                                     </div>
                                   </td> */}
                                 </tr>
+                                </>
+                               
                               ))}
                           </tbody>
                         )}
@@ -637,7 +653,7 @@ function TraineeAttendanceTracker() {
                 </div>
 
                 <div className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md w-[50%]">
-                  <h2 className="font-bold mb-4 ">
+                  <h2 className="font-bold ml-2 mb-4 ">
                     Attendance Score Parcentage
                   </h2>
                   <h2 className="font-bold ml-2">
