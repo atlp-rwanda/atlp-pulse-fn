@@ -3,6 +3,7 @@
 import React, { useContext } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import Card from './TeamCard';
 import { UserContext } from '../hook/useAuth';
 import Spinner from './Spinner';
@@ -164,21 +165,22 @@ function ManagerCard() {
 
   return (
     <div
-      className="px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto "
-    >
-      {loading ? (
-        <div className="flex items-center justify-center w-full h-full">
-          <Spinner />
-          <div className="spinner" />
-        </div>
-      ) : (
-        <div className="flex">
-          {teamData &&
+    className="px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto "
+  >
+    {loading ? (
+      <div className="flex items-center justify-center w-full h-full">
+            <div className="spinner" />
+      </div>
+    ) : (
+      <div className="pl-10 flex">
+         {teamData &&
             teamData.map((teamProps: any, index: number) => (
-              <Card key={index} {...teamProps} />
+              <Link key={index} to={`/team/${(teamProps.teamname)}`}>
+                <Card {...teamProps} />
+              </Link>
             ))}
-        </div>
-      )}
+      </div>
+    )}
     </div>
   );
 }

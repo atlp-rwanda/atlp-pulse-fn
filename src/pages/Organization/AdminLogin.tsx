@@ -82,7 +82,7 @@ function AdminLogin() {
               : data.loginUser.user.role === 'coordinator'
               ? navigate(`/trainees`)
               : data.loginUser.user.role === 'manager'
-              ? navigate(`/coordinators`)
+               ? navigate(`/dashboard`)
               : data.loginUser.user.role === 'ttl'
               ? navigate('/ttl-trainees')
               : navigate('/performance');
