@@ -16,7 +16,7 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         <svg
-          className="w-full cursor-pointer mr-2"
+          className="w-full cursor-pointer mr-2 "
           fill="none"
           height="36"
           viewBox="0 0 59 36"
@@ -286,7 +286,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
         onClick={[Function]}
       >
         <svg
-          className="w-full cursor-pointer mr-2"
+          className="w-full cursor-pointer mr-2 "
           fill="none"
           height="36"
           viewBox="0 0 59 36"
@@ -555,7 +555,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
         onClick={[Function]}
       >
         <svg
-          className="w-full cursor-pointer mr-2"
+          className="w-full cursor-pointer mr-2 "
           fill="none"
           height="36"
           viewBox="0 0 59 36"
@@ -795,7 +795,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         <svg
-          className="w-full cursor-pointer mr-2"
+          className="w-full cursor-pointer mr-2 "
           fill="none"
           height="36"
           viewBox="0 0 59 36"
@@ -1065,7 +1065,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         <svg
-          className="w-full cursor-pointer mr-2"
+          className="w-full cursor-pointer mr-2 "
           fill="none"
           height="36"
           viewBox="0 0 59 36"
@@ -1335,7 +1335,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         <svg
-          className="w-full cursor-pointer mr-2"
+          className="w-full cursor-pointer mr-2 "
           fill="none"
           height="36"
           viewBox="0 0 59 36"
