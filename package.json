@@ -155,7 +155,7 @@
     "jest-image-snapshot": "^6.1.0",
     "lint-staged": "^13.2.3",
     "mini-css-extract-plugin": "^2.7.6",
-    "npm": "^8.19.4",
+    "npm": "^10.0.0",
     "postcss": "^8.4.26",
     "postcss-loader": "^7.3.3",
     "prettier": "^2.7.1",

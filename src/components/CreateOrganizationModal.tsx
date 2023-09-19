@@ -87,7 +87,7 @@ export default function CreateOrganizationModal({
                 <input
                   type="text"
                   className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                  placeholder={t('Email')}
+                  placeholder={t('Organization admin Email')}
                   {...register('email', {
                     required: `${t('The Email is required')}`,
                   })}

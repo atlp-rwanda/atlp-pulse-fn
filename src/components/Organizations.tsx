@@ -11,6 +11,8 @@ import Button from './Buttons';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
 
+import DataTable from '../../components/DataTable';
+
 export interface Admin {
   id: string;
   email: string;
@@ -180,6 +182,27 @@ const Organizations = () => {
     });
   }
 
+  const teamColumns = [
+    { Header: t('name'), accessor: 'name' },
+    { Header: t('Admin'), accessor: 'adminEmail' },
+    { Header: t('Description'), accessor: 'description' },
+    { Header: t('Status'), accessor: 'status' },
+
+    {
+      Header: t('action'),
+      accessor: '',
+      // Cell: (props: any) =>
+      //   ActionButtons({
+      //     getData,
+      //     setCurrentTeam,
+      //     setUpdateTeamModal,
+      //     setDeleteTeamModal,
+      //     setTeamTrainneModal,
+      //     ...props,
+      //   }),
+    },
+  ];
+
   return (
     <>
       {/* =========================== Start:: CreateOrganizationModel =============================== */}
@@ -260,7 +283,7 @@ const Organizations = () => {
           </div>
         </div>
         <div className="">
-          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] lg:ml-64">
+          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full lg:w-[80%] ">
             <div className=" flex items-center justify-between pb-6">
               <div>
                 <h2 className="text-gray-800 dark:text-white font-semibold">
