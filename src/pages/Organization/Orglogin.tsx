@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
+import { ThreeDots, TailSpin } from 'react-loader-spinner';
 import Button from '../../components/Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import functionTree from '../../assets/Functionality_Tree.svg';
@@ -163,27 +164,32 @@ function Orglogin() {
                 .devpulse.org
               </span>
             </label>
-            {errors?.name?.message && (
-              <div className="-mt-6 bg-red-400 rounded-md w-full text-center p-5">
-                <small className="text-white">{errors.name.message}</small>
-              </div>
+
+            {errors.name && (
+              <small className="text-red-600">{errors.name.message}</small>
             )}
+
             <div>
-              {loading ? (
-                <ButtonLoading style="rounded-md inline-block w-full sm:px-4 sm:py-2 opacity-50" />
-              ) : (
-                /* istanbul ignore next */
-                <Button
-                  type="submit"
-                  variant="primary"
-                  data-testid="loginForm"
-                  size="lg"
-                  style="w-full ml-0 hover:bg-violet-600 text-sm"
-                >
-                  {' '}
-                  {t('Continue')}
-                </Button>
-              )}
+              <Button
+                type="submit"
+                variant="primary"
+                data-testid="loginForm"
+                size="lg"
+                style="w-full ml-0 hover:bg-violet-600 text-sm"
+              >
+                {loading ? (
+                  <div className="flex justify-center items-center ">
+                    <TailSpin
+                      ariaLabel="loading-indicator"
+                      color="white"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                ) : (
+                  t('Continue')
+                )}
+              </Button>
             </div>
             <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
               {t('Looking to register an organization instead?')}
