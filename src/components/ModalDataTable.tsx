@@ -67,15 +67,14 @@ function DataTable({ data, columns, title, removeModel }: TableData) {
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
         </div>
-        <div style={{ marginTop: '-1.2cm', color: 'red' }}>
+        <div style={{ marginTop: '-2.2cm', color: 'red' }}>
           <Button
             variant=""
-            size="sxm"
-            style=""
+            className="transform rotate-45 w-120 h-120 text-5xl"
             data-testid="delete"
             onClick={() => removeModel()}
           >
-            x
+            +
           </Button>
         </div>
       </div>

@@ -52,12 +52,12 @@ function ViewSprintRatings({
             {t('Trainee')} : {traineeName}
           </h3>
           <h1
-            className="absolute right-2 top-8 hover:text-red-500"
+            className="absolute right-0 top-2 text-red-500   transform rotate-45 w-120 h-120 text-5xl cursor-pointer"
             onClick={() => {
               navigate('/trainees');
             }}
           >
-            X
+            +
           </h1>
         </div>
         <div className="flex flex-col gap-4">
