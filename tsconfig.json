@@ -20,6 +20,6 @@
     "src/pages/LandingPage.tsx",
     "src/pages/About.tsx",
     "src/tests/about.test.tsx"
-  ],
+, "src/components/TraineeDashboardChart.tsx", "src/pages/TraineeRatingDashboard.tsx"  ],
   "exclude": ["node_modules"]
 }
