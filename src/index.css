@@ -443,3 +443,106 @@ th {
 .page-footer {
   grid-area: footer;
 }
+
+
+/* TRAINEE DASHBOARD */
+/* View comment model */
+.blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(5px); 
+  z-index: 999; 
+  pointer-events: none; 
+}
+
+/*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
+@media screen and (max-width:575px) {
+  .Progres-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-left: 0;
+    width: 100%;
+    margin-left: 1rem;
+  }
+  .perfomance-bar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+  .quality-bar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-left: 2rem;
+  }
+  .quantity-bar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-left: 2rem;
+
+  }
+
+  .phases{
+    width: 100%;
+    display: flex;
+   flex-direction: column;
+  gap: 20px;
+
+  }  
+  .cohort-phase{
+    display: block;
+    width: 80%;
+  }
+  .cohort-bar{
+    display: none;
+  }
+  .Trainee-chart{
+    display: none;
+  }
+}
+
+
+.trainee-table tr:nth-child(even){
+  background-color: #fcfdff;
+}
+  
+/* TRAINEE DASHBOARD */
+/*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
+@media screen and (max-width:375px) {
+ 
+  .cohort-phase{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+ 
+  .cohort-bar{
+    display: none;
+    
+  }
+
+}
+/* TRAINEE DASHBOARD */
+/*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
+ @media screen and (max-width:393px) {
+ 
+  .cohort-phase{
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    height: 10vh;
+  }
+  .cohort-bar{
+    display: none;
+    
+  }
+
+} 
