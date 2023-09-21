@@ -118,6 +118,7 @@ export default function ProfileTabs({ data: profileData }: any) {
   const [org, setOrg] = useState<any>('');
   const [orgModel, setOrgModel] = useState<boolean>(false);
   const [repoModel, setRepoModel] = useState<boolean>(false);
+  
 
   const [buttonLoading, setButtonLoading] = useState(false);
   const [removeRepoModel, setRemoveRepoModel] = useState<boolean>(false);
@@ -198,7 +199,9 @@ export default function ProfileTabs({ data: profileData }: any) {
     fetchData2({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+       
         setTraineeData(data.getAllUsers);
+       
       },
       onError: (error) => {
         // toast.error(error.message);
@@ -228,6 +231,7 @@ export default function ProfileTabs({ data: profileData }: any) {
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
         setTraineeProfile(data.getProfile);
+        
         
       },
     });
@@ -423,7 +427,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                     <div className="flex py-4 ">
                       <BookOpenIcon className="w-6 mr-2 dark:text-dark-text-fill" />
                       <a
-                        href={traineeProfile.resume}
+                        href={profileData.resume}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
