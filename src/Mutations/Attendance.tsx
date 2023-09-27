@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_ATTENDANCE = gql`
-  query ExampleQuery {
-    getTraineeAttendance {
+  query ExampleQuery($orgToken: String!) {
+    getTraineeAttendance(orgToken: $orgToken) {
       id
       trainees {
         traineeId
@@ -13,6 +13,14 @@ export const GET_ATTENDANCE = gql`
         }
       }
       week
+    }
+  }
+`;
+
+export const GET_TRAINEE_ATTENDANCE = gql`
+  query getTraineeAttendance($orgToken: String!) {
+    getAllTeams(orgToken: $orgToken) {
+      id
     }
   }
 `;

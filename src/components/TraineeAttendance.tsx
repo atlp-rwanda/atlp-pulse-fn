@@ -1,15 +1,29 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Pagination from '../components/Pagination';
 import AttendanceData from '../dummyData/attendance.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './Buttons';
+import {  useLazyQuery, useQuery } from '@apollo/client';
+import { GET_ATTENDANCE, GET_TRAINEE_ATTENDANCE } from '../Mutations/Attendance';
+import { toast } from 'react-toastify';
 
 const TraineeAttendance = () => {
   useDocumentTitle('Attendance');
   const { t } = useTranslation();
+  const { loading, data } = useQuery(GET_ATTENDANCE, {
+    variables: {
+      orgToken: localStorage.getItem('orgToken'),
+    },
+  });
+
+  const [getAttend] = useLazyQuery(GET_ATTENDANCE, {
+    variables: {
+      orgToken: localStorage.getItem('orgToken'),
+    },
+  });
 
   const {
     firstContentIndex,
@@ -24,6 +38,18 @@ const TraineeAttendance = () => {
     contentPerPage: 3,
     count: AttendanceData.length,
   });
+
+  useEffect(() => {
+    getAttend({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+         console.log(data)
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    });
+  }, [ loading]);
 
   return (
     <>
