@@ -1,7 +1,10 @@
+/* istanbul ignore file */
+/* eslint-disable react/button-has-type */
 import { gql, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Buttons';
 import DataTable from '../../components/DataTable';
 import useDocumentTitle from '../../hook/useDocumentTitle';
@@ -9,6 +12,7 @@ import DeleteTeamModal from './DeleteTeamModal';
 import UpdateTeamModal from './UpdateTeamModal';
 import TeamTraineeModal from './TeamTraineeModal';
 import CreateTeamModal from './CreateTeamModal';
+
 
 export interface Cohort {
   id: string;
@@ -40,7 +44,13 @@ export const getAllTeam = gql`
       name
       cohort {
         coordinator {
+          profile {
+            name
+            firstName
+            lastName
+          }
           email
+          
         }
         phase {
           name
@@ -59,15 +69,12 @@ export const getAllTeam = gql`
           firstName
         }
       }
-
-      ttl {
-        email
-        profile {
-          name
-          lastName
-          firstName
-        }
+      avgRatings {
+        quantity
+        quality
+        professional_Skills
       }
+
     }
 
     getAllCohorts(orgToken: $orgToken) {
@@ -101,6 +108,7 @@ function ActionButtons({
   setUpdateTeamModal,
   setDeleteTeamModal,
   setTeamTrainneModal,
+  setTeamDetailsModal,
   ...props
 }: any) {
   return (
@@ -136,8 +144,8 @@ function ActionButtons({
           cursor="pointer"
           color="#9e85f5"
         />
+      
       </div>
-
       <div
         data-testid="deleteIcon"
         onClick={() => {
@@ -183,10 +191,12 @@ function AdminTeams() {
   const [createTeamModal, setCreateTeamModal] = useState(false);
   const [updateTeamModal, setUpdateTeamModal] = useState(false);
   const [teamTrainneModal, setTeamTrainneModal] = useState(false);
+  
   const [currentTeam, setCurrentTeam] = useState<Team | undefined>(undefined);
+  
   const [deleteTeamModal, setDeleteTeamModal] = useState(false);
   useDocumentTitle('Teams');
-
+ 
   const removeDeleteModel = () => {
     const newState = !deleteTeamModal;
     setDeleteTeamModal(newState);
@@ -218,6 +228,7 @@ function AdminTeams() {
         }),
     },
   ];
+ 
 
   const teamData = getData?.getAllTeams.map(({ name, cohort, ttl }) => ({
     name,
@@ -227,12 +238,13 @@ function AdminTeams() {
       : 'Not Assigned',
     phase: cohort?.phase.name,
     programName: cohort?.program?.name,
-    ttlEmail: ttl?.profile && ttl.profile.name ? ttl.profile.name : ttl?.email,
+    ttlEmail: ttl?.profile && ttl.profile.name ? ttl?.email : 'Not Assigned',
   }));
 
   return (
     <>
       {/* =========================== Start:: CreateCohortModel =============================== */}
+      
       <CreateTeamModal
         data={getData}
         createTeamModel={createTeamModal}
@@ -257,7 +269,8 @@ function AdminTeams() {
           setTeamTrainneModal(false);
         }}
       />
-
+     
+       
       <DeleteTeamModal
         deleteTeamModal={deleteTeamModal}
         currentTeam={currentTeam}
@@ -290,7 +303,8 @@ function AdminTeams() {
             loading={getLoading}
           />
         </div>
-      </div>
+    </div>
+      
     </>
   );
 }

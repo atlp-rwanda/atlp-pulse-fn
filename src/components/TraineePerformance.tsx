@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { useLazyQuery, gql, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as FileSaver from 'file-saver';
@@ -9,6 +8,9 @@ import Pagination from './Pagination';
 import PerformanceData from '../dummyData/performance.json';
 import { TRAINEE_RATING } from '../Mutations/Ratings';
 import Button from './Buttons';
+import RemarksModal from '../pages/ratings/CoordinatorRemarks';
+import { UserContext } from '../hook/useAuth';
+import { rowsType } from '../pages/ratings/frame';
 
 export const GET_RATINGS_DATA = gql`
   query FetchRatingsTrainee {
@@ -71,7 +73,7 @@ export function ExportToExcel({
   const fileType =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
   const fileExtension = '.xlsx';
-// eslint-disable-next-line no-nested-ternary
+  // eslint-disable-next-line no-nested-ternary
   const exportToCSV = (Data: (string | number)[], fileName: string) => {
     const ws = XLSX.utils.json_to_sheet(Data);
     const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
@@ -83,9 +85,7 @@ export function ExportToExcel({
 
   return (
     <button
-      className=" btn primary
-  sm
-  px-4 py-1 text-sm  "
+      className="btn primary sm px-4 py-1 text-sm"
       type="button"
       onClick={(e) => exportToCSV(Data, fileName)}
     >
@@ -98,6 +98,17 @@ function TraineePerfomance() {
   const [usedata, setUserdata] = React.useState([]);
   const fileName = 'userInfo';
   const { data } = useQuery(GET_RATINGS_DATA, {});
+  const { user } = useContext(UserContext);
+  const [row, setRow] = useState<rowsType>({
+    id: user?.userId,
+    feedbacks: [],
+    sprint: 0,
+    username: 'string',
+    user: 'string',
+    qualityremark: '',
+    quantityremark: '',
+    professionalRemark: '',
+  });
 
   useEffect(() => {
     if (data && data.fetchRatingsTrainee) {
@@ -154,10 +165,30 @@ function TraineePerfomance() {
         toast.error(error?.message || 'Something went wrong');
       },
     });
-  }, [toggle]);
+  }, []);
+
+  const openFeed = (rate: any) => {
+    setToggle(true);
+    setRow((prev) => ({
+      ...prev,
+      sprint: rate?.sprint,
+      quantityremark: rate?.quantityRemark,
+      qualityremark: rate?.qualityRemark,
+      professionalRemark: rate?.professionalRemark,
+      id: user?.userId,
+      username: rate?.cohort?.coordinator?.profile?.name,
+      user: rate?.cohort?.coordinator?.email,
+      feedbacks: rate?.feedbacks,
+    }));
+  };
+
+  const closeFeeds = () => {
+    setToggle(false);
+  };
 
   return (
     <>
+      <RemarksModal showRemarks={toggle} closeModal={closeFeeds} rows={row} />
       <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
         <div className="">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
@@ -205,7 +236,7 @@ function TraineePerfomance() {
                         /* istanbul ignore next */
                         (item: any) => (
                           /* istanbul ignore next */
-                          <tr key={item.id}>
+                          <tr key={item.sprint}>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <div className="flex justify-center items-center">
                                 <div className="">
@@ -241,39 +272,21 @@ function TraineePerfomance() {
                               </p>
                             </td>
 
-                            <td className="   px-0 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                              <Link to="/performance-details">
-                                <Button
-                                  variant="primary"
-                                  size="sm"
-                                  style="px-4 py-1 text-sm"
-                                  onClick={
+                            <td className="px-0 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                              <Button
+                                variant="primary"
+                                size="sm"
+                                style="px-4 py-1 text-sm"
+                                onClick={
+                                  /* istanbul ignore next */
+                                  () => {
                                     /* istanbul ignore next */
-                                    () => {
-                                      /* istanbul ignore next */
-                                      setToggle(!toggle);
-                                      sessionStorage.setItem(
-                                        'data',
-
-                                        JSON.stringify({
-                                          user_sprint: item?.sprint,
-                                          quantity_remark: item?.quantityRemark,
-                                          quality_remark: item?.qualityRemark,
-                                          professional_remark:
-                                            item?.professionalRemark,
-                                          quality: item?.quality,
-                                          quantity: item?.quantity,
-                                          professional:
-                                            item?.professional_Skills,
-                                          user_id: item?.user.id,
-                                        }),
-                                      );
-                                    }
+                                    openFeed(item);
                                   }
-                                >
-                                  {t('Details')}
-                                </Button>
-                              </Link>
+                                }
+                              >
+                                {t('Details')}
+                              </Button>
                               <ExportToExcel
                                 Data={usedata}
                                 fileName={fileName}

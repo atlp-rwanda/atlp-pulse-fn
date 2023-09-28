@@ -1,7 +1,6 @@
 // import { gql } from '@apollo/client';
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
-import GET_PROFILE from './User';
 
 export const GET_USERS_QUERY = gql`
   query GetUsers($orgToken: String) {
@@ -24,6 +23,14 @@ export const GET_TRAINEES_QUERY = gql`
         biography
         avatar
         id
+        user {
+          id
+          status {
+            status
+            date
+            reason
+          }
+        }
         name
         githubUsername
         resume
@@ -32,6 +39,7 @@ export const GET_TRAINEES_QUERY = gql`
       team {
         name
         cohort {
+          id
           startDate
           program {
             name
@@ -47,6 +55,9 @@ export const GET_TRAINEES_QUERY = gql`
             name
           }
         }
+      }
+      ratings {
+        average
       }
     }
   }
@@ -113,80 +124,101 @@ export const GET_GITHUB_STATISTICS = gql`
 `;
 
 export const ADD_DOCUMENTATION = gql`
-mutation AddDocumentation($title: String!, $for: String!, $description: String!) {
-  addDocumentation(title: $title, for: $for, description: $description) {
-    title
-    description
-    id
-    for
-    subDocuments {
-      description
+  mutation AddDocumentation(
+    $title: String!
+    $for: String!
+    $description: String!
+  ) {
+    addDocumentation(title: $title, for: $for, description: $description) {
       title
+      description
+      id
+      for
+      subDocuments {
+        description
+        title
+      }
     }
   }
-}
 `;
 
 export const ADD_SUB_DOCUMENTATION = gql`
-mutation AddSubDocumentation($id: ID!, $title: String!, $description: String!) {
-  addSubDocumentation(id: $id, title: $title, description: $description) {
-    description
-    id
-    title
-    
+  mutation AddSubDocumentation(
+    $id: ID!
+    $title: String!
+    $description: String!
+  ) {
+    addSubDocumentation(id: $id, title: $title, description: $description) {
+      description
+      id
+      title
+    }
   }
-}
 `;
 
 export const GET_DOCUMENTATION = gql`
-query GetDocumentations {
-  getDocumentations {
-    description
-    for
-    id
-    subDocuments {
+  query GetDocumentations {
+    getDocumentations {
       description
+      for
+      id
+      subDocuments {
+        description
+        title
+      }
       title
     }
-    title
   }
-}
 `;
 
 export const UPDATE_DOCUMENTATION = gql`
-mutation UpdateDocumentation($id: ID!, $title: String, $for: String, $description: String) {
-  updateDocumentation(id: $id, title: $title, for: $for, description: $description) {
-    description
-    for
-    id
-    subDocuments {
+  mutation UpdateDocumentation(
+    $id: ID!
+    $title: String
+    $for: String
+    $description: String
+  ) {
+    updateDocumentation(
+      id: $id
+      title: $title
+      for: $for
+      description: $description
+    ) {
       description
+      for
+      id
+      subDocuments {
+        description
+        title
+      }
       title
     }
-    title
   }
-}
 `;
 
 export const DELETE_DOCUMENTATION = gql`
-mutation DeleteDocumentation($id: ID!) {
-  deleteDocumentation(id: $id)
-}
+  mutation DeleteDocumentation($id: ID!) {
+    deleteDocumentation(id: $id)
+  }
 `;
 
 export const DELETE_SUB_DOCUMENTATION = gql`
-mutation DeleteSubDocumentation($id: ID!, $title: String!, $description: String!) {
-  deleteSubDocumentation(id: $id, title: $title, description: $description) {
-    id
-    title
-    for
-    description
-    subDocuments {
-      description
+  mutation DeleteSubDocumentation(
+    $id: ID!
+    $title: String!
+    $description: String!
+  ) {
+    deleteSubDocumentation(id: $id, title: $title, description: $description) {
+      id
       title
+      for
+      description
+      subDocuments {
+        description
+        title
+      }
     }
   }
-}
 `;
 
 export const GET_LOGIN_ACTIVITIES = gql`

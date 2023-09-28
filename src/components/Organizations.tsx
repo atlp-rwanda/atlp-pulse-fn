@@ -302,7 +302,7 @@ const Organizations = () => {
 
       {/* =========================== Start::  delete Session Model =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
           deleteOrganizationModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -357,7 +357,7 @@ const Organizations = () => {
         {/* =========================== Start::  SendInviteModel =============================== */}
 
         <div
-            className={`min-h-full w-screen fixed z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+            className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
                 sendInviteModel === true ? 'block' : 'hidden'
             }`}
         >
@@ -417,7 +417,7 @@ const Organizations = () => {
       {/* =========================== Start::  ApproveMode =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
           approveOpen === true ? 'block' : 'hidden'
         }`}
       >
@@ -477,7 +477,7 @@ const Organizations = () => {
       {/* =========================== Start::  RejectModal =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
           rejectOpen === true ? 'block' : 'hidden'
         }`}
       >

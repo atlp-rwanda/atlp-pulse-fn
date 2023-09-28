@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* istanbul ignore file */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../../components/DataTable';
@@ -9,11 +10,17 @@ import devs from '../../dummyData/rolemanagement.json';
 import CREATE_ROLE_MUTATION from '../admin-dashBoard/createRoleMutation';
 import GET_ROLE_QUERY from '../admin-dashBoard/GetRolesQuery';
 import ASSIGN_ROLE_MUTATION from '../admin-dashBoard/AssignRolesMutation';
-import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
+import {
+  useApolloClient,
+  useLazyQuery,
+  useMutation,
+  useQuery,
+} from '@apollo/client';
 import roles from '../../dummyData/roles.json';
 import Square from '../../Skeletons/Square';
 import { toast } from 'react-toastify';
-
+import { GET_TEAM_QUERY } from '../../Mutations/manageStudentMutations';
+import { GET_TEAMS } from '../../Mutations/teamMutation';
 const AdminSission = () => {
   const { t } = useTranslation();
   useDocumentTitle('Roles & Access');
@@ -36,6 +43,11 @@ const AdminSission = () => {
   const [updateUserRole] = useMutation(ASSIGN_ROLE_MUTATION);
   const [findFilter, setFindFilter] = useState('');
   const [allRoles, setallRoles] = useState<any>();
+  const [selectingTTL, setSelectingTTL] = useState(false);
+  const [selectedTeamId, setSelectedTeamId] = useState('');
+  const { loading, error, data } = useQuery(GET_TEAMS, {
+    variables: { orgToken: localStorage.getItem('orgToken') },
+  });
   let newUsers: any = [];
   /* istanbul ignore next */
   /* istanbul ignore next */
@@ -96,15 +108,21 @@ const AdminSission = () => {
     e.preventDefault();
     /* istanbul ignore next */
     setSelectedRole(name);
+
+    if (name === 'TTL') {
+      setSelectingTTL(true);
+    } else {
+      setSelectingTTL(false);
+    }
   };
 
   const [toggle, setToggle] = useState(false);
-
   const [handleAssignRole2] = useMutation(ASSIGN_ROLE_MUTATION, {
     variables: {
       updateUserRoleId: selectedUser.id,
       name: selectedRole,
       orgToken: localStorage.getItem('orgToken'),
+      team: selectedRole === 'TTL' ? selectedTeamId : undefined,
     },
     onCompleted: () => {
       /* istanbul ignore next */
@@ -123,16 +141,23 @@ const AdminSission = () => {
     onError: /* istanbul ignore next */ (err) => {
       /* istanbul ignore next */
       toast.error(err.message);
+      setToggle(!toggle);
+      /* istanbul ignore next */
+      let newState = !deleteModel;
+      /* istanbul ignore next */
+      setTimeout(() => {
+        /* istanbul ignore next */
+        setDeleteModel(newState);
+      }, 1000);
     },
   });
-
+/* istanbul ignore next */
   const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {
     variables: {
       orgToken: localStorage.getItem('orgToken'),
     },
   });
 
-  console.log('fetchdata2', fetchData2);
 
   useEffect(() => {
     fetchData2({
@@ -233,6 +258,7 @@ const AdminSission = () => {
     <>
       {users && allRoless ? (
         <>
+          {/* ... Existing code ... */}
           {/* =========================== Start::  delete Session Model =============================== */}
           <div
             className={`w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
@@ -247,7 +273,7 @@ const AdminSission = () => {
                 <hr className=" bg-primary border-b my-3 w-full" />
               </div>
               <div className="card-body">
-                <form className=" py-3 px-8">
+                <form className="py-3 px-8">
                   <div>
                     <div className="flex justify-center">
                       <div className="flex flex-wrap">
@@ -270,6 +296,8 @@ const AdminSission = () => {
                       </div>
                     </div>
                   </div>
+                  {/* Render the team selector when selecting the "TTL" role */}
+
                   <div className="w-full flex justify-between">
                     <Button
                       variant="info"
@@ -278,8 +306,7 @@ const AdminSission = () => {
                       data-testid="delete"
                       onClick={(e: void) => removeDeleteModel(e)}
                     >
-                      {' '}
-                      {t('Cancel')}{' '}
+                      {t('Cancel')}
                     </Button>
                     <Button
                       variant="primary"

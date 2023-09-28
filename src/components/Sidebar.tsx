@@ -93,6 +93,9 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/teams" name="Teams">
               <UserGroupIcon className="w-5" />
             </SideNavLink>
+            <SideNavLink onClick={toggle} to="/ttls" name="TTLs">
+              <UsersIcon className="w-5" />
+            </SideNavLink>
             <SideNavLink onClick={toggle} to="/cohorts" name="Cohorts">
               <AcademicCapIcon className="w-5" />
             </SideNavLink>
@@ -102,7 +105,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/programs" name="Programs">
               <ProgramIcon className="w-5" />
             </SideNavLink>
-            <SideNavLink onClick={toggle} to="/admin/ratings" name="Ratings">
+            <SideNavLink onClick={toggle} to="/ratings" name="Ratings">
               <ClipboardListIcon className="w-5" />
             </SideNavLink>
             <SideNavLink
@@ -151,7 +154,12 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
               <UserGroupIcon className="w-5" />
             </SideNavLink>
           </CheckRole>
-
+          {/* TTL role */}
+          <CheckRole roles={['ttl']}>
+            <SideNavLink onClick={toggle} to="/ttl-trainees" name="Trainees">
+              <UserGroupIcon className="w-5" />
+            </SideNavLink>
+          </CheckRole>
           {/* FOR TRAINEES */}
           <CheckRole roles={['trainee']}>
             <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
@@ -171,7 +179,14 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </SideNavLink>
 
           <CheckRole
-            roles={['trainee', 'admin', 'coordinator', 'manager', 'user']}
+            roles={[
+              'trainee',
+              'admin',
+              'coordinator',
+              'manager',
+              'user',
+              'ttl',
+            ]}
           >
             <SideNavLink onClick={toggle} name="Help" to="/support">
               <SupportIcon className="w-5" />

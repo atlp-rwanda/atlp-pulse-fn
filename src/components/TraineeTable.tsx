@@ -1,3 +1,5 @@
+
+/* eslint-disable react/button-has-type */
 // @ts-nocheck
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +9,7 @@ import {
   useSortBy,
   useTable,
 } from 'react-table';
+import Pagination from '../components/Pagination';
 import DataPagination from './DataPagination';
 
 interface TableData {
@@ -14,16 +17,15 @@ interface TableData {
   columns: any;
   title: string;
   loading?: boolean;
-  className?: string;
 }
 
-function DataTable({ data, columns, title, loading }: TableData) {
+function Table({ data, columns, title, loading }: TableData) {
   // const sortedData = React.useMemo(() => [...data], []);
   const sortedColumns = React.useMemo(() => [...columns], [columns]);
   const sortedData = data;
   // const sortedColumns = columns;
   const TableInstance = useTable(
-    { data: sortedData, columns: sortedColumns, initialState: { pageSize: 3 } },
+    { data: sortedData, columns: sortedColumns, initialState: { pageSize: 5 } },
 
     useGlobalFilter,
     useSortBy,
@@ -33,52 +35,35 @@ function DataTable({ data, columns, title, loading }: TableData) {
 
   const {
     getTableProps,
-
-    setGlobalFilter,
     getTableBodyProps,
     page,
+    headerGroups,
+    prepareRow,
     nextPage,
-    previousPage,
     canPreviousPage,
+    previousPage,
     canNextPage,
     gotoPage,
     pageCount,
     setPageSize,
     pageOptions,
-    headerGroups,
-    prepareRow,
     state,
   } = TableInstance;
   // @ts-ignore
   const { globalFilter, pageIndex, pageSize } = state;
-
+ 
   return (
-    <div
-      className={`bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] "lg:ml-60 mx-auto"} mb-10`}
-    >
-      <div className="flex items-center justify-between pb-6 ">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white ">
-            {t(title)}
-          </h2>
-          {/* <span className="text-xs text-gray-600">Current cohort</span> */}
-          <input
-            defaultValue={globalFilter || ''}
-            placeholder="Filter"
-            className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
-            /* istanbul ignore next */
-            onChange={(e) => setGlobalFilter(e.target.value)}
-          />
-        </div>
-      </div>
+    <div className=" shadow-lg py-6  w-[100%] mb-10 ">
       <div style={{ overflowX: 'auto' }}>
-        <table className="min-w-full leading-normal" {...getTableProps()}>
+        <table className=" leading-3 rounded-full w-[100%]" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
-                    className={column.isSorted ? 'sort-asc thead' : ' thead'}
+                    className={
+                      column.isSorted ? 'sort-asc ' : 'bg-[#B8CDBA] p-4 '
+                    }
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                   >
                     {column.render('Header')}
@@ -87,20 +72,20 @@ function DataTable({ data, columns, title, loading }: TableData) {
               </tr>
             ))}
           </thead>
-          <tbody {...getTableBodyProps()}>
+          <tbody  {...getTableBodyProps()}>
             {page.map((row) => {
               prepareRow(row);
 
               // eslint-disable-next-line operator-linebreak
               const rowTheme =
                 row.index % 2 !== 0
-                  ? 'bg-light-bg dark:bg-neutral-600'
+                  ? 'bg-[#f5f8ff] dark:bg-dark-bg'
                   : 'bg-white dark:bg-dark-bg';
 
               return (
                 <tr className={` ${rowTheme} `} {...row.getRowProps()}>
                   {row.cells.map((cell) => (
-                    <td className="data-cell" {...cell.getCellProps()}>
+                    <td className="border  py-2 px-24" {...cell.getCellProps()}>
                       {cell.render('Cell')}
                     </td>
                   ))}
@@ -119,7 +104,8 @@ function DataTable({ data, columns, title, loading }: TableData) {
             )}
           </tbody>
         </table>
-        <DataPagination
+
+<DataPagination
           pageOptions={pageOptions}
           canNextPage={canNextPage}
           gotoPage={gotoPage}
@@ -137,4 +123,12 @@ function DataTable({ data, columns, title, loading }: TableData) {
   );
 }
 
-export default DataTable;
+export default Table;
+
+
+
+
+
+
+
+

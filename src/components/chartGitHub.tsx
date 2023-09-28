@@ -1,4 +1,3 @@
-
 /* eslint-disable */
 
 import React from 'react';
@@ -22,24 +21,21 @@ const GitHubActivityChart: React.FC<Props> = ({ data }) => {
       {
         label: 'GitHub Activity',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: ["#D23D4F", "#5F3E8E"],
+        borderColor: ['#D23D4F', '#5F3E8E'],
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(75, 192, 192, 0.4)',
         hoverBorderColor: 'rgba(75, 192, 192, 1)',
         data: [
-          parseInt(data.pullRequest.merged),
-          parseInt(data.pullRequest.opened),
+          parseInt(data.pullRequest?.merged),
+          parseInt(data.pullRequest?.opened),
         ],
       },
-    ]
+    ],
   };
 
+  const options = {};
 
-  const options = {
-
-  };
-
-// eslint-disable-next-line no-nested-ternary
+  // eslint-disable-next-line no-nested-ternary
   return (
     <div>
       <h2>GitHub Activity Chart</h2>

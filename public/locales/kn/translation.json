@@ -1,4 +1,14 @@
 {
+  "performance": "Imicungire yimikorere / Isesengura",
+  "analytics": "Zisesengura na Raporo z' Impano ",
+  "continuos": "Gukomeza & Kuringaniza Ibitekerezo",
+  "body1": "Hindura ubushobozi bwumuryango wawe hamwe nubuyobozi bukora / Isesengura. Igisubizo cyacu cyambere gikoresha ubushishozi bwamakuru kugirango ukurikirane kandi utezimbere imikorere mubucuruzi bwawe. Shiraho kandi ukurikirane KPIs, umenye aho ukura, kandi ufate ibyemezo byuzuye hamwe na platform yacu ya intiti. Kugera ku bisubizo bidasanzwe uyu munsi!",
+  "body2": "Erekana ubushobozi bwabakozi bawe hamwe na Talent Analytics na Raporo. Wunguke ubumenyi bwimbitse muri pisine yawe ukoresheje isesengura ryamakuru. Menya abakora neza, bavumbure impano yihishe, kandi utezimbere abakozi bawe hamwe nibikoresho bigezweho byo gusesengura. Koresha raporo yihariye hamwe nibisobanuro byimbitse kugirango ubone ibintu byose byerekana impano yawe. Fata ibyemezo bishingiye ku makuru kugira ngo utere imbere ingamba zo gucunga impano no kugera ku majyambere arambye no gutsinda.",
+  "body3": "Fungura ubushobozi bwikomeza & Tight Feedback Loop. Igisubizo cyacu gishya gituma habaho guhanahana amakuru hagati yabakozi, gutsimbataza umuco wo gukomeza gutera imbere. Fata neza ibitekerezo hanyuma ukemure aho iterambere ryihuse, gutwara intsinzi no gutanga umusaruro. Emera imbaraga zo Gukomeza & Tight Feedback Loop kugirango imikorere irusheho kuba myiza.",
+  "body4": "Kugera ku ntego zawe hamwe no gukurikirana intego no gukurikirana iterambere. Igisubizo cyacu giha imbaraga abantu nitsinda gushiraho intego zisobanutse, gukurikirana iterambere, no gukomeza kubazwa. Sobanura utizigamye gusobanura intego za SMART, gukurikirana intego zingenzi, no kwiyumvisha iterambere mugihe nyacyo kurubuga rwacu rworohereza abakoresha. Wunguke ubushishozi, umenye inzitizi, kandi uhindure amakuru-kugirango uhindure intsinzi. Waba uri umunyamwuga ku giti cye cyangwa umuyobozi witsinda, igikoresho cyacu kizagufasha gukomeza guhanga amaso, gushishikarira, no munzira yo kugera kuntego zawe.",
+  "goal": "Gestion des performances/analyse",
+  "hero2": "Icyo dushobora kugukorera",
+  "hero txt": "Imicungire myiza yimikorere <br /> urubuga ku isi.",
   "Home": "Ahabanza",
   "Tickets": "Ubufasha",
   "Ticket": "Ubufasha",
@@ -429,5 +439,14 @@
   "Please fill all fields": "Shyiramo Ibisabwa byose",
   "Proceed": "Komeza",
   "Update": "Vugurura",
-  "Boost your organization": "Ongera umusaruro wa kompanyi yawe na Pulse"
+  "Boost your organization": "Ongera umusaruro wa kompanyi yawe na Pulse",
+  "Add": "Ongeraho",
+  "New Rating": "Ikosora Rishya",
+  "Leave a feedback": "Tanga igitekerezo",
+  "Feedback": "Ibitekerezo",
+  "Feedback in general about the performance": "Ibitekerezo muri rusange kubyerekeye imikorere",
+  "Provide Quality range between 1-2": "Tanga ubuziranenge hagati ya 1-2",
+  "Provide Quantity range between 1-2": "Tanga Umubare uri hagati ya 1-2",
+  "Provide Professional_Skills range between 1-2": "Tanga ubuhanga buri hagati ya 1-2",
+  "Sprint Ratings": "Amanota ya Sprint"
 }
