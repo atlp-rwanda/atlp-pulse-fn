@@ -52,7 +52,7 @@ export default function CreateOrganizationModal({
 
   return (
     <div
-      className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+      className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
         createOrganizationModel === true ? 'block' : 'hidden'
       }`}
     >
@@ -87,7 +87,7 @@ export default function CreateOrganizationModal({
                 <input
                   type="text"
                   className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
-                  placeholder={t('Email')}
+                  placeholder={t('Organization admin Email')}
                   {...register('email', {
                     required: `${t('The Email is required')}`,
                   })}
