@@ -97,7 +97,7 @@ export default function ProfileCoverpage({
       formData.append('upload_preset', 'my_upload');
 
       const cover = await axios.post(
-        'https://api.cloudinary.com/v1_1/dj24yfas5/image/upload',
+        'https://api.cloudinary.com/v1_1/dta2axdpw/image/upload',
         formData,
       );
       /* istanbul ignore next */
