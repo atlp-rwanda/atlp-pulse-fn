@@ -56,7 +56,7 @@ function AdminLogin() {
         variables: {
           loginInput: {
             ...userInput,
-            // activity, //disable geolocation 
+            // activity, //disable geolocation
           },
         },
 
@@ -82,9 +82,7 @@ function AdminLogin() {
               : data.loginUser.user.role === 'coordinator'
               ? navigate(`/trainees`)
               : data.loginUser.user.role === 'manager'
-               ? navigate(`/dashboard`)
-               : data.loginUser.user.role === 'trainee'
-               ? navigate(`/dashboard`)
+              ? navigate(`/dashboard`)
               : data.loginUser.user.role === 'ttl'
               ? navigate('/ttl-trainees')
               : navigate('/performance');
@@ -115,6 +113,7 @@ function AdminLogin() {
       setLoading(false);
     }
   };
+
   const getLocation = async () => {
     const location = await fetch('https://geolocation-db.com/json/')
       .then(async (res) => {

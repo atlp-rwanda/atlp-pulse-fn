@@ -130,6 +130,7 @@ function AdminPrograms() {
     { Header: t('Manager'), accessor: 'manager' },
     { Header: t('Organization'), accessor: 'organization' },
     { Header: t('Description'), accessor: 'description' },
+
     {
       Header: t('Actions'),
       accessor: '',
