@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+/* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gql, useMutation } from '@apollo/client';
@@ -13,7 +14,6 @@ import Spinner from './Spinner';
 const UPLOAD_RESUME = gql`
   mutation UploadResume($userId: ID!, $resume: String!) {
     uploadResume(userId: $userId, resume: $resume) {
-      kindly
       resume
     }
   }
@@ -123,13 +123,12 @@ function Resume() {
       formData.append('file', file);
       formData.append('upload_preset', 'mydocs');
       formData.append('resource_type', 'raw');
-
       try {
         if (file && file.type === 'application/pdf') {
           setButtonLoading(true);
-          const resume = await axios.post(
-            `https://api.cloudinary.com/v1_1/dta2axdpw/raw/upload`,
 
+          const resume = await axios.post(
+            `${process.env.RESUME_URL}`,
             formData,
           );
 
