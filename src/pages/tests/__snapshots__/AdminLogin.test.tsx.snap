@@ -217,10 +217,10 @@ Array [
                 </div>
               </div>
               <div
-                className="w-full justify-center ml-[-7px]"
+                className="w-full justify-center"
               >
                 <button
-                  className="btn transparentbtn md  w-full bg-primary inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white"
+                  className="btn transparentbtn md  w-full bg-primary m-0 inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white"
                   disabled={false}
                   type="submit"
                 >

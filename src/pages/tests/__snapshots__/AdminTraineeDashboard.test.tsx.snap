@@ -944,6 +944,20 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
+                          View
+                        </th>
+                        <th
+                          className=" thead"
+                          colSpan={1}
+                          onClick={[Function]}
+                          role="columnheader"
+                          style={
+                            Object {
+                              "cursor": "pointer",
+                            }
+                          }
+                          title="Toggle SortBy"
+                        >
                           action
                         </th>
                       </tr>
@@ -986,6 +1000,21 @@ Array [
                           <div
                             className=" items-center hidden"
                           >
+                            <button
+                              className="bg-black text-white rounded-xl px-3"
+                              onClick={[Function]}
+                            >
+                              View
+                            </button>
+                          </div>
+                        </td>
+                        <td
+                          className="data-cell"
+                          role="cell"
+                        >
+                          <div
+                            className=" items-center hidden"
+                          >
                             <span />
                             <span />
                             <span />
@@ -994,7 +1023,7 @@ Array [
                       </tr>
                       <tr>
                         <td
-                          colSpan={7}
+                          colSpan={8}
                           style={
                             Object {
                               "textAlign": "center",
@@ -1017,7 +1046,7 @@ Array [
                           className="w-full py-2"
                         >
                           <td
-                            colSpan={7}
+                            colSpan={8}
                           >
                             <div
                               className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto"

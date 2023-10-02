@@ -525,7 +525,7 @@ Array [
               className="big2 bg-white flex flex-col justify-start  dark:bg-dark-bg border  border-primary shadow-lg p-2 rounded-md w-[50%]"
             >
               <h2
-                className="font-bold mb-4 "
+                className="font-bold ml-2 mb-4 "
               >
                 Attendance Score Parcentage
               </h2>
