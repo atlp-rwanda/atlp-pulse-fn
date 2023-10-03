@@ -94,8 +94,9 @@ function AdminLogin() {
         },
         onError: (err) => {
           /* istanbul ignore next */
-          if (err.message.toLowerCase() !== 'invalid credential') {
-            toast.error(err.message);
+          if (err.message.toLowerCase() !== 'invalid credential' ) {
+            const translateError = t('Please wait to be added to a program or cohort')
+            toast.error(translateError);
           } else {
             /* istanbul ignore next */
             setError('password', {
@@ -255,6 +256,7 @@ function AdminLogin() {
                   ) : (
                     ''
                   )}
+
                 </div>
                 <div className="flex w-full flex-col sm:flex-row justify-between  items-center rounded mb-5 mt-5">
                   <div className="w-50%">
