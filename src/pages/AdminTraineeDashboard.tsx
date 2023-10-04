@@ -478,9 +478,8 @@ function AdminTraineeDashboard() {
               <div className="font-sans text-sm font-bold text-center dark:text-white dark:bg-dark-bg">
                 <div className="bg-[#4aa5be] h-[150px]">
                   <img
-                    className="absolute top-[80px] left-[40px] border-4 border-white font-sans"
+                    className=" relative top-[50px] left-[20px] border-4 border-white font-sans"
                     style={{
-                      margin: '0 auto',
                       borderRadius: '50%',
                       marginBottom: '20px',
                       width: '150px',
