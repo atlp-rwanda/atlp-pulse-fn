@@ -39,23 +39,27 @@ function Comment({ remark }: CommentProps) {
       {isModalOpen && <div className="blur-background" />}
       <dialog
         ref={dialog}
-        className={`rounded-lg shadow-lg w-[40%] ${isModalOpen ? 'modal-open' : ''}`}
+        className={`rounded-lg shadow-lg w-[40%] ${
+          isModalOpen ? 'modal-open' : ''
+        }`}
         dat-testid="dialog"
         onClick={(e) => close(e)}
       >
         <div className="p-3 rounded trainee-model bg-indigo-100 w-[100%] h-[150px]">
           {remark ? (
-            <div className='comment-content'>
+            <div className="comment-content">
               <p className="font-bold my-2 text-lg">From Coordinator:</p>
               <div className="font-light font-9 text-">{remark}</div>
             </div>
           ) : (
-            <p className="font-bold font-9 text-md m-16">No comments provided</p>
+            <p className="font-bold font-9 text-md m-16">
+              No comments provided
+            </p>
           )}
         </div>
       </dialog>
       <button
-        className="bg-[#333131] flex px-4 py-1 flex-row justify-evenly items-center rounded-xl text-white"
+        className="bg-[#8667F2] flex px-4 py-1 flex-row justify-evenly items-center rounded-xl text-white"
         onClick={() => openModel()}
       >
         <AiOutlineEye className="m-1" />

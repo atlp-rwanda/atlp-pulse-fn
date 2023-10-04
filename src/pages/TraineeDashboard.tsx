@@ -29,7 +29,7 @@ import Table from '../components/TraineeTable';
 import { TRAINEE_RATING } from '../Mutations/Ratings';
 // import { AiOutlineEye } from 'react-icons/ai';
 import Comment from '../components/ViewComment';
-
+import DataTable from '../components/DataTable';
 
 const GET_PROFILE = gql`
   query {
@@ -87,7 +87,7 @@ function SupAdDashboard() {
       Cell: ({ row }: any) => (
         <div className="flex items-center">
           <div className="cursor-pointer">
-            <Comment remark={row.original.comment}/>
+            <Comment remark={row.original.comment} />
           </div>
         </div>
       ),
@@ -175,20 +175,18 @@ function SupAdDashboard() {
         ? 0
         : totalQuantity / traineeData.length;
 
-        const formattedPerformanceValue =
-  averagePerformance % 1 !== 0
-    ? averagePerformance?.toFixed(1)
-    : averagePerformance;
+      const formattedPerformanceValue =
+        averagePerformance % 1 !== 0
+          ? averagePerformance?.toFixed(1)
+          : averagePerformance;
 
-    const formattedQuantityValue =
-    averageQuantity % 1 !== 0
-      ? averageQuantity?.toFixed(1)
-      : averageQuantity;
+      const formattedQuantityValue =
+        averageQuantity % 1 !== 0
+          ? averageQuantity?.toFixed(1)
+          : averageQuantity;
 
       const formattedQualityValue =
-      averageQuality % 1 !== 0
-        ? averageQuality?.toFixed(1)
-        : averageQuality;
+        averageQuality % 1 !== 0 ? averageQuality?.toFixed(1) : averageQuality;
 
       setQuantityValue(formattedQuantityValue);
       setQualityValue(formattedQualityValue);
@@ -299,38 +297,37 @@ function SupAdDashboard() {
 
   return (
     <div className="flex flex-col  grow dark:bg-dark-frame-bg ">
-      <div className="flex mx-4  flex-col justify-center  ">
-        <div className="lg:ml-1 w-[100%] pt-[4vh] h-[100%]   ">
+      <div className="flex  flex-col justify-center  ">
+        <div className="w-[100%] pt-[4vh] h-[100%]   ">
           <div className="">
-            <div className="flex bg-[#b8cdba] w-[30%] h-[48px]  ml-10 items-center justify-center  rounded-lg cohort-phase">
-              <span className="flex  bg-[#b8cdba] pl-2 items-center rounded-md font-semibold text-xl w-[30%]">
+            <div className="flex bg-[#b8cdba] w-[30%] h-[48px]  ml-7 items-center justify-center  rounded-lg cohort-phase dark:bg-[#8667F2]">
+              <span className="flex  bg-[#b8cdba] pl-2 items-center rounded-md font-semibold text-xl w-[30%] dark:bg-[#8667F2]">
                 {cohort}
               </span>
               <span className="h-5 border-2 mx-1 text-xl cohort-bar"></span>
 
               <span className="w-[45%] font-semibold text-xl pr-1 pl-3 c-phase ">
-              {rating && (
-  <select
-    className="flex items-center bg-[#b8cdba] rounded-md font-semibold text-xl cursor-pointer phasesss"
-    onChange={(e) => setPhase(e.target.value)}
-    value={phase}
-  >
-    {phases.map((phase: any, index) => (
-      <option key={index} value={phase}>
-        {phase}
-      </option>
-    ))}
-  </select>
-)}
-
+                {rating && (
+                  <select
+                    className="flex items-center bg-[#b8cdba] rounded-md font-semibold text-xl cursor-pointer phasesss dark:bg-[#8667F2]"
+                    onChange={(e) => setPhase(e.target.value)}
+                    value={phase}
+                  >
+                    {phases.map((phase: any, index) => (
+                      <option key={index} value={phase}>
+                        {phase}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </span>
             </div>
           </div>
 
-          <p className=" font-bold  ml-12 my-10 text-lg"> Perfomance score</p>
+          <p className=" font-bold ml-7 my-10 text-2xl"> Perfomance score</p>
           <div className=" flex flex-row ">
-            <div className=" Progres-bar flex flex-row w-[90%]  justify-between ml-7  ">
-              <div className="  flex flex-col w-[30%] ml-7   lg:flex-row perfomance-bar">
+            <div className=" Progres-bar flex flex-row w-[90%]  justify-between ml-3  ">
+              <div className="  flex flex-col w-[30%] ml-3   lg:flex-row perfomance-bar">
                 <div className=" w-[130px]">
                   <CircularProgressbar
                     value={(quantityValue / 2) * 100}
@@ -339,7 +336,7 @@ function SupAdDashboard() {
                   />
                 </div>
 
-                <div className=" flex flex-col justify-center ml-7">
+                <div className=" flex flex-col justify-center ml-3">
                   <ul className="list-disc ml-4">
                     <li>Quantity</li>
                   </ul>
@@ -373,7 +370,7 @@ function SupAdDashboard() {
                   />
                 </div>
 
-                <div className=" flex flex-col justify-center ml-7">
+                <div className=" flex flex-col justify-center ml-3">
                   <ul className="list-disc ml-4">
                     <li>Quality</li>
                   </ul>
@@ -407,7 +404,7 @@ function SupAdDashboard() {
                   />
                 </div>
 
-                <div className=" flex flex-col justify-center ml-7">
+                <div className=" flex flex-col justify-center ml-3">
                   <ul className="list-disc ml-4">
                     <li>Professionalism</li>
                   </ul>
@@ -435,12 +432,12 @@ function SupAdDashboard() {
             </div>
           </div>
 
-          <p className=" font-bol ml-12 my-10 text-lg"> Stats</p>
+          <p className=" font-bold ml-7 my-10 text-2xl"> Stats</p>
 
-          <div className=" w-[100%] ">
+          <div className=" w-[100%] ml-7">
             <TraineeChart barChartData={chartData} />
           </div>
-          <div className="p-4 ml-12">
+          <div className="p-4">
             <h1 className="text-2xl font-bold mb-4 ">Recents feedback</h1>
             <div className="p-2 grid grid-cols-2 phases ">
               <div className="flex  items-center ">
@@ -467,40 +464,40 @@ function SupAdDashboard() {
               </div>
             </div>
             <div className="trainee-table">
-              <div className="font-bold text-gray-700 mr-10 my-10 w-[100%] text-lg ">
-                {/* <Table dat={chartData} /> */}
+              <div className="font-bold my-10 w-[100%] text-lg ">
                 {chartData.length !== 0 ? (
-                    <Table
-                      data={chartData}
-                      columns={columns}
-                      title={t('Team Members')}
-                    />
-                  ) : (
-                    <table className="min-w-full rounded-full">
-                      <thead>
-                        <tr>
-                          {columns.map((column, columnIndex) => (
-                            <th
-                              key={columnIndex}
-                              className="px-6 py-3 text-left text-xs font-medium text-gray-500 bg-[#B8CDBA] dark:bg- uppercase tracking-wider"
-                            >
-                              {column.Header}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td
-                            colSpan={columns.length}
-                            className="px-6 py-4 whitespace-nowrap text-center text-gray-500"
+                  <DataTable
+                    columns={columns}
+                    data={chartData ? (chartData as [any]) : []}
+                    title={t('Sprint ratings')}
+                    loading={loading}
+                  />
+                ) : (
+                  <table className="min-w-full leading-normal">
+                    <thead>
+                      <tr>
+                        {columns.map((column, columnIndex) => (
+                          <th
+                            key={columnIndex}
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:bg-neutral-600 uppercase tracking-wider"
                           >
-                            {t('No ratings  yet')}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  )}
+                            {column.Header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          colSpan={columns.length}
+                          className="px-6 py-4 whitespace-nowrap text-center text-gray-500"
+                        >
+                          {t('No ratings  yet')}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )}
               </div>
             </div>
           </div>
