@@ -9,23 +9,36 @@ import { useForm } from 'react-hook-form';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import Pagination from '../components/Pagination';
 import { GET_ATTENDANCE, UPDATE_ATTENDANCE } from '../Mutations/Attendance';
+import { GET_GITHUB_STATISTICS } from '../Mutations/manageStudentMutations';
 import 'react-circular-progressbar/dist/styles.css';
 import ButtonLoading from '../components/ButtonLoading';
-
+import { useTraineesContext } from '../hook/useTraineesData';
 /* istanbul ignore next */
+
+interface StatusItem {
+  days: string;
+  value: number;
+}
+
+interface EmailAndStatus {
+  traineeId: string;
+  traineeEmail: string;
+  status: StatusItem[];
+}
+
 function TraineeAttendanceTracker() {
   const [submittingAttendance, setSubmittingAttendance] = useState(false);
-
+  const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [addEventModel, setAddEventModel] = useState(false);
   const [emailsAndStatuses, setemailsAndStatuses] = useState<any[]>([]);
   let week: any = [];
+  const [isLoaded, setIsLoaded] = useState(false);
   const { loading, data } = useQuery(GET_ATTENDANCE);
   const [selectedWeek, setSelectedWeek] = useState<number>(0);
+  const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
+  const { traineeData, setAllTrainees } = useTraineesContext();
+  const [open, setOpen] = React.useState(false);
 
-
- 
- 
-  
   useEffect(() => {
     getAttend({
       fetchPolicy: 'network-only',
@@ -56,7 +69,31 @@ function TraineeAttendanceTracker() {
     const newState = !addEventModel;
     setAddEventModel(newState);
   };
+  const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
+    onCompleted: (data) => {
+      setGitHubStatistics(data.gitHubActivity);
+      setIsLoaded(false);
+    },
+    onError: (error) => {
+      setIsLoaded(false);
+    },
+  });
 
+  const handleClickOpen = async (rowData: any) => {
+    setIsLoaded(true);
+    const filteredUser = traineeData.filter(
+      (item: any) => item.email == rowData,
+    );
+    setTraineeDetails(filteredUser[0]);
+    setOpen(true);
+    getGitHubStatistics({
+      variables: {
+        organisation: localStorage.getItem('orgName')?.split('.')[0],
+        username: filteredUser[0].profile?.githubUsername,
+      },
+    });
+  };
+  console.log('Trainees', traineeData.profile);
   const handleToggleModal = () => {
     setAddEventModel(!addEventModel);
   };
@@ -180,13 +217,10 @@ function TraineeAttendanceTracker() {
   let two = 0;
   let one = 0;
 
-
-
   emailsAndStatuses.forEach((item) => {
-    
+    console.log('TRAINEER%%%%%::::\n', item);
     /* istanbul ignore next */
     for (const element of item.status) {
-      
       if (element.value === 0) {
         zeo++;
       } else if (element.value === 1) {
@@ -203,8 +237,7 @@ function TraineeAttendanceTracker() {
   const twoparc = Math.round((two / totalvalues) * 100);
 
   const [index, setIndex] = useState(4);
- 
-  
+
   return (
     <>
       <div
@@ -312,36 +345,54 @@ function TraineeAttendanceTracker() {
                       </tr>
                     </thead>
                     <tbody>
-                      {emailsAndStatuses.slice().map((item: any) => (
-                        /* istanbul ignore next */
-                        <tr key={item.traineeId}>
-                          {loading || !data ? (
-                            <p className="text-white">loading</p>
-                          ) : (
-                            <>
-                              <td className="border-b border-gray-300 px-4 py-2">
-                                {item.traineeEmail}
-                              </td>
-                              <td className="flex justify-center border-b border-gray-300">
-                                <select
-                                  data-testid="getValue"
-                                  onChange={(e) =>
-                                    handleTakeAttedValue(e, item.traineeId[0])
-                                  }
-                                  className="  flex justify-start  px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
-                                >
-                                  <option value={item.status[index]?.value}>
-                                    Score {item.status[index]?.value || 0}
-                                  </option>
-                                  <option value="0">{t(' 0')}</option>
-                                  <option value="1">{t(' 1')}</option>
-                                  <option value="2">{t(' 2')}</option>
-                                </select>
-                              </td>
-                            </>
-                          )}
-                        </tr>
-                      ))}
+                      {traineeData.map((trainee: any) => {
+                        const emailAndStatus = emailsAndStatuses.find(
+                          (item: any) => item.traineeEmail === trainee.email,
+                        );
+
+                        if (!emailAndStatus) {
+                          // Handle the case where no matching email is found in emailsAndStatuses
+                          return null; // or display an error message, etc.
+                        }
+
+                        return (
+                          <tr key={emailAndStatus.traineeId}>
+                            {loading || !data ? (
+                              <p className="text-white">loading</p>
+                            ) : (
+                              <>
+                                <td className="border-b border-gray-300 px-4 py-2">
+                                  {trainee.email}
+                                </td>
+                                <td className="flex justify-center border-b border-gray-300">
+                                  <select
+                                    data-testid="getValue"
+                                    onChange={(e) =>
+                                      handleTakeAttedValue(
+                                        e,
+                                        emailAndStatus.traineeId[0],
+                                      )
+                                    }
+                                    className="  flex justify-start  px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"
+                                  >
+                                    <option
+                                      value={
+                                        emailAndStatus.status[index]?.value
+                                      }
+                                    >
+                                      Score{' '}
+                                      {emailAndStatus.status[index]?.value || 0}
+                                    </option>
+                                    <option value="0">{t(' 0')}</option>
+                                    <option value="1">{t(' 1')}</option>
+                                    <option value="2">{t(' 2')}</option>
+                                  </select>
+                                </td>
+                              </>
+                            )}
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -351,7 +402,7 @@ function TraineeAttendanceTracker() {
                     type="button"
                     data-testid="removeModel"
                     className="py-2 w-[40%] md:w-1/3 bg-primary rounded font-sans text-sm text-white"
-                    style={{ height: '40px' }} // Apply a fixed height to the button
+                    style={{ height: '40px' }}
                     onClick={removeModel}
                   >
                     {t('cancel')}
@@ -361,7 +412,7 @@ function TraineeAttendanceTracker() {
                       type="submit"
                       disabled={submittingAttendance}
                       className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
-                      style={{ height: '40px' }} // Apply a fixed height to the button
+                      style={{ height: '40px' }}
                     >
                       {t('Save')}
                     </button>
@@ -458,60 +509,51 @@ function TraineeAttendanceTracker() {
                           <p>loading</p>
                         ) : (
                           <tbody>
-                            {emailsAndStatuses
+                            {traineeData
                               .slice(firstContentIndex, lastContentIndex)
-                              .map((item: any) => (
-                                
-                                <>
-                                 <tr key={item.id}>
+                              .map((trainee: any) => (
+                                <tr key={trainee.id}>
                                   <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <div className="flex justify-center items-center">
                                       <div className="">
-                                        <p className="text-gray-900  dark:text-white whitespace-no-wrap">
-                                          {item.traineeEmail}
+                                        <p className="text-gray-900 dark:text-white whitespace-no-wrap">
+                                          {trainee.email}
                                         </p>
                                       </div>
                                     </div>
                                   </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                                    {item.status.find((day:any) => day.days === 'Monday') ? item.status.find((day:any) => day.days === 'Monday').value : 0}
-                                    </p>
-                                  </td>
+                                  {[
+                                    'Monday',
+                                    'Tuesday',
+                                    'Wednesday',
+                                    'Thursday',
+                                    'Friday',
+                                  ].map((day: string) => {
+                                    const traineeId = trainee.profile.user.id;
+                                    const emailAndStatus =
+                                      emailsAndStatuses.find(
+                                        (item: EmailAndStatus) =>
+                                          item.traineeEmail === trainee.email,
+                                      );
+                                    const statusDay =
+                                      emailAndStatus?.status.find(
+                                        (statusDay: StatusItem) =>
+                                          statusDay.days === day,
+                                      );
+                                    const statusValue = statusDay?.value || 0;
 
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Tuesday') ? item.status.find((day:any) => day.days === 'Tuesday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Wednesday') ? item.status.find((day:any) => day.days === 'Wednesday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                      {item.status.find((day:any) => day.days === 'Thursday') ? item.status.find((day:any) => day.days === 'Thursday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Friday') ? item.status.find((day:any) => day.days === 'Friday').value : 0}
-        
-                                    </p>
-                                  </td>
-                                  {/* <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <div className="flex justify-center items-center">
-                                      <div className="">
-                                        <p className="text-gray-900  dark:text-white whitespace-no-wrap">
-                                          edit
+                                    return (
+                                      <td
+                                        key={day}
+                                        className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm"
+                                      >
+                                        <p className="text-gray-900 dark:text-white whitespace-no-wrap text-center">
+                                          {statusValue}
                                         </p>
-                                      </div>
-                                    </div>
-                                  </td> */}
+                                      </td>
+                                    );
+                                  })}
                                 </tr>
-                                </>
-                               
                               ))}
                           </tbody>
                         )}

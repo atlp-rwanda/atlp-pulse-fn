@@ -89,7 +89,6 @@ function AdminTraineeDashboard() {
 
   const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     onCompleted: (data) => {
-      console.log(data);
       setGitHubStatistics(data.gitHubActivity);
       setIsLoaded(false);
     },
@@ -114,7 +113,7 @@ function AdminTraineeDashboard() {
       },
     });
   };
-  console.log('Trainees', traineeData);
+
   const handleClose = () => {
     setOpen(false);
   };
