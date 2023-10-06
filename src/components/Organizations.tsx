@@ -79,63 +79,67 @@ function ActionButtons({
         <div className="flex relative flex-row align-middle justify-center items-center">
             {checkStatus == 'active' ? (
                 <>
-                    <div
-                        //   data-testid="traineeIcon"
-                        onClick={() => {
-                            setData(getData?.getOrganizations[props.row.index]);
-                            console.log(getData?.getOrganizations[props.row.index])
-                            removeInviteModel();
-                        }}
-                    >
-                        <Icon
-                            icon="mdi:refresh"
-                            // className="mr-2"
-                            width="30"
-                            height="30"
-                            cursor="pointer"
-                            color="#148fb6"
-                        />
-                    </div>
-                    <div
-                        //   data-testid="updateIcon"
-                        onClick={() => {
-                            setData(getData?.getOrganizations[props.row.index]);
-                            removeDeleteModel();
-                        }}
-                    >
-                        <Icon
-                            icon="mdi:close-circle-outline"
-                            // className="mr-2"
-                            width="30"
-                            height="30"
-                            cursor="pointer"
-                            color="#148fb6"
-                        />
-                    </div>
+                  <div
+                    onClick={() => {
+                      setData(getData?.getOrganizations[props.row.index]);
+                      console.log(getData?.getOrganizations[props.row.index])
+                      removeInviteModel();
+                    }}
+                  >
+                    <Icon
+                      icon="mdi:email-fast"
+                      width="30"
+                      height="30"
+                      cursor="pointer"
+                      color="#9e85f5"
+                    />
+                  </div>
+                  <div
+                    onClick={() => {
+                      setData(getData?.getOrganizations[props.row.index]);
+                      removeDeleteModel();
+                    }}
+                  >
+                    <Icon
+                      icon="mdi:delete"
+                      width="30"
+                      height="30"
+                      cursor="pointer"
+                      color="#9e85f5"
+                    />
+                  </div>
                 </>
             ) : (
-                <>
-                    <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => {
-                            setData(getData?.getOrganizations[props.row.index]);
-                            approveModel();
-                        }}
-                    >
-                        Approve
-                    </Button>
-                    <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => {
-                            setData(getData?.getOrganizations[props.row.index]);
-                            rejectModel();
-                        }}
-                    >
-                        Reject
-                    </Button>
-                </>
+              <>
+                <div
+                  onClick={() => {
+                    setData(getData?.getOrganizations[props.row.index]);
+                    approveModel();
+                  }}
+                >
+                  <Icon
+                    icon="mdi:bank-check"
+                    width="30"
+                    height="30"
+                    cursor="pointer"
+                    color="#9e85f5"
+                  />
+                </div>
+                <div
+                  onClick={() => {
+                    setData(getData?.getOrganizations[props.row.index]);
+                    rejectModel();
+                  }}
+                >
+                  <Icon
+                    icon="mdi:bank-remove"
+                    width="30"
+                    height="30"
+                    cursor="pointer"
+                    color="#9e85f5"
+                  />
+                </div>
+              </>
             )}
         </div>
     );
