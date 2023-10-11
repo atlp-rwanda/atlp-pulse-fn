@@ -1,9 +1,16 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable import/no-extraneous-dependencies */
 
-
 import React from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from 'recharts';
 
 interface TableRow {
   sprint: number;
@@ -28,24 +35,42 @@ const TraineeChart: React.FC<TraineeChartProps> = ({ barChartData }) => {
     }))
     .sort((a, b) => a.name - b.name);
 
-  const xAxisTickValues = chartData.map((entry) => entry.name);
-
   return (
-    <div className='Trainee-chart'>
-      <LineChart width={1150} height={220} data={chartData}>
-        <Line type="monotone" dataKey="Professionalism" stroke="#1b5e20" strokeWidth={2} dot={false} />
-        <Line type="monotone" dataKey="Quality" stroke="#8667f2" strokeWidth={2} dot={false} />
-        <Line type="monotone" dataKey="Quantity" stroke="#b5a72a" strokeWidth={2} dot={false} />
+    <div className="Trainee-chart">
+      <LineChart width={1000} height={220} data={chartData}>
         <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis
+          dataKey="name"
+          label={{ value: 'Sprint', position: 'insideBottom', offset: -2 }}
+        />
+        <YAxis label={{ value: 'Score', angle: -90, position: 'insideLeft' }} />
         <Tooltip />
-        <Legend iconType='circle' iconSize={10} />
+        <Legend iconType="circle" iconSize={10} />
+
+        <Line
+          type="monotone"
+          dataKey="Professionalism"
+          stroke="#1b5e20"
+          strokeWidth={2}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="Quality"
+          stroke="#8667f2"
+          strokeWidth={2}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="Quantity"
+          stroke="#b5a72a"
+          strokeWidth={2}
+          dot={false}
+        />
       </LineChart>
     </div>
   );
 };
 
 export default TraineeChart;
-
-
