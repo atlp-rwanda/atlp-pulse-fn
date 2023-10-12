@@ -1,6 +1,7 @@
 // import { gql } from '@apollo/client';
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
+import GET_PROFILE from './User';
 
 export const GET_USERS_QUERY = gql`
   query GetUsers($orgToken: String) {
@@ -11,6 +12,13 @@ export const GET_USERS_QUERY = gql`
   }
 `;
 
+  export const DROP_TRAINEE = gql`
+  mutation DropTrainee($traineeId: String!, $reason: String!, $date: DateTime!) {
+    dropTrainee(traineeId: $traineeId, reason: $reason, date: $date)
+  }
+`;
+  
+  
 export const GET_TRAINEES_QUERY = gql`
   query GetTrainees($orgToken: String) {
     getTrainees(orgToken: $orgToken) {
@@ -62,6 +70,8 @@ export const GET_TRAINEES_QUERY = gql`
     }
   }
 `;
+
+
 export const GET_COHORT_TRAINEES_QUERY = gql`
   query GetCohortTrainees($cohort: String, $orgToken: String) {
     getCohortTrainees(cohort: $cohort, orgToken: $orgToken) {

@@ -23,6 +23,7 @@ import {
   GET_TRAINEES_QUERY,
   GET_COHORTS_QUERY,
   REMOVE_MEMBER_FROM_COHORT_MUTATION,
+  DROP_TRAINEE,
   EDIT_MEMBER_MUTATION,
   INVITE_USER_MUTATION,
   GET_TEAM_QUERY,
@@ -56,12 +57,13 @@ function AdminTraineeDashboard() {
   const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [selectedOption, setSelectedOption] = useState<any[]>([]);
   const [selectedOptionUpdate, setSelectedOptionUpdate] = useState<any>({});
+  const [dropTraineeModel, setDropTraineeModel] = useState(false);
+  const [dropTraineeID, setdropTraineeID] = useState('');
   const [selectedTeamOptionUpdate, setSelectedTeamOptionUpdate] = useState<any>(
     {},
   );
   const [selectedTeamOption, setSelectedTeamOption] = useState<any[]>([]);
   const [deleteEmail, setDeleteEmail] = useState('');
-  const [deleteFromCohort, setDeleteFromCohort] = useState('');
   const [editEmail, setEditEmail] = useState('');
   const [editCohort, setEditCohort] = useState('');
   const [editTeam, setEditTeam] = useState('');
@@ -87,9 +89,23 @@ function AdminTraineeDashboard() {
     );
   }
 
+  const [deleteFromCohort, setDeleteFromCohort] = useState('');
+  //const [status, setStatus] = useState(row.original?.Status?.status);
+  // Define state variables to store reason and date
+  const [reason, setReason] = useState('');
+  //  const [date, setDate] = useState('');
+  const currentDate = new Date().toISOString().split('T')[0]; // Get the current date
+
+  // Function to handle the reason input change
+  const handleReasonChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    const newReason = event.target.value;
+    setReason(newReason);
+  };
+
   const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     onCompleted: (data) => {
-      console.log(data);
       setGitHubStatistics(data.gitHubActivity);
       setIsLoaded(false);
     },
@@ -128,6 +144,28 @@ function AdminTraineeDashboard() {
   const removeModel = () => {
     const newState = !registerTraineeModel;
     setRegisterTraineeModel(newState);
+  };
+
+  const dropModel = async (rowData: any) => {
+    const filteredUser = traineeData.filter(
+      (item: any) => item.email == rowData,
+    );
+    if (filteredUser.length > 0) {
+      const user = filteredUser[0];
+      if (
+        user.profile &&
+        user.profile.user &&
+        user.profile.user.status &&
+        user.profile.user.status.status
+      ) {
+        if (user.profile.user.status.status !== 'drop') {
+          let newState = !dropTraineeModel;
+          setDropTraineeModel(newState);
+        } else {
+          toast.success('Trainee is already dropped');
+        }
+      }
+    }
   };
 
   /* istanbul ignore next */
@@ -179,24 +217,32 @@ function AdminTraineeDashboard() {
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
     {
-      Header: t('View'),
-      accessor: '',
-      Cell: ({ row }: any) => (
-        <div
-          className={
-            ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
-          }
-        >
-          <button
-            className="bg-black text-white rounded-xl px-3"
-            onClick={() => {
-              navigate(`/trainees/${row.original.userId}`);
-            }}
+      Header: t('Status'),
+      accessor: 'status',
+
+      Cell: ({ row }: any) => {
+        return (
+          <div
+            className={
+              ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
+            }
           >
-            {t('View')}
-          </button>
-        </div>
-      ),
+            <button
+              // className="bg-black text-white rounded-xl px-3 "
+              className={`${
+                row.original?.Status?.status === 'drop'
+                  ? ' bg-gray-500'
+                  : 'bg-black'
+              } text-white rounded-xl px-3`}
+              onClick={() => {
+                navigate(`/trainees/${row.original.userId}`);
+              }}
+            >
+              {row.original?.Status?.status === 'drop' ? 'Dropped' : 'view'}
+            </button>
+          </div>
+        );
+      },
     },
 
     {
@@ -242,6 +288,20 @@ function AdminTraineeDashboard() {
               removeTraineeMod();
               setDeleteEmail(row.original.email);
               setDeleteFromCohort(row.original.team);
+            }}
+          />
+
+          <Icon
+            icon="mdi:close-circle"
+            width="30"
+            height="30"
+            cursor="pointer"
+            color="#9e85f5"
+            /* istanbul ignore next */
+            onClick={() => {
+              dropModel(row.original.email);
+              setdropTraineeID(row.original.userId);
+              setReason(row.original.reason);
             }}
           />
 
@@ -304,6 +364,7 @@ function AdminTraineeDashboard() {
       },
     });
   }
+
   /* istanbul ignore if */
 
   if (traineeData && traineeData.length > 0) {
@@ -311,11 +372,12 @@ function AdminTraineeDashboard() {
       datum[index] = {};
       datum[index].name = data.profile ? data.profile.name : 'undefined';
       datum[index].email = data.email;
-      datum[index].rating = data?.ratings?.at(-1)?.average || 0;
+      datum[index].rating = '2';
       datum[index].team = data.team?.name;
       datum[index].cohort = data.team?.cohort?.name;
       datum[index].program = data.team?.cohort?.program?.name;
       datum[index].userId = data.profile?.user?.id;
+      datum[index].Status = data.profile?.user?.status;
     });
   }
 
@@ -363,6 +425,34 @@ function AdminTraineeDashboard() {
         setButtonLoading(false);
         toast.error(err.message);
       }, 1000);
+    },
+  });
+
+  const [dropMemberFromCohort] = useMutation(DROP_TRAINEE, {
+    variables: {
+      traineeId: dropTraineeID,
+      reason: reason,
+      date: currentDate,
+    },
+    onCompleted: (data) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        if (data.dropTrainee) {
+          // Check the response structure
+          refetch();
+          toast.success('Trainee dropped successfully');
+          setDropTraineeModel(false);
+        } else {
+          toast.error('Failed to drop trainee');
+        }
+      }, 1000);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        console.error('Mutation error:', err); // Log the error
+        toast.error(err.message);
+      }, 500);
     },
   });
 
@@ -960,6 +1050,99 @@ function AdminTraineeDashboard() {
         </div>
       </div>
       {/* =========================== End::  RemoveTraineeModel =============================== */}
+
+      {/* =========================== start::  deleteTraineeModel =============================== */}
+      <div
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 top-0 left-0 ${
+          dropTraineeModel === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white">
+              {t('Drop Trainee')}
+            </h3>
+            <hr className="w-full my-3 border-b bg-primary" />
+          </div>
+          <div className="card-body">
+            <form className="px-8 py-3">
+              {/* ... (rest of your form) */}
+
+              {/* Reason Field */}
+              <div className="mb-4">
+                <label
+                  className="block text-sm font-bold text-gray-700 dark:text-white"
+                  htmlFor="reason"
+                >
+                  {t('Reason')}
+                </label>
+                <input
+                  type="text"
+                  id="reason"
+                  name="reason"
+                  value={reason}
+                  onChange={handleReasonChange} // Capture reason input value
+                  className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+                />
+              </div>
+
+              {/* Date Field */}
+              <div className="mb-4">
+                <label
+                  className="block text-sm font-bold text-gray-700 dark:text-white"
+                  htmlFor="date"
+                >
+                  {t('Date')}
+                </label>
+                <input
+                  type="text" // Change the input type to text
+                  id="date"
+                  name="date"
+                  value={currentDate} // Set the value to the current date
+                  readOnly // Make the input read-only
+                  className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+                />
+              </div>
+
+              <div className="flex justify-between w-full">
+                <Button
+                  data-testid="dropModel"
+                  variant="info"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => setDropTraineeModel(false)}
+                >
+                  {t('Cancel')}
+                </Button>
+
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="dropMemberFromCohort"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    setButtonLoading(true);
+
+                    if (dropTraineeID && reason) {
+                      //  also pass the reason value to the dropMemberFromCohort function
+                      dropMemberFromCohort();
+                    } else {
+                      toast.error(
+                        'Please enter a reason for dropping the trainee',
+                      );
+                    }
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('Drop Trainee')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* =========================== End::  deleteTraineeModel =============================== */}
 
       {/* =========================== Start::  AddTraineeModel =============================== */}
 

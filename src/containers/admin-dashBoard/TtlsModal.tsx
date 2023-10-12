@@ -191,7 +191,7 @@ export default function TtlsPage() {
       accessor: 'team.name',
       Cell: ({ value }: { value: string }) => value || t('Not assigned'),
     },
-    
+
     {
       Header: t('action'),
       accessor: '',
