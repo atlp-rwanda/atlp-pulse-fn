@@ -130,7 +130,7 @@ function AdminTraineeDashboard() {
       },
     });
   };
-
+  console.log('Trainees', traineeData);
   const handleClose = () => {
     setOpen(false);
   };
@@ -1278,7 +1278,7 @@ function AdminTraineeDashboard() {
                     data={traineeData?.length > 0 ? datum : [{}]}
                     columns={columns}
                     loading={loading}
-                    title={t('Trainees list')}
+                    title={t('Trainee list')}
                   />
                 </div>
               </div>
