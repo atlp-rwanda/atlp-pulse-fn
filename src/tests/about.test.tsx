@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import About from '../pages/About';
+import { About }  from '../pages/About';
 
 describe('about tests', () => {
   it('Renders the HomePage ', () => {
@@ -24,4 +24,4 @@ describe('about tests', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-});
+})

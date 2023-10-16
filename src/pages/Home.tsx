@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
-import About from './About';
+import {About} from './About';
 
 function LandingPage() {
   /* istanbul ignore next */

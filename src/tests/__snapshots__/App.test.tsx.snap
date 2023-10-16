@@ -1022,7 +1022,7 @@ exports[`App test  Should render app 1`] = `
             className="px-4 lg:py-3 cursor-pointer text-lg"
           >
             © 
-            2023
+            2024
              Pulse Technologies
           </span>
         </div>

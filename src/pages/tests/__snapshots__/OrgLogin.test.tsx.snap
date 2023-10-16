@@ -98,15 +98,11 @@ exports[`Organization Login Should render 1`] = `
         >
           Looking to register an organization instead?
           <a
+            className="text-primary"
             href="/signup/org"
             onClick={[Function]}
           >
-            <a
-              className="text-primary"
-              href="#link"
-            >
-              Register a new organization
-            </a>
+            Register a new organization
           </a>
         </div>
       </form>

@@ -60,7 +60,7 @@ const testimonials = [
   },
 ];
 
-function Testmoniol() {
+function Testimonial() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevTestimonial = () => {
@@ -239,9 +239,9 @@ function About({ styles }: any) {
             Come shape the future together{' '}
           </h1>
         </div>
-        <Testmoniol />
+        <Testimonial />
       </div>
     </div>
   );
 }
-export default About;
+export { About}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import FormProvider from './components/Payment-steps/contexts/StepperContex';
 import ScrollToTop from './components/ScrollToTop';
 import TicketsProvider from './hook/ticketsContext';
 import './index.css';
@@ -13,7 +12,6 @@ function App() {
   return (
     <div className="min-h-screen">
       <TicketsProvider>
-        <FormProvider>
           <TraineesProvider>
             <Router>
               <ScrollToTop>
@@ -24,7 +22,6 @@ function App() {
               </ScrollToTop>
             </Router>
           </TraineesProvider>
-        </FormProvider>
       </TicketsProvider>
     </div>
   );

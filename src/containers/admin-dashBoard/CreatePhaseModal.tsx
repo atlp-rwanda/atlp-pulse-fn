@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import React, { useState } from 'react';
+import React  from 'react';
 import { useForm } from 'react-hook-form';
 import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -27,7 +27,6 @@ export default function CreatePhaseModal({
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
     register,
     control,
   } = useForm();
