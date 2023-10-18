@@ -70,6 +70,7 @@ function AdminTraineeDashboard() {
   const [inviteEmail, setInviteEmail] = useState('');
   const [buttonLoading, setButtonLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const options: any = [];
   const teamsOptions: any = [];
   const traineeOptions: any = [];
@@ -250,69 +251,79 @@ function AdminTraineeDashboard() {
       accessor: '',
       Cell: ({ row }: any) => (
         <div
-          className={` items-center${
+          className={`items-center${
             traineeData?.length > 0 ? ' flex' : ' hidden'
           }`}
         >
-          <Icon
-            icon="el:file-edit-alt"
-            className="mr-2"
-            width="25"
-            height="25"
-            cursor="pointer"
-            color="#9e85f5"
-            /* istanbul ignore next */
-            onClick={() => {
-              setSelectedOptionUpdate({
-                value: row.original.cohort,
-                label: row.original.cohort,
-              });
-              setSelectedTeamOptionUpdate({
-                value: row.original.team,
-                label: row.original.team,
-              });
-              removeEditModel();
-              setEditEmail(row.original.email);
-              setEditCohort(row.original.cohort);
-              setEditTeam(row.original.team);
-            }}
-          />
-          <Icon
-            icon="mdi:close-circle-outline"
-            width="30"
-            height="30"
-            cursor="pointer"
-            color="#9e85f5"
-            /* istanbul ignore next */
-            onClick={() => {
-              removeTraineeMod();
-              setDeleteEmail(row.original.email);
-              setDeleteFromCohort(row.original.team);
-            }}
-          />
-
-          <Icon
-            icon="mdi:close-circle"
-            width="30"
-            height="30"
-            cursor="pointer"
-            color="#9e85f5"
-            /* istanbul ignore next */
-            onClick={() => {
-              dropModel(row.original.email);
-              setdropTraineeID(row.original.userId);
-              setReason(row.original.reason);
-            }}
-          />
-
-          <Icon
-            icon="flat-color-icons:view-details"
-            width="30"
-            height="30"
-            cursor="pointer"
-            color="#9e85f5"
-            onClick={() => handleClickOpen(row.original.email)}
-          />
+          {showOptions ? (
+            <>
+              <Icon
+                icon="el:file-edit-alt"
+                className="mr-2"
+                width="25"
+                height="25"
+                cursor="pointer"
+                color="#9e85f5"
+                /* istanbul ignore next */
+                onClick={() => {
+                  setSelectedOptionUpdate({
+                    value: row.original.cohort,
+                    label: row.original.cohort,
+                  });
+                  setSelectedTeamOptionUpdate({
+                    value: row.original.team,
+                    label: row.original.team,
+                  });
+                  removeEditModel();
+                  setEditEmail(row.original.email);
+                  setEditCohort(row.original.cohort);
+                  setEditTeam(row.original.team);
+                }}
+              />
+              <Icon
+                icon="mdi:close-circle-outline"
+                width="30"
+                height="30"
+                cursor="pointer"
+                color="#9e85f5"
+                /* istanbul ignore next */
+                onClick={() => {
+                  removeTraineeMod();
+                  setDeleteEmail(row.original.email);
+                  setDeleteFromCohort(row.original.team);
+                }}
+              />
+              <Icon
+                icon="mdi:close-circle"
+                width="30"
+                height="30"
+                cursor="pointer"
+                color="#9e85f5"
+                /* istanbul ignore next */
+                onClick={() => {
+                  dropModel(row.original.email);
+                  setdropTraineeID(row.original.userId);
+                  setReason(row.original.reason);
+                }}
+              />
+              <Icon
+                icon="flat-color-icons:view-details"
+                width="30"
+                height="30"
+                cursor="pointer"
+                color="#9e85f5"
+                onClick={() => handleClickOpen(row.original.email)}
+              />
+            </>
+          ) : (
+            <Icon
+              icon="entypo:dots-three-vertical"
+              width="30"
+              cursor="pointer"
+              color="#9e85f5"
+              onClick={() => setShowOptions(true)}
+            />
+          )}
         </div>
       ),
     },

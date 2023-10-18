@@ -109,6 +109,7 @@ export default function CreateCohortModal({
         setValue('phaseName', { value: undefined, label: undefined });
 
         toast.success(t('Cohort Created successful') as TFunction);
+        refetch();
       },
     });
   }
