@@ -48,6 +48,7 @@ function AdminLogin() {
 
   const onSubmit = async (userInput: any) => {
     userInput.orgToken = orgToken;
+
     try {
       setLoading(true);
       const redirect = searchParams.get('redirect');
@@ -89,11 +90,31 @@ function AdminLogin() {
           } else {
             navigate('/dashboard');
           }
+          /* istanbul ignore if */
+          if (data.loginUser) {
+            //navigate to ${state},in case you want to make it default (/dashboard),
+            /* istanbul ignore next */
+            {
+              data.loginUser.user.role === 'superAdmin'
+                ? navigate(`/organizations`)
+                : data.loginUser.user.role === 'admin'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'coordinator'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'manager'
+                ? navigate(`/coordinators`)
+                : navigate('/performance');
+            }
+          }
+          /* istanbul ignore next */
+          return;
         },
         onError: (err) => {
           /* istanbul ignore next */
-          if (err.message.toLowerCase() !== 'invalid credential' ) {
-            const translateError = t('Please wait to be added to a program or cohort')
+          if (err.message.toLowerCase() !== 'invalid credential') {
+            const translateError = t(
+              'Please wait to be added to a program or cohort',
+            );
             toast.error(translateError);
           } else {
             /* istanbul ignore next */
@@ -104,7 +125,7 @@ function AdminLogin() {
           }
         },
       });
-    } catch (error: any) {
+    } catch (error) {
       /* istanbul ignore next */
       setError('password', {
         type: 'custom',
@@ -255,7 +276,6 @@ function AdminLogin() {
                   ) : (
                     ''
                   )}
-
                 </div>
                 <div className="flex w-full flex-col sm:flex-row justify-between  items-center rounded mb-5 mt-5">
                   <div className="w-50%">

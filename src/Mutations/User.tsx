@@ -100,4 +100,13 @@ export const DROP_TTL_USER = gql`
     dropTTLUser(email: $email, reason: $reason)
   }
 `;
+export const GET_USERS = gql`
+query GetUserEmails {
+  GetUserEmails {
+    email
+  }
+}
+`;
+
 export default GET_PROFILE;
+

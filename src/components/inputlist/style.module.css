@@ -1,0 +1,54 @@
+.container {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  /* padding: 0.3rem 0.7rem; */
+}
+
+.label {
+  box-sizing: border-box;
+  color: #636f89aa;
+  padding: 0 0.7rem;
+}
+
+.item {
+  box-sizing: border-box;
+  border-radius: 0.3rem;
+
+  width: 100%;
+  margin: 0.3rem 0;
+  padding: 0.4rem 0.6rem 0.4rem 1.4rem;
+
+  background-color: #a5a5a552;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.item:hover {
+  background-color: #a5a5a53d;
+}
+
+.item .remove {
+  opacity: 0;
+}
+
+.item:hover .remove {
+  opacity: 1;
+}
+
+.remove {
+  transition: 0.1s ease;
+
+  cursor: pointer;
+  background-color: #a5a5a5cc;
+
+  aspect-ratio: 1/1;
+  border: 1px solid transparent;
+  border-radius: 1000px;
+}

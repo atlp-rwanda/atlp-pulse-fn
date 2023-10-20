@@ -28,19 +28,21 @@ const AdminCohorts = React.lazy(() => import('./admin-dashBoard/Cohorts'));
 const AdminPrograms = React.lazy(() => import('./admin-dashBoard/Programs'));
 const AdminSession = React.lazy(() => import('./admin-dashBoard/Sessions'));
 const AdminPhases = React.lazy(() => import('./admin-dashBoard/Phases'));
+const InvitationConfirm = React.lazy(
+  () => import('../pages/InvitationConfirm'),
+);
 const AdminManageRoles = React.lazy(
   () => import('./admin-dashBoard/ManagerRoles'),
 );
 const AdminTraineeDashboard = React.lazy(
   () => import('../pages/AdminTraineeDashboard'),
 );
-const ViewTraineeRatings = React.lazy(
-  () => import('../pages/ratings/ViewTraineeRatings'),
-);
 const TtlTraineeDashboard = React.lazy(
   () => import('../pages/ttlTraineeDashboard'),
 );
-
+const ViewTraineeRatings = React.lazy(
+  () => import('../pages/ratings/ViewTraineeRatings'),
+);
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
 );
@@ -70,20 +72,19 @@ const OthersDocs = React.lazy(() => import('../components/Docs/OthersDocs'));
 const HelpPage = React.lazy(() => import('../pages/HelpPage'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
 const Ticket = React.lazy(() => import('../pages/Ticket'));
-const AllTickets = React.lazy(() => import('../pages/AllTickets'))
-const TeamDetails = React.lazy(() => import('../components/teamDetails'))
+const AllTickets = React.lazy(() => import('../pages/AllTickets'));
+const TeamDetails = React.lazy(() => import('../components/teamDetails'));
 const ManagersCards = React.lazy(() => import('../components/ManagerCard'));
 const CoordinatorCards = React.lazy(
   () => import('../components/CoordinatorCard'),
 );
-
 
 function DashRoutes() {
   const { toggleNav } = useContext(MenuContext);
 
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-  
+
   return (
     <PrivateRoute>
       <MenuProvider>
@@ -146,14 +147,16 @@ function DashRoutes() {
               <Route index element={<AllTickets />} />
               <Route path=":ticketId" element={<Ticket />} />
             </Route>
-      
-           <Route path="/loginActivities" element={<LoginActivitiesTable />} />
-           
-            <Route path="/team/:teamname" element={<TeamDetails/>} />
+
+            <Route path="/loginActivities" element={<LoginActivitiesTable />} />
+
+            <Route path="/team/:teamname" element={<TeamDetails />} />
 
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
             <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
+
+            <Route path="/calendar/confirm" element={<InvitationConfirm />} />
           </Routes>
         </Suspense>
       </main>

@@ -1327,11 +1327,19 @@ function AdminTraineeDashboard() {
                   data-testid="saveButton"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
-                    if (Object.values(email)[1] && Object.values(selectedOption)[1] && Object.values(selectedTeamOption)[1]) {
+                    if (
+                      Object.values(email)[1] &&
+                      Object.values(selectedOption)[1] &&
+                      Object.values(selectedTeamOption)[1]
+                    ) {
                       setButtonLoading(true);
                       addMemberToTeam();
-                    } else if (!Object.values(email)[1] || !Object.values(selectedOption)[1] || !Object.values(selectedTeamOption)[1]) {
-                      toast.error(t("Enter all the required information"));
+                    } else if (
+                      !Object.values(email)[1] ||
+                      !Object.values(selectedOption)[1] ||
+                      !Object.values(selectedTeamOption)[1]
+                    ) {
+                      toast.error(t('Enter all the required information'));
                     }
                   }}
                   loading={buttonLoading}

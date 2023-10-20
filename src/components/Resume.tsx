@@ -14,6 +14,7 @@ import Spinner from './Spinner';
 const UPLOAD_RESUME = gql`
   mutation UploadResume($userId: ID!, $resume: String!) {
     uploadResume(userId: $userId, resume: $resume) {
+      kindly
       resume
     }
   }
