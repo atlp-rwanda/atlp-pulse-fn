@@ -23,6 +23,7 @@ function SupAdDashboard() {
   const inviteModel = () => {
     const newState = !inviteTraineeModel;
     setInviteTraineeModel(newState);
+    //  this is true
   };
 
   const [inviteUser] = useMutation(INVITE_USER_MUTATION, {
@@ -137,7 +138,7 @@ function SupAdDashboard() {
             <div>
               {/* <div className="bg-light-bg dark:bg-dark-frame-bg  ">
                 <div className="flex items-left px-10 lg:px-60 pt-24 pb-8"> */}
-              <div className="flex gap-2 pt-5">
+              {/* <div className="flex gap-2 pt-5">
                 {user?.role === 'coordinator' || undefined ? (
                   ''
                 ) : (
@@ -151,7 +152,7 @@ function SupAdDashboard() {
                     {t('Invite an organization')}
                   </Button>
                 )}
-              </div>
+              </div> */}
             </div>
 
             {/* </div>
