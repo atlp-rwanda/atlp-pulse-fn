@@ -5,7 +5,6 @@ import { HomeIcon, MailIcon, PhoneIcon } from '@heroicons/react/solid';
 import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-
 import { toast } from 'react-toastify';
 import {
   ApolloClient,
@@ -73,7 +72,7 @@ export function EditPassword() {
 
   return (
     <div className="bg-light-bg dark:bg-dark-frame-bg lg:px-8">
-      <div className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0  mr-24  md:mr-0 md:mx-4  mb-6 lg:-ml-8 rounded-lg">
+      <div className="border bg-indigo-100 dark:border-dark-bg dark:bg-dark-bg dark:text-white w-[90vw] md:w-[92vw] lg:w-[75%] h-[56vh] md:h-[52vh] lg:h-[52vh] mx-0 mr-24 md:mr-0 md:mx-4 mb-6 lg:-ml-8 rounded-lg">
         <div className="px-4">
           <form
             className="grid grid-cols-1 gap-4 mt-12"
@@ -160,11 +159,10 @@ export default function ProfileTabs({ data: profileData }: any) {
       name: orgName?.split('.')[0],
     },
   });
-
   const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     variables: {
       organisation: localStorage.getItem('orgName')?.split('.')[0],
-      username: profileData?.githubUsername,
+      username: profileData.githubUsername
     },
   });
 
@@ -209,7 +207,7 @@ export default function ProfileTabs({ data: profileData }: any) {
   /* istanbul ignore next */
   useEffect(() => {
     fetchData2({
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
       onCompleted: (data) => {
         setTraineeData(data.getAllUsers);
       },
@@ -218,7 +216,7 @@ export default function ProfileTabs({ data: profileData }: any) {
       },
     });
     getGitHubStatistics({
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
       onCompleted: (data) => {
         setIsLoaded(false);
 
@@ -228,17 +226,23 @@ export default function ProfileTabs({ data: profileData }: any) {
         setIsLoaded(false);
       },
     });
+    // fetchOrgData({
+    //   fetchPolicy: 'no-cache',
+    //   onCompleted: (data) => {
+    //     setOrganisation(data.getOrganization);
+    //   },
+    // });
     fetchOrgData({
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
       onCompleted: (data) => {
-        setOrganisation(data.getOrganization);
+        setOrganisation(data);
       },
     });
 
     fetchProfile({
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
       onCompleted: (data) => {
-        setTraineeProfile(data.getProfile);
+        setTraineeProfile(data?.getProfile);
       },
     });
   }, []);
@@ -274,7 +278,7 @@ export default function ProfileTabs({ data: profileData }: any) {
     /* istanbul ignore next */
     onCompleted: (data) => {
       fetchOrgData({
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'no-cache',
         onCompleted: (data) => {
           setOrganisation(data.getOrganization);
           setTimeout(() => {
@@ -327,8 +331,6 @@ export default function ProfileTabs({ data: profileData }: any) {
 
     setSingleUser(singleTrainne[0]); // returns an object with single trainnee data that can be accessed singleUser.email
   }, [traineeData]);
-
-  console.log('ProfileData', traineeProfile);
 
   return (
     <div className="flex flex-wrap">
@@ -421,7 +423,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                       {profileData?.githubUsername}
                     </div>
                     <div className="flex py-4">
-                      {traineeProfile.resume ? (
+                      {traineeProfile?.resume ? (
                         <>
                           <BookOpenIcon className="w-6 mr-2 dark:text-dark-text-fill" />
                           <a
@@ -558,24 +560,23 @@ export default function ProfileTabs({ data: profileData }: any) {
                   }}
                 >
                   {isLoaded ? (
-                    <p>
-                      <div
-                        className={`flex justify-center items-center h-48 ${
-                          profileData.role != 'test'
-                            ? user?.role === 'trainee'
-                              ? ''
-                              : 'hidden'
-                            : ''
-                        }`}
-                      >
-                        <i>Loading gitHub statistics...</i>
-                        <Spinner />
-                        <div className="spinner" />
-                      </div>
-                    </p>
+                    <div
+                      className={`flex justify-center items-center h-48 ${
+                        profileData.role != 'test'
+                          ? user?.role === 'trainee'
+                            ? ''
+                            : 'hidden'
+                          : ''
+                      }`}
+                    >
+                      <i>Loading gitHub statistics...</i>
+
+                      <Spinner />
+                      <div className="spinner" />
+                    </div>
                   ) : (
                     <div
-                      className={`w-1/2 flex justify-between  ${
+                      className={`w-1/2 flex justify-between ${
                         profileData.role != 'test'
                           ? user?.role === 'trainee'
                             ? ''
@@ -601,7 +602,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                   )}
                 </div>
                 <div
-                  className={`grid md:grid-cols-5 gap-4 md:gap-6  ${
+                  className={`grid md:grid-cols-5 gap-4 md:gap-6 ${
                     profileData.test != 'test'
                       ? user?.role !== 'admin'
                         ? 'hidden'
@@ -643,7 +644,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                         children="Add New"
                       />
                       {/* <button className='flex items-center justify-center '>
-                        Add New </button> */}
+Add New </button> */}
                     </div>
                     <div>
                       {organisation?.activeRepos?.map((repo: any) => (
@@ -743,21 +744,21 @@ export default function ProfileTabs({ data: profileData }: any) {
                   </div>
                 </div>
               </div>
-              {/* Change password  start */}
+              {/* Change password start */}
               <div
                 className={openTab === 'Account' ? 'block' : 'hidden'}
                 id="link2"
               >
                 <EditPassword />
               </div>
-              {/* Change password  end */}
+              {/* Change password end */}
             </div>
           </div>
         </div>
       </>{' '}
-      {/* =========================== Start::  RemoveTraineeModel =============================== */}
+      {/* =========================== Start:: RemoveTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 top-0 left-0 bottom-0 ${
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${
           removeRepoModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -804,10 +805,10 @@ export default function ProfileTabs({ data: profileData }: any) {
           </div>
         </div>
       </div>
-      {/* =========================== End::  RemoveTraineeModel =============================== */}
-      {/* =========================== Start::  InviteTraineeModel =============================== */}
+      {/* =========================== End:: RemoveTraineeModel =============================== */}
+      {/* =========================== Start:: InviteTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 top-0 left-0 bottom-0 ${
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${
           repoModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -868,10 +869,10 @@ export default function ProfileTabs({ data: profileData }: any) {
           </div>
         </div>
       </div>
-      {/* =========================== End::  InviteTraineeModel =============================== */}
-      {/* =========================== Start::  InviteTraineeModel =============================== */}
+      {/* =========================== End:: InviteTraineeModel =============================== */}
+      {/* =========================== Start:: InviteTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 top-0 left-0 bottom-0 ${
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${
           orgModel === true ? 'block' : 'hidden'
         }`}
       >
@@ -937,7 +938,7 @@ export default function ProfileTabs({ data: profileData }: any) {
           </div>
         </div>
       </div>
-      {/* =========================== End::  InviteTraineeModel =============================== */}
+      {/* =========================== End:: InviteTraineeModel =============================== */}
     </div>
   );
 }
