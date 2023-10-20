@@ -224,13 +224,6 @@ function ViewSprintRatings({
             ) : (
               ''
             )}
-            <button
-              type="button"
-              className="bg-[#8667F2] rounded-md text-sm font-medium text-white hover:bg-opacity-40 h-[43px] px-3"
-              onClick={() => setViewAddNewRating(true)}
-            >
-              {t('New Rating')}
-            </button>
           </div>
         ) : (
           <Dropout traineeStatus={traineeStatus} />
