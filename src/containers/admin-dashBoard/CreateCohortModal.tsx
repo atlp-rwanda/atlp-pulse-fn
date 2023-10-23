@@ -110,6 +110,9 @@ export default function CreateCohortModal({
 
         toast.success(t('Cohort Created successful') as TFunction);
         refetch();
+        setTimeout(() => {
+          removeModel();
+        }, 1000);
       },
     });
   }

@@ -88,6 +88,7 @@
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
+    "react-dropdown-select": "^4.10.0",
     "react-hook-form": "^7.45.2",
     "react-i18next": "^11.18.6",
     "react-icons": "^4.10.1",

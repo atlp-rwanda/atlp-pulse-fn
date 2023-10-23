@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* istanbul ignore file */
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import Dialog from '@mui/material/Dialog';
@@ -37,7 +37,7 @@ import { UserContext } from '../hook/useAuth';
 import GitHubActivityChart from '../components/chartGitHub';
 import Spinner from '../components/Spinner';
 import { useTraineesContext } from '../hook/useTraineesData';
-
+import Dropdown from 'react-dropdown-select';
 const organizationToken = localStorage.getItem('orgToken');
 
 function AdminTraineeDashboard() {
@@ -78,6 +78,7 @@ function AdminTraineeDashboard() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
   const { traineeData, setAllTrainees } = useTraineesContext();
+  const [actionTraineeOptions, setActionTraineeOptions] = useState<any>(null);
 
   function PaperComponent(props: PaperProps) {
     return (
@@ -174,6 +175,13 @@ function AdminTraineeDashboard() {
     const newState = !editTraineeModel;
     setEditTraineeModel(newState);
   };
+  const [selectedRow, setSelectedRow] = useState<string | null>(null);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleOptions = (row: string) => {
+    setSelectedRow(selectedRow === row ? null : row);
+    setDropdownOpen(true);
+  };
 
   const inviteModel = () => {
     const newState = !inviteTraineeModel;
@@ -250,84 +258,140 @@ function AdminTraineeDashboard() {
       Header: t('action'),
       accessor: '',
       Cell: ({ row }: any) => (
-        <div
-          className={`items-center${
-            traineeData?.length > 0 ? ' flex' : ' hidden'
-          }`}
-        >
-          {showOptions ? (
-            <>
-              <Icon
-                icon="el:file-edit-alt"
-                className="mr-2"
-                width="25"
-                height="25"
-                cursor="pointer"
-                color="#9e85f5"
-                /* istanbul ignore next */
-                onClick={() => {
-                  setSelectedOptionUpdate({
-                    value: row.original.cohort,
-                    label: row.original.cohort,
-                  });
-                  setSelectedTeamOptionUpdate({
-                    value: row.original.team,
-                    label: row.original.team,
-                  });
-                  removeEditModel();
-                  setEditEmail(row.original.email);
-                  setEditCohort(row.original.cohort);
-                  setEditTeam(row.original.team);
-                }}
-              />
-              <Icon
-                icon="mdi:close-circle-outline"
-                width="30"
-                height="30"
-                cursor="pointer"
-                color="#9e85f5"
-                /* istanbul ignore next */
-                onClick={() => {
-                  removeTraineeMod();
-                  setDeleteEmail(row.original.email);
-                  setDeleteFromCohort(row.original.team);
-                }}
-              />
-              <Icon
-                icon="mdi:close-circle"
-                width="30"
-                height="30"
-                cursor="pointer"
-                color="#9e85f5"
-                /* istanbul ignore next */
-                onClick={() => {
-                  dropModel(row.original.email);
-                  setdropTraineeID(row.original.userId);
-                  setReason(row.original.reason);
-                }}
-              />
-              <Icon
-                icon="flat-color-icons:view-details"
-                width="30"
-                height="30"
-                cursor="pointer"
-                color="#9e85f5"
-                onClick={() => handleClickOpen(row.original.email)}
-              />
-            </>
-          ) : (
+        <div className="static">
+          <div className="static inline-block">
             <Icon
               icon="entypo:dots-three-vertical"
-              width="30"
+              width="40"
               cursor="pointer"
               color="#9e85f5"
-              onClick={() => setShowOptions(true)}
+              onClick={() => toggleOptions(row.original.email)}
             />
-          )}
+            {selectedRow === row.original.email && (
+              <div className="dropdown absolute right-4 mt-2 w-64 bg-light-bg max-h-30 dark:bg-dark-bg border border-gray-300 shadow-md z-50 p-4 rounded-lg overflow-hidden">
+                <>
+                  <div className="mb-4"></div>
+                  <div className="mb-4">
+                    <div
+                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      onClick={() => {
+                        setSelectedOptionUpdate({
+                          value: row.original.cohort,
+                          label: row.original.cohort,
+                        });
+                        setSelectedTeamOptionUpdate({
+                          value: row.original.team,
+                          label: row.original.team,
+                        });
+                        removeEditModel();
+                        setEditEmail(row.original.email);
+                        setEditCohort(row.original.cohort);
+                        setEditTeam(row.original.team);
+                        toggleOptions(row.original.email);
+                      }}
+                    >
+                      <Icon
+                        icon="el:file-edit-alt"
+                        className="mr-2"
+                        width="38"
+                        height="38"
+                        cursor="pointer"
+                        color="#9e85f5"
+                      />
+                      <div>
+                        <span className="font-bold">Edit</span>{' '}
+                        <>
+                          <br />
+                          Change cohort and team
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div
+                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      onClick={() => {
+                        removeTraineeMod();
+                        setDeleteEmail(row.original.email);
+                        setDeleteFromCohort(row.original.team);
+                        toggleOptions(row.original.email);
+                      }}
+                    >
+                      <Icon
+                        icon="mdi:close-circle-outline"
+                        width="40"
+                        height="40"
+                        cursor="pointer"
+                        color="#9e85f5"
+                      />
+                      <div>
+                        <span className="font-bold">Remove</span>
+                        <>
+                          <br />
+                          Remove trainee
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div
+                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      onClick={() => {
+                        dropModel(row.original.email);
+                        setdropTraineeID(row.original.userId);
+                        setReason(row.original.reason);
+                        toggleOptions(row.original.email);
+                      }}
+                    >
+                      <Icon
+                        icon="mdi:close-circle"
+                        width="40"
+                        height="40"
+                        cursor="pointer"
+                        color="#9e85f5"
+                      />
+                      <div>
+                        <span className="font-bold">Drop</span>{' '}
+                        <>
+                          <br />
+                          Drop trainee
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      onClick={() => {
+                        handleClickOpen(row.original.email);
+                        toggleOptions(row.original.email);
+                      }}
+                    >
+                      <Icon
+                        icon="flat-color-icons:view-details"
+                        width="40"
+                        height="40"
+                        cursor="pointer"
+                        color="#9e85f5"
+                      />
+                      <div>
+                        <span className="font-bold">View</span>{' '}
+                        <>
+                          <br />
+                          View detailed information
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              </div>
+            )}
+          </div>
         </div>
       ),
     },
   ];
+  8;
 
   const datum: any = [];
   const [getUsers] = useLazyQuery(GET_USERS_QUERY, {
@@ -1239,6 +1303,9 @@ function AdminTraineeDashboard() {
                   onClick={() => {
                     setButtonLoading(true);
                     addMemberToTeam();
+                    setTimeout(() => {
+                      removeModel();
+                    }, 2000);
                   }}
                   loading={buttonLoading}
                 >
