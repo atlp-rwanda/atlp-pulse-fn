@@ -160,10 +160,11 @@ export default function ProfileTabs({ data: profileData }: any) {
     },
   });
 
+  console.log('@@@@@@@@@::>>>', profileData);
   const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     variables: {
       organisation: localStorage.getItem('orgName')?.split('.')[0],
-      username: profileData?.githubUsername,
+      username: profileData?.username,
     },
   });
 
@@ -564,9 +565,8 @@ View Resume
                           : ''
                       }`}
                     >
-                
-                        <i>Loading gitHub statistics...</i>
-                 
+                      <i>Loading gitHub statistics...</i>
+
                       <Spinner />
                       <div className="spinner" />
                     </div>

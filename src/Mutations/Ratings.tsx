@@ -92,7 +92,7 @@ export const FETCH_ALL_RATINGS = gql`
       user {
         id
         email
-        profile{
+        profile {
           firstName
           lastName
         }
@@ -380,12 +380,10 @@ export const GET_ALL_TRAINEES = gql`
       team {
         name
         cohort {
-          endDateb
+          endDate
           startDate
           phase {
             name
-            activeRepos
-            gitHubOrganisation
             description
           }
           name
