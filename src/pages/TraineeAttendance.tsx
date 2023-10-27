@@ -81,7 +81,6 @@ function TraineeAttendanceTracker() {
       },
     });
   };
-  console.log('Trainees', traineeData);
   const handleToggleModal = () => {
     setAddEventModel(!addEventModel);
   };
@@ -184,6 +183,7 @@ function TraineeAttendanceTracker() {
           recordAttendanceOrgToken2: localStorage.getItem('orgToken'),
         },
         onCompleted: (data) => {
+          debugger;
           const newData = data.recordAttendance.trainees;
           setemailsAndStatuses(newData);
           setTimeout(() => {}, 500);
@@ -206,7 +206,6 @@ function TraineeAttendanceTracker() {
   let one = 0;
 
   emailsAndStatuses.forEach((item) => {
-    console.log('TRAINEER%%%%%::::\n', item);
     /* istanbul ignore next */
     for (const element of item.status) {
       if (element.value === 0) {
@@ -225,6 +224,22 @@ function TraineeAttendanceTracker() {
   const twoparc = Math.round((two / totalvalues) * 100);
 
   const [index, setIndex] = useState(4);
+
+  // After you fetch traineeData:
+  useEffect(() => {
+    if (!loading && traineeData) {
+      // Store traineeData in localStorage
+      localStorage.setItem('traineeData', JSON.stringify(traineeData));
+    }
+  }, [traineeData]);
+
+  // When the component mounts, attempt to retrieve traineeData from localStorage
+  useEffect(() => {
+    const cachedTraineeData = localStorage.getItem('traineeData');
+    if (cachedTraineeData) {
+      setAllTrainees(JSON.parse(cachedTraineeData));
+    }
+  }, []);
 
   return (
     <>
@@ -344,7 +359,6 @@ function TraineeAttendanceTracker() {
                                 <>
                                   <td className="border-b border-gray-300 px-4 py-2">
                                     {trainee.email}
-                                    {trainee.profile.user.id[0]}
                                   </td>
                                   <td className="flex justify-center border-b border-gray-300">
                                     <select
@@ -352,7 +366,7 @@ function TraineeAttendanceTracker() {
                                       onChange={(e) =>
                                         handleTakeAttedValue(
                                           e,
-                                          trainee.profile.user.id[0],
+                                          trainee.profile.user.id,
                                         )
                                       }
                                       className="  flex justify-start  px-4 py-2 rounded-md text-white font-medium cursor-pointer border border-primary dark:bg-dark-tertiary dark:text-white"

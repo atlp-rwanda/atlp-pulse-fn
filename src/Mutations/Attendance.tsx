@@ -33,6 +33,7 @@ export const UPDATE_ATTENDANCE = gql`
       id
       week
       trainees {
+        id
         traineeId
         traineeEmail
         status {
