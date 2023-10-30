@@ -12,6 +12,7 @@ import ButtonLoading from '../components/ButtonLoading';
 
 function ResetPassword() {
   useDocumentTitle('Reset Password');
+
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function ResetPassword() {
     onError: (err) => {
       setTimeout(() => {
         toast.error(err.message);
+        console.log(err);
       }, 1000);
     },
   });
