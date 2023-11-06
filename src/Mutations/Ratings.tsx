@@ -380,12 +380,11 @@ export const GET_ALL_TRAINEES = gql`
       team {
         name
         cohort {
-          endDateb
+          endDate
           startDate
           phase {
             name
-            activeRepos
-            gitHubOrganisation
+
             description
           }
           name
