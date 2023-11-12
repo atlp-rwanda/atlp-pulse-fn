@@ -31,7 +31,7 @@ function AllTickets() {
 
   return (
     <div className="flex flex-col grow items-center bg-white dark:bg-dark-frame-bg">
-      <div className="flex flex-col items-center gap-4 sm:w-[90%] md:w-[70%] lg:w-[45%]  mt-5  lg:mb-10 pt-12">
+      <div className="flex flex-col items-center gap-4 sm:w-full md:w-[70%] lg:w-[60%] mt-5 lg:mb-10 pt-12 overflow-x-hidden">
         <h2 className="text-4xl font-bold dark:text:white mb-3">
           {t('Tickets')}
         </h2>
@@ -39,12 +39,11 @@ function AllTickets() {
         {tickets &&
           messages?.map((msg: any) => (
             <div
-              // eslint-disable-next-line no-underscore-dangle
               key={String(msg.id)}
               className="w-full bg-[#e0e7ff] dark:bg-dark-bg rounded overflow-hidden mb-5"
             >
               <div className="px-6 pt-8 mb-6">
-                <div className="font-bold text-xl text-blue-600 mb-5">
+                <div className="font-bold text-xl text-blue-600 mb-5 text-center md:text-left">
                   {msg.user && msg.user.profile && msg.user.profile.length > 0
                     ? `${msg.user.profile[0].firstName} ${msg.user.profile[0].lastName}`
                     : `${msg.user ? msg.user.email : ''}`}
@@ -63,22 +62,21 @@ function AllTickets() {
                   </span>
                 </p>
               </div>
-              <div className="flex flex-row items-center justify-between px-6 pt-0 pb-6">
+              <div className="flex flex-col md:flex-row items-center justify-center md:justify-between px-6 pt-0 pb-6">
                 {msg.status === 'closed' ? (
-                  <span className="inline-flex items-center rounded-md bg-green-700 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-green-600/20">
+                  <span className="inline-flex items-center rounded-md bg-green-700 px-2 py-1 text-lg text-white ring-1 ring-inset ring-green-600/20 mb-2 md:mb-0 md:mr-2">
                     {t(`${msg.status}`)}
                   </span>
                 ) : (
-                  <span className="inline-flex items-center rounded-md bg-primary px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-blue-700/10">
+                  <span className="inline-flex items-center rounded-md bg-[#E8EFE9] px-2 py-1 text-dark ring-1 ring-inset ring-blue-700/10 text-lg mb-2 md:mb-0 md:mr-2">
                     {t(`${msg.status}`)}
                   </span>
                 )}
 
                 <button
-                  // eslint-disable-next-line no-underscore-dangle
                   onClick={() => handleSelectTicket(msg.id)}
                   type="button"
-                  className="bg-[#8667F2] text-white hover:bg-[#c7b9f9] font-normal py-1 px-2 rounded"
+                  className="bg-[#8667F2] text-white hover:bg-[#c7b9f9] py-1 px-2 rounded text-lg"
                 >
                   {t('Read more')}
                 </button>
