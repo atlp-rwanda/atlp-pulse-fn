@@ -179,7 +179,7 @@ function AdminTraineeDashboard() {
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
     {
-      Header: t('View'),
+      Header: t('Rating'),
       accessor: '',
       Cell: ({ row }: any) => (
         <div
@@ -193,7 +193,7 @@ function AdminTraineeDashboard() {
               navigate(`/trainees/${row.original.userId}`);
             }}
           >
-            {t('View')}
+            {t('Rating')}
           </button>
         </div>
       ),
@@ -311,7 +311,7 @@ function AdminTraineeDashboard() {
       datum[index] = {};
       datum[index].name = data.profile ? data.profile.name : 'undefined';
       datum[index].email = data.email;
-      datum[index].rating = '2';
+      datum[index].rating = data.ratings?.average;
       datum[index].team = data.team?.name;
       datum[index].cohort = data.team?.cohort?.name;
       datum[index].program = data.team?.cohort?.program?.name;
