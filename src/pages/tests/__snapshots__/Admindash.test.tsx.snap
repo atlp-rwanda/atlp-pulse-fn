@@ -2014,17 +2014,21 @@ Array [
     className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto mt-10 p-4 hidden"
   >
     <div
-      className="flex btn w-fit py-1 px-3 bg-primary font-bold rounded-full inline-block"
+      className="flex w-fit py-1 px-3 bg-primary justify-center font-bold rounded-full inline-block"
     >
       <div
-        className="loader mr-1"
-      />
-      <button
-        className="ml-1 text-white font-bold"
-        disabled={true}
+        className="flex w-full gap-2 justify-center items-center"
       >
-        Processing...
-      </button>
+        <div
+          className="loader"
+        />
+        <button
+          className=" text-white font-bold"
+          disabled={true}
+        >
+          Processing...
+        </button>
+      </div>
     </div>
   </div>,
   <div

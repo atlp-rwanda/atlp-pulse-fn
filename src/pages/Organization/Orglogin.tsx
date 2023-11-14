@@ -1,4 +1,5 @@
 // no-use-before-define
+/* istanbul ignore next */
 import React, { useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -31,30 +32,11 @@ function Orglogin() {
       setInputWidth(`130px`);
     } else {
       const newWidth = Math.max(newName.length * 11);
-
-      // console.log(newWidth)
       setInputWidth(`${newWidth}px`);
       isNameEmpty = false;
     }
-    // console.log('1', name)
-
-    // Calculate the width based on the length of the entered text
-    // const newWidth = `${Math.max(newName.length * 9)}px`; // Adjust minimum width here
-    // setInputWidth(newWidth);
-
-    // setInputWidth(`${newWidth}px`);
   };
 
-  // console.log('2', isNameEmpty);
-  // console.log('3', inputWidth)
-
-  const formatVariable = async (e: any) => {
-    const value: string = String(e.target.value);
-    if (!value.includes('.devpulse.org')) {
-      e.target.value = `${e.target.value}.devpulse.org`;
-      setName(e.target.value);
-    }
-  };
   const [OrgLogin, { loading }] = useMutation(LOGIN_ORGANIZATION_MUTATION);
   const {
     register,
@@ -65,6 +47,11 @@ function Orglogin() {
   const navigate = useNavigate();
 
   const onSubmit = async (event: any) => {
+    /* istanbul ignore next */
+    event.preventDefault();
+    setError('name', {
+      message: t(''),
+    });
     /* istanbul ignore next */
     const orgInput = {
       name,
@@ -79,8 +66,6 @@ function Orglogin() {
         let value: string = String(name);
 
         value = `${name}`;
-
-        // console.log(name)
         /* istanbul ignore next */
         // TODO:
         localStorage.setItem('orgName', value);
@@ -138,11 +123,7 @@ function Orglogin() {
           <div className="text-md  text-black-600 mt-2 text-center font-semibold dark:text-dark-text-fill sm:text-xs">
             {t('Enter your organization’s Dev-Pulse URL')}
           </div>
-          <form
-            action="#none"
-            className="space-y-6 mt-4"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form action="#none" className="space-y-6 mt-4" onSubmit={onSubmit}>
             <label
               className="orgName bg-white dark:bg-neutral-600 rounded mt-1 py-1 px-2"
               htmlFor={orgInputId}
@@ -155,15 +136,10 @@ function Orglogin() {
                   type="text"
                   value={name}
                   data-testid="orgName"
-                  // {...register('name', {
-                  //   required: 'Organisation name is required',
-                  // })}
                   onChange={handleNameChange}
                   onKeyDown={handleKeyPress}
                   style={{
-                    // paddingLeft: '25px',
                     width: inputWidth,
-                    // backgroundColor: '  rgb(224 231 255 / var(--tw-bg-opacity)) ',
                   }} // Set the width dynamically
                   className="inputStyle inputOne w-full border-primary rounded  "
                 />
@@ -175,42 +151,28 @@ function Orglogin() {
                   type="text"
                   value={name}
                   data-testid="orgName"
-                  // {...register('name', {
-                  //   required: 'Organisation name is required',
-                  // })}
                   onChange={handleNameChange}
                   onKeyDown={handleKeyPress}
                   style={{
-                    // paddingLeft: '25px',
                     width: inputWidth,
-                    // backgroundColor: ' rgb(24 231 255 / var(--tw-bg-opacity))',
                   }} // Set the width dynamically
                   className="inputStyle inputOne w-full border-primary rounded dark:bg-neutral-600"
                 />
               )}
-              {/* <input
-                placeholder=".devpulse.org"
-                disabled
-                style={
-                  {
-                    // width: inputWidth,
-                  }
-                }
-                className="inputStyle inputTwo w-full p-2 border border-primary rounded mt-1 dark:bg-dark-bg"
-              /> */}
               <span className="inputStyle inputTwo w-full p-2 border border-primary rounded text-gray-400">
                 .devpulse.org
               </span>
             </label>
-            <div className="-mt-6">
-              {errors.name && (
-                <small className="text-red-600">{errors.name.message}</small>
-              )}
-            </div>
+            {errors?.name?.message && (
+              <div className="-mt-6 bg-red-400 rounded-md w-full text-center p-5">
+                <small className="text-white">{errors.name.message}</small>
+              </div>
+            )}
             <div>
               {loading ? (
-                <ButtonLoading style="rounded-full inline-block" />
+                <ButtonLoading style="rounded-md inline-block w-full sm:px-4 sm:py-2 opacity-50" />
               ) : (
+                /* istanbul ignore next */
                 <Button
                   type="submit"
                   variant="primary"

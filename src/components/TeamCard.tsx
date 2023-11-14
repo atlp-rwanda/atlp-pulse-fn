@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/solid';
 
 function Card({
+  id,
   stylebg,
   stylebg1,
   rating,
@@ -23,6 +24,7 @@ function Card({
   drop,
   arrowColor,
 }: {
+  id: string;
   stylebg: string;
   stylebg1: string;
   rating: string;

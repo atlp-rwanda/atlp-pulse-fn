@@ -92,6 +92,13 @@ export const FETCH_ALL_RATINGS = gql`
       user {
         id
         email
+        profile {
+          firstName
+          lastName
+        }
+        team {
+          name
+        }
       }
       sprint
       quantity
@@ -151,6 +158,7 @@ export const ADD_RATING = gql`
         email
       }
       sprint
+      phase
       cohort {
         name
         id
@@ -294,6 +302,8 @@ export const TRAINEE_RATING = gql`
         email
       }
       sprint
+      phase
+      sprint
       quantity
       quantityRemark
       quality
@@ -302,6 +312,7 @@ export const TRAINEE_RATING = gql`
       professionalRemark
       average
       cohort {
+        name
         phase {
           name
         }
@@ -373,8 +384,7 @@ export const GET_ALL_TRAINEES = gql`
           startDate
           phase {
             name
-            activeRepos
-            gitHubOrganisation
+
             description
           }
           name

@@ -52,12 +52,12 @@ function ViewSprintRatings({
             {t('Trainee')} : {traineeName}
           </h3>
           <h1
-            className="absolute right-2 top-8 hover:text-red-500"
+            className="absolute right-0 top-2 text-red-500   transform rotate-45 w-120 h-120 text-5xl cursor-pointer"
             onClick={() => {
               navigate('/trainees');
             }}
           >
-            X
+            +
           </h1>
         </div>
         <div className="flex flex-col gap-4">
@@ -224,13 +224,6 @@ function ViewSprintRatings({
             ) : (
               ''
             )}
-            <button
-              type="button"
-              className="bg-[#8667F2] rounded-md text-sm font-medium text-white hover:bg-opacity-40 h-[43px] px-3"
-              onClick={() => setViewAddNewRating(true)}
-            >
-              {t('New Rating')}
-            </button>
           </div>
         ) : (
           <Dropout traineeStatus={traineeStatus} />

@@ -1,4 +1,14 @@
 {
+  "performance": "Performance Management/Analytics",
+  "analytics": "Talent Analytics and Reporting",
+  "continuos": "Continuous & Tight Feedback Loop",
+  "goal": "Gestion des performances/analyse",
+  "body1": "Optimize your organization's potential with Performance Management/Analytics. Our cutting-edge solution uses data-driven insights to track and improve performance across your business. Set and monitor KPIs, identify areas for growth, and make informed decisions with our intuitive platform. Achieve remarkable results today!",
+  "body2": "Show up your workforce's potential with Talent Analytics and Reporting. Gain deep insights into your talent pool through data analysis. Identify top performers, discover hidden talent, and optimize your workforce with cutting-edge analytics tools. Utilize customizable reports and intuitive dashboards for a holistic view of your talent landscape. Make data-driven decisions to drive strategic talent management initiatives and achieve sustainable growth and success.",
+  "body3": "Unlock the potential of a Continuous & Tight Feedback Loop. Our innovative solution enables real-time feedback exchange between employees, fostering a culture of continuous improvement. Seamlessly capture feedback and address development areas promptly, driving success and productivity. Embrace the power of a Continuous & Tight Feedback Loop for enhanced performance. ",
+  "body4": "Achieve your goals with Goal Tracking and Progress Monitoring. Our solution empowers individuals and teams to set clear objectives, monitor progress, and stay accountable. Effortlessly define SMART goals, track milestones, and visualize progress in real-time on our user-friendly platform. Gain valuable insights, identify obstacles, and make data-driven adjustments for success. Whether you're an individual professional or a team leader, our tool will keep you focused, motivated, and on the path to accomplishing your goals.",
+  "hero2": "  What you can do with us",
+  "hero txt": " The brilliant performance management <br /> platform around the world.",
   "Home": "Home",
   "Ticket": "Ticket",
   "Tickets": "Tickets",
@@ -332,5 +342,6 @@
   "Enter the title and description of the document you want to add": "Enter the title and description of the document you want to add",
   "Documentation updated successfully": "Documentation updated successfully",
   "Please fill all fields": "Please fill all fields",
-  "Boost your organization": "Boost your organizations productivity with Pulse"
+  "Boost your organization": "Boost your organizations productivity with Pulse",
+  "Please wait to be added to a program or cohort": "Please wait to be added to a program or cohort"
 }

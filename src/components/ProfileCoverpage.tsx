@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 import Button from './Buttons';
 import { GET_PROFILE } from '../Mutations/User';
 import Avatar from '../assets/avatar.png';
-import Spinner from '../components/Spinner';
+import Spinner from '../components/ButtonLoading';
 import { UserContext } from '../hook/useAuth';
 
 export default function ProfileCoverpage({
@@ -62,7 +62,7 @@ export default function ProfileCoverpage({
       formData.append('upload_preset', 'my_upload');
 
       const avatar = await axios.post(
-        'https://api.cloudinary.com/v1_1/dj24yfas5/image/upload',
+        `${process.env.COVER_IMAGE_URL}`,
         formData,
       );
       /* istanbul ignore next */
@@ -72,7 +72,7 @@ export default function ProfileCoverpage({
       /* istanbul ignore next */
       setSpinner(true);
       /* istanbul ignore if */
-       /* istanbul ignore next */
+      /* istanbul ignore next */
       if (updated) {
         setSpinner(false);
         setProfileImage(updated?.data?.updateAvatar?.avatar);
@@ -97,7 +97,7 @@ export default function ProfileCoverpage({
       formData.append('upload_preset', 'my_upload');
 
       const cover = await axios.post(
-        'https://api.cloudinary.com/v1_1/dj24yfas5/image/upload',
+        `${process.env.COVER_IMAGE_URL}`,
         formData,
       );
       /* istanbul ignore next */
@@ -166,10 +166,17 @@ export default function ProfileCoverpage({
       <div className="z-0 flex items-center justify-center h-full mr-auto -ml-10 bg-grey-lighter md:-ml-12 mt-36 md:mt-20">
         <div role="button">
           <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1">
-            <PencilAltIcon className="w-5 mt-0 mr-1 md:w-3 dark:text-dark-text-fill" />
-            <span className="text-lg md:text-sm dark:text-dark-text-fill">
-              <span className="hidden md:block">{t('Edit')} </span>
-            </span>
+            {/* Conditionally render based on the spinner state */}
+            {spinner ? (
+              <Spinner />
+            ) : (
+              <>
+                <PencilAltIcon className="w-5 mt-0 mr-1 md:w-3 dark:text-dark-text-fill" />
+                <span className="text-lg md:text-sm dark:text-dark-text-fill">
+                  <span className="hidden md:block">{t('Edit')}</span>
+                </span>
+              </>
+            )}
             <input
               type="file"
               className="hidden"
@@ -181,11 +188,10 @@ export default function ProfileCoverpage({
             />
           </label>
         </div>
-        {spinner ? <Spinner /> : ''}
       </div>
       {currentPage !== 'editProfile' ? (
         <Button
-         /* istanbul ignore next */
+          /* istanbul ignore next */
           onClick={() => handleEdit()}
           variant="default"
           size="md"
@@ -198,9 +204,7 @@ export default function ProfileCoverpage({
         <div className="flex items-center justify-center w-full h-screen mt-24 ml-auto bg-grey-lighter">
           <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2">
             <CameraIcon className="w-6 mt-0 mr-1 dark:text-dark-text-fill" />
-            <span className=" dark:text-dark-text-fill">
-              <span className="hidden md:block">{t('Change Picture')} </span>
-            </span>
+
             <input
               type="file"
               className="hidden"

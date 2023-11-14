@@ -1,8 +1,10 @@
 /* istanbul ignore file */
+/* eslint-disable react/button-has-type */
 import { gql, useQuery } from '@apollo/client';
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Buttons';
 import DataTable from '../../components/DataTable';
 import useDocumentTitle from '../../hook/useDocumentTitle';
@@ -41,6 +43,11 @@ export const getAllTeam = gql`
       name
       cohort {
         coordinator {
+          profile {
+            name
+            firstName
+            lastName
+          }
           email
         }
         phase {
@@ -60,14 +67,10 @@ export const getAllTeam = gql`
           firstName
         }
       }
-
-      ttl {
-        email
-        profile {
-          name
-          lastName
-          firstName
-        }
+      avgRatings {
+        quantity
+        quality
+        professional_Skills
       }
     }
 
@@ -102,6 +105,7 @@ function ActionButtons({
   setUpdateTeamModal,
   setDeleteTeamModal,
   setTeamTrainneModal,
+  setTeamDetailsModal,
   ...props
 }: any) {
   return (
@@ -138,7 +142,6 @@ function ActionButtons({
           color="#9e85f5"
         />
       </div>
-
       <div
         data-testid="deleteIcon"
         onClick={() => {
@@ -184,7 +187,9 @@ function AdminTeams() {
   const [createTeamModal, setCreateTeamModal] = useState(false);
   const [updateTeamModal, setUpdateTeamModal] = useState(false);
   const [teamTrainneModal, setTeamTrainneModal] = useState(false);
+
   const [currentTeam, setCurrentTeam] = useState<Team | undefined>(undefined);
+
   const [deleteTeamModal, setDeleteTeamModal] = useState(false);
   useDocumentTitle('Teams');
 
@@ -234,6 +239,7 @@ function AdminTeams() {
   return (
     <>
       {/* =========================== Start:: CreateCohortModel =============================== */}
+
       <CreateTeamModal
         data={getData}
         createTeamModel={createTeamModal}

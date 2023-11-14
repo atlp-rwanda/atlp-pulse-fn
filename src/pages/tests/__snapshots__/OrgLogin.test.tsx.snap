@@ -82,9 +82,6 @@ exports[`Organization Login Should render 1`] = `
             .devpulse.org
           </span>
         </label>
-        <div
-          className="-mt-6"
-        />
         <div>
           <button
             className="btn primary lg w-full ml-0 hover:bg-violet-600 text-sm"

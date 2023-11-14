@@ -1,4 +1,14 @@
 {
+  "performance": "Gestion des performances/analyse",
+  "analytics": "Analyse des talents et reporting",
+  "continuos": "Boucle de rétroaction continue et étroite",
+  "body1": "Optimisez le potentiel de votre organisation avec la gestion des performances/l'analyse. Notre solution de pointe utilise des informations basées sur les données pour suivre et améliorer les performances de votre entreprise. Définissez et surveillez les KPI, identifiez les domaines de croissance et prenez des décisions éclairées grâce à notre plateforme intuitive. Obtenez des résultats remarquables dès aujourd’hui !",
+  "body2": "Montrez le potentiel de votre main-d'œuvre avec Talent Analytics and Reporting. Obtenez des informations approfondies sur votre vivier de talents grâce à l’analyse des données. Identifiez les plus performants, découvrez les talents cachés et optimisez votre main-d'œuvre grâce à des outils d'analyse de pointe. Utilisez des rapports personnalisables et des tableaux de bord intuitifs pour une vue globale de votre paysage de talents. Prendre des décisions fondées sur les données pour piloter des initiatives stratégiques de gestion des talents et parvenir à une croissance et un succès durables.",
+  "body3": "Libérez le potentiel d’une boucle de rétroaction continue et étroite. Notre solution innovante permet un échange de feedback en temps réel entre les employés, favorisant ainsi une culture d'amélioration continue. Capturez facilement les commentaires et abordez rapidement les domaines de développement, favorisant ainsi le succès et la productivité. Profitez de la puissance d'une boucle de rétroaction continue et étroite pour des performances améliorées.",
+  "body4": "Atteignez vos objectifs grâce au suivi des objectifs et au suivi des progrès. Notre solution permet aux individus et aux équipes de fixer des objectifs clairs, de suivre les progrès et de rester responsables. Définissez sans effort des objectifs SMART, suivez les étapes et visualisez les progrès en temps réel sur notre plateforme conviviale. Obtenez des informations précieuses, identifiez les obstacles et effectuez des ajustements basés sur les données pour réussir. Que vous soyez un professionnel individuel ou un chef d'équipe, notre outil vous permettra de rester concentré, motivé et sur la bonne voie pour atteindre vos objectifs.",
+  "goal": "Gestion des performances/analyse",
+  "hero2": "Ce que vous pouvez faire avec nous",
+  "hero txt": "La brillante gestion des performances <br /> plateforme à travers le monde.",
   "Home": "Accueil",
   "Pricing": "Fixation des prix",
   "Product": "Produit",
@@ -451,5 +461,7 @@
   "Provide Quality range between 1-2": "Fournir une gamme de qualité entre 1-2",
   "Provide Quantity range between 1-2": "Fournir une gamme de quantité comprise entre 1-2",
   "Provide Professional_Skills range between 1-2": "Fournir une gamme de compétences professionnelles comprise entre 1-2",
-  "Sprint Ratings": "Sprint Notations"
+  "Sprint Ratings": "Sprint Notations",
+  "Please wait to be added to a program or cohort": "Veuillez attendre d'être ajouté à un programme ou à une cohorte",
+  "Enter all the required information": "Entrez toutes les informations requises"
 }

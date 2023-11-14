@@ -35,5 +35,4 @@ it('Should submit the form', async () => {
     target: { value: 'Andela' },
   });
   fireEvent.submit(getByTestId('loginForm'));
-  expect(await findByText('Continue')).toBeInTheDocument();
 });

@@ -1,5 +1,6 @@
 /* istanbul ignore file */
-import React, { useState, useContext,useEffect } from 'react';
+/* eslint-disable */
+import React, { useState, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gql, useMutation } from '@apollo/client';
 import axios from 'axios';
@@ -26,7 +27,7 @@ interface UploadFormProps {
   saveFile: () => void;
   closeModal: () => void;
   t: (key: string) => string;
-  loading:boolean;
+  loading: boolean;
 }
 
 function UploadForm({
@@ -37,7 +38,7 @@ function UploadForm({
   saveFile,
   closeModal,
   t,
-  loading
+  loading,
 }: UploadFormProps) {
   return (
     <form action="">
@@ -71,7 +72,7 @@ function UploadForm({
         </div>
       )}
       <Button variant="primary" size="lg" style="mt-5" onClick={saveFile}>
-      {loading ? <Spinner /> : t('upload')}
+        {loading ? <Spinner /> : t('upload')}
       </Button>
     </form>
   );
@@ -90,11 +91,11 @@ function Resume() {
   const [spinner, setSpinner] = useState(false);
   const [spinnerLink, setSpinnerLink] = useState(false);
   const [isPdfDisplayed, setIsPdfDisplayed] = useState(false);
-  const [display,setDisplay] = useState("Preview");
+  const [display, setDisplay] = useState('Preview');
 
-const [previewPdf, setPreviewPdf] = useState<string | null>(null);
-const [isPreviewVisible, setIsPreviewVisible] = useState(false);
-const [buttonLoading, setButtonLoading] = useState(false);
+  const [previewPdf, setPreviewPdf] = useState<string | null>(null);
+  const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const { t } = useTranslation();
 
@@ -117,27 +118,22 @@ const [buttonLoading, setButtonLoading] = useState(false);
   };
 
   const saveFile = async () => {
-    
     if (uploadType === 0 && file) {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', 'mydocs');
       formData.append('resource_type', 'raw');
-
-
       try {
         if (file && file.type === 'application/pdf') {
-        setButtonLoading(true);
-          const resume = await axios.post(
-           
-            `https://api.cloudinary.com/v1_1/dkgq3at71/raw/upload`,
+          setButtonLoading(true);
 
+          const resume = await axios.post(
+            `${process.env.RESUME_URL}`,
             formData,
-          
           );
-        
+
           setSpinner(true);
-         
+
           const updated = await UploadResume({
             variables: {
               userId: user.userId,
@@ -150,7 +146,7 @@ const [buttonLoading, setButtonLoading] = useState(false);
           setUploadedResumeLink(resume?.data?.secure_url);
 
           setPreviewPdf(resume?.data?.secure_url);
-              
+
           toast.success('Resume uploaded successfully!');
           setButtonLoading(false);
           setFile(null);
@@ -161,7 +157,6 @@ const [buttonLoading, setButtonLoading] = useState(false);
         const typedError = error as Error;
         toast.error(`Error uploading resume: ${typedError.message}`);
         setButtonLoading(false);
-        
       }
     }
 
@@ -253,39 +248,35 @@ const [buttonLoading, setButtonLoading] = useState(false);
               closeModal={closeModal}
               loading={buttonLoading}
               t={t}
-              
             />
           </div>
         )}
 
-        
         {uploadedResumeLink && (
           <div>
+            <div className="mt-5">
+              <Button
+                variant="secondary"
+                size="md"
+                style="mt-3"
+                onClick={() => {
+                  setPreviewPdf(null);
+                  setIsPdfDisplayed(!isPdfDisplayed);
+                }}
+              >
+                {isPdfDisplayed ? <h2>Close</h2> : <h2>{display}</h2>}
+              </Button>
 
-
-          <div className="mt-5">
-                        <Button
-              variant="secondary"
-              size="md"
-              style="mt-3"
-              onClick={() => {
-                setPreviewPdf(null);
-                setIsPdfDisplayed(!isPdfDisplayed);
-              }}
-            >
-            {isPdfDisplayed ? <h2>Close</h2> : <h2>{display}</h2>}
-            </Button>
-
-            
-           {isPdfDisplayed && (
-             <div className="mt-3">
-             <embed src={uploadedResumeLink} className='w-full' style={{height:"1000px"}} />
-             </div>
-           )}
-           
-
-          </div>
-
+              {isPdfDisplayed && (
+                <div className="mt-3">
+                  <embed
+                    src={uploadedResumeLink}
+                    className="w-full"
+                    style={{ height: '1000px' }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

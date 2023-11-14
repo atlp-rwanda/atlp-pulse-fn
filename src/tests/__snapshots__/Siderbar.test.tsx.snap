@@ -5,7 +5,7 @@ exports[`<Home /> Renders Home 1`] = `
   className=""
 >
   <div
-    className="w-screen h-[8vh] z-10 dark:bg-dark-bg fixed bg-opacity-100 dark:bg-opacity-100 
+    className="w-screen h-[5em] z-10 dark:bg-dark-bg fixed bg-opacity-100 dark:bg-opacity-100 
       false"
   >
     <div
@@ -20,7 +20,7 @@ exports[`<Home /> Renders Home 1`] = `
           onClick={[Function]}
         >
           <svg
-            className="w-full cursor-pointer mr-2"
+            className="w-full cursor-pointer mr-2 "
             fill="none"
             height="36"
             viewBox="0 0 59 36"
@@ -156,7 +156,7 @@ exports[`<Home /> Renders Home 1`] = `
         </a>
       </div>
       <div
-        className="flex px-5 lg:hidden items-center"
+        className="flex px-3 lg:hidden items-center"
       >
         <button
           className="min-w-fit px-4 cursor-pointer "
@@ -220,6 +220,7 @@ exports[`<Home /> Renders Home 1`] = `
           href="/About"
           onClick={[Function]}
         >
+           
           About
         </a>
       </li>
@@ -252,33 +253,32 @@ exports[`<Home /> Renders Home 1`] = `
     </ul>
   </div>
   <div
-    className="relative hero"
+    className="relative hero mx-auto "
   >
     <p
-      className="absolute px-4 py-2 text-img bottom-1/3 lg:left-44 lg:right-0 lg:text-5xl sm:text-2xl md:left-0 md:right-0"
-    >
-      The brilliant performance management 
-      <br />
-       platform around the word.
-    </p>
+      className="absolute text-center md:text-left text-2xl px-4 py-2  text-white bottom-1/3 lg:left-14 lg:right-0 lg:text-5xl sm:text-3xl md:left-0 md:right-0"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "hero txt",
+        }
+      }
+    />
     <div
-      className="absolute items-center justify-start w-full text-2xl text-white md:text-2xl lg:text-1xl md:mt-8 lg:mt-8 top-2/3 lg:right-96"
+      className=" absolute w-full md:w-9/12 text-xl text-white md:text-2xl lg:text-1xl md:mt-8 lg:mt-4 top-2/3"
     >
       <div
-        className="absolute items-center justify-center w-full text-center font"
+        className="absolute w-full items-center justify-center md:justify-left  text-center flex md:w-fit md:ml-16"
       >
         <a
           href="/signup/org"
           onClick={[Function]}
         >
           <button
-            className="btn primary lg lg:mt-0 px-8 rounded-2xl my-4"
+            className="btn secondary md lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal "
             disabled={false}
             type="button"
           >
-             
             Join Us
-             
           </button>
         </a>
       </div>
@@ -292,21 +292,21 @@ exports[`<Home /> Renders Home 1`] = `
     >
       <div>
         <h1
-          className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4 italic  dark:text-slate-100"
+          className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4  dark:text-slate-100"
         >
-          What you can do with us
+          hero2
         </h1>
       </div>
       <div
-        className="card-image lg:mx-10 sm:mx-5 md:flex flex"
+        className="mt-10 card-image lg:mx-10 sm:mx-5 md:flex flex-row "
       >
         <div
-          className=" bg-[#CCD2E8] md:bg-indigo-100   items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
+          className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2"
         >
           <h2
-            className=" header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
+            className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
           >
-            Performance Management/Analytics
+            performance
           </h2>
           <div>
             <div
@@ -320,7 +320,7 @@ exports[`<Home /> Renders Home 1`] = `
             <p
               className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
             >
-              Optimize your organization's potential with Performance Management/Analytics. Our cutting-edge solution uses data-driven insights to track and improve performance across your business. Set and monitor KPIs, identify areas for growth, and make informed decisions with our intuitive platform. Achieve remarkable results today!
+              body1
             </p>
           </div>
         </div>
@@ -329,75 +329,35 @@ exports[`<Home /> Renders Home 1`] = `
         >
           <img
             alt="frame"
-            className="rounded-2xl dark:opacity-80"
+            className="rounded-2xl dark:opacity-80 lg:max-h-[25em]"
             src={Object {}}
           />
         </div>
       </div>
       <div
-        className="flex card-image lg:mx-10 sm:mx-5 md:flex mt-10"
+        className="mt-10 card-image lg:mx-10 sm:mx-5 md:flex flex-row-reverse "
       >
         <div
-          className="sm:hidden md:flex xl:flex lg:flex"
-        >
-          <img
-            alt="second"
-            className="rounded-2xl dark:opacity-80 "
-            src={Object {}}
-          />
-        </div>
-        <div
-          className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
-        >
-          <div>
-            <h2
-              className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
-            >
-              Talent Analytics and 
-              <br />
-               Reporting
-            </h2>
-            <div
-              className="xl:hidden md:hidden"
-            >
-              <img
-                alt="second"
-                src={Object {}}
-              />
-            </div>
-            <p
-              className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
-            >
-              Show up your workforce's potential with Talent Analytics and Reporting. Gain deep insights into your talent pool through data analysis. Identify top performers, discover hidden talent, and optimize your workforce with cutting-edge analytics tools. Utilize customizable reports and intuitive dashboards for a holistic view of your talent landscape. Make data-driven decisions to drive strategic talent management initiatives and achieve sustainable growth and success.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="card-image lg:mx-10 sm:mx-5 sm:mt-10 md:flex flex"
-      >
-        <div
-          className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:mr-10"
+          className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2"
         >
           <h2
-            className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
+            className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
           >
-            Continuous & Tight Feedback Loop
+            analytics
           </h2>
           <div>
             <div
               className="xl:hidden md:hidden mb-0 mt-4"
             >
               <img
-                alt="thirdimage"
-                className="rounded-2xl dark:opacity-80"
+                alt="frame"
                 src={Object {}}
               />
             </div>
             <p
-              className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4  dark:text-slate-300"
+              className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
             >
-              Unlock the potential of a Continuous & Tight Feedback Loop. Our innovative solution enables real-time feedback exchange between employees, fostering a culture of continuous improvement. Seamlessly capture feedback and address development areas promptly, driving success and productivity. Embrace the power of a Continuous & Tight Feedback Loop for enhanced performance.
+              body2
             </p>
           </div>
         </div>
@@ -405,53 +365,91 @@ exports[`<Home /> Renders Home 1`] = `
           className="sm:hidden md:flex xl:flex lg:flex"
         >
           <img
-            alt="thirdimage"
-            className="rounded-2xl dark:opacity-80"
+            alt="frame"
+            className="rounded-2xl dark:opacity-80 lg:max-h-[25em]"
             src={Object {}}
           />
         </div>
       </div>
       <div
-        className="flex card-image lg:mx-10 sm:mx-5 md:flex sm:mt-10 mb-20"
+        className="mt-10 card-image lg:mx-10 sm:mx-5 md:flex flex-row "
       >
+        <div
+          className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2"
+        >
+          <h2
+            className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
+          >
+            continuos
+          </h2>
+          <div>
+            <div
+              className="xl:hidden md:hidden mb-0 mt-4"
+            >
+              <img
+                alt="frame"
+                src={Object {}}
+              />
+            </div>
+            <p
+              className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
+            >
+              body3
+            </p>
+          </div>
+        </div>
         <div
           className="sm:hidden md:flex xl:flex lg:flex"
         >
           <img
-            alt="fourthimage"
-            className="rounded-2xl dark:opacity-80"
+            alt="frame"
+            className="rounded-2xl dark:opacity-80 lg:max-h-[25em]"
             src={Object {}}
           />
         </div>
+      </div>
+      <div
+        className="mt-10 card-image lg:mx-10 sm:mx-5 md:flex flex-row-reverse "
+      >
         <div
-          className=" bg-[#CCD2E8] md:bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg xl:w-1/3 sm:w-full  py-4 lg:rounded-b-3xl lg:rounded-t-3xl sm:rounded-b-3xl px-3 md:ml-10"
+          className="shadow-md sm:shadow-none mx-auto md:mx-0 bg-indigo-100  items-center  md:items-start flex-col dark:bg-dark-bg md:w-[45%] md:py-10 md:px-4 max-w-[35em] sm:w-full   sm:rounded-3xl  md:mr-2"
         >
           <h2
-            className=" header-style lg:text-2xl lg:px-5 sm:text-xl lg:text-start sm:text-center dark:text-slate-200"
+            className="pt-3 header-style lg:px-5 lg:text-2xl sm:text-xl lg:text-start sm:text-center md:text-start dark:text-slate-200"
           >
-            Goal Tracking and Progress Monitoring
+            goal
           </h2>
-          <div
-            className="xl:hidden md:hidden mb-0 mt-4"
-          >
-            <img
-              alt="fourthimage"
-              className="rounded-2xl dark:opacity-80"
-              src={Object {}}
-            />
+          <div>
+            <div
+              className="xl:hidden md:hidden mb-0 mt-4"
+            >
+              <img
+                alt="frame"
+                src={Object {}}
+              />
+            </div>
+            <p
+              className="text-style mt-0 lg:px-5 bg-[#E0E7FF] dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
+            >
+              body4
+            </p>
           </div>
-          <p
-            className="text-style mt-0 lg:px-5 bg-[#E0E7FF]  dark:bg-dark-bg rounded-b-3xl md:rounded-none p-8 md:px-0 md:py-4 dark:text-slate-300"
-          >
-            Achieve your goals with Goal Tracking and Progress Monitoring. Our solution empowers individuals and teams to set clear objectives, monitor progress, and stay accountable. Effortlessly define SMART goals, track milestones, and visualize progress in real-time on our user-friendly platform. Gain valuable insights, identify obstacles, and make data-driven adjustments for success. Whether you're an individual professional or a team leader, our tool will keep you focused, motivated, and on the path to accomplishing your goals.
-          </p>
+        </div>
+        <div
+          className="sm:hidden md:flex xl:flex lg:flex"
+        >
+          <img
+            alt="frame"
+            className="rounded-2xl dark:opacity-80 lg:max-h-[25em]"
+            src={Object {}}
+          />
         </div>
       </div>
       <div
         className="px-5"
       >
         <h1
-          className="text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100"
+          className="pt-3 text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100"
         >
           Excellent human resources and companies
         </h1>
@@ -632,10 +630,10 @@ exports[`<Home /> Renders Home 1`] = `
         </span>
       </div>
       <div
-        className="hidden md:flex md:flex-row flex-col  lg:mx-10 md:mx-20 my-20 gap-10 "
+        className="hidden md:flex md:flex-row flex-col  lg:mx-0 md:mx-0 my-20 gap-10 md:flex-wrap lg:flex-nowrap "
       >
         <div
-          className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl"
+          className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl "
         >
           <div
             className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -674,7 +672,7 @@ exports[`<Home /> Renders Home 1`] = `
           </p>
         </div>
         <div
-          className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl"
+          className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl "
         >
           <div
             className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -712,7 +710,7 @@ exports[`<Home /> Renders Home 1`] = `
           </p>
         </div>
         <div
-          className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl"
+          className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl "
         >
           <div
             className="flex flex-col sm:flex-row  mb-4 items-center"
@@ -769,7 +767,7 @@ exports[`<Home /> Renders Home 1`] = `
             className="flex mb-2 ml-10 text-dark dark:text-dark-text-fill"
           >
             <svg
-              className="w-full cursor-pointer mr-2"
+              className="w-full cursor-pointer mr-2 "
               fill="none"
               height="36"
               viewBox="0 0 59 36"

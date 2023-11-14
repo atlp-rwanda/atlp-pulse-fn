@@ -36,17 +36,18 @@ export default function CoordinatorsPage() {
 
   useEffect(() => {
     if (data) {
-      const extractedCoordinators = data.getAllCoordinators
-        .map((coordinator: any) => ({
+      const extractedCoordinators = data.getAllCoordinators.map(
+        (coordinator: any) => ({
           email: coordinator.email,
           profile: coordinator.profile || { name: null },
           organizations: coordinator.organizations || [],
           role: coordinator.role,
-        }))
-        .filter((coordinator: Coordinator) => {
-          const orgName = localStorage.getItem('orgName') as string;
-          return coordinator.organizations.includes(orgName);
-        });
+        }),
+      );
+      // .filter((coordinator: Coordinator) => {
+      //   const orgName = localStorage.getItem('orgName') as string;
+      //   return coordinator.organizations.includes(orgName);
+      // });
       setCoordinators(extractedCoordinators);
     }
   }, [data]);
