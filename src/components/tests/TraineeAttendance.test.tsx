@@ -1,46 +1,107 @@
-/* eslint-disable */
-import { fireEvent, render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/extend-expect';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import renderer from 'react-test-renderer';
-import TraineeAttendance from '../TraineeAttendance';
+import { render, waitFor, screen } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
+import TraineeAttendance, { optimizeWeekData } from '../TraineeAttendance'; // Adjust the import path accordingly
+import { GET_WEEKLY_ATTENDANCE } from '../../Mutations/Attendance';
 
-describe('Trainee Attendance page', () => {
-  it('Renders the Trainee Attendance Page ', () => {
-    const elem = renderer
-      .create(
-        <MemoryRouter>
-          <TraineeAttendance />
-        </MemoryRouter>,
-      )
-      .toJSON();
-    expect(elem).toMatchSnapshot();
-  });
-  it('should update trainee model', () => {
-    const prevMck = jest.fn();
-    const nextMck = jest.fn();
-    const setPageMck = jest.fn();
-    const MckPage = jest.fn();
-    const { getByTestId } = render(
-      <MemoryRouter>
+const mockData = {
+  getTraineeAttendanceByID: [
+    {
+      weekNumber: '1',
+      traineeAttendance: [
+        { days: 'Monday', value: 1 },
+        { days: 'Tuesday', value: 0 },
+      ],
+    },
+  ],
+};
+
+const mocks = [
+  {
+    request: {
+      query: GET_WEEKLY_ATTENDANCE,
+      variables: { traineeEmail: 'test@example.com' },
+    },
+    result: { data: mockData },
+  },
+];
+
+describe('TraineeAttendance', () => {
+  it('renders trainee attendance data correctly', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
         <TraineeAttendance />
-      </MemoryRouter>,
+      </MockedProvider>,
     );
 
-    const removeprev = getByTestId('prev');
-    fireEvent.click(removeprev);
-    expect(prevMck).toBeCalledTimes(0);
+    expect(screen.getByText(/Tuesday/i)).toBeInTheDocument();
+    expect(screen.getByText(/Wednesday/i)).toBeInTheDocument();
+    expect(screen.getByText(/Thursday/i)).toBeInTheDocument();
+    expect(screen.getByText(/Friday/i)).toBeInTheDocument();
+  });
 
-    const removenext = getByTestId('next');
-    fireEvent.click(removenext);
-    expect(nextMck).toBeCalledTimes(0);
+  it('renders trainee attendance data correctly again', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <TraineeAttendance />
+      </MockedProvider>,
+    );
 
-    const removepage1Mck = getByTestId('page1');
-    fireEvent.click(removepage1Mck);
-    expect(setPageMck).toHaveBeenCalledTimes(0);
+    // Expect the rendered content based on the mocked data
+    expect(screen.getByText(/Week/i)).toBeInTheDocument();
+    expect(screen.getByText(/Monday/i)).toBeInTheDocument();
+  });
 
-    const removepage3Mck = getByTestId('page3');
-    fireEvent.click(removepage3Mck);
-    expect(MckPage).toHaveBeenCalledTimes(0);
+  it('navigates to the next and previous pages', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <TraineeAttendance />
+      </MockedProvider>,
+    );
+
+    await waitFor(() => screen.getByText('Monday'));
+
+    // Your logic for navigating to the next and previous pages
+    userEvent.click(screen.getByTestId('next'));
+
+    // Your assertions for the updated page content
+    expect(screen.getByText('Tuesday')).toBeInTheDocument();
+
+    userEvent.click(screen.getByTestId('prev'));
+
+    // Your assertions for the updated page content
+    expect(screen.getByText('Monday')).toBeInTheDocument();
+  });
+
+  it('optimizes week data correctly', async () => {
+    const testData = {
+      getTraineeAttendanceByID: [
+        {
+          weekNumber: '1',
+          traineeAttendance: [
+            { days: 'Monday', value: 1 },
+            { days: 'Tuesday', value: 0 },
+          ],
+        },
+      ],
+    };
+
+    const expectedData = [
+      {
+        weekNumber: '1',
+        traineeAttendance: [
+          { days: 'Monday', value: 1 },
+          { days: 'Tuesday', value: 0 },
+          { days: 'Wednesday', value: 'N/A' },
+          { days: 'Thursday', value: 'N/A' },
+          { days: 'Friday', value: 'N/A' },
+        ],
+      },
+    ];
+
+    expect(optimizeWeekData(testData)).toStrictEqual(expectedData);
   });
 });

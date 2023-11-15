@@ -17,6 +17,35 @@ export const GET_ATTENDANCE = gql`
   }
 `;
 
+export const GET_ATTENDANCE_BY_ID = gql`
+  query GetAttendance($id: ID!) {
+    getTraineeAttendanceByID(id: $id) {
+      id
+      week
+      trainees {
+        traineeId
+        traineeEmail
+        status {
+          days
+          value
+        }
+      }
+    }
+  }
+`;
+
+export const GET_WEEKLY_ATTENDANCE = gql`
+  query GetTraineeAttendanceByID($traineeEmail: String!) {
+    getTraineeAttendanceByID(traineeEmail: $traineeEmail) {
+      weekNumber
+      traineeAttendance {
+        days
+        value
+      }
+    }
+  }
+`;
+
 export const UPDATE_ATTENDANCE = gql`
   mutation RecordAttendance(
     $week: String!

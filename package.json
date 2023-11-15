@@ -34,7 +34,6 @@
   },
   "homepage": "https://github.com/atlp-rwanda/atlp-pulse-fn#readme",
   "dependencies": {
-    "@apollo/client": "^3.7.17",
     "@babel/preset-react": "^7.22.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -110,6 +109,7 @@
     "url-polyfill": "^1.1.12"
   },
   "devDependencies": {
+    "@apollo/client": "^3.8.7",
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
     "@heroicons/react": "^1.0.6",

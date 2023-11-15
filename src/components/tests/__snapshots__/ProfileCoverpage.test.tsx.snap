@@ -46,7 +46,6 @@ exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
             className="hidden md:block"
           >
             Edit
-             
           </span>
         </span>
         <input
@@ -84,16 +83,6 @@ exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
           strokeLinejoin="round"
         />
       </svg>
-      <span
-        className=" dark:text-dark-text-fill"
-      >
-        <span
-          className="hidden md:block"
-        >
-          Change Picture
-           
-        </span>
-      </span>
       <input
         className="hidden"
         data-testid="upload-cover"

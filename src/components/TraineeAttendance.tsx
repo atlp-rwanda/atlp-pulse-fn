@@ -1,15 +1,79 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 import Pagination from '../components/Pagination';
 import AttendanceData from '../dummyData/attendance.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import Button from './Buttons';
+import { GET_WEEKLY_ATTENDANCE } from '../Mutations/Attendance';
 
-const TraineeAttendance = () => {
+interface TraineeAttendanceData {
+  getTraineeAttendanceByID: {
+    weekNumber: string;
+    traineeAttendance: {
+      days: string;
+      value: number;
+    }[];
+  }[];
+}
+
+interface weekData {
+  weekNumber: string;
+  traineeAttendance: (
+    | { days: string; value: number }
+    | { days: string; value: string }
+  )[];
+}
+[];
+
+export function optimizeWeekData(weeklyData: TraineeAttendanceData) {
+  const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+  const optimizedWeekData = weeklyData.getTraineeAttendanceByID.map((week) => {
+    const daysPresent = week.traineeAttendance.map((day) => day.days);
+    const missingDays = weekDays.filter((day) => !daysPresent.includes(day));
+    const missingDayData = missingDays.map((day) => ({
+      days: day,
+      value: 'N/A',
+    }));
+
+    return {
+      weekNumber: week.weekNumber,
+      traineeAttendance: [...week.traineeAttendance, ...missingDayData],
+    };
+  });
+  return optimizedWeekData;
+}
+
+export function getTraineeEmail() {
+  const localAuth = localStorage.getItem('auth');
+  if (localAuth) {
+    const auth = JSON.parse(localAuth);
+    return auth.email;
+  }
+}
+
+const TraineeAttendance: React.FC = () => {
   useDocumentTitle('Attendance');
   const { t } = useTranslation();
+  const [weekAttendance, setWeekAttendance] = useState<any>([]);
+  const { loading, error, data } = useQuery<TraineeAttendanceData>(
+    GET_WEEKLY_ATTENDANCE,
+    {
+      variables: { traineeEmail: getTraineeEmail() },
+      onCompleted: (data) => {
+        const optimizedWeekData = optimizeWeekData(data);
+        setWeekAttendance(optimizedWeekData);
+      },
+      onError: (error: any) => {
+        console.log(error);
+      },
+    },
+  );
+
+  if (error) {
+    return <p>Error loading data</p>;
+  }
 
   const {
     firstContentIndex,
@@ -30,81 +94,40 @@ const TraineeAttendance = () => {
       <div className="bg-light-bg dark:bg-dark-frame-bg">
         <div className="">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
-            <div className="">
-              <div className="flex ml-2 items-center justify-between">
-                <h2 className="text-gray-800 dark:text-white font-semibold">
-                  {t('Attendance')}
-                </h2>
-              </div>
-              <div className="flex ml-[-25px] px-7 py-2  mt-4">
-                <select className="flex bg-primary px-4 py-2 rounded-md text-white font-medium cursor-pointer">
-                  <option>{t('phases')}</option>
-                  <option>{t('Phase 1')}</option>
-                  <option>{t('Phase 2')}</option>
-                  <option>{t('Phase 3')}</option>
-                  <option>{t('Phase 4')}</option>
-                  <option>{t('Phase 5')}</option>
-                </select>
-              </div>
-            </div>
+            <div className=""></div>
             <div>
               <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
                 <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
                   <table className="min-w-full leading-normal">
                     <tbody>
                       <tr>
-                        <th className="p-6 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('Sprint')}
-                        </th>
-
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase md:table-cell sm:hidden tracking-wider">
-                          {t('Session')}
-                        </th>
-
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('Record')}
-                        </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-dark-tertiary text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider"></th>
+                        <th>Week</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
                       </tr>
-
-                      {AttendanceData.slice(
-                        firstContentIndex,
-                        lastContentIndex,
-                      ).map((item: any) => (
-                        <tr key={item.id}>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <div className="flex justify-center items-center">
-                              <div className="">
-                                <p className="text-gray-900 text-center dark:text-white whitespace-no-wrap">
-                                  {item.sprint}
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
-                            <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                              {item.session}
-                            </p>
-                          </td>
-
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                              {item.record}
-                            </p>
-                          </td>
-                          <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                            <Link to="/attendance-details">
-                              <Button
-                                variant="primary"
-                                size="sm"
-                                style="px-4 py-0 text-sm"
+                      {weekAttendance &&
+                        weekAttendance.map((week: any) => (
+                          <tr key={week.weekNumber}>
+                            <td
+                              data-testid={week.weekNumber}
+                              className="border-b border-gray-300 px-4 py-2 text-center"
+                            >
+                              {week.weekNumber}
+                            </td>
+                            {week.traineeAttendance.map((dayData: any) => (
+                              <td
+                                data-testid={dayData.days}
+                                className="border-b border-gray-300 px-4 py-2 text-center"
+                                key={dayData.days}
                               >
-                                {t('Details')}
-                              </Button>
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
+                                {dayData.value}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
