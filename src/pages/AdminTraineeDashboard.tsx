@@ -749,6 +749,32 @@ function AdminTraineeDashboard() {
                   </p>
                 </div>
 
+                {/* show coordinator  */}
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>COORDINATOR</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.cohort
+                        ? traineeDetails.cohort.coordinator.profile.name
+                        : 'Un availabe'}
+                    </i>
+                  </p>
+                </div>
+
                 {/* Show resume URL for admins and managers */}
                 {user &&
                   (user.role === 'admin' || user.role === 'coordinator') && (
