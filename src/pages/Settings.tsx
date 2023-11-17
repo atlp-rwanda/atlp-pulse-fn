@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { Switch } from '@headlessui/react';
 import { useMutation, useQuery } from '@apollo/client';
 import getLanguage from '../utils/getLanguage';
+import DisableTwoFactorAuthComponent from '../components/twofactor/Disable2fa';
+import EnableTwoFactorAuthComponent from '../components/twofactor/Enable2fa';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import {
   updatePushNotifications,
@@ -41,18 +43,22 @@ function Settings() {
     data?.getUpdatedEmailNotifications || false,
   );
 
+  // Add state for the "Privacy and Security" pop-up
+  const [privacyAndSecurityVisible, setPrivacyAndSecurityVisible] = useState(false);
+
   const handleThemeChange = (e: { target: { value: any } }) => {
     const { value } = e.target;
     setTheme(value);
     localStorage.setItem('color-theme', colorTheme);
-  };
+  }
+
   const defaultTheme: any = colorTheme;
   const userLang = window.navigator.language;
 
   const handleLanChange = (e: { target: { value: any } }) => {
     const { value } = e.target;
     i18next.changeLanguage(value);
-  };
+  }
 
   const handleEmailNotificationChange = async () => {
     try {
@@ -64,7 +70,7 @@ function Settings() {
     } catch (error: any) {
       return `Error updating email notifications:${error}`;
     }
-  };
+  }
 
   const handlePushNotificationChange = async () => {
     try {
@@ -76,7 +82,7 @@ function Settings() {
     } catch (error: any) {
       return `Error updating push notifications: ${error}`;
     }
-  };
+  }
 
   useEffect(() => {
     if (data?.getUpdatedEmailNotifications !== undefined) {
@@ -180,7 +186,7 @@ function Settings() {
                 <span
                   className={`${
                     emailEnabled
-                      ? 'bg-primary   translate-x-6'
+                      ? 'bg-primary translate-x-6'
                       : 'bg-gray-300 translate-x-1'
                   } inline-block h-4 w-4 transform rounded-full`}
                 />
@@ -199,16 +205,16 @@ function Settings() {
                 checked={pushEnabled}
                 data-testid="pushChange"
                 onChange={handlePushNotificationChange}
-                className={` ml-auto border ${
+                className={`ml-auto border ${
                   pushEnabled ? 'dark:border-primary' : ''
                 } relative inline-flex h-6 w-12 items-center rounded-full`}
               >
                 <span
                   className={`${
                     pushEnabled
-                      ? 'bg-primary   translate-x-6'
+                      ? 'bg-primary translate-x-6'
                       : 'bg-gray-300 translate-x-1'
-                  } inline-block h-4 w-4 transform rounded-full `}
+                  } inline-block h-4 w-4 transform rounded-full`}
                 />
               </Switch>
             </li>
@@ -224,10 +230,21 @@ function Settings() {
               <Link
                 className="ml-auto mt-2 text-xs md:text-base text-gray-600 dark:text-dark-text-fill"
                 to="#link"
+                // Toggle the visibility of the Privacy and Security section
+                onClick={() => setPrivacyAndSecurityVisible(!privacyAndSecurityVisible)}
               >
                 <h4>{t('Change')}</h4>
               </Link>
             </li>
+            {/* Conditionally render the Privacy and Security section */}
+            {privacyAndSecurityVisible && (
+              <div className="p-4 border border-gray-400 mt-2 rounded-lg bg-white dark:bg-dark-bg">
+                {/* Add content for the pop-up here */}
+                <DisableTwoFactorAuthComponent />
+                <EnableTwoFactorAuthComponent />
+              </div>
+            )}
+            {/* ... Other sections */}
             <li className="flex items-center pt-2 pb-1">
               <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">

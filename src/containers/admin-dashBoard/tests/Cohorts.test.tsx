@@ -21,7 +21,7 @@ describe('Cohorts tests', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-  jest.setTimeout(10000);
+  
   it('Renders Cohorts Page', async () => {
     render(
       <MemoryRouter>
@@ -59,3 +59,4 @@ describe('Cohorts tests', () => {
     });
   });
 });
+ 

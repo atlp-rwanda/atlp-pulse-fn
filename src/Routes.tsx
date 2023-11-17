@@ -12,6 +12,7 @@ import Noredirect from './pages/Noredirect';
 import Pay from './components/Payment';
 import ProtectedRoutes from './ProtectedRoute';
 
+
 function MainRoutes() {
   return (
     <div className="">
