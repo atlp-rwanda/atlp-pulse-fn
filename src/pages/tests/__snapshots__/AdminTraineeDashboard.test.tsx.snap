@@ -401,6 +401,92 @@ Array [
     </div>
   </div>,
   <div
+    className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 top-0 left-0 hidden"
+  >
+    <div
+      className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12"
+    >
+      <div
+        className="flex flex-wrap items-center justify-center w-full card-title"
+      >
+        <h3
+          className="w-11/12 text-sm font-bold text-center dark:text-white"
+        >
+          Drop Trainee
+        </h3>
+        <hr
+          className="w-full my-3 border-b bg-primary"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className="px-8 py-3"
+        >
+          <div
+            className="mb-4"
+          >
+            <label
+              className="block text-sm font-bold text-gray-700 dark:text-white"
+              htmlFor="reason"
+            >
+              Reason
+            </label>
+            <input
+              className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+              id="reason"
+              name="reason"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="mb-4"
+          >
+            <label
+              className="block text-sm font-bold text-gray-700 dark:text-white"
+              htmlFor="date"
+            >
+              Date
+            </label>
+            <input
+              className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+              id="date"
+              name="date"
+              readOnly={true}
+              type="text"
+              value="2023-11-16"
+            />
+          </div>
+          <div
+            className="flex justify-between w-full"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="dropModel"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              data-testid="dropMemberFromCohort"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Drop Trainee
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
     className="h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center  px-4 hidden"
   >
     <div
@@ -823,7 +909,7 @@ Array [
                     <h2
                       className="text-xl font-semibold text-gray-800 dark:text-white "
                     >
-                      Trainees list
+                      Trainee list
                     </h2>
                     <input
                       className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
@@ -944,7 +1030,7 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          View
+                          Status
                         </th>
                         <th
                           className=" thead"
@@ -1004,7 +1090,7 @@ Array [
                               className="bg-black text-white rounded-xl px-3"
                               onClick={[Function]}
                             >
-                              View
+                              view
                             </button>
                           </div>
                         </td>
@@ -1013,10 +1099,8 @@ Array [
                           role="cell"
                         >
                           <div
-                            className=" items-center hidden"
+                            className="items-center hidden"
                           >
-                            <span />
-                            <span />
                             <span />
                           </div>
                         </td>

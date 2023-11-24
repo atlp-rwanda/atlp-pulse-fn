@@ -8,6 +8,9 @@ import Error from './../pages/Error';
 import Skeleton from '../components/Skeleton';
 import UserRegister from '../pages/Organization/UserRegister';
 import Message from '../pages/Organization/Message';
+import  VerifyOneTimeCodeComponent from '../components/twofactor/Verify2fa';
+
+
 /* istanbul ignore next */
 const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
 /* istanbul ignore next */
@@ -60,6 +63,7 @@ function MainRoutes() {
             <Route index element={<Home />} />
             <Route path="/register/:token" element={<UserRegister />} />
             <Route path="/register-successful" element={<Message />} />
+            <Route path='/VerifyOneTimeCodeComponent' element={<VerifyOneTimeCodeComponent />}/>
             <Route path="/signup/org" element={<OrgRegister />} />
             <Route path="/signup/org/:token" element={<RemoveTokenPage />} />
             <Route path="/reset-password" element={<ResetPassword />} />
@@ -92,6 +96,12 @@ function MainRoutes() {
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
             <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
             <Route path="/noredirect" element={<Noredirect />} />
+
+            {/* <Route
+              path="/verify-otp"
+              element={<VerifyOneTimeCodeComponent />}
+            /> */}
+
             <Route path="/pricing-form" element={<Pay />} />
           </Route>
           <Route path="*" element={<Error />} />

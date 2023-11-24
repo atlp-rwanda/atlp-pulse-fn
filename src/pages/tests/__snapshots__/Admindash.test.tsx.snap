@@ -1645,18 +1645,18 @@ Array [
           style={
             Object {
               "color": "red",
-              "marginTop": "-1.2cm",
+              "marginTop": "-2.2cm",
             }
           }
         >
           <button
-            className="btn  sxm "
+            className="transform rotate-45 w-120 h-120 text-5xl"
             data-testid="delete"
             disabled={false}
             onClick={[Function]}
             type="button"
           >
-            x
+            +
           </button>
         </div>
       </div>

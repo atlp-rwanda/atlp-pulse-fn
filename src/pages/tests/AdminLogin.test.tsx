@@ -4,7 +4,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import UserProvider from '../../hook/useAuth';
-
+import '@testing-library/jest-dom'
 import AdminLogin from '../Organization/AdminLogin';
 import LOGIN_MUTATION from '../Organization/LoginMutation';
 

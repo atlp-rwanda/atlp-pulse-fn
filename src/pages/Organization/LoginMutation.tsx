@@ -4,11 +4,13 @@ const LOGIN_MUTATION = gql`
   mutation Mutation($loginInput: LoginInput) {
     loginUser(loginInput: $loginInput) {
       token
+      message
       user {
         id
         role
         email
         password
+        twoFactorAuth
         profile {
           id
           firstName
@@ -37,5 +39,4 @@ const LOGIN_MUTATION = gql`
     }
   }
 `;
-
 export default LOGIN_MUTATION;

@@ -171,7 +171,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
           </div>
           <button
             aria-checked={false}
-            className=" ml-auto border  relative inline-flex h-6 w-12 items-center rounded-full"
+            className="ml-auto border  relative inline-flex h-6 w-12 items-center rounded-full"
             data-headlessui-state=""
             data-testid="pushChange"
             id="headlessui-switch-:r1:"
@@ -183,7 +183,7 @@ exports[`Settings page tests changes value after selecting another theme 1`] = `
             type="button"
           >
             <span
-              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full "
+              className="bg-gray-300 translate-x-1 inline-block h-4 w-4 transform rounded-full"
             />
           </button>
         </li>

@@ -1,4 +1,4 @@
-/* eslint-disable */
+ /* eslint-disable */
 import { useApolloClient, useMutation } from '@apollo/client';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -20,11 +20,21 @@ import useDocumentTitle from '../../hook/useDocumentTitle';
 import LOGIN_MUTATION from './LoginMutation';
 import functionTree from '../../assets/Functionality_Tree.svg';
 import pulseStars from '../../assets/Property 1=Logo_flie (1).svg';
+import { data } from '../../components/Chart';
+
+import twoFactorLoginModal from '../../components/TwoFactorLogin';
 
 function AdminLogin() {
   const orgToken: any = localStorage.getItem('orgToken');
   const orgName: any = localStorage.getItem('orgName');
   const [loading, setLoading] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const [code, setCode] = useState('');
+  const [credentials, setCredentials] = useState({ email: '', password: '', orgToken: '' });
 
   useDocumentTitle('Login');
   const { t } = useTranslation();
@@ -47,6 +57,7 @@ function AdminLogin() {
   const [searchParams] = useSearchParams();
 
   const onSubmit = async (userInput: any) => {
+    const {email, password} = userInput
     userInput.orgToken = orgToken;
     try {
       setLoading(true);
@@ -55,7 +66,9 @@ function AdminLogin() {
       await LoginUser({
         variables: {
           loginInput: {
-            ...userInput,
+            email,
+            password,
+            orgToken
             // activity, //disable geolocation
           },
         },
@@ -64,28 +77,39 @@ function AdminLogin() {
         onCompleted: async (data) => {
           /* istanbul ignore next */
           toast.success(data.addMemberToCohort);
-          /* istanbul ignore next */
-          login(data.loginUser);
-          /* istanbul ignore next */
-          await client.resetStore();
-          /* istanbul ignore next */
-          toast.success(t(`Welcome`) as ToastContent<unknown>);
-          /* istanbul ignore next */
 
           if (data.loginUser) {
-            redirect
-              ? navigate(`${redirect}`)
-              : data.loginUser.user.role === 'superAdmin'
-              ? navigate(`/organizations`)
-              : data.loginUser.user.role === 'admin'
-              ? navigate(`/trainees`)
-              : data.loginUser.user.role === 'coordinator'
-              ? navigate(`/trainees`)
-              : data.loginUser.user.role === 'manager'
-              ? navigate(`/dashboard`)
-              : data.loginUser.user.role === 'ttl'
-              ? navigate('/ttl-trainees')
-              : navigate('/performance');
+
+            if(data.loginUser.user.twoFactorAuth){
+
+              toast.success(data.loginUser.message)
+  
+              setCredentials({ email, password, orgToken });
+
+              setIsModalOpen(true)
+  
+            } else {
+
+              login(data.loginUser);
+
+              await client.resetStore();
+
+              toast.success(t(data.loginUser.message) as ToastContent<unknown>);
+
+              redirect
+                ? navigate(`${redirect}`)
+                : data.loginUser.user.role === 'superAdmin'
+                ? navigate(`/organizations`)
+                : data.loginUser.user.role === 'admin'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'coordinator'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'manager'
+                ? navigate(`/dashboard`)
+                : data.loginUser.user.role === 'ttl'
+                ? navigate('/ttl-trainees')
+                : navigate('/performance');
+            } 
           } else {
             navigate('/dashboard');
           }
@@ -93,6 +117,7 @@ function AdminLogin() {
         onError: (err) => {
           /* istanbul ignore next */
           if (err.message.toLowerCase() !== 'invalid credential' ) {
+            console.log(err)
             const translateError = t('Please wait to be added to a program or cohort')
             toast.error(translateError);
           } else {
@@ -114,6 +139,86 @@ function AdminLogin() {
       setLoading(false);
     }
   };
+
+  const handleTwoFactorSubmit = async (data: any) => {
+    try {
+      setLoading(true);
+      const redirect = searchParams.get('redirect');
+      const { twoFactorCode } = data;
+
+      // Call the login mutation again with the two-factor code
+      await LoginUser({
+        variables: {
+          loginInput: {
+            email: credentials.email,
+            password: credentials.password,
+            orgToken: credentials.orgToken,
+            twoFactorCode,
+          },
+        },
+        onCompleted: async (data) => {
+          /* istanbul ignore next */
+          toast.success(data.addMemberToCohort);
+
+          if (data.loginUser) {
+            login(data.loginUser);
+            await client.resetStore();
+            toast.success(t(data.loginUser.message) as ToastContent<unknown>);
+            redirect
+              ? navigate(`${redirect}`)
+              : data.loginUser.user.role === 'superAdmin'
+              ? navigate(`/organizations`)
+              : data.loginUser.user.role === 'admin'
+              ? navigate(`/trainees`)
+              : data.loginUser.user.role === 'coordinator'
+              ? navigate(`/trainees`)
+              : data.loginUser.user.role === 'manager'
+              ? navigate(`/dashboard`)
+              : data.loginUser.user.role === 'ttl'
+              ? navigate('/ttl-trainees')
+              : navigate('/performance');
+          } else {
+            navigate('/dashboard');
+          }
+
+        },
+        onError: (err) => {
+          /* istanbul ignore next */
+          if (err.graphQLErrors) {
+            const errorMessage = err.graphQLErrors[0].message;
+            if (errorMessage.includes('TwoFactorAuthError')) {
+              // Handle 2FA error
+              setError('twoFactorCode', {
+                type: 'manual',
+                message: 'Invalid two-factor authentication code',
+              });
+            } else {
+              // Handle other errors
+              toast.error(errorMessage);
+            }
+          }
+        },
+      });
+    } catch (error: any) {
+      // Handle errors, including 2FA-related errors
+      if (error.graphQLErrors) {
+        const errorMessage = error.graphQLErrors[0].message;
+        if (errorMessage.includes('TwoFactorAuthError')) {
+          // Handle 2FA error
+          setError('twoFactorCode', {
+            type: 'manual',
+            message: 'Invalid two-factor authentication code',
+          });
+        } else {
+          // Handle other errors
+          toast.error(errorMessage);
+        }
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const getLocation = async () => {
     const location = await fetch('https://geolocation-db.com/json/')
@@ -299,6 +404,60 @@ function AdminLogin() {
                   )}
                 </div>
               </form>
+            </div>
+
+            <div>
+              {isModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center z-50">
+                  <div className="absolute inset-0 bg-gray-900 opacity-75"></div>
+                  <div className="bg-white p-4 rounded-lg shadow-md z-10">
+                    <button onClick={closeModal} className="absolute top-2 right-2 text-gray-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                      </svg>
+                    </button>
+                    <form onSubmit={handleSubmit(handleTwoFactorSubmit)}>
+                      <input
+                        type="text"
+                        {...register('twoFactorCode', { required: 'OTP is required' })}
+                        placeholder="Enter one-time code"
+                        className="border border-gray-300 p-2 w-full rounded text-black"
+                      />
+                      <div className="text-left mb-1 pl-4">
+                        {errors.twoFactorCode && (
+                          <small className="text-red-600">
+                            {errors.twoFactorCode.message}
+                          </small>
+                        )}
+                      </div>
+                      {loading ? (
+                        <ButtonLoading
+                          style={
+                            'rounded-md inline-block opacity-50 p-2 mt-4'
+                          }
+                        />
+                      ) : (
+                        <div className="flex justify-between w-full">
+                          <button
+                            onClick={closeModal}
+                            className="bg-red-500 text-white p-2 rounded mt-4"
+                          >
+                            {t('Cancel')}
+                          </button>
+
+                          <button
+                            type="submit"
+                            className="bg-primary text-white p-2 rounded mt-4"
+                          >
+                            {t('Verify OTP')}
+                          </button>
+                        </div>
+
+                      )}
+                    </form>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="my-4 text-sm text-center dark:text-dark-text-fill">

@@ -6,6 +6,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import TraineeAttendanceTracker from '../TraineeAttendance';
 import { traineeAttendanceData } from '../../dummyData/traineeAttendance';
+import '@testing-library/jest-dom'
 
 describe('CRUD Of Trainee Attendance', () => {
   const mockOptional = [
