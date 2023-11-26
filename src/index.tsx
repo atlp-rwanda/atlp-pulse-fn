@@ -21,7 +21,7 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 import { t } from 'i18next';
 import { getMainDefinition } from '@apollo/client/utilities';
 import App from './App';
-import ThemeProvider from './hook/ThemeProvider'
+import ThemeProvider from './hook/ThemeProvider';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {

@@ -1,13 +1,17 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* istanbul ignore file */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dialog } from '@mui/material';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import AddNewRatings from './AddNewRatings';
 import Dropout from './Dropout';
 import useViewTraineeRatings from './hooks/useViewTraineeRatings';
-import Spinner from '../Spinner';
+import Button from '../Buttons';
+import { UPDATE_RATING } from '../../Mutations/Ratings';
+import { DEFAULT_GRADE } from '../../Mutations/MakeDefault';
 
 function ViewSprintRatings({
   traineeName,
@@ -18,6 +22,12 @@ function ViewSprintRatings({
 }: any) {
   const [selectSprint, setSelectSprint] = useState<number | null>(null);
   const [openModel, setOpenModel] = useState<boolean>(true);
+  const [editRatingFormVisible, setEditRatingFormVisible] = useState(false);
+  const [updateMessage, setUpdateMessage] = useState('');
+  const [defaultGrading, setDefaultGrading] = useState<any[]>([]);
+  const [loggedUserRole, setloggedUser] = useState(null);
+
+  const [showActions, setShowActions] = useState(false);
   const navigate = useNavigate();
   const {
     onClose,
@@ -37,13 +47,97 @@ function ViewSprintRatings({
     setSuccessMessage,
     loading,
   } = useViewTraineeRatings({ traineeEmail, selectSprint, setOpenModel });
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center w-full h-full">
-        <Spinner />
-      </div>
-    );
-  }
+
+  useEffect(() => {
+    // eslint-disable-next-line no-use-before-define
+    DefaultGrade({
+      fetchPolicy: 'network-only',
+      onCompleted: (data) => {
+        setDefaultGrading(data?.getDefaultGrading[0]?.grade);
+      },
+
+      onError: (error) => {
+        toast.error(error?.message || 'Failed to load the data');
+      },
+    });
+
+    const storedAuth = localStorage.getItem('auth');
+
+    if (storedAuth) {
+      const auth = JSON.parse(storedAuth);
+      const { role } = auth;
+      if (role) {
+        setloggedUser(role);
+      }
+    }
+  }, []);
+
+  const [DefaultGrade] = useLazyQuery(DEFAULT_GRADE, {});
+  const [updateRatings, { loading: updateRatingLoading, data, error }] =
+    useMutation(UPDATE_RATING);
+
+  const openEditRatingForm = () => {
+    setEditRatingFormVisible(true);
+  };
+
+  const [rows, setRows] = useState<any>({});
+
+  useEffect(() => {
+    if (maxSprint > 0 && selectedSprintRatings) {
+      const ratingChosen: any = selectedSprintRatings[0];
+      setRows({
+        quality: ratingChosen.quality,
+        qualityremark: '',
+        quantity: ratingChosen.quantity,
+        quantityremark: '',
+        feedback: '',
+        professional: ratingChosen.professional_Skills,
+        professionalRemark: '',
+        bodyQuantity: '',
+        bodyQuality: '',
+        bodyProfessional: ratingChosen.professionalRemark,
+        sprint: ratingChosen.sprint,
+        username: '',
+        user: {},
+        id: '',
+      });
+    }
+  }, [editRatingFormVisible]);
+
+  useEffect(() => {
+    if (updateMessage) {
+      const time = setTimeout(() => {
+        setUpdateMessage('');
+      }, 1500);
+    }
+  }, [updateMessage]);
+
+  const handleUpdate = async (e: any) => {
+    e.preventDefault();
+
+    try {
+      const ratingsData = {
+        user: traineeId,
+        sprint: rows.sprint,
+        quantity: rows?.quantity,
+        quantityRemark: rows?.quantityremark,
+        quality: rows?.quality,
+        qualityRemark: rows?.qualityremark,
+        professionalSkills: rows?.professional,
+        professionalRemark: rows?.professionalRemark,
+        orgToken: organizationToken,
+      };
+      await updateRatings({ variables: { ...ratingsData } });
+
+      setUpdateMessage('Rating updated successfully');
+    } catch (error: any) {
+      toast.error(error.message || 'something went wrong');
+      setShowActions(true);
+    }
+    setEditRatingFormVisible(false);
+    setUpdateMessage('Waiting for the Admin to Approve');
+    setOpenModel(true);
+  };
   return (
     <Dialog open={openModel} onClose={onClose}>
       <div className="flex flex-col border-black w-full bg-[#E0E7FF] dark:bg-[#4B4B4B] px-8">
@@ -202,6 +296,7 @@ function ViewSprintRatings({
                 </div>
               </div>
             ))}
+            <div />
           </div>
         ) : (
           <div className="md:w-[466px] p-3 flex justify-center items-end">
@@ -214,19 +309,178 @@ function ViewSprintRatings({
         )}
 
         {traineeStatus.status === 'active' ? (
-          <div
-            className={` ${
-              successMessage ? 'flex justify-between' : 'flex justify-end'
-            } py-4`}
-          >
-            {successMessage ? (
-              <p className="text-green-500 text-[20px]">{successMessage}</p>
-            ) : (
-              ''
-            )}
+          <div>
+            <div
+              className={` ${
+                updateMessage || successMessage
+                  ? 'flex justify-between'
+                  : 'flex justify-end'
+              } py-4`}
+            >
+              {updateMessage || successMessage ? (
+                <p className="text-green-500 text-[20px]">
+                  {updateMessage || successMessage}
+                </p>
+              ) : (
+                ''
+              )}
+            </div>
+            <div>
+              {!viewAddNewRating &&
+                !editRatingFormVisible &&
+                loggedUserRole === 'coordinator' && (
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="sm"
+                    style="inline-flex justify-center float-left rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    onClick={openEditRatingForm}
+                  >
+                    {t('Edit Rating')}
+                  </Button>
+                )}
+            </div>
+            <div>
+              {!viewAddNewRating &&
+                !editRatingFormVisible &&
+                loggedUserRole === 'coordinator' && (
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="sm"
+                    style="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    onClick={() => setViewAddNewRating(true)}
+                  >
+                    {t('Add Rating')}
+                  </Button>
+                )}
+            </div>
           </div>
         ) : (
           <Dropout traineeStatus={traineeStatus} />
+        )}
+
+        {editRatingFormVisible && maxSprint !== 0 && (
+          <form onSubmit={handleUpdate}>
+            <hr className="bg-[#868686] h-[2px]" />
+            <h1 className="text-[#5F49AC] dark:text-[#C7B9F9] font-semibold">
+              {t('Update Rating')}
+            </h1>
+            <div className=" my-2 mt-6 md:mt-4 flex flex-col gap-3 md:flex-row ">
+              <div className=" w-40 h-28 flex flex-col gap-2 md:flex-col justify-start items-center ">
+                <div className="w-full font-medium">{t('Quality')}:</div>
+                <select
+                  name="quality"
+                  value={rows.quality}
+                  onChange={(e) => {
+                    setRows({
+                      ...rows,
+                      quality: e.target.value,
+                    });
+                  }}
+                  id="qualityRating"
+                  className="rounded-md appearance-none relative block w-full px-0 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
+                >
+                  <option value="-1" disabled>
+                    {t('Select rating')}
+                  </option>
+                  <>
+                    {defaultGrading?.map((grade: any) => (
+                      <option key={grade}>{grade}</option>
+                    ))}
+                  </>
+                </select>
+              </div>
+              <div className="w-40 h-28 flex flex-col gap-2 md:flex-col justify-start items-center  ">
+                <div className="w-full font-medium">{t('Quantity')}:</div>
+                <select
+                  name="quantity"
+                  id="quantityRating"
+                  value={rows.quantity}
+                  onChange={(e) =>
+                    setRows({
+                      ...rows,
+                      quantity: e.target.value,
+                    })
+                  }
+                  className="rounded-md appearance-none relative block w-full px-0 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
+                >
+                  <option value="-1" disabled>
+                    {t('Select rating')}
+                  </option>
+                  <>
+                    {defaultGrading?.map((grade: any) => (
+                      <option key={grade}>{grade}</option>
+                    ))}
+                  </>
+                </select>
+              </div>
+              <div className="w-40 h-28 flex flex-col gap-2 md:flex-col justify-start items-center ">
+                <div className="w-full font-medium">
+                  {t('Professionalism')}:
+                </div>
+                <select
+                  name="professional"
+                  id="propfessionalismRating"
+                  value={rows.professional}
+                  onChange={(e) =>
+                    setRows({
+                      ...rows,
+                      professional: e.target.value,
+                    })
+                  }
+                  className="rounded-md appearance-none relative block w-full px-0 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
+                >
+                  <option value="-1" disabled>
+                    {t('Select rating')}
+                  </option>
+                  <>
+                    {defaultGrading?.map((grade: any) => (
+                      <option key={grade}>{grade}</option>
+                    ))}
+                  </>
+                </select>
+              </div>
+            </div>
+            <div className="">
+              <h1 className="pb-3 font-medium">{t('Feedback')}</h1>
+              <textarea
+                name="Feedback"
+                value={rows.professionalRemark}
+                onChange={(e) =>
+                  setRows({
+                    ...rows,
+                    professionalRemark: e.target.value,
+                  })
+                }
+                className="h-32 w-full dark:bg-[#6F6F6F] rounded-xl px-3 py-2"
+                placeholder="Feedback in general about performance"
+              />
+
+              <div className="mt-4 md:mt-8 flex justify-end">
+                <Button
+                  type="button"
+                  variant="primary"
+                  size="sm"
+                  style="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  onClick={() => {
+                    onClose();
+                  }}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="sm"
+                  style="inline-flex justify-center float-left rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  loading={updateRatingLoading}
+                >
+                  {t('Submit')}
+                </Button>
+              </div>
+            </div>
+          </form>
         )}
         <AddNewRatings
           viewAddNewRating={viewAddNewRating}

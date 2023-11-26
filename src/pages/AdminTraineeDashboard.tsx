@@ -813,6 +813,32 @@ function AdminTraineeDashboard() {
                   </p>
                 </div>
 
+                {/* show coordinator  */}
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>COORDINATOR</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.cohort
+                        ? traineeDetails.cohort.coordinator.profile.name
+                        : 'Un availabe'}
+                    </i>
+                  </p>
+                </div>
+
                 {/* Show resume URL for admins and managers */}
                 {user &&
                   (user.role === 'admin' || user.role === 'coordinator') && (
@@ -1301,11 +1327,12 @@ function AdminTraineeDashboard() {
                   data-testid="saveButton"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
-                    setButtonLoading(true);
-                    addMemberToTeam();
-                    setTimeout(() => {
-                      removeModel();
-                    }, 2000);
+                    if (Object.values(email)[1] && Object.values(selectedOption)[1] && Object.values(selectedTeamOption)[1]) {
+                      setButtonLoading(true);
+                      addMemberToTeam();
+                    } else if (!Object.values(email)[1] || !Object.values(selectedOption)[1] || !Object.values(selectedTeamOption)[1]) {
+                      toast.error(t("Enter all the required information"));
+                    }
                   }}
                   loading={buttonLoading}
                 >
