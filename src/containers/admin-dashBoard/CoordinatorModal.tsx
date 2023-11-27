@@ -34,9 +34,22 @@ export default function CoordinatorsPage() {
   });
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
 
+  const organizationName = localStorage.getItem('orgName') as string;
   useEffect(() => {
     if (data) {
-      const extractedCoordinators = data.getAllCoordinators.map(
+      // remove organizations that the admin doesn't belongs to;
+      const newData = data.getAllCoordinators.filter((coordinator:any)=>{
+        let neededAdminOrganisations:any = null;
+        coordinator.organizations.forEach((singleOrganization: string)=> {
+          if (singleOrganization === organizationName) {
+            neededAdminOrganisations = coordinator;
+          }
+        });
+        return neededAdminOrganisations;
+      });
+      console.log(newData);
+
+      const extractedCoordinators = newData?.map(
         (coordinator: any) => ({
           email: coordinator.email,
           profile: coordinator.profile || { name: null },
@@ -44,10 +57,7 @@ export default function CoordinatorsPage() {
           role: coordinator.role,
         }),
       );
-      // .filter((coordinator: Coordinator) => {
-      //   const orgName = localStorage.getItem('orgName') as string;
-      //   return coordinator.organizations.includes(orgName);
-      // });
+    
       setCoordinators(extractedCoordinators);
     }
   }, [data]);
