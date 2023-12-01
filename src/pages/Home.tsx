@@ -19,6 +19,7 @@ function LandingPage() {
       <div className="relative hero mx-auto ">
         <p
           className="absolute text-center md:text-left text-2xl px-4 py-2  text-white bottom-1/3 lg:left-14 lg:right-0 lg:text-5xl sm:text-3xl md:left-0 md:right-0"
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: t('hero txt') }}
         />
 

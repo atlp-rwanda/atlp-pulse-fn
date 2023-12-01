@@ -187,10 +187,10 @@ function Orglogin() {
             </div>
             <div className="w-full text-sm  text-light-text dark:text-dark-text-fill">
               {t('Looking to register an organization instead?')}
-              <Link to="/signup/org">
-                <a href="#link" className="text-primary">
-                  {t('Register a new organization')}
-                </a>
+              <Link to="/signup/org" className="text-primary">
+                {/* <a href="#link" > */}
+                {t('Register a new organization')}
+                {/* </a> */}
               </Link>
             </div>
           </form>

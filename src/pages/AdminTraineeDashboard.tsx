@@ -639,129 +639,129 @@ function AdminTraineeDashboard() {
           fullWidth
         >
           <DialogContent className="font-sans dark:bg-dark-bg">
-            <DialogContentText className="font-sans dark:bg-dark-bg">
-              <div className="font-sans text-sm font-bold text-center dark:text-white dark:bg-dark-bg">
-                <div className="bg-[#4aa5be] h-[150px]">
-                  <img
-                    className=" relative top-[50px] left-[20px] border-4 border-white font-sans"
-                    style={{
-                      borderRadius: '50%',
-                      marginBottom: '20px',
-                      width: '150px',
-                      height: '150px',
-                    }}
-                    src={
-                      traineeDetails &&
-                      traineeDetails.profile &&
-                      traineeDetails.profile.avatar
-                        ? traineeDetails.profile.avatar
-                        : Avatar
-                    }
-                    alt="Logo"
-                  />
-                </div>
-
-                <h2
-                  className="font-bold text-[18px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans"
-                  style={{ cursor: 'move', fontWeight: 'bold' }}
-                  id="draggable-dialog-title"
-                >
-                  {traineeDetails && traineeDetails.profile
-                    ? traineeDetails.profile.name
-                    : 'Un availabe'}
-                </h2>
-
-                <div
-                  className="font-sans text-sm"
+            {/* <DialogContentText className="font-sans dark:bg-dark-bg"> */}
+            <div className="font-sans text-sm font-bold text-center dark:text-white dark:bg-dark-bg">
+              <div className="bg-[#4aa5be] h-[150px]">
+                <img
+                  className=" relative top-[50px] left-[20px] border-4 border-white font-sans"
                   style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginTop: '30px',
-                    borderBottom: '0.5px solid #EAECEE',
+                    borderRadius: '50%',
+                    marginBottom: '20px',
+                    width: '150px',
+                    height: '150px',
                   }}
-                >
-                  {' '}
-                  <h3>
-                    <b>EMAIL</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.profile
-                        ? traineeDetails.email
-                        : 'Un availabe'}
-                    </i>
-                  </p>
-                </div>
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginTop: '30px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>START DATE</b>
-                  </h3>
-                  <p>
-                    {traineeDetails && traineeDetails.team
-                      ? traineeDetails.team.cohort.startDate.split('T')[0]
+                  src={
+                    traineeDetails &&
+                    traineeDetails.profile &&
+                    traineeDetails.profile.avatar
+                      ? traineeDetails.profile.avatar
+                      : Avatar
+                  }
+                  alt="Logo"
+                />
+              </div>
+
+              <h2
+                className="font-bold text-[18px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans"
+                style={{ cursor: 'move', fontWeight: 'bold' }}
+                id="draggable-dialog-title"
+              >
+                {traineeDetails && traineeDetails.profile
+                  ? traineeDetails.profile.name
+                  : 'Un availabe'}
+              </h2>
+
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginTop: '30px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>EMAIL</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.profile
+                      ? traineeDetails.email
                       : 'Un availabe'}
-                  </p>
-                </div>
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>PROGRAM</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.program.name
-                        : 'Un availabe'}
-                    </i>
-                  </p>
-                </div>
+                  </i>
+                </p>
+              </div>
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginTop: '30px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>START DATE</b>
+                </h3>
+                <p>
+                  {traineeDetails && traineeDetails.team
+                    ? traineeDetails.team.cohort.startDate.split('T')[0]
+                    : 'Un availabe'}
+                </p>
+              </div>
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>PROGRAM</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.cohort.program.name
+                      : 'Un availabe'}
+                  </i>
+                </p>
+              </div>
 
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>PHASE</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.phase.name
-                        : 'Un availabe'}
-                    </i>
-                  </p>
-                </div>
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>PHASE</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.cohort.phase.name
+                      : 'Un availabe'}
+                  </i>
+                </p>
+              </div>
 
                 {/* show cohort  */}
                 <div
@@ -867,7 +867,34 @@ function AdminTraineeDashboard() {
                   </p>
                 </div>
 
-                {/* show coordinator  */}
+              {/* show coordinator  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>COORDINATOR</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.cohort
+                      ? traineeDetails.cohort.coordinator.profile.name
+                      : 'Un availabe'}
+                  </i>
+                </p>
+              </div>
+
+              {/* Show resume URL for admins and managers */}
+              {user && (user.role === 'admin' || user.role === 'coordinator') && (
                 <div
                   className="font-sans text-sm"
                   style={{
@@ -879,110 +906,80 @@ function AdminTraineeDashboard() {
                     borderBottom: '0.5px solid #EAECEE',
                   }}
                 >
-                  {' '}
                   <h3>
-                    <b>COORDINATOR</b>{' '}
+                    <b>RESUME</b>
                   </h3>
                   <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.cohort
-                        ? traineeDetails.cohort.coordinator.profile.name
-                        : 'Un availabe'}
-                    </i>
+                    {traineeDetails?.profile?.resume ? (
+                      <a
+                        href={traineeDetails.profile.resume}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Resume
+                      </a>
+                    ) : (
+                      'Unavailable'
+                    )}
                   </p>
                 </div>
+              )}
 
-                {/* Show resume URL for admins and managers */}
-                {user &&
-                  (user.role === 'admin' || user.role === 'coordinator') && (
-                    <div
-                      className="font-sans text-sm"
-                      style={{
-                        display: 'flex',
-                        gap: '50px',
-                        justifyContent: 'space-between',
-                        paddingBlock: '10px',
-                        marginBottom: '20px',
-                        borderBottom: '0.5px solid #EAECEE',
-                      }}
-                    >
-                      <h3>
-                        <b>RESUME</b>
-                      </h3>
-                      <p>
-                        {traineeDetails?.profile?.resume ? (
-                          <a
-                            href={traineeDetails.profile.resume}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View Resume
-                          </a>
+              <div
+                className="text-sm font-sans"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                }}
+              >
+                {isLoaded ? (
+                  <div className="flex items-center justify-center h-48">
+                    <i>Loading gitHub statistics...</i>
+                    <Spinner />
+                    <div className="spinner" />
+                  </div>
+                ) : (
+                  <div
+                    className={
+                      traineeDetails?.profile &&
+                      traineeDetails?.profile?.githubUsername
+                        ? 'flex'
+                        : 'hidden '
+                    }
+                  >
+                    <div className="flex flex-col">
+                      <i className="text-2xl ">
+                        {gitHubStatistics?.totalCommits} total commits
+                      </i>
+                    </div>
+                    <div className="flex flex-col">
+                      <div>
+                        {traineeDetails?.profile &&
+                        traineeDetails?.profile?.githubUsername ? (
+                          <GitHubActivityChart data={gitHubStatistics} />
                         ) : (
-                          'Unavailable'
+                          <></>
                         )}
-                      </p>
-                    </div>
-                  )}
-
-                <div
-                  className="text-sm font-sans"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                  }}
-                >
-                  {isLoaded ? (
-                    <p>
-                      <div className="flex items-center justify-center h-48">
-                        <i>Loading gitHub statistics...</i>
-                        <Spinner />
-                        <div className="spinner" />
-                      </div>
-                    </p>
-                  ) : (
-                    <div
-                      className={
-                        traineeDetails?.profile &&
-                        traineeDetails?.profile?.githubUsername
-                          ? 'flex'
-                          : 'hidden '
-                      }
-                    >
-                      <div className="flex flex-col">
-                        <i className="text-2xl ">
-                          {gitHubStatistics?.totalCommits} total commits
-                        </i>
-                      </div>
-                      <div className="flex flex-col">
-                        <div>
-                          {traineeDetails?.profile &&
-                          traineeDetails?.profile?.githubUsername ? (
-                            <GitHubActivityChart data={gitHubStatistics} />
-                          ) : (
-                            <></>
-                          )}
-                        </div>
                       </div>
                     </div>
-                  )}
-                </div>
-
-                <Button
-                  data-testid="removeInviteModel"
-                  variant="info"
-                  size="sm"
-                  style="w-[20%] md:w-1/4 text-sm font-sans"
-                  onClick={() => handleClose()}
-                >
-                  {t('Close')}
-                </Button>
+                  </div>
+                )}
               </div>
-            </DialogContentText>
+
+              <Button
+                data-testid="removeInviteModel"
+                variant="info"
+                size="sm"
+                style="w-[20%] md:w-1/4 text-sm font-sans"
+                onClick={() => handleClose()}
+              >
+                {t('Close')}
+              </Button>
+            </div>
+            {/* </DialogContentText> */}
           </DialogContent>
         </Dialog>
       </div>
