@@ -13,7 +13,6 @@ import UpdateTeamModal from './UpdateTeamModal';
 import TeamTraineeModal from './TeamTraineeModal';
 import CreateTeamModal from './CreateTeamModal';
 
-
 export interface Cohort {
   id: string;
   name: string;
@@ -50,7 +49,6 @@ export const getAllTeam = gql`
             lastName
           }
           email
-          
         }
         phase {
           name
@@ -74,7 +72,6 @@ export const getAllTeam = gql`
         quality
         professional_Skills
       }
-
     }
 
     getAllCohorts(orgToken: $orgToken) {
@@ -144,7 +141,6 @@ function ActionButtons({
           cursor="pointer"
           color="#9e85f5"
         />
-      
       </div>
       <div
         data-testid="deleteIcon"
@@ -191,12 +187,12 @@ function AdminTeams() {
   const [createTeamModal, setCreateTeamModal] = useState(false);
   const [updateTeamModal, setUpdateTeamModal] = useState(false);
   const [teamTrainneModal, setTeamTrainneModal] = useState(false);
-  
+
   const [currentTeam, setCurrentTeam] = useState<Team | undefined>(undefined);
-  
+
   const [deleteTeamModal, setDeleteTeamModal] = useState(false);
   useDocumentTitle('Teams');
- 
+
   const removeDeleteModel = () => {
     const newState = !deleteTeamModal;
     setDeleteTeamModal(newState);
@@ -228,7 +224,6 @@ function AdminTeams() {
         }),
     },
   ];
- 
 
   const teamData = getData?.getAllTeams.map(({ name, cohort, ttl }) => ({
     name,
@@ -244,7 +239,7 @@ function AdminTeams() {
   return (
     <>
       {/* =========================== Start:: CreateCohortModel =============================== */}
-      
+
       <CreateTeamModal
         data={getData}
         createTeamModel={createTeamModal}
@@ -269,8 +264,7 @@ function AdminTeams() {
           setTeamTrainneModal(false);
         }}
       />
-     
-       
+
       <DeleteTeamModal
         deleteTeamModal={deleteTeamModal}
         currentTeam={currentTeam}
@@ -303,8 +297,7 @@ function AdminTeams() {
             loading={getLoading}
           />
         </div>
-    </div>
-      
+      </div>
     </>
   );
 }
