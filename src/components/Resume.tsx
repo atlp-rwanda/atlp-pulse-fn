@@ -11,6 +11,10 @@ import Input from './Input';
 import { UserContext } from '../hook/useAuth';
 import Spinner from './Spinner';
 
+/*
+Here's where I'll fix the resume upload issue
+*/
+
 const UPLOAD_RESUME = gql`
   mutation UploadResume($userId: ID!, $resume: String!) {
     uploadResume(userId: $userId, resume: $resume) {
