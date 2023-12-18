@@ -5,8 +5,8 @@ import DataTable from '../../components/DataTable';
 import Spinner from '../../components/Spinner';
 
 const GET_COORDINATORS = gql`
-  query Query {
-    getAllCoordinators {
+  query Query ($orgToken: String){
+    getAllCoordinators(orgToken: $orgToken) {
       email
       profile {
         name
@@ -28,28 +28,18 @@ interface Coordinator {
 
 export default function CoordinatorsPage() {
   const { t } = useTranslation();
-
+  const orgToken = localStorage.getItem('orgToken');
   const { loading, error, data } = useQuery(GET_COORDINATORS, {
+    variables: {
+      orgToken: orgToken,
+    },
     pollInterval: 3000, // Refresh every 3 seconds
   });
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
 
-  const organizationName = localStorage.getItem('orgName') as string;
   useEffect(() => {
     if (data) {
-      // remove organizations that the admin doesn't belongs to;
-      const newData = data.getAllCoordinators.filter((coordinator:any)=>{
-        let neededAdminOrganisations:any = null;
-        coordinator.organizations.forEach((singleOrganization: string)=> {
-          if (singleOrganization === organizationName) {
-            neededAdminOrganisations = coordinator;
-          }
-        });
-        return neededAdminOrganisations;
-      });
-      console.log(newData);
-
-      const extractedCoordinators = newData?.map(
+      const extractedCoordinators = data.getAllCoordinators.map(
         (coordinator: any) => ({
           email: coordinator.email,
           profile: coordinator.profile || { name: null },
@@ -57,10 +47,16 @@ export default function CoordinatorsPage() {
           role: coordinator.role,
         }),
       );
-    
+
       setCoordinators(extractedCoordinators);
     }
   }, [data]);
+
+
+
+  
+
+
 
   const columns = [
     {
