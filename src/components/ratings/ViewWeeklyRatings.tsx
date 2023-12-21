@@ -26,6 +26,7 @@ function ViewSprintRatings({
   const [updateMessage, setUpdateMessage] = useState('');
   const [defaultGrading, setDefaultGrading] = useState<any[]>([]);
   const [loggedUserRole, setloggedUser] = useState(null);
+  const [loggedUserId, setloggedUserId] = useState(null);
 
   const [showActions, setShowActions] = useState(false);
   const navigate = useNavigate();
@@ -65,15 +66,19 @@ function ViewSprintRatings({
 
     if (storedAuth) {
       const auth = JSON.parse(storedAuth);
-      const { role } = auth;
+      const { role, userId } = auth;
+
       if (role) {
         setloggedUser(role);
+      }
+      if (userId) {
+        setloggedUserId(userId);
       }
     }
   }, []);
 
   const [DefaultGrade] = useLazyQuery(DEFAULT_GRADE, {});
-  const [updateRatings, { loading: updateRatingLoading, data, error }] =
+  const [updateRatings, { loading: updateRatingLoading }] =
     useMutation(UPDATE_RATING);
 
   const openEditRatingForm = () => {
@@ -90,7 +95,7 @@ function ViewSprintRatings({
         qualityremark: '',
         quantity: ratingChosen.quantity,
         quantityremark: '',
-        feedback: '',
+        feedbacks: ratingChosen.feedbacks[0].content,
         professional: ratingChosen.professional_Skills,
         professionalRemark: '',
         bodyQuantity: '',
@@ -103,7 +108,6 @@ function ViewSprintRatings({
       });
     }
   }, [editRatingFormVisible]);
-
   useEffect(() => {
     if (updateMessage) {
       const time = setTimeout(() => {
@@ -125,6 +129,7 @@ function ViewSprintRatings({
         qualityRemark: rows?.qualityremark,
         professionalSkills: rows?.professional,
         professionalRemark: rows?.professionalRemark,
+        feedbacks: rows?.feedbacks,
         orgToken: organizationToken,
       };
       await updateRatings({ variables: { ...ratingsData } });
@@ -446,15 +451,14 @@ function ViewSprintRatings({
               <h1 className="pb-3 font-medium">{t('Feedback')}</h1>
               <textarea
                 name="Feedback"
-                value={rows.professionalRemark}
+                value={rows.feedbacks}
                 onChange={(e) =>
                   setRows({
                     ...rows,
-                    professionalRemark: e.target.value,
+                    feedbacks: e.target.value,
                   })
                 }
                 className="h-32 w-full dark:bg-[#6F6F6F] rounded-xl px-3 py-2"
-                placeholder="Feedback in general about performance"
               />
 
               <div className="mt-4 md:mt-8 flex justify-end">

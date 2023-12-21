@@ -92,7 +92,7 @@ export const FETCH_ALL_RATINGS = gql`
       user {
         id
         email
-        profile{
+        profile {
           firstName
           lastName
         }
@@ -204,6 +204,7 @@ export const UPDATE_RATING = gql`
     $qualityRemark: [String]
     $professionalSkills: [String]
     $professionalRemark: [String]
+    $feedbacks: [String]
     $orgToken: String!
   ) {
     updateRating(
@@ -215,6 +216,7 @@ export const UPDATE_RATING = gql`
       qualityRemark: $qualityRemark
       professional_Skills: $professionalSkills
       professionalRemark: $professionalRemark
+      feedbacks: $feedbacks
       orgToken: $orgToken
     ) {
       user
@@ -225,6 +227,9 @@ export const UPDATE_RATING = gql`
       qualityRemark
       professional_Skills
       professionalRemark
+      feedbacks {
+        content
+      }
     }
   }
 `;
