@@ -132,7 +132,7 @@ function AdminTraineeDashboard() {
       },
     });
   };
-  console.log('Trainees', traineeData);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -221,8 +221,8 @@ function AdminTraineeDashboard() {
   const columns = [
     { Header: t('name'), accessor: 'name' },
     { Header: t('email'), accessor: 'email' },
-    { Header: t('rating'), accessor: 'rating' },
-    { Header: t('Team'), accessor: 'team' },
+    // { Header: t('rating'), accessor: 'rating' },
+    // { Header: t('Team'), accessor: 'team' },
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
     {
@@ -447,7 +447,7 @@ function AdminTraineeDashboard() {
       datum[index] = {};
       datum[index].name = data.profile ? data.profile.name : 'undefined';
       datum[index].email = data.email;
-      datum[index].rating = '2';
+      datum[index].rating = data.ratings.length ? data.ratings : 'not rated.';
       datum[index].team = data.team?.name;
       datum[index].cohort = data.team?.cohort?.name;
       datum[index].program = data.team?.cohort?.program?.name;
@@ -763,6 +763,7 @@ function AdminTraineeDashboard() {
                   </p>
                 </div>
 
+                {/* show cohort  */}
                 <div
                   className="font-sans text-sm"
                   style={{
@@ -770,7 +771,6 @@ function AdminTraineeDashboard() {
                     gap: '50px',
                     justifyContent: 'space-between',
                     paddingBlock: '10px',
-                    marginBottom: '20px',
                     borderBottom: '0.5px solid #EAECEE',
                   }}
                 >
@@ -787,6 +787,60 @@ function AdminTraineeDashboard() {
                     </i>
                   </p>
                 </div>
+                {/* show team  */}
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>TEAM</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.team
+                        ? traineeDetails.team.name
+                        : 'Un availabe'}
+                    </i>
+                  </p>
+                </div>
+                {/* show team  */}
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>RATINGS</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {' '}
+                      {traineeDetails && traineeDetails.ratings
+                        ? traineeDetails.ratings[0]
+                          ? traineeDetails.ratings[0]
+                          : 'not yet rated'
+                        : 'unavailable.'}
+                    </i>
+                  </p>
+                </div>
+
+                {/* show manager  */}
                 <div
                   className="font-sans text-sm"
                   style={{
@@ -1327,11 +1381,19 @@ function AdminTraineeDashboard() {
                   data-testid="saveButton"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
-                    if (Object.values(email)[1] && Object.values(selectedOption)[1] && Object.values(selectedTeamOption)[1]) {
+                    if (
+                      Object.values(email)[1] &&
+                      Object.values(selectedOption)[1] &&
+                      Object.values(selectedTeamOption)[1]
+                    ) {
                       setButtonLoading(true);
                       addMemberToTeam();
-                    } else if (!Object.values(email)[1] || !Object.values(selectedOption)[1] || !Object.values(selectedTeamOption)[1]) {
-                      toast.error(t("Enter all the required information"));
+                    } else if (
+                      !Object.values(email)[1] ||
+                      !Object.values(selectedOption)[1] ||
+                      !Object.values(selectedTeamOption)[1]
+                    ) {
+                      toast.error(t('Enter all the required information'));
                     }
                   }}
                   loading={buttonLoading}
