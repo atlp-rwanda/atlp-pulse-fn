@@ -8,10 +8,11 @@ import CreateOrganizationModal, {
 import { gql, useMutation, useQuery } from '@apollo/client';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './Buttons';
+import Tooltip from '@mui/material/Tooltip';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
 
-import DataTable from '../components/DataTable'
+import DataTable from '../components/DataTable';
 
 export interface Admin {
   id: string;
@@ -66,84 +67,89 @@ export const RegisterNewOrganization = gql`
 `;
 
 function ActionButtons({
-    getData,
-    setData,
-    removeInviteModel,
-    removeDeleteModel,
-    approveModel,
-    rejectModel,
-    ...props
-  }: any) {
-    const checkStatus = getData?.getOrganizations[props.row.index].status
-    return (
-        <div className="flex relative flex-row align-middle justify-center items-center">
-            {checkStatus == 'active' ? (
-                <>
-                  <div
-                    onClick={() => {
-                      setData(getData?.getOrganizations[props.row.index]);
-                      console.log(getData?.getOrganizations[props.row.index])
-                      removeInviteModel();
-                    }}
-                  >
-                    <Icon
-                      icon="mdi:email-fast"
-                      width="30"
-                      height="30"
-                      cursor="pointer"
-                      color="#9e85f5"
-                    />
-                  </div>
-                  <div
-                    onClick={() => {
-                      setData(getData?.getOrganizations[props.row.index]);
-                      removeDeleteModel();
-                    }}
-                  >
-                    <Icon
-                      icon="mdi:delete"
-                      width="30"
-                      height="30"
-                      cursor="pointer"
-                      color="#9e85f5"
-                    />
-                  </div>
-                </>
-            ) : (
-              <>
-                <div
-                  onClick={() => {
-                    setData(getData?.getOrganizations[props.row.index]);
-                    approveModel();
-                  }}
-                >
-                  <Icon
-                    icon="mdi:bank-check"
-                    width="30"
-                    height="30"
-                    cursor="pointer"
-                    color="#9e85f5"
-                  />
-                </div>
-                <div
-                  onClick={() => {
-                    setData(getData?.getOrganizations[props.row.index]);
-                    rejectModel();
-                  }}
-                >
-                  <Icon
-                    icon="mdi:bank-remove"
-                    width="30"
-                    height="30"
-                    cursor="pointer"
-                    color="#9e85f5"
-                  />
-                </div>
-              </>
-            )}
-        </div>
-    );
-  }
+  getData,
+  setData,
+  removeInviteModel,
+  removeDeleteModel,
+  approveModel,
+  rejectModel,
+  ...props
+}: any) {
+  const checkStatus = getData?.getOrganizations[props.row.index].status;
+  return (
+    <div className="flex relative flex-row align-middle justify-center items-center">
+      {checkStatus == 'active' ? (
+        <>
+          <div
+            onClick={() => {
+              setData(getData?.getOrganizations[props.row.index]);
+              removeInviteModel();
+            }}
+          >
+            <Tooltip title="Send Email">
+              <Icon
+                icon="mdi:email-fast"
+                width="30"
+                height="30"
+                cursor="pointer"
+                color="#9e85f5"
+              />
+            </Tooltip>
+          </div>
+          <div
+            onClick={() => {
+              setData(getData?.getOrganizations[props.row.index]);
+              removeDeleteModel();
+            }}
+          >
+            <Icon
+              icon="mdi:delete"
+              width="30"
+              height="30"
+              cursor="pointer"
+              color="#9e85f5"
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <div
+            onClick={() => {
+              setData(getData?.getOrganizations[props.row.index]);
+              approveModel();
+            }}
+          >
+            <Tooltip title="Approve">
+              <Icon
+                icon="mdi:bank-check"
+                width="30"
+                height="30"
+                cursor="pointer"
+                color="#9e85f5"
+              />
+            </Tooltip>
+          </div>
+          <div
+            onClick={() => {
+              setData(getData?.getOrganizations[props.row.index]);
+              rejectModel();
+            }}
+          >
+            <Tooltip title="Reject">
+              <Icon
+                icon="mdi:bank-remove"
+                width="30"
+                height="30"
+                cursor="pointer"
+                color="#9e85f5"
+              />
+            </Tooltip>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 const Organizations = () => {
   useDocumentTitle('Organizations');
@@ -174,8 +180,8 @@ const Organizations = () => {
     id: '',
     name: '',
     admin: {
-        id:'',
-        email:''
+      id: '',
+      email: '',
     },
     description: '',
   });
@@ -287,12 +293,14 @@ const Organizations = () => {
     },
   ];
 
-  const organizationData = getData?.getOrganizations.map(({ name, description, admin, status }) => ({
-    name,
-    adminEmail: admin?.email,
-    description,
-    status,
-  }));
+  const organizationData = getData?.getOrganizations.map(
+    ({ name, description, admin, status }) => ({
+      name,
+      adminEmail: admin?.email,
+      description,
+      status,
+    }),
+  );
 
   return (
     <>
@@ -321,7 +329,9 @@ const Organizations = () => {
             <form className=" py-3 px-8">
               <div>
                 <h2 className="text-base dark:text-white text-center m-4">
-                  {t('Are you sure you want to permanently delete this organization?')}
+                  {t(
+                    'Are you sure you want to permanently delete this organization?',
+                  )}
                 </h2>
               </div>
               <div className="w-full flex justify-between">
@@ -358,13 +368,13 @@ const Organizations = () => {
       </div>
       {/* =========================== End::  delete Session Model =============================== */}
 
-        {/* =========================== Start::  SendInviteModel =============================== */}
+      {/* =========================== Start::  SendInviteModel =============================== */}
 
-        <div
-            className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
-                sendInviteModel === true ? 'block' : 'hidden'
-            }`}
-        >
+      <div
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
+          sendInviteModel === true ? 'block' : 'hidden'
+        }`}
+      >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
             <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
@@ -489,7 +499,7 @@ const Organizations = () => {
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
             <h3 className="font-bold text-xl dark:text-white text-center w-11/12">
               {t('Reject New Organization Request')}
-            </h3> 
+            </h3>
             <hr className=" bg-primary border-b my-3 w-full" />
           </div>
           <div className="card-body">

@@ -8,12 +8,10 @@ interface SomeType {
 }
 // eslint-disable-next-line react/prop-types
 export default function ProtectedRoutes(obj: SomeType) {
-  /* istanbul ignore if */
-  if (window.location.pathname === '/users/login') {
-    /* istanbul ignore next */
-    checkOrgTokenExpiration();
-  }
   const { user } = useContext(UserContext);
+  /* istanbul ignore next */
+  checkOrgTokenExpiration();
+
   if (!user?.auth) {
     return obj.children;
   }

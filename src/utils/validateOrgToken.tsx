@@ -9,16 +9,18 @@ import React, { useContext } from 'react';
 import { Navigate } from 'react-router';
 import { UserContext } from '../hook/useAuth';
 
-const checkOrgTokenExpiration = async () => {
+const checkOrgTokenExpiration = (): boolean | undefined => {
   const { t } = useTranslation();
   const { logout } = useContext(UserContext);
 
   const token = window.localStorage.getItem('orgToken');
   const orgName = window.localStorage.getItem('orgName');
   let expiration: any = '';
-  token ? (expiration = await jwt_decode(token)) : (expiration = null);
+  token ? (expiration = jwt_decode(token)) : (expiration = null);
 
-  if (expiration !== null && expiration.exp * 1000 < Date.now()) {
+  if (window.location.pathname !== '/users/login') {
+    return undefined;
+  } else if (expiration !== null && expiration.exp * 1000 < Date.now()) {
     localStorage.removeItem('orgToken');
     localStorage.removeItem('orgName');
     toast.error(
