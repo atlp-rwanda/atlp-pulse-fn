@@ -5,8 +5,8 @@ import DataTable from '../../components/DataTable';
 import Spinner from '../../components/Spinner';
 
 const GET_COORDINATORS = gql`
-  query Query {
-    getAllCoordinators {
+  query Query ($orgToken: String){
+    getAllCoordinators(orgToken: $orgToken) {
       email
       profile {
         name
@@ -28,8 +28,11 @@ interface Coordinator {
 
 export default function CoordinatorsPage() {
   const { t } = useTranslation();
-
+  const orgToken = localStorage.getItem('orgToken');
   const { loading, error, data } = useQuery(GET_COORDINATORS, {
+    variables: {
+      orgToken: orgToken,
+    },
     pollInterval: 3000, // Refresh every 3 seconds
   });
   const [coordinators, setCoordinators] = useState<Coordinator[]>([]);
@@ -44,13 +47,16 @@ export default function CoordinatorsPage() {
           role: coordinator.role,
         }),
       );
-      // .filter((coordinator: Coordinator) => {
-      //   const orgName = localStorage.getItem('orgName') as string;
-      //   return coordinator.organizations.includes(orgName);
-      // });
+
       setCoordinators(extractedCoordinators);
     }
   }, [data]);
+
+
+
+  
+
+
 
   const columns = [
     {
