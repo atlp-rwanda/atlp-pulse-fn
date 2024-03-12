@@ -33,7 +33,6 @@ const SigninOrgDocs = React.lazy(
   () => import('../components/Docs/SigninOrgDocs'),
 );
 /* istanbul ignore next */
-const Pay = React.lazy(() => import('../components/Payment'));
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
@@ -92,7 +91,6 @@ function MainRoutes() {
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
             <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
             <Route path="/noredirect" element={<Noredirect />} />
-            <Route path="/pricing-form" element={<Pay />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

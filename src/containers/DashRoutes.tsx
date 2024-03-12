@@ -76,6 +76,8 @@ const ManagersCards = React.lazy(() => import('../components/ManagerCard'));
 const CoordinatorCards = React.lazy(
   () => import('../components/CoordinatorCard'),
 );
+const AdminSission = React.lazy(() => import('./admin-dashBoard/Sessions'));
+
 
 
 function DashRoutes() {
@@ -122,7 +124,7 @@ function DashRoutes() {
             <Route path="/cohorts" element={<AdminCohorts />} />
             <Route path="/phases" element={<AdminPhases />} />
             <Route path="/programs" element={<AdminPrograms />} />
-            <Route path="/sessions" element={<AdminSession />} />
+            <Route path="/sessions" element={<AdminSission />} />
             <Route path="/manage" element={<AdminManageRoles />} />
             <Route path="/grading" element={<GradingSystem />} />
             <Route

@@ -9,7 +9,6 @@ import AdminLogin from './pages/Organization/AdminLogin';
 import Perfomancetraineetable from './components/TraineePerformance';
 import Error from './pages/Error';
 import Noredirect from './pages/Noredirect';
-import Pay from './components/Payment';
 import ProtectedRoutes from './ProtectedRoute';
 
 function MainRoutes() {
@@ -28,8 +27,6 @@ function MainRoutes() {
             }
           />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/pricing-form" element={<Pay />} />
-          <Route path="/pricing-form" element={<Pay />} />
           <Route
             path="/users/login"
             element={

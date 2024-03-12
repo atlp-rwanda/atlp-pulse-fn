@@ -13,7 +13,6 @@ import {
   getAllNotification,
   NotificationSubscription,
 } from '../Mutations/notificationMutation';
-import { ThemeContext } from '../hook/ThemeProvider';
 import { MenuContext } from '../hook/menuProvider';
 import ToggleThemeButton from './TogglethemeIcon';
 import LogoIcon from './logoIcon';

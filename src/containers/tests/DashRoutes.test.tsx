@@ -3,26 +3,11 @@ import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import DashRoutes from '../DashRoutes';
-import Dashboard from '../../pages/Dashboard';
-import Settings from '../../pages/Settings';
-import AdminCohort from '../admin-dashBoard/Cohorts';
 import AdminSission from '../admin-dashBoard/Sessions';
 import '@testing-library/jest-dom'
 
 describe('Dashboard Routes', () => {
-  const user = userEvent.setup();
-  // it('Should render', () => {
-  //   const elem = renderer
-  //     .create(
-  //       <MemoryRouter>
-  //         <DashRoutes />
-  //       </MemoryRouter>,
-  //     )
-  //     .toJSON();
-  //   expect(elem).toMatchSnapshot();
-  // });
   it('Should Redirect to settings', () => {
     const elem = renderer
       .create(
@@ -33,28 +18,34 @@ describe('Dashboard Routes', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-  it('Should render delete button', async () => {
-    render(
+  it('Should render delete button', () => {
+      render(
       <MemoryRouter>
-        <AdminSission />
+        <ApolloProvider>
+          <AdminSission />
+        </ApolloProvider>
       </MemoryRouter>,
     );
-    const route = screen.getByTestId('delete');
+    const route = screen.getByTestId('delete')
     expect(route).toBeInTheDocument();
   });
-  it('Should render remove button', async () => {
+  it('Should render remove button', () => {
     render(
       <MemoryRouter>
-        <AdminSission />
+        <ApolloProvider>
+          <AdminSission />
+        </ApolloProvider>
       </MemoryRouter>,
     );
     const route = screen.getByTestId('remove');
     expect(route).toBeInTheDocument();
   });
-  it('Should render register model button', async () => {
+  it('Should render register model button', () => {
     render(
       <MemoryRouter>
-        <AdminSission />
+        <ApolloProvider>
+          <AdminSission />
+        </ApolloProvider>
       </MemoryRouter>,
     );
     const route = screen.getByTestId('registerModel');

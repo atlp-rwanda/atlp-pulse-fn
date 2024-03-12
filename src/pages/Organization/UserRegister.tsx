@@ -17,7 +17,7 @@ import { SIGN_UP_MUTATION, GET_SIGNUP_ORGANIZATION } from './Mutations';
 import ControlledSelect from '../../components/ControlledSelect';
 import jwt_decode from 'jwt-decode';
 
-function Signup() {
+const Signup = () => {
   const token: any = window.location.href.substring(
     window.location.href.lastIndexOf('/') + 1,
   );
@@ -261,31 +261,6 @@ function Signup() {
   };
 
   /* istanbul ignore next */
-  const customStyles = {
-    option: (provided: any, state: any) => ({
-      ...provided,
-      borderBottom: '1px dotted pink',
-      color: state.isSelected ? 'red' : '#9e85f5',
-    }),
-    valueLabel: (styles: any) => ({
-      ...styles,
-      text: 'white',
-    }),
-    control: (styles: any) => ({
-      ...styles,
-      height: 20,
-      width: 370,
-      backgroundColor: '#374151',
-      borderColor: 'rgb(20 143 182)',
-      text: 'white',
-    }),
-    singleValue: (provided: any, state: any) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-
-      return { ...provided, opacity, transition };
-    },
-  };
   const options: any = [
     { value: 'male', label: 'male' },
     { value: 'female', label: 'female' },

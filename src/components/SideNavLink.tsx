@@ -9,7 +9,7 @@ interface Props {
   children: ReactNode;
   onClick: () => void;
   className?: string;
-  // any props that come into the component
+  // any other props that come into the component
 }
 
 export default function SideNavLink({

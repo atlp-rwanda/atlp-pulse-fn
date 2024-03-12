@@ -105,9 +105,6 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/programs" name="Programs">
               <ProgramIcon className="w-5" />
             </SideNavLink>
-            <SideNavLink onClick={toggle} to="/ratings" name="Ratings">
-              <ClipboardListIcon className="w-5" />
-            </SideNavLink>
             <SideNavLink
               onClick={toggle}
               to="/updated-ratings"
@@ -178,22 +175,8 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <CalendarIcon className="w-5" />
           </SideNavLink>
 
-          <CheckRole
-            roles={[
-              'trainee',
-              'admin',
-              'coordinator',
-              'manager',
-              'user',
-              'ttl',
-            ]}
-          >
-            <SideNavLink onClick={toggle} name="Help" to="/support">
-              <SupportIcon className="w-5" />
-            </SideNavLink>
-          </CheckRole>
-          <SideNavLink onClick={toggle} name="Settings" to="/settings">
-            <CogIcon className="w-5" />
+          <SideNavLink onClick={toggle} name="Help" to="/support">
+            <SupportIcon className="w-5 text-red-700 dark:text-red-600 hover:text-red-900" />
           </SideNavLink>
           <SideNavLink onClick={logout} to="#link">
             <LogoutIcon className="w-5 text-red-700 dark:text-red-600 hover:text-red-900" />

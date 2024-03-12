@@ -457,7 +457,7 @@ Array [
               name="date"
               readOnly={true}
               type="text"
-              value="2023-11-23"
+              value="2024-03-12"
             />
           </div>
           <div
@@ -974,34 +974,6 @@ Array [
                           }
                           title="Toggle SortBy"
                         >
-                          rating
-                        </th>
-                        <th
-                          className=" thead"
-                          colSpan={1}
-                          onClick={[Function]}
-                          role="columnheader"
-                          style={
-                            Object {
-                              "cursor": "pointer",
-                            }
-                          }
-                          title="Toggle SortBy"
-                        >
-                          Team
-                        </th>
-                        <th
-                          className=" thead"
-                          colSpan={1}
-                          onClick={[Function]}
-                          role="columnheader"
-                          style={
-                            Object {
-                              "cursor": "pointer",
-                            }
-                          }
-                          title="Toggle SortBy"
-                        >
                           cohort
                         </th>
                         <th
@@ -1074,14 +1046,6 @@ Array [
                         <td
                           className="data-cell"
                           role="cell"
-                        />
-                        <td
-                          className="data-cell"
-                          role="cell"
-                        />
-                        <td
-                          className="data-cell"
-                          role="cell"
                         >
                           <div
                             className=" items-center hidden"
@@ -1099,15 +1063,19 @@ Array [
                           role="cell"
                         >
                           <div
-                            className="items-center hidden"
+                            className="static"
                           >
-                            <span />
+                            <div
+                              className="static inline-block"
+                            >
+                              <span />
+                            </div>
                           </div>
                         </td>
                       </tr>
                       <tr>
                         <td
-                          colSpan={8}
+                          colSpan={6}
                           style={
                             Object {
                               "textAlign": "center",
@@ -1130,7 +1098,7 @@ Array [
                           className="w-full py-2"
                         >
                           <td
-                            colSpan={8}
+                            colSpan={6}
                           >
                             <div
                               className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto"
