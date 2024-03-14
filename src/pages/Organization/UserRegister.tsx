@@ -22,7 +22,7 @@ const Signup = () => {
     window.location.href.lastIndexOf('/') + 1,
   );
   const originalToken: any = token.replaceAll('*', '.');
-  useDocumentTitle('Login');
+  useDocumentTitle('Sign up');
 
   const { t } = useTranslation();
   const [passwordShown, setPasswordShown] = useState(false);
