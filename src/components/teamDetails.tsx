@@ -53,7 +53,7 @@ function TeamDetails() {
           <div className="cursor-pointer">
             <button className="bg-dark-bg hover:bg-primary text-white text-sm flex items-center hover:text-white px-2 py-1 border hover:border-transparent rounded-full">
               <BsEye className="mr-1" />
-              {t('View')}
+              {t('Rating')}
             </button>
           </div>
         </div>
