@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, TFunction } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
@@ -57,7 +57,9 @@ export default function CreateProgramModal({
     /* istanbul ignore next */
     onCompleted() {
       refetch();
-      removeModel();
+      setTimeout( () => {
+        removeModel();
+      }, 1000) 
     },
   });
   /* istanbul ignore next */
@@ -82,8 +84,12 @@ export default function CreateProgramModal({
       variables: { orgToken: localStorage.getItem('orgToken'), ...newData },
       onCompleted() {
         reset();
-        setValue('managerEmail', { value: undefined, label: undefined });
-      },
+        refetch();
+          setTimeout(() => {
+            removeModel();
+          }, 1000);
+          toast.success(t('Program Created successfully') as TFunction);
+        },
     });
   }
 

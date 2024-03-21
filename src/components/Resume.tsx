@@ -5,9 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { gql, useMutation } from '@apollo/client';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Modal from './Docs/DocModel';
 import Button from './Buttons';
-import Input from './Input';
 import { UserContext } from '../hook/useAuth';
 import Spinner from './Spinner';
 
