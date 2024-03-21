@@ -60,7 +60,11 @@ export default function CreatePhaseModal({
       /* istanbul ignore next */
       onCompleted() {
         reset();
-        toast.success(t('Phase Created successful') as TFunction);
+        refetch();
+          setTimeout(() => {
+            removeModel();
+          }, 1000);
+        toast.success(t('Phase Created successfully') as TFunction);
       },
     });
   }
