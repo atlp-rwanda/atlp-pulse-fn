@@ -270,9 +270,9 @@ function UpdatedRatingDashboard() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="card-title w-full flex flex-wrap justify-center items-center">
-              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
               <button
                 className="ml-auto"
+                aria-label='close-modal'
                 type="submit"
                 onClick={() => handleCloseModal()}
                 style={{ color: 'red' }}

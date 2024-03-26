@@ -27,6 +27,7 @@ function DataPagination({
                 <div className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto">
                   <button
                     type="button"
+                    aria-label='left-arrow'
                     className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
                     onClick={() => previousPage()}
                     disabled={!canPreviousPage}
@@ -35,6 +36,7 @@ function DataPagination({
                   </button>{' '}
                   <button
                     type="button"
+                    aria-label='right-arrow'
                     onClick={() => nextPage()}
                     disabled={!canNextPage}
                     className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
