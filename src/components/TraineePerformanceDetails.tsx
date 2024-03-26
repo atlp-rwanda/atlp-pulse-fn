@@ -107,7 +107,7 @@ function TraineePerfomanceDetails() {
               <th className="lg:py-3 md:py-2 text-left text-[#6B7280] dark:text-dark-text-fill dark:bg-neutral-600">
                 {t('Remarks')}
               </th>
-              <th className="lg:py-3 md:py-2 dark:bg-neutral-600"> </th>
+              <th className="lg:py-3 md:py-2 dark:bg-neutral-600" aria-label='elt-after-remarks'> </th>
             </tr>
           </thead>
           <tbody className=" text-center ">
@@ -539,7 +539,7 @@ function TraineePerfomanceDetails() {
             <tbody className=" text-center">
               <tr className="text-light-text bg-light-bg dark-bg dark:bg-dark-bg dark:text-dark-text-fill ">
                 <td className="py-3 px-10">{t('Grade')}</td>
-                <td className=""> </td>
+                <td className="" aria-label='elt-after-grade'> </td>
               </tr>
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill ">
                 <td className="py-10 px-10 text-left">{t('Remark')}</td>
