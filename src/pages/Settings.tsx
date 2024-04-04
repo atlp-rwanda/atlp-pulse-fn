@@ -46,7 +46,12 @@ function Settings() {
     setTheme(value);
     localStorage.setItem('color-theme', colorTheme);
   };
-  const defaultTheme: any = colorTheme;
+  const systemMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+  const defaultTheme: any = localStorage.getItem('color-theme')
+    ? localStorage.getItem('color-theme')
+    : systemMode;
   const userLang = window.navigator.language;
 
   const handleLanChange = (e: { target: { value: any } }) => {

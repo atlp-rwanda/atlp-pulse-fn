@@ -16,6 +16,7 @@ export const UserContext = createContext<any>(getInitialState);
 
 function UserProvider({ children, ...props }: Props) {
   const [user, setUser] = useState<any>(getInitialState);
+
   const login = (data: any) => {
     /* istanbul ignore next */
     localStorage.setItem(

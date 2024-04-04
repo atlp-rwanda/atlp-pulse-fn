@@ -43,7 +43,7 @@ function MainRoutes() {
     <div className="min-h-screen page-layout">
       <Suspense fallback={<Skeleton />}>
         <Routes>
-          <Route path="/*" element={<DashRoutes />} />     
+          <Route path="/*" element={<DashRoutes />} />
           <Route
             path="/"
             element={
