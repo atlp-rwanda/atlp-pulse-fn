@@ -133,9 +133,6 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/sessions" name="Sessions">
               <BookOpenIcon className="w-5" />
             </SideNavLink>
-            <SideNavLink onClick={toggle} to="/ratings" name="Ratings">
-              <ClipboardListIcon className="w-5" />
-            </SideNavLink>
             <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
               <ClipboardCheckIcon className="w-5 " />
             </SideNavLink>

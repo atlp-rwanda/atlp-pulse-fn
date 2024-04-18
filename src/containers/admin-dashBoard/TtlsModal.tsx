@@ -430,7 +430,7 @@ export default function TtlsPage() {
                 >
                   {traineeDetails && traineeDetails.profile
                     ? traineeDetails.profile.name
-                    : 'Un availabe'}
+                    : 'Unavailable'}
                 </h2>
 
                 <div
@@ -451,7 +451,7 @@ export default function TtlsPage() {
                   <p>
                     <i>
                       {' '}
-                      {traineeDetails ? traineeDetails.email : 'Un availabe'}
+                      {traineeDetails ? traineeDetails.email : 'Unavailable'}
                     </i>
                   </p>
                 </div>

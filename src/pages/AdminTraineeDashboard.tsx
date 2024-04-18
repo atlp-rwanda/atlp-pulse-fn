@@ -6,14 +6,12 @@ import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import DataTable from '../components/DataTable';
-import devs from '../dummyData/developers2.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
 import Avatar from '../assets/avatar.png';
@@ -555,6 +553,11 @@ function AdminTraineeDashboard() {
     },
   );
 
+  const HandleInvite = () => {
+    // pass
+    setButtonLoading(true);
+    inviteUser();
+  }
   const [inviteUser] = useMutation(INVITE_USER_MUTATION, {
     variables: {
       email: inviteEmail,
@@ -668,7 +671,7 @@ function AdminTraineeDashboard() {
               >
                 {traineeDetails && traineeDetails.profile
                   ? traineeDetails.profile.name
-                  : 'Un availabe'}
+                  : 'Unavailable'}
               </h2>
 
               <div
@@ -691,7 +694,7 @@ function AdminTraineeDashboard() {
                     {' '}
                     {traineeDetails && traineeDetails.profile
                       ? traineeDetails.email
-                      : 'Un availabe'}
+                      : 'Unavailable'}
                   </i>
                 </p>
               </div>
@@ -713,7 +716,7 @@ function AdminTraineeDashboard() {
                 <p>
                   {traineeDetails && traineeDetails.team
                     ? traineeDetails.team.cohort.startDate.split('T')[0]
-                    : 'Un availabe'}
+                    : 'Unavailable'}
                 </p>
               </div>
               <div
@@ -735,7 +738,7 @@ function AdminTraineeDashboard() {
                     {' '}
                     {traineeDetails && traineeDetails.team
                       ? traineeDetails.team.cohort.program.name
-                      : 'Un availabe'}
+                      : 'Unavailable'}
                   </i>
                 </p>
               </div>
@@ -758,7 +761,7 @@ function AdminTraineeDashboard() {
                   <i>
                     {traineeDetails && traineeDetails.team
                       ? traineeDetails.team.cohort.phase.name
-                      : 'Un availabe'}
+                      : 'Unavailable'}
                   </i>
                 </p>
               </div>
@@ -783,7 +786,7 @@ function AdminTraineeDashboard() {
                       {' '}
                       {traineeDetails && traineeDetails.team
                         ? traineeDetails.team.cohort.name
-                        : 'Un availabe'}
+                        : 'Unavailable'}
                     </i>
                   </p>
                 </div>
@@ -808,7 +811,7 @@ function AdminTraineeDashboard() {
                       {' '}
                       {traineeDetails && traineeDetails.team
                         ? traineeDetails.team.name
-                        : 'Un availabe'}
+                        : 'Unavailable'}
                     </i>
                   </p>
                 </div>
@@ -862,7 +865,7 @@ function AdminTraineeDashboard() {
                       {traineeDetails && traineeDetails.team
                         ? traineeDetails.team.cohort.program.manager.profile
                             .name
-                        : 'Un availabe'}
+                        : 'Unavailable'}
                     </i>
                   </p>
                 </div>
@@ -888,7 +891,7 @@ function AdminTraineeDashboard() {
                     {' '}
                     {traineeDetails && traineeDetails.cohort
                       ? traineeDetails.cohort.coordinator.profile.name
-                      : 'Un availabe'}
+                      : 'Unavailable'}
                   </i>
                 </p>
               </div>
@@ -998,7 +1001,7 @@ function AdminTraineeDashboard() {
             <hr className="w-full my-3 border-gray-400 " />
           </div>
           <div className="card-body">
-            <form className="px-8 py-3 ">
+            <form  onSubmit={(e) => {e.preventDefault()}} className="px-8 py-3 ">
               <div className="flex flex-wrap items-center justify-center w-full card-title ">
                 <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t('Fill in the email to invite a user to DevPulse.')}
@@ -1009,9 +1012,11 @@ function AdminTraineeDashboard() {
                 <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     value={inviteEmail}
+                    
                     onChange={(e) => {
                       setInviteEmail(e.target.value);
                     }}
+                    onSubmit={() => inviteModel()}
                     type="email"
                     name="email"
                     className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
@@ -1035,10 +1040,7 @@ function AdminTraineeDashboard() {
                   variant="primary"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => {
-                    setButtonLoading(true);
-                    inviteUser();
-                  }}
+                  onClick={HandleInvite }
                   loading={buttonLoading}
                 >
                   {t('Invite')}
@@ -1418,7 +1420,6 @@ function AdminTraineeDashboard() {
                       style="m-0"
                       onClick={removeModel}
                     >
-                      {' '}
                       {t('add')} +{' '}
                     </Button>
 

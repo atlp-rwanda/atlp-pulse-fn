@@ -72,7 +72,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                 className="text-gray-400 border border-primary py-2 dark:bg-dark-bg rounded outline-none px-5 font-sans text-xs w-full h-[38px] "
                 data-placeholder="Date of birth"
                 id="date-placeholder"
-                max="2024-03-12"
+                max="2024-03-26"
                 name="dateOfBirth"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -93,6 +93,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                 aria-live="polite"
                 aria-relevant="additions text"
                 className="css-1f43avz-a11yText-A11yText"
+                role="log"
               />
               <div
                 className="my-react-select__control css-1an72ab-control"
@@ -113,6 +114,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                     data-value=""
                   >
                     <input
+                      aria-activedescendant=""
                       aria-autocomplete="list"
                       aria-describedby="react-select-2-placeholder"
                       aria-expanded={false}

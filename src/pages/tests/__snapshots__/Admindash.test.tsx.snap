@@ -335,6 +335,7 @@ Array [
                 aria-live="polite"
                 aria-relevant="additions text"
                 className="css-1f43avz-a11yText-A11yText"
+                role="log"
               />
               <div
                 className="my-react-select__control css-1an72ab-control"
@@ -355,6 +356,7 @@ Array [
                     data-value=""
                   >
                     <input
+                      aria-activedescendant=""
                       aria-autocomplete="list"
                       aria-describedby="react-select-2-placeholder"
                       aria-expanded={false}
@@ -440,6 +442,7 @@ Array [
                   aria-live="polite"
                   aria-relevant="additions text"
                   className="css-1f43avz-a11yText-A11yText"
+                  role="log"
                 />
                 <div
                   className="my-react-select__control css-1an72ab-control"
@@ -460,6 +463,7 @@ Array [
                       data-value=""
                     >
                       <input
+                        aria-activedescendant=""
                         aria-autocomplete="list"
                         aria-describedby="react-select-3-placeholder"
                         aria-expanded={false}
@@ -543,6 +547,7 @@ Array [
                 aria-live="polite"
                 aria-relevant="additions text"
                 className="css-1f43avz-a11yText-A11yText"
+                role="log"
               />
               <div
                 className="my-react-select__control css-1an72ab-control"
@@ -563,6 +568,7 @@ Array [
                     data-value=""
                   >
                     <input
+                      aria-activedescendant=""
                       aria-autocomplete="list"
                       aria-describedby="react-select-4-placeholder"
                       aria-expanded={false}
@@ -745,6 +751,7 @@ Array [
                 aria-live="polite"
                 aria-relevant="additions text"
                 className="css-1f43avz-a11yText-A11yText"
+                role="log"
               />
               <div
                 className="my-react-select__control css-1an72ab-control"
@@ -765,6 +772,7 @@ Array [
                     data-value=""
                   >
                     <input
+                      aria-activedescendant=""
                       aria-autocomplete="list"
                       aria-describedby="react-select-5-placeholder"
                       aria-expanded={false}
@@ -850,6 +858,7 @@ Array [
                   aria-live="polite"
                   aria-relevant="additions text"
                   className="css-1f43avz-a11yText-A11yText"
+                  role="log"
                 />
                 <div
                   className="my-react-select__control css-1an72ab-control"
@@ -870,6 +879,7 @@ Array [
                       data-value=""
                     >
                       <input
+                        aria-activedescendant=""
                         aria-autocomplete="list"
                         aria-describedby="react-select-6-placeholder"
                         aria-expanded={false}
@@ -953,6 +963,7 @@ Array [
                 aria-live="polite"
                 aria-relevant="additions text"
                 className="css-1f43avz-a11yText-A11yText"
+                role="log"
               />
               <div
                 className="my-react-select__control css-1an72ab-control"
@@ -973,6 +984,7 @@ Array [
                     data-value=""
                   >
                     <input
+                      aria-activedescendant=""
                       aria-autocomplete="list"
                       aria-describedby="react-select-7-placeholder"
                       aria-expanded={false}
@@ -1292,6 +1304,7 @@ Array [
                     className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto"
                   >
                     <button
+                      aria-label="left-arrow"
                       className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
                       disabled={true}
                       onClick={[Function]}
@@ -1316,6 +1329,7 @@ Array [
                     </button>
                      
                     <button
+                      aria-label="right-arrow"
                       className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
                       disabled={true}
                       onClick={[Function]}

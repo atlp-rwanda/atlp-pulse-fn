@@ -468,6 +468,7 @@ Array [
                                 className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto"
                               >
                                 <button
+                                  aria-label="left-arrow"
                                   className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
                                   disabled={true}
                                   onClick={[Function]}
@@ -492,6 +493,7 @@ Array [
                                 </button>
                                  
                                 <button
+                                  aria-label="right-arrow"
                                   className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
                                   disabled={true}
                                   onClick={[Function]}

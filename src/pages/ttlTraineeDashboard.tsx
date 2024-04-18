@@ -179,7 +179,7 @@ const TtlTraineeDashboard = () => {
                 >
                   {traineeDetails && traineeDetails.profile
                     ? traineeDetails.profile.name
-                    : 'Un availabe'}
+                    : 'Unavailable'}
                 </h2>
 
                 <div
@@ -202,7 +202,7 @@ const TtlTraineeDashboard = () => {
                       {' '}
                       {traineeDetails.email
                         ? traineeDetails.email
-                        : 'Un availabe'}
+                        : 'Unavailable'}
                     </i>
                   </p>
                 </div>
@@ -226,7 +226,7 @@ const TtlTraineeDashboard = () => {
                       {' '}
                       {traineeDetails.profile
                         ? traineeDetails.profile?.githubUsername
-                        : 'Un availabe'}
+                        : 'Unavailable'}
                     </i>
                   </p>
                 </div>
@@ -250,7 +250,7 @@ const TtlTraineeDashboard = () => {
                       {' '}
                       {traineeDetails.team
                         ? traineeDetails.team.cohort.name
-                        : 'Un availabe'}
+                        : 'Unavailable'}
                     </i>
                   </p>
                 </div>
