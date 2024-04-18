@@ -93,12 +93,11 @@ function AdminLogin() {
         onError: (err) => {
           /* istanbul ignore next */
           if(err.networkError)
-            toast.error('There was a problem contact the server')
+            toast.error('There was a problem contacting the server')
           else if (err.message.toLowerCase() !== 'invalid credential' ) {
             const translateError = t('Please wait to be added to a program or cohort')
             toast.error(translateError);
           } else {
-            console.info(err.name)
             /* istanbul ignore next */
             setError('password', {
               type: 'custom',

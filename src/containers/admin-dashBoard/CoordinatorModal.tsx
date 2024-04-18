@@ -31,7 +31,7 @@ export default function CoordinatorsPage() {
   const orgToken = localStorage.getItem('orgToken');
   const { loading, error, data } = useQuery(GET_COORDINATORS, {
     variables: {
-      orgToken: orgToken,
+      orgToken,
     },
     pollInterval: 3000, // Refresh every 3 seconds
   });
