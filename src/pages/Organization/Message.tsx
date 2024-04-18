@@ -19,7 +19,7 @@ function Message() {
 
           <p className="text-gray-400 mx-10 dark:text-dark-text-fill text-left mb-5">
             {t(
-              'We are delighted to have you with us. Soon you shall be receiving an email that contains an organization you will be part of.',
+                  'We are delighted to have you with us. Soon you shall be receiving an email that contains details of a cohort that you will be part of.',
             )}
           </p>
 
