@@ -32,6 +32,7 @@ const SignupOrgDocs = React.lazy(
 const SigninOrgDocs = React.lazy(
   () => import('../components/Docs/SigninOrgDocs'),
 );
+const UsersDocs = React.lazy( () => import ('../components/Docs/users'),)
 /* istanbul ignore next */
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
@@ -90,6 +91,7 @@ function MainRoutes() {
             />
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
             <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
+            <Route path='/docs/users' element={< UsersDocs />} />
             <Route path="/noredirect" element={<Noredirect />} />
           </Route>
           <Route path="*" element={<Error />} />
