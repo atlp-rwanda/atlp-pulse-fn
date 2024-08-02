@@ -4,10 +4,12 @@ import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 import GET_PROFILE from './User';
 
 export const GET_USERS_QUERY = gql`
-  query GetUsers($orgToken: String) {
-    getUsers(orgToken: $orgToken) {
-      email
-      id
+  query GetUsers($orgToken: String, $page: Int, $limit: Int) {
+    getUsers(orgToken: $orgToken, page: $page, limit: $limit) {
+      users {
+        email
+        id
+      }
     }
   }
 `;
