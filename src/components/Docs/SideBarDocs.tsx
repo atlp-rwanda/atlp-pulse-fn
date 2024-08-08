@@ -8,6 +8,7 @@ function SideBarDocs() {
         <section className = "py-8 px-5 ">
             <ul className ="p-2 flex flex-col gap-4" >
               <NavLink className={(navData) => {if (navData.isActive) return 'text-primary'; return ''}} to='/docs/getting-started'>Getting started (new users)</NavLink>
+              
                 <NavLink
                  className={(navData) => {
                     if (navData.isActive) return 'text-primary';

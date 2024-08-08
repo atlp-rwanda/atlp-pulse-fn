@@ -78,7 +78,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                   if (pathname==="docs") return 'text-primary';
                   return '';
                 }}
-                to="/docs/org-signin"
+                to="/docs/getting-started"
               >
                 {t('Docs')}
               </NavLink>
@@ -148,7 +148,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
           </Link>
         </li>
         <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
-          <Link to="/docs/org-signin">{t('Docs')}</Link>
+          <Link to="/docs/getting-started">{t('Docs')}</Link>
         </li>
 
         <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
