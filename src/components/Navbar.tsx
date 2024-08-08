@@ -92,7 +92,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
                   if (pathname === 'docs') return 'text-primary';
                   return '';
                 }}
-                to="/docs/org-signin"
+                to="/docs/getting-started"
               >
                 {t('Docs')}
               </NavLink>

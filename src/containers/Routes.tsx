@@ -91,7 +91,7 @@ function MainRoutes() {
             />
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
             <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
-            <Route path='/docs/users' element={< UsersDocs />} />
+            <Route path='/docs/getting-started' element={< UsersDocs />} />
             <Route path="/noredirect" element={<Noredirect />} />
           </Route>
           <Route path="*" element={<Error />} />
