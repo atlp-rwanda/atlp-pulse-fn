@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLazyQuery, gql, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
-import * as FileSaver from 'file-saver';
-import XLSX from 'sheetjs-style';
 import Pagination from './Pagination';
 import PerformanceData from '../dummyData/performance.json';
 import { TRAINEE_RATING } from '../Mutations/Ratings';
@@ -62,41 +60,9 @@ export const GET_RATINGS_DATA = gql`
   }
 `;
 
-export function ExportToExcel({
-  Data,
-  fileName,
-}: {
-  Data: (string | number)[];
-  fileName: string;
-}) {
-  const { t } = useTranslation();
-  const fileType =
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-  const fileExtension = '.xlsx';
-  // eslint-disable-next-line no-nested-ternary
-  const exportToCSV = (Data: (string | number)[], fileName: string) => {
-    const ws = XLSX.utils.json_to_sheet(Data);
-    const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
-    // eslint-disable-next-line no-nested-ternary
-    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    const data = new Blob([excelBuffer], { type: fileType });
-    (FileSaver as any).saveAs(data, fileName + fileExtension);
-  };
-
-  return (
-    <button
-      className="btn primary sm px-4 py-1 text-sm"
-      type="button"
-      onClick={(e) => exportToCSV(Data, fileName)}
-    >
-      {t('Export')}
-    </button>
-  );
-}
 
 function TraineePerfomance() {
   const [usedata, setUserdata] = React.useState([]);
-  const fileName = 'userInfo';
   const { data } = useQuery(GET_RATINGS_DATA, {});
   const { user } = useContext(UserContext);
   const [row, setRow] = useState<rowsType>({
@@ -268,7 +234,7 @@ function TraineePerfomance() {
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                {item.average}
+                                {item.average %1 === 0? item.average: Number(item.average).toFixed(2)}
                               </p>
                             </td>
 
@@ -287,10 +253,6 @@ function TraineePerfomance() {
                               >
                                 {t('Details')}
                               </Button>
-                              <ExportToExcel
-                                Data={usedata}
-                                fileName={fileName}
-                              />
                             </td>
                           </tr>
                         ),
