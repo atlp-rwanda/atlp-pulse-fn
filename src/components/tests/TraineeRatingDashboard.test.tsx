@@ -1,6 +1,9 @@
+import '@testing-library/jest-dom';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import { screen, render } from '@testing-library/react';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 
 import TraineeRatingDashboard from '../../pages/TraineeRatingDashboard';
 
@@ -22,5 +25,15 @@ describe('TraineeRatingDashboard Tests', () => {
       )
       .toJSON();
     expect(elem).toMatchSnapshot();
+  });
+  it('Renders TraineeRatingDashboard', () => {
+    const result = render(
+      <BrowserRouter>
+        <ApolloProvider>
+          <TraineeRatingDashboard />
+        </ApolloProvider>
+      </BrowserRouter>,
+    );
+    screen.debug(undefined, 1000000);
   });
 });

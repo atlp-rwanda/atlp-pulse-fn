@@ -9,6 +9,8 @@ import Button from './Buttons';
 import RemarksModal from '../pages/ratings/CoordinatorRemarks';
 import { UserContext } from '../hook/useAuth';
 import { rowsType } from '../pages/ratings/frame';
+import oop from '../assets/oops.svg';
+import Spinner from './Spinner';
 
 export const GET_RATINGS_DATA = gql`
   query FetchRatingsTrainee {
@@ -60,10 +62,9 @@ export const GET_RATINGS_DATA = gql`
   }
 `;
 
-
 function TraineePerfomance() {
   const [usedata, setUserdata] = React.useState([]);
-  const { data } = useQuery(GET_RATINGS_DATA, {});
+  const { data, loading, error } = useQuery(GET_RATINGS_DATA, {});
   const { user } = useContext(UserContext);
   const [row, setRow] = useState<rowsType>({
     id: user?.userId,
@@ -151,6 +152,51 @@ function TraineePerfomance() {
   const closeFeeds = () => {
     setToggle(false);
   };
+  if (loading) {
+    return (
+      <>
+        <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+          <div className="">
+            <div className="bg-white dark:bg-dark-bg shadow-lg py-8 px-5 rounded-md w-full mdl:w-[70%] mdl:m-auto flex">
+              <div className=" flex-1">
+                <div className="flex w-full h-full  items-center justify-between">
+                  <p className="text-gray-800 dark:text-white font-semibold text-[24px] w-[90%] m-auto">
+                    <Spinner />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+  if (ratings?.length === 0) {
+    return (
+      <>
+        <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+          <div className="">
+            <div className="bg-white dark:bg-dark-bg shadow-lg py-8 px-5 rounded-md w-full mdl:w-[70%] mdl:m-auto flex">
+              <div className="flex ml-2 items-center justify-between">
+                <div className="">
+                  <img src={oop} className="w-[8rem] h-[8rem]" alt="images" />
+                </div>
+              </div>
+
+              <div className=" flex-1">
+                <div className="flex w-full h-full  items-center justify-between">
+                  <p className="text-gray-800 dark:text-white font-semibold text-[24px] w-[90%] m-auto">
+                    Performance updates are on the way! Stay tuned for the
+                    latest insights!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -234,7 +280,9 @@ function TraineePerfomance() {
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                {item.average %1 === 0? item.average: Number(item.average).toFixed(2)}
+                                {item.average % 1 === 0
+                                  ? item.average
+                                  : Number(item.average).toFixed(2)}
                               </p>
                             </td>
 
