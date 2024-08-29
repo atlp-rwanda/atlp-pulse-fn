@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -43,6 +44,9 @@ describe('LoginActivities', () => {
         <LoginActivitiesTable />
       </MockedProvider>,
     );
+    expect(
+      screen.getByText(/Loading login activities.../i),
+    ).toBeInTheDocument();
   });
   it('displays loading state while fetching login activities', () => {
     render(
