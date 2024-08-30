@@ -1,62 +1,175 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import Invitation from '../pages/invitation';
+import "@testing-library/jest-dom";
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { MockedProvider } from '@apollo/client/testing';
+import { toast } from 'react-toastify';
+import InviteForm from '../components/invitationModal';
+import { SEND_INVITATION } from '../Mutations/invitationMutation';
 
-// Define the props interface for InvitationCard
-interface InvitationCardProps {
-  status: string;
-}
+jest.mock('react-toastify', () => ({
+  toast: {
+    success: jest.fn(),
+    error: jest.fn(),
+  },
+}));
 
-// Mock the InvitationCard component
-jest.mock(
-  '../components/InvitationCard',
-  () =>
-    function MockInvitationCard({ status }: InvitationCardProps) {
-      return (
-        <div data-testid={`invitation-card-${status.toLowerCase()}`}>
-          {status}
-        </div>
-      );
+const localStorageMock = (() => {
+  let store: { [key: string]: string } = {};
+  return {
+    getItem: jest.fn((key: string) => store[key] || null),
+    setItem: jest.fn((key: string, value: string) => {
+      store[key] = value;
+    }),
+    clear: jest.fn(() => {
+      store = {};
+    }),
+  };
+})();
+
+
+Object.defineProperty(global, 'localStorage', { value: localStorageMock });
+
+const mocks = [
+  {
+    request: {
+      query: SEND_INVITATION,
+      variables: {
+        invitees: [{ email: 'test@example.com', role: 'admin' }],
+        orgToken: 'mockToken',
+      },
     },
-);
+    result: {
+      data: {
+        sendInvitation: {
+          success: true,
+        },
+      },
+    },
+  },
+];
 
-describe('Invitation Component', () => {
+describe('InviteForm', () => {
   beforeEach(() => {
-    render(<Invitation />);
+    jest.clearAllMocks();
+    (localStorage.getItem as jest.Mock).mockReturnValue('mockToken');
   });
 
-  test('renders the header correctly', () => {
-    expect(screen.getByText('Invitation Stats')).toBeInTheDocument();
+  it('renders correctly', () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <InviteForm onClose={() => {}} />
+      </MockedProvider>
+    );
+
+    expect(screen.getByText('Invite users')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Email address')).toBeInTheDocument();
+    expect(screen.getByText('Role')).toBeInTheDocument();
+    expect(screen.getByText('Invite')).toBeInTheDocument();
   });
 
-  test('renders the Invite User button', () => {
-    const inviteButton = screen.getByRole('button', { name: /Invite User/i });
-    expect(inviteButton).toBeInTheDocument();
+  it('validates email input', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <InviteForm onClose={() => {}} />
+      </MockedProvider>
+    );
+
+    const emailInput = screen.getByPlaceholderText('Email address');
+    const submitButton = screen.getByText('Invite');
+
+    fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Please enter a valid email address.')).toBeInTheDocument();
+    });
   });
 
-  test('renders four InvitationCard components', () => {
-    expect(screen.getByTestId('invitation-card-accepted')).toBeInTheDocument();
-    expect(screen.getByTestId('invitation-card-pending')).toBeInTheDocument();
-    expect(screen.getByTestId('invitation-card-denied')).toBeInTheDocument();
-    expect(
-      screen.getByTestId('invitation-card-invitations'),
-    ).toBeInTheDocument();
+  it('handles role selection', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <InviteForm onClose={() => {}} />
+      </MockedProvider>
+    );
+
+    const roleButton = screen.getByText('Role');
+    fireEvent.click(roleButton);
+
+    const adminOption = screen.getByText('Admin');
+    fireEvent.click(adminOption);
+
+    expect(screen.queryByText('Admin')).not.toBeInTheDocument();
+    expect(roleButton).toHaveTextContent('admin');
   });
 
-  test('renders the filter dropdown', () => {
-    const filterDropdown = screen.getAllByRole('combobox')[0];
-    expect(filterDropdown).toBeInTheDocument();
-    expect(filterDropdown).toHaveDisplayValue('Select range');
+  it('submits the form successfully', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <InviteForm onClose={() => {}} />
+      </MockedProvider>
+    );
+
+    const emailInput = screen.getByPlaceholderText('Email address');
+    const roleButton = screen.getByText('Role');
+    const submitButton = screen.getByText('Invite');
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.click(roleButton);
+    fireEvent.click(screen.getByText('Admin'));
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith('Invitation sent successfully!');
+    });
   });
 
-  test('renders the search section', () => {
-    expect(
-      screen.getByText('Search for Invitation Status'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText('Search by email or name of the invitee'),
-    ).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
+  it('handles invitation error', async () => {
+    const errorMock = {
+      ...mocks[0],
+      error: new Error('Invitation failed'),
+    };
+
+    render(
+      <MockedProvider mocks={[errorMock]} addTypename={false}>
+        <InviteForm onClose={() => {}} />
+      </MockedProvider>
+    );
+
+    const emailInput = screen.getByPlaceholderText('Email address');
+    const roleButton = screen.getByText('Role');
+    const submitButton = screen.getByText('Invite');
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.click(roleButton);
+    fireEvent.click(screen.getByText('Admin'));
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('Error sending invitation: Invitation failed');
+    });
+  });
+
+
+  it('displays loading state when submitting', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <InviteForm onClose={() => {}} />
+      </MockedProvider>
+    );
+
+    const emailInput = screen.getByPlaceholderText('Email address');
+    const roleButton = screen.getByText('Role');
+    const submitButton = screen.getByText('Invite');
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.click(roleButton);
+    fireEvent.click(screen.getByText('Admin'));
+    fireEvent.click(submitButton);
+
+    expect(submitButton).toBeDisabled();
+
+    await waitFor(() => {
+      expect(submitButton).not.toBeDisabled();
+    });
   });
 });
