@@ -201,7 +201,7 @@ function TraineePerfomance() {
   return (
     <>
       <RemarksModal showRemarks={toggle} closeModal={closeFeeds} rows={row} />
-      <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+      <div className="bg-light-bg dark:bg-dark-frame-bg pb-10 font-serif">
         <div className="">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
             <div className="">
@@ -280,9 +280,7 @@ function TraineePerfomance() {
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                {item.average % 1 === 0
-                                  ? item.average
-                                  : Number(item.average).toFixed(2)}
+                                {item.average % 1 === 0 ? item.average : Number(item.average).toFixed(2)}
                               </p>
                             </td>
 
@@ -316,9 +314,8 @@ function TraineePerfomance() {
               onClick={prevPage}
               data-testid="prev"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
+                }`}
             >
               &larr;
             </button>
@@ -326,23 +323,21 @@ function TraineePerfomance() {
               onClick={() => setPage(1)}
               data-testid="page1"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
+                }`}
             >
               1
             </button>
             {/* @ts-ignore */}
             {gaps.paginationGroup.map(
-              /* istanbul ignore next */ (el) => (
+              /* istanbul ignore next */(el) => (
                 <button
                   onClick={/* istanbul ignore next */ () => setPage(el)}
                   data-testid="page"
                   key={el}
                   type="button"
-                  className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                    page === el ? 'active' : ''
-                  }`}
+                  className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === el ? 'active' : ''
+                    }`}
                 >
                   {el}
                 </button>
@@ -352,9 +347,8 @@ function TraineePerfomance() {
               onClick={() => setPage(totalPages)}
               data-testid="page3"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
+                }`}
             >
               {totalPages}
             </button>
@@ -362,9 +356,8 @@ function TraineePerfomance() {
               onClick={nextPage}
               data-testid="next"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
+                }`}
             >
               &rarr;
             </button>

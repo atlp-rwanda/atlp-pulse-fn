@@ -8,7 +8,7 @@ const TraineeAttendanceDetails = () => {
   const { t } = useTranslation();
   return (
     <div>
-      <div className="bg-neutral-100 dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center">
+      <div className="bg-neutral-100 dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center font-serif">
         <table className="dark:bg-dark-bg shadow-lg py-8 rounded-md">
           <thead>
             <tr className="text-gray-300  bg-gray-100  dark:bg-dark-tertiary">

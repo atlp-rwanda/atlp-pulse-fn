@@ -28,13 +28,13 @@ function Notification({
   const notifications = user?.notifications;
   const { t } = useTranslation();
   /* istanbul ignore next */
- /* istanbul ignore next */
+  /* istanbul ignore next */
   function removeNotification(id: number): void {
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     setNotificationData(
       notifications.filter((notification: any) => notification.id !== id),
     );
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     delNotification({
       variables: {
         deleteNotificationsId: id,
@@ -42,26 +42,26 @@ function Notification({
     });
   }
   /* istanbul ignore next */
-// eslint-disable-next-line no-nested-ternary
- /* istanbul ignore next */
+  // eslint-disable-next-line no-nested-ternary
+  /* istanbul ignore next */
   function markRead(id: number): void {
     // eslint-disable-next-line no-nested-ternary
     setNotificationData(
-       /* istanbul ignore next */
+      /* istanbul ignore next */
       notifications.map((notification: any) => {
         // eslint-disable-next-line no-nested-ternary
-         /* istanbul ignore next */
+        /* istanbul ignore next */
         if (notification.id === id) {
           return {
             ...notification,
             read: true,
           };
         }
- /* istanbul ignore next */
+        /* istanbul ignore next */
         return notification;
       }),
     );
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     readNotification({
       variables: {
         markAsReadId: id,
@@ -71,18 +71,18 @@ function Notification({
 
   /* istanbul ignore next */
   function markAllRead(): void {
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     setNotificationData(
-       /* istanbul ignore next */
+      /* istanbul ignore next */
       notifications?.map((notification: any) => {
         // eslint-disable-next-line no-nested-ternary
-         /* istanbul ignore next */
+        /* istanbul ignore next */
         if (notification.read !== true) {
           // eslint-disable-next-line no-nested-ternary
-           /* istanbul ignore next */
+          /* istanbul ignore next */
           return { ...notification, read: true };
         }
- /* istanbul ignore next */
+        /* istanbul ignore next */
         return notification;
       }),
     );
@@ -90,7 +90,7 @@ function Notification({
   }
 
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4">
+    <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4 font-serif">
       <div
         className="bg-dark-45 w-full h-full absolute top-0 left-0 z-1"
         role="button"
@@ -112,7 +112,7 @@ function Notification({
             />
           </div>
           <div
-           /* istanbul ignore next */
+            /* istanbul ignore next */
             className="flex flex-col w-full overflow-auto"
             data-testid="notificationsContainer"
           >
@@ -122,16 +122,15 @@ function Notification({
                 key={notification.id}
               >
                 <div
-                  className={`flex flex-row justify-between align-center gap-x-[10px] ${
-                    notification.read === 'false'
+                  className={`flex flex-row justify-between align-center gap-x-[10px] ${notification.read === 'false'
                       ? 'bg-[#E5EAFF] font-bold dark:bg-dark-tertiary'
                       : 'border-border-dark dark:border-white dark:bg-dark-tertiary opacity-30 hover:bg-[#E5EAFF] hover:opacity-100 dark:hover:bg-dark-tertiary'
-                  }`}
+                    }`}
                 >
                   <img
                     src={
                       notification?.sender?.profile &&
-                      notification?.sender?.profile.avatar
+                        notification?.sender?.profile.avatar
                         ? notification?.sender?.profile.avatar
                         : Avatar
                     }
@@ -141,9 +140,9 @@ function Notification({
 
                   <div
                     className="flex flex-col w-full gap-[5px] cursor-pointer"
-                     /* istanbul ignore next */
+                    /* istanbul ignore next */
                     onClick={() => {
-                       /* istanbul ignore next */
+                      /* istanbul ignore next */
                       markRead(notification.id);
                       /* istanbul ignore next */
                       if (
@@ -155,13 +154,13 @@ function Notification({
                         )
                       ) {
                         const ticketId: string =
-                        // eslint-disable-next-line no-nested-ternary
-                         /* istanbul ignore next */
+                          // eslint-disable-next-line no-nested-ternary
+                          /* istanbul ignore next */
                           notification.message.split(' ')[
-                            // eslint-disable-next-line no-nested-ternary
-                            notification.message.split(' ').length - 1
+                          // eslint-disable-next-line no-nested-ternary
+                          notification.message.split(' ').length - 1
                           ];
-                           /* istanbul ignore next */
+                        /* istanbul ignore next */
                         handleShowNotification();
                         return navigate(`/tickets/${ticketId}`);
                       }
@@ -171,14 +170,14 @@ function Notification({
                       } else {
                         navigate('/ratings');
                       }
-                         /* istanbul ignore next */
+                      /* istanbul ignore next */
                       return handleShowNotification();
                     }}
                     data-testid={index === 0 && 'read'}
                   >
                     <p className="font-bold dark:text-white">
                       {notification?.sender?.profile &&
-                      notification?.sender?.profile.name
+                        notification?.sender?.profile.name
                         ? notification.sender.profile.name
                         : notification.sender.email}
                     </p>
@@ -192,18 +191,17 @@ function Notification({
 
                   <div className="flex flex-col items-center transition-all">
                     <div
-                      className={`h-[15px] w-[15px] rounded-full ${
-                        notification.read === 'false'
+                      className={`h-[15px] w-[15px] rounded-full ${notification.read === 'false'
                           ? 'bg-[#148FB6]'
                           : 'border-border-dark dark:border-white border-[1px]'
-                      }  mt-[7px] mb-[10px]`}
+                        }  mt-[7px] mb-[10px]`}
                     />
 
                     <XIcon
                       className="border-border-dark dark:fill-white h-[20px] w-[20px] cursor-pointer"
                       onClick={() => {
                         // eslint-disable-next-line no-nested-ternary
-                         /* istanbul ignore next */
+                        /* istanbul ignore next */
                         removeNotification(notification.id);
                       }}
                       data-testid={index === 0 && 'delete'}

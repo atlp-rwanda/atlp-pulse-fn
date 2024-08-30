@@ -51,7 +51,7 @@ function AdminDocs() {
     onCompleted: (data) => {
       setDocumentations(data.getDocumentations);
     },
-    onError: (error) => {},
+    onError: (error) => { },
   });
 
   // add documentation
@@ -384,9 +384,8 @@ function AdminDocs() {
   return (
     <>
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${
-          documentModel === true ? 'block' : 'hidden'
-        }`}
+        className={`font-serif h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center  px-4 ${documentModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -401,11 +400,11 @@ function AdminDocs() {
                 <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {isUpdate
                     ? t(
-                        'Enter the title and description of the document you want to update',
-                      )
+                      'Enter the title and description of the document you want to update',
+                    )
                     : t(
-                        'Enter the title and description of the document you want to add',
-                      )}
+                      'Enter the title and description of the document you want to add',
+                    )}
                 </h3>
               </div>
               <div className="my-3 text-white input h-9 ">

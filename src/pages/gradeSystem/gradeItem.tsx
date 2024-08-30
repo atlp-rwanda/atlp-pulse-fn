@@ -44,7 +44,7 @@ function GradeItem({
   };
 
   return (
-    <div className="box">
+    <div className="box font-serif">
       <div>
         <div className="flex flex-col gap-2 p-3 bg-gray-700 bg-opacity-5 dark:bg-neutral-700 dark:bg-opacity-25 rounded-md">
           <div className="flex flex-col gap-4 ">
@@ -59,9 +59,8 @@ function GradeItem({
             />
             {percentageRequired && (
               <div
-                className={`flex justify-between gap-3 items-center flex-wrap ${
-                  percentageRequired && css.firstHeight
-                }`}
+                className={`flex justify-between gap-3 items-center flex-wrap ${percentageRequired && css.firstHeight
+                  }`}
               >
                 <p className="text-center" style={{ flex: 1 }}>
                   {t('Percentage')}

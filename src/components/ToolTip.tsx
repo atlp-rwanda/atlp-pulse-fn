@@ -10,7 +10,7 @@ function Tooltip({
 }) {
   const { t } = useTranslation();
   return (
-    <div className="relative flex flex-col items-center group">
+    <div className="relative flex flex-col items-center group font-serif">
       {children}
       <div className="absolute bottom-0 hidden flex-col items-center mb-6 group-hover:flex">
         <span className="relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-gray-600 shadow-lg rounded-md">

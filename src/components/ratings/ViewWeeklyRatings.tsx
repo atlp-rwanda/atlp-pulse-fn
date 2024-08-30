@@ -145,7 +145,7 @@ function ViewSprintRatings({
   };
   return (
     <Dialog open={openModel} onClose={onClose}>
-      <div className="flex flex-col border-black w-full bg-[#E0E7FF] dark:bg-[#4B4B4B] px-8">
+      <div className="flex flex-col border-black w-full bg-[#E0E7FF] dark:bg-[#4B4B4B] px-8 font-serif">
         <div className=" relative py-8 ">
           <h3 className="w-11/12 text-[16px] font-bold text-center dark:text-white">
             {t('Trainee')} : {traineeName}
@@ -316,11 +316,10 @@ function ViewSprintRatings({
         {traineeStatus.status === 'active' ? (
           <div>
             <div
-              className={` ${
-                updateMessage || successMessage
-                  ? 'flex justify-between'
-                  : 'flex justify-end'
-              } py-4`}
+              className={` ${updateMessage || successMessage
+                ? 'flex justify-between'
+                : 'flex justify-end'
+                } py-4`}
             >
               {updateMessage || successMessage ? (
                 <p className="text-green-500 text-[20px]">

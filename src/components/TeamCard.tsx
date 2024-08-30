@@ -46,7 +46,7 @@ function Card({
   return (
     <div>
       <div
-        className={`${stylebg}   font-lexend w-[350px] h-[300px]   md:w-[500px] md:h-[300px]  rounded-md px-3 md:p-10 mr-11 py-7 
+        className={`${stylebg}  font-serif font-lexend w-[350px] h-[300px]   md:w-[500px] md:h-[300px]  rounded-md px-3 md:p-10 mr-11 py-7 
       `}
       >
         <div className="flex justify-between  py-1">

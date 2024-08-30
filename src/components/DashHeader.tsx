@@ -117,8 +117,8 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="w-screen py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header">
-        <div className="px-3 flex items-center w-full ">
+      <div className="font-serif w-screen py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header">
+        <div className="px-3 flex items-center w-full font-serif">
           <div className="flex px-5 lg:hidden">
             <div
               onClick={toggleNav}
@@ -198,11 +198,11 @@ function DashHeader() {
                 // eslint-disable-next-line no-nested-ternary
                 user?.profileImage
                   ? // eslint-disable-next-line no-nested-ternary
-                    user?.profileImage
+                  user?.profileImage
                   : profileData?.getProfile?.avatar
-                  ? // eslint-disable-next-line no-nested-ternary
+                    ? // eslint-disable-next-line no-nested-ternary
                     profileData?.getProfile?.avatar
-                  : Avatar
+                    : Avatar
               }
               alt="avatar"
             />

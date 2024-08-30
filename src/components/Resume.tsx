@@ -39,7 +39,7 @@ function UploadForm({
   loading,
 }: UploadFormProps) {
   return (
-    <form action="">
+    <form action="" className='font-serif'>
       {uploadType === 0 && (
         <div>
           <h2 className="pt-5 pb-5 mb-4 text-2xl font-bold">

@@ -159,13 +159,13 @@ function ManagerCard() {
         drop: 0,
       };
     });
-    
+
   return (
     <div
-    className="px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto "
-  >
-    {loading ? (
-      <div className="flex items-center justify-center w-full h-full">
+      className="font-serif px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto "
+    >
+      {loading ? (
+        <div className="flex items-center justify-center w-full h-full">
           <div className="spinner" />
         </div>
       ) : (

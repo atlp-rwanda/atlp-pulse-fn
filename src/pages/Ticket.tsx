@@ -91,7 +91,7 @@ function Ticket() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-white dark:bg-dark-frame-bg p-4 sm:w-full md:w-[90%] lg:w-full xl:w-[100%] mx-3 overflow-x-hidden">
+    <div className="font-serif flex flex-col items-center justify-center bg-white dark:bg-dark-frame-bg p-4 sm:w-full md:w-[90%] lg:w-full xl:w-[100%] mx-3 overflow-x-hidden">
       <div className="flex flex-col items-center bg-[#e0e7ff] dark:bg-dark-bg py-8 px-8 overflow-hidden shadow-xl sm:w-[90%] md:w-[60%] lg:w-[40%] mt-20  lg:mb-10 rounded">
         {!ticket ? null : (
           <>
@@ -110,15 +110,13 @@ function Ticket() {
                 {replies?.map((reply: any) => (
                   <div
                     key={reply.id}
-                    className={`${
-                      user.userId !== reply.sender.id
-                    } w-full md:w-[70%] lg:w-[100%] xl:w-[50%]`}
+                    className={`${user.userId !== reply.sender.id
+                      } w-full md:w-[70%] lg:w-[100%] xl:w-[50%]`}
                   >
                     <div className="flex flex-col gap-2">
                       <div
-                        className={`flex items-center gap-2 ${
-                          user.userId !== reply.sender.id
-                        }`}
+                        className={`flex items-center gap-2 ${user.userId !== reply.sender.id
+                          }`}
                       >
                         <div className="reply__user-photo">
                           <img

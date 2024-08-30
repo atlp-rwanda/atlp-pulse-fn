@@ -66,7 +66,7 @@ export default function OrgRegister() {
         OrgRegisterSuccessModel={orgRegisterSuccessModel}
         orgName={orgName}
       />
-      <div className="grow  dark:bg-dark-frame-bg bg-indigo-50 flex flex-row font-sans">
+      <div className="grow  dark:bg-dark-frame-bg bg-indigo-50 flex flex-row font-serif">
         <div className="hidden lg:flex w-[50%] h-full  flex-col justify-center items-center mt-10 ">
           <div className=" flex flex-col justify-center items-center ">
             <div className="relative flex flex-row justify-center">

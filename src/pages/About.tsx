@@ -69,13 +69,12 @@ function Testimonial() {
 
   return (
     <>
-      <div className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative ">
+      <div className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative font-serif">
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className={`bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-2xl sm:mx-3 rounded-t-3xl ${
-              currentIndex === index ? 'visible' : 'hidden'
-            }`}
+            className={`bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl ${currentIndex === index ? 'visible' : 'hidden'
+              }`}
           >
             <div className="flex flex-col sm:flex-row  mb-6 items-center">
               <img
@@ -116,7 +115,7 @@ function Testimonial() {
         </span>
       </div>
 
-      <div className="hidden md:flex md:flex-row flex-col  lg:mx-0 md:mx-0 my-20 gap-10 md:flex-wrap lg:flex-nowrap ">
+      <div className="hidden md:flex md:flex-row flex-col  lg:mx-0 md:mx-0 my-20 gap-10 md:flex-wrap lg:flex-nowrap font-serif">
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
@@ -179,7 +178,7 @@ function About({ styles }: any) {
   ];
 
   return (
-    <div className=" bg-white   mt-auto dark:bg-dark-frame-bg">
+    <div className=" bg-white   mt-auto dark:bg-dark-frame-bg font-serif">
       <div className=" justify-between w-full h-full pb-5">
         <div>
           <h1 className="text-center text-neutral-700 mb-5 font lg:text-4xl md:text-2xl pt-10 pb-4  dark:text-slate-100">
@@ -226,4 +225,4 @@ function About({ styles }: any) {
     </div>
   );
 }
-export { About}
+export { About }

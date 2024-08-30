@@ -36,7 +36,7 @@ const TraineeChart: React.FC<TraineeChartProps> = ({ barChartData }) => {
     .sort((a, b) => a.name - b.name);
 
   return (
-    <div className="Trainee-chart">
+    <div className="Trainee-chart font-serif">
       <LineChart width={1000} height={220} data={chartData}>
         <CartesianGrid stroke="#ccc" />
         <XAxis

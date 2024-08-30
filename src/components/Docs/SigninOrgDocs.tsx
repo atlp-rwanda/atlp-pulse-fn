@@ -8,7 +8,7 @@ function SigninOrgDocs() {
     <div>
       <DocsMain
         content={
-          <div className="flex items-start box-border">
+          <div className="flex items-start box-border font-serif">
             <div className="w-full">
               <div className=" w-full sm:px-10 mb-10 text-gray-600  dark:text-slate-300 text-lg ml-0 pt-4">
                 <h2 className="mb-4 mt-4 text-4xl font-[800] text-primary">
@@ -36,14 +36,14 @@ function SigninOrgDocs() {
                 </p>
                 <ol className="list-decimal ml-6">
                   <li className="mb-2">
-                   <b className=" text-black dark:text-white"> Locate the Sign In Button:</b> Once you are on the homepage,
+                    <b className=" text-black dark:text-white"> Locate the Sign In Button:</b> Once you are on the homepage,
                     look for the Sign In button in the navigation bar.
                   </li>
                   <li className="mb-2">
-                   <b className="text-black dark:text-white"> Choose the Organization:</b> After clicking the Sign In button,
+                    <b className="text-black dark:text-white"> Choose the Organization:</b> After clicking the Sign In button,
                     you will be prompted to either <span className="text-primary">select an organization from
-                    the available options or type in the name of the
-                    organization you belong to</span>.
+                      the available options or type in the name of the
+                      organization you belong to</span>.
                   </li>
                   <li className="mb-2">
                     <b className="text-black dark:text-white">Verification:</b> If the organization you selected or typed in
@@ -52,17 +52,17 @@ function SigninOrgDocs() {
                   </li>
                   <li className="mb-2">
                     <b className="text-black dark:text-white">Provide Valid Credentials:</b> On the user login page, you must
-                   <span className="text-primary"> enter correct credentials</span>. These credentials include
+                    <span className="text-primary"> enter correct credentials</span>. These credentials include
                     your registered email and password of an existing user
                     within the organization.
                   </li>
                   <li className="mb-2">
-                   <b className="text-black dark:text-white"> Access Granted:</b> If your provided credentials match those of
+                    <b className="text-black dark:text-white"> Access Granted:</b> If your provided credentials match those of
                     an existing user in the organization, you will be granted
                     access to proceed further into the organization's account.
                   </li>
                   <li className="mb-2">
-                   <b className="text-black dark:text-white"> Access Denied:</b> If the organization you selected is not
+                    <b className="text-black dark:text-white"> Access Denied:</b> If the organization you selected is not
                     registered or the credentials you provided are incorrect,
                     access will be denied, and you will not be able to proceed.
                   </li>

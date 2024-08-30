@@ -11,7 +11,7 @@ const CustomSpinner: React.FC<CustomSpinnerProps> = ({ size }) => {
 
   return (
     <div
-      className={`loader ease-linear rounded-full border-8 ${spinnerSize} border-t-8 border-gray-200`}
+      className={`font-serif loader ease-linear rounded-full border-8 ${spinnerSize} border-t-8 border-gray-200`}
     />
   );
 };

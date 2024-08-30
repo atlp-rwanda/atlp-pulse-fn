@@ -38,7 +38,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   return (
     <div
       className={`${showNav ? 'block' : 'hidden'
-        } lg:block page-sideNav fixed lg:static top-16 bottom-0`}
+        } lg:block page-sideNav fixed lg:static top-16 bottom-0 font-serif`}
     >
       <div
         className={`${style} overflow-auto flex-col h-[100%] pt-2 bg-indigo-100 dark:bg-dark-bg shadow-lg lg:shadow-none dark:shadow-border-dark`}

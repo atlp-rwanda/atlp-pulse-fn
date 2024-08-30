@@ -99,7 +99,7 @@ function UpdatedRatingDashboard() {
         // ? row.orgininal.oldFeedback:'';
         return (
           /* istanbul ignore next */
-          <div className="flex relative flex-row align-middle  justify-center items-center">
+          <div className="flex relative flex-row align-middle  justify-center items-center font-serif">
             <div
               data-testid="feedbackIcon"
               onClick={() => {
@@ -138,7 +138,7 @@ function UpdatedRatingDashboard() {
       // eslint-disable-next-line react/no-unstable-nested-components
       Cell: ({ row }: any) => (
         /* istanbul ignore next */
-        <div className="flex relative flex-row align-middle  justify-center items-center">
+        <div className="flex relative flex-row align-middle  justify-center items-center font-serif">
           <div
             data-testid="updateIcon"
             onClick={() => {
@@ -255,23 +255,22 @@ function UpdatedRatingDashboard() {
     <>
       {/*= ===========================Start:: ViewFeedback ================================= */}
       <div
-        className={`min-h-full w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-30 bg-black bg-opacity-30 backdrop-blur-sm ${
-          viewFeedback ? 'block' : 'hidden'
-        }`}
+        className={`font-serif min-h-full w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-30 bg-black bg-opacity-30 backdrop-blur-sm ${viewFeedback ? 'block' : 'hidden'
+          }`}
         onClick={() => handleCloseModal()}
       >
         {rows.feedbackContent === rows.oldFeedback.toString() ? (
-          <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8 grid place-items-center">
+          <div className="font-serif bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8 grid place-items-center">
             {t('No Updated Feedback')}
           </div>
         ) : (
           <div
-            className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8"
+            className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8 font-serif"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="card-title w-full flex flex-wrap justify-center items-center">
+            <div className="font-serif card-title w-full flex flex-wrap justify-center items-center">
               <button
-                className="ml-auto"
+                className="ml-auto font-serif"
                 aria-label='close-modal'
                 type="submit"
                 onClick={() => handleCloseModal()}
@@ -298,9 +297,8 @@ function UpdatedRatingDashboard() {
 
       {/* =========================== Start::  approveModel =============================== */}
       <div
-        className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 ${
-          approveModel ? 'block' : 'hidden'
-        }`}
+        className={`font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 ${approveModel ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -310,7 +308,7 @@ function UpdatedRatingDashboard() {
             <hr className=" bg-primary border-b my-3 w-full" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
+            <form className=" py-3 px-8 font-serif">
               <div>
                 <h2 className="text-base dark:text-white m-4">
                   {t('Are you sure you want to approve this updated ratings ?')}{' '}
@@ -351,9 +349,8 @@ function UpdatedRatingDashboard() {
 
       {/* =========================== Start::  rejectModel =============================== */}
       <div
-        className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
-          rejectModel === true ? 'block' : 'hidden'
-        }`}
+        className={` font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${rejectModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -363,7 +360,7 @@ function UpdatedRatingDashboard() {
             <hr className=" bg-primary border-b my-3 w-full" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
+            <form className=" py-3 px-8 font-serif">
               <div>
                 <h2 className="text-base dark:text-white m-4">
                   {t('Are you sure you want to reject this updated ratings')} ?
@@ -374,7 +371,7 @@ function UpdatedRatingDashboard() {
                   data-testid="removeRejectModel"
                   variant="info"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[30%] md:w-1/4 text-sm font-serif"
                   onClick={() => removeRejectModel()}
                 >
                   {t('Cancel')}
@@ -383,7 +380,7 @@ function UpdatedRatingDashboard() {
                   variant="danger"
                   size="sm"
                   /* istanbul ignore next */
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[30%] md:w-1/4 text-sm font-serif"
                   /* istanbul ignore next */
                   onClick={() => rejectRating()}
                 >
@@ -396,7 +393,7 @@ function UpdatedRatingDashboard() {
       </div>
       {/* =========================== End::  rejectModel =============================== */}
 
-      <div className="flex flex-col bg-light-bg">
+      <div className="flex flex-col bg-light-bg font-serif">
         <div className="flex flex-row">
           <div className="w-full">
             <div>

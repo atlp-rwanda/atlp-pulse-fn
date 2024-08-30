@@ -26,7 +26,7 @@ function ProfileDropdown({
   const { t } = useTranslation();
 
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 z-50 px-4">
+    <div className="font-serif w-screen h-screen fixed top-0 left-0 z-50 px-4">
       <div
         className="bg-dark-20 w-full h-full absolute top-0 left-0 z-1"
         role="button"

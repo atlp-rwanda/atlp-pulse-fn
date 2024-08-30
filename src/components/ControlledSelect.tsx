@@ -47,7 +47,7 @@ function CustomSelect({
   return (
     <Select
       value={defaultValue || value}
-      className="my-react-select-container"
+      className="my-react-select-container font-serif"
       classNamePrefix="my-react-select"
       styles={customStyles}
       onChange={onChange}

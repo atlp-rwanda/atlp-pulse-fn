@@ -39,13 +39,12 @@ function Comment({ remark }: CommentProps) {
       {isModalOpen && <div className="blur-background" />}
       <dialog
         ref={dialog}
-        className={`rounded-lg shadow-lg w-[40%] ${
-          isModalOpen ? 'modal-open' : ''
-        }`}
+        className={`rounded-lg shadow-lg w-[40%] ${isModalOpen ? 'modal-open' : ''
+          }`}
         dat-testid="dialog"
         onClick={(e) => close(e)}
       >
-        <div className="p-3 rounded trainee-model bg-indigo-100 w-[100%] h-[150px]">
+        <div className="p-3 rounded trainee-model bg-indigo-100 w-[100%] h-[150px] font-serif">
           {remark ? (
             <div className="comment-content">
               <p className="font-bold my-2 text-lg">From Coordinator:</p>

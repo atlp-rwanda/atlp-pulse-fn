@@ -18,7 +18,7 @@ function DataPagination({
 }: any) {
   /* istanbul ignore next */
   return (
-    <div>
+    <div className='font-serif'>
       {pageOptions.length >= 0 && (
         <table className="w-full mt-2">
           <tfoot className="w-full py-2">

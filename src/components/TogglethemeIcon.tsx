@@ -18,7 +18,7 @@ function ToggleThemeButton({ className = '' }: props) {
     <button
       type="button"
       id="theme-switch"
-      className="min-w-fit px-4 cursor-pointer "
+      className="min-w-fit px-4 cursor-pointer font-serif"
       onClick={() => handleTheme()}
     >
       {colorTheme === 'dark' ? (

@@ -10,7 +10,7 @@ function TraineeComments() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-1 rounded-md w-[90%] mx-auto lg:w-[70%] lg:ml-60 mb-10 mt-80"></div>
+    <div className="font-serif bg-white dark:bg-dark-bg shadow-lg px-5 py-1 rounded-md w-[90%] mx-auto lg:w-[70%] lg:ml-60 mb-10 mt-80"></div>
   );
 }
 

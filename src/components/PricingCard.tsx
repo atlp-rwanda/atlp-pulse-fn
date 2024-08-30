@@ -9,7 +9,7 @@ export default function PricingCard(props: any) {
   /* istanbul ignore next */
   const { t } = useTranslation();
   return (
-    <div className="border-2 w-60 md:w-80 rounded-lg m-10">
+    <div className="border-2 w-60 md:w-80 rounded-lg m-10 font-serif">
       <div className="flex flex-col justify-center items-center m-6">
         <h2 className="text-light-text dark:text-dark-text-fill text-2xl font-bold m-4">
           {props.plan}

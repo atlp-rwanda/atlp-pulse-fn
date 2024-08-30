@@ -30,7 +30,7 @@ function AllTickets() {
   }
 
   return (
-    <div className="flex flex-col grow items-center bg-white dark:bg-dark-frame-bg">
+    <div className="flex flex-col grow items-center bg-white dark:bg-dark-frame-bg font-serif">
       <div className="flex flex-col items-center gap-4 sm:w-full md:w-[70%] lg:w-[60%] mt-5 lg:mb-10 pt-12 overflow-x-hidden">
         <h2 className="text-4xl font-bold dark:text:white mb-3">
           {t('Tickets')}
