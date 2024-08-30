@@ -98,7 +98,7 @@ exports[`App test  Should render app 1`] = `
             >
               <a
                 className=""
-                href="/docs/org-signin"
+                href="/docs/getting-started"
                 onClick={[Function]}
               >
                 Docs

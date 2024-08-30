@@ -124,6 +124,8 @@
   margin-top: -1px;
   position: relative;
   width: fit-content;
+  padding-top: 3.5px;
+  padding-bottom: 2.5px;
 }
 
 .frame .div_7 {
@@ -210,6 +212,7 @@
   padding: 0.6rem 0.8rem;
   position: relative;
   width: fit-content;
+  margin-top:-2px
 }
 
 .center_msg {
