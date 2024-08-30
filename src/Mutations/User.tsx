@@ -79,7 +79,7 @@ export const GET_TTL_TRAINEES = gql`
       role
       team {
         name
-        cohort{
+        cohort {
           name
         }
       }

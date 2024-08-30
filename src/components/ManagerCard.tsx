@@ -161,9 +161,7 @@ function ManagerCard() {
     });
 
   return (
-    <div
-      className="font-serif px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto "
-    >
+    <div className="font-serif px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto ">
       {loading ? (
         <div className="flex items-center justify-center w-full h-full">
           <div className="spinner" />
@@ -172,7 +170,7 @@ function ManagerCard() {
         <div className="pl-10 flex">
           {teamData &&
             teamData.map((teamProps: any, index: number) => (
-              <Link key={index} to={`/team/${(teamProps.teamname)}`}>
+              <Link key={index} to={`/team/${teamProps.teamname}`}>
                 <Card {...teamProps} />
               </Link>
             ))}

@@ -59,8 +59,9 @@ function GradeItem({
             />
             {percentageRequired && (
               <div
-                className={`flex justify-between gap-3 items-center flex-wrap ${percentageRequired && css.firstHeight
-                  }`}
+                className={`flex justify-between gap-3 items-center flex-wrap ${
+                  percentageRequired && css.firstHeight
+                }`}
               >
                 <p className="text-center" style={{ flex: 1 }}>
                   {t('Percentage')}

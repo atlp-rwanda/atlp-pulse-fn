@@ -202,8 +202,8 @@ function DashHeader() {
                 user?.profileImage
                   ? user?.profileImage
                   : profileData?.getProfile?.avatar
-                    ? profileData?.getProfile?.avatar
-                    : Avatar
+                  ? profileData?.getProfile?.avatar
+                  : Avatar
               }
               alt="avatar"
             />

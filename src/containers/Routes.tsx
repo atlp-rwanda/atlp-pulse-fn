@@ -32,7 +32,7 @@ const SignupOrgDocs = React.lazy(
 const SigninOrgDocs = React.lazy(
   () => import('../components/Docs/SigninOrgDocs'),
 );
-const UsersDocs = React.lazy( () => import ('../components/Docs/users'),)
+const UsersDocs = React.lazy(() => import('../components/Docs/users'));
 /* istanbul ignore next */
 import Noredirect from '../pages/Noredirect';
 import ProtectedRoutes from '../ProtectedRoute';
@@ -44,7 +44,7 @@ function MainRoutes() {
     <div className="min-h-screen page-layout">
       <Suspense fallback={<Skeleton />}>
         <Routes>
-          <Route path="/*" element={<DashRoutes />} />     
+          <Route path="/*" element={<DashRoutes />} />
           <Route
             path="/"
             element={
@@ -91,7 +91,7 @@ function MainRoutes() {
             />
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
             <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
-            <Route path='/docs/getting-started' element={< UsersDocs />} />
+            <Route path="/docs/getting-started" element={<UsersDocs />} />
             <Route path="/noredirect" element={<Noredirect />} />
           </Route>
           <Route path="*" element={<Error />} />

@@ -23,6 +23,8 @@ describe('InvitationModal', () => {
   it('applies the correct styles to the modal wrapper', () => {
     render(<InvitationModal isOpen={true} onClose={() => {}} />);
     const modalWrapper = screen.getByTestId('invite-form').parentElement;
-    expect(modalWrapper).toHaveClass('fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50');
+    expect(modalWrapper).toHaveClass(
+      'fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50',
+    );
   });
 });

@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import '../../../test/jest/__mocks__/matchMedia';
 import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
 import UpdatedRatingDashboard from '../../pages/UpdatedRatingDashboard';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
 describe('<UpdatedRatingDashboard />', () => {
   it('Renders updatedRating', () => {
@@ -56,21 +56,21 @@ describe('<UpdatedRatingDashboard />', () => {
         <ApolloProvider>
           <UpdatedRatingDashboard />
         </ApolloProvider>
-      </MemoryRouter>
-    )
+      </MemoryRouter>,
+    );
 
     const route = getByTestId('removeApproveModel');
     expect(route).toBeInTheDocument();
-  })
+  });
   it('should render the remove reject modal', async () => {
     const { getByTestId } = render(
       <MemoryRouter>
         <ApolloProvider>
           <UpdatedRatingDashboard />
         </ApolloProvider>
-      </MemoryRouter>
-    )
+      </MemoryRouter>,
+    );
 
     expect(getByTestId('removeRejectModel')).toBeInTheDocument();
-  })
+  });
 });

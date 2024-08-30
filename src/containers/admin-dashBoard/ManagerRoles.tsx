@@ -151,13 +151,12 @@ const AdminSission = () => {
       }, 1000);
     },
   });
-/* istanbul ignore next */
+  /* istanbul ignore next */
   const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {
     variables: {
       orgToken: localStorage.getItem('orgToken'),
     },
   });
-
 
   useEffect(() => {
     fetchData2({

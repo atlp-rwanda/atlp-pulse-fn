@@ -3,10 +3,12 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import '@testing-library/jest-dom';
 import AdminSission from '../Sessions';
-import { GET_SESSIONS,
-     CREATE_SESSION,
-      DELETE_SESSION,
-       EDIT_SESSION } from '../../../Mutations/session';
+import {
+  GET_SESSIONS,
+  CREATE_SESSION,
+  DELETE_SESSION,
+  EDIT_SESSION,
+} from '../../../Mutations/session';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -19,7 +21,9 @@ jest.mock('../../../components/DataTable', () => {
           <div key={item.id}>
             {columns.map((column: any) => (
               <span key={column.accessor}>
-                {column.Cell ? column.Cell({ row: { original: item } }) : item[column.accessor]}
+                {column.Cell
+                  ? column.Cell({ row: { original: item } })
+                  : item[column.accessor]}
               </span>
             ))}
           </div>
@@ -120,12 +124,11 @@ const mocks = [
 ];
 
 describe('AdminSission Component', () => {
-
   it('displays session data in the table', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -141,7 +144,7 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -155,7 +158,7 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -170,7 +173,7 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {

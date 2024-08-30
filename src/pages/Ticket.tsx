@@ -110,13 +110,15 @@ function Ticket() {
                 {replies?.map((reply: any) => (
                   <div
                     key={reply.id}
-                    className={`${user.userId !== reply.sender.id
-                      } w-full md:w-[70%] lg:w-[100%] xl:w-[50%]`}
+                    className={`${
+                      user.userId !== reply.sender.id
+                    } w-full md:w-[70%] lg:w-[100%] xl:w-[50%]`}
                   >
                     <div className="flex flex-col gap-2">
                       <div
-                        className={`flex items-center gap-2 ${user.userId !== reply.sender.id
-                          }`}
+                        className={`flex items-center gap-2 ${
+                          user.userId !== reply.sender.id
+                        }`}
                       >
                         <div className="reply__user-photo">
                           <img

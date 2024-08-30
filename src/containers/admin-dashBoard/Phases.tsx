@@ -166,7 +166,7 @@ function AdminPhases() {
             <Button
               variant="primary"
               size="lg"
-              style='m-0'
+              style="m-0"
               onClick={removeModel}
               data-testid="removeModel"
             >
@@ -176,12 +176,12 @@ function AdminPhases() {
           </div>
         </div>
         <div className="">
-            <DataTable
-              data={phaseListData as any [] ?? []}
-              columns={phaseListColumns}
-              title="Phase list"
-              loading={getLoading}
-            />
+          <DataTable
+            data={(phaseListData as any[]) ?? []}
+            columns={phaseListColumns}
+            title="Phase list"
+            loading={getLoading}
+          />
         </div>
       </div>
     </>

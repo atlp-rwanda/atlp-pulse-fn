@@ -1,5 +1,4 @@
 // no-use-before-define
-/* istanbul ignore next */
 import React, { useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';

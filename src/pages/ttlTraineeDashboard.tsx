@@ -163,8 +163,8 @@ const TtlTraineeDashboard = () => {
                     }}
                     src={
                       traineeData &&
-                        traineeDetails.profile &&
-                        traineeDetails.profile.avatar
+                      traineeDetails.profile &&
+                      traineeDetails.profile.avatar
                         ? traineeDetails.profile.avatar
                         : Avatar
                     }
@@ -277,7 +277,7 @@ const TtlTraineeDashboard = () => {
                     <div
                       className={
                         traineeDetails?.profile &&
-                          traineeDetails?.profile?.githubUsername
+                        traineeDetails?.profile?.githubUsername
                           ? 'flex'
                           : 'hidden '
                       }
@@ -290,7 +290,7 @@ const TtlTraineeDashboard = () => {
                       <div className="flex flex-col">
                         <div>
                           {traineeDetails?.profile &&
-                            traineeDetails?.profile?.githubUsername ? (
+                          traineeDetails?.profile?.githubUsername ? (
                             <GitHubActivityChart data={gitHubStatistics} />
                           ) : (
                             <></>

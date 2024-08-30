@@ -102,7 +102,7 @@ function EditProfile() {
       /* istanbul ignore next */
       toast.success('Profile has been updated');
       navigate('/profile');
-    } catch (error) { }
+    } catch (error) {}
   };
 
   return (
@@ -120,8 +120,9 @@ function EditProfile() {
               className="flex-auto mr-2 -mb-px text-center last:mr-0"
             >
               <span
-                className={`block px-5 py-3 text-xs font-bold leading-normal uppercase border-b-4 rounded shadow-sm  ${tab === 0 && 'border-b-primary'
-                  }  `}
+                className={`block px-5 py-3 text-xs font-bold leading-normal uppercase border-b-4 rounded shadow-sm  ${
+                  tab === 0 && 'border-b-primary'
+                }  `}
               >
                 {t('Editing Profile')}
               </span>
@@ -133,8 +134,9 @@ function EditProfile() {
               className="flex-auto mr-2 -mb-px text-center last:mr-0"
             >
               <span
-                className={`block px-5 py-3 text-xs font-bold leading-normal uppercase border-b-4 rounded shadow-sm  ${tab === 1 && 'border-b-primary'
-                  }  `}
+                className={`block px-5 py-3 text-xs font-bold leading-normal uppercase border-b-4 rounded shadow-sm  ${
+                  tab === 1 && 'border-b-primary'
+                }  `}
               >
                 {t('Upload Resume')}
               </span>

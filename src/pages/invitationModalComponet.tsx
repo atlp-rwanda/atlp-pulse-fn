@@ -1,7 +1,7 @@
 // src/components/InvitationModal.tsx
 import React, { useState } from 'react';
-import { IoIosCloseCircleOutline } from "react-icons/io";
-import InviteForm from '../components/invitationModal'
+import { IoIosCloseCircleOutline } from 'react-icons/io';
+import InviteForm from '../components/invitationModal';
 
 interface InvitationModalProps {
   isOpen: boolean;
@@ -13,10 +13,9 @@ function InvitationModal({ isOpen, onClose }: InvitationModalProps) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50">
-        
-        <InviteForm onClose={onClose} />
+      <InviteForm onClose={onClose} />
     </div>
   );
-};
+}
 
 export default InvitationModal;

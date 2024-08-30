@@ -352,7 +352,7 @@ function AdminCohort() {
             </Button>
           </div>
         </div>
-        <div >
+        <div>
           {!getLoading && (
             <DataTable
               columns={cohortColumns}

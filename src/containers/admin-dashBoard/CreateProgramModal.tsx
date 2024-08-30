@@ -57,9 +57,9 @@ export default function CreateProgramModal({
     /* istanbul ignore next */
     onCompleted() {
       refetch();
-      setTimeout( () => {
+      setTimeout(() => {
         removeModel();
-      }, 1000) 
+      }, 1000);
     },
   });
   /* istanbul ignore next */
@@ -85,11 +85,11 @@ export default function CreateProgramModal({
       onCompleted() {
         reset();
         refetch();
-          setTimeout(() => {
-            removeModel();
-          }, 1000);
-          toast.success(t('Program Created successfully') as TFunction);
-        },
+        setTimeout(() => {
+          removeModel();
+        }, 1000);
+        toast.success(t('Program Created successfully') as TFunction);
+      },
     });
   }
 

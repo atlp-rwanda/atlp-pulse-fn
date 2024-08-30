@@ -87,7 +87,7 @@ export default function ProfileCoverpage({
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const uploadCover = async (files: any) => {
@@ -119,7 +119,7 @@ export default function ProfileCoverpage({
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {

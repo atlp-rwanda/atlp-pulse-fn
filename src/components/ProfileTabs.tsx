@@ -106,7 +106,7 @@ export function EditPassword() {
               size="md"
               style="group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
               /* istanbul ignore next */
-              onClick={() => { }}
+              onClick={() => {}}
               data-testid="change_password"
             >
               {t('Change Password')}
@@ -162,7 +162,7 @@ export default function ProfileTabs({ data: profileData }: any) {
   const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     variables: {
       organisation: localStorage.getItem('orgName')?.split('.')[0],
-      username: profileData.githubUsername
+      username: profileData.githubUsername,
     },
   });
 
@@ -359,10 +359,11 @@ export default function ProfileTabs({ data: profileData }: any) {
                   className="flex-auto mr-2 -mb-px text-center last:mr-0"
                 >
                   <a
-                    className={`text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal ${openTab === `${tab}`
-                      ? 'bg-white dark:bg-dark-bg border-b-4 border-b-primary '
-                      : ''
-                      }`}
+                    className={`text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal ${
+                      openTab === `${tab}`
+                        ? 'bg-white dark:bg-dark-bg border-b-4 border-b-primary '
+                        : ''
+                    }`}
                     /* istanbul ignore next */
                     onClick={(e) => {
                       /* istanbul ignore next */
@@ -543,12 +544,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                   </div>
                 )}
                 <div
-                  className={`text-sm font-sans ${profileData.role != 'test'
-                    ? user?.role === 'trainee'
-                      ? ''
-                      : 'hidden'
-                    : ''
-                    }`}
+                  className={`text-sm font-sans ${
+                    profileData.role != 'test'
+                      ? user?.role === 'trainee'
+                        ? ''
+                        : 'hidden'
+                      : ''
+                  }`}
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -559,12 +561,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                 >
                   {isLoaded ? (
                     <div
-                      className={`flex justify-center items-center h-48 ${profileData.role != 'test'
-                        ? user?.role === 'trainee'
-                          ? ''
-                          : 'hidden'
-                        : ''
-                        }`}
+                      className={`flex justify-center items-center h-48 ${
+                        profileData.role != 'test'
+                          ? user?.role === 'trainee'
+                            ? ''
+                            : 'hidden'
+                          : ''
+                      }`}
                     >
                       <i>Loading gitHub statistics...</i>
 
@@ -573,12 +576,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                     </div>
                   ) : (
                     <div
-                      className={`w-1/2 flex justify-between ${profileData.role != 'test'
-                        ? user?.role === 'trainee'
-                          ? ''
-                          : 'hidden'
-                        : ''
-                        }`}
+                      className={`w-1/2 flex justify-between ${
+                        profileData.role != 'test'
+                          ? user?.role === 'trainee'
+                            ? ''
+                            : 'hidden'
+                          : ''
+                      }`}
                     >
                       <div className="flex flex-col">
                         <i className="text-2xl ">
@@ -598,12 +602,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                   )}
                 </div>
                 <div
-                  className={`grid md:grid-cols-5 gap-4 md:gap-6 ${profileData.test != 'test'
-                    ? user?.role !== 'admin'
-                      ? 'hidden'
+                  className={`grid md:grid-cols-5 gap-4 md:gap-6 ${
+                    profileData.test != 'test'
+                      ? user?.role !== 'admin'
+                        ? 'hidden'
+                        : ''
                       : ''
-                    : ''
-                    }`}
+                  }`}
                 >
                   <div className="flex flex-col items-start justify-start p-2 bg-white shadow md:col-span-2 dark:bg-dark-bg ">
                     <h3 className="m-2 mb-4 text-2xl font-bold">
@@ -753,8 +758,9 @@ Add New </button> */}
       </>{' '}
       {/* =========================== Start:: RemoveTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${removeRepoModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${
+          removeRepoModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -802,8 +808,9 @@ Add New </button> */}
       {/* =========================== End:: RemoveTraineeModel =============================== */}
       {/* =========================== Start:: InviteTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${repoModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${
+          repoModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -865,8 +872,9 @@ Add New </button> */}
       {/* =========================== End:: InviteTraineeModel =============================== */}
       {/* =========================== Start:: InviteTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${orgModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${
+          orgModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">

@@ -7,3 +7,6 @@ dist
 buildcoverage
 .DS_Store
 pnpm-lock.yaml
+
+package.json
+yarn.lock

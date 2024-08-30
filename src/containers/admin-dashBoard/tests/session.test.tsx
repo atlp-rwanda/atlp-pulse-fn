@@ -3,7 +3,12 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import AdminSission from '../../admin-dashBoard/Sessions';
-import { GET_SESSIONS, CREATE_SESSION, DELETE_SESSION, EDIT_SESSION } from '../../../Mutations/session';
+import {
+  GET_SESSIONS,
+  CREATE_SESSION,
+  DELETE_SESSION,
+  EDIT_SESSION,
+} from '../../../Mutations/session';
 
 // Mock the custom hooks and modules
 jest.mock('react-i18next', () => ({
@@ -109,7 +114,7 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -121,7 +126,7 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -137,7 +142,7 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -151,23 +156,33 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
       fireEvent.click(screen.getByText('register +'));
     });
 
-    fireEvent.change(screen.getByPlaceholderText('SessionName'), { target: { value: 'New Session' } });
-    fireEvent.change(screen.getByPlaceholderText('description'), { target: { value: 'New Description' } });
-    fireEvent.change(screen.getByPlaceholderText('platform'), { target: { value: 'New Platform' } });
-    fireEvent.change(screen.getByPlaceholderText('duration'), { target: { value: '2:00' } });
-    fireEvent.change(screen.getByPlaceholderText('organizer'), { target: { value: 'New Organizer' } });
+    fireEvent.change(screen.getByPlaceholderText('SessionName'), {
+      target: { value: 'New Session' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('description'), {
+      target: { value: 'New Description' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('platform'), {
+      target: { value: 'New Platform' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('duration'), {
+      target: { value: '2:00' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('organizer'), {
+      target: { value: 'New Organizer' },
+    });
 
     fireEvent.click(screen.getByText('Save'));
 
     await waitFor(() => {
-    //   expect(screen.queryByText('AddSession')).not.toBeInTheDocument();
+      //   expect(screen.queryByText('AddSession')).not.toBeInTheDocument();
     });
   });
 
@@ -175,7 +190,7 @@ describe('AdminSission Component', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -185,27 +200,27 @@ describe('AdminSission Component', () => {
     expect(screen.getByText('DeleteSession')).toBeInTheDocument();
   });
 
-it('deletes a session', async () => {
-  render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <AdminSission />
-    </MockedProvider>
-  );
+  it('deletes a session', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <AdminSission />
+      </MockedProvider>,
+    );
 
-  await waitFor(() => {
-    fireEvent.click(screen.getByTestId('deleteIcon'));
+    await waitFor(() => {
+      fireEvent.click(screen.getByTestId('deleteIcon'));
+    });
+
+    expect(screen.getByText('DeleteSession')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('delete'));
   });
-
-  expect(screen.getByText('DeleteSession')).toBeInTheDocument();
-
-  fireEvent.click(screen.getByTestId('delete')); 
-});
 
   it('opens edit session modal when edit icon is clicked', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <AdminSission />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     await waitFor(() => {
@@ -214,24 +229,33 @@ it('deletes a session', async () => {
 
     expect(screen.getByText('UpdateSession')).toBeInTheDocument();
   });
-it('updates a session', async () => {
-  render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <AdminSission />
-    </MockedProvider>
-  );
+  it('updates a session', async () => {
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <AdminSission />
+      </MockedProvider>,
+    );
 
-  await waitFor(() => {
-    fireEvent.click(screen.getByTestId('updateIcon'));
+    await waitFor(() => {
+      fireEvent.click(screen.getByTestId('updateIcon'));
+    });
+
+    expect(screen.getByText('UpdateSession')).toBeInTheDocument();
+
+    fireEvent.change(screen.getByPlaceholderText('Test Session'), {
+      target: { value: 'Updated Session' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Test Description'), {
+      target: { value: 'Updated Description' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Test Platform'), {
+      target: { value: 'Updated Platform' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('1:00'), {
+      target: { value: '3:00' },
+    });
+    fireEvent.change(screen.getByPlaceholderText('Test Organizer'), {
+      target: { value: 'Updated Organizer' },
+    });
   });
-
-  expect(screen.getByText('UpdateSession')).toBeInTheDocument();
-
-  fireEvent.change(screen.getByPlaceholderText('Test Session'), { target: { value: 'Updated Session' } });
-  fireEvent.change(screen.getByPlaceholderText('Test Description'), { target: { value: 'Updated Description' } });
-  fireEvent.change(screen.getByPlaceholderText('Test Platform'), { target: { value: 'Updated Platform' } });
-  fireEvent.change(screen.getByPlaceholderText('1:00'), { target: { value: '3:00' } });
-  fireEvent.change(screen.getByPlaceholderText('Test Organizer'), { target: { value: 'Updated Organizer' } });
-
-});
 });

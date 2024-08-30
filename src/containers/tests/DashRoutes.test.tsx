@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import DashRoutes from '../DashRoutes';
 import AdminSission from '../admin-dashBoard/Sessions';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
 describe('Dashboard Routes', () => {
   it('Should Redirect to settings', () => {
@@ -19,14 +19,14 @@ describe('Dashboard Routes', () => {
     expect(elem).toMatchSnapshot();
   });
   it('Should render delete button', () => {
-      render(
+    render(
       <MemoryRouter>
         <ApolloProvider>
           <AdminSission />
         </ApolloProvider>
       </MemoryRouter>,
     );
-    const route = screen.getByTestId('delete')
+    const route = screen.getByTestId('delete');
     expect(route).toBeInTheDocument();
   });
   it('Should render remove button', () => {
