@@ -24,26 +24,28 @@ function DataPagination({
           <tfoot className="w-full py-2">
             <tr className="w-full py-2">
               <td colSpan={columnLength}>
-                <div className="w-full justify-center flex mx-auto flex-row items-center overflow-x-auto">
-                  <button
-                    type="button"
-                    aria-label='left-arrow'
-                    className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
-                    onClick={() => previousPage()}
-                    disabled={!canPreviousPage}
-                  >
-                    <ArrowCircleLeftIcon className="w-5" fontSize="sm" />
-                  </button>{' '}
-                  <button
-                    type="button"
-                    aria-label='right-arrow'
-                    onClick={() => nextPage()}
-                    disabled={!canNextPage}
-                    className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
-                  >
-                    <ArrowCircleRightIcon className="w-5" fontSize="sm" />
-                  </button>{' '}
-                  <div className="flex flex-row justify-center w-full sm:text-[12px] items-center ">
+                <div className="w-full justify-between flex mx-auto flex-row items-center overflow-x-auto">
+                  <div className="flex">
+                    <button
+                      type="button"
+                      aria-label="left-arrow"
+                      className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                      onClick={() => previousPage()}
+                      disabled={!canPreviousPage}
+                    >
+                      <ArrowCircleLeftIcon className="w-5" fontSize="sm" />
+                    </button>{' '}
+                    <button
+                      type="button"
+                      aria-label="right-arrow"
+                      onClick={() => nextPage()}
+                      disabled={!canNextPage}
+                      className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                    >
+                      <ArrowCircleRightIcon className="w-5" fontSize="sm" />
+                    </button>{' '}
+                  </div>
+                  <div className="flex flex-row justify-center w-1/3 sm:text-[12px] items-center">
                     <span className="inline-block mx-2">
                       Page{' '}
                       <strong>
@@ -72,7 +74,7 @@ function DataPagination({
                       />
                     </span>{' '}
                     <select
-                      className="px-1/2 font-raleway rounded-md border border-primary dark:bg-primary"
+                      className="px-1/2 font-raleway rounded-md border border-dark dark:bg-primary focus:outline-none"
                       value={pageSize}
                       onChange={(e) => setPageSize(Number(e.target.value))}
                       style={{ height: '30px', border: 'solid 0.1rem #9e85f5' }}
