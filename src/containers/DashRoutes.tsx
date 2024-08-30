@@ -56,6 +56,7 @@ const CoordinatorsPage = React.lazy(
 const TtlsPage = React.lazy(
   () => import('../containers/admin-dashBoard/TtlsModal'),
 );
+const AdminInvitation = React.lazy(() => import('./admin-dashBoard/invitationButton'))
 
 const GradingSystem = React.lazy(() => import('../pages/GradingSystem'));
 const Profile = React.lazy(() => import('../pages/Profile'));
@@ -156,6 +157,8 @@ function DashRoutes() {
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
             <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
+            {/* tobe removed */}
+            <Route path="/invite-user" element={<AdminInvitation />} />
           </Routes>
         </Suspense>
       </main>
