@@ -13,7 +13,7 @@ import {
 
 import Avatar from '../assets/avatar.png';
 import { UserContext } from '../hook/useAuth';
-/* istanbul ignore next */
+
 function Notification({
   handleShowNotification,
 }: {
@@ -27,41 +27,30 @@ function Notification({
 
   const notifications = user?.notifications;
   const { t } = useTranslation();
-  /* istanbul ignore next */
- /* istanbul ignore next */
+
   function removeNotification(id: number): void {
-     /* istanbul ignore next */
     setNotificationData(
       notifications.filter((notification: any) => notification.id !== id),
     );
-     /* istanbul ignore next */
     delNotification({
       variables: {
         deleteNotificationsId: id,
       },
     });
   }
-  /* istanbul ignore next */
-// eslint-disable-next-line no-nested-ternary
- /* istanbul ignore next */
+
   function markRead(id: number): void {
-    // eslint-disable-next-line no-nested-ternary
     setNotificationData(
-       /* istanbul ignore next */
       notifications.map((notification: any) => {
-        // eslint-disable-next-line no-nested-ternary
-         /* istanbul ignore next */
         if (notification.id === id) {
           return {
             ...notification,
             read: true,
           };
         }
- /* istanbul ignore next */
         return notification;
       }),
     );
-     /* istanbul ignore next */
     readNotification({
       variables: {
         markAsReadId: id,
@@ -69,20 +58,12 @@ function Notification({
     });
   }
 
-  /* istanbul ignore next */
   function markAllRead(): void {
-     /* istanbul ignore next */
     setNotificationData(
-       /* istanbul ignore next */
       notifications?.map((notification: any) => {
-        // eslint-disable-next-line no-nested-ternary
-         /* istanbul ignore next */
         if (notification.read !== true) {
-          // eslint-disable-next-line no-nested-ternary
-           /* istanbul ignore next */
           return { ...notification, read: true };
         }
- /* istanbul ignore next */
         return notification;
       }),
     );
@@ -100,7 +81,7 @@ function Notification({
         onKeyDown={handleShowNotification}
         data-testid="keyClick"
       />
-      <div className="absolute top-[60px] right-0 left-0 mx-auto px-2 md:mx-0 md:left-auto md:right-[80px] z-2  w-full max-w-[392px] h-[calc(100%-70px)]">
+      <div className="absolute top-[60px] right-0 left-0 mx-auto px-2 md:mx-0 md:left-auto md:right-[80px] z-2 w-full max-w-[392px] h-[calc(100%-70px)]">
         <div className="flex flex-col flex-nowrap w-full h-max max-h-full bg-[#E5EAFF] dark:bg-dark-tertiary rounded-[20px]">
           <div className="flex justify-between items-center w-full p-3 border-border-dark dark:border-white border-b-[0.5px]">
             <p className="font-semibold dark:text-white">{t('Notification')}</p>
@@ -112,125 +93,123 @@ function Notification({
             />
           </div>
           <div
-           /* istanbul ignore next */
             className="flex flex-col w-full overflow-auto"
             data-testid="notificationsContainer"
           >
-            {notifications?.map((notification: any, index: any) => (
-              <div
-                className="w-full p-5 border-border-dark dark:border-white border-b-[0.5px] "
-                key={notification.id}
-              >
+            {notifications?.length ? (
+              notifications.map((notification: any, index: any) => (
                 <div
-                  className={`flex flex-row justify-between align-center gap-x-[10px] ${
-                    notification.read === 'false'
-                      ? 'bg-[#E5EAFF] font-bold dark:bg-dark-tertiary'
-                      : 'border-border-dark dark:border-white dark:bg-dark-tertiary opacity-30 hover:bg-[#E5EAFF] hover:opacity-100 dark:hover:bg-dark-tertiary'
-                  }`}
+                  className="w-full p-5 border-border-dark dark:border-white border-b-[0.5px] "
+                  key={notification.id}
                 >
-                  <img
-                    src={
-                      notification?.sender?.profile &&
-                      notification?.sender?.profile.avatar
-                        ? notification?.sender?.profile.avatar
-                        : Avatar
-                    }
-                    alt="oldMan"
-                    className="rounded-[1000px] w-[60px] h-[60px] object-cover cursor-pointer"
-                  />
-
                   <div
-                    className="flex flex-col w-full gap-[5px] cursor-pointer"
-                     /* istanbul ignore next */
-                    onClick={() => {
-                       /* istanbul ignore next */
-                      markRead(notification.id);
-                      /* istanbul ignore next */
-                      if (
-                        notification.message.includes(
-                          'Ticket has been sent to you.',
-                        ) ||
-                        notification.message.includes(
-                          'A reply on ticket has been sent.',
-                        )
-                      ) {
-                        const ticketId: string =
-                        // eslint-disable-next-line no-nested-ternary
-                         /* istanbul ignore next */
-                          notification.message.split(' ')[
-                            // eslint-disable-next-line no-nested-ternary
-                            notification.message.split(' ').length - 1
-                          ];
-                           /* istanbul ignore next */
-                        handleShowNotification();
-                        return navigate(`/tickets/${ticketId}`);
-                      }
-                      /* istanbul ignore next */
-                      if (user.role === 'trainee') {
-                        navigate('/performance');
-                      } else {
-                        navigate('/ratings');
-                      }
-                         /* istanbul ignore next */
-                      return handleShowNotification();
-                    }}
-                    data-testid={index === 0 && 'read'}
+                    className={`flex flex-row justify-between align-center gap-x-[10px] ${
+                      notification.read === 'false'
+                        ? 'bg-[#E5EAFF] font-bold dark:bg-dark-tertiary'
+                        : 'border-border-dark dark:border-white dark:bg-dark-tertiary opacity-30 hover:bg-[#E5EAFF] hover:opacity-100 dark:hover:bg-dark-tertiary'
+                    }`}
                   >
-                    <p className="font-bold dark:text-white">
-                      {notification?.sender?.profile &&
-                      notification?.sender?.profile.name
-                        ? notification.sender.profile.name
-                        : notification.sender.email}
-                    </p>
-                    <p className="text-[#111827] dark:text-white text-[12px]">
-                      {notification.message}
-                    </p>
-                    <p className="text-[12px] dark:text-white">
-                      {format(new Date(notification.createdAt), 'MMMM dd, p')}
-                    </p>
-                  </div>
+                    <img
+                      src={
+                        notification?.sender?.profile &&
+                        notification?.sender?.profile.avatar
+                          ? notification?.sender?.profile.avatar
+                          : Avatar
+                      }
+                      alt="oldMan"
+                      className="rounded-[1000px] w-[60px] h-[60px] object-cover cursor-pointer"
+                    />
 
-                  <div className="flex flex-col items-center transition-all">
                     <div
-                      className={`h-[15px] w-[15px] rounded-full ${
-                        notification.read === 'false'
-                          ? 'bg-[#148FB6]'
-                          : 'border-border-dark dark:border-white border-[1px]'
-                      }  mt-[7px] mb-[10px]`}
-                    />
-
-                    <XIcon
-                      className="border-border-dark dark:fill-white h-[20px] w-[20px] cursor-pointer"
+                      className="flex flex-col w-full gap-[5px] cursor-pointer"
                       onClick={() => {
-                        // eslint-disable-next-line no-nested-ternary
-                         /* istanbul ignore next */
-                        removeNotification(notification.id);
+                        markRead(notification.id);
+                        if (
+                          notification.message.includes(
+                            'Ticket has been sent to you.',
+                          ) ||
+                          notification.message.includes(
+                            'A reply on ticket has been sent.',
+                          )
+                        ) {
+                          const ticketId: string =
+                            notification.message.split(' ')[
+                              notification.message.split(' ').length - 1
+                            ];
+                          handleShowNotification();
+                          return navigate(`/tickets/${ticketId}`);
+                        }
+                        if (user.role === 'trainee') {
+                          navigate('/performance');
+                        } else {
+                          navigate('/ratings');
+                        }
+                        return handleShowNotification();
                       }}
-                      data-testid={index === 0 && 'delete'}
-                    />
+                      data-testid={index === 0 && 'read'}
+                    >
+                      <p className="font-bold dark:text-white">
+                        {notification?.sender?.profile &&
+                        notification?.sender?.profile.name
+                          ? notification.sender.profile.name
+                          : notification.sender.email}
+                      </p>
+                      <p className="text-[#111827] dark:text-white text-[12px]">
+                        {notification.message}
+                      </p>
+                      <p className="text-[12px] dark:text-white">
+                        {format(new Date(notification.createdAt), 'MMMM dd, p')}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col items-center transition-all">
+                      <div
+                        className={`h-[15px] w-[15px] rounded-full ${
+                          notification.read === 'false'
+                            ? 'bg-[#148FB6]'
+                            : 'border-border-dark dark:border-white border-[1px]'
+                        }  mt-[7px] mb-[10px]`}
+                      />
+
+                      <XIcon
+                        className="border-border-dark dark:fill-white h-[20px] w-[20px] cursor-pointer"
+                        onClick={() => {
+                          removeNotification(notification.id);
+                        }}
+                        data-testid={index === 0 && 'delete'}
+                      />
+                    </div>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="flex justify-center items-center h-full">
+                <p className="text-lg text-gray-500 dark:text-gray-300">
+                  {t('No notifications available')}
+                </p>
               </div>
-            ))}
+            )}
           </div>
 
-          <div className="w-full p-3 flex flex-row align-center justify-between">
-            <p
-              className="font-normal text-xs m-1 dark:text-white cursor-pointer"
-              data-testid="seeAllNotification"
-            >
-              See all notification
-            </p>
-            <div
-              className="font-normal text-xs m-1 dark:text-white cursor-pointer ml-auto"
-              onClick={() => {
-                markAllRead();
-              }}
-              data-testid="markAllRead"
-            >
-              {t('Mark all as read')}
+          {notifications?.length > 0 && (
+            <div className="w-full p-3 flex flex-row align-center justify-between">
+              <p
+                className="font-normal text-xs m-1 dark:text-white cursor-pointer"
+                data-testid="seeAllNotification"
+              >
+                See all notifications
+              </p>
+              <div
+                className="font-normal text-xs m-1 dark:text-white cursor-pointer ml-auto"
+                onClick={() => {
+                  markAllRead();
+                }}
+                data-testid="markAllRead"
+              >
+                {t('Mark all as read')}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
