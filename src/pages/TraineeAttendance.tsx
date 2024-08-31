@@ -22,10 +22,6 @@ function TraineeAttendanceTracker() {
   const { loading, data } = useQuery(GET_ATTENDANCE);
   const [selectedWeek, setSelectedWeek] = useState<number>(0);
 
-
- 
- 
-  
   useEffect(() => {
     getAttend({
       fetchPolicy: 'network-only',
@@ -180,13 +176,9 @@ function TraineeAttendanceTracker() {
   let two = 0;
   let one = 0;
 
-
-
   emailsAndStatuses.forEach((item) => {
-    
     /* istanbul ignore next */
     for (const element of item.status) {
-      
       if (element.value === 0) {
         zeo++;
       } else if (element.value === 1) {
@@ -203,8 +195,7 @@ function TraineeAttendanceTracker() {
   const twoparc = Math.round((two / totalvalues) * 100);
 
   const [index, setIndex] = useState(4);
- 
-  
+
   return (
     <>
       <div
@@ -461,46 +452,80 @@ function TraineeAttendanceTracker() {
                             {emailsAndStatuses
                               .slice(firstContentIndex, lastContentIndex)
                               .map((item: any) => (
-                                
                                 <>
-                                 <tr key={item.id}>
-                                  <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <div className="flex justify-center items-center">
-                                      <div className="">
-                                        <p className="text-gray-900  dark:text-white whitespace-no-wrap">
-                                          {item.traineeEmail}
-                                        </p>
+                                  <tr key={item.id}>
+                                    <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <div className="flex justify-center items-center">
+                                        <div className="">
+                                          <p className="text-gray-900  dark:text-white whitespace-no-wrap">
+                                            {item.traineeEmail}
+                                          </p>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                                    {item.status.find((day:any) => day.days === 'Monday') ? item.status.find((day:any) => day.days === 'Monday').value : 0}
-                                    </p>
-                                  </td>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
+                                        {item.status.find(
+                                          (day: any) => day.days === 'Monday',
+                                        )
+                                          ? item.status.find(
+                                              (day: any) =>
+                                                day.days === 'Monday',
+                                            ).value
+                                          : 0}
+                                      </p>
+                                    </td>
 
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Tuesday') ? item.status.find((day:any) => day.days === 'Tuesday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Wednesday') ? item.status.find((day:any) => day.days === 'Wednesday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                      {item.status.find((day:any) => day.days === 'Thursday') ? item.status.find((day:any) => day.days === 'Thursday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Friday') ? item.status.find((day:any) => day.days === 'Friday').value : 0}
-        
-                                    </p>
-                                  </td>
-                                  {/* <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find(
+                                          (day: any) => day.days === 'Tuesday',
+                                        )
+                                          ? item.status.find(
+                                              (day: any) =>
+                                                day.days === 'Tuesday',
+                                            ).value
+                                          : 0}
+                                      </p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find(
+                                          (day: any) =>
+                                            day.days === 'Wednesday',
+                                        )
+                                          ? item.status.find(
+                                              (day: any) =>
+                                                day.days === 'Wednesday',
+                                            ).value
+                                          : 0}
+                                      </p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find(
+                                          (day: any) => day.days === 'Thursday',
+                                        )
+                                          ? item.status.find(
+                                              (day: any) =>
+                                                day.days === 'Thursday',
+                                            ).value
+                                          : 0}
+                                      </p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find(
+                                          (day: any) => day.days === 'Friday',
+                                        )
+                                          ? item.status.find(
+                                              (day: any) =>
+                                                day.days === 'Friday',
+                                            ).value
+                                          : 0}
+                                      </p>
+                                    </td>
+                                    {/* <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <div className="flex justify-center items-center">
                                       <div className="">
                                         <p className="text-gray-900  dark:text-white whitespace-no-wrap">
@@ -509,9 +534,8 @@ function TraineeAttendanceTracker() {
                                       </div>
                                     </div>
                                   </td> */}
-                                </tr>
+                                  </tr>
                                 </>
-                               
                               ))}
                           </tbody>
                         )}
