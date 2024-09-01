@@ -68,6 +68,7 @@
     "flowbite-react": "^0.5.0",
     "framer-motion": "^6.5.1",
     "graphql": "^16.7.1",
+    "graphql-ws": "^5.16.0",
     "i18next": "^21.10.0",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-xhr-backend": "^3.2.2",
@@ -102,12 +103,11 @@
     "recharts": "^2.7.2",
     "sheetjs-style": "^0.15.8",
     "sinon": "^14.0.2",
-    "subscriptions-transport-ws": "^0.11.0",
     "tailwindcss": "^3.3.3",
     "url-polyfill": "^1.1.12"
   },
   "devDependencies": {
-    "@apollo/client": "^3.8.7",
+    "@apollo/client": "^3.11.5",
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
     "@heroicons/react": "^1.0.6",
