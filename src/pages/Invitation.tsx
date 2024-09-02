@@ -40,7 +40,7 @@ function Invitation() {
                 </div>
 
                 {/* Cards */}
-                <div className='flex flex-wrap gap-4 md:gap-8 w-full md:w-4/5 mb-4 md:mb-0'>
+                <div className='flex flex-wrap gap-4 md:gap-8 items-center w-full md:w-full ml-10'>
                     <InvitationCard icon={<FaCheck className='text-[#7258ce] w-8 h-8 md:w-12 md:h-12' />} status="ACCEPTED" time="Last 7 days" staticNumber="75" percentage="60" />
                     <InvitationCard icon={<LuHourglass className='text-[#7258ce] w-8 h-8 md:w-12 md:h-12' />} status="PENDING" time="Last 7 days" staticNumber="10" percentage="30" />
                     <InvitationCard icon={<BsPersonFillX className='text-[#7258ce] w-8 h-8 md:w-12 md:h-12' />} status="DENIED" time="Last 7 days" staticNumber="44" percentage="30" />
@@ -99,7 +99,3 @@ function Invitation() {
 }
 
 export default Invitation;
-
-
-
-
