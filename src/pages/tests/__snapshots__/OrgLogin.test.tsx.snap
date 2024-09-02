@@ -89,7 +89,6 @@ exports[`Organization Login Should render 1`] = `
             disabled={false}
             type="submit"
           >
-             
             Continue
           </button>
         </div>

@@ -28,6 +28,7 @@ Array [
       >
         <form
           className="px-8 py-3 "
+          onSubmit={[Function]}
         >
           <div
             className="flex flex-wrap items-center justify-center w-full card-title "
@@ -48,6 +49,7 @@ Array [
                 className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
                 name="email"
                 onChange={[Function]}
+                onSubmit={[Function]}
                 placeholder="email"
                 type="email"
                 value=""
@@ -461,7 +463,7 @@ Array [
               name="date"
               readOnly={true}
               type="text"
-              value="2024-03-26"
+              value="2024-09-02"
             />
           </div>
           <div
@@ -890,7 +892,6 @@ Array [
                   onClick={[Function]}
                   type="button"
                 >
-                   
                   add
                    +
                    
