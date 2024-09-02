@@ -17,7 +17,6 @@ import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserProvider from './hook/useAuth';
-import { WebSocketLink } from '@apollo/client/link/ws';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws'
 import { t } from 'i18next';
@@ -52,13 +51,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 const httpLink = createHttpLink({
   uri: process.env.BACKEND_URL || 'https://devpulse-backend.onrender.com/',
 });
-
-//const wsLink = new WebSocketLink({
-//  uri: process.env.WS_BACKEND_URL || 'wss://devpulse-backend.onrender.com/',
-//  options: {
-//    reconnect: true,
-//  },
-//});
 
 const wsLink = new GraphQLWsLink(
   createClient({
