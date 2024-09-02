@@ -327,6 +327,7 @@ function AdminSission() {
 
       {/* =========================== Start::  delete Session Model =============================== */}
       <div
+        data-testid="delete-section"
         className={`min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
           deleteSessionModel === true ? 'block' : 'hidden'
         }`}
@@ -372,7 +373,7 @@ function AdminSission() {
 
       {/* =========================== Start::  update Session Model =============================== */}
       {updateTraineeModel && sessionToEdit && (
-        <div className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4">
+        <div data-testid="update-section" className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4">
           <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8">
             <div className="card-title w-full flex flex-wrap justify-center items-center">
               <h3 className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12">
@@ -385,6 +386,7 @@ function AdminSission() {
                 <div className="input my-3 h-9">
                   <div className="grouped-input flex items-center h-full w-full rounded-md">
                     <input
+                      data-testid="session-name"
                       type="text"
                       name="Sessionname"
                       placeholder={sessionToEdit.Sessionname}
@@ -396,6 +398,7 @@ function AdminSission() {
                 <div className="input my-3 h-9">
                   <div className="grouped-input flex items-center h-full w-full rounded-md">
                     <input
+                      data-testid="description"
                       type="text"
                       name="description"
                       placeholder={sessionToEdit.description}
@@ -447,6 +450,7 @@ function AdminSission() {
                     {t('Cancel')}
                   </Button>
                   <Button
+                    data-testid="save"
                     variant="primary"
                     size="sm"
                     style="w-[30%] md:w-1/4 text-sm font-sans"
