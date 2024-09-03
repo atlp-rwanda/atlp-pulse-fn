@@ -9,13 +9,13 @@ function Invitation() {
     return (
         <div className=' sm:w-screen  lg:w-full '>
             {/* Header and Invite Button */}
-            <div className='flex flex-row md:flex-row md:justify-between items-center gap-0 md:gap-4 mb-8 px-'>
+            <div className='flex flex-row md:flex-row md:justify-between items-center gap-36 md:gap-4 mb-8 '>
                 <h1 className="font-bold text-xl md:text-2xl">
                     Invitation Stats
                 </h1>
                 <button
                     type="button"
-                    className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-12 flex items-center justify-center w-[15%]"
+                    className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center w-[15%]"
                 >
                     <IoIosAddCircleOutline className='w-6 h-6 md:w-8 md:h-8 md:mr-2' />
                     <span className='hidden md:block'>Invite User</span>
@@ -25,10 +25,10 @@ function Invitation() {
             {/* Container for Select and Cards */}
             <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-10">
                 {/* Select Dropdown for Small Screens */}
-                <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 mb-4 md:hidden">
+                <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 mb-4 md:hidden w-[90%] ">
                     <FaFilter className="text-[#9e85f5]" />
                     <select
-                        className="bg-transparent text-gray-700 outline-none w-full "
+                        className="bg-transparent text-gray-700 outline-none "
                     >
                         <option value="Select range">Select range</option>
                         <option value="Last 7 days">Last 7 days</option>
@@ -47,10 +47,10 @@ function Invitation() {
                 </div>
 
                 {/* Select Dropdown for Desktop */}
-                <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 hidden md:flex md:ml-8 w-[200px]">
+                <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 hidden md:flex md:ml-8 ">
                     <FaFilter className="text-[#9e85f5]" />
                     <select
-                        className="bg-transparent text-gray-700 outline-none w-full"
+                        className="bg-transparent text-gray-700 outline-none "
                     >
                         <option value="Select range">Select range</option>
                         <option value="Last 7 days">Last 7 days</option>
@@ -72,13 +72,13 @@ function Invitation() {
                 </p>
 
                 {/* Search form */}
-                <div className="flex flex-row md:flex-row gap-2 md:gap-16 md:w-[80%] ">
-                    <div className="relative flex-1">
+                <div className="flex flex-row md:flex-row gap-12 md:gap-8 md:w-[80%]  ">
+                    <div className="relative flex-1 ">
                         <input
                             type="text"
                             id="search"
                             placeholder="Search by email or name of the invitee"
-                            className="border border-gray-300 rounded-3xl pl-10 pr-4 py-2 w-full hover:border-[#7258ce]"
+                            className="border border-gray-300 rounded-3xl pl-10 pr-4 py-2 w-full hover:border-[#7258ce] h-10  "
                         />
                         <IoIosSearch
                             className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
@@ -87,7 +87,7 @@ function Invitation() {
                     </div>
                     <button
                         type="button"
-                        className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-12 flex items-center justify-center  md:w-[20%]"
+                        className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[20%]"
                     >
                         Search
                     </button>
