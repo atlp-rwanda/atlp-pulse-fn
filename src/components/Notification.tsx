@@ -114,9 +114,9 @@ function Notification({
   // notifications
 
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 z-50 px-0 md:px-4">
+    <div className="fixed top-0 left-0 z-50 w-screen h-screen px-0 md:px-4">
       <div
-        className="bg-dark-45 w-full h-full absolute top-0 left-0 z-1"
+        className="absolute top-0 left-0 w-full h-full bg-dark-45 z-1"
         role="button"
         aria-label="background"
         tabIndex={0}
@@ -126,14 +126,14 @@ function Notification({
       />
       <div className="absolute top-[60px] right-0 left-0 mx-auto px-3 md:px-4 md:mx-0 md:left-auto md:right-[60px] z-2  w-full max-w-[34rem] h-[calc(100%-85px)]">
         <div className="flex flex-col flex-nowrap w-full h-max max-h-full bg-[#FFF] dark:bg-dark-frame-bg rounded-md px-1">
-          <div className="flex justify-between items-center w-full px-1 py-4 md:px-4 md:py-6">
+          <div className="flex items-center justify-between w-full px-1 py-4 md:px-4 md:py-6">
             <p className="font-semibold dark:text-white">
               {t('Notifications')}
             </p>
             <XIcon
               fontSize="70px"
               data-testid="closeIcon"
-              className="border-black dark:fill-white h-6 w-6 cursor-pointer"
+              className="w-6 h-6 border-black cursor-pointer dark:fill-white"
               onClick={handleShowNotification}
             />
           </div>
@@ -261,7 +261,7 @@ function Notification({
                       </div>
                     </div>
 
-                    <div className="flex flex-col items-center transition-all pl-2 ">
+                    <div className="flex flex-col items-center pl-2 transition-all ">
                       {/* <div
                       className={`h-[15px] w-[15px] rounded-full ${
                         !notification.read
@@ -271,7 +271,7 @@ function Notification({
                     /> */}
 
                       <XIcon
-                        className="border-border-dark dark:fill-white w-5 cursor-pointer"
+                        className="w-5 cursor-pointer border-border-dark dark:fill-white"
                         onClick={(event) => {
                           // eslint-disable-next-line no-nested-ternary
                           /* istanbul ignore next */
@@ -287,9 +287,9 @@ function Notification({
             )}
           </div>
 
-            <div className="w-full px-2 md:p-4 flex flex-row align-center justify-between">
+            <div className="flex flex-row justify-between w-full px-2 md:p-4 align-center">
               {/* <p
-              className="font-normal text-xs m-1 dark:text-white cursor-pointer"
+              className="m-1 text-xs font-normal cursor-pointer dark:text-white"
               data-testid="seeAllNotification"
             >
               See all notification
@@ -297,7 +297,7 @@ function Notification({
                 {notifications.filter((notification: any) => !notification.read)
                   .length > 0 && (
               <div
-                className="font-normal text-xs m-1 dark:text-white cursor-pointer ml-auto"
+                className="m-1 ml-auto text-xs font-normal cursor-pointer dark:text-white"
                 onClick={() => {
                   markAllRead();
                 }}
