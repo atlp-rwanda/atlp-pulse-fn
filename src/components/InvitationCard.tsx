@@ -13,21 +13,20 @@ interface InvitationCardType {
 // Define the InvitationCard component using a function declaration
 function InvitationCard({ icon, status, time, staticNumber, percentage }: InvitationCardType) {
   return (
-    <div className='bg-blue-100 w-48 grid grid-row-4 rounded-2xl'>
+    <div className='bg-blue-100 w-48 grid grid-row-4 rounded-xl h-40 '>
       <div>
+        <h3 className='ml-6 text-xl font-serif font-bold text-[18px] mt-4 '>{status}</h3>
+        <div className='flex w-8 h-10 ml-2 -mt-2 '>
+          {icon}
+        </div>
         <div>
-          <h3 className='ml-6 p-2 text-2xl font-serif font-bold text-[20px]'>{status}</h3>
-          <div className='flex gap-2 w-8 h-10'>
-            {icon}
-          </div>
-          <div>
-            <p className='ml-10 mb-8'>{time}</p>
-          </div>
+          <p className='ml-10 -mt-2'>{time}</p>
         </div>
       </div>
-      <div className='flex justify-center items-center pb-5'>
-        <div className='text-2xl font-serif font-bold text-[40px]'>{staticNumber}</div>
-        <div className='text-base text-[#7258ce] ml-3 mb-5'>
+      <div className='flex justify-center items-center -mt-8'>
+        <div className='text-2xl font-serif font-bold text-[40px]'>{staticNumber}
+        </div>
+        <div className='text-base text-[#7258ce] ml-3 mb-0'>
           <AiOutlineRise className="text-2xl" />
           <span>{percentage}</span>
         </div>

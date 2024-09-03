@@ -5,29 +5,28 @@ import { FaCheck, FaFilter } from "react-icons/fa";
 import { LuHourglass } from "react-icons/lu";
 import { BsPersonFillX } from "react-icons/bs";
 
-// Function declaration for the component
 function Invitation() {
     return (
-        <>
+        <div className='w-full '>
             {/* Header and Invite Button */}
-            <div className='flex flex-col md:flex-row md:justify-between items-center gap-4 md:gap-8 mb-8'>
+            <div className='flex flex-row md:flex-row md:justify-between items-center gap-4 md:gap-8 mb-8 px-4  '>
                 <h1 className="font-bold text-xl md:text-2xl">
                     Invitation Stats
                 </h1>
                 <button
                     type="button"
-                    className="bg-[#7258ce] text-white text-lg md:text-xl rounded-md h-12 px-4 flex items-center justify-center"
+                    className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-12 px-4 flex items-center justify-center"
                 >
                     <IoIosAddCircleOutline className='w-6 h-6 md:w-8 md:h-8 md:mr-2' />
                     <span className='hidden md:block'>Invite User</span>
                 </button>
             </div>
 
-            {/* Invitation Cards and Select */}
-            <div className='flex flex-col md:flex-row md:items-start gap-4 md:gap-8 mb-10'>
-                {/* Mobile view: Select dropdown */}
-                <div className="md:hidden flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 mb-4">
-                    <FaFilter className="text-[#7258ce]" />
+            {/* Container for Select and Cards */}
+            <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-10">
+                {/* Select Dropdown for Small Screens */}
+                <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 mb-4 md:hidden">
+                    <FaFilter className="text-[#9e85f5]" />
                     <select
                         className="bg-transparent text-gray-700 outline-none w-full"
                     >
@@ -39,17 +38,17 @@ function Invitation() {
                     </select>
                 </div>
 
-                {/* Cards */}
-                <div className='flex flex-wrap gap-4 md:gap-8 w-full md:w-4/5 mb-4 md:mb-0'>
-                    <InvitationCard icon={<FaCheck className='text-[#7258ce] w-8 h-8 md:w-12 md:h-12' />} status="ACCEPTED" time="Last 7 days" staticNumber="75" percentage="60" />
-                    <InvitationCard icon={<LuHourglass className='text-[#7258ce] w-8 h-8 md:w-12 md:h-12' />} status="PENDING" time="Last 7 days" staticNumber="10" percentage="30" />
-                    <InvitationCard icon={<BsPersonFillX className='text-[#7258ce] w-8 h-8 md:w-12 md:h-12' />} status="DENIED" time="Last 7 days" staticNumber="44" percentage="30" />
+                {/* Invitation Cards */}
+                <div className='flex flex-wrap gap-4 md:gap-16 mb-4 md:mb-0 w-full'>
+                    <InvitationCard icon={<FaCheck className='text-[#9e85f5] w-8 h-8 md:w-12 md:h-12' />} status="ACCEPTED" time="Last 7 days" staticNumber="75" percentage="60" />
+                    <InvitationCard icon={<LuHourglass className='text-[#9e85f5] w-8 h-8 md:w-12 md:h-12' />} status="PENDING" time="Last 7 days" staticNumber="10" percentage="30" />
+                    <InvitationCard icon={<BsPersonFillX className='text-[#9e85f5] w-8 h-8 md:w-12 md:h-12' />} status="DENIED" time="Last 7 days" staticNumber="44" percentage="30" />
                     <InvitationCard icon="" status="INVITATIONS" time="Last 7 days" staticNumber="129" percentage="30" />
                 </div>
 
-                {/* Desktop view: Select dropdown */}
-                <div className="hidden md:flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 w-full md:w-1/5">
-                    <FaFilter className="text-[#7258ce]" />
+                {/* Select Dropdown for Desktop */}
+                <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 hidden md:flex md:ml-8 w-[200px]">
+                    <FaFilter className="text-[#9e85f5]" />
                     <select
                         className="bg-transparent text-gray-700 outline-none w-full"
                     >
@@ -63,7 +62,7 @@ function Invitation() {
             </div>
 
             {/* Search Section */}
-            <div>
+            <div className="px-4">
                 <h1 className="font-bold text-xl md:text-2xl mb-4">
                     Search for Invitation Status
                 </h1>
@@ -73,7 +72,7 @@ function Invitation() {
                 </p>
 
                 {/* Search form */}
-                <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+                <div className="flex flex-row md:flex-row gap-8 md:gap-16 md:w-[80%] ">
                     <div className="relative flex-1">
                         <input
                             type="text"
@@ -88,17 +87,20 @@ function Invitation() {
                     </div>
                     <button
                         type="button"
-                        className="bg-[#7258ce] text-white text-lg md:text-xl rounded-md h-12 px-4 flex items-center justify-center"
+                        className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-12 flex items-center justify-center  md:w-[20%]"
                     >
                         Search
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
 export default Invitation;
+
+
+
 
 
 
