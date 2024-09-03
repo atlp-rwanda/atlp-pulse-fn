@@ -93,7 +93,7 @@ function DashRoutes() {
         <DashHeader />
         <Sidebar toggle={toggleNav} style="" />
       </MenuProvider>
-      <main className="px-3 md:px-8 py-8 max-w-[100%] bg-light-bg dark:bg-dark-frame-bg">
+      <main className=" px-3 md:px-8 py-8 max-w-[100%] bg-light-bg dark:bg-dark-frame-bg ">
         <Suspense fallback={<Square />}>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
