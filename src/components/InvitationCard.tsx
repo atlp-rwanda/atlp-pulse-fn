@@ -13,7 +13,7 @@ interface InvitationCardType {
 // Define the InvitationCard component using a function declaration
 function InvitationCard({ icon, status, time, staticNumber, percentage }: InvitationCardType) {
   return (
-    <div className='bg-blue-100 w-48 grid grid-row-4 rounded-xl h-40 '>
+    <div className='bg-blue-100 w-48 grid grid-row-4 rounded-xl h-40 text-black '>
       <div>
         <h3 className='ml-6 text-xl font-serif font-bold text-[18px] mt-4 '>{status}</h3>
         <div className='flex w-8 h-10 ml-2 -mt-2 '>

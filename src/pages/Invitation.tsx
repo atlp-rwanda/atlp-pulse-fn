@@ -7,15 +7,15 @@ import { BsPersonFillX } from "react-icons/bs";
 
 function Invitation() {
     return (
-        <div className='w-full '>
+        <div className=' sm:w-screen  lg:w-full '>
             {/* Header and Invite Button */}
-            <div className='flex flex-row md:flex-row md:justify-between items-center gap-4 md:gap-8 mb-8 px-4  '>
+            <div className='flex flex-row md:flex-row md:justify-between items-center gap-4 md:gap-8 mb-8 px-4'>
                 <h1 className="font-bold text-xl md:text-2xl">
                     Invitation Stats
                 </h1>
                 <button
                     type="button"
-                    className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-12 px-4 flex items-center justify-center"
+                    className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-12 flex items-center justify-center w-[15%]"
                 >
                     <IoIosAddCircleOutline className='w-6 h-6 md:w-8 md:h-8 md:mr-2' />
                     <span className='hidden md:block'>Invite User</span>
@@ -40,7 +40,7 @@ function Invitation() {
 
                 {/* Invitation Cards */}
                 <div className='flex flex-wrap gap-4 md:gap-16 mb-4 md:mb-0 w-full'>
-                    <InvitationCard icon={<FaCheck className='text-[#9e85f5] w-8 h-8 md:w-12 md:h-12' />} status="ACCEPTED" time="Last 7 days" staticNumber="75" percentage="60" />
+                    <InvitationCard icon={<FaCheck className='text-[#9e85f5] w-8 h-8 md:w-12 md:h-12 ' />} status="ACCEPTED" time="Last 7 days" staticNumber="75" percentage="60" />
                     <InvitationCard icon={<LuHourglass className='text-[#9e85f5] w-8 h-8 md:w-12 md:h-12' />} status="PENDING" time="Last 7 days" staticNumber="10" percentage="30" />
                     <InvitationCard icon={<BsPersonFillX className='text-[#9e85f5] w-8 h-8 md:w-12 md:h-12' />} status="DENIED" time="Last 7 days" staticNumber="44" percentage="30" />
                     <InvitationCard icon="" status="INVITATIONS" time="Last 7 days" staticNumber="129" percentage="30" />
@@ -72,7 +72,7 @@ function Invitation() {
                 </p>
 
                 {/* Search form */}
-                <div className="flex flex-row md:flex-row gap-8 md:gap-16 md:w-[80%] ">
+                <div className="flex flex-row md:flex-row gap-2 md:gap-16 md:w-[80%] ">
                     <div className="relative flex-1">
                         <input
                             type="text"
