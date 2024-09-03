@@ -8,7 +8,7 @@ function UsersDocs() {
         content={
           <div className="box-border flex items-start font-serif">
             <div className="w-full">
-              <div className="w-full pt-4 mb-10 ml-0 text-lg text-gray-600  sm:px-10 dark:text-slate-300">
+              <div className="w-full pt-4 mb-10 ml-0 text-lg text-gray-600 sm:px-10 dark:text-slate-300">
                 <h2 className="mb-4 mt-4 text-4xl font-[800] text-primary">
                   Getting started
                 </h2>
