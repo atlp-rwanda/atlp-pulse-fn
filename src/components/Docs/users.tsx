@@ -6,9 +6,9 @@ function UsersDocs() {
     <div>
       <DocsMain
         content={
-          <div className="flex items-start box-border font-serif">
+          <div className="box-border flex items-start font-serif">
             <div className="w-full">
-              <div className=" w-full sm:px-10 mb-10 text-gray-600  dark:text-slate-300 text-lg ml-0 pt-4">
+              <div className="w-full pt-4 mb-10 ml-0 text-lg text-gray-600  sm:px-10 dark:text-slate-300">
                 <h2 className="mb-4 mt-4 text-4xl font-[800] text-primary">
                   Getting started
                 </h2>
@@ -20,7 +20,7 @@ function UsersDocs() {
                   <h3 className="m-2 mb-4 text-2xl font-bold">
                     Terminology to be familiar with:
                   </h3>
-                  <ul className=" list-disc ml-12">
+                  <ul className="ml-12 list-disc ">
                     <li>
                       <b>Organizations</b>: each Devpulse user belongs to an
                       organization. The default organization is Andela. The
