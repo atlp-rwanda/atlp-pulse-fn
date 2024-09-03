@@ -87,7 +87,7 @@ function Invitation() {
                     </div>
                     <button
                         type="button"
-                        className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[20%]"
+                        className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[10%]"
                     >
                         Search
                     </button>
