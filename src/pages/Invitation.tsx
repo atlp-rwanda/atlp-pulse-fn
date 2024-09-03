@@ -9,7 +9,7 @@ function Invitation() {
     return (
         <div className=' sm:w-screen  lg:w-full '>
             {/* Header and Invite Button */}
-            <div className='flex flex-row md:flex-row md:justify-between items-center gap-4 md:gap-8 mb-8 px-4'>
+            <div className='flex flex-row md:flex-row md:justify-between items-center gap-0 md:gap-4 mb-8 px-'>
                 <h1 className="font-bold text-xl md:text-2xl">
                     Invitation Stats
                 </h1>
@@ -28,7 +28,7 @@ function Invitation() {
                 <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 mb-4 md:hidden">
                     <FaFilter className="text-[#9e85f5]" />
                     <select
-                        className="bg-transparent text-gray-700 outline-none w-full"
+                        className="bg-transparent text-gray-700 outline-none w-full "
                     >
                         <option value="Select range">Select range</option>
                         <option value="Last 7 days">Last 7 days</option>
