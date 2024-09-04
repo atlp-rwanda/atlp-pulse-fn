@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { IoIosCloseCircleOutline, IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { BsExclamationCircleFill } from "react-icons/bs";
-import {SEND_INVITATION} from '../Mutations/invitationMutation'
+import {SEND_INVITATION, UPLOAD_INVITATION_FILE} from '../Mutations/invitationMutation'
 import ButtonLoading from './ButtonLoading';
 import validateEmail from '../utils/emailValidation';
+import { ApolloError } from '@apollo/client';
 
 const roles: ('trainee' | 'admin' | 'ttl' | 'coordinator')[] = ['trainee', 'admin', 'ttl', 'coordinator'];
 interface InviteFormProps {
@@ -18,8 +19,49 @@ function InviteForm({ onClose }: InviteFormProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>('');
   const [sendInvitation, { loading, error }] = useMutation(SEND_INVITATION);
+  const inputFileRef=useRef<HTMLInputElement>(null)
+  const [file, setFile] = useState<File | null>(null);
+  const [uploadFile, { loading: uploadLoading }] = useMutation(UPLOAD_INVITATION_FILE);
 
   const organisationToken = localStorage.getItem('orgToken');
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0] || null;
+    setFile(selectedFile);
+  };
+
+  const handleFileSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!file) {
+      toast.error('Please upload a file');
+      return;
+    }
+
+    try {
+      const { data } = await uploadFile({ variables: { file, orgToken } });
+      if (data && data.uploadInvitationFile) {
+        const {message,sentEmails} = data.uploadInvitationFile
+        if(sentEmails===0){
+          toast.error('Failed to send Invitations')
+        }else{
+          toast.success(message)
+        }
+        
+      }
+      if(inputFileRef.current){
+        inputFileRef.current.value=''
+        setFile(null)
+      }
+    } catch (err) {
+      if (err instanceof ApolloError) {
+        const errorMessage = err.message;
+        toast.error(`${errorMessage}`);
+      } else {
+        toast.error('An error occurred during file upload.');
+      }
+    }
+  };
 
   useEffect(() => {
     if (organisationToken) {
@@ -139,16 +181,39 @@ function InviteForm({ onClose }: InviteFormProps) {
         </div>
       </form>
       <div className="border-t-[1px] border-[#d9d0fb] m-0" />
-      <div className="flex justify-between pt-2">
-        <p className='flex justify-center items-center text-gray-400 gap-1'><BsExclamationCircleFill />Learn more</p>
-        <button
-          type="button"
-          aria-label="Toggle role dropdown"
-          disabled={loading}
-          className="flex justify-center bg-[#7a5edc] text-white px-4 py-1 rounded"
-        >
-          Upload users file
-        </button>
+      <div className="flex flex-col space-y-4 pt-2">
+        <form onSubmit={handleFileSubmit} className="w-full">
+          <div className="w-full">
+            <input ref={inputFileRef}
+              type="file"
+              id="file-upload"
+              onChange={handleFileChange}
+              accept=".xls, .xlsx"
+              className="w-full p-2 border border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div className="flex justify-between items-center mt-4">
+            <div className="relative group">
+              <p className="flex items-center text-gray-400 gap-1 cursor-pointer hover:text-gray-500">
+                <BsExclamationCircleFill />
+                Learn more
+              </p>
+              <div className="absolute left-0 mt-2 w-64 p-2 bg-gray-100 text-sm text-gray-700 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Please upload a file in XLSX format with only the following
+                columns: email, role, and name.
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={uploadLoading}
+              className="bg-[#7a5edc] text-white px-4 py-2 rounded-md hover:bg-[#6a50cc] focus:outline-none focus:ring-2 focus:ring-[#7a5edc] focus:ring-opacity-50"
+            >
+              {uploadLoading ? 'Uploading...' : 'Upload Users File'}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
