@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import { act } from 'react-dom/test-utils';
 import AdminSission from '../Sessions';
@@ -53,8 +53,8 @@ describe('AdminSission Component', () => {
     );
 
     await waitFor(() => {
-      // expect(screen.getByText('Test Session 1')).toBeInTheDocument();
-      // expect(screen.getByText('Test Session 2')).toBeInTheDocument();
+      expect(screen.getByText('Test Session 1')).toBeInTheDocument();
+      expect(screen.getByText('Test Session 2')).toBeInTheDocument();
     });
   });
 
@@ -67,7 +67,7 @@ describe('AdminSission Component', () => {
 
     await waitFor(() => {
       fireEvent.click(screen.getByText('register +'));
-      // expect(screen.getByText('AddSession')).toBeInTheDocument();
+      expect(screen.getByText('AddSession')).toBeInTheDocument();
     });
   });
 
@@ -95,13 +95,16 @@ describe('AdminSission Component', () => {
       </MockedProvider>,
     );
 
-    // await waitFor(() => {
-    //   fireEvent.click(screen.getByTestId('deleteIcon'));
-    //   // expect(screen.getByText('reallydeleteSession')).toBeInTheDocument();
+    await waitFor(async () => {
+      fireEvent.click(screen.getAllByTestId('deleteIcon')[0]);
+      expect(screen.getByTestId('delete-section')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-section')).toHaveClass("block");
 
-    //   fireEvent.click(screen.getByText('Delete'));
-    //   expect(screen.queryByText('reallydeleteSession')).toBeNull();
-    // });
+      fireEvent.click(screen.getByTestId('delete'));
+      await waitFor(()=>{
+        expect(screen.queryByTestId('delete-section')).toHaveClass("hidden");
+      })
+    });
   });
 
   it('updates a session when the edit icon is clicked and saved', async () => {
@@ -135,20 +138,22 @@ describe('AdminSission Component', () => {
       </MockedProvider>,
     );
 
-    // await waitFor(() => {
-    //   fireEvent.click(screen.getByTestId('updateIcon'));
-    //   // expect(screen.getByText('UpdateSession')).toBeInTheDocument();
+    await waitFor(async() => {
+      fireEvent.click(screen.getAllByTestId('updateIcon')[0]);
+      expect(screen.getByTestId('update-section')).toBeInTheDocument();
 
-    //   // Simulate updating session details
-    //   fireEvent.change(screen.getByLabelText('Sessionname'), {
-    //     target: { value: 'Updated Session Name' },
-    //   });
-    //   fireEvent.change(screen.getByLabelText('description'), {
-    //     target: { value: 'Updated Description' },
-    //   });
+      // Simulate updating session details
+      fireEvent.change(screen.getByTestId('session-name'), {
+        target: { value: 'Updated Session Name' },
+      });
+      fireEvent.change(screen.getByTestId('description'), {
+        target: { value: 'Updated Description' },
+      });
 
-    //   fireEvent.click(screen.getByText('Save'));
-    //   expect(screen.queryByText('UpdateSession')).toBeNull();
-    // });
+      fireEvent.click(screen.getByTestId('save'));
+      await waitFor(()=>{
+        expect(screen.queryByText('update-section')).toBeNull();
+      })
+    });
   });
 });

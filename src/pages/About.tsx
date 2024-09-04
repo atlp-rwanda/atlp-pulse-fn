@@ -15,47 +15,32 @@ const testimonials = [
     id: 1,
     name: 'Bernard Dushimimana',
     role: 'Sr.Manager',
+    organization: 'Andela',
     image: person,
     content: `I'm extremely impressed with Pulse and their performance management platform.
         Since using their services, it has been a game-changer for our organization.
-        The platform is intuitive, easy to navigate, and packed with powerful features.
-        Tracking performance metrics and setting goals has never been easier. Real-time
-        data and analytics provided by Pulse offer valuable insights into our team's
-        performance, enabling data-driven decisions. The customer support team has been
-        highly responsive and knowledgeable, addressing our queries promptly. Pulse has
-        transformed our performance management process, optimizing our operations and
-        driving meaningful results. I highly recommend Pulse to any business seeking to
-        elevate their performance management to the next level.`,
+        The platform is intuitive, easy to navigate, and packed with powerful features.`,
   },
   {
     id: 2,
     name: 'Susan',
     role: 'Sr.Manager',
+    organization: 'Andela',
     image: person2,
     content: `I'm delighted to share my positive experience with Pulse and their exceptional
         performance management platform. Implementing their services has led to remarkable
-        improvements in our performance tracking and management processes. The user-friendly
-        interface and comprehensive features have simplified our goal setting and progress
-        monitoring activities. Pulse's in-depth analytics have provided valuable insights
-        into our team's performance trends, enabling informed decisions and continuous growth.
-        Thanks to Pulse, we have achieved greater transparency, accountability, and productivity
-        within our organization. I highly recommend Pulse to any company seeking a robust and
-        reliable performance management solution.`,
+        improvements in our performance tracking and management processes.`,
   },
   {
     id: 3,
-    name: 'University of Rwanda',
-    role: 'organisation',
+    name: 'Dr. Jack',
+    role: 'Director',
+    organization: 'University of Rwanda',
     image: ur,
     content: `
         We are thrilled with the services provided by Pulse. Their performance management platform
         has exceeded our expectations in every way. The user-friendly interface and comprehensive
-        features have made tracking and monitoring our performance metrics a breeze. Pulse's
-        data-driven insights have revolutionized our approach to performance management,
-        enabling informed decisions and continuous improvement. The support team at Pulse has
-        been exceptional, offering prompt and knowledgeable assistance whenever needed.
-        I wholeheartedly endorse Pulse to any organization seeking to optimize their performance
-        management process and achieve outstanding results.
+        features have made tracking and monitoring our performance metrics a breeze.
         `,
   },
 ];
@@ -88,27 +73,27 @@ function Testimonial() {
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className={`bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl ${
+            className={`bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-2xl sm:mx-3 rounded-t-3xl ${
               currentIndex === index ? 'visible' : 'hidden'
             }`}
           >
-            <div className="flex flex-col sm:flex-row  mb-4 items-center">
+            <div className="flex flex-col sm:flex-row  mb-6 items-center">
               <img
-                className="md:w-1/4 sm:w-1/3"
+                className="sm:w-1/4"
                 src={testimonial.image}
                 alt=""
               />
 
               <ul>
-                <li className="text-xs mt-4 ml-3  dark:text-slate-300 text-neutral-600">
+                <li className="text-xs ml-3  dark:text-slate-300 text-neutral-600">
                   {testimonial.name}
                 </li>
                 <li className="text-xs mt-2  dark:text-slate-300 ml-3">
-                  {testimonial.role}
+                  {testimonial.role}, {testimonial.organization}
                 </li>
               </ul>
             </div>
-            <p className="card-text  dark:text-slate-300 text-neutral-900">
+            <p className="text-base  dark:text-slate-300 text-neutral-900">
               {testimonial.content}
             </p>
           </div>
@@ -137,23 +122,23 @@ function Testimonial() {
             key={testimonial.id}
             className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl "
           >
-            <div className="flex flex-col sm:flex-row  mb-4 items-center">
+            <div className="flex flex-col sm:flex-row  mb-6 items-center">
               <img
-                className="md:w-1/4 sm:w-1/3"
+                className="md:w-1/5 sm:w-1/3"
                 src={testimonial.image}
                 alt=""
               />
 
               <ul>
-                <li className="text-xs mt-4 ml-3  dark:text-slate-300  text-neutral-600">
+                <li className="text-sm ml-3  dark:text-slate-300  text-neutral-600">
                   {testimonial.name}
                 </li>
-                <li className="text-xs  dark:text-slate-300  mt-2 ml-3">
-                  {testimonial.role}
+                <li className="text-sm  dark:text-slate-300  mt-2 ml-3">
+                  {testimonial.role}, {testimonial.organization}
                 </li>
               </ul>
             </div>
-            <p className="card-text  dark:text-slate-300  text-neutral-900">
+            <p className="text-base dark:text-slate-300  text-neutral-900">
               {testimonial.content}
             </p>
           </div>
@@ -230,10 +215,7 @@ function About({ styles }: any) {
           </div>
         ))}
 
-        <div className="px-5">
-          <h1 className="pt-3 text-center font text-neutral-700 lg:text-4xl sm:text-2xl  italic dark:text-slate-100">
-            Excellent human resources and companies
-          </h1>
+        <div className="px-5 mt-20">
           <h1 className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl dark:text-slate-100">
             {' '}
             Come shape the future together{' '}

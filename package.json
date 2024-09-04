@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack server",
     "build": "webpack",
-    "test": "npm run update-snapshots && npx jest ",
+    "test": "npm run update-snapshots && npx jest --runInBand",
     "update-snapshots": "jest --updateSnapshot",
     "coverage": "jest --collect-coverage --silent -u",
     "lint": "npx eslint src/**/*.{tsx,ts} --fix",
