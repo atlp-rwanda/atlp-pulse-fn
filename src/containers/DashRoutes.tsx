@@ -26,6 +26,7 @@ const LoginActivitiesTable = React.lazy(
 const AdminTeams = React.lazy(() => import('./admin-dashBoard/Teams'));
 const AdminCohorts = React.lazy(() => import('./admin-dashBoard/Cohorts'));
 const AdminPrograms = React.lazy(() => import('./admin-dashBoard/Programs'));
+const Invitation = React.lazy(() => import('../pages/invitation'));
 const AdminSession = React.lazy(() => import('./admin-dashBoard/Sessions'));
 const AdminPhases = React.lazy(() => import('./admin-dashBoard/Phases'));
 const AdminManageRoles = React.lazy(
@@ -85,18 +86,25 @@ function DashRoutes() {
 
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-  
+
   return (
     <PrivateRoute>
       <MenuProvider>
         <DashHeader />
         <Sidebar toggle={toggleNav} style="" />
       </MenuProvider>
-      <main className="px-3 md:px-8 py-8 max-w-[100%] bg-light-bg dark:bg-dark-frame-bg">
+      <main className=" px-3 md:px-8 py-8 max-w-[100%] bg-light-bg dark:bg-dark-frame-bg ">
         <Suspense fallback={<Square />}>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/trainees" element={<AdminTraineeDashboard />} />
+            <Route path="/invitation" element={
+              <>
+                <CheckRole roles={['admin']}>
+                  <Invitation />
+                </CheckRole>
+              </>
+            } />
             <Route path="/trainees/:userId" element={<ViewTraineeRatings />} />
             <Route
               path="/ratings"
@@ -148,10 +156,10 @@ function DashRoutes() {
               <Route index element={<AllTickets />} />
               <Route path=":ticketId" element={<Ticket />} />
             </Route>
-      
-           <Route path="/loginActivities" element={<LoginActivitiesTable />} />
-           
-            <Route path="/team/:teamname" element={<TeamDetails/>} />
+
+            <Route path="/loginActivities" element={<LoginActivitiesTable />} />
+
+            <Route path="/team/:teamname" element={<TeamDetails />} />
 
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/cards" element={<CoordinatorCards />} />
