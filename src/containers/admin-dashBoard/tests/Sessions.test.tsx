@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -51,6 +52,9 @@ describe('AdminSission Component', () => {
         <AdminSission />
       </MockedProvider>,
     );
+    expect(screen.getByText(/AddSession/i)).toBeInTheDocument();
+    expect(screen.getByText(/reallydeleteSession/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('SessionName')).toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.getByText('Test Session 1')).toBeInTheDocument();
@@ -89,8 +93,29 @@ describe('AdminSission Component', () => {
       // Add more mocks if needed
     ];
 
+    const sessionMocks = [
+      {
+        request: {
+          query: GET_SESSIONS,
+        },
+        result: {
+          data: {
+            id: 'abc233',
+            Sessionname: 'session 1',
+            description: '',
+            platform: '',
+            duration: '',
+            organizer: 'andela',
+          },
+        },
+      },
+      // Add more mocks if needed
+    ];
     render(
-      <MockedProvider mocks={[...mocks, ...deleteMocks]} addTypename={false}>
+      <MockedProvider
+        mocks={[...mocks, ...deleteMocks, ...sessionMocks]}
+        addTypename={false}
+      >
         <AdminSission />
       </MockedProvider>,
     );
