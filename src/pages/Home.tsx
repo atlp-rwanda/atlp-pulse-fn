@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
-import {About} from './About';
+import { About } from './About';
 
 function LandingPage() {
   /* istanbul ignore next */
@@ -14,7 +14,7 @@ function LandingPage() {
   const { user } = useContext(UserContext);
   useDocumentTitle('Welcome');
   return (
-    <div className="">
+    <div className="font-serif">
       <Navbar styles="bg-opacity-100 dark:bg-opacity-100 " />
       <div className="relative hero mx-auto ">
         <p

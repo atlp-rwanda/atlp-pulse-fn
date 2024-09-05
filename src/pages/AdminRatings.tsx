@@ -55,7 +55,7 @@ export const ExportToExcel = ({
 
   return (
     <button
-      className="bg-primary hover:bg-primary text-white  font-semibold hover:text-white py-2 px-2  border border-primary hover:border-transparent rounded  "
+      className="font-serif bg-primary hover:bg-primary text-white  font-semibold hover:text-white py-2 px-2  border border-primary hover:border-transparent rounded  "
       onClick={(e) => exportToCSV(data, fileName)}
     >
       {t('Export')}
@@ -283,7 +283,7 @@ const TraineeRatingDashboard = () => {
         </Dialog>
       </Transition>
       {/* SELECT COHORT DROPDOWN START */}
-      <div className="flex flex-col bg-light-bg dark:bg-dark-frame-bg">
+      <div className="flex flex-col bg-light-bg dark:bg-dark-frame-bg font-serif">
         <div className="flex flex-row">
           <div className="w-full">
             <div>

@@ -6,7 +6,7 @@ export default function Spinner() {
   useDocumentTitle('Product');
   const { t } = useTranslation();
   return (
-    <div className="flex items-center justify-center  h-5 opacity-90">
+    <div className="font-serif flex items-center justify-center  h-5 opacity-90">
       <div role="status">
         <svg
           className="mr-1 ml-1 inline h-5 w-5 animate-spin fill-gray-300 text-gray-100 dark:text-gray-600"

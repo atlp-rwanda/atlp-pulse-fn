@@ -87,7 +87,7 @@ export default function ProfileCoverpage({
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const uploadCover = async (files: any) => {
@@ -119,7 +119,7 @@ export default function ProfileCoverpage({
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -152,7 +152,7 @@ export default function ProfileCoverpage({
           ? `url(${profileData?.getProfile?.cover})`
           : `url(${'https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80'})`,
       }}
-      className="bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] flex flex-row text-center  align-center items-center"
+      className="font-serif bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] flex flex-row text-center  align-center items-center"
     >
       <img
         src={

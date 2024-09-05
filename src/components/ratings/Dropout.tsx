@@ -4,7 +4,7 @@ import React from 'react';
 
 function Dropout({ traineeStatus }: any) {
   return (
-    <div>
+    <div className='font-serif'>
       <div className="pt-2 pb-6">
         <hr className="bg-[#868686] h-[2px]" />
       </div>

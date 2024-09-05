@@ -6,7 +6,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 // import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { MenuIcon, SunIcon, XIcon } from '@heroicons/react/outline';
-import { MoonIcon , BellIcon } from '@heroicons/react/solid';
+import { MoonIcon, BellIcon } from '@heroicons/react/solid';
 import { useLazyQuery, useSubscription, gql } from '@apollo/client';
 import { toast } from 'react-toastify';
 import Logo from '../assets/logo.svg';
@@ -56,7 +56,7 @@ function DashHeader() {
 
   const notifications = user?.notifications;
 
-//   const [colorTheme] = useDarkMode();
+  //   const [colorTheme] = useDarkMode();
   const [colorTheme, setTheme] = useDarkMode();
   const [nav, setNav] = useState(false);
 
@@ -72,7 +72,7 @@ function DashHeader() {
   });
 
   const { data, loading } = useSubscription(NotificationSubscription, {
-    onData: (data:any) => {
+    onData: (data: any) => {
       setNotificationData([data.data.data.newRating, ...notifications]);
     },
     variables: {
@@ -129,7 +129,7 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="w-screen h-[8vh] z-10 bg-[#E0E7FF] dark:bg-dark-bg fixed border-b">
+      <div className="w-screen h-[8vh] z-10 bg-[#E0E7FF] dark:bg-dark-bg fixed border-b font-serif">
         <div className="px-3 flex items-center w-full h-full">
           <div className="flex px-5 lg:hidden">
             <div
@@ -167,7 +167,7 @@ function DashHeader() {
           </div>
 
           <div className="inline-flex relative items-center p-0 text-sm font-medium text-center text-black  ml-auto dark:bg-dark-bg rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300   dark:focus:ring-blue-800">
-         
+
             <BellIcon
               className="w-6 cursor-pointer ml-auto  dark:text-dark-text-fill"
               onClick={handleShowNotification}
@@ -185,19 +185,19 @@ function DashHeader() {
             ) : (
               ''
             )}
-             <button
-            type="button"
-            id="theme-switch"
-            className="px-3 mt-1 cursor-pointer"
-            onClick={() => handleTheme()}
-          >
-            {colorTheme === 'dark' ? (
-              <MoonIcon className="w-6 mr-2" />
-            ) : (
-              <SunIcon className="w-6 mr-2 text-dark-text-fill" />
-            )}
-          </button>
-           {/* <button type="button" className="px-3" onClick={() => handleTheme()}>
+            <button
+              type="button"
+              id="theme-switch"
+              className="px-3 mt-1 cursor-pointer"
+              onClick={() => handleTheme()}
+            >
+              {colorTheme === 'dark' ? (
+                <MoonIcon className="w-6 mr-2" />
+              ) : (
+                <SunIcon className="w-6 mr-2 text-dark-text-fill" />
+              )}
+            </button>
+            {/* <button type="button" className="px-3" onClick={() => handleTheme()}>
             {colorTheme === 'dark' ? (
               <MoonIcon className="w-6 mr-2" />
             ) : (
@@ -214,22 +214,22 @@ function DashHeader() {
                 user?.profileImage
                   ? user?.profileImage
                   : profileData?.getProfile?.avatar
-                  ? profileData?.getProfile?.avatar
-                  : Avatar
+                    ? profileData?.getProfile?.avatar
+                    : Avatar
               }
               alt="avatar"
             />
           </div>
           <div className="flex px-5 lg:hidden">
-         
-          {/* <button type="button" onClick={handleClick}>
+
+            {/* <button type="button" onClick={handleClick}>
             {!open ? (
               <MenuIcon className="w-7 dark:text-dark-text-fill" />
             ) : (
               <XIcon className="w-7 dark:text-dark-text-fill" />
             )}
           </button> */}
-        </div>
+          </div>
         </div>
         <ul
           className={

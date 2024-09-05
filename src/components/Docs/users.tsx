@@ -6,7 +6,7 @@ function UsersDocs() {
     <div>
       <DocsMain
         content={
-          <div className="flex items-start box-border">
+          <div className="flex items-start box-border font-serif">
             <div className="w-full">
               <div className=" w-full sm:px-10 mb-10 text-gray-600  dark:text-slate-300 text-lg ml-0 pt-4">
                 <h2 className="mb-4 mt-4 text-4xl font-[800] text-primary">

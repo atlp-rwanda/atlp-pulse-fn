@@ -13,7 +13,7 @@ export default function Pricing() {
       {data ? (
         data.map((item: any) => (
           <div
-            className="flex items-center justify-center h-screen bg-light-bg dark:bg-dark-frame-bg md:-mt-16 md:-mb-44"
+            className="flex items-center justify-center h-screen bg-light-bg dark:bg-dark-frame-bg md:-mt-16 md:-mb-44 font-serif"
             key={item.id}
           >
             <div className="dark:bg-dark-bg bg-indigo-100 rounded-lg shadow-lg p-5 md:p-20 mx-2">
@@ -32,7 +32,7 @@ export default function Pricing() {
           </div>
         ))
       ) : (
-        <div className="bg-light-bg dark:bg-dark-frame-bg flex-grow pt-14 md:pt-10">
+        <div className="bg-light-bg dark:bg-dark-frame-bg flex-grow pt-14 md:pt-10 font-serif">
           <div className="flex flex-col justify-center items-center mx-auto grow">
             <h1 className="text-primary text-lg text-center w-3/4 my-3 md:text-4xl flex justify-center md:my-9 mx-auto">
               {t('pricing_page_header')}

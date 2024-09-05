@@ -37,14 +37,14 @@ function TraineeDocs() {
       setDocumentations(
         user.role === 'trainee'
           ? data.getDocumentations.filter(
-              (documentation: any) => documentation.for === user.role,
-            )
+            (documentation: any) => documentation.for === user.role,
+          )
           : data.getDocumentations.filter(
-              (documentation: any) => documentation.for !== 'trainee',
-            ),
+            (documentation: any) => documentation.for !== 'trainee',
+          ),
       );
     },
-    onError: (error) => {},
+    onError: (error) => { },
   });
 
   useEffect(() => {
@@ -221,7 +221,7 @@ function TraineeDocs() {
   );
 
   return (
-    <div className="flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg text-light-text dark:text-dark-text-fill">
+    <div className="font-serif flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg text-light-text dark:text-dark-text-fill">
       {page1}
 
       {selectedContent && (

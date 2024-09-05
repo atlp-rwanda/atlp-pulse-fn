@@ -53,7 +53,7 @@ function DataTable({ data, columns, title, removeModel }: TableData) {
   const { globalFilter, pageIndex, pageSize } = state;
 
   return (
-    <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[60%]">
+    <div className="font-serif bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[60%]">
       <div className="flex items-center justify-between pb-6 ">
         <div>
           <h2 className="text-xl font-semibold text-gray-800 dark:text-white">

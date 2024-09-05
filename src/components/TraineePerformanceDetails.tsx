@@ -92,7 +92,7 @@ function TraineePerfomanceDetails() {
 
   const { t } = useTranslation();
   return (
-    <div>
+    <div className='font-serif'>
       {/* trainee perfomance */}
       <div className="bg-neutral-100 dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">
         <table className="dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 ">

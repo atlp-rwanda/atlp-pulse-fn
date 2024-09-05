@@ -23,9 +23,9 @@ function TraineeAttendanceTracker() {
   const [selectedWeek, setSelectedWeek] = useState<number>(0);
 
 
- 
- 
-  
+
+
+
   useEffect(() => {
     getAttend({
       fetchPolicy: 'network-only',
@@ -161,7 +161,7 @@ function TraineeAttendanceTracker() {
         onCompleted: (data) => {
           const newData = data.recordAttendance.trainees;
           setemailsAndStatuses(newData);
-          setTimeout(() => {}, 500);
+          setTimeout(() => { }, 500);
           setSubmittingAttendance(false);
           toast.success('Attendance updated');
           setAddEventModel(false); // Move toast here
@@ -183,10 +183,10 @@ function TraineeAttendanceTracker() {
 
 
   emailsAndStatuses.forEach((item) => {
-    
+
     /* istanbul ignore next */
     for (const element of item.status) {
-      
+
       if (element.value === 0) {
         zeo++;
       } else if (element.value === 1) {
@@ -203,17 +203,16 @@ function TraineeAttendanceTracker() {
   const twoparc = Math.round((two / totalvalues) * 100);
 
   const [index, setIndex] = useState(4);
- 
-  
+
+
   return (
     <>
       <div
-        className={` w-screen bg-black bg-opacity-30 backdrop-blur-sm min-h-[100%] fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
-          addEventModel === true ? 'block' : 'hidden'
-        }`}
+        className={`font-serif w-screen bg-black bg-opacity-30 backdrop-blur-sm min-h-[100%] fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${addEventModel === true ? 'block' : 'hidden'
+          }`}
       >
         {
-          <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8 ">
+          <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8 font-serif">
             <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
               <h3 className="font-bold text-sm dark:text-white text-center w-11/12">
                 {t('Take Attendance')}
@@ -230,11 +229,9 @@ function TraineeAttendanceTracker() {
                   <div className="grouped-input flex items-center h-full w-full rounded-md">
                     <select
                       data-testid="testWeek"
-                      className={`${
-                        errors.weeks ? 'border-red-500' : 'border-primary'
-                      } dark:bg-dark-tertiary dark:text-white border ${
-                        errors.weeks ? 'border-red-500' : 'border-primary'
-                      } rounded outline-none px-5 font-sans text-xs py-2 w-full`}
+                      className={`${errors.weeks ? 'border-red-500' : 'border-primary'
+                        } dark:bg-dark-tertiary dark:text-white border ${errors.weeks ? 'border-red-500' : 'border-primary'
+                        } rounded outline-none px-5 font-sans text-xs py-2 w-full`}
                       {...register('weeks', { required: 'Week is required' })}
                       value={weeks}
                       name="weeks"
@@ -259,11 +256,9 @@ function TraineeAttendanceTracker() {
                   <div className="grouped-input flex items-center h-full  w-full rounded-md">
                     <select
                       data-testid="getDay"
-                      className={`${
-                        errors.days ? 'border-red-500' : 'border-primary'
-                      } dark:bg-dark-tertiary dark:text-white border ${
-                        errors.days ? 'border-red-500' : 'border-primary'
-                      } rounded outline-none px-5 font-sans text-xs py-2 w-full`}
+                      className={`${errors.days ? 'border-red-500' : 'border-primary'
+                        } dark:bg-dark-tertiary dark:text-white border ${errors.days ? 'border-red-500' : 'border-primary'
+                        } rounded outline-none px-5 font-sans text-xs py-2 w-full`}
                       {...register('days', { required: 'Day is required' })}
                       value={days}
                       name="days"
@@ -374,7 +369,7 @@ function TraineeAttendanceTracker() {
           </div>
         }
       </div>
-      <div className="bg-light-bg dark:bg-dark-frame-bg lg:px-8 overflow-y-scroll pb-6">
+      <div className="bg-light-bg dark:bg-dark-frame-bg lg:px-8 overflow-y-scroll pb-6 font-serif">
         <div className="">
           <div className="flex items-center justify-between py-4 rounded-md w-full">
             <div className="flex py-2 mt-2 ">
@@ -461,46 +456,46 @@ function TraineeAttendanceTracker() {
                             {emailsAndStatuses
                               .slice(firstContentIndex, lastContentIndex)
                               .map((item: any) => (
-                                
-                                <>
-                                 <tr key={item.id}>
-                                  <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <div className="flex justify-center items-center">
-                                      <div className="">
-                                        <p className="text-gray-900  dark:text-white whitespace-no-wrap">
-                                          {item.traineeEmail}
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
-                                    {item.status.find((day:any) => day.days === 'Monday') ? item.status.find((day:any) => day.days === 'Monday').value : 0}
-                                    </p>
-                                  </td>
 
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Tuesday') ? item.status.find((day:any) => day.days === 'Tuesday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Wednesday') ? item.status.find((day:any) => day.days === 'Wednesday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                      {item.status.find((day:any) => day.days === 'Thursday') ? item.status.find((day:any) => day.days === 'Thursday').value : 0}
-                                    </p>
-                                  </td>
-                                  <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                                    <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                    {item.status.find((day:any) => day.days === 'Friday') ? item.status.find((day:any) => day.days === 'Friday').value : 0}
-        
-                                    </p>
-                                  </td>
-                                  {/* <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                <>
+                                  <tr key={item.id}>
+                                    <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <div className="flex justify-center items-center">
+                                        <div className="">
+                                          <p className="text-gray-900  dark:text-white whitespace-no-wrap">
+                                            {item.traineeEmail}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm md:table-cell sm:hidden">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center ">
+                                        {item.status.find((day: any) => day.days === 'Monday') ? item.status.find((day: any) => day.days === 'Monday').value : 0}
+                                      </p>
+                                    </td>
+
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find((day: any) => day.days === 'Tuesday') ? item.status.find((day: any) => day.days === 'Tuesday').value : 0}
+                                      </p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find((day: any) => day.days === 'Wednesday') ? item.status.find((day: any) => day.days === 'Wednesday').value : 0}
+                                      </p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find((day: any) => day.days === 'Thursday') ? item.status.find((day: any) => day.days === 'Thursday').value : 0}
+                                      </p>
+                                    </td>
+                                    <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
+                                      <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
+                                        {item.status.find((day: any) => day.days === 'Friday') ? item.status.find((day: any) => day.days === 'Friday').value : 0}
+
+                                      </p>
+                                    </td>
+                                    {/* <td className="w-[20%] border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                                     <div className="flex justify-center items-center">
                                       <div className="">
                                         <p className="text-gray-900  dark:text-white whitespace-no-wrap">
@@ -509,9 +504,9 @@ function TraineeAttendanceTracker() {
                                       </div>
                                     </div>
                                   </td> */}
-                                </tr>
+                                  </tr>
                                 </>
-                               
+
                               ))}
                           </tbody>
                         )}
@@ -524,9 +519,8 @@ function TraineeAttendanceTracker() {
                     type="button"
                     onClick={prevPage}
                     data-testid="prev"
-                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                      page === 1 && 'disabled'
-                    }`}
+                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
+                      }`}
                   >
                     &larr;
                   </button>
@@ -534,9 +528,8 @@ function TraineeAttendanceTracker() {
                     type="button"
                     onClick={() => setPage(1)}
                     data-testid="page1"
-                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                      page === 1 && 'disabled'
-                    }`}
+                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
+                      }`}
                   >
                     1
                   </button>
@@ -546,9 +539,8 @@ function TraineeAttendanceTracker() {
                       onClick={() => setPage(el)}
                       data-testid="page2"
                       key={el}
-                      className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                        page === el ? 'active' : ''
-                      }`}
+                      className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === el ? 'active' : ''
+                        }`}
                     >
                       {el}
                     </button>
@@ -557,9 +549,8 @@ function TraineeAttendanceTracker() {
                     type="button"
                     onClick={() => setPage(totalPages)}
                     data-testid="page3"
-                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                      page === totalPages && 'disabled'
-                    }`}
+                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
+                      }`}
                   >
                     {totalPages}
                   </button>
@@ -567,9 +558,8 @@ function TraineeAttendanceTracker() {
                     type="button"
                     onClick={nextPage}
                     data-testid="next"
-                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                      page === totalPages && 'disabled'
-                    }`}
+                    className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
+                      }`}
                   >
                     &rarr;
                   </button>

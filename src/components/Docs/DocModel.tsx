@@ -7,7 +7,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ onClose, children }) => (
-  <div className="modal">
+  <div className="modal font-serif">
     <div className="modal-content">
       <span className="close" onClick={onClose}>
         &times;

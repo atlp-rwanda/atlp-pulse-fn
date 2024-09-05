@@ -231,16 +231,15 @@ function AdminTraineeDashboard() {
         return (
           <div
             className={
-              ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
+              'font-serif items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
             }
           >
             <button
               // className="bg-black text-white rounded-xl px-3 "
-              className={`${
-                row.original?.Status?.status === 'drop'
-                  ? ' bg-gray-500'
-                  : 'bg-black'
-              } text-white rounded-xl px-3`}
+              className={`${row.original?.Status?.status === 'drop'
+                ? ' bg-gray-500'
+                : 'bg-black'
+                } text-white rounded-xl px-3`}
               onClick={() => {
                 navigate(`/trainees/${row.original.userId}`);
               }}
@@ -632,7 +631,7 @@ function AdminTraineeDashboard() {
   return (
     <>
       {/* =========================== Start::  InviteTraineeModel =============================== */}
-      <div className="rounded-lg dark:bg-dark-bg">
+      <div className="font-serif rounded-lg dark:bg-dark-bg">
         <Dialog
           open={open}
           onClose={handleClose}
@@ -655,8 +654,8 @@ function AdminTraineeDashboard() {
                   }}
                   src={
                     traineeDetails &&
-                    traineeDetails.profile &&
-                    traineeDetails.profile.avatar
+                      traineeDetails.profile &&
+                      traineeDetails.profile.avatar
                       ? traineeDetails.profile.avatar
                       : Avatar
                   }
@@ -766,109 +765,109 @@ function AdminTraineeDashboard() {
                 </p>
               </div>
 
-                {/* show cohort  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>COHORT</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.name
-                        : 'Unavailable'}
-                    </i>
-                  </p>
-                </div>
-                {/* show team  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>TEAM</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.name
-                        : 'Unavailable'}
-                    </i>
-                  </p>
-                </div>
-                {/* show team  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>RATINGS</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.ratings
+              {/* show cohort  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>COHORT</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.cohort.name
+                      : 'Unavailable'}
+                  </i>
+                </p>
+              </div>
+              {/* show team  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>TEAM</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.name
+                      : 'Unavailable'}
+                  </i>
+                </p>
+              </div>
+              {/* show team  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>RATINGS</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.ratings
+                      ? traineeDetails.ratings[0]
                         ? traineeDetails.ratings[0]
-                          ? traineeDetails.ratings[0]
-                          : 'not yet rated'
-                        : 'unavailable.'}
-                    </i>
-                  </p>
-                </div>
+                        : 'not yet rated'
+                      : 'unavailable.'}
+                  </i>
+                </p>
+              </div>
 
-                {/* show manager  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>MANAGER</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.program.manager.profile
-                            .name
-                        : 'Unavailable'}
-                    </i>
-                  </p>
-                </div>
+              {/* show manager  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>MANAGER</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.cohort.program.manager.profile
+                        .name
+                      : 'Unavailable'}
+                  </i>
+                </p>
+              </div>
 
               {/* show coordinator  */}
               <div
@@ -948,7 +947,7 @@ function AdminTraineeDashboard() {
                   <div
                     className={
                       traineeDetails?.profile &&
-                      traineeDetails?.profile?.githubUsername
+                        traineeDetails?.profile?.githubUsername
                         ? 'flex'
                         : 'hidden '
                     }
@@ -961,7 +960,7 @@ function AdminTraineeDashboard() {
                     <div className="flex flex-col">
                       <div>
                         {traineeDetails?.profile &&
-                        traineeDetails?.profile?.githubUsername ? (
+                          traineeDetails?.profile?.githubUsername ? (
                           <GitHubActivityChart data={gitHubStatistics} />
                         ) : (
                           <></>
@@ -989,9 +988,8 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
-          inviteTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -1001,7 +999,7 @@ function AdminTraineeDashboard() {
             <hr className="w-full my-3 border-gray-400 " />
           </div>
           <div className="card-body">
-            <form  onSubmit={(e) => {e.preventDefault()}} className="px-8 py-3 ">
+            <form onSubmit={(e) => { e.preventDefault() }} className="px-8 py-3 ">
               <div className="flex flex-wrap items-center justify-center w-full card-title ">
                 <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t('Fill in the email to invite a user to DevPulse.')}
@@ -1012,7 +1010,7 @@ function AdminTraineeDashboard() {
                 <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     value={inviteEmail}
-                    
+
                     onChange={(e) => {
                       setInviteEmail(e.target.value);
                     }}
@@ -1040,7 +1038,7 @@ function AdminTraineeDashboard() {
                   variant="primary"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={HandleInvite }
+                  onClick={HandleInvite}
                   loading={buttonLoading}
                 >
                   {t('Invite')}
@@ -1055,9 +1053,8 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black bg-opacity-40 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
-          editTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen bg-black bg-opacity-40 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${editTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -1150,9 +1147,8 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
-          removeTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${removeTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -1207,9 +1203,8 @@ function AdminTraineeDashboard() {
 
       {/* =========================== start::  deleteTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 top-0 left-0 ${
-          dropTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 top-0 left-0 ${dropTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title">
@@ -1301,9 +1296,8 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center  px-4 ${
-          registerTraineeModel === true ? 'block' : 'hidden'
-        }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center  px-4 ${registerTraineeModel === true ? 'block' : 'hidden'
+          }`}
       >
         <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">

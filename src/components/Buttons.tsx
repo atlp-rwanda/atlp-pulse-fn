@@ -24,12 +24,12 @@ const Button: React.FC<Props> = ({
 }) => (
   <button
     type={type}
-    className={`btn ${variant} ${size} ${style}`}
+    className={`btn ${variant} ${size} ${style} font-serif`}
     onClick={onClick}
     disabled={disabled ? disabled : loading}
     {...rest}
   >
-    {loading ? <div className="loader mr-1" /> : children}
+    {loading ? <div className="loader mr-1 font-serif" /> : children}
   </button>
 );
 

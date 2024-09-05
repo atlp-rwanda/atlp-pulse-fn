@@ -8,7 +8,7 @@ export default function CommentCard({ comment }: any) {
 
   return (
     <div>
-      <div className="bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">
+      <div className="font-serif bg-neutral-100  dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center ">
         <table className="lg:w-9/12 md:w-11/12 lg:h-[70%] md:h-[60%] md:ml-0 lg:ml-32 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md mt-32 ">
           <tbody className=" text-center ">
             <tr className="text-light-text dark:text-dark-text-fill bg-light-bg dark:bg-dark-bg ">

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Skeleton() {
   return (
-    <main className="page-main">
+    <main className="page-main font-serif">
       <div className="border-2 p-2 md:p-4 min-h-screen min-w-full flex flex-col bg-white">
         <div className="flex flex-row justify-between">
           <div className="bg-gray-300 dark:bg-gray-600 h-12 animate-pulse rounded-md hidden md:block w-[50%] md:w-[10%] md:mr-2" />

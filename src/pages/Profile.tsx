@@ -14,7 +14,7 @@ export function CountryComponent({ country }: any) {
   const userCountry: any = COUNTRIES.filter((c) => c.value === country)[0];
   return (
     <span
-      className="truncate flex items-center"
+      className="truncate flex items-center font-serif"
       data-testid="country-selector-title"
     >
       <img
@@ -48,7 +48,7 @@ export default function Profile() {
     fetchData();
   }, []);
   return (
-    <div className="bg-light-bg dark:bg-dark-frame-bg overflow-y-scroll">
+    <div className="bg-light-bg dark:bg-dark-frame-bg overflow-y-scroll font-serif">
       {data ? (
         <>
           <ProfileCoverPage data={data?.getProfile} currentPage="viewProfile" />

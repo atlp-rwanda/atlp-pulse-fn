@@ -139,18 +139,18 @@ const TtlTraineeDashboard = () => {
   return (
     <>
       {/* Get Trainee user details */}
-      <div className="rounded-lg dark:bg-dark-bg">
+      <div className="rounded-lg dark:bg-dark-bg font-serif">
         <Dialog
           open={open}
           onClose={handleClose}
           PaperComponent={PaperComponent}
           aria-labelledby="draggable-dialog-title"
-          className="rounded-lg"
+          className="rounded-lg font-serif"
           fullWidth
         >
-          <DialogContent className="font-sans dark:bg-dark-bg">
-            <DialogContentText className="font-sans dark:bg-dark-bg">
-              <div className="font-sans text-sm font-bold text-center dark:text-white dark:bg-dark-bg">
+          <DialogContent className="font-serif dark:bg-dark-bg">
+            <DialogContentText className="font-serif dark:bg-dark-bg">
+              <div className="font-serif text-sm font-bold text-center dark:text-white dark:bg-dark-bg">
                 <div className="bg-[#4aa5be] h-[150px]">
                   <img
                     className="absolute top-[80px] left-[40px] border-4 border-white font-sans"
@@ -163,8 +163,8 @@ const TtlTraineeDashboard = () => {
                     }}
                     src={
                       traineeData &&
-                      traineeDetails.profile &&
-                      traineeDetails.profile.avatar
+                        traineeDetails.profile &&
+                        traineeDetails.profile.avatar
                         ? traineeDetails.profile.avatar
                         : Avatar
                     }
@@ -173,7 +173,7 @@ const TtlTraineeDashboard = () => {
                 </div>
 
                 <h2
-                  className="font-bold text-[18px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-sans"
+                  className="font-bold text-[18px]  capitalize pt-5 dark:text-white text-right dark:bg-dark-bg text-sm font-serif"
                   style={{ cursor: 'move', fontWeight: 'bold' }}
                   id="draggable-dialog-title"
                 >
@@ -183,7 +183,7 @@ const TtlTraineeDashboard = () => {
                 </h2>
 
                 <div
-                  className="font-sans text-sm"
+                  className="font-serif text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -207,7 +207,7 @@ const TtlTraineeDashboard = () => {
                   </p>
                 </div>
                 <div
-                  className="font-sans text-sm"
+                  className="font-serif text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -231,7 +231,7 @@ const TtlTraineeDashboard = () => {
                   </p>
                 </div>
                 <div
-                  className="font-sans text-sm"
+                  className="font-serif text-sm"
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -256,7 +256,7 @@ const TtlTraineeDashboard = () => {
                 </div>
 
                 <div
-                  className={'text-sm font-sans'}
+                  className={'text-sm font-serif'}
                   style={{
                     display: 'flex',
                     gap: '50px',
@@ -277,7 +277,7 @@ const TtlTraineeDashboard = () => {
                     <div
                       className={
                         traineeDetails?.profile &&
-                        traineeDetails?.profile?.githubUsername
+                          traineeDetails?.profile?.githubUsername
                           ? 'flex'
                           : 'hidden '
                       }
@@ -290,7 +290,7 @@ const TtlTraineeDashboard = () => {
                       <div className="flex flex-col">
                         <div>
                           {traineeDetails?.profile &&
-                          traineeDetails?.profile?.githubUsername ? (
+                            traineeDetails?.profile?.githubUsername ? (
                             <GitHubActivityChart data={gitHubStatistics} />
                           ) : (
                             <></>
@@ -305,7 +305,7 @@ const TtlTraineeDashboard = () => {
                   data-testid="removeInviteModel"
                   variant="info"
                   size="sm"
-                  style="w-[20%] md:w-1/4 text-sm font-sans"
+                  style="w-[20%] md:w-1/4 text-sm font-serif"
                   onClick={() => handleClose()}
                 >
                   {t('Close')}
@@ -322,7 +322,7 @@ const TtlTraineeDashboard = () => {
           <div className="w-full">
             <div>
               <div className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg">
-              <div className="">
+                <div className="">
                   {fetchError || traineeData?.length === 0 ? ( // Check both fetchError and traineeData length
                     <DataTable
                       data={[]} // Pass an empty array as data

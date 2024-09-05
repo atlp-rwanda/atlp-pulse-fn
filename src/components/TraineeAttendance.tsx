@@ -91,7 +91,7 @@ const TraineeAttendance: React.FC = () => {
 
   return (
     <>
-      <div className="bg-light-bg dark:bg-dark-frame-bg">
+      <div className="bg-light-bg dark:bg-dark-frame-bg font-serif">
         <div className="">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
             <div className=""></div>
@@ -138,18 +138,16 @@ const TraineeAttendance: React.FC = () => {
             <button
               onClick={prevPage}
               data-testid="prev"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
+                }`}
             >
               &larr;
             </button>
             <button
               onClick={() => setPage(1)}
               data-testid="page1"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
+                }`}
             >
               1
             </button>
@@ -158,9 +156,8 @@ const TraineeAttendance: React.FC = () => {
                 onClick={() => setPage(el)}
                 data-testid="page2"
                 key={el}
-                className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                  page === el ? 'active' : ''
-                }`}
+                className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === el ? 'active' : ''
+                  }`}
               >
                 {el}
               </button>
@@ -168,18 +165,16 @@ const TraineeAttendance: React.FC = () => {
             <button
               onClick={() => setPage(totalPages)}
               data-testid="page3"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
+                }`}
             >
               {totalPages}
             </button>
             <button
               onClick={nextPage}
               data-testid="next"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
-              }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
+                }`}
             >
               &rarr;
             </button>

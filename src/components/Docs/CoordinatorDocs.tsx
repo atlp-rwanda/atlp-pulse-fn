@@ -216,7 +216,7 @@ function CoordinatorDocs() {
   );
 
   return (
-    <div className="flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg text-light-text dark:text-dark-text-fill">
+    <div className="flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg text-light-text dark:text-dark-text-fill font-serif">
       {page1}
 
       {page2}

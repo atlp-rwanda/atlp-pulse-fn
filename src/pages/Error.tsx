@@ -15,7 +15,7 @@ function Error() {
   };
 
   return (
-    <div className="errorImg flex items-center justify-center h-screen w-screen text-center pt-11">
+    <div className="errorImg flex items-center justify-center h-screen w-screen text-center pt-11 font-serif">
       <div>
         <img
           src={NotFoundImg}

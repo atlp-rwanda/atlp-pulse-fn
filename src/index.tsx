@@ -49,11 +49,13 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const httpLink = createHttpLink({
-  uri: process.env.BACKEND_URL || 'https://devpulse-backend.onrender.com/',
+  // uri: process.env.BACKEND_URL || 'https://devpulse-backend.onrender.com/',
+  uri: process.env.BACKEND_URL || 'http://localhost:4000/',
 });
 
 const wsLink = new WebSocketLink({
-  uri: process.env.WS_BACKEND_URL || 'wss://devpulse-backend.onrender.com/',
+  // uri: process.env.WS_BACKEND_URL || 'wss://devpulse-backend.onrender.com/',
+  uri: process.env.WS_BACKEND_URL || 'http://localhost:4000/',
   options: {
     reconnect: true,
   },
