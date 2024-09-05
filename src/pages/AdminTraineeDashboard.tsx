@@ -402,6 +402,7 @@ function AdminTraineeDashboard() {
     },
     fetchPolicy: 'network-only',
     onError: (error) => {
+      console.log(error.message);
       toast.error(error.message);
     },
   });

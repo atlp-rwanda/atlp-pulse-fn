@@ -12,6 +12,7 @@ import { UserContext } from '../hook/useAuth';
 import {
   getAllNotification,
   NotificationSubscription,
+  PUSH_NOTIFICATION_SUB,
 } from '../Mutations/notificationMutation';
 import { MenuContext } from '../hook/menuProvider';
 import ToggleThemeButton from './TogglethemeIcon';
@@ -72,6 +73,14 @@ function DashHeader() {
     },
     variables: {
       receiver: user?.userId,
+    },
+  });
+  useSubscription(PUSH_NOTIFICATION_SUB, {
+    onData: (data) => {
+      setNotificationData([data.data.data.pushNotification, ...notifications]);
+    },
+    variables: {
+      receiverId: user?.userId,
     },
   });
 

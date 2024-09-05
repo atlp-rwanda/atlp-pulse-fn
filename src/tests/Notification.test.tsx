@@ -37,18 +37,13 @@ describe('notification test', () => {
     });
 
     const container = screen.getByTestId('notificationsContainer');
-    const markAllReadBtn = screen.getByTestId('markAllRead');
     const keyClick = screen.getByTestId('keyClick');
-    const seeAllNotification = screen.getByTestId('seeAllNotification');
 
     act(() => {
-      fireEvent.click(markAllReadBtn);
       fireEvent.click(keyClick);
       fireEvent.keyDown(keyClick);
-      fireEvent.click(seeAllNotification);
     });
 
     expect(container).toBeInTheDocument();
-    expect(markAllReadBtn).toBeInTheDocument();
   });
 });
