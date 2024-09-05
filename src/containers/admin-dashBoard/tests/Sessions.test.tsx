@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+
 import { MockedProvider } from '@apollo/client/testing';
 import { act } from 'react-dom/test-utils';
 import AdminSission from '../Sessions';
@@ -123,12 +123,12 @@ describe('AdminSission Component', () => {
     await waitFor(async () => {
       fireEvent.click(screen.getAllByTestId('deleteIcon')[0]);
       expect(screen.getByTestId('delete-section')).toBeInTheDocument();
-      expect(screen.getByTestId('delete-section')).toHaveClass("block");
+      expect(screen.getByTestId('delete-section')).toHaveClass('block');
 
       fireEvent.click(screen.getByTestId('delete'));
-      await waitFor(()=>{
-        expect(screen.queryByTestId('delete-section')).toHaveClass("hidden");
-      })
+      await waitFor(() => {
+        expect(screen.queryByTestId('delete-section')).toHaveClass('hidden');
+      });
     });
   });
 
@@ -163,7 +163,7 @@ describe('AdminSission Component', () => {
       </MockedProvider>,
     );
 
-    await waitFor(async() => {
+    await waitFor(async () => {
       fireEvent.click(screen.getAllByTestId('updateIcon')[0]);
       expect(screen.getByTestId('update-section')).toBeInTheDocument();
 
@@ -176,9 +176,9 @@ describe('AdminSission Component', () => {
       });
 
       fireEvent.click(screen.getByTestId('save'));
-      await waitFor(()=>{
+      await waitFor(() => {
         expect(screen.queryByText('update-section')).toBeNull();
-      })
+      });
     });
   });
 });

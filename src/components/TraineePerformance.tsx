@@ -198,6 +198,60 @@ function TraineePerfomance() {
     );
   }
 
+  if (ratings?.length === 0) {
+    return (
+      <>
+        <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+          <div className="">
+            <div className="bg-white dark:bg-dark-bg shadow-lg py-8 px-5 rounded-md w-full mdl:w-[70%] mdl:m-auto flex">
+              <div className="flex ml-2 items-center justify-between">
+                <div className="">
+                  <img src={oop} className="w-[8rem] h-[8rem]" alt="images" />
+                </div>
+              </div>
+
+              <div className=" flex-1">
+                <div className="flex w-full h-full  items-center justify-between">
+                  <p className="text-gray-800 dark:text-white font-semibold text-[24px] w-[90%] m-auto">
+                    Performance updates are on the way! Stay tuned for the
+                    latest insights!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (ratings?.length === 0) {
+    return (
+      <>
+        <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+          <div className="">
+            <div className="bg-white dark:bg-dark-bg shadow-lg py-8 px-5 rounded-md w-full mdl:w-[70%] mdl:m-auto flex">
+              <div className="flex ml-2 items-center justify-between">
+                <div className="">
+                  <img src={oop} className="w-[8rem] h-[8rem]" alt="images" />
+                </div>
+              </div>
+
+              <div className=" flex-1">
+                <div className="flex w-full h-full  items-center justify-between">
+                  <p className="text-gray-800 dark:text-white font-semibold text-[24px] w-[90%] m-auto">
+                    Performance updates are on the way! Stay tuned for the
+                    latest insights!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <RemarksModal showRemarks={toggle} closeModal={closeFeeds} rows={row} />
@@ -280,7 +334,9 @@ function TraineePerfomance() {
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                {item.average % 1 === 0 ? item.average : Number(item.average).toFixed(2)}
+                                {item.average % 1 === 0
+                                  ? item.average
+                                  : Number(item.average).toFixed(2)}
                               </p>
                             </td>
 
@@ -314,8 +370,9 @@ function TraineePerfomance() {
               onClick={prevPage}
               data-testid="prev"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
-                }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
+                page === 1 && 'disabled'
+              }`}
             >
               &larr;
             </button>
@@ -323,21 +380,23 @@ function TraineePerfomance() {
               onClick={() => setPage(1)}
               data-testid="page1"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === 1 && 'disabled'
-                }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
+                page === 1 && 'disabled'
+              }`}
             >
               1
             </button>
             {/* @ts-ignore */}
             {gaps.paginationGroup.map(
-              /* istanbul ignore next */(el) => (
+              /* istanbul ignore next */ (el) => (
                 <button
                   onClick={/* istanbul ignore next */ () => setPage(el)}
                   data-testid="page"
                   key={el}
                   type="button"
-                  className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === el ? 'active' : ''
-                    }`}
+                  className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
+                    page === el ? 'active' : ''
+                  }`}
                 >
                   {el}
                 </button>
@@ -347,8 +406,9 @@ function TraineePerfomance() {
               onClick={() => setPage(totalPages)}
               data-testid="page3"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
-                }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
+                page === totalPages && 'disabled'
+              }`}
             >
               {totalPages}
             </button>
@@ -356,8 +416,9 @@ function TraineePerfomance() {
               onClick={nextPage}
               data-testid="next"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${page === totalPages && 'disabled'
-                }`}
+              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
+                page === totalPages && 'disabled'
+              }`}
             >
               &rarr;
             </button>
