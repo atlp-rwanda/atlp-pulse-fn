@@ -7,6 +7,8 @@ import { BsPersonFillX } from 'react-icons/bs';
 import InvitationCard from '../components/InvitationCard';
 import InvitationTable from '../components/InvitationTable';
 import InvitationModal from './invitationModalComponet';
+import { GET_INVITATIONS_STATISTICS_QUERY } from '../Mutations/invitationStats';
+import { toast } from 'react-toastify';
 
 const GET_ALL_INVITATIONS = gql`
   query AllInvitations($limit: Int, $offset: Int) {
@@ -51,6 +53,7 @@ interface Invitationn {
 }
 
 function Invitation() {
+  const [invitationStats, setInvitationStats] = useState<any>(null);
   const [invitations, setInvitations] = useState<Invitationn[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -59,6 +62,30 @@ function Invitation() {
   const [pageIndex, setPageIndex] = useState<number>(0);
   const [pageSize, setPageSize] = useState<number>(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const organizationToken = localStorage.getItem('orgToken');
+  
+      const { loading: isLoading, data: queryData, refetch: refreshData } = useQuery(
+        GET_INVITATIONS_STATISTICS_QUERY,
+        {
+          variables: {
+            orgToken: organizationToken
+          },
+          skip: !organizationToken,
+          fetchPolicy: 'network-only',
+          onError: (error) => {
+            toast.error("testtes111");
+          },
+        },
+      );
+      useEffect(() => {
+        if (queryData) {
+            refreshData();
+          setInvitationStats(queryData.getInvitationStatistics);
+        }
+      }, [queryData, refreshData]);
+      if (!organizationToken) {
+        return <p>Organization token not found. Please log in.</p>;
+      }
 
   const {
     data,
@@ -209,8 +236,12 @@ function Invitation() {
             }
             status="ACCEPTED"
             time="Last 7 days"
-            staticNumber="75"
-            percentage="60"
+            staticNumber={invitationStats?.acceptedInvitationsCount || 0}
+            percentage={
+                invitationStats?.getAcceptedInvitationsPercentsCount?.toFixed(
+                    1,
+                 ) + '%' || '0'
+                        }
           />
           <InvitationCard
             icon={
@@ -218,24 +249,20 @@ function Invitation() {
             }
             status="PENDING"
             time="Last 7 days"
-            staticNumber="10"
-            percentage="30"
+            staticNumber={invitationStats?.pendingInvitationsCount || 0}
+            percentage={
+                invitationStats?.getPendingInvitationsPercentsCount?.toFixed(
+                     1,
+                ) + '%' || '0' 
+                        }
           />
-          <InvitationCard
-            icon={
-              <BsPersonFillX className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12" />
-            }
-            status="DENIED"
-            time="Last 7 days"
-            staticNumber="44"
-            percentage="30"
-          />
+         
           <InvitationCard
             icon=""
             status="INVITATIONS"
             time="Last 7 days"
-            staticNumber="129"
-            percentage="30"
+            staticNumber={invitationStats?.totalInvitations || 0}
+            percentage="100%"
           />
         </div>
 
@@ -298,3 +325,4 @@ function Invitation() {
 }
 
 export default Invitation;
+
