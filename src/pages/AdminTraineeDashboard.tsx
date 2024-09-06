@@ -36,6 +36,7 @@ import GitHubActivityChart from '../components/chartGitHub';
 import Spinner from '../components/Spinner';
 import { useTraineesContext } from '../hook/useTraineesData';
 import Dropdown from 'react-dropdown-select';
+import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 const organizationToken = localStorage.getItem('orgToken');
 
 function AdminTraineeDashboard() {
@@ -115,6 +116,7 @@ function AdminTraineeDashboard() {
   });
 
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const handleClickOpen = async (rowData: any) => {
     setIsLoaded(true);
@@ -131,8 +133,16 @@ function AdminTraineeDashboard() {
     });
   };
 
+  const handleClickOpen2 = async () => {
+    setIsLoaded(true);
+
+    setOpen2(true);
+  };
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleClose2 = () => {
+    setOpen2(false);
   };
 
   /* istanbul ignore next */
@@ -231,17 +241,19 @@ function AdminTraineeDashboard() {
         return (
           <div
             className={
-              'font-serif items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
+              'font-serif items-center' +
+              (traineeData?.length > 0 ? ' flex' : ' hidden')
             }
           >
             <button
               // className="bg-black text-white rounded-xl px-3 "
-              className={`${row.original?.Status?.status === 'drop'
-                ? ' bg-gray-500'
-                : 'bg-black'
-                } text-white rounded-xl px-3`}
+              className={`${
+                row.original?.Status?.status === 'drop'
+                  ? ' bg-gray-500'
+                  : 'bg-black'
+              } text-white rounded-xl px-3`}
               onClick={() => {
-                navigate(`/trainees/${row.original.userId}`);
+                handleClickOpen2();
               }}
             >
               {row.original?.Status?.status === 'drop' ? 'Dropped' : 'view'}
@@ -557,7 +569,7 @@ function AdminTraineeDashboard() {
     // pass
     setButtonLoading(true);
     inviteUser();
-  }
+  };
   const [inviteUser] = useMutation(INVITE_USER_MUTATION, {
     variables: {
       email: inviteEmail,
@@ -634,6 +646,24 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  InviteTraineeModel =============================== */}
       <div className="font-serif rounded-lg dark:bg-dark-bg">
         <Dialog
+          open={open2}
+          onClose={handleClose2}
+          PaperComponent={PaperComponent}
+          aria-labelledby="draggable-dialog-title"
+          className="rounded-lg"
+          fullWidth
+        >
+          <ViewWeeklyRatings
+            traineeName={traineeData ? traineeData[0]?.profile?.name : ''}
+            traineeEmail={traineeData ? traineeData[0]?.email : ''}
+            traineeId={traineeData ? traineeData[0]?.profile?.user?.id : ''}
+            traineeCohort={traineeData ? traineeData[0]?.team?.cohort?.id : ''}
+            traineeStatus={
+              traineeData ? traineeData[0]?.profile?.user?.status : ''
+            }
+          />
+        </Dialog>
+        <Dialog
           open={open}
           onClose={handleClose}
           PaperComponent={PaperComponent}
@@ -655,8 +685,8 @@ function AdminTraineeDashboard() {
                   }}
                   src={
                     traineeDetails &&
-                      traineeDetails.profile &&
-                      traineeDetails.profile.avatar
+                    traineeDetails.profile &&
+                    traineeDetails.profile.avatar
                       ? traineeDetails.profile.avatar
                       : Avatar
                   }
@@ -863,8 +893,7 @@ function AdminTraineeDashboard() {
                   <i>
                     {' '}
                     {traineeDetails && traineeDetails.team
-                      ? traineeDetails.team.cohort.program.manager.profile
-                        .name
+                      ? traineeDetails.team.cohort.program.manager.profile.name
                       : 'Unavailable'}
                   </i>
                 </p>
@@ -897,36 +926,37 @@ function AdminTraineeDashboard() {
               </div>
 
               {/* Show resume URL for admins and managers */}
-              {user && (user.role === 'admin' || user.role === 'coordinator') && (
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  <h3>
-                    <b>RESUME</b>
-                  </h3>
-                  <p>
-                    {traineeDetails?.profile?.resume ? (
-                      <a
-                        href={traineeDetails.profile.resume}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Resume
-                      </a>
-                    ) : (
-                      'Unavailable'
-                    )}
-                  </p>
-                </div>
-              )}
+              {user &&
+                (user.role === 'admin' || user.role === 'coordinator') && (
+                  <div
+                    className="font-sans text-sm"
+                    style={{
+                      display: 'flex',
+                      gap: '50px',
+                      justifyContent: 'space-between',
+                      paddingBlock: '10px',
+                      marginBottom: '20px',
+                      borderBottom: '0.5px solid #EAECEE',
+                    }}
+                  >
+                    <h3>
+                      <b>RESUME</b>
+                    </h3>
+                    <p>
+                      {traineeDetails?.profile?.resume ? (
+                        <a
+                          href={traineeDetails.profile.resume}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Resume
+                        </a>
+                      ) : (
+                        'Unavailable'
+                      )}
+                    </p>
+                  </div>
+                )}
 
               <div
                 className="text-sm font-sans"
@@ -948,7 +978,7 @@ function AdminTraineeDashboard() {
                   <div
                     className={
                       traineeDetails?.profile &&
-                        traineeDetails?.profile?.githubUsername
+                      traineeDetails?.profile?.githubUsername
                         ? 'flex'
                         : 'hidden '
                     }
@@ -961,7 +991,7 @@ function AdminTraineeDashboard() {
                     <div className="flex flex-col">
                       <div>
                         {traineeDetails?.profile &&
-                          traineeDetails?.profile?.githubUsername ? (
+                        traineeDetails?.profile?.githubUsername ? (
                           <GitHubActivityChart data={gitHubStatistics} />
                         ) : (
                           <></>
@@ -989,8 +1019,9 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          inviteTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -1000,7 +1031,12 @@ function AdminTraineeDashboard() {
             <hr className="w-full my-3 border-gray-400 " />
           </div>
           <div className="card-body">
-            <form onSubmit={(e) => { e.preventDefault() }} className="px-8 py-3 ">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              className="px-8 py-3 "
+            >
               <div className="flex flex-wrap items-center justify-center w-full card-title ">
                 <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t('Fill in the email to invite a user to DevPulse.')}
@@ -1011,7 +1047,6 @@ function AdminTraineeDashboard() {
                 <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     value={inviteEmail}
-
                     onChange={(e) => {
                       setInviteEmail(e.target.value);
                     }}
@@ -1054,8 +1089,9 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  EditTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black bg-opacity-40 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${editTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen bg-black bg-opacity-40 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          editTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -1148,8 +1184,9 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${removeTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          removeTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -1204,8 +1241,9 @@ function AdminTraineeDashboard() {
 
       {/* =========================== start::  deleteTraineeModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 top-0 left-0 ${dropTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed flex items-center justify-center px-4 top-0 left-0 ${
+          dropTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title">
@@ -1297,8 +1335,9 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center  px-4 ${registerTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center  px-4 ${
+          registerTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
