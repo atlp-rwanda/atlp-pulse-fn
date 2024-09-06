@@ -13,3 +13,18 @@ export const SEND_INVITATION = gql`
     }
   }
 `;
+
+export const UPLOAD_INVITATION_FILE = gql`
+  mutation uploadInvitationFile($file: Upload!, $orgToken: String!) {
+    uploadInvitationFile(file: $file, orgToken: $orgToken) {
+      filename
+      data {
+        email
+        success
+      }
+      invalidRows
+      message
+      sentEmails
+    }
+  }
+`;

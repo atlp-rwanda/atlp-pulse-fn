@@ -21,6 +21,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import UserProvider from './hook/useAuth';
 import App from './App';
 import ThemeProvider from './hook/ThemeProvider';
+import createUploadLink from "apollo-upload-client/public/createUploadLink.js";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -44,7 +45,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) toast.error(`[Network error]: ${networkError}`);
 });
 
-const httpLink = createHttpLink({
+// Create upload link
+const uploadLink = createUploadLink({
   uri: process.env.BACKEND_URL || 'https://devpulse-backend.onrender.com/',
 });
 
@@ -64,10 +66,12 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       Authorization: token ? `Bearer ${token}` : '',
+      'apollo-require-preflight': 'true',
     },
   };
 });
 
+// Use splitLink to handle both WebSocket and HTTP requests
 const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
@@ -77,15 +81,16 @@ const splitLink = split(
     );
   },
   wsLink,
-  from([errorLink, authLink.concat(httpLink)]),
+  from([errorLink, authLink.concat(uploadLink)]),
 );
 
+// Initialize Apollo Client
 export const client = new ApolloClient({
   link: splitLink,
   cache: new InMemoryCache(),
 });
 
-// render the app using apolloprovider
+// Render the app using ApolloProvider
 const container = document.getElementById('tree')!;
 
 const root = ReactDOMClient.createRoot(container).render(
