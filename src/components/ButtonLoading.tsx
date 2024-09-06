@@ -9,7 +9,7 @@ const ButtonLoading: React.FC<Props> = ({ style }) => {
   const { t } = useTranslation();
   return (
     <div
-      className={`flex w-fit py-1 px-3 bg-primary justify-center font-bold ${style}`}
+      className={`flex w-fit py-1 px-3 bg-primary justify-center font-bold ${style} font-serif`}
     >
       <div className="flex w-full gap-2 justify-center items-center">
         <div className="loader" />

@@ -90,8 +90,8 @@ function TeamDetails() {
 
   const selectedTeam = teamData
     ? teamData.find(
-        (team: { teamname: string | null }) => team.teamname === teamname,
-      )
+      (team: { teamname: string | null }) => team.teamname === teamname,
+    )
     : null;
   function getColor(rating: number) {
     if (rating >= 1.5 && rating <= 2) {
@@ -213,7 +213,7 @@ function TeamDetails() {
     : filteredRatings;
 
   return (
-    <div className="flex flex-col  dark:bg-dark-frame-bg  items-center justify-center ">
+    <div className="flex flex-col  dark:bg-dark-frame-bg  items-center justify-center font-serif">
       {loading ? (
         <div className="flex items-center justify-center w-full h-full">
           <Spinner />
@@ -314,8 +314,8 @@ function TeamDetails() {
                             {selectedTeam.Qty >= 1.5 && selectedTeam.Qty <= 2
                               ? 'Good'
                               : selectedTeam.Qty >= 1 && selectedTeam.Qty < 1.5
-                              ? 'Improve'
-                              : 'Poor'}
+                                ? 'Improve'
+                                : 'Poor'}
                           </span>
                         </div>
                       </div>
@@ -351,8 +351,8 @@ function TeamDetails() {
                               ? 'Good'
                               : selectedTeam.Qnty >= 1 &&
                                 selectedTeam.Qnty < 1.5
-                              ? 'Improve'
-                              : 'Poor'}
+                                ? 'Improve'
+                                : 'Poor'}
                           </span>
                         </div>
                       </div>
@@ -386,12 +386,12 @@ function TeamDetails() {
                         </ul>
                         <span style={{ color: getColor(selectedTeam.skills) }}>
                           {selectedTeam.skills >= 1.5 &&
-                          selectedTeam.skills <= 2
+                            selectedTeam.skills <= 2
                             ? 'Good'
                             : selectedTeam.skills >= 1 &&
                               selectedTeam.skills < 1.5
-                            ? 'Improve'
-                            : 'Poor'}
+                              ? 'Improve'
+                              : 'Poor'}
                         </span>
                       </div>
                     </div>

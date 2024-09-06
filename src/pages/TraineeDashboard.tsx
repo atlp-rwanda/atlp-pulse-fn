@@ -102,7 +102,7 @@ function SupAdDashboard() {
         if (phase === undefined) {
           setPhase(data?.getProfile?.user?.team?.cohort?.phase?.name);
         }
-      } catch (error: any) {}
+      } catch (error: any) { }
     };
     fetchData();
   }, [phase, data]);
@@ -296,7 +296,7 @@ function SupAdDashboard() {
   };
 
   return (
-    <div className="flex flex-col  grow dark:bg-dark-frame-bg ">
+    <div className="flex flex-col  grow dark:bg-dark-frame-bg font-serif">
       <div className="flex  flex-col justify-center  ">
         <div className="w-[100%] pt-[4vh] h-[100%]   ">
           <div className="">
@@ -341,13 +341,12 @@ function SupAdDashboard() {
                     <li>Quantity</li>
                   </ul>
                   <p
-                    className={`ml-2 ${
-                      quantityValue > 1
+                    className={`ml-2 ${quantityValue > 1
                         ? 'text-[#1b5e20]'
                         : quantityValue === 1
-                        ? 'text-[#ffeb3b]'
-                        : 'text-[#b71c1c]'
-                    }`}
+                          ? 'text-[#ffeb3b]'
+                          : 'text-[#b71c1c]'
+                      }`}
                   >
                     {norating ? (
                       <h1>No ratings yet </h1>
@@ -375,13 +374,12 @@ function SupAdDashboard() {
                     <li>Quality</li>
                   </ul>
                   <p
-                    className={`ml-2 ${
-                      qualityValue > 1
+                    className={`ml-2 ${qualityValue > 1
                         ? 'text-[#1b5e20]'
                         : qualityValue === 1
-                        ? 'text-[#ffeb3b]'
-                        : 'text-[#b71c1c]'
-                    }`}
+                          ? 'text-[#ffeb3b]'
+                          : 'text-[#b71c1c]'
+                      }`}
                   >
                     {norating ? (
                       <h1>No ratings yet </h1>
@@ -409,13 +407,12 @@ function SupAdDashboard() {
                     <li>Professionalism</li>
                   </ul>
                   <p
-                    className={`ml-2 ${
-                      perfomanceValue > 1
+                    className={`ml-2 ${perfomanceValue > 1
                         ? 'text-[#1b5e20]'
                         : perfomanceValue === 1
-                        ? 'text-[#ffeb3b]'
-                        : 'text-[#b71c1c]'
-                    }`}
+                          ? 'text-[#ffeb3b]'
+                          : 'text-[#b71c1c]'
+                      }`}
                   >
                     {norating ? (
                       <h1> No ratings yet</h1>

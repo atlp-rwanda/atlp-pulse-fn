@@ -14,22 +14,22 @@ exports[`notification test should render notification 1`] = `
     tabIndex={0}
   />
   <div
-    className="absolute top-[60px] right-0 left-0 mx-auto px-2 md:mx-0 md:left-auto md:right-[80px] z-2  w-full max-w-[392px] h-[calc(100%-70px)]"
+    className="absolute top-[60px] right-0 left-0 mx-auto px-4 md:mx-0 md:left-auto md:right-[60px] z-2  w-full max-w-[34rem] h-[calc(100%-70px)]"
   >
     <div
-      className="flex flex-col flex-nowrap w-full h-max max-h-full bg-[#E5EAFF] dark:bg-dark-tertiary rounded-[20px]"
+      className="flex flex-col flex-nowrap w-full h-max max-h-full bg-[#FFF] dark:bg-dark-frame-bg rounded-md px-1"
     >
       <div
-        className="flex justify-between items-center w-full p-3 border-border-dark dark:border-white border-b-[0.5px]"
+        className="flex justify-between items-center w-full p-4 py-6"
       >
         <p
           className="font-semibold dark:text-white"
         >
-          Notification
+          Notifications
         </p>
         <svg
           aria-hidden="true"
-          className="border-black dark:fill-white h-[25px] w-[25px] cursor-pointer md:hidden"
+          className="border-black dark:fill-white h-6 w-6 cursor-pointer"
           data-testid="closeIcon"
           fill="currentColor"
           fontSize="70px"
@@ -45,18 +45,12 @@ exports[`notification test should render notification 1`] = `
         </svg>
       </div>
       <div
-        className="flex flex-col w-full overflow-auto"
+        className="flex flex-col gap-3 w-[96.5%] overflow-auto pl-5 pr-[6px] mr-5 custom-scrollbar"
         data-testid="notificationsContainer"
       />
       <div
         className="w-full p-3 flex flex-row align-center justify-between"
       >
-        <p
-          className="font-normal text-xs m-1 dark:text-white cursor-pointer"
-          data-testid="seeAllNotification"
-        >
-          See all notification
-        </p>
         <div
           className="font-normal text-xs m-1 dark:text-white cursor-pointer ml-auto"
           data-testid="markAllRead"

@@ -403,7 +403,7 @@ function TraineeRatingDashboard() {
 
   return (
     <>
-      <div className="flex flex-col bg-light-bg dark:bg-dark-frame-bg">
+      <div className="flex flex-col bg-light-bg dark:bg-dark-frame-bg font-serif">
         <div className="flex flex-row">
           <div className="w-[100%]">
             <div>

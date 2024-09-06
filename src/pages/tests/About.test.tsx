@@ -1,22 +1,20 @@
-import React from "react";
-import { MemoryRouter } from "react-router-dom";
-import renderer from "react-test-renderer"
-import "@testing-library/jest-dom"
-import { About } from '../About'
-import { MockedProvider as ApolloProvider } from "@apollo/client/testing";
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
+import '@testing-library/jest-dom';
+import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
+import { About } from '../About';
 
-describe('About page',()=>{
+describe('About page', () => {
+  it('renders the about page', () => {
+    const elem = renderer.create(
+      <MemoryRouter>
+        <ApolloProvider>
+          <About />
+        </ApolloProvider>
+      </MemoryRouter>,
+    );
 
-    it('renders the about page',()=>{
-        const elem = renderer.create(
-            <MemoryRouter>
-                <ApolloProvider>
-                    <About/>
-                </ApolloProvider>
-            </MemoryRouter>
-        )
-
-        expect(elem.toJSON()).toMatchSnapshot()
-    })
-
-})
+    expect(elem.toJSON()).toMatchSnapshot();
+  });
+});

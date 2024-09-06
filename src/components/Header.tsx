@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink , useLocation} from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { UserContext } from '../hook/useAuth';
 import Button from './Buttons';
@@ -17,12 +17,12 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { user, logout } = useContext(UserContext);
   const location = useLocation()
   const pathname = location.pathname.split("/")[1]
-  
+
   const goTo = orgToken ? '/users/login' : '/login/org';
 
   return (
     <div
-      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header ${props?.className}`}
+      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header ${props?.className} font-serif`}
       style={props?.style}
     >
       <div className="px-3 flex justify-between items-center w-full h-full">
@@ -75,7 +75,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
                 className={() => {
-                  if (pathname==="docs") return 'text-primary';
+                  if (pathname === "docs") return 'text-primary';
                   return '';
                 }}
                 to="/docs/getting-started"

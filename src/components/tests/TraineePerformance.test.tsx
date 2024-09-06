@@ -1,14 +1,14 @@
 /* eslint-disable */
 import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import '../../../test/jest/__mocks__/matchMedia';
-import TraineePerfomance from '../TraineePerformance';
-import { MockedProvider as ApolloProvider } from '@apollo/client/testing';
+import TraineePerfomance, { GET_RATINGS_DATA } from '../TraineePerformance';
+import { MockedProvider as ApolloProvider, wait } from '@apollo/client/testing';
 
 describe('View overall performance', () => {
-  it('Renders a Detailed Trainee Performance Page ', () => {
+  it('Renders a Detailed Trainee Performance Page with no data  ', () => {
     const PreMck = jest.fn();
     const NexMck = jest.fn();
     const setPageMck = jest.fn();
@@ -20,5 +20,6 @@ describe('View overall performance', () => {
         </ApolloProvider>
       </BrowserRouter>,
     );
+    expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
   });
 });

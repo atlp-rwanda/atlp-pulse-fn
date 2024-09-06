@@ -126,7 +126,7 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="w-screen h-[8vh] z-10 bg-[#E0E7FF] dark:bg-dark-bg fixed border-b">
+      <div className="w-screen h-[8vh] z-10 bg-[#E0E7FF] dark:bg-dark-bg fixed border-b font-serif">
         <div className="px-3 flex items-center w-full h-full">
           <div className="flex px-5 lg:hidden">
             <div
@@ -202,8 +202,8 @@ function DashHeader() {
                 user?.profileImage
                   ? user?.profileImage
                   : profileData?.getProfile?.avatar
-                  ? profileData?.getProfile?.avatar
-                  : Avatar
+                    ? profileData?.getProfile?.avatar
+                    : Avatar
               }
               alt="avatar"
             />

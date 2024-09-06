@@ -289,7 +289,7 @@ const Signup = () => {
   }, []);
 
   return (
-    <div className="md:flex md:flex-col md:items-center md:justify-center w-full grow text-center py-2 dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center">
+    <div className="md:flex md:flex-col md:items-center md:justify-center w-full grow text-center py-2 dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center font-serif">
       <div className="w-full md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-bg dark:rounded-none ">
         <div className="py-10 sm:py-8 w-full m-auto  md:shadow-xl rounded-xl">
           <h2 className="text-2xl font-bold text-primary dark:text-dark-text-fill ">

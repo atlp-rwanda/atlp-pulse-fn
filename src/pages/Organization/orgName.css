@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+
+.font {
+  font-family: 'PT Serif', serif;
+}
+
 .orgName {
   display: flex;
 }
@@ -10,6 +16,10 @@
   background-clip: text;
 }
 
-.orgName:has(.inputStyle:-webkit-autofill, .inputStyle:-webkit-autofill:hover, .inputStyle:-webkit-autofill:focus) {
+.orgName:has(
+    .inputStyle:-webkit-autofill,
+    .inputStyle:-webkit-autofill:hover,
+    .inputStyle:-webkit-autofill:focus
+  ) {
   background-color: #eef5ff;
 }

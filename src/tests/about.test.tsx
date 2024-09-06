@@ -2,20 +2,18 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
-import { About } from '../pages/About';
 import { I18nextProvider } from 'react-i18next';
+import { About } from '../pages/About';
 
 // Mock i18next
 jest.mock('react-i18next', () => ({
   // this mock makes sure any components using the translate hook can use it without a warning being shown
-  useTranslation: () => {
-    return {
-      t: (str: string) => str,
-      i18n: {
-        changeLanguage: () => new Promise(() => {}),
-      },
-    };
-  },
+  useTranslation: () => ({
+    t: (str: string) => str,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+    },
+  }),
   initReactI18next: {
     type: '3rdParty',
     init: () => {},
@@ -48,13 +46,12 @@ jest.mock('../assets/person2.png', () => 'mock-person2-image');
 jest.mock('../assets/ur.png', () => 'mock-ur-image');
 
 describe('About Component', () => {
-  const renderComponent = () => {
-    return render(
+  const renderComponent = () =>
+    render(
       <MemoryRouter>
         <About />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
-  };
 
   it('renders the main heading', () => {
     renderComponent();
@@ -89,6 +86,8 @@ describe('About Component', () => {
 
   it('renders the final heading', () => {
     renderComponent();
-    expect(screen.getByText('Come shape the future together')).toBeInTheDocument();
+    expect(
+      screen.getByText('Come shape the future together'),
+    ).toBeInTheDocument();
   });
 });

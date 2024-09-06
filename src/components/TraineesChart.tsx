@@ -16,7 +16,7 @@ interface TableRow {
   quantity: number;
   professionalism: number;
   attendance: number;
-  
+
 }
 
 interface TraineeChartProps {
@@ -37,8 +37,8 @@ const TraineeChart: React.FC<TraineeChartProps> = ({ barChartData }) => {
   const xAxisTickValues = chartData.map((entry) => entry.name);
 
   return (
-    <div className="">
-      <LineChart  width={1185} height={209} data={chartData}>
+    <div className="font-serif">
+      <LineChart width={1185} height={209} data={chartData}>
         <Line
           type="monotone"
           dataKey="professionalism"

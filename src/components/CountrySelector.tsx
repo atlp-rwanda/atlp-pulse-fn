@@ -39,7 +39,7 @@ const CountrySelector = React.forwardRef<
 
   return (
     <div ref={ref} data-testid="countries">
-      <div className="relative">
+      <div className="relative font-serif">
         <button
           type="button"
           data-testid="country-selector-button"

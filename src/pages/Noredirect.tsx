@@ -4,7 +4,7 @@ import Button from '../components/Buttons';
 
 export default function Noredirect() {
   return (
-    <div className=" dark:bg-dark-frame-bg flex flex-col py-8 px-5  items-center justify-evenly md:justify-evenly grow h-full w-full">
+    <div className="font-serif dark:bg-dark-frame-bg flex flex-col py-8 px-5  items-center justify-evenly md:justify-evenly grow h-full w-full">
       <h1 className="flex font-semibold text-primary dark:text-dark-text-fill text-3xl">
         Hello
         <span className="animate-[wave_5s_ease-in-out_2]">👋🏻</span>, Users

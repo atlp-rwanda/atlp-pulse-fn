@@ -36,6 +36,7 @@ import GitHubActivityChart from '../components/chartGitHub';
 import Spinner from '../components/Spinner';
 import { useTraineesContext } from '../hook/useTraineesData';
 import Dropdown from 'react-dropdown-select';
+import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 const organizationToken = localStorage.getItem('orgToken');
 
 function AdminTraineeDashboard() {
@@ -115,6 +116,7 @@ function AdminTraineeDashboard() {
   });
 
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const handleClickOpen = async (rowData: any) => {
     setIsLoaded(true);
@@ -131,8 +133,16 @@ function AdminTraineeDashboard() {
     });
   };
 
+  const handleClickOpen2 = async () => {
+    setIsLoaded(true);
+
+    setOpen2(true);
+  };
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleClose2 = () => {
+    setOpen2(false);
   };
 
   /* istanbul ignore next */
@@ -231,7 +241,8 @@ function AdminTraineeDashboard() {
         return (
           <div
             className={
-              ' items-center' + (traineeData?.length > 0 ? ' flex' : ' hidden')
+              'font-serif items-center' +
+              (traineeData?.length > 0 ? ' flex' : ' hidden')
             }
           >
             <button
@@ -242,7 +253,7 @@ function AdminTraineeDashboard() {
                   : 'bg-black'
               } text-white rounded-xl px-3`}
               onClick={() => {
-                navigate(`/trainees/${row.original.userId}`);
+                handleClickOpen2();
               }}
             >
               {row.original?.Status?.status === 'drop' ? 'Dropped' : 'view'}
@@ -403,6 +414,7 @@ function AdminTraineeDashboard() {
     },
     fetchPolicy: 'network-only',
     onError: (error) => {
+      console.log(error.message);
       toast.error(error.message);
     },
   });
@@ -557,7 +569,7 @@ function AdminTraineeDashboard() {
     // pass
     setButtonLoading(true);
     inviteUser();
-  }
+  };
   const [inviteUser] = useMutation(INVITE_USER_MUTATION, {
     variables: {
       email: inviteEmail,
@@ -632,7 +644,25 @@ function AdminTraineeDashboard() {
   return (
     <>
       {/* =========================== Start::  InviteTraineeModel =============================== */}
-      <div className="rounded-lg dark:bg-dark-bg">
+      <div className="font-serif rounded-lg dark:bg-dark-bg">
+        <Dialog
+          open={open2}
+          onClose={handleClose2}
+          PaperComponent={PaperComponent}
+          aria-labelledby="draggable-dialog-title"
+          className="rounded-lg"
+          fullWidth
+        >
+          <ViewWeeklyRatings
+            traineeName={traineeData ? traineeData[0]?.profile?.name : ''}
+            traineeEmail={traineeData ? traineeData[0]?.email : ''}
+            traineeId={traineeData ? traineeData[0]?.profile?.user?.id : ''}
+            traineeCohort={traineeData ? traineeData[0]?.team?.cohort?.id : ''}
+            traineeStatus={
+              traineeData ? traineeData[0]?.profile?.user?.status : ''
+            }
+          />
+        </Dialog>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -766,109 +796,108 @@ function AdminTraineeDashboard() {
                 </p>
               </div>
 
-                {/* show cohort  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>COHORT</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.name
-                        : 'Unavailable'}
-                    </i>
-                  </p>
-                </div>
-                {/* show team  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>TEAM</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.name
-                        : 'Unavailable'}
-                    </i>
-                  </p>
-                </div>
-                {/* show team  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>RATINGS</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.ratings
+              {/* show cohort  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>COHORT</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.cohort.name
+                      : 'Unavailable'}
+                  </i>
+                </p>
+              </div>
+              {/* show team  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>TEAM</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.name
+                      : 'Unavailable'}
+                  </i>
+                </p>
+              </div>
+              {/* show team  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>RATINGS</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.ratings
+                      ? traineeDetails.ratings[0]
                         ? traineeDetails.ratings[0]
-                          ? traineeDetails.ratings[0]
-                          : 'not yet rated'
-                        : 'unavailable.'}
-                    </i>
-                  </p>
-                </div>
+                        : 'not yet rated'
+                      : 'unavailable.'}
+                  </i>
+                </p>
+              </div>
 
-                {/* show manager  */}
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  {' '}
-                  <h3>
-                    <b>MANAGER</b>{' '}
-                  </h3>
-                  <p>
-                    <i>
-                      {' '}
-                      {traineeDetails && traineeDetails.team
-                        ? traineeDetails.team.cohort.program.manager.profile
-                            .name
-                        : 'Unavailable'}
-                    </i>
-                  </p>
-                </div>
+              {/* show manager  */}
+              <div
+                className="font-sans text-sm"
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                  borderBottom: '0.5px solid #EAECEE',
+                }}
+              >
+                {' '}
+                <h3>
+                  <b>MANAGER</b>{' '}
+                </h3>
+                <p>
+                  <i>
+                    {' '}
+                    {traineeDetails && traineeDetails.team
+                      ? traineeDetails.team.cohort.program.manager.profile.name
+                      : 'Unavailable'}
+                  </i>
+                </p>
+              </div>
 
               {/* show coordinator  */}
               <div
@@ -897,36 +926,37 @@ function AdminTraineeDashboard() {
               </div>
 
               {/* Show resume URL for admins and managers */}
-              {user && (user.role === 'admin' || user.role === 'coordinator') && (
-                <div
-                  className="font-sans text-sm"
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                    borderBottom: '0.5px solid #EAECEE',
-                  }}
-                >
-                  <h3>
-                    <b>RESUME</b>
-                  </h3>
-                  <p>
-                    {traineeDetails?.profile?.resume ? (
-                      <a
-                        href={traineeDetails.profile.resume}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Resume
-                      </a>
-                    ) : (
-                      'Unavailable'
-                    )}
-                  </p>
-                </div>
-              )}
+              {user &&
+                (user.role === 'admin' || user.role === 'coordinator') && (
+                  <div
+                    className="font-sans text-sm"
+                    style={{
+                      display: 'flex',
+                      gap: '50px',
+                      justifyContent: 'space-between',
+                      paddingBlock: '10px',
+                      marginBottom: '20px',
+                      borderBottom: '0.5px solid #EAECEE',
+                    }}
+                  >
+                    <h3>
+                      <b>RESUME</b>
+                    </h3>
+                    <p>
+                      {traineeDetails?.profile?.resume ? (
+                        <a
+                          href={traineeDetails.profile.resume}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Resume
+                        </a>
+                      ) : (
+                        'Unavailable'
+                      )}
+                    </p>
+                  </div>
+                )}
 
               <div
                 className="text-sm font-sans"
@@ -1001,7 +1031,12 @@ function AdminTraineeDashboard() {
             <hr className="w-full my-3 border-gray-400 " />
           </div>
           <div className="card-body">
-            <form  onSubmit={(e) => {e.preventDefault()}} className="px-8 py-3 ">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              className="px-8 py-3 "
+            >
               <div className="flex flex-wrap items-center justify-center w-full card-title ">
                 <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t('Fill in the email to invite a user to DevPulse.')}
@@ -1012,7 +1047,6 @@ function AdminTraineeDashboard() {
                 <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     value={inviteEmail}
-                    
                     onChange={(e) => {
                       setInviteEmail(e.target.value);
                     }}
@@ -1040,7 +1074,7 @@ function AdminTraineeDashboard() {
                   variant="primary"
                   size="sm"
                   style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={HandleInvite }
+                  onClick={HandleInvite}
                   loading={buttonLoading}
                 >
                   {t('Invite')}

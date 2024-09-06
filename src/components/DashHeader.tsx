@@ -12,6 +12,7 @@ import { UserContext } from '../hook/useAuth';
 import {
   getAllNotification,
   NotificationSubscription,
+  PUSH_NOTIFICATION_SUB,
 } from '../Mutations/notificationMutation';
 import { MenuContext } from '../hook/menuProvider';
 import ToggleThemeButton from './TogglethemeIcon';
@@ -74,6 +75,14 @@ function DashHeader() {
       receiver: user?.userId,
     },
   });
+  useSubscription(PUSH_NOTIFICATION_SUB, {
+    onData: (data) => {
+      setNotificationData([data.data.data.pushNotification, ...notifications]);
+    },
+    variables: {
+      receiverId: user?.userId,
+    },
+  });
 
   /* istanbul ignore next */
   const handleShowProfileDropdown = () =>
@@ -117,8 +126,8 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="w-screen py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header">
-        <div className="px-3 flex items-center w-full ">
+      <div className="font-serif w-screen py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header">
+        <div className="px-3 flex items-center w-full font-serif">
           <div className="flex px-5 lg:hidden">
             <div
               onClick={toggleNav}
@@ -198,11 +207,11 @@ function DashHeader() {
                 // eslint-disable-next-line no-nested-ternary
                 user?.profileImage
                   ? // eslint-disable-next-line no-nested-ternary
-                    user?.profileImage
+                  user?.profileImage
                   : profileData?.getProfile?.avatar
-                  ? // eslint-disable-next-line no-nested-ternary
+                    ? // eslint-disable-next-line no-nested-ternary
                     profileData?.getProfile?.avatar
-                  : Avatar
+                    : Avatar
               }
               alt="avatar"
             />

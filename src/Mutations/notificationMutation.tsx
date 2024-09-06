@@ -8,6 +8,7 @@ export const getAllNotification = gql`
       receiver
       createdAt
       read
+      type
       sender {
         profile {
           firstName
@@ -38,6 +39,27 @@ export const NotificationSubscription = gql`
       createdAt
       message
       read
+      type
+      receiver
+      id
+    }
+  }
+`;
+export const PUSH_NOTIFICATION_SUB = gql`
+  subscription PushNotificationSub($receiverId: String!) {
+    pushNotification(receiverId: $receiverId) {
+      sender {
+        profile {
+          firstName
+          lastName
+          name
+          avatar
+        }
+      }
+      createdAt
+      message
+      read
+      type
       receiver
       id
     }

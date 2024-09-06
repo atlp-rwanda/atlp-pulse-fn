@@ -39,7 +39,7 @@ function AddNewRatings({
   });
 
   return (
-    <div className={`${viewAddNewRating ? '' : 'hidden'} pb-6`}>
+    <div className={`${viewAddNewRating ? '' : 'hidden'} pb-6 font-serif`}>
       <div className="pt-2 pb-6">
         <hr className="bg-[#868686] h-[2px]" />
       </div>

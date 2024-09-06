@@ -9,7 +9,7 @@ function SupAdDashboard() {
   useDocumentTitle('Dashboard');
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
+    <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg font-serif">
       <div className="flex flex-row pb-8 justify-center">
         <div className="">
           {/* <div className="grid grid-cols-2 lg:grid-cols-4">

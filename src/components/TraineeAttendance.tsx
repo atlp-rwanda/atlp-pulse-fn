@@ -91,7 +91,7 @@ const TraineeAttendance: React.FC = () => {
 
   return (
     <>
-      <div className="bg-light-bg dark:bg-dark-frame-bg">
+      <div className="bg-light-bg dark:bg-dark-frame-bg font-serif">
         <div className="">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
             <div className=""></div>
@@ -138,29 +138,38 @@ const TraineeAttendance: React.FC = () => {
             <button
               onClick={prevPage}
               data-testid="prev"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === 1
+                  ? 'cursor-not-allowed bg-primary text-white' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === 1}
             >
               &larr;
             </button>
             <button
               onClick={() => setPage(1)}
               data-testid="page1"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === 1
+                  ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === 1}
             >
               1
             </button>
             {gaps.paginationGroup.map((el) => (
               <button
                 onClick={() => setPage(el)}
-                data-testid="page2"
+                data-testid="page"
                 key={el}
-                className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                  page === el ? 'active' : ''
+                className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                  page === el
+                    ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                    : 'cursor-pointer bg-white text-black'
                 }`}
+                disabled={page === el}
               >
                 {el}
               </button>
@@ -168,18 +177,24 @@ const TraineeAttendance: React.FC = () => {
             <button
               onClick={() => setPage(totalPages)}
               data-testid="page3"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === totalPages
+                  ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === totalPages}
             >
               {totalPages}
             </button>
             <button
               onClick={nextPage}
               data-testid="next"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === totalPages
+                  ? 'cursor-not-allowed bg-primary text-white' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === totalPages}
             >
               &rarr;
             </button>

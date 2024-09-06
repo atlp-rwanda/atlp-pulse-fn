@@ -54,7 +54,7 @@ function DataTable({ data, columns, title, loading }: TableData) {
 
   return (
     <div
-      className={`bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] "lg:ml-60 mx-auto"} mb-10`}
+      className={`font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] "lg:ml-60 mx-auto"} mb-10`}
     >
       <div className="flex items-center justify-between pb-6 ">
         <div>

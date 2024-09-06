@@ -34,7 +34,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   }, []);
   return (
     <div
-      className={`w-screen h-[5em] z-10 dark:bg-dark-bg fixed ${props?.styles}
+      className={`font-serif w-screen h-[5em] z-10 dark:bg-dark-bg fixed ${props?.styles}
       ${showElm && 'bg-indigo-300 dark:bg-card-dark'}`}
     >
       <div className="px-3 flex justify-between items-center w-full h-full">

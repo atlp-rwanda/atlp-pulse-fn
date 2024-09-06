@@ -5,10 +5,11 @@ import { toast } from 'react-toastify';
 import Pagination from './Pagination';
 import PerformanceData from '../dummyData/performance.json';
 import { TRAINEE_RATING } from '../Mutations/Ratings';
-import Button from './Buttons';
 import RemarksModal from '../pages/ratings/CoordinatorRemarks';
 import { UserContext } from '../hook/useAuth';
 import { rowsType } from '../pages/ratings/frame';
+import oop from '../assets/oops.svg';
+import Spinner from './Spinner';
 
 export const GET_RATINGS_DATA = gql`
   query FetchRatingsTrainee {
@@ -60,10 +61,9 @@ export const GET_RATINGS_DATA = gql`
   }
 `;
 
-
 function TraineePerfomance() {
-  const [usedata, setUserdata] = React.useState([]);
-  const { data } = useQuery(GET_RATINGS_DATA, {});
+  const [usedata, setUserdata] = useState([]);
+  const { data, loading, error } = useQuery(GET_RATINGS_DATA, {});
   const { user } = useContext(UserContext);
   const [row, setRow] = useState<rowsType>({
     id: user?.userId,
@@ -120,14 +120,11 @@ function TraineePerfomance() {
   useEffect(() => {
     getRatings({
       fetchPolicy: 'network-only',
-      onCompleted: /* istanbul ignore next */ (data) => {
-        /* istanbul ignore next */
+      onCompleted: (data) => {
         setRatings(data?.fetchRatingsTrainee);
-        /* istanbul ignore next */
         sessionStorage.removeItem('data');
       },
-      onError: /* istanbul ignore next */ (error) => {
-        /* istanbul ignore next */
+      onError: (error) => {
         toast.error(error?.message || 'Something went wrong');
       },
     });
@@ -152,10 +149,57 @@ function TraineePerfomance() {
     setToggle(false);
   };
 
+  if (loading) {
+    return (
+      <>
+        <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+          <div className="">
+            <div className="bg-white dark:bg-dark-bg shadow-lg py-8 px-5 rounded-md w-full mdl:w-[70%] mdl:m-auto flex">
+              <div className=" flex-1">
+                <div className="flex w-full h-full  items-center justify-between">
+                  <p className="text-gray-800 dark:text-white font-semibold text-[24px] w-[90%] m-auto">
+                    <Spinner />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (ratings?.length === 0) {
+    return (
+      <>
+        <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+          <div className="">
+            <div className="bg-white dark:bg-dark-bg shadow-lg py-8 px-5 rounded-md w-full mdl:w-[70%] mdl:m-auto flex">
+              <div className="flex ml-2 items-center justify-between">
+                <div className="">
+                  <img src={oop} className="w-[8rem] h-[8rem]" alt="images" />
+                </div>
+              </div>
+
+              <div className=" flex-1">
+                <div className="flex w-full h-full  items-center justify-between">
+                  <p className="text-gray-800 dark:text-white font-semibold text-[24px] w-[90%] m-auto">
+                    Performance updates are on the way! Stay tuned for the
+                    latest insights!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <RemarksModal showRemarks={toggle} closeModal={closeFeeds} rows={row} />
-      <div className="bg-light-bg dark:bg-dark-frame-bg pb-10">
+      <div className="bg-light-bg dark:bg-dark-frame-bg pb-10 font-serif">
         <div className="">
           <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
             <div className="">
@@ -194,14 +238,10 @@ function TraineePerfomance() {
                         <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                           {t('Average')}
                         </th>
-                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 dark:bg-neutral-600 text-center text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
-                          {t('Actions')}
-                        </th>
                       </tr>
-                      {ratings?.slice(firstContentIndex, lastContentIndex).map(
-                        /* istanbul ignore next */
-                        (item: any) => (
-                          /* istanbul ignore next */
+                      {ratings
+                        ?.slice(firstContentIndex, lastContentIndex)
+                        .map((item: any) => (
                           <tr key={item.sprint}>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <div className="flex justify-center items-center">
@@ -234,29 +274,13 @@ function TraineePerfomance() {
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
                               <p className="text-gray-900  dark:text-white whitespace-no-wrap text-center">
-                                {item.average %1 === 0? item.average: Number(item.average).toFixed(2)}
+                                {item.average % 1 === 0
+                                  ? item.average
+                                  : Number(item.average).toFixed(2)}
                               </p>
                             </td>
-
-                            <td className="px-0 py-5 border-b border-gray-200 bg-white dark:bg-dark-bg text-sm">
-                              <Button
-                                variant="primary"
-                                size="sm"
-                                style="px-4 py-1 text-sm"
-                                onClick={
-                                  /* istanbul ignore next */
-                                  () => {
-                                    /* istanbul ignore next */
-                                    openFeed(item);
-                                  }
-                                }
-                              >
-                                {t('Details')}
-                              </Button>
-                            </td>
                           </tr>
-                        ),
-                      )}
+                        ))}
                     </tbody>
                   </table>
                 </div>
@@ -268,55 +292,69 @@ function TraineePerfomance() {
               onClick={prevPage}
               data-testid="prev"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === 1
+                  ? 'cursor-not-allowed bg-primary text-white' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === 1}
             >
               &larr;
             </button>
+
             <button
               onClick={() => setPage(1)}
               data-testid="page1"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === 1
+                  ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === 1}
             >
               1
             </button>
-            {/* @ts-ignore */}
-            {gaps.paginationGroup.map(
-              /* istanbul ignore next */ (el) => (
-                <button
-                  onClick={/* istanbul ignore next */ () => setPage(el)}
-                  data-testid="page"
-                  key={el}
-                  type="button"
-                  className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                    page === el ? 'active' : ''
-                  }`}
-                >
-                  {el}
-                </button>
-              ),
-            )}
+            {gaps.paginationGroup.map((el) => (
+              <button
+                onClick={() => setPage(el)}
+                data-testid="page"
+                key={el}
+                type="button"
+                className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                  page === el
+                    ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                    : 'cursor-pointer bg-white text-black'
+                }`}
+                disabled={page === el}
+              >
+                {el}
+              </button>
+            ))}
             <button
               onClick={() => setPage(totalPages)}
               data-testid="page3"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === totalPages
+                  ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === totalPages}
             >
               {totalPages}
             </button>
+
             <button
               onClick={nextPage}
               data-testid="next"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === totalPages
+                  ? 'cursor-not-allowed bg-primary text-white' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === totalPages}
             >
               &rarr;
             </button>

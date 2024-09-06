@@ -43,7 +43,7 @@ function Help() {
     setMsg({ ...msg, [e.target.name]: e.target.value });
   }
   return (
-    <div className="flex flex-col grow ">
+    <div className="flex flex-col grow font-serif">
       <div className="flex flex-row justify-center">
         <div className="rounded-lg sm:w-[90%] md:w-[60%] lg:w-[40%] mt-5  lg:mb-10 p-6 bg-[#e0e7ff] border-gray-400 dark:bg-dark-bg">
           <h2 className="mb-5 text-4xl font-bold text-center dark:text:white">

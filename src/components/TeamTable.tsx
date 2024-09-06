@@ -50,9 +50,9 @@ function Table({ data, columns, title, loading }: TableData) {
   } = TableInstance;
   // @ts-ignore
   const { globalFilter, pageIndex, pageSize } = state;
- 
+
   return (
-    <div className=" shadow-lg py-6  w-[60%] lg:w-[100%] mb-10">
+    <div className=" shadow-lg py-6  w-[60%] lg:w-[100%] mb-10 font-serif">
       <div style={{ overflowX: 'auto' }}>
         <table className=" leading-3 rounded-full" {...getTableProps()}>
           <thead>
@@ -104,7 +104,7 @@ function Table({ data, columns, title, loading }: TableData) {
           </tbody>
         </table>
 
-<DataPagination
+        <DataPagination
           pageOptions={pageOptions}
           canNextPage={canNextPage}
           gotoPage={gotoPage}

@@ -104,13 +104,13 @@ const LoginActivitiesTable: React.FC = () => {
     return <div>Error retrieving login activities.</div>;
   }
   /* istanbul ignore next */
- /* istanbul ignore next */
+  /* istanbul ignore next */
   if (displayActivities.length === 0) {
     return <div>No login activities yet.</div>;
   }
   /* istanbul ignore next */
   return (
-    <div className="flex flex-col items-center mt-4">
+    <div className="flex flex-col items-center mt-4 font-serif">
       <table className="flex flex-col flex-wrap w-full pt-[6em] justify-end pl-0 lg:pl-[10em] ">
         {/* Render login activities from the loginActivities state */}
         <thead className="flex flex-wrap w-full justify-evenly ">
@@ -123,32 +123,32 @@ const LoginActivitiesTable: React.FC = () => {
             <th className="w-[15%]">Attempt</th>
           </tr>
         </thead>
-         
-         <tbody className="flex flex-col flex-wrap my-2">
-  {displayActivities.map((activity) => (
-     /* istanbul ignore next */
-    <tr className="w-full flex flex-wrap lg:pl-[3em] pt-2" key={activity.country_name}>
-     
-      <td className="md:w-[25%] border-r border-[#148fb6]">
-        {new Date(activity.date).toLocaleString()} {/* Convert UTC date to local time */}
-      </td>
-      <td className="md:w-[15%] border-r border-[#148fb6]">
-        {activity.country_name}
-      </td>
 
-      <td className="md:w-[15%] border-r border-[#148fb6]">
-        {activity.city || 'N/A'}
-      </td>
-      <td className="md:w-[15%] border-r border-[#148fb6]">
-        {activity.state || 'N/A'}
-      </td>
-      <td className="md:w-[20%] border-r border-[#148fb6]">
-        {activity.IPv4}
-      </td>
-      <td className="md:w-[10%] ">{activity.failed > 0 ? "Failed" : "Success"}</td>
-    </tr>
-  ))}
-</tbody>
+        <tbody className="flex flex-col flex-wrap my-2">
+          {displayActivities.map((activity) => (
+            /* istanbul ignore next */
+            <tr className="w-full flex flex-wrap lg:pl-[3em] pt-2" key={activity.country_name}>
+
+              <td className="md:w-[25%] border-r border-[#148fb6]">
+                {new Date(activity.date).toLocaleString()} {/* Convert UTC date to local time */}
+              </td>
+              <td className="md:w-[15%] border-r border-[#148fb6]">
+                {activity.country_name}
+              </td>
+
+              <td className="md:w-[15%] border-r border-[#148fb6]">
+                {activity.city || 'N/A'}
+              </td>
+              <td className="md:w-[15%] border-r border-[#148fb6]">
+                {activity.state || 'N/A'}
+              </td>
+              <td className="md:w-[20%] border-r border-[#148fb6]">
+                {activity.IPv4}
+              </td>
+              <td className="md:w-[10%] ">{activity.failed > 0 ? "Failed" : "Success"}</td>
+            </tr>
+          ))}
+        </tbody>
 
 
         <tbody className="flex flex-col flex-wrap my-2">
