@@ -7,7 +7,7 @@ import InvitationCard from '../components/InvitationCard';
 
 function Invitation() {
   return (
-    <div className=" sm:w-screen bg-red lg:w-full">
+    <div className="w-screen md:w-screen sm:w-screen lg:w-full">
       {/* Header and Invite Button */}
       <div className="flex flex-row md:flex-row md:justify-between items-center gap-36 md:gap-4 mb-8 ">
         <h1 className="font-bold text-xl md:text-2xl">Invitation Stats</h1>
