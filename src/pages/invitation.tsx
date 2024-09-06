@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosAddCircleOutline, IoIosSearch } from 'react-icons/io';
 import { FaCheck, FaFilter } from 'react-icons/fa';
 import { LuHourglass } from 'react-icons/lu';
 import { BsPersonFillX } from 'react-icons/bs';
 import InvitationCard from '../components/InvitationCard';
-
+import InvitationModal from './invitationModalComponet';
 function Invitation() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
   return (
     <div className="w-screen md:w-screen sm:w-screen lg:w-full">
       {/* Header and Invite Button */}
@@ -13,13 +18,14 @@ function Invitation() {
         <h1 className="font-bold text-xl md:text-2xl">Invitation Stats</h1>
         <button
           type="button"
+          onClick={handleOpenModal}
           className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center w-[15%]"
         >
           <IoIosAddCircleOutline className="w-6 h-6 md:w-8 md:h-8 md:mr-2" />
           <span className="hidden md:block">Invite User</span>
         </button>
       </div>
-
+      <InvitationModal isOpen={isModalOpen} onClose={handleCloseModal} />
       {/* Container for Select and Cards */}
       <div className="flex flex-col md:flex-row gap-4 md:gap-5 mb-10">
         {/* Select Dropdown for Small Screens */}
@@ -35,7 +41,7 @@ function Invitation() {
         </div>
 
         {/* Invitation Cards */}
-        <div className="grid grid-cols-2 gap-4 md:gap-4 mb-4 w-full md:grid md:grid-cols-4 ">
+        <div className="grid grid-cols-2 gap-4 sm:gap-4 mb-4 w-full sm:grid md:grid-cols-4 ">
           <InvitationCard
             icon={
               <FaCheck className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12 " />
@@ -52,15 +58,6 @@ function Invitation() {
             status="PENDING"
             time="Last 7 days"
             staticNumber="10"
-            percentage="30%"
-          />
-          <InvitationCard
-            icon={
-              <BsPersonFillX className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12" />
-            }
-            status="DENIED"
-            time="Last 7 days"
-            staticNumber="44"
             percentage="30%"
           />
           <InvitationCard
