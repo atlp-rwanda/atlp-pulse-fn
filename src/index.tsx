@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import {
   ApolloClient,
   ApolloProvider,
@@ -16,11 +14,11 @@ import './index.css';
 import { onError } from '@apollo/client/link/error';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import UserProvider from './hook/useAuth';
-import { WebSocketLink } from '@apollo/client/link/ws';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { createClient } from 'graphql-ws';
 import { t } from 'i18next';
 import { getMainDefinition } from '@apollo/client/utilities';
+import UserProvider from './hook/useAuth';
 import App from './App';
 import ThemeProvider from './hook/ThemeProvider';
 
@@ -32,7 +30,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         localStorage.removeItem('auth');
         localStorage.removeItem('auth_token');
         toast.error(`${t('You have not been using the website for a while')}`);
-        return;
       } else if (extensions?.code === 'ORG_JWT_EXPIRED') {
         window.location.pathname = '/login/org';
         localStorage.removeItem('orgToken');
@@ -40,26 +37,25 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         localStorage.removeItem('auth');
         localStorage.removeItem('auth_token');
         toast.error(`${t('Your Org token has expired, try to login again')}`);
-        return;
       }
     });
   }
 
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (networkError) toast.error(`[Network error]: ${networkError}`);
 });
 
 const httpLink = createHttpLink({
-  // uri: process.env.BACKEND_URL || 'https://devpulse-backend.onrender.com/',
-  uri: process.env.BACKEND_URL || 'http://localhost:4000/',
+  uri: process.env.BACKEND_URL || 'https://devpulse-backend.onrender.com/',
 });
 
-const wsLink = new WebSocketLink({
-  // uri: process.env.WS_BACKEND_URL || 'wss://devpulse-backend.onrender.com/',
-  uri: process.env.WS_BACKEND_URL || 'http://localhost:4000/',
-  options: {
-    reconnect: true,
-  },
-});
+const wsLink = new GraphQLWsLink(
+  createClient({
+    url: process.env.WS_BACKEND_URL || 'wss://devpulse-backend.onrender.com/',
+    connectionParams: {
+      authToken: localStorage.getItem('auth_token'),
+    },
+  }),
+);
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('auth_token');
