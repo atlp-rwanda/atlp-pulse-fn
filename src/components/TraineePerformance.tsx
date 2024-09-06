@@ -292,19 +292,26 @@ function TraineePerfomance() {
               onClick={prevPage}
               data-testid="prev"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === 1
+                  ? 'cursor-not-allowed bg-primary text-white' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === 1}
             >
               &larr;
             </button>
+
             <button
               onClick={() => setPage(1)}
               data-testid="page1"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === 1 && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === 1
+                  ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === 1}
             >
               1
             </button>
@@ -314,9 +321,12 @@ function TraineePerfomance() {
                 data-testid="page"
                 key={el}
                 type="button"
-                className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                  page === el ? 'active' : ''
+                className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                  page === el
+                    ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                    : 'cursor-pointer bg-white text-black'
                 }`}
+                disabled={page === el}
               >
                 {el}
               </button>
@@ -325,19 +335,26 @@ function TraineePerfomance() {
               onClick={() => setPage(totalPages)}
               data-testid="page3"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === totalPages
+                  ? 'cursor-not-allowed bg-white text-black' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === totalPages}
             >
               {totalPages}
             </button>
+
             <button
               onClick={nextPage}
               data-testid="next"
               type="button"
-              className={`page flex text-white h-12 w-12 items-center justify-center border-solid cursor-pointer bg-transparent ${
-                page === totalPages && 'disabled'
+              className={`page flex h-12 w-12 items-center justify-center border-solid ${
+                page === totalPages
+                  ? 'cursor-not-allowed bg-primary text-white' // Adjust to a suitable color for disabled state
+                  : 'cursor-pointer bg-primary text-white'
               }`}
+              disabled={page === totalPages}
             >
               &rarr;
             </button>
