@@ -240,7 +240,7 @@ function Invitation() {
         </div>
 
         {/* Select Dropdown for Desktop */}
-        <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 hidden md:flex md:ml-8 ">
+        <div className=".flex  items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 hidden md:flex md:ml-8 ">
           <FaFilter className="text-[#9e85f5]" />
           <select className="bg-transparent text-gray-700 outline-none ">
             <option value="Select range">Select range</option>
