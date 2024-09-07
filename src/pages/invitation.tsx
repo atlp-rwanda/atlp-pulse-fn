@@ -41,7 +41,7 @@ function Invitation() {
         </div>
 
         {/* Invitation Cards */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-4 mb-4 w-full sm:grid md:grid-cols-4 ">
+        <div className="grid grid-cols-2 gap-4 sm:gap-4 mb-4 w-full sm:grid md:flex flex-cols ">
           <InvitationCard
             icon={
               <FaCheck className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12 " />
