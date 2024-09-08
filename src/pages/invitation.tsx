@@ -199,27 +199,15 @@ function Invitation() {
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (
-    <div className="sm:w-screen bg-red lg:w-full">
+    <div className="w-full">
       {/* Header and Invite Button */}
-      <div className="flex flex-row md:flex-row md:justify-between items-center gap-36 md:gap-4 mb-8 ">
-        <h1 className="font-bold text-xl md:text-xl">Invitation Stats</h1>
-        <button
-          type="button"
-          onClick={handleOpenModal}
-          className="bg-[#9e85f5] text-white text-lg md:text-lg rounded-md h-10 flex items-center justify-center w-[15%]"
-        >
-          <IoIosAddCircleOutline className="w-6 h-6 md:w-8 md:h-8 md:mr-2" />
-          <span className="hidden md:block">Invite User</span>
-        </button>
-      </div>
-
-      <InvitationModal isOpen={isModalOpen} onClose={handleCloseModal} />
-      {/* Container for Select and Cards */}
-      <div className="flex flex-col border-blue-500 md:flex-row gap-4 md:gap-5 mb-10">
-        {/* Select Dropdown for Small Screens */}
-        <div className="flex items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 mb-4 md:hidden w-[90%] ">
-          <FaFilter className="text-[#9e85f5]" />
-          <select className="bg-transparent text-gray-700 outline-none ">
+      <div className="flex flex-row sm:flex-rowmd:flex-row md:justify-between items-center md:gap-4 mb-8 ">
+        <div className='flex w-full items-center justify-between'>
+          <h1 className='font-bold lg:text-xl sm:text-lg xm:text-lg w-full'>Invitation Stats</h1>
+        <div className="flex items-center rounded-md shadow-sm bg-white dark:bg-[#020917] border-2 border-black dark:border-white h-8 w-[40%] md:hidden ml-5">
+          <FaFilter className="text-[#9e85f5] ml-1" />
+            {/* Select Dropdown for Small Screens */}
+          <select className="bg-transparent dark:bg-[#020917] text-gray-700 dark:text-white outline-none text-sm py-1">
             <option value="Select range">Select range</option>
             <option value="Last 7 days">Last 7 days</option>
             <option value="Last 30 days">Last 30 days</option>
@@ -227,9 +215,22 @@ function Invitation() {
             <option value="Custom range">Custom range</option>
           </select>
         </div>
+        <button
+          type="button"
+          onClick={handleOpenModal}
+          className="lg:bg-[#9e85f5] bg-none lg:text-white text-[#9e85f5] text-lg lg:text-lg rounded-md h-10 flex items-center justify-center w-[15%]"
+        >
+          <IoIosAddCircleOutline className="w-6 h-6 md:w-8 md:h-8 md:mr-2 xm:w-8 xm:h-8 sm:w-10 sm:h-10" />
+          <span className="hidden lg:block">Invite User</span>
+        </button>
+        </div>
+      </div>
+      <InvitationModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      {/* Container for Select and Cards */}
+      <div className="flex flex-col border-blue-500 md:flex-row gap-4 md:gap-5 mb-10">
 
         {/* Invitation Cards */}
-        <div className="flex flex-wrap gap-4 md:gap-16 mb-4 md:mb-0 w-full">
+        <div className="grid grid-row-2 gap-4 sm:gap-4 mb-4 w-full lg:flex sm:grid grid-cols-2">
           <InvitationCard
             icon={
               <FaCheck className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12 " />
@@ -267,9 +268,9 @@ function Invitation() {
         </div>
 
         {/* Select Dropdown for Desktop */}
-        <div className=".flex  items-center rounded-md shadow-sm px-3 py-2 bg-white border-2 border-black space-x-2 h-8 hidden md:flex md:ml-8 ">
+        <div className=".flex  items-center rounded-md shadow-sm px-3 py-2 bg-white dark:bg-[#020917] border-2 border-black dark:border-white space-x-2 h-8 hidden md:flex md:ml-8 ">
           <FaFilter className="text-[#9e85f5]" />
-          <select className="bg-transparent text-gray-700 outline-none ">
+          <select className="bg-transparent dark:bg-[#020917] text-gray-700 dark:text-white outline-none ">
             <option value="Select range">Select range</option>
             <option value="Last 7 days">Last 7 days</option>
             <option value="Last 30 days">Last 30 days</option>
@@ -311,7 +312,7 @@ function Invitation() {
           <button
             type="button"
             onClick={handleSearch}
-            className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[10%]"
+            className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[10%] p-0 sm:p-5 xm:p-5"
           >
             Search
           </button>
