@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useGlobalFilter,
@@ -18,22 +18,27 @@ interface TableData {
 }
 
 function DataTable({ data, columns, title, loading }: TableData) {
-  // const sortedData = React.useMemo(() => [...data], []);
-  const sortedColumns = React.useMemo(() => [...columns], [columns]);
-  const sortedData = data;
-  // const sortedColumns = columns;
-  const TableInstance = useTable(
-    { data: sortedData, columns: sortedColumns, initialState: { pageSize: 3 } },
+  const [filterInput, setFilterInput] = useState('');
+  const { t } = useTranslation();
 
+  // Memoize columns and data to prevent unnecessary re-renders
+  const memoizedColumns = useMemo(() => [...columns], [columns]);
+  const memoizedData = useMemo(() => [...data], [data]);
+
+  // Table instance
+  const tableInstance = useTable(
+    {
+      data: memoizedData,
+      columns: memoizedColumns,
+      initialState: { pageSize: 3, globalFilter: filterInput },
+    },
     useGlobalFilter,
     useSortBy,
     usePagination,
   );
-  const { t } = useTranslation();
 
   const {
     getTableProps,
-
     setGlobalFilter,
     getTableBodyProps,
     page,
@@ -47,10 +52,14 @@ function DataTable({ data, columns, title, loading }: TableData) {
     pageOptions,
     headerGroups,
     prepareRow,
-    state,
-  } = TableInstance;
-  // @ts-ignore
-  const { globalFilter, pageIndex, pageSize } = state;
+    state: { pageIndex, pageSize },
+  } = tableInstance;
+
+  const handleFilterChange = (e) => {
+    const value = e.target.value || '';
+    setGlobalFilter(value);
+    setFilterInput(value);
+  };
 
   return (
     <div
@@ -61,13 +70,12 @@ function DataTable({ data, columns, title, loading }: TableData) {
           <h2 className="text-xl font-semibold text-gray-800 dark:text-white ">
             {t(title)}
           </h2>
-          {/* <span className="text-xs text-gray-600">Current cohort</span> */}
           <input
-            defaultValue={globalFilter || ''}
+            value={filterInput}
+            aria-label="Filter table data"
             placeholder="Filter"
             className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
-            /* istanbul ignore next */
-            onChange={(e) => setGlobalFilter(e.target.value)}
+            onChange={handleFilterChange}
           />
         </div>
       </div>
@@ -75,50 +83,88 @@ function DataTable({ data, columns, title, loading }: TableData) {
         <table className="min-w-full leading-normal" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
+                    key={column.id}
                     className={column.isSorted ? 'sort-asc thead' : ' thead'}
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                   >
                     {column.render('Header')}
+                    <span>
+                      {/* //  {column.isSorted ? (column.isSortedDesc ? ' ▼' : ' ▲') : ''} */}
+                    </span>
                   </th>
                 ))}
               </tr>
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
-              prepareRow(row);
-
-              // eslint-disable-next-line operator-linebreak
-              const rowTheme =
-                row.index % 2 !== 0
-                  ? 'bg-light-bg dark:bg-neutral-600'
-                  : 'bg-white dark:bg-dark-bg';
-
-              return (
-                <tr className={` ${rowTheme} `} {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td className="data-cell" {...cell.getCellProps()}>
-                      {cell.render('Cell')}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
+            {!loading && memoizedData.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={columns.length}
+                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300"
+                  aria-label="Empty cell" // Added for accessibility
+                >
+                  &nbsp;{' '}
+                  {/* Non-breaking space to ensure it's not an empty tag */}
+                </td>
+              </tr>
+            ) : (
+              page.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    key={row.id}
+                    className={`border-b dark:border-gray-700 ${
+                      row.index % 2 === 0
+                        ? 'bg-light-bg dark:bg-neutral-600'
+                        : 'bg-white dark:bg-dark-bg'
+                    }`}
+                    {...row.getRowProps()}
+                  >
+                    {row.cells.map((cell) => (
+                      <td
+                        key={cell.id}
+                        className="data-cell "
+                        {...cell.getCellProps()}
+                      >
+                        {cell.render('Cell')}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })
+            )}
             {loading && (
               <tr>
                 <td
-                  colSpan={columns.length || 100}
-                  style={{ textAlign: 'center' }}
+                  colSpan={columns.length}
+                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
                 >
-                  loading...
+                  Loading...
                 </td>
+              </tr>
+            )}
+            {!loading && data.length === 0 && (
+              <tr>
+                {' '}
+                <td colSpan={columns.length || 100} className="text-center p-4">
+                  <div className="flex flex-col items-center justify-center space-y-4">
+                    {' '}
+                    <p className="text-gray-600 dark:text-gray-400 text-lg font-medium">
+                      {' '}
+                      No records available{' '}
+                    </p>
+                  </div>{' '}
+                </td>{' '}
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+      <div className="px-6 py-4">
         <DataPagination
           pageOptions={pageOptions}
           canNextPage={canNextPage}
