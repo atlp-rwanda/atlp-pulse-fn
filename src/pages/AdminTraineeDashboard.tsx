@@ -1474,7 +1474,7 @@ function AdminTraineeDashboard() {
                 </div>
                 <div className="">
                   <DataTable
-                    data={traineeData?.length > 0 ? datum : [{}]}
+                    data={traineeData?.length > 0 ? datum : []}
                     columns={columns}
                     loading={loading}
                     title={t('Trainee list')}
