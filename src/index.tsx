@@ -18,10 +18,10 @@ import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
 import { t } from 'i18next';
 import { getMainDefinition } from '@apollo/client/utilities';
+import createUploadLink from 'apollo-upload-client/public/createUploadLink.js';
 import UserProvider from './hook/useAuth';
 import App from './App';
 import ThemeProvider from './hook/ThemeProvider';
-import createUploadLink from "apollo-upload-client/public/createUploadLink.js";
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
