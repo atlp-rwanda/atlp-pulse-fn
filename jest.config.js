@@ -3,6 +3,9 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: [] // don't load "browser" field
+  },
   verbose: true,
   collectCoverage: true,
   coverageReporters: ['lcov', 'text'],

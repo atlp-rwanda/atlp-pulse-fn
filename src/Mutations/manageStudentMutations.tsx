@@ -12,6 +12,20 @@ export const GET_USERS_QUERY = gql`
   }
 `;
 
+export const GET_ALL_USERS_QUERY = gql`
+  query GetUsers($orgToken: String) {
+    getAllUsers(orgToken: $orgToken) {
+      id
+      email
+      role
+      profile{
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
 export const DROP_TRAINEE = gql`
   mutation DropTrainee(
     $traineeId: String!
@@ -36,6 +50,7 @@ export const GET_TRAINEES_QUERY = gql`
         id
         user {
           id
+          role
           status {
             status
             date
