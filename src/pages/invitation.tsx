@@ -15,9 +15,16 @@ import { GET_INVITATIONS_STATISTICS_QUERY } from '../Mutations/invitationStats';
 import InvitationCardSkeleton from '../Skeletons/InvitationCardSkeleton';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
-import { DELETE_INVITATION } from '../Mutations/invitationMutation';
+import {
+  DELETE_INVITATION,
+  CANCEL_INVITATION,
+} from '../Mutations/invitationMutation';
 import Button from '../components/Buttons';
-import { GET_ALL_INVITATIONS, GET_INVITATIONS, GET_ROLES_AND_STATUSES } from '../queries/invitation.queries';
+import {
+  GET_ALL_INVITATIONS,
+  GET_INVITATIONS,
+  GET_ROLES_AND_STATUSES,
+} from '../queries/invitation.queries';
 
 interface Invitee {
   email: string;
@@ -47,12 +54,16 @@ function Invitation() {
   const { t }: any = useTranslation();
   const [selectedRow, setSelectedRow] = useState<string | null>(null);
   const [removeInviteeModel, setRemoveInviteeModel] = useState(false);
+  const [cancelInviteeModel, setCancelInviteeModel] = useState(false);
   const [deleteInvitation, setDeleteInvitation] = useState('');
+  const [cancelInvitation, setCancelInvitation] = useState('');
   const [buttonLoading, setButtonLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
-  const [filterVariables, setFilterVariables] = useState({ role: '', status: '' });
-
+  const [filterVariables, setFilterVariables] = useState({
+    role: '',
+    status: '',
+  });
 
   const organizationToken = localStorage.getItem('orgToken');
 
@@ -128,22 +139,28 @@ function Invitation() {
   ] = useLazyQuery(GET_INVITATIONS, {
     variables: {
       query: searchQuery,
-    }, fetchPolicy: 'network-only',
+    },
+    fetchPolicy: 'network-only',
   });
 
-    /* istanbul ignore next */
-    const removeInviteeMod = () => {
-      const newState = !removeInviteeModel;
-      setRemoveInviteeModel(newState);
-    };
+  /* istanbul ignore next */
+  const removeInviteeMod = () => {
+    const newState = !removeInviteeModel;
+    setRemoveInviteeModel(newState);
+  };
+
+  const cancelInviteeMod = () => {
+    const newState = !cancelInviteeModel;
+    setCancelInviteeModel(newState);
+  };
 
   const [
-      filterInvitations,
-      { data: filterData, loading: filterLoad, error: filterError },
-    ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
-      variables: filterVariables,
-      fetchPolicy: 'network-only',
-    });
+    filterInvitations,
+    { data: filterData, loading: filterLoad, error: filterError },
+  ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
+    variables: filterVariables,
+    fetchPolicy: 'network-only',
+  });
 
   useEffect(() => {
     if (filterVariables.role || filterVariables.status) {
@@ -176,7 +193,17 @@ function Invitation() {
       setInvitations(data.getAllInvitations.invitations);
       setTotalInvitations(data.getAllInvitations.totalInvitations);
     }
-  }, [data, searchData, queryLoading, searchLoading, queryError, searchError, filterData, filterLoad, filterError]);
+  }, [
+    data,
+    searchData,
+    queryLoading,
+    searchLoading,
+    queryError,
+    searchError,
+    filterData,
+    filterLoad,
+    filterError,
+  ]);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
@@ -197,7 +224,7 @@ function Invitation() {
 
   const toggleOptions = (row: string) => {
     setSelectedRow(selectedRow === row ? null : row);
-  }
+  };
 
   const handleFilter = () => {
     if (!selectedRole && !selectedStatus) {
@@ -221,8 +248,8 @@ function Invitation() {
   let content;
   const capitalizeStrings = (str: string): string => {
     if (!str) return '';
-    if(str === 'ttl'){
-      return 'TTL'
+    if (str === 'ttl') {
+      return 'TTL';
     }
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
@@ -241,7 +268,7 @@ function Invitation() {
               (invitations?.length > 0 ? ' flex' : ' hidden')
             }
           >
-             {row.original.Status}
+            {row.original.Status}
           </div>
         );
       },
@@ -258,16 +285,14 @@ function Invitation() {
               width="25"
               cursor="pointer"
               color="#9e85f5"
-             onClick={() => toggleOptions(row.id)}
+              onClick={() => toggleOptions(row.id)}
             />
             {selectedRow === row.id && (
               <div className="dropdown absolute right-4 mt-2 w-64 bg-light-bg max-h-30 dark:bg-dark-bg border border-gray-300 shadow-md z-50 p-4 rounded-lg overflow-hidden">
                 <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
-                    <div
-                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
-                    >
+                    <div className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer">
                       <Icon
                         icon="el:file-edit-alt"
                         className="mr-2"
@@ -281,6 +306,30 @@ function Invitation() {
                         <>
                           <br />
                           Update invitation
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div
+                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      onClick={() => {
+                        cancelInviteeMod();
+                        setCancelInvitation(row.original.id);
+                      }}
+                    >
+                      <Icon
+                        icon="mdi:cancel"
+                        width="40"
+                        height="40"
+                        cursor="pointer"
+                        color="#9e85f5"
+                      />
+                      <div>
+                        <span className="font-bold">Cancel</span>
+                        <>
+                          <br />
+                          Cancel invitation
                         </>
                       </div>
                     </div>
@@ -311,29 +360,26 @@ function Invitation() {
                     </div>
                   </div>
                   {row.original.Status === 'Pending' && (
-                                    <div className="mb-4">
-                                    <div
-                                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
-                                    >
-                                      <Icon
-                                        icon="mdi:arrow-up-circle"
-                                        width="40"
-                                        height="40"
-                                        cursor="pointer"
-                                        color="#9e85f5"
-                                      />
-                                      <div>
-                                        <span className="font-bold">Resend</span>{' '}
-                                        <>
-                                          <br />
-                                          Resend invitation
-                                        </>
-                                      </div>
-                                    </div>
-                                  </div>
+                    <div className="mb-4">
+                      <div className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer">
+                        <Icon
+                          icon="mdi:arrow-up-circle"
+                          width="40"
+                          height="40"
+                          cursor="pointer"
+                          color="#9e85f5"
+                        />
+                        <div>
+                          <span className="font-bold">Resend</span>{' '}
+                          <>
+                            <br />
+                            Resend invitation
+                          </>
+                        </div>
+                      </div>
+                    </div>
                   )}
-                  <div>
-                  </div>
+                  <div></div>
                 </>
               </div>
             )}
@@ -349,68 +395,91 @@ function Invitation() {
       invitation.invitees?.forEach((data: any) => {
         let entry: any = {};
         entry.email = data.email;
-        entry.role = capitalizeStrings(data.role)
-        entry.Status = capitalizeStrings(invitation.status)
-        entry.id= invitation.id
+        entry.role = capitalizeStrings(data.role);
+        entry.Status = capitalizeStrings(invitation.status);
+        entry.id = invitation.id;
         datum.push(entry);
       });
     });
   }
   if (loading || searchLoading || filterLoad) {
-    content =                      <DataTableStats
-    data={invitations?.length > 0 ? datum : []}
-    columns={columns}
-    loading={loading}
-    error={error}
-  />;
-  } else if (error || searchError || filterError) {
-    content =                      <DataTableStats
-    data={invitations?.length > 0 ? datum : []}
-    columns={columns}
-    loading={loading}
-    error={error}
-  />;
-  } else {
     content = (
-    <>
       <DataTableStats
         data={invitations?.length > 0 ? datum : []}
         columns={columns}
         loading={loading}
         error={error}
       />
+    );
+  } else if (error || searchError || filterError) {
+    content = (
+      <DataTableStats
+        data={invitations?.length > 0 ? datum : []}
+        columns={columns}
+        loading={loading}
+        error={error}
+      />
+    );
+  } else {
+    content = (
+      <>
+        <DataTableStats
+          data={invitations?.length > 0 ? datum : []}
+          columns={columns}
+          loading={loading}
+          error={error}
+        />
       </>
     );
   }
 
-  const [DeleteInvitation] = useMutation(
-    DELETE_INVITATION,
-    {
-      variables: {
-        invitationId: deleteInvitation,
-      },
-      onCompleted: (data) => {
-        setTimeout(() => {
-          setButtonLoading(false);
-          toast.success(data.deleteInvitation.message);
-          refetch()
-          removeInviteeMod();
-        }, 1000);
-      },
-      onError: (err) => {
-        setTimeout(() => {
-          setButtonLoading(false);
-          toast.error(err.message);
-        }, 500);
-      },
+  const [DeleteInvitation] = useMutation(DELETE_INVITATION, {
+    variables: {
+      invitationId: deleteInvitation,
     },
-  );
+    onCompleted: (data) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.success(data.deleteInvitation.message);
+        refetch();
+        removeInviteeMod();
+      }, 1000);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.error(err.message);
+      }, 500);
+    },
+  });
+
+  const [CancelInvitation] = useMutation(CANCEL_INVITATION, {
+    variables: {
+      id: cancelInvitation,
+      orgToken: organizationToken,
+    },
+    onCompleted: (data) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.success(data.cancelInvitation.message);
+        refetch();
+        cancelInviteeMod();
+      }, 1000);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.error(err.message);
+      }, 500);
+    },
+  });
 
   const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => {setIsModalOpen(false);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
     refetch();
     refreshData();
-  }
+  };
 
   return (
     <div className="w-full">
@@ -478,6 +547,7 @@ function Invitation() {
               <InvitationCardSkeleton />
               <InvitationCardSkeleton />
               <InvitationCardSkeleton />
+              <InvitationCardSkeleton />
             </>
           ) : (
             <>
@@ -486,7 +556,7 @@ function Invitation() {
                   <FaCheck className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12 " />
                 }
                 status="ACCEPTED"
-                time= {filterRange}
+                time={filterRange}
                 staticNumber={invitationStats?.acceptedInvitationsCount || 0}
                 percentage={
                   `${invitationStats?.getAcceptedInvitationsPercentsCount?.toFixed(
@@ -507,7 +577,19 @@ function Invitation() {
                   )}%` || '0'
                 }
               />
-
+              <InvitationCard
+                icon={
+                  <LuHourglass className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12" />
+                }
+                status="CANCELLED"
+                time={filterRange}
+                staticNumber={invitationStats?.cancelledInvitationsCount || 0}
+                percentage={
+                  `${invitationStats?.getCancelledInvitationsPercentsCount?.toFixed(
+                    1,
+                  )}%` || '0'
+                }
+              />
               <InvitationCard
                 icon=""
                 status="INVITATIONS"
@@ -600,53 +682,116 @@ function Invitation() {
         </div>
       </div>
 
-      <div className='mt-6'>
-      <div className="flex flex-wrap items-center space-x-4 space-y-2 md:space-y-0">
-        <p className="w-full md:w-auto">Or filter by <span><b>ROLE: </b></span></p>
-        <span className="w-full md:w-auto">
-          <select 
-            className="w-full max-w-xs md:w-auto dark:text-white dark:text:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
-                      value={selectedRole}
-                      onChange={(e) => setSelectedRole(e.target.value)}
-                      >
-            <option  value="">-</option>
-            <option value="trainee">trainee</option>
-            <option value="ttl">ttl</option>
-            <option value="coordinator">coordinator</option>
-            <option value="manager">manager</option>
-            <option value="admin">admin</option>
-          </select>
-        </span>
-        <span className="w-full md:w-auto"> or <b>STATUS: </b></span>
-        <span className="w-full md:w-auto">
-          <select 
-          className="w-full max-w-xs md:w-auto dark:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
-                      value={selectedStatus}
-                      onChange={(e) => setSelectedStatus(e.target.value)}
-                      >
-            <option  value="">-</option>
-            <option  value="pending">pending</option>
-            <option  value="accepted">accepted</option>
-            <option  value="denied">denied</option>
-            <option  value="cancelled">cancelled</option>
-          </select>
-        </span>
-        <button
-          type="button"
-          // disabled={disabled}
-          onClick={handleFilter}
-          className="w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center px-4 py-2"
-        >
-          Filter
-        </button>
-      </div>
-      {/* Table view */}
-      {content}
+      <div className="mt-6">
+        <div className="flex flex-wrap items-center space-x-4 space-y-2 md:space-y-0">
+          <p className="w-full md:w-auto">
+            Or filter by{' '}
+            <span>
+              <b>ROLE: </b>
+            </span>
+          </p>
+          <span className="w-full md:w-auto">
+            <select
+              className="w-full max-w-xs md:w-auto dark:text-white dark:text:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
+              value={selectedRole}
+              onChange={(e) => setSelectedRole(e.target.value)}
+            >
+              <option value="">-</option>
+              <option value="trainee">trainee</option>
+              <option value="ttl">ttl</option>
+              <option value="coordinator">coordinator</option>
+              <option value="manager">manager</option>
+              <option value="admin">admin</option>
+            </select>
+          </span>
+          <span className="w-full md:w-auto">
+            {' '}
+            or <b>STATUS: </b>
+          </span>
+          <span className="w-full md:w-auto">
+            <select
+              className="w-full max-w-xs md:w-auto dark:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+            >
+              <option value="">-</option>
+              <option value="pending">pending</option>
+              <option value="accepted">accepted</option>
+              <option value="denied">denied</option>
+              <option value="cancelled">cancelled</option>
+            </select>
+          </span>
+          <button
+            type="button"
+            // disabled={disabled}
+            onClick={handleFilter}
+            className="w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center px-4 py-2"
+          >
+            Filter
+          </button>
+        </div>
+        {/* Table view */}
+        {content}
       </div>
 
-            {/* =========================== Start::  DeleteInvitee Model =============================== */}
+      {/* =========================== Start::  CancelInvitee Model =============================== */}
 
-            <div
+      <div
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          cancelInviteeModel === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+              {t('Cancel Invitation')}
+            </h3>
+            <hr className="w-full my-3 border-b bg-primary" />
+          </div>
+          <div className="card-body">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+                  {t('Are you sure you want to Cancel this invitation?')}
+                </h3>
+              </div>
+
+              <div className="flex justify-between w-full">
+                <Button
+                  data-testid="removeModel2"
+                  variant="info"
+                  size="sm"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => cancelInviteeMod()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="removeMemberFromCohort"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    setButtonLoading(true);
+                    if (cancelInvitation) {
+                      CancelInvitation();
+                    } else {
+                      toast.error('Please select the trainee again ');
+                    }
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('Proceed')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* =========================== Start::  DeleteInvitee Model =============================== */}
+
+      <div
         className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
           removeInviteeModel === true ? 'block' : 'hidden'
         }`}
@@ -662,9 +807,7 @@ function Invitation() {
             <form className="px-8 py-3 ">
               <div className="flex flex-wrap items-center justify-center w-full card-title ">
                 <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-                  {t(
-                    'Are you sure you want to Delete this invitation?',
-                  )}
+                  {t('Are you sure you want to Delete this invitation?')}
                 </h3>
               </div>
 

@@ -36,3 +36,12 @@ export const DELETE_INVITATION = gql`
     }
   }
 `;
+
+export const CANCEL_INVITATION = gql`
+  mutation CancelInvitation($id: ID!, $orgToken: String!) {
+    cancelInvitation(id: $id, orgToken: $orgToken) {
+      status
+      createdAt
+    }
+  }
+`;
