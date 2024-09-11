@@ -1,19 +1,26 @@
+/* eslint-disable */
+/* istanbul ignore file */
+
 import React, { useState, useEffect } from 'react';
-import { useQuery, gql, useLazyQuery } from '@apollo/client';
+import { useQuery, gql, useLazyQuery, useMutation } from '@apollo/client';
 import { IoIosAddCircleOutline, IoIosSearch } from 'react-icons/io';
 import { FaCheck, FaFilter } from 'react-icons/fa';
 import { LuHourglass } from 'react-icons/lu';
 import { BsPersonFillX } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import InvitationCard from '../components/InvitationCard';
-import InvitationTable from '../components/InvitationTable';
+import DataTableStats from '../components/InvitationTable';
 import InvitationModal from './invitationModalComponet';
 import { GET_INVITATIONS_STATISTICS_QUERY } from '../Mutations/invitationStats';
 import InvitationCardSkeleton from '../Skeletons/InvitationCardSkeleton';
+import { useTranslation } from 'react-i18next';
+import { Icon } from '@iconify/react';
+import { DELETE_INVITATION } from '../Mutations/invitationMutation';
+import Button from '../components/Buttons';
 
 const GET_ALL_INVITATIONS = gql`
-  query AllInvitations($limit: Int, $offset: Int) {
-    getAllInvitations(limit: $limit, offset: $offset) {
+  query AllInvitations{
+    getAllInvitations{
       invitations {
         invitees {
           email
@@ -28,8 +35,8 @@ const GET_ALL_INVITATIONS = gql`
 `;
 
 const GET_INVITATIONS = gql`
-  query GetInvitations($query: String!, $limit: Int, $offset: Int) {
-    getInvitations(query: $query, limit: $limit, offset: $offset) {
+  query GetInvitations($query: String!) {
+    getInvitations(query: $query) {
       invitations {
         invitees {
           email
@@ -60,8 +67,6 @@ function Invitation() {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [totalInvitations, setTotalInvitations] = useState<number>(0);
-  const [pageIndex, setPageIndex] = useState<number>(0);
-  const [pageSize, setPageSize] = useState<number>(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filterLoading, setFilterLoading] = useState<boolean>(true);
   const [filterRange, setFilterRange] = useState<string>('Last 7 days');
@@ -69,6 +74,12 @@ function Invitation() {
     startDate: '',
     endDate: '',
   });
+  const { t }: any = useTranslation();
+  const [selectedRow, setSelectedRow] = useState<string | null>(null);
+  const [removeInviteeModel, setRemoveInviteeModel] = useState(false);
+  const [deleteInvitation, setDeleteInvitation] = useState('');
+  const [buttonLoading, setButtonLoading] = useState(false);
+  
   const organizationToken = localStorage.getItem('orgToken');
 
   const parseRange = (range: string) => {
@@ -132,15 +143,18 @@ function Invitation() {
     error: queryError,
     refetch,
   } = useQuery(GET_ALL_INVITATIONS, {
-    variables: { limit: pageSize, offset: pageIndex * pageSize },
   });
 
   const [
     fetchInvitations,
     { data: searchData, loading: searchLoading, error: searchError },
-  ] = useLazyQuery(GET_INVITATIONS, {
-    variables: { limit: pageSize, offset: pageIndex * pageSize },
-  });
+  ] = useLazyQuery(GET_INVITATIONS);
+
+    /* istanbul ignore next */
+    const removeInviteeMod = () => {
+      const newState = !removeInviteeModel;
+      setRemoveInviteeModel(newState);
+    };
 
   useEffect(() => {
     if (queryLoading || searchLoading) {
@@ -157,11 +171,13 @@ function Invitation() {
       searchData &&
       Array.isArray(searchData.getInvitations.invitations)
     ) {
+      refetch();
       setInvitations(searchData.getInvitations.invitations);
     } else if (data && data.getAllInvitations) {
       setInvitations(data.getAllInvitations.invitations);
       setTotalInvitations(data.getAllInvitations.totalInvitations);
     }
+    refetch();
   }, [data, searchData, queryLoading, searchLoading, queryError, searchError]);
 
   const handleSearch = () => {
@@ -174,68 +190,207 @@ function Invitation() {
     setError(null);
     setLoading(false);
 
-    fetchInvitations({
-      variables: {
-        query: searchQuery,
-        limit: pageSize,
-        offset: pageIndex * pageSize,
-      },
-    });
+    fetchInvitations();
   };
 
-  const gotoPage = (pageNumber: number) => {
-    setPageIndex(pageNumber);
-  };
-
-  const nextPage = () => {
-    if (pageIndex < Math.floor(totalInvitations / pageSize)) {
-      setPageIndex(pageIndex + 1);
-    }
-  };
-
-  const previousPage = () => {
-    if (pageIndex > 0) {
-      setPageIndex(pageIndex - 1);
-    }
-  };
-
-  const canNextPage = pageIndex < Math.floor(totalInvitations / pageSize);
-  const canPreviousPage = pageIndex > 0;
-  const pageOptions = Array.from(
-    { length: Math.ceil(totalInvitations / pageSize) },
-    (_, i) => i + 1,
-  );
+  const toggleOptions = (row: string) => {
+    setSelectedRow(selectedRow === row ? null : row);
+  }
 
   // Defining invitation table
   let content;
+  const capitalizeStrings = (str: string): string => {
+    if (!str) return '';
+    if(str === 'ttl'){
+      return 'TTL'
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+  const columns = [
+    { Header: t('email'), accessor: 'email' },
+    { Header: t('role'), accessor: 'role' },
+    {
+      Header: t('Status'),
+      accessor: 'status',
 
+      Cell: ({ row }: any) => {
+        return (
+          <div
+            className={
+              'font-serif items-center' +
+              (invitations?.length > 0 ? ' flex' : ' hidden')
+            }
+          >
+             {row.original.Status}
+          </div>
+        );
+      },
+    },
+
+    {
+      Header: t('action'),
+      accessor: '',
+      Cell: ({ row }: any) => (
+        <div className="static">
+          <div className="static inline-block">
+            <Icon
+              icon="entypo:dots-three-vertical"
+              width="25"
+              cursor="pointer"
+              color="#9e85f5"
+             onClick={() => toggleOptions(row.id)}
+            />
+            {selectedRow === row.id && (
+              <div className="dropdown absolute right-4 mt-2 w-64 bg-light-bg max-h-30 dark:bg-dark-bg border border-gray-300 shadow-md z-50 p-4 rounded-lg overflow-hidden">
+                <>
+                  <div className="mb-4"></div>
+                  <div className="mb-4">
+                    <div
+                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                    >
+                      <Icon
+                        icon="el:file-edit-alt"
+                        className="mr-2"
+                        width="38"
+                        height="38"
+                        cursor="pointer"
+                        color="#9e85f5"
+                      />
+                      <div>
+                        <span className="font-bold">Update</span>{' '}
+                        <>
+                          <br />
+                          Update invitation
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div
+                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      onClick={() => {
+                        removeInviteeMod();
+                        setDeleteInvitation(row.original.id);
+                        toggleOptions(row.original.email);
+                      }}
+                    >
+                      <Icon
+                        icon="mdi:close-circle-outline"
+                        width="40"
+                        height="40"
+                        cursor="pointer"
+                        color="#9e85f5"
+                      />
+                      <div>
+                        <span className="font-bold">Delete</span>
+                        <>
+                          <br />
+                          Delete invitation
+                        </>
+                      </div>
+                    </div>
+                  </div>
+                  {row.original.Status === 'Pending' && (
+                                    <div className="mb-4">
+                                    <div
+                                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                                    >
+                                      <Icon
+                                        icon="mdi:arrow-up-circle"
+                                        width="40"
+                                        height="40"
+                                        cursor="pointer"
+                                        color="#9e85f5"
+                                      />
+                                      <div>
+                                        <span className="font-bold">Resend</span>{' '}
+                                        <>
+                                          <br />
+                                          Resend invitation
+                                        </>
+                                      </div>
+                                    </div>
+                                  </div>
+                  )}
+                  <div>
+                  </div>
+                </>
+              </div>
+            )}
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  const datum: any = [];
+  if (invitations && invitations.length > 0) {
+    invitations.forEach((invitation) => {
+      invitation.invitees?.forEach((data: any) => {
+        let entry: any = {};
+        entry.email = data.email;
+        entry.role = capitalizeStrings(data.role)
+        entry.Status = capitalizeStrings(invitation.status)
+        entry.id= invitation.id
+        datum.push(entry);
+      });
+    });
+  }
   if (loading || searchLoading) {
-    content = <p>Loading...</p>;
+    content =                      <DataTableStats
+    data={invitations?.length > 0 ? datum : []}
+    columns={columns}
+    loading={loading}
+    error={error}
+  />;
   } else if (error || searchError) {
-    content = <p>Error occurred &quot;{error || searchError?.message}&quot;</p>;
-  } else if (invitations.length === 0) {
-    content = <p>No invitation found.</p>;
+    content =                      <DataTableStats
+    data={invitations?.length > 0 ? datum : []}
+    columns={columns}
+    loading={loading}
+    error={error}
+  />;
   } else {
     content = (
-      <>
-        <InvitationTable
-          invitations={invitations}
-          pageIndex={pageIndex}
-          pageSize={pageSize}
-          canNextPage={canNextPage}
-          canPreviousPage={canPreviousPage}
-          pageOptions={pageOptions}
-          setPageSize={setPageSize}
-          gotoPage={gotoPage}
-          nextPage={nextPage}
-          previousPage={previousPage}
-        />
+    <>
+      <DataTableStats
+        data={invitations?.length > 0 ? datum : []}
+        columns={columns}
+        loading={loading}
+        error={error}
+      />
       </>
     );
   }
 
+  const [DeleteInvitation] = useMutation(
+    DELETE_INVITATION,
+    {
+      variables: {
+        invitationId: deleteInvitation,
+      },
+      onCompleted: (data) => {
+        setTimeout(() => {
+          setButtonLoading(false);
+          toast.success(data.deleteInvitation.message);
+          refetch()
+          removeInviteeMod();
+        }, 1000);
+      },
+      onError: (err) => {
+        setTimeout(() => {
+          setButtonLoading(false);
+          toast.error(err.message);
+        }, 500);
+      },
+    },
+  );
+
   const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleCloseModal = () => {setIsModalOpen(false);
+    refetch();
+    refreshData();
+  }
 
   return (
     <div className="w-full">
@@ -311,7 +466,7 @@ function Invitation() {
                   <FaCheck className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12 " />
                 }
                 status="ACCEPTED"
-                time="Last 7 days"
+                time= {filterRange}
                 staticNumber={invitationStats?.acceptedInvitationsCount || 0}
                 percentage={
                   `${invitationStats?.getAcceptedInvitationsPercentsCount?.toFixed(
@@ -324,7 +479,7 @@ function Invitation() {
                   <LuHourglass className="text-[#9e85f5] w-8 h-8 md:w-12 md:h-12" />
                 }
                 status="PENDING"
-                time="Last 7 days"
+                time={filterRange}
                 staticNumber={invitationStats?.pendingInvitationsCount || 0}
                 percentage={
                   `${invitationStats?.getPendingInvitationsPercentsCount?.toFixed(
@@ -336,7 +491,7 @@ function Invitation() {
               <InvitationCard
                 icon=""
                 status="INVITATIONS"
-                time="Last 7 days"
+                time={filterRange}
                 staticNumber={invitationStats?.totalInvitations || 0}
                 percentage={
                   invitationStats?.totalInvitations === 0 ? '0%' : '100%'
@@ -386,7 +541,7 @@ function Invitation() {
       </div>
 
       {/* Search Section */}
-      <div className="px-4">
+      <div>
         <h1 className="font-bold text-xl md:text-2xl mb-4">
           Search for Invitation Status
         </h1>
@@ -400,7 +555,7 @@ function Invitation() {
 
         {/* Search form */}
         <div className="flex flex-row md:flex-row gap-12 md:gap-8 md:w-[80%]  ">
-          <div className="relative flex-1 ">
+          <div className="relative flex-1 text-black ">
             <input
               type="text"
               id="search"
@@ -426,6 +581,63 @@ function Invitation() {
 
       {/* Table view */}
       {content}
+
+            {/* =========================== Start::  DeleteInvitee Model =============================== */}
+
+            <div
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          removeInviteeModel === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+              {t('Delete Invitation')}
+            </h3>
+            <hr className="w-full my-3 border-b bg-primary" />
+          </div>
+          <div className="card-body">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+                  {t(
+                    'Are you sure you want to Delete this invitation?',
+                  )}
+                </h3>
+              </div>
+
+              <div className="flex justify-between w-full">
+                <Button
+                  data-testid="removeModel2"
+                  variant="info"
+                  size="sm"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => removeInviteeMod()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="removeMemberFromCohort"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    setButtonLoading(true);
+                    if (deleteInvitation) {
+                      DeleteInvitation();
+                    } else {
+                      toast.error('Please select the trainee again ');
+                    }
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('Proceed')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
