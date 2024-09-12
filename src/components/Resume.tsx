@@ -23,6 +23,7 @@ interface UploadFormProps {
   link: string | null;
   setLink: React.Dispatch<React.SetStateAction<string | null>>;
   saveFile: () => void;
+  file: File | null;
   closeModal: () => void;
   t: (key: string) => string;
   loading: boolean;
@@ -34,15 +35,16 @@ function UploadForm({
   link,
   setLink,
   saveFile,
+  file,
   closeModal,
   t,
   loading,
 }: UploadFormProps) {
   return (
-    <form action="" className='font-serif'>
+    <form action="" className="font-serif">
       {uploadType === 0 && (
         <div>
-          <h2 className="pt-5 pb-5 mb-4 text-2xl font-bold">
+          <h2 className="pt-4 pb-4 text-lg font-medium">
             {t('Upload resume from your computer')}
           </h2>
           <input
@@ -50,27 +52,34 @@ function UploadForm({
             name="resume"
             id="resume"
             onChange={handleFileUpload}
-            className="relative block w-full px-3 py-2 pt-5 pb-5 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-dark-text-fill dark:border-white"
+            className="relative block w-full p-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-dark-text-fill dark:border-white"
           />
         </div>
       )}
       {uploadType === 1 && (
         <div>
-          <h2 className="pt-5 pb-5 mb-4 text-2xl font-bold">
+          <h2 className="pt-4 pb-4 text-lg font-medium">
             {t('Upload resume from external link')}
           </h2>
           <input
             type="text"
             name="resume"
             id="resume"
+            placeholder="Enter external link"
             value={link || ''}
             onChange={(e) => setLink(e.target.value)}
-            className="relative block w-full px-3 py-2 pb-5 text-black placeholder-black border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-black dark:border-white"
+            className="relative block w-full p-3 text-black border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-black dark:border-white"
           />
         </div>
       )}
-      <Button variant="primary" size="lg" style="mt-5" onClick={saveFile}>
-        {loading ? <Spinner /> : t('upload')}
+      <Button
+        disabled={uploadType === 0 ? !file : !link || link.trim() === ''}
+        variant="primary"
+        size="lg"
+        style="m-0 mt-4 rounded-[6px]"
+        onClick={saveFile}
+      >
+        {loading ? <Spinner /> : t('Upload')}
       </Button>
     </form>
   );
@@ -106,11 +115,15 @@ function Resume() {
       const uploadedFile = e.target.files[0];
       const allowedTypes = ['application/pdf'];
 
-      if (allowedTypes.includes(uploadedFile.type)) {
-        setFile(uploadedFile);
-        setUploadType(0);
+      if (uploadedFile) {
+        if (allowedTypes.includes(uploadedFile.type)) {
+          setFile(uploadedFile);
+          setUploadType(0);
+        } else {
+          toast.error('Please upload a PDF file.');
+        }
       } else {
-        toast.error('Please upload a PDF file.');
+        setFile(null);
       }
     }
   };
@@ -181,9 +194,9 @@ function Resume() {
 
   return (
     <>
-      <div className="w-full h-96">
+      <div className="w-full h-96 p-5 flex flex-col gap-4">
         {uploadType !== 0 && uploadType !== 1 && (
-          <div className="pt-5 pb-5 flex gap-2 downbuttons">
+          <div className="pb-5 flex gap-2 downbuttons">
             <Button
               variant="primary"
               size="lg"
@@ -243,6 +256,7 @@ function Resume() {
               link={link}
               setLink={setLink}
               saveFile={saveFile}
+              file={file}
               closeModal={closeModal}
               loading={buttonLoading}
               t={t}

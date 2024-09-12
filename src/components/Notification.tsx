@@ -143,7 +143,7 @@ function Notification({
             data-testid="notificationsContainer"
           >
             {notifications.length === 0 ? (
-              <p>There are no notifications for you!</p>
+              <p> {t('There are no notifications for you!')}</p>
             ) : (
               notifications?.map((notification: any, index: any) => (
                 <div
@@ -287,26 +287,26 @@ function Notification({
             )}
           </div>
 
-            <div className="flex flex-row justify-between w-full px-2 md:p-4 align-center">
-              {/* <p
+          <div className="flex flex-row justify-between w-full px-2 md:p-4 align-center">
+            {/* <p
               className="m-1 text-xs font-normal cursor-pointer dark:text-white"
               data-testid="seeAllNotification"
             >
               See all notification
             </p> */}
-                {notifications.filter((notification: any) => !notification.read)
-                  .length > 0 && (
+            {notifications.filter((notification: any) => !notification.read)
+              .length > 0 && (
               <div
                 className="m-1 ml-auto text-xs font-normal cursor-pointer dark:text-white"
                 onClick={() => {
                   markAllRead();
                 }}
                 data-testid="markAllRead"
-                >
+              >
                 {t('Mark all as read')}
               </div>
-              )}
-            </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

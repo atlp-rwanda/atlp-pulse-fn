@@ -352,6 +352,8 @@ export default function ProfileTabs({ data: profileData }: any) {
     setSingleUser(singleTrainne[0]); // returns an object with single trainnee data that can be accessed singleUser.email
   }, [traineeData]);
 
+  console.log(organisation);
+
   return (
     <div className="flex flex-wrap">
       <>
@@ -422,7 +424,7 @@ export default function ProfileTabs({ data: profileData }: any) {
             id="link1"
           >
             <div className="grid gap-4 md:grid-cols-6 md:gap-7">
-              <div className="flex flex-col items-start justify-start gap-y-3 py-6 px-7 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg w-100 rounded-md">
+              <div className="flex flex-col items-start shadow-[0px_3px_4px_rgba(0,0,0,0.4)] justify-start gap-y-3 py-6 px-7 bg-indigo-100 md:col-span-3 dark:bg-dark-bg w-100 rounded-md">
                 <div>
                   <h2 className="font-semibold text-[.84rem] md:text-[.95rem] mb-3">
                     BASIC INFORMATION
@@ -520,7 +522,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                       )}
                     </div> */}
               </div>
-              <div className="p-6 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg rounded-md">
+              <div className="p-6 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg rounded-md">
                 {/* <h2 className="my-2 text-xl font-bold">{t('Biography')}</h2> */}
                 <h2 className="font-semibold text-[.84rem] md:text-[.95rem] mb-2 uppercase">
                   {t('Biography')}
@@ -538,7 +540,7 @@ export default function ProfileTabs({ data: profileData }: any) {
             {role && [].includes(role as never) && (
               /* istanbul ignore next */
               <div className="relative grid p-2 m-1 -ml-2 -mr-2">
-                <div className="flex items-start justify-start p-2 shadow-md bg-primary md:col-span-2 rounded-t-2xl">
+                <div className="flex items-start justify-start p-2 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-primary md:col-span-2 rounded-t-2xl">
                   <img
                     className="absolute w-16 h-16 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-20 md:h-20 dark:bg-dark-bg border-primary"
                     src={Logo}
@@ -553,7 +555,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                     </h3>
                   </div>
                 </div>
-                <div className="flex flex-col items-start justify-start p-2 m-2 bg-indigo-100 shadow-md mt-9 dark:bg-dark-bg ">
+                <div className="flex flex-col items-start justify-start p-2 m-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] mt-9 dark:bg-dark-bg ">
                   <h3 className="m-2 mb-4 text-2xl font-bold">
                     {/* You in the organization */}
                     {t('You in the organization')}
@@ -569,7 +571,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                       : 'Unavailable'}
                   </div>
                 </div>
-                <div className="flex flex-col items-start justify-start p-2 m-2 mt-0 bg-indigo-100 shadow-md md:mt-9 dark:bg-dark-bg ">
+                <div className="flex flex-col items-start justify-start p-2 m-2 mt-0 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:mt-9 dark:bg-dark-bg ">
                   <h3 className="m-2 mb-4 text-2xl font-bold">
                     {t('Management')}
                   </h3>
@@ -601,7 +603,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                 </div>
               </div>
             )}
-            {user?.role === 'trainee' && (
+            {user?.role.toLowerCase() === 'trainee' && (
               <div
                 className={`text-sm font-sans ${
                   profileData.role != 'test'
@@ -643,11 +645,13 @@ export default function ProfileTabs({ data: profileData }: any) {
                         : ''
                     }`}
                   >
-                    <div className="flex flex-col">
-                      <i className="text-2xl ">
-                        {gitHubStatistics?.totalCommits} total commits
-                      </i>
-                    </div>
+                    {gitHubStatistics && (
+                      <div className="flex flex-col">
+                        <i className="text-2xl ">
+                          {gitHubStatistics?.totalCommits} total commits
+                        </i>
+                      </div>
+                    )}
                     <div className="flex flex-col items-center justify-center">
                       <div>
                         {gitHubStatistics ? (
@@ -670,7 +674,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                   : ''
               }`}
             >
-              <div className="flex flex-col items-start justify-start py-5 pl-7 bg-indigo-100 rounded-md shadow-md md:col-span-2 dark:bg-dark-bg ">
+              <div className="flex flex-col items-start justify-start py-5 pl-7 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-indigo-100 rounded-md md:col-span-2 dark:bg-dark-bg ">
                 <div className="flex items-center gap-x-2 mb-3">
                   <h2 className="font-semibold text-[.84rem] md:text-[.95rem] uppercase">
                     {t('Github Organisation')}
@@ -698,7 +702,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                   )}
                 </div>
               </div>
-              <div className="py-2 pl-7 pr-1 md:px-7 bg-indigo-100 rounded-md shadow-sm md:col-span-3 dark:bg-dark-bg ">
+              <div className="py-2 pl-7 pr-1 md:px-7 bg-indigo-100 rounded-md shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg ">
                 <div className="flex items-center justify-between">
                   <h2 className="font-semibold text-[.84rem] md:text-[.95rem] uppercase">
                     {t('Repository')}
@@ -706,7 +710,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                   <Button
                     variant="default"
                     size="md"
-                    style="flex py-[4px] md:py-[5px] px-3 text-[.78rem] md:text-sm font-semibold rounded-[3px] text-white bg-primary hover:bg-[#7a5edc] "
+                    style="flex py-[4px] md:py-[5px] px-3 text-[.78rem] md:text-sm font-semibold rounded-[3px] text-white bg-primary hover:bg-[#7A5EDC] "
                     /* istanbul ignore next */
                     onClick={() => {
                       setRepoModel(true);
@@ -727,7 +731,6 @@ Add New </button> */}
                         <span className="text-sm dark:text-dark-text-fill ">
                           {repo}
                         </span>
-
                         <FaEraser
                           className="text-sm mr-2 dark:text-dark-text-fill cursor-pointer"
                           onClick={() => {
@@ -747,29 +750,49 @@ Add New </button> */}
             className={openTab === 'Organizations' ? 'block' : 'hidden'}
             id="link3"
           >
-            <div className="relative p-2 m-1 -ml-2 -mr-2 ">
-              <div className="flex items-start justify-start p-1 shadow-md bg-primary md:col-span-2 rounded-t-2xl">
+            <div className="relative p-2 m-1 -ml-2 -mr-2">
+              <div className="flex items-start justify-start p-1 shadow bg-primary md:col-span-2 rounded-t-2xl">
                 <img
-                  className="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
+                  className="absolute w-11 h-11 mt-1 md:mt-6 ml-5 md:ml-8 md:shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-white border rounded-full cursor-pointer md:w-[50px] md:h-[50px] border-primary"
                   src={Logo}
                   alt="logo"
                 />
-                <div className="flex flex-col items-start justify-start ml-36">
+                <div className="flex flex-col items-start justify-start ml-20 md:ml-36">
                   <h2 className="text-lg font-bold text-center text-dark-text-fill md:text-xl">
                     {profileData?.user?.organizations[0] || 'Unavailabe'}
                   </h2>
-                  <h3 className="text-sm font-bold text-center text-dark-text-fill md:text-lg ">
+                  <h3 className="text-sm font-medium text-center text-dark-text-fill md:text-[16px] text-red">
                     https://andela.pusle.com
                   </h3>
                 </div>
               </div>
-              <div className="flex flex-row">
-                <div className="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow-md dark:bg-dark-bg ">
-                  <h3 className="mb-4 text-2xl font-bold">
-                    {t('You in the organization')}
+              <div className="flex flex-col gap-3 md:flex-row my-6 md:m-8">
+                <div className="flex flex-col items-start justify-start w-full p-4 md:mx-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] dark:bg-dark-bg ">
+                  <h3 className="mb-3 text-[0.95rem] font-semibold">
+                    {t('YOUR ORGANISATION DETAILS')}
                   </h3>
-                  <div className="flex pb-2">
-                    <h4 className="mr-4 text-base font-bold">{t('Role')}:</h4>
+                  <div className="flex pb-2 text-sm ml-3">
+                    <h4 className="mr-4 font-medium">
+                      {t('Organisation name')}:
+                    </h4>
+                    {organisation.name}
+                  </div>
+                  {user?.role != 'admin' && (
+                    <div className="flex pb-2 text-sm ml-3">
+                      <h4 className="mr-4 font-medium">{t('Admin email')}:</h4>
+                      {organisation?.admin?.email}
+                    </div>
+                  )}
+                  {user?.role === 'admin' && (
+                    <div className="flex pb-2 text-sm ml-3">
+                      <h4 className="mr-4 font-medium">
+                        {t('Github organisation')}:
+                      </h4>
+                      {organisation?.gitHubOrganisation}
+                    </div>
+                  )}
+                  <div className="flex pb-2 text-sm ml-3">
+                    <h4 className="mr-4 font-medium">{t('Role')}:</h4>
                     {user?.role}
                   </div>
                 </div>
@@ -777,39 +800,31 @@ Add New </button> */}
                   ['manager', 'coordinator', 'trainee'].includes(
                     role as never,
                   ) && (
-                    <div className="flex flex-col items-start justify-start w-full p-4 m-2 bg-indigo-100 shadow-md md:mt-6 dark:bg-dark-bg ">
-                      <h3 className="mb-4 text-2xl font-bold">
-                        {t('Management')}
+                    <div className="flex flex-col items-start justify-start w-full p-4 md:mx-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] dark:bg-dark-bg ">
+                      <h3 className="mb-3 text-[0.95rem] font-semibold">
+                        {t('MANAGEMENT')}
                       </h3>
                       {managementData.program && (
-                        <div className="flex justify-center pb-2">
-                          <h4 className="mr-2 text-base font-bold">
-                            {t('Program')}:
-                          </h4>
+                        <div className="flex justify-center pb-2 text-sm font-medium ml-3">
+                          <h4 className="mr-2">{t('Program')}:</h4>
                           {managementData.program}
                         </div>
                       )}
                       {managementData.cohort && (
-                        <div className="flex pb-2 ">
-                          <h4 className="mr-2 text-base font-bold">
-                            {t('Cohort')}:
-                          </h4>
+                        <div className="flex pb-2 text-sm font-medium ml-3">
+                          <h4 className="mr-2">{t('Cohort')}:</h4>
                           {managementData.cohort}
                         </div>
                       )}
                       {managementData.team && (
-                        <div className="flex pb-2 ">
-                          <h4 className="mr-2 text-base font-bold">
-                            {t('Team')}:
-                          </h4>
+                        <div className="flex pb-2 text-sm font-medium ml-3">
+                          <h4 className="mr-2">{t('Team')}:</h4>
                           {managementData.team}
                         </div>
                       )}
                       {managementData.phase && (
-                        <div className="flex pb-2 ">
-                          <h4 className="mr-2 text-base font-bold">
-                            {t('Phase')}:
-                          </h4>
+                        <div className="flex pb-2 text-sm font-medium ml-3">
+                          <h4 className="mr-2">{t('Phase')}:</h4>
                           {managementData.phase}
                         </div>
                       )}
@@ -903,7 +918,7 @@ Add New </button> */}
                         ? org === organisation.gitHubOrganisation || !org.length
                         : !repo.length
                     )
-                      ? 'cursor-not-allowed text-[.8rem] md:text-[.84rem] bg-neutral-500 hover:bg-neutral-500'
+                      ? 'cursor-not-allowed text-[.8rem] md:text-[.84rem] bg-neutral-500 hover:bg-neutral-500 text-white hover:text-white'
                       : ''
                   } m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px]`}
                   onClick={() => {

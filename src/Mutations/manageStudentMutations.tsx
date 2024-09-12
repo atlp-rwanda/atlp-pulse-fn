@@ -268,6 +268,9 @@ export const GET_ORGANISATION = gql`
       activeRepos
       gitHubOrganisation
       description
+      admin {
+        email
+      }
     }
   }
 `;
