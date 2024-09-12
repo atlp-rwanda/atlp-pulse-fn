@@ -5,10 +5,23 @@ import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Team, Cohort } from './Teams';
+import ControlledSelect from '../../components/ControlledSelect';
 
 export const UpdateTeam = gql`
-  mutation UpdateTeam($updateTeamId: ID!, $name: String, $orgToken: String) {
-    updateTeam(id: $updateTeamId, name: $name, orgToken: $orgToken) {
+  mutation UpdateTeam(
+    $updateTeamId: ID!
+    $name: String
+    $cohort: String
+    $TTL: String
+    $orgToken: String
+  ) {
+    updateTeam(
+      id: $updateTeamId
+      orgToken: $orgToken
+      name: $name
+      cohort: $cohort
+      TTL: $TTL
+    ) {
       name
     }
   }
@@ -24,6 +37,7 @@ export default function UpdateTeamModal({
   data?: {
     getAllTeams: Team[];
     getAllCohorts: Cohort[];
+    getAllUsers: any;
   };
   updateTeamModal: boolean;
   currentTeam: Team | undefined;
@@ -65,6 +79,8 @@ export default function UpdateTeamModal({
       }
     });
 
+    newData.cohort && (newData.cohort = newData.cohort.value);
+    newData.TTL && (newData.TTL = newData.TTL.value);
     newData.updateTeamId = currentTeam?.id;
     orgToken && (newData.orgToken = orgToken);
 
@@ -73,6 +89,14 @@ export default function UpdateTeamModal({
 
   useEffect(() => {
     setValue('name', currentTeam?.name);
+    setValue('TTL', {
+      value: currentTeam?.ttl?.email,
+      label: currentTeam?.ttl?.email || 'no ttl assigned',
+    });
+    setValue('cohort', {
+      value: currentTeam?.cohort?.name,
+      label: currentTeam?.cohort?.name || 'no cohort assigned',
+    });
   }, [currentTeam, updateTeamModal]);
 
   return (
@@ -103,6 +127,53 @@ export default function UpdateTeamModal({
               {errors?.name && (
                 <p className="font-thin text-[12px] text-red-300">
                   {errors?.name?.message?.toString()}
+                </p>
+              )}
+            </div>
+            <div className="my-5 input h-9">
+              <div className="flex items-center w-full h-full rounded-md grouped-input">
+                <ControlledSelect
+                  placeholder={t('email')}
+                  register={{
+                    control,
+                    name: 'TTL',
+                    rules: {
+                      required: `${t('The ttl email is required')}`,
+                    },
+                  }}
+                  options={
+                    data?.getAllUsers
+                      ?.filter((user: any) => user.role === 'ttl')
+                      ?.map((user: any) => ({
+                        value: user.email,
+                        label: user.email,
+                      })) ?? []
+                  }
+                />
+              </div>
+              {errors?.ttlEmail && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.ttlEmail?.message?.toString()}
+                </p>
+              )}
+            </div>
+
+            <div className="my-5 input h-9 ">
+              <ControlledSelect
+                placeholder={t('Choose a Cohort')}
+                register={{
+                  control,
+                  name: 'cohort',
+                  rules: { required: `${t('The Cohort Name is required')}` },
+                }}
+                options={data?.getAllCohorts?.map(({ name }) => ({
+                  value: name,
+                  label: name,
+                }))}
+              />
+              {errors?.programName && (
+                <p className="font-thin text-[12px] text-red-300">
+                  {errors?.programName?.message?.toString()}
                 </p>
               )}
             </div>
