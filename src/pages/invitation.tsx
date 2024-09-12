@@ -4,11 +4,11 @@ import { IoIosAddCircleOutline, IoIosSearch } from 'react-icons/io';
 import { FaCheck, FaFilter } from 'react-icons/fa';
 import { LuHourglass } from 'react-icons/lu';
 import { BsPersonFillX } from 'react-icons/bs';
+import { toast } from 'react-toastify';
 import InvitationCard from '../components/InvitationCard';
 import InvitationTable from '../components/InvitationTable';
 import InvitationModal from './invitationModalComponet';
 import { GET_INVITATIONS_STATISTICS_QUERY } from '../Mutations/invitationStats';
-import { toast } from 'react-toastify';
 
 const GET_ALL_INVITATIONS = gql`
   query AllInvitations($limit: Int, $offset: Int) {
@@ -63,29 +63,30 @@ function Invitation() {
   const [pageSize, setPageSize] = useState<number>(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const organizationToken = localStorage.getItem('orgToken');
-  
-      const { loading: isLoading, data: queryData, refetch: refreshData } = useQuery(
-        GET_INVITATIONS_STATISTICS_QUERY,
-        {
-          variables: {
-            orgToken: organizationToken
-          },
-          skip: !organizationToken,
-          fetchPolicy: 'network-only',
-          onError: (error) => {
-            toast.error("testtes111");
-          },
-        },
-      );
-      useEffect(() => {
-        if (queryData) {
-            refreshData();
-          setInvitationStats(queryData.getInvitationStatistics);
-        }
-      }, [queryData, refreshData]);
-      if (!organizationToken) {
-        return <p>Organization token not found. Please log in.</p>;
-      }
+
+  const {
+    loading: isLoading,
+    data: queryData,
+    refetch: refreshData,
+  } = useQuery(GET_INVITATIONS_STATISTICS_QUERY, {
+    variables: {
+      orgToken: organizationToken,
+    },
+    skip: !organizationToken,
+    fetchPolicy: 'network-only',
+    onError: (error) => {
+      toast.error('testtes111');
+    },
+  });
+  useEffect(() => {
+    if (queryData) {
+      refreshData();
+      setInvitationStats(queryData.getInvitationStatistics);
+    }
+  }, [queryData, refreshData]);
+  if (!organizationToken) {
+    return <p>Organization token not found. Please log in.</p>;
+  }
 
   const {
     data,
@@ -238,10 +239,10 @@ function Invitation() {
             time="Last 7 days"
             staticNumber={invitationStats?.acceptedInvitationsCount || 0}
             percentage={
-                invitationStats?.getAcceptedInvitationsPercentsCount?.toFixed(
-                    1,
-                 ) + '%' || '0'
-                        }
+              `${invitationStats?.getAcceptedInvitationsPercentsCount?.toFixed(
+                1,
+              )}%` || '0'
+            }
           />
           <InvitationCard
             icon={
@@ -251,12 +252,12 @@ function Invitation() {
             time="Last 7 days"
             staticNumber={invitationStats?.pendingInvitationsCount || 0}
             percentage={
-                invitationStats?.getPendingInvitationsPercentsCount?.toFixed(
-                     1,
-                ) + '%' || '0' 
-                        }
+              `${invitationStats?.getPendingInvitationsPercentsCount?.toFixed(
+                1,
+              )}%` || '0'
+            }
           />
-         
+
           <InvitationCard
             icon=""
             status="INVITATIONS"
@@ -325,4 +326,3 @@ function Invitation() {
 }
 
 export default Invitation;
-
