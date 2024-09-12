@@ -5,10 +5,10 @@ exports[`App test  Should render app 1`] = `
   className="min-h-screen"
 >
   <div
-    className=""
+    className="font-serif"
   >
     <div
-      className="w-screen h-[5em] z-10 dark:bg-dark-bg fixed bg-opacity-100 dark:bg-opacity-100 
+      className="font-serif w-screen h-[5em] z-10 dark:bg-dark-bg fixed bg-opacity-100 dark:bg-opacity-100 
       false"
     >
       <div
@@ -110,7 +110,7 @@ exports[`App test  Should render app 1`] = `
           className="hidden lg:flex justify-end "
         >
           <button
-            className="min-w-fit px-4 cursor-pointer "
+            className="min-w-fit px-4 cursor-pointer font-serif"
             id="theme-switch"
             onClick={[Function]}
             type="button"
@@ -134,7 +134,7 @@ exports[`App test  Should render app 1`] = `
             onClick={[Function]}
           >
             <button
-              className="btn primary lg undefined"
+              className="btn primary lg undefined font-serif"
               disabled={false}
               type="button"
             >
@@ -148,7 +148,7 @@ exports[`App test  Should render app 1`] = `
             onClick={[Function]}
           >
             <button
-              className="btn bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill lg mr-8"
+              className="btn bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill lg mr-8 font-serif"
               disabled={false}
               type="button"
             >
@@ -162,7 +162,7 @@ exports[`App test  Should render app 1`] = `
           className="flex px-3 lg:hidden items-center"
         >
           <button
-            className="min-w-fit px-4 cursor-pointer "
+            className="min-w-fit px-4 cursor-pointer font-serif"
             id="theme-switch"
             onClick={[Function]}
             type="button"
@@ -244,7 +244,7 @@ exports[`App test  Should render app 1`] = `
           onClick={[Function]}
         >
           <button
-            className="btn transparentbtn  ml-0 lg mr-8"
+            className="btn transparentbtn  ml-0 lg mr-8 font-serif"
             disabled={false}
             type="button"
           >
@@ -277,7 +277,7 @@ exports[`App test  Should render app 1`] = `
             onClick={[Function]}
           >
             <button
-              className="btn secondary md lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal "
+              className="btn secondary md lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal  font-serif"
               disabled={false}
               type="button"
             >
@@ -288,7 +288,7 @@ exports[`App test  Should render app 1`] = `
       </div>
     </div>
     <div
-      className=" bg-white   mt-auto dark:bg-dark-frame-bg"
+      className=" bg-white   mt-auto dark:bg-dark-frame-bg font-serif"
     >
       <div
         className=" justify-between w-full h-full pb-5"
@@ -460,10 +460,10 @@ exports[`App test  Should render app 1`] = `
           </h1>
         </div>
         <div
-          className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative "
+          className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative font-serif"
         >
           <div
-            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-2xl sm:mx-3 rounded-t-3xl visible"
+            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl visible"
           >
             <div
               className="flex flex-col sm:flex-row  mb-6 items-center"
@@ -497,7 +497,7 @@ exports[`App test  Should render app 1`] = `
             </p>
           </div>
           <div
-            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-2xl sm:mx-3 rounded-t-3xl hidden"
+            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
           >
             <div
               className="flex flex-col sm:flex-row  mb-6 items-center"
@@ -531,7 +531,7 @@ exports[`App test  Should render app 1`] = `
             </p>
           </div>
           <div
-            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-2xl sm:mx-3 rounded-t-3xl hidden"
+            className="bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl hidden"
           >
             <div
               className="flex flex-col sm:flex-row  mb-6 items-center"
@@ -616,7 +616,7 @@ exports[`App test  Should render app 1`] = `
           </span>
         </div>
         <div
-          className="hidden md:flex md:flex-row flex-col  lg:mx-0 md:mx-0 my-20 gap-10 md:flex-wrap lg:flex-nowrap "
+          className="hidden md:flex md:flex-row flex-col  lg:mx-0 md:mx-0 my-20 gap-10 md:flex-wrap lg:flex-nowrap font-serif"
         >
           <div
             className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl "
@@ -726,7 +726,7 @@ exports[`App test  Should render app 1`] = `
       </div>
     </div>
     <div
-      className="w-full bg-indigo-100 dark:bg-dark-bg dark:bg-opacity-75 bg-opacity-100  page-footer"
+      className="w-full bg-indigo-100 dark:bg-dark-bg dark:bg-opacity-75 bg-opacity-100  page-footer font-serif"
     >
       <div
         className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full"

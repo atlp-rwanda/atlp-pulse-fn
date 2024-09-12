@@ -2,7 +2,7 @@
 
 exports[`Header Tests Should render the header with home 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -103,7 +103,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="hidden lg:flex w-2/3 justify-end "
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -127,7 +127,7 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn primary lg undefined"
+          className="btn primary lg undefined font-serif"
           disabled={false}
           type="button"
         >
@@ -141,7 +141,7 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn transparentbtn lg mr-8"
+          className="btn transparentbtn lg mr-8 font-serif"
           disabled={false}
           type="button"
         >
@@ -155,7 +155,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -257,7 +257,7 @@ exports[`Header Tests Should render the header with home 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn transparentbtn lg mr-8"
+        className="btn transparentbtn lg mr-8 font-serif"
         disabled={false}
         type="button"
       >
@@ -272,7 +272,7 @@ exports[`Header Tests Should render the header with home 1`] = `
 
 exports[`Header Tests Should render the header with no active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -372,7 +372,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="hidden lg:flex w-2/3 justify-end "
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -396,7 +396,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn primary lg undefined"
+          className="btn primary lg undefined font-serif"
           disabled={false}
           type="button"
         >
@@ -410,7 +410,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn transparentbtn lg mr-8"
+          className="btn transparentbtn lg mr-8 font-serif"
           disabled={false}
           type="button"
         >
@@ -424,7 +424,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -526,7 +526,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn transparentbtn lg mr-8"
+        className="btn transparentbtn lg mr-8 font-serif"
         disabled={false}
         type="button"
       >
@@ -541,7 +541,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
 
 exports[`Header Tests Should render the header with no active 2`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -631,7 +631,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="hidden lg:flex w-2/3 justify-end "
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -655,7 +655,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
         onClick={[Function]}
       >
         <button
-          className="btn primary lg undefined"
+          className="btn primary lg undefined font-serif"
           disabled={false}
           type="button"
         >
@@ -665,7 +665,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
         </button>
       </a>
       <button
-        className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+        className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill font-serif"
         disabled={false}
         onClick={[Function]}
         type="button"
@@ -679,7 +679,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -768,7 +768,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
       </a>
     </li>
     <button
-      className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill"
+      className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill font-serif"
       disabled={false}
       onClick={[Function]}
       type="button"
@@ -781,7 +781,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
 
 exports[`Header Tests Should render the header with no active 3`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -882,7 +882,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="hidden lg:flex w-2/3 justify-end "
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -906,7 +906,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         <button
-          className="btn primary lg undefined"
+          className="btn primary lg undefined font-serif"
           disabled={false}
           type="button"
         >
@@ -920,7 +920,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         <button
-          className="btn transparentbtn lg mr-8"
+          className="btn transparentbtn lg mr-8 font-serif"
           disabled={false}
           type="button"
         >
@@ -934,7 +934,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -1036,7 +1036,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
       onClick={[Function]}
     >
       <button
-        className="btn transparentbtn lg mr-8"
+        className="btn transparentbtn lg mr-8 font-serif"
         disabled={false}
         type="button"
       >
@@ -1051,7 +1051,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
 
 exports[`Header Tests Should render the header with pricing active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1152,7 +1152,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="hidden lg:flex w-2/3 justify-end "
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -1176,7 +1176,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn primary lg undefined"
+          className="btn primary lg undefined font-serif"
           disabled={false}
           type="button"
         >
@@ -1190,7 +1190,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn transparentbtn lg mr-8"
+          className="btn transparentbtn lg mr-8 font-serif"
           disabled={false}
           type="button"
         >
@@ -1204,7 +1204,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -1306,7 +1306,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn transparentbtn lg mr-8"
+        className="btn transparentbtn lg mr-8 font-serif"
         disabled={false}
         type="button"
       >
@@ -1321,7 +1321,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
 
 exports[`Header Tests Should render the header with product active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined"
+  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1421,7 +1421,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="hidden lg:flex w-2/3 justify-end "
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -1445,7 +1445,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn primary lg undefined"
+          className="btn primary lg undefined font-serif"
           disabled={false}
           type="button"
         >
@@ -1459,7 +1459,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn transparentbtn lg mr-8"
+          className="btn transparentbtn lg mr-8 font-serif"
           disabled={false}
           type="button"
         >
@@ -1473,7 +1473,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       className="flex px-5 lg:hidden"
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -1575,7 +1575,7 @@ exports[`Header Tests Should render the header with product active 1`] = `
       onClick={[Function]}
     >
       <button
-        className="btn transparentbtn lg mr-8"
+        className="btn transparentbtn lg mr-8 font-serif"
         disabled={false}
         type="button"
       >

@@ -2,7 +2,7 @@
 
 exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
 <div
-  className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg"
+  className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg font-serif"
 >
   <div
     className="flex flex-row pb-8 justify-center"
@@ -11,7 +11,7 @@ exports[`Super Admin Dashboard test  Should render SupAdDashboard 1`] = `
       className=""
     >
       <div
-        className="flex items-center justify-center h-fit bg-light-bg dark:bg-dark-frame-bg py-4"
+        className="flex items-center justify-center h-fit bg-light-bg dark:bg-dark-frame-bg py-4 font-serif"
       >
         <div
           className="p-5 mx-2 bg-indigo-100 rounded-lg shadow-lg dark:bg-dark-bg md:p-20"

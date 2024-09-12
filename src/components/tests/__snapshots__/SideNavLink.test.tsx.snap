@@ -21,7 +21,7 @@ exports[`DashHeader test  Should render navlink witthout active indicator 1`] = 
 
 exports[`DashHeader test  Should render the sidebar with setings as active 1`] = `
 <div
-  className="block lg:block page-sideNav fixed lg:static top-16 bottom-0"
+  className="block lg:block page-sideNav fixed lg:static top-16 bottom-0 font-serif"
 >
   <div
     className=" overflow-auto flex-col h-[100%] pt-2 bg-indigo-100 dark:bg-dark-bg shadow-lg lg:shadow-none dark:shadow-border-dark"

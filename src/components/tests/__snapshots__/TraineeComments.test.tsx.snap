@@ -2,6 +2,6 @@
 
 exports[`Trainee Comments page Renders the Trainee Comments Page  1`] = `
 <div
-  className="bg-white dark:bg-dark-bg shadow-lg px-5 py-1 rounded-md w-[90%] mx-auto lg:w-[70%] lg:ml-60 mb-10 mt-80"
+  className="font-serif bg-white dark:bg-dark-bg shadow-lg px-5 py-1 rounded-md w-[90%] mx-auto lg:w-[70%] lg:ml-60 mb-10 mt-80"
 />
 `;

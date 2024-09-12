@@ -31,15 +31,6 @@ export const GET_PROFILE = gql`
             startDate
           }
         }
-        cohort {
-          name
-          program {
-            name
-          }
-          phase {
-            name
-          }
-        }
         program {
           name
         }

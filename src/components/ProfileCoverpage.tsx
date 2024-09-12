@@ -2,6 +2,7 @@ import { PencilAltIcon, PencilIcon } from '@heroicons/react/solid';
 import React, { useEffect, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { ClipLoader, PulseLoader } from 'react-spinners';
 import {
   gql,
   useApolloClient,
@@ -87,7 +88,7 @@ export default function ProfileCoverpage({
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const uploadCover = async (files: any) => {
@@ -119,7 +120,7 @@ export default function ProfileCoverpage({
       }
       /* istanbul ignore next */
       await client.resetStore();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -154,26 +155,34 @@ export default function ProfileCoverpage({
       }}
       className="font-serif bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] flex flex-row text-center  align-center items-center"
     >
-      <img
-        src={
-          profileData?.getProfile?.avatar
-            ? profileData?.getProfile?.avatar
-            : Avatar
-        }
-        className="relative w-20 h-20 m-4 ml-6 rounded-full md:w-28 md:h-28 md:ml-20 mt-36 md:mt-12"
-        alt="profile-avatar"
-      />
-      <div className="z-0 flex items-center justify-center h-full mr-auto -ml-10 bg-grey-lighter md:-ml-12 mt-36 md:mt-20">
-        <div role="button">
-          <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1">
+      <div className="relative">
+        <img
+          src={
+            profileData?.getProfile?.avatar
+              ? profileData?.getProfile?.avatar
+              : Avatar
+          }
+          className="relative w-24 h-24 m-4 ml-6 rounded-full md:w-28 md:h-28 md:ml-20 mt-32 md:mt-12 object-cover"
+          alt="profile-avatar"
+        />
+
+        <div
+          className={`${
+            currentPage !== 'editProfile'
+              ? '-right-3 md:-right-4'
+              : '-right-12 md:-right-16'
+          } absolute bottom-7 md:bottom-8`}
+          role="button"
+        >
+          <label className="flex items-center md:gap-x-1 px-2 py-[3px] md:py-1 cursor-pointer rounded-[3px] bg-primary text-white hover:bg-[#7a5edc] overflow-hidden">
             {/* Conditionally render based on the spinner state */}
             {spinner ? (
-              <Spinner />
+              <PulseLoader color="#ffffff" size={6} className="my-1" />
             ) : (
               <>
-                <PencilAltIcon className="w-5 mt-0 mr-1 md:w-3 dark:text-dark-text-fill" />
-                <span className="text-lg md:text-sm dark:text-dark-text-fill">
-                  <span className="hidden md:block">{t('Edit')}</span>
+                <PencilAltIcon className="w-[14px] md:w-[15px] dark:text-dark-text-fill" />
+                <span className="text-[.73rem] font-semibold md:text-sm dark:text-dark-text-fill">
+                  <span>{t('Edit')}</span>
                 </span>
               </>
             )}
@@ -195,16 +204,22 @@ export default function ProfileCoverpage({
           onClick={() => handleEdit()}
           variant="default"
           size="md"
-          style="text-center ml-auto mr-4 mt-40 md:mt-24  rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1 md:p-2 flex flex-row"
+          style="flex items-center gap-x-1 ml-auto mr-4 mt-[10.5rem] md:mt-24 rounded-[3px] bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1 md:py-[6px] md:px-3 "
         >
-          <PencilIcon className="w-6 mr-1 md:mr-2 dark:text-dark-text-fill " />
-          <span className="hidden md:block"> {t('Edit Profile')} </span>
+          <PencilIcon className="w-[18px] dark:text-dark-text-fill " />
+          <span className="text-[.9rem] hidden md:block">
+            {' '}
+            {t('Edit Profile')}{' '}
+          </span>
         </Button>
       ) : (
         <div className="flex items-center justify-center w-full h-screen mt-24 ml-auto bg-grey-lighter">
-          <label className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2">
-            <CameraIcon className="w-6 mt-0 mr-1 dark:text-dark-text-fill" />
-
+          <label className="flex items-center ml-auto mr-4 rounded-md bg-primary text-white hover:bg-[#7a5edc] p-[6px]  cursor-pointer">
+            {spinnerCover ? (
+              <ClipLoader size={14} color="#ffffff" className='m-1'/>
+            ) : (
+              <CameraIcon className="w-5 dark:text-dark-text-fill" />
+            )}
             <input
               type="file"
               className="hidden"
@@ -214,7 +229,6 @@ export default function ProfileCoverpage({
                 setSpinnerCover(true);
               }}
             />
-            {spinnerCover ? <Spinner /> : ''}
           </label>
         </div>
       )}

@@ -3,7 +3,7 @@
 exports[`Admin Login Should render 1`] = `
 Array [
   <div
-    className="grow  dark:bg-dark-frame-bg bg-indigo-50 flex flex-row font-sans"
+    className="grow  dark:bg-dark-frame-bg bg-indigo-50 flex flex-row font-serif"
   >
     <div
       className="hidden lg:flex w-[50%] h-full  flex-col justify-center items-center mt-10 "
@@ -220,7 +220,7 @@ Array [
                 className="w-full justify-center"
               >
                 <button
-                  className="btn transparentbtn md  w-full bg-primary m-0 inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white"
+                  className="btn transparentbtn md  w-full bg-primary m-0 inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white font-serif"
                   disabled={false}
                   type="submit"
                 >

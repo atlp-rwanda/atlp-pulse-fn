@@ -48,11 +48,11 @@ export default function Profile() {
     fetchData();
   }, []);
   return (
-    <div className="bg-light-bg dark:bg-dark-frame-bg overflow-y-scroll font-serif">
+    <div className="bg-light-bg dark:bg-dark-frame-bg font-serif">
       {data ? (
         <>
           <ProfileCoverPage data={data?.getProfile} currentPage="viewProfile" />
-          <div className="mt-2 p-6 h-full">
+          <div className="mt-1 p-2 md:p-4 h-full">
             <ProfileTabs data={data?.getProfile || {}} />
           </div>
         </>

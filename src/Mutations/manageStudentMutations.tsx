@@ -290,6 +290,7 @@ export const ADD_REPO = gql`
   mutation addActiveRepostoOrganization($name: String!, $repoUrl: String!) {
     addActiveRepostoOrganization(name: $name, repoUrl: $repoUrl) {
       name
+      activeRepos
     }
   }
 `;

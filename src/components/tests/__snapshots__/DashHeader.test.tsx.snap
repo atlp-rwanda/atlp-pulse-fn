@@ -2,10 +2,10 @@
 
 exports[`DashHeader test  Should render DashHeader 1`] = `
 <div
-  className="w-screen py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header"
+  className="font-serif w-full py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header"
 >
   <div
-    className="px-3 flex items-center w-full "
+    className="px-3 flex items-center w-full font-serif"
   >
     <div
       className="flex px-5 lg:hidden"
@@ -107,7 +107,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
       className="inline-flex relative items-center p-0 text-sm font-medium text-center text-black  ml-auto dark:bg-dark-bg rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300   dark:focus:ring-blue-800"
     >
       <button
-        className="min-w-fit px-4 cursor-pointer "
+        className="min-w-fit px-4 cursor-pointer font-serif"
         id="theme-switch"
         onClick={[Function]}
         type="button"
@@ -149,7 +149,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
     >
       <img
         alt="avatar"
-        className="w-8 cursor-pointer ml-4 mr-4 h-8 rounded-full"
+        className="w-8 cursor-pointer ml-4 mr-4 h-8 rounded-full object-cover"
         src={Object {}}
       />
     </div>

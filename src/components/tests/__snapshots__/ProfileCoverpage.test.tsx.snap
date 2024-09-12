@@ -2,30 +2,31 @@
 
 exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
 <div
-  className="bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] flex flex-row text-center  align-center items-center"
+  className="font-serif bg-cover bg-no-repeat bg-defaultCover bg-center bg-fixed h-[28vh] md:h-[26vh] flex flex-row text-center  align-center items-center"
   style={
     Object {
       "backgroundImage": "url(https://images.unsplash.com/photo-1483168527879-c66136b56105?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3016&q=80)",
     }
   }
 >
-  <img
-    alt="profile-avatar"
-    className="relative w-20 h-20 m-4 ml-6 rounded-full md:w-28 md:h-28 md:ml-20 mt-36 md:mt-12"
-    src={Object {}}
-  />
   <div
-    className="z-0 flex items-center justify-center h-full mr-auto -ml-10 bg-grey-lighter md:-ml-12 mt-36 md:mt-20"
+    className="relative"
   >
+    <img
+      alt="profile-avatar"
+      className="relative w-24 h-24 m-4 ml-6 rounded-full md:w-28 md:h-28 md:ml-20 mt-32 md:mt-12 object-cover"
+      src={Object {}}
+    />
     <div
+      className="-right-12 md:-right-16 absolute bottom-7 md:bottom-8"
       role="button"
     >
       <label
-        className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-1"
+        className="flex items-center md:gap-x-1 px-2 py-[3px] md:py-1 cursor-pointer rounded-[3px] bg-primary text-white hover:bg-[#7a5edc] overflow-hidden"
       >
         <svg
           aria-hidden="true"
-          className="w-5 mt-0 mr-1 md:w-3 dark:text-dark-text-fill"
+          className="w-[14px] md:w-[15px] dark:text-dark-text-fill"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -40,11 +41,9 @@ exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
           />
         </svg>
         <span
-          className="text-lg md:text-sm dark:text-dark-text-fill"
+          className="text-[.73rem] font-semibold md:text-sm dark:text-dark-text-fill"
         >
-          <span
-            className="hidden md:block"
-          >
+          <span>
             Edit
           </span>
         </span>
@@ -61,11 +60,11 @@ exports[`<ProfileTabs/> Renders Profile Tabs 1`] = `
     className="flex items-center justify-center w-full h-screen mt-24 ml-auto bg-grey-lighter"
   >
     <label
-      className="flex flex-row text-center ml-auto mr-4 rounded-lg bg-primary text-white hover:bg-[#7a5edc] focus:outline-none p-2"
+      className="flex items-center ml-auto mr-4 rounded-md bg-primary text-white hover:bg-[#7a5edc] p-[6px]  cursor-pointer"
     >
       <svg
         aria-hidden="true"
-        className="w-6 mt-0 mr-1 dark:text-dark-text-fill"
+        className="w-5 dark:text-dark-text-fill"
         fill="none"
         stroke="currentColor"
         strokeWidth={2}
