@@ -29,6 +29,7 @@ import {
   FaGithubSquare,
   FaPlusSquare,
   FaRemoveFormat,
+  FaUserAlt,
 } from 'react-icons/fa';
 import {
   ADD_REPO,
@@ -41,10 +42,25 @@ import {
 import Spinner from './Spinner';
 import GitHubActivityChart from './chartGitHub';
 import BookOpenIcon from '@heroicons/react/outline/BookOpenIcon';
+import { FiEdit3 } from 'react-icons/fi';
+import { VscOrganization } from 'react-icons/vsc';
 
 const organizationToken = localStorage.getItem('orgToken');
 const token = localStorage.getItem('orgToken');
 const orgName = window.localStorage.getItem('orgName');
+interface OrganisationType {
+  id?: string;
+  name?: string;
+  description?: string;
+  admin?: {
+    id?: string;
+    role?: string;
+    email?: string;
+  };
+  status?: string;
+  gitHubOrganisation?: string;
+  activeRepos?: string[];
+}
 
 export function EditPassword() {
   type fields = {
@@ -106,7 +122,7 @@ export function EditPassword() {
               size="md"
               style="group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
               /* istanbul ignore next */
-              onClick={() => { }}
+              onClick={() => {}}
               data-testid="change_password"
             >
               {t('Change Password')}
@@ -126,7 +142,7 @@ export default function ProfileTabs({ data: profileData }: any) {
   const [traineeProfile, setTraineeProfile] = useState<any>({});
   const [traineeData, setTraineeData] = useState<any>([]);
   const [singleUser, setSingleUser] = useState<any>({});
-  const [organisation, setOrganisation] = useState<any>({});
+  const [organisation, setOrganisation] = useState<OrganisationType>({});
   const [repo, setRepo] = useState<any>('');
   const [org, setOrg] = useState<any>('');
   const [orgModel, setOrgModel] = useState<boolean>(false);
@@ -153,16 +169,19 @@ export default function ProfileTabs({ data: profileData }: any) {
       orgToken: organizationToken,
     },
   });
-
   const [fetchOrgData] = useLazyQuery(GET_ORGANISATION, {
     variables: {
-      name: orgName?.split('.')[0],
+      name:
+        profileData.user && profileData.user.organizations
+          ? profileData.user.organizations[0]
+          : '',
     },
   });
+
   const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
     variables: {
       organisation: localStorage.getItem('orgName')?.split('.')[0],
-      username: profileData.githubUsername
+      username: profileData.githubUsername,
     },
   });
 
@@ -226,16 +245,10 @@ export default function ProfileTabs({ data: profileData }: any) {
         setIsLoaded(false);
       },
     });
-    // fetchOrgData({
-    //   fetchPolicy: 'no-cache',
-    //   onCompleted: (data) => {
-    //     setOrganisation(data.getOrganization);
-    //   },
-    // });
     fetchOrgData({
       fetchPolicy: 'no-cache',
       onCompleted: (data) => {
-        setOrganisation(data);
+        setOrganisation(data.getOrganization);
       },
     });
 
@@ -249,15 +262,22 @@ export default function ProfileTabs({ data: profileData }: any) {
 
   const [addActiveRepostoOrganization] = useMutation(ADD_REPO, {
     variables: {
-      name: orgName,
+      name: organisation.name,
       repoUrl: repo,
     },
     /* istanbul ignore next */
     onCompleted: (data) => {
       setTimeout(() => {
+        setRepo('');
         setButtonLoading(false);
-        toast.success(' added successfully');
+        toast.success(' Added successfully');
         setRepoModel(false);
+        setOrganisation((prevOrgData: OrganisationType) => {
+          return {
+            ...prevOrgData,
+            activeRepos: data.addActiveRepostoOrganization.activeRepos,
+          };
+        });
       }, 500);
     },
     /* istanbul ignore next */
@@ -272,7 +292,7 @@ export default function ProfileTabs({ data: profileData }: any) {
 
   const [removeActiveRepostoOrganization] = useMutation(REMOVE_REPO, {
     variables: {
-      name: orgName,
+      name: organisation.name,
       repoUrl: repo,
     },
     /* istanbul ignore next */
@@ -283,7 +303,7 @@ export default function ProfileTabs({ data: profileData }: any) {
           setOrganisation(data.getOrganization);
           setTimeout(() => {
             setButtonLoading(false);
-            toast.success('deleted successfully');
+            toast.success('Deleted successfully');
             setRemoveRepoModel(false);
           }, 500);
         },
@@ -308,7 +328,7 @@ export default function ProfileTabs({ data: profileData }: any) {
           setOrganisation(data.getOrganization);
           setTimeout(() => {
             setButtonLoading(false);
-            toast.success('organisation name updated');
+            toast.success('Organisation name updated');
             setOrgModel(false);
           }, 500);
         },
@@ -338,7 +358,7 @@ export default function ProfileTabs({ data: profileData }: any) {
         <div className="lg:w-[40vw]">
           {/* Profile tabs option start */}
           <ul
-            className="flex flex-row flex-wrap pt-3 pb-4 mb-0 text-black list-none dark:text-dark-text-fill"
+            className="flex  pt-3 pb-4 mb-0 text-black list-none dark:text-dark-text-fill"
             role="tablist"
           >
             {tabs
@@ -353,92 +373,128 @@ export default function ProfileTabs({ data: profileData }: any) {
                     return true;
                 }
               })
-              .map((tab) => (
-                <li
-                  key={tab}
-                  className="flex-auto mr-2 -mb-px text-center last:mr-0"
-                >
-                  <a
-                    className={`text-xs font-bold uppercase px-3 md:px-5 py-3 shadow-sm rounded block leading-normal ${openTab === `${tab}`
-                      ? 'bg-white dark:bg-dark-bg border-b-4 border-b-primary '
-                      : ''
-                      }`}
-                    /* istanbul ignore next */
-                    onClick={(e) => {
-                      /* istanbul ignore next */
-                      e.preventDefault();
-                      /* istanbul ignore next */
-                      setOpenTab(`${tab}`);
-                    }}
-                    data-toggle="tab"
-                    href="#link1"
-                    role="tablist"
-                    data-testid="tab-link"
+              .map((tab) => {
+                if (
+                  tab.toLowerCase() === 'organizations' &&
+                  user &&
+                  user.role.toLowerCase() === 'superadmin'
+                ) {
+                  return null;
+                }
+                return (
+                  <li
+                    key={tab}
+                    className=" mr-2 text-center last:mr-0 mt-5 w-[50%] md:mt-0"
                   >
-                    {t(tab)}
-                  </a>
-                </li>
-              ))}
+                    <a
+                      className={`text-[.8rem] md:text-[.95rem] font-bold uppercase px-6 py-[6px] md:py-3 shadow-sm rounded block leading-normal ${
+                        openTab === `${tab}`
+                          ? 'bg-white dark:bg-dark-bg border-b-2 md:border-b-4 border-b-primary '
+                          : ''
+                      }`}
+                      /* istanbul ignore next */
+                      onClick={(e) => {
+                        /* istanbul ignore next */
+                        e.preventDefault();
+                        /* istanbul ignore next */
+                        setOpenTab(`${tab}`);
+                      }}
+                      data-toggle="tab"
+                      href="#link1"
+                      role="tablist"
+                      data-testid="tab-link"
+                    >
+                      {t(tab)}
+                    </a>
+                  </li>
+                );
+              })}
           </ul>
           {/* Profile tabs option end */}
         </div>
-        <div className="relative flex flex-col w-full min-w-0 break-words rounded text-light-text dark:text-dark-text-fill">
-          <div className="flex-auto py-2">
-            <div className="tab-content tab-space">
-              {/* About section start */}
-              <div
-                /* istanbul ignore next */
-                className={openTab === 'About' ? 'block' : 'hidden'}
-                id="link1"
-              >
-                <div className="grid gap-4 md:grid-cols-6 md:gap-6 ">
-                  <div className="flex flex-col items-start justify-start px-4 py-2 bg-indigo-100 shadow md:col-span-3 dark:bg-dark-bg w-100">
-                    <h2 className="my-2 text-xl font-bold">
-                      {profileData?.name || 'Name not available'}{' '}
-                    </h2>
-                    <div className="flex justify-center py-4">
-                      <MailIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {user?.email || 'unavailable'}
+        <div className="flex flex-col w-full text-light-text dark:text-dark-text-fill">
+          {/* About section start */}
+          <div
+            /* istanbul ignore next */
+            className={
+              openTab === 'About' ? 'flex flex-col gap-4 md:gap-y-7' : 'hidden'
+            }
+            id="link1"
+          >
+            <div className="grid gap-4 md:grid-cols-6 md:gap-7">
+              <div className="flex flex-col items-start justify-start gap-y-3 py-6 px-7 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg w-100 rounded-md">
+                <div>
+                  <h2 className="font-semibold text-[.84rem] md:text-[.95rem] mb-3">
+                    BASIC INFORMATION
+                  </h2>
+                  <div className="flex flex-col gap-y-3 ml-5">
+                    <div className="flex items-center gap-x-2">
+                      <FaUserAlt className="w-5 dark:text-dark-text-fill" />
+                      <span className="text-sm">
+                        {profileData?.name || 'Unavailable'}
+                      </span>
                     </div>
-                    <div className="flex">
-                      <PhoneIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {profileData?.phoneNumber || 'unavailable'}
+                    <div className="flex items-center gap-x-2">
+                      <MailIcon className="w-5 dark:text-dark-text-fill" />
+                      <span className="text-sm">
+                        {user?.email || 'Unavailable'}
+                      </span>
                     </div>
-                    <div className="flex py-4 ">
-                      <HomeIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {profileData?.city}
-                      {/* istanbul ignore next */}
-                      {profileData?.city &&
-                        /* istanbul ignore next */
-                        profileData?.country &&
-                        ','}
-                      {profileData?.country && (
-                        /* istanbul ignore next */
-                        <CountryComponent country={profileData.country} />
-                      )}
+                    <div className="flex items-center gap-x-2">
+                      <PhoneIcon className="w-5 dark:text-dark-text-fill" />
+                      <span className="text-sm">
+                        {profileData?.phoneNumber || 'Unavailable'}
+                      </span>
                     </div>
-                    <div className="flex py-4 ">
-                      <FaGithub className="w-6 mr-2 dark:text-dark-text-fill" />
-                      {profileData?.githubUsername}
+                    <div className="flex items-center gap-x-2 ">
+                      <HomeIcon className="w-5 dark:text-dark-text-fill" />
+                      <span className="flex text-sm">
+                        {profileData?.city}
+                        {/* istanbul ignore next */}
+                        {profileData?.city &&
+                          /* istanbul ignore next */
+                          profileData?.country &&
+                          ','}
+                        {profileData?.country && (
+                          /* istanbul ignore next */
+                          <CountryComponent country={profileData.country} />
+                        )}
+                        {(!profileData?.city || !profileData?.country) &&
+                          'Unavailable'}
+                      </span>
                     </div>
-                    <div className="flex py-4">
-                      {traineeProfile?.resume ? (
-                        <>
-                          <BookOpenIcon className="w-6 mr-2 dark:text-dark-text-fill" />
-                          <a
-                            href={traineeProfile.resume}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View Resume
-                          </a>
-                        </>
-                      ) : (
-                        <p>No Resume uploaded yet</p>
-                      )}
+                    <div className="flex items-center gap-x-2 ">
+                      <FaGithub className="w-5 dark:text-dark-text-fill" />
+                      <span className="text-sm">
+                        {profileData?.githubUsername || 'Unavailable'}
+                      </span>
                     </div>
-                    {/* Or you can disable the link like below */}
-                    {/* <div className="flex py-4">
+                  </div>
+                </div>
+                <div>
+                  <h2 className="font-semibold text-[.84rem] md:text-[.95rem] mt-5 mb-3">
+                    RESUME
+                  </h2>
+                  <div className="flex items-center gap-x-2 ml-5">
+                    {traineeProfile?.resume ? (
+                      <>
+                        <BookOpenIcon className="w-5 dark:text-dark-text-fill" />
+                        <a
+                          className="text-sm"
+                          href={traineeProfile.resume}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Resume
+                        </a>
+                      </>
+                    ) : (
+                      <span className="text-sm">No Resume uploaded yet</span>
+                    )}
+                  </div>
+                </div>
+                {/* Or you can disable the link like below */}
+                {/* <div className="flex py-4">
                       {traineeProfile.resume ? (
                         <>
                           <BookOpenIcon className="w-6 mr-2 dark:text-dark-text-fill" />
@@ -463,474 +519,418 @@ export default function ProfileTabs({ data: profileData }: any) {
                         </div>
                       )}
                     </div> */}
-                  </div>
-                  <div className="px-4 py-2 bg-indigo-100 shadow md:col-span-3 dark:bg-dark-bg">
-                    <h2 className="my-2 text-xl font-bold">{t('Biography')}</h2>
-                    <p className="pt-4">
-                      {profileData?.biography || 'No biography'}
-                    </p>
+              </div>
+              <div className="p-6 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg rounded-md">
+                {/* <h2 className="my-2 text-xl font-bold">{t('Biography')}</h2> */}
+                <h2 className="font-semibold text-[.84rem] md:text-[.95rem] mb-2 uppercase">
+                  {t('Biography')}
+                </h2>
+                <div className="mx-4 text-justify">
+                  <span className="text-sm ">
+                    {profileData?.biography
+                      ? profileData?.biography.slice(0, 400)
+                      : 'No biography'}
+                  </span>
+                </div>
+              </div>
+            </div>
+            {/* istanbul ignore next */}
+            {role && [].includes(role as never) && (
+              /* istanbul ignore next */
+              <div className="relative grid p-2 m-1 -ml-2 -mr-2">
+                <div className="flex items-start justify-start p-2 shadow-md bg-primary md:col-span-2 rounded-t-2xl">
+                  <img
+                    className="absolute w-16 h-16 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-20 md:h-20 dark:bg-dark-bg border-primary"
+                    src={Logo}
+                    alt="logo"
+                  />
+                  <div className="flex flex-col items-start justify-start ml-36">
+                    <h2 className="text-2xl font-bold text-center text-dark-text-fill md:text-3xl">
+                      {orgName}
+                    </h2>
+                    <h3 className="text-sm font-bold text-center text-dark-text-fill md:text-lg ">
+                      https://andela.pulse.com/
+                    </h3>
                   </div>
                 </div>
-                {/* istanbul ignore next */}
-                {role && [].includes(role as never) && (
-                  /* istanbul ignore next */
-                  <div className="relative grid p-2 m-1 -ml-2 -mr-2">
-                    <div className="flex items-start justify-start p-2 shadow bg-primary md:col-span-2 rounded-t-2xl">
-                      <img
-                        className="absolute w-16 h-16 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-20 md:h-20 dark:bg-dark-bg border-primary"
-                        src={Logo}
-                        alt="logo"
-                      />
-                      <div className="flex flex-col items-start justify-start ml-36">
-                        <h2 className="text-2xl font-bold text-center text-dark-text-fill md:text-3xl">
-                          {orgName}
-                        </h2>
-                        <h3 className="text-sm font-bold text-center text-dark-text-fill md:text-lg ">
-                          https://andela.pulse.com/
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-start justify-start p-2 m-2 bg-indigo-100 shadow mt-9 dark:bg-dark-bg ">
-                      <h3 className="m-2 mb-4 text-2xl font-bold">
-                        {/* You in the organization */}
-                        {t('You in the organization')}
-                      </h3>
-                      <div className="flex">
-                        <h4 className="mr-4 text-base font-bold">
-                          {t('Role')}:
-                        </h4>
-                        {user?.role}
-                      </div>
-                      <div className="flex py-4 ">
-                        <h4 className="mr-4 text-base font-bold">
-                          {t('Team')}:
-                        </h4>
-                        {singleUser && singleUser.team
-                          ? singleUser.team.name
-                          : 'Unavailabe'}
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-start justify-start p-2 m-2 mt-0 bg-indigo-100 shadow md:mt-9 dark:bg-dark-bg ">
-                      <h3 className="m-2 mb-4 text-2xl font-bold">
-                        {t('Management')}
-                      </h3>
-                      <div className="flex justify-center py-4">
-                        <h4 className="mr-4 text-base font-bold">
-                          {t('program')}:
-                        </h4>
-                        {singleUser && singleUser.team
-                          ? singleUser.team.cohort.program.name
-                          : 'Unavailabe'}
-                      </div>
-                      <div className="flex">
-                        <h4 className="mr-4 text-base font-bold">
-                          {t('Stage(current)')}:
-                          {singleUser && singleUser.team
-                            ? singleUser.team.cohort.phase.name
-                            : 'Unavailabe'}
-                        </h4>
-                      </div>
-                      <div className="flex py-4 ">
-                        <h4 className="mr-4 text-base font-bold">
-                          {t('Manager')}:
-                        </h4>
-
-                        {singleUser && singleUser.team
-                          ? singleUser.team.cohort.program.manager.profile.name
-                          : 'Unavailabe'}
-                      </div>
-                    </div>
+                <div className="flex flex-col items-start justify-start p-2 m-2 bg-indigo-100 shadow-md mt-9 dark:bg-dark-bg ">
+                  <h3 className="m-2 mb-4 text-2xl font-bold">
+                    {/* You in the organization */}
+                    {t('You in the organization')}
+                  </h3>
+                  <div className="flex">
+                    <h4 className="mr-4 text-base font-bold">{t('Role')}:</h4>
+                    {user?.role}
                   </div>
-                )}
-                <div
-                  className={`text-sm font-sans ${profileData.role != 'test'
+                  <div className="flex py-4 ">
+                    <h4 className="mr-4 text-base font-bold">{t('Team')}:</h4>
+                    {singleUser && singleUser.team
+                      ? singleUser.team.name
+                      : 'Unavailable'}
+                  </div>
+                </div>
+                <div className="flex flex-col items-start justify-start p-2 m-2 mt-0 bg-indigo-100 shadow-md md:mt-9 dark:bg-dark-bg ">
+                  <h3 className="m-2 mb-4 text-2xl font-bold">
+                    {t('Management')}
+                  </h3>
+                  <div className="flex items-center gap-x-2">
+                    <h4 className="mr-4 text-base font-bold">
+                      {t('program')}:
+                    </h4>
+                    {singleUser && singleUser.team
+                      ? singleUser.team.cohort.program.name
+                      : 'Unavailabe'}
+                  </div>
+                  <div className="flex">
+                    <h4 className="mr-4 text-base font-bold">
+                      {t('Stage(current)')}:
+                      {singleUser && singleUser.team
+                        ? singleUser.team.cohort.phase.name
+                        : 'Unavailabe'}
+                    </h4>
+                  </div>
+                  <div className="flex py-4 ">
+                    <h4 className="mr-4 text-base font-bold">
+                      {t('Manager')}:
+                    </h4>
+
+                    {singleUser && singleUser.team
+                      ? singleUser.team.cohort.program.manager.profile.name
+                      : 'Unavailabe'}
+                  </div>
+                </div>
+              </div>
+            )}
+            {user?.role === 'trainee' && (
+              <div
+                className={`text-sm font-sans ${
+                  profileData.role != 'test'
                     ? user?.role === 'trainee'
                       ? ''
                       : 'hidden'
                     : ''
+                }`}
+                style={{
+                  display: 'flex',
+                  gap: '50px',
+                  justifyContent: 'space-between',
+                  paddingBlock: '10px',
+                  marginBottom: '20px',
+                }}
+              >
+                {isLoaded ? (
+                  <div
+                    className={`flex justify-center items-center h-48 ${
+                      profileData.role != 'test'
+                        ? user?.role === 'trainee'
+                          ? ''
+                          : 'hidden'
+                        : ''
                     }`}
-                  style={{
-                    display: 'flex',
-                    gap: '50px',
-                    justifyContent: 'space-between',
-                    paddingBlock: '10px',
-                    marginBottom: '20px',
-                  }}
-                >
-                  {isLoaded ? (
-                    <div
-                      className={`flex justify-center items-center h-48 ${profileData.role != 'test'
-                        ? user?.role === 'trainee'
-                          ? ''
-                          : 'hidden'
-                        : ''
-                        }`}
-                    >
-                      <i>Loading gitHub statistics...</i>
+                  >
+                    <i>Loading gitHub statistics...</i>
 
-                      <Spinner />
-                      <div className="spinner" />
-                    </div>
-                  ) : (
-                    <div
-                      className={`w-1/2 flex justify-between ${profileData.role != 'test'
+                    <Spinner />
+                    <div className="spinner" />
+                  </div>
+                ) : (
+                  <div
+                    className={`w-1/2 flex justify-between ${
+                      profileData.role != 'test'
                         ? user?.role === 'trainee'
                           ? ''
                           : 'hidden'
                         : ''
-                        }`}
-                    >
-                      <div className="flex flex-col">
-                        <i className="text-2xl ">
-                          {gitHubStatistics?.totalCommits} total commits
-                        </i>
-                      </div>
-                      <div className="flex flex-col items-center justify-center">
-                        <div>
-                          {gitHubStatistics ? (
-                            <GitHubActivityChart data={gitHubStatistics} />
-                          ) : (
-                            <></>
-                          )}
-                        </div>
+                    }`}
+                  >
+                    <div className="flex flex-col">
+                      <i className="text-2xl ">
+                        {gitHubStatistics?.totalCommits} total commits
+                      </i>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        {gitHubStatistics ? (
+                          <GitHubActivityChart data={gitHubStatistics} />
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     </div>
+                  </div>
+                )}
+              </div>
+            )}
+            <div
+              className={`grid md:grid-cols-5 gap-4 md:gap-7 ${
+                profileData.test != 'test'
+                  ? user?.role !== 'admin'
+                    ? 'hidden'
+                    : ''
+                  : ''
+              }`}
+            >
+              <div className="flex flex-col items-start justify-start py-5 pl-7 bg-indigo-100 rounded-md shadow-md md:col-span-2 dark:bg-dark-bg ">
+                <div className="flex items-center gap-x-2 mb-3">
+                  <h2 className="font-semibold text-[.84rem] md:text-[.95rem] uppercase">
+                    {t('Github Organisation')}
+                  </h2>
+                  <FiEdit3
+                    className="text-base md:text-lg hover:text-primary text-black dark:text-dark-text-fill cursor-pointer"
+                    onClick={() => {
+                      setOrg(organisation?.gitHubOrganisation);
+                      setOrgModel(true);
+                    }}
+                  />
+                </div>
+                <div className="flex items-center gap-10">
+                  {organisation?.gitHubOrganisation && (
+                    <a
+                      href={`https://github.com/${organisation.gitHubOrganisation}`}
+                      target="_blank"
+                      className="flex items-center gap-x-2 ml-5"
+                    >
+                      <VscOrganization className="text-lg dark:text-dark-text-fill" />
+                      <span className="text-sm">
+                        {organisation?.gitHubOrganisation}
+                      </span>
+                    </a>
                   )}
                 </div>
-                <div
-                  className={`grid md:grid-cols-5 gap-4 md:gap-6 ${profileData.test != 'test'
-                    ? user?.role !== 'admin'
-                      ? 'hidden'
-                      : ''
-                    : ''
-                    }`}
-                >
-                  <div className="flex flex-col items-start justify-start p-2 bg-white shadow md:col-span-2 dark:bg-dark-bg ">
-                    <h3 className="m-2 mb-4 text-2xl font-bold">
-                      Github Organisation
-                    </h3>
-                    <div className="flex items-center gap-10">
-                      <div className="flex justify-center py-4">
-                        <FaGithubSquare className="w-6 mr-2 dark:text-dark-text-fill" />
-                        {organisation?.gitHubOrganisation}
-                      </div>
-
-                      <FaEdit
-                        className="w-6 mr-2 dark:text-dark-text-fill"
-                        onClick={() => {
-                          setOrg(organisation?.gitHubOrganisation);
-                          setOrgModel(true);
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="p-2 bg-white shadow md:col-span-3 dark:bg-dark-bg ">
-                    <div className="flex justify-between">
-                      <h2 className="m-2 mb-4 text-xl font-bold">Repository</h2>
-                      <Button
-                        variant="default"
-                        size="md"
-                        style="group relative md:w-1/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-[#1280a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0"
-                        /* istanbul ignore next */
-                        onClick={() => {
-                          setRepoModel(true);
-                        }}
-                        data-testid="change_password"
-                        children="Add New"
-                      />
-                      {/* <button className='flex items-center justify-center '>
+              </div>
+              <div className="py-2 pl-7 pr-1 md:px-7 bg-indigo-100 rounded-md shadow-sm md:col-span-3 dark:bg-dark-bg ">
+                <div className="flex items-center justify-between">
+                  <h2 className="font-semibold text-[.84rem] md:text-[.95rem] uppercase">
+                    {t('Repository')}
+                  </h2>
+                  <Button
+                    variant="default"
+                    size="md"
+                    style="flex py-[4px] md:py-[5px] px-3 text-[.78rem] md:text-sm font-semibold rounded-[3px] text-white bg-primary hover:bg-[#7a5edc] "
+                    /* istanbul ignore next */
+                    onClick={() => {
+                      setRepoModel(true);
+                    }}
+                    data-testid="change_password"
+                    children="Add New"
+                  />
+                  {/* <button className='flex items-center justify-center '>
 Add New </button> */}
-                    </div>
-                    <div>
-                      {organisation?.activeRepos?.map((repo: any) => (
-                        <div className="flex items-start items-center justify-start gap-10 ml-5">
-                          <h2 className="font-bold text-center text-dark-text-fill ">
-                            {repo}
-                          </h2>
+                </div>
+                <div>
+                  {organisation?.activeRepos?.map(
+                    (repo: any, index: number) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-start gap-2 mb-1 ml-5"
+                      >
+                        <span className="text-sm dark:text-dark-text-fill ">
+                          {repo}
+                        </span>
 
-                          <FaEraser
-                            className="w-6 mr-2 dark:text-dark-text-fill"
-                            onClick={() => {
-                              setRepo(repo);
-                              setRemoveRepoModel(true);
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* About section end */}
-              <div
-                className={openTab === 'Organizations' ? 'block' : 'hidden'}
-                id="link3"
-              >
-                <div className="relative p-2 m-1 -ml-2 -mr-2">
-                  <div className="flex items-start justify-start p-1 shadow bg-primary md:col-span-2 rounded-t-2xl">
-                    <img
-                      className="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
-                      src={Logo}
-                      alt="logo"
-                    />
-                    <div className="flex flex-col items-start justify-start ml-36">
-                      <h2 className="text-lg font-bold text-center text-dark-text-fill md:text-xl">
-                        {profileData?.user?.organizations[0] || 'Unavailabe'}
-                      </h2>
-                      <h3 className="text-sm font-bold text-center text-dark-text-fill md:text-lg ">
-                        https://andela.pusle.com
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="flex flex-row">
-                    <div className="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow dark:bg-dark-bg ">
-                      <h3 className="mb-4 text-2xl font-bold">
-                        {t('You in the organization')}
-                      </h3>
-                      <div className="flex pb-2">
-                        <h4 className="mr-4 text-base font-bold">
-                          {t('Role')}:
-                        </h4>
-                        {user?.role}
+                        <FaEraser
+                          className="text-sm mr-2 dark:text-dark-text-fill cursor-pointer"
+                          onClick={() => {
+                            setRepo(repo);
+                            setRemoveRepoModel(true);
+                          }}
+                        />
                       </div>
-                    </div>
-                    {role &&
-                      ['manager', 'coordinator', 'trainee'].includes(
-                        role as never,
-                      ) && (
-                        <div className="flex flex-col items-start justify-start w-full p-4 m-2 bg-indigo-100 shadow md:mt-6 dark:bg-dark-bg ">
-                          <h3 className="mb-4 text-2xl font-bold">
-                            {t('Management')}
-                          </h3>
-                          {managementData.program && (
-                            <div className="flex justify-center pb-2">
-                              <h4 className="mr-2 text-base font-bold">
-                                {t('Program')}:
-                              </h4>
-                              {managementData.program}
-                            </div>
-                          )}
-                          {managementData.cohort && (
-                            <div className="flex pb-2 ">
-                              <h4 className="mr-2 text-base font-bold">
-                                {t('Cohort')}:
-                              </h4>
-                              {managementData.cohort}
-                            </div>
-                          )}
-                          {managementData.team && (
-                            <div className="flex pb-2 ">
-                              <h4 className="mr-2 text-base font-bold">
-                                {t('Team')}:
-                              </h4>
-                              {managementData.team}
-                            </div>
-                          )}
-                          {managementData.phase && (
-                            <div className="flex pb-2 ">
-                              <h4 className="mr-2 text-base font-bold">
-                                {t('Phase')}:
-                              </h4>
-                              {managementData.phase}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                  </div>
+                    ),
+                  )}
                 </div>
               </div>
-              {/* Change password start */}
-              <div
-                className={openTab === 'Account' ? 'block' : 'hidden'}
-                id="link2"
-              >
-                <EditPassword />
-              </div>
-              {/* Change password end */}
             </div>
           </div>
+          {/* About section end */}
+          <div
+            className={openTab === 'Organizations' ? 'block' : 'hidden'}
+            id="link3"
+          >
+            <div className="relative p-2 m-1 -ml-2 -mr-2 ">
+              <div className="flex items-start justify-start p-1 shadow-md bg-primary md:col-span-2 rounded-t-2xl">
+                <img
+                  className="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
+                  src={Logo}
+                  alt="logo"
+                />
+                <div className="flex flex-col items-start justify-start ml-36">
+                  <h2 className="text-lg font-bold text-center text-dark-text-fill md:text-xl">
+                    {profileData?.user?.organizations[0] || 'Unavailabe'}
+                  </h2>
+                  <h3 className="text-sm font-bold text-center text-dark-text-fill md:text-lg ">
+                    https://andela.pusle.com
+                  </h3>
+                </div>
+              </div>
+              <div className="flex flex-row">
+                <div className="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow-md dark:bg-dark-bg ">
+                  <h3 className="mb-4 text-2xl font-bold">
+                    {t('You in the organization')}
+                  </h3>
+                  <div className="flex pb-2">
+                    <h4 className="mr-4 text-base font-bold">{t('Role')}:</h4>
+                    {user?.role}
+                  </div>
+                </div>
+                {role &&
+                  ['manager', 'coordinator', 'trainee'].includes(
+                    role as never,
+                  ) && (
+                    <div className="flex flex-col items-start justify-start w-full p-4 m-2 bg-indigo-100 shadow-md md:mt-6 dark:bg-dark-bg ">
+                      <h3 className="mb-4 text-2xl font-bold">
+                        {t('Management')}
+                      </h3>
+                      {managementData.program && (
+                        <div className="flex justify-center pb-2">
+                          <h4 className="mr-2 text-base font-bold">
+                            {t('Program')}:
+                          </h4>
+                          {managementData.program}
+                        </div>
+                      )}
+                      {managementData.cohort && (
+                        <div className="flex pb-2 ">
+                          <h4 className="mr-2 text-base font-bold">
+                            {t('Cohort')}:
+                          </h4>
+                          {managementData.cohort}
+                        </div>
+                      )}
+                      {managementData.team && (
+                        <div className="flex pb-2 ">
+                          <h4 className="mr-2 text-base font-bold">
+                            {t('Team')}:
+                          </h4>
+                          {managementData.team}
+                        </div>
+                      )}
+                      {managementData.phase && (
+                        <div className="flex pb-2 ">
+                          <h4 className="mr-2 text-base font-bold">
+                            {t('Phase')}:
+                          </h4>
+                          {managementData.phase}
+                        </div>
+                      )}
+                    </div>
+                  )}
+              </div>
+            </div>
+          </div>
+          {/* Change password start */}
+          <div
+            className={openTab === 'Account' ? 'block' : 'hidden'}
+            id="link2"
+          >
+            <EditPassword />
+          </div>
+          {/* Change password end */}
         </div>
       </>{' '}
-      {/* =========================== Start:: RemoveTraineeModel =============================== */}
+      {/* =========================== Start:: EditOrganisationModal & AddNewRepositoryModel & RemoveRepositoryModel =============================== */}
       <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${removeRepoModel === true ? 'block' : 'hidden'
-          }`}
+        className={`fixed  h-screen w-screen z-20 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center top-0 left-0 ${
+          orgModel || repoModel || removeRepoModel ? 'block' : 'hidden'
+        }`}
       >
-        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
-          <div className="flex flex-wrap items-center justify-center w-full card-title ">
-            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-              {t('Remove Repo')}
+        <div className=" p-2 pb-3 md:p-4 md:pb-5 bg-white rounded-md dark:bg-dark-bg w-[90%] xmd:w-[70%] md:w-3/5 lg:w-2/5">
+          <div className="flex flex-wrap items-center justify-center w-full card-title mt-1 md:mt-0">
+            <h3 className="w-11/12 text-sm font-bold text-center bg- dark:text-white uppercase">
+              {(orgModel && 'Add Edit Organisation') ||
+                (repoModel && 'Add New Repository') ||
+                (removeRepoModel && t('Remove Repository'))}
             </h3>
             <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className="px-8 py-3 ">
-              <div className="flex flex-wrap items-center justify-center w-full card-title ">
-                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-                  Are you sure you want to delete this repository,
-                </h3>
-              </div>
+            <form className="flex flex-col gap-y-4 px-3 md:px-8 py-3 ">
+              <p className="text-sm dark:text-white ">
+                {(orgModel && 'Fill in the organisation name.') ||
+                  (repoModel && 'Fill in the repository name.') ||
+                  (removeRepoModel &&
+                    'Are you sure you want to delete this repository?')}
+              </p>
 
-              <div className="flex justify-between w-full">
-                <Button
-                  data-testid="removeModel2"
-                  variant="info"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => setRemoveRepoModel(false)}
-                >
-                  {t('Cancel')}
-                </Button>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  data-testid="removeMemberFromCohort"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => {
-                    setButtonLoading(true);
-                    removeActiveRepostoOrganization();
-                  }}
-                  loading={buttonLoading}
-                >
-                  {t('Proceed')}
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {/* =========================== End:: RemoveTraineeModel =============================== */}
-      {/* =========================== Start:: InviteTraineeModel =============================== */}
-      <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${repoModel === true ? 'block' : 'hidden'
-          }`}
-      >
-        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
-          <div className="flex flex-wrap items-center justify-center w-full card-title ">
-            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-              Add New Repository
-            </h3>
-            <hr className="w-full my-3 border-b bg-primary" />
-          </div>
-          <div className="card-body">
-            <form className="px-8 py-3 ">
-              <div className="flex flex-wrap items-center justify-center w-full card-title ">
-                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-                  Fill in the repository name
-                </h3>
-              </div>
-
-              <div className="my-3 text-white input h-9 ">
+              {!removeRepoModel && (
                 <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
-                    value={repo}
+                    value={orgModel ? org : repo}
                     onChange={(e) => {
-                      setRepo(e.target.value);
+                      if (orgModel) {
+                        setOrg(e.target.value);
+                      } else {
+                        setRepo(e.target.value);
+                      }
                     }}
                     type="email"
                     name="email"
-                    className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
-                    placeholder="enter repository name"
+                    className="w-full px-4 py-2 text-xs text-black dark:text-white border outline-none dark:bg-dark-tertiary border-primary"
+                    placeholder={
+                      orgModel
+                        ? 'Enter organisation name'
+                        : 'Enter repository name'
+                    }
                   />
                 </div>
-              </div>
+              )}
 
-              <div className="flex justify-between w-full">
+              <div className="flex gap-x-1 w-full">
                 <Button
                   data-testid="removeInviteModel"
                   variant="info"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => setRepoModel(false)}
+                  style="px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600"
+                  onClick={() => {
+                    setOrgModel(false);
+                    setRepoModel(false);
+                    setRemoveRepoModel(false);
+                  }}
                   children={t('Cancel')}
                 />
 
                 <Button
                   variant="primary"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  disabled={
+                    orgModel
+                      ? org === organisation.gitHubOrganisation || !org.length
+                      : !repo.length
+                  }
+                  style={`${
+                    (
+                      orgModel
+                        ? org === organisation.gitHubOrganisation || !org.length
+                        : !repo.length
+                    )
+                      ? 'cursor-not-allowed text-[.8rem] md:text-[.84rem] bg-neutral-500 hover:bg-neutral-500'
+                      : ''
+                  } m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px]`}
                   onClick={() => {
                     setButtonLoading(true);
-                    addActiveRepostoOrganization();
+                    if (orgModel) {
+                      updateGithubOrganisation({
+                        variables: {
+                          name: organisation.name,
+                          gitHubOrganisation: org,
+                        },
+                      });
+                    } else if (repoModel) {
+                      addActiveRepostoOrganization();
+                    } else {
+                      removeActiveRepostoOrganization();
+                    }
                   }}
                   loading={buttonLoading}
                 >
-                  {t('Add')}
+                  {t(orgModel ? 'Edit' : repoModel ? 'Add' : 'Delete')}
                 </Button>
               </div>
             </form>
           </div>
         </div>
       </div>
-      {/* =========================== End:: InviteTraineeModel =============================== */}
-      {/* =========================== Start:: InviteTraineeModel =============================== */}
-      <div
-        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 top-0 left-0 bottom-0 ${orgModel === true ? 'block' : 'hidden'
-          }`}
-      >
-        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
-          <div className="flex flex-wrap items-center justify-center w-full card-title ">
-            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-              Add Edit Organisation
-            </h3>
-            <hr className="w-full my-3 border-b bg-primary" />
-          </div>
-          <div className="card-body">
-            <form className="px-8 py-3 ">
-              <div className="flex flex-wrap items-center justify-center w-full card-title ">
-                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-                  Fill in the organisation name
-                </h3>
-              </div>
-
-              <div className="my-3 text-white input h-9 ">
-                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
-                  <input
-                    value={org}
-                    onChange={(e) => {
-                      setOrg(e.target.value);
-                    }}
-                    type="email"
-                    name="email"
-                    className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none dark:bg-dark-tertiary border-primary"
-                    placeholder="enter organisation name"
-                  />
-                </div>
-              </div>
-
-              <div className="flex justify-between w-full">
-                <Button
-                  data-testid="removeInviteModel"
-                  variant="info"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => setOrgModel(false)}
-                  children={t('Cancel')}
-                />
-
-                <Button
-                  variant="primary"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => {
-                    setButtonLoading(true);
-                    updateGithubOrganisation({
-                      variables: {
-                        name: orgName,
-                        gitHubOrganisation: org,
-                      },
-                    });
-                  }}
-                  loading={buttonLoading}
-                >
-                  {t('Edit')}
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {/* =========================== End:: InviteTraineeModel =============================== */}
+      {/* =========================== End:: EditOrganisationModal & AddNewRepositoryModel & RemoveRepositoryModel =============================== */}
     </div>
   );
 }

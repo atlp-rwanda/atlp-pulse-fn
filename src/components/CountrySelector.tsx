@@ -38,12 +38,12 @@ const CountrySelector = React.forwardRef<
   const { t } = useTranslation();
 
   return (
-    <div ref={ref} data-testid="countries">
+    <div ref={ref} data-testid="countries" className="w-full">
       <div className="relative font-serif">
         <button
           type="button"
           data-testid="country-selector-button"
-          className="bg-white  dark:bg-dark-bg relative w-full border border-gray-300  rounded-md shadow-sm pl-2 pr-1 py-2 text-left cursor-default focus:outline-none focus:ring-1  focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  darksm:text-sm"
+          className="bg-white  dark:bg-black/45 relative w-full border border-gray-300  rounded-[3px] shadow-sm pl-2 pr-1 py-[5px] text-left cursor-default focus:outline-none focus:ring-1  focus:ring-primary focus:border-primary focus:z-10 text-[.8rem] md:text-[.85]  dark:text-dark-text-fill dark:border-neutral-700  darksm:text-sm"
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="listbox-label"
@@ -57,7 +57,7 @@ const CountrySelector = React.forwardRef<
               alt={`${props.selectedValue?.value || ''}`}
               data-testid="country-selector-flag"
               src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${props.selectedValue?.value}.svg`}
-              className={'inline mr-2 h-4 rounded-sm'}
+              className={'inline mr-2 h-3 md:h-4 rounded-sm'}
             />
             {props.selectedValue?.title || 'Select a country'}
           </span>
@@ -85,20 +85,20 @@ const CountrySelector = React.forwardRef<
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1 }}
-              className="absolute z-10  w-full bg-white dark:bg-dark-bg shadow-lg max-h-80 rounded-md text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+              className="absolute z-10  w-full bg-white dark:bg-[#1A1A1A] shadow-lg max-h-80 rounded-md text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
               tabIndex={-1}
               role="listbox"
               aria-labelledby="listbox-label"
               aria-activedescendant="listbox-option-3"
             >
-              <div className="sticky top-0 z-10 bg-white dark:bg-dark-bg">
+              <div className="sticky top-0 z-10 bg-white dark:bg-[#1A1A1A]">
                 <li className=" text-gray-900 dark:text-dark-text-fill cursor-default select-none relative py-2 px-3">
                   <input
                     type="search"
                     name="search"
                     data-testid="countrySearch"
                     autoComplete={'off'}
-                    className="rounded-md appearance-none relative block w-full px-2 py-1 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-dark-bg dark:border-white"
+                    className="rounded-[3px] w-full px-2 py-1 border border-gray-300 placeholder-gray-700 dark:placeholder-gray-300 focus:outline-none  text-[.8rem] md:text-[.85rem] dark:text-white text-dark-bg dark:border-neutral-700 bg-transparent"
                     placeholder={t('Search a country')}
                     onChange={(e) => setQuery(e.target.value)}
                   />
@@ -108,7 +108,7 @@ const CountrySelector = React.forwardRef<
 
               <div
                 className={
-                  'max-h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded scrollbar-thin overflow-y-scroll'
+                  'h-44 md:h-64 scrollbar scrollbar-track-gray-100 scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-600 scrollbar-thumb-rounded scrollbar-thin overflow-y-scroll custom-scrollbar'
                 }
               >
                 {COUNTRIES.filter((country) =>
@@ -127,7 +127,7 @@ const CountrySelector = React.forwardRef<
                     return (
                       <li
                         key={`${props.id}-${index}`}
-                        className="text-gray-900 dark:text-dark-text-fill cursor-default select-none relative py-2 pl-3 pr-9 flex items-center hover:bg-gray-50 dark:hover:text-dark-bg transition"
+                        className="text-[.8rem] md:text-[.85rem] text-gray-900 dark:text-dark-text-fill cursor-default select-none relative py-[6px] md:py-2 pl-3 pr-9 flex items-center hover:bg-gray-200 dark:hover:text-dark-bg transition"
                         id="listbox-option-0"
                         role="option"
                         onClick={() => {
@@ -140,7 +140,7 @@ const CountrySelector = React.forwardRef<
                         <img
                           alt={`${value.value}`}
                           src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${value.value}.svg`}
-                          className={'inline mr-2 h-4 rounded-sm'}
+                          className={'inline mr-2 h-[10px] md:h-4 rounded-sm'}
                         />
 
                         <span className="font-normal truncate">

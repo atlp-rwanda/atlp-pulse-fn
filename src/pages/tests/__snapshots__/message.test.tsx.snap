@@ -2,7 +2,7 @@
 
 exports[`Page Not Found Renders the 404 Page 1`] = `
 <div
-  className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2 sm:flex sm:flex-row sm:items-center sm:justify-center"
+  className="md:flex md:flex-col md:items-center md:justify-center w-full  grow  text-center py-2 sm:flex sm:flex-row sm:items-center sm:justify-center font-serif"
 >
   <div
     className="mt-3  sm:mt-20 xs:mt-15 md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:rounded-none max-w-md"

@@ -43,8 +43,11 @@ function Input({
   /* Format error message end */
 
   return (
-    <div className="flex flex-col items-start justify-start font-serif">
-      <label htmlFor={labelFor} className="mb-2 font-semibold">
+    <div className="flex flex-col items-start justify-start font-serif w-full">
+      <label
+        htmlFor={labelFor}
+        className="mb-[2px] font-semibold text-[.84rem] md:text-[.87rem]"
+      >
         {t(labelText)}
       </label>
       <input
@@ -56,10 +59,10 @@ function Input({
         })}
         id={id}
         type={type}
-        className={`rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white  ${customClass}`}
+        className={`text-[.84rem] placeholder:text-[.85rem] rounded-[3px] appearance-none relative block w-full px-3 py-[5px] border border-gray-100 placeholder-gray-700 dark:placeholder-gray-300 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 dark:text-dark-text-fill dark:border-neutral-700  ${customClass}`}
         placeholder={placeholder}
       />
-      <div className="">
+      <div className="text-[.78rem] md:text-[.83rem]">
         <small className="text-red-600">
           {errors[name] && errors[name].message}
         </small>

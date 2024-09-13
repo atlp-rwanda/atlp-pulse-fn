@@ -2,11 +2,11 @@
 
 exports[`notification test should render notification 1`] = `
 <div
-  className="w-screen h-screen fixed top-0 left-0 z-50 px-4"
+  className="fixed top-0 left-0 z-50 w-screen h-screen px-0 md:px-4"
 >
   <div
     aria-label="background"
-    className="bg-dark-45 w-full h-full absolute top-0 left-0 z-1"
+    className="absolute top-0 left-0 w-full h-full bg-dark-45 z-1"
     data-testid="keyClick"
     onClick={[Function]}
     onKeyDown={[Function]}
@@ -14,13 +14,13 @@ exports[`notification test should render notification 1`] = `
     tabIndex={0}
   />
   <div
-    className="absolute top-[60px] right-0 left-0 mx-auto px-4 md:mx-0 md:left-auto md:right-[60px] z-2  w-full max-w-[34rem] h-[calc(100%-70px)]"
+    className="absolute top-[60px] right-0 left-0 mx-auto px-3 md:px-4 md:mx-0 md:left-auto md:right-[60px] z-2  w-full max-w-[34rem] h-[calc(100%-85px)]"
   >
     <div
       className="flex flex-col flex-nowrap w-full h-max max-h-full bg-[#FFF] dark:bg-dark-frame-bg rounded-md px-1"
     >
       <div
-        className="flex justify-between items-center w-full p-4 py-6"
+        className="flex items-center justify-between w-full px-1 py-4 md:px-4 md:py-6"
       >
         <p
           className="font-semibold dark:text-white"
@@ -29,7 +29,7 @@ exports[`notification test should render notification 1`] = `
         </p>
         <svg
           aria-hidden="true"
-          className="border-black dark:fill-white h-6 w-6 cursor-pointer"
+          className="w-6 h-6 border-black cursor-pointer dark:fill-white"
           data-testid="closeIcon"
           fill="currentColor"
           fontSize="70px"
@@ -45,20 +45,16 @@ exports[`notification test should render notification 1`] = `
         </svg>
       </div>
       <div
-        className="flex flex-col gap-3 w-[96.5%] overflow-auto pl-5 pr-[6px] mr-5 custom-scrollbar"
+        className="flex flex-col gap-3 w-[98%] md:w-[96.5%] overflow-auto pb-5 pl-2 md:pl-5 pr-[6px] mr-5 custom-scrollbar"
         data-testid="notificationsContainer"
-      />
-      <div
-        className="w-full p-3 flex flex-row align-center justify-between"
       >
-        <div
-          className="font-normal text-xs m-1 dark:text-white cursor-pointer ml-auto"
-          data-testid="markAllRead"
-          onClick={[Function]}
-        >
-          Mark all as read
-        </div>
+        <p>
+          There are no notifications for you!
+        </p>
       </div>
+      <div
+        className="flex flex-row justify-between w-full px-2 md:p-4 align-center"
+      />
     </div>
   </div>
 </div>

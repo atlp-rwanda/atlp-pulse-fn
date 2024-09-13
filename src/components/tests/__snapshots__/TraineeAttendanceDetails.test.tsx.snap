@@ -3,7 +3,7 @@
 exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee Attendance Page  1`] = `
 <div>
   <div
-    className="bg-neutral-100 dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center"
+    className="bg-neutral-100 dark:bg-dark-frame-bg md:flex sm:hidden flex-col justify-start items-center font-serif"
   >
     <table
       className="dark:bg-dark-bg shadow-lg py-8 rounded-md"
@@ -57,7 +57,7 @@ exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee A
             className="py-3 px-8"
           >
             <button
-              className="btn primary sm px-4 py-0 text-sm"
+              className="btn primary sm px-4 py-0 text-sm font-serif"
               disabled={false}
               type="button"
             >
@@ -87,7 +87,7 @@ exports[`Trainee Viewing Detailed Attendance Rating Renders a Detailed Trainee A
             className="py-3 "
           >
             <button
-              className="btn primary sm px-4 py-0 text-sm"
+              className="btn primary sm px-4 py-0 text-sm font-serif"
               disabled={false}
               type="button"
             >

@@ -57,7 +57,7 @@ function SupAdDashboard() {
       {/* =========================== Start::  InviteTraineeModel =============================== */}
 
       <div
-        className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
+        className={`font-serif overflow-hidden h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
           }`}
       >
         <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">

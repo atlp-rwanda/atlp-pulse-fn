@@ -2,7 +2,7 @@
 
 exports[`Pricing Page Renders the page 1`] = `
 <div
-  className="flex items-center justify-center h-screen bg-light-bg dark:bg-dark-frame-bg md:-mt-16 md:-mb-44"
+  className="flex items-center justify-center h-screen bg-light-bg dark:bg-dark-frame-bg md:-mt-16 md:-mb-44 font-serif"
 >
   <div
     className="dark:bg-dark-bg bg-indigo-100 rounded-lg shadow-lg p-5 md:p-20 mx-2"

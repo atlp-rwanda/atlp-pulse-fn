@@ -2,7 +2,7 @@
 
 exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
 <div
-  className="md:flex md:flex-col md:items-center md:justify-center w-full grow text-center py-2 dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center"
+  className="md:flex md:flex-col md:items-center md:justify-center w-full grow text-center py-2 dark:bg-dark-bg bg-gray-100  sm:flex sm:flex-row sm:items-center sm:justify-center font-serif"
 >
   <div
     className="w-full md:w-3/5 md:p-5 sm:w-full sm:p-2 dark:bg-dark-bg dark:rounded-none "
@@ -72,7 +72,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                 className="text-gray-400 border border-primary py-2 dark:bg-dark-bg rounded outline-none px-5 font-sans text-xs w-full h-[38px] "
                 data-placeholder="Date of birth"
                 id="date-placeholder"
-                max="2024-09-03"
+                max="2024-09-13"
                 name="dateOfBirth"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -81,7 +81,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
               />
             </div>
             <div
-              className="my-react-select-container css-b62m3t-container"
+              className="my-react-select-container font-serif css-b62m3t-container"
               onKeyDown={[Function]}
             >
               <span
@@ -301,7 +301,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
             className="w-full justify-center"
           >
             <button
-              className="btn transparentbtn md border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white"
+              className="btn transparentbtn md border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white font-serif"
               disabled={false}
               type="submit"
             >

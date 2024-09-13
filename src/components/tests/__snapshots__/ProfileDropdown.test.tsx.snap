@@ -2,7 +2,7 @@
 
 exports[`<ProfileDropdown/> Renders the Dropdown 1`] = `
 <div
-  className="w-screen h-screen fixed top-0 left-0 z-50 px-4"
+  className="font-serif w-screen h-screen fixed top-0 left-0 z-50 px-4"
 >
   <div
     aria-label="background"

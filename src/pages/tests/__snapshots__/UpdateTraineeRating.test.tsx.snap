@@ -3,17 +3,17 @@
 exports[`<UpdatedRatingDashboard /> Renders updatedRating 1`] = `
 Array [
   <div
-    className="min-h-full w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-30 bg-black bg-opacity-30 backdrop-blur-sm hidden"
+    className="font-serif min-h-full w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-30 bg-black bg-opacity-30 backdrop-blur-sm hidden"
     onClick={[Function]}
   >
     <div
-      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8 grid place-items-center"
+      className="font-serif bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8 grid place-items-center"
     >
       No Updated Feedback
     </div>
   </div>,
   <div
-    className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 hidden"
+    className="font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 hidden"
   >
     <div
       className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
@@ -34,7 +34,7 @@ Array [
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className=" py-3 px-8 font-serif"
         >
           <div>
             <h2
@@ -49,7 +49,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
               data-testid="removeApproveModel"
               disabled={false}
               onClick={[Function]}
@@ -60,7 +60,7 @@ Array [
                
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -73,7 +73,7 @@ Array [
     </div>
   </div>,
   <div
-    className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+    className=" font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
   >
     <div
       className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
@@ -94,7 +94,7 @@ Array [
         className="card-body"
       >
         <form
-          className=" py-3 px-8"
+          className=" py-3 px-8 font-serif"
         >
           <div>
             <h2
@@ -108,7 +108,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-serif font-serif"
               data-testid="removeRejectModel"
               disabled={false}
               onClick={[Function]}
@@ -117,7 +117,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans"
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-serif font-serif"
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -130,7 +130,7 @@ Array [
     </div>
   </div>,
   <div
-    className="flex flex-col bg-light-bg"
+    className="flex flex-col bg-light-bg font-serif"
   >
     <div
       className="flex flex-row"
