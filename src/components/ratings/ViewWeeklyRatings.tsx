@@ -142,7 +142,8 @@ function ViewSprintRatings({
     setEditRatingFormVisible(false);
     setUpdateMessage('Waiting for the Admin to Approve');
     setopen(true);
-  };
+  }; // Ensure it's a valid number
+
   return (
     <div className="flex flex-col border-black w-full bg-[#E0E7FF] dark:bg-[#4B4B4B] px-8 font-serif">
       <div className=" relative py-8 ">
@@ -308,57 +309,53 @@ function ViewSprintRatings({
         </div>
       )}
 
-      {traineeStatus.status === 'active' ? (
-        <div>
-          <div
-            className={` ${
-              updateMessage || successMessage
-                ? 'flex justify-between'
-                : 'flex justify-end'
-            } py-4`}
-          >
-            {updateMessage || successMessage ? (
-              <p className="text-green-500 text-[20px]">
-                {updateMessage || successMessage}
-              </p>
-            ) : (
-              ''
-            )}
-          </div>
-          <div>
-            {!viewAddNewRating &&
-              !editRatingFormVisible &&
-              loggedUserRole === 'coordinator' && (
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="sm"
-                  style="inline-flex justify-center float-left rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                  onClick={openEditRatingForm}
-                >
-                  {t('Edit Rating')}
-                </Button>
-              )}
-          </div>
-          <div>
-            {!viewAddNewRating &&
-              !editRatingFormVisible &&
-              loggedUserRole === 'coordinator' && (
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="sm"
-                  style="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                  onClick={() => setViewAddNewRating(true)}
-                >
-                  {t('Add Rating')}
-                </Button>
-              )}
-          </div>
+      <div>
+        <div
+          className={` ${
+            updateMessage || successMessage
+              ? 'flex justify-between'
+              : 'flex justify-end'
+          } py-4`}
+        >
+          {updateMessage || successMessage ? (
+            <p className="text-green-500 text-[20px]">
+              {updateMessage || successMessage}
+            </p>
+          ) : (
+            ''
+          )}
         </div>
-      ) : (
-        <Dropout traineeStatus={traineeStatus} />
-      )}
+        <div>
+          {!viewAddNewRating &&
+            !editRatingFormVisible &&
+            loggedUserRole === 'ttl' && (
+              <Button
+                type="submit"
+                variant="primary"
+                size="sm"
+                style="inline-flex justify-center float-left rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                onClick={openEditRatingForm}
+              >
+                {t('Edit Rating')}
+              </Button>
+            )}
+        </div>
+        <div>
+          {!viewAddNewRating &&
+            !editRatingFormVisible &&
+            loggedUserRole === 'ttl' && (
+              <Button
+                type="submit"
+                variant="primary"
+                size="sm"
+                style="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                onClick={() => setViewAddNewRating(true)}
+              >
+                {t('Add Rating')}
+              </Button>
+            )}
+        </div>
+      </div>
 
       {editRatingFormVisible && maxSprint !== 0 && (
         <form onSubmit={handleUpdate}>
@@ -445,12 +442,13 @@ function ViewSprintRatings({
             <textarea
               name="Feedback"
               value={rows.feedbacks}
-              onChange={(e) =>
+              onChange={(e) => {
+                // Check if input value is correct
                 setRows({
                   ...rows,
                   feedbacks: e.target.value,
-                })
-              }
+                });
+              }}
               className="h-32 w-full dark:bg-[#6F6F6F] rounded-xl px-3 py-2"
             />
 

@@ -19,6 +19,9 @@ import Button from '../components/Buttons';
 import Avatar from '../assets/avatar.png';
 import Spinner from '../components/Spinner';
 import GitHubActivityChart from '../components/chartGitHub';
+import ViewSprintRatings from '../components/ratings/ViewWeeklyRatings';
+import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
+import { useTraineesContext } from '../hook/useTraineesData';
 const organizationToken = localStorage.getItem('orgToken');
 ``;
 /* istanbul ignore next */
@@ -36,17 +39,28 @@ const TtlTraineeDashboard = () => {
       </Draggable>
     );
   }
+  // const { traineeData, setTraineeData } = useTraineesContext();
+
   const [traineeData, setTraineeData] = useState<any[]>([]);
   const [traineeLoading, setTraineeLoading] = useState<boolean>(true);
   const [nav, setNav] = useState(false);
   const [fetchError, setFetchError] = useState(false); // New state variable to track the fetch error
-
+  const [SprintRating, setSprintRating] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [traineeDetails, setTraineeDetails] = useState<any>({});
   const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
   const [hasData, setHasData] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
+  const handleClickOpen2 = async () => {
+    setIsLoaded(true);
+
+    setOpen2(true);
+  };
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
   const handleClick = () => setNav(!nav);
 
   const [getGitHubStatistics] = useLazyQuery(GET_GITHUB_STATISTICS, {
@@ -58,9 +72,22 @@ const TtlTraineeDashboard = () => {
       setIsLoaded(false);
     },
   });
+  const handleSprintRating = async (rowData: any) => {
+    const filteredUser = traineeData.filter(
+      (item: { email: any }) => item.email == rowData,
+    );
+    setTraineeDetails(filteredUser[0]);
+    setSprintRating(true);
+  };
+
+  const handleCloseSprintRating = () => {
+    setSprintRating(false); // Close the modal
+  };
   const handleClickOpen = async (rowData: any) => {
     setIsLoaded(true);
-    const filteredUser = traineeData.filter((item) => item.email == rowData);
+    const filteredUser = traineeData.filter(
+      (item: { email: any }) => item.email == rowData,
+    );
     setTraineeDetails(filteredUser[0]);
     setOpen(true);
     getGitHubStatistics({
@@ -76,6 +103,36 @@ const TtlTraineeDashboard = () => {
     { Header: t('email'), accessor: 'email' },
 
     { Header: t('Team'), accessor: 'team' },
+    {
+      Header: t('Status'),
+      accessor: 'status',
+
+      Cell: ({ row }: any) => {
+        return (
+          <div
+            className={
+              'font-serif items-center' +
+              (traineeData?.length > 0 ? ' flex' : ' hidden')
+            }
+          >
+            <button
+              // className="bg-black text-white rounded-xl px-3 "
+              className={`${
+                row.original?.Status?.status === 'drop'
+                  ? ' bg-gray-500'
+                  : 'bg-black'
+              } text-white rounded-xl px-3`}
+              onClick={() => {
+                handleClickOpen2();
+              }}
+            >
+              {row.original?.Status?.status === 'drop' ? 'Dropped' : 'view'}
+            </button>
+          </div>
+        );
+      },
+    },
+
     {
       Header: t('action'),
       accessor: '',
@@ -136,10 +193,29 @@ const TtlTraineeDashboard = () => {
       },
     });
   }, []);
+
   return (
     <>
       {/* Get Trainee user details */}
       <div className="rounded-lg dark:bg-dark-bg font-serif">
+        <Dialog
+          open={open2}
+          onClick={handleClose2}
+          PaperComponent={PaperComponent}
+          aria-labelledby="draggable-dialog-title"
+          className="rounded-lg"
+          fullWidth
+        >
+          <ViewWeeklyRatings
+            traineeName={traineeData[0]?.profile?.name || 'Unknown Name'}
+            traineeEmail={traineeData[0]?.email || 'Unknown Email'}
+            traineeId={traineeData[0]?.profile?.user?.id || 'Unknown ID'}
+            traineeCohort={traineeData[0]?.team?.cohort?.id || 'Unknown Cohort'}
+            traineeStatus={
+              traineeData[0]?.profile?.user?.status || 'Status Unavailable'
+            }
+          />
+        </Dialog>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -163,8 +239,8 @@ const TtlTraineeDashboard = () => {
                     }}
                     src={
                       traineeData &&
-                        traineeDetails.profile &&
-                        traineeDetails.profile.avatar
+                      traineeDetails.profile &&
+                      traineeDetails.profile.avatar
                         ? traineeDetails.profile.avatar
                         : Avatar
                     }
@@ -277,7 +353,7 @@ const TtlTraineeDashboard = () => {
                     <div
                       className={
                         traineeDetails?.profile &&
-                          traineeDetails?.profile?.githubUsername
+                        traineeDetails?.profile?.githubUsername
                           ? 'flex'
                           : 'hidden '
                       }
@@ -290,7 +366,7 @@ const TtlTraineeDashboard = () => {
                       <div className="flex flex-col">
                         <div>
                           {traineeDetails?.profile &&
-                            traineeDetails?.profile?.githubUsername ? (
+                          traineeDetails?.profile?.githubUsername ? (
                             <GitHubActivityChart data={gitHubStatistics} />
                           ) : (
                             <></>
