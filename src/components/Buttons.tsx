@@ -24,7 +24,11 @@ const Button: React.FC<Props> = ({
 }) => (
   <button
     type={type}
-    className={`btn ${variant} ${size} ${style} font-serif`}
+    className={`btn ${variant} ${size} ${style} font-serif ${
+      disabled
+        ? 'bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-300 hover:text-gray-500'
+        : ''
+    }`}
     onClick={onClick}
     disabled={disabled ? disabled : loading}
     {...rest}

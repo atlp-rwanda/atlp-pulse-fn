@@ -2,10 +2,10 @@
 
 exports[`<Resume /> Renders Resume 1`] = `
 <div
-  className="w-full h-96"
+  className="w-full h-96 p-5 flex flex-col gap-4"
 >
   <div
-    className="pt-5 pb-5 flex gap-2 downbuttons"
+    className="pb-5 flex gap-2 downbuttons"
   >
     <button
       className="btn primary lg m-0 font-serif"
