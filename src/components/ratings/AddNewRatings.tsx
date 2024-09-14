@@ -3,6 +3,34 @@
 import React from 'react';
 import Button from '../Buttons';
 import useAddRating from './hooks/useAddNewRating';
+import { z } from 'zod';
+
+// Define the Zod schema
+const ratingSchema = z.object({
+  quality: z.string().nonempty('Quality is required'),
+  quantity: z.string().nonempty('Quantity is required'),
+  professional: z.string().nonempty('Professionalism is required'),
+  feedback: z.string().nonempty('leave a feedback'),
+});
+
+interface RatingErrors {
+  quality: string;
+  quantity: string;
+  professional: string;
+  feedback:string;
+}
+
+interface AddNewRatingsProps {
+  viewAddNewRating: boolean;
+  t: (key: string) => string;
+  setViewAddNewRating: (value: boolean) => void;
+  traineeCohort: string;
+  traineeId: string;
+  maxSprint: number;
+  organizationToken: string | null;
+  refetchQuery: () => void;
+  setSuccessMessage: (message: string) => void;
+}
 
 function AddNewRatings({
   viewAddNewRating,
@@ -14,7 +42,7 @@ function AddNewRatings({
   organizationToken,
   refetchQuery,
   setSuccessMessage,
-}: any) {
+}: AddNewRatingsProps) {
   const {
     feedbackError,
     ratingErrors,
@@ -37,6 +65,32 @@ function AddNewRatings({
     refetchQuery,
     setSuccessMessage,
   });
+
+  const handleSubmit = async () => {
+    try {
+      // Validate the ratingData against the schema
+      ratingSchema.parse(ratingData);
+
+      // If validation passes, call the API functions
+      await createRatings();
+      await createFeedback();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        // Handle validation errors
+        const errors: Partial<RatingErrors> = error.errors.reduce((acc, err) => {
+          acc[err.path[0] as keyof RatingErrors] = err.message;
+          return acc;
+        }, {} as Partial<RatingErrors>);
+
+        setRatingErrors({
+          quality: errors.quality || '',
+          quantity: errors.quantity || '',
+          professional: errors.professional || '',
+        });
+        setFeedbackError(errors.feedback || '');
+      }
+    }
+  };
 
   return (
     <div className={`${viewAddNewRating ? '' : 'hidden'} pb-6 font-serif`}>
@@ -194,10 +248,7 @@ function AddNewRatings({
           variant="primary"
           size="sm"
           style="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          onClick={async () => {
-            await createRatings();
-            await createFeedback();
-          }}
+          onClick={handleSubmit}
           loading={loading || feedbackLoading}
         >
           {t('Add')}

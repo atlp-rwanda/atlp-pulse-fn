@@ -107,7 +107,8 @@
     "sinon": "^14.0.2",
     "subscriptions-transport-ws": "^0.11.0",
     "tailwindcss": "^3.3.3",
-    "url-polyfill": "^1.1.12"
+    "url-polyfill": "^1.1.12",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@apollo/client": "^3.8.7",
