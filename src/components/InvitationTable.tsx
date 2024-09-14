@@ -62,9 +62,7 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
   };
 
   return (
-    <div
-      className=""
-    >
+    <div className="">
       <div className="flex items-center justify-between pb-6 " />
       <div style={{ overflowX: 'auto' }}>
         <table className="min-w-full leading-normal" {...getTableProps()}>
@@ -176,6 +174,5 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
     </div>
   );
 }
-
 
 export default DataTableStats;

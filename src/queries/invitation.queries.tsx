@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 
 export const GET_ALL_INVITATIONS = gql`
-  query AllInvitations($limit: Int, $offset: Int) {
-    getAllInvitations(limit: $limit, offset: $offset) {
+  query AllInvitations($limit: Int, $offset: Int,$orgToken: String!) {
+    getAllInvitations(limit: $limit, offset: $offset,orgToken: $orgToken) {
       invitations {
         invitees {
           email
@@ -18,8 +18,8 @@ export const GET_ALL_INVITATIONS = gql`
 `;
 
 export const GET_INVITATIONS = gql`
-  query GetInvitations($query: String!, $limit: Int, $offset: Int) {
-    getInvitations(query: $query, limit: $limit, offset: $offset) {
+  query GetInvitations($query: String!, $limit: Int, $offset: Int,$orgToken: String!) {
+    getInvitations(query: $query, limit: $limit, offset: $offset,orgToken: $orgToken) {
       invitations {
         invitees {
           email

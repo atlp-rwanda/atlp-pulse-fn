@@ -1,13 +1,14 @@
 import { gql } from '@apollo/client';
 
 export const SEND_INVITATION = gql`
-  mutation SendInvitation($invitees: [InviteeInput!]!, $orgToken: String!) {
-    sendInvitation(invitees: $invitees, orgToken: $orgToken) {
+  mutation SendInvitation($invitees: [InviteeInput!]!,$orgName:String!,$orgToken: String!) {
+    sendInvitation(invitees: $invitees,orgName:$orgName, orgToken: $orgToken) {
       status
       invitees {
         email
         role
       }
+      orgName
       orgToken
       createdAt
     }
@@ -15,8 +16,8 @@ export const SEND_INVITATION = gql`
 `;
 
 export const UPLOAD_INVITATION_FILE = gql`
-  mutation uploadInvitationFile($file: Upload!, $orgToken: String!) {
-    uploadInvitationFile(file: $file, orgToken: $orgToken) {
+  mutation uploadInvitationFile($file: Upload!,$orgName:String!, $orgToken: String!) {
+    uploadInvitationFile(file: $file,orgName:$orgName,orgToken: $orgToken) {
       filename
       data {
         email
@@ -33,6 +34,38 @@ export const DELETE_INVITATION = gql`
   mutation DeleteInvitation($invitationId: ID!) {
     deleteInvitation(invitationId: $invitationId) {
       message
+    }
+  }
+`;
+
+export const UPDATE_INVITATION = gql`
+  mutation UpdateInvitation(
+    $invitationId: ID!
+    $orgToken: String!
+    $newEmail: String
+    $newRole: String
+  ) {
+    updateInvitation(
+      invitationId: $invitationId
+      orgToken: $orgToken
+      newEmail: $newEmail
+      newRole: $newRole
+    ) {
+      id
+      invitees {
+        email
+        role
+      }
+      inviterId
+      orgToken
+    }
+  }
+`;
+export const CANCEL_INVITATION = gql`
+  mutation CancelInvitation($id: ID!, $orgToken: String!) {
+    cancelInvitation(id: $id, orgToken: $orgToken) {
+      status
+      createdAt
     }
   }
 `;
