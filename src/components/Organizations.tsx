@@ -303,7 +303,7 @@ const Organizations = () => {
   );
 
   return (
-    <div className='font-serif'>
+    <div className="font-serif">
       {/* =========================== Start:: CreateOrganizationModel =============================== */}
       <CreateOrganizationModal
         createOrganizationModel={createOrganizationModel}
@@ -314,8 +314,9 @@ const Organizations = () => {
 
       {/* =========================== Start::  delete Session Model =============================== */}
       <div
-        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${deleteOrganizationModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
+          deleteOrganizationModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -370,8 +371,9 @@ const Organizations = () => {
       {/* =========================== Start::  SendInviteModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${sendInviteModel === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
+          sendInviteModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -429,8 +431,9 @@ const Organizations = () => {
       {/* =========================== Start::  ApproveMode =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${approveOpen === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
+          approveOpen === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -488,8 +491,9 @@ const Organizations = () => {
       {/* =========================== Start::  RejectModal =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${rejectOpen === true ? 'block' : 'hidden'
-          }`}
+        className={`h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 ${
+          rejectOpen === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">

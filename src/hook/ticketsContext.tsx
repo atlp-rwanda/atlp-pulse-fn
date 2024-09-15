@@ -15,17 +15,17 @@ export function TicketsProvider({ children }: Props) {
   const [tickets, setTickets] = useState<any>(initialState);
   /* istanbul ignore next */
   const setAllTickets = (tickets: Array<any>) => {
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     setTickets(tickets);
   };
   /* istanbul ignore next */
- /* istanbul ignore next */
+  /* istanbul ignore next */
   const updateTicketStatus = (ticketId: string, status: string) => {
     const newTickets = tickets.map((ticket: any) => {
       if (ticket.id === ticketId) return { ...ticket, status: status };
       return ticket;
     });
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     setTickets(newTickets);
   };
   /* istanbul ignore next */
@@ -40,7 +40,7 @@ export function TicketsProvider({ children }: Props) {
   };
   /* istanbul ignore next */
   const addTicket = (ticket: any) => {
-     /* istanbul ignore next */
+    /* istanbul ignore next */
     setTickets((tickets: Array<any>) => [ticket, ...tickets]);
   };
 

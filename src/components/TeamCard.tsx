@@ -40,7 +40,6 @@ function Card({
   active: number;
   drop: number;
   arrowColor: string;
-
 }) {
   const { t } = useTranslation();
   return (

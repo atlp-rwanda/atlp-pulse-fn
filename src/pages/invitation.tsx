@@ -334,12 +334,12 @@ function Invitation() {
               onClick={() => toggleOptions(row.id)}
             />
             {selectedRow === row.id && (
-              <div className="dropdown absolute right-4 mt-2 w-64 bg-light-bg max-h-30 dark:bg-dark-bg border border-gray-300 shadow-md z-50 p-4 rounded-lg overflow-hidden">
+              <div className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
                 <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
                     <div
-                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
                         updateInviteeMod();
                         setSelectedInvitationId(row.original.id);
@@ -366,7 +366,7 @@ function Invitation() {
                   {row.original.Status === 'Pending' && (
                     <div className="mb-4">
                       <div
-                        className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                        className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                         onClick={() => {
                           cancelInviteeMod();
                           setCancelInvitation(row.original.id);
@@ -390,7 +390,7 @@ function Invitation() {
 
                   <div className="mb-4">
                     <div
-                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
                         removeInviteeMod();
                         setDeleteInvitation(row.original.id);
@@ -414,7 +414,7 @@ function Invitation() {
 
                   {row.original.Status === 'Pending' && (
                     <div className="mb-4">
-                      <div className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer">
+                      <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
                         <Icon
                           icon="mdi:arrow-up-circle"
                           width="40"
@@ -559,12 +559,12 @@ function Invitation() {
   return (
     <div className="w-full">
       {/* Header and Invite Button */}
-      <div className="flex flex-row sm:flex-rowmd:flex-row md:justify-between items-center md:gap-4 mb-8 ">
-        <div className="flex w-full items-center justify-between">
-          <h1 className="font-bold lg:text-xl sm:text-lg xm:text-lg w-full">
+      <div className="flex flex-row items-center mb-8 sm:flex-rowmd:flex-row md:justify-between md:gap-4 ">
+        <div className="flex items-center justify-between w-full">
+          <h1 className="w-full font-bold lg:text-xl sm:text-lg xm:text-lg">
             Invitation Stats
           </h1>
-          <div className="flex flex-col  w-full p-3 items-start">
+          <div className="flex flex-col items-start w-full p-3">
             <div className="flex w-full items-center rounded-md shadow-sm bg-white dark:bg-[#020917] border-2 border-black dark:border-white h-8  md:hidden ">
               <FaFilter className="text-[#9e85f5] ml-1" />
               {/* Select Dropdown for Small Screens */}
@@ -581,14 +581,14 @@ function Invitation() {
               </select>
             </div>
             {filterRange === 'Custom range' && (
-              <div className="flex  flex-col items-start gap-1 mt-2 md:hidden">
+              <div className="flex flex-col items-start gap-1 mt-2 md:hidden">
                 {/* <label htmlFor="from">From:</label> */}
                 <input
                   type="date"
                   name="startDate"
                   value={customRange.startDate}
                   onChange={handleCustomRangeChange}
-                  className="border border-gray-300 rounded-md px-3 py-1 h-10 dark:bg-dark-bg dark:text:text-white"
+                  className="h-10 px-3 py-1 border border-gray-300 rounded-md dark:bg-dark-bg dark:text:text-white"
                 />
                 {/* <label htmlFor="to">To:</label> */}
                 <input
@@ -596,7 +596,7 @@ function Invitation() {
                   name="endDate"
                   value={customRange.endDate}
                   onChange={handleCustomRangeChange}
-                  className="border border-gray-300 rounded-md px-3 py-1 h-10 dark:bg-dark-bg dark:text:text-white"
+                  className="h-10 px-3 py-1 border border-gray-300 rounded-md dark:bg-dark-bg dark:text:text-white"
                 />
               </div>
             )}
@@ -613,10 +613,10 @@ function Invitation() {
       </div>
       <InvitationModal isOpen={isModalOpen} onClose={handleCloseModal} />
       {/* Container for Select and Cards */}
-      <div className="flex flex-col border-blue-500 md:flex-row gap-4 md:gap-5 mb-10">
+      <div className="flex flex-col gap-4 mb-10 border-blue-500 md:flex-row md:gap-5">
         {/* Invitation Cards */}
 
-        <div className="grid grid-row-2 gap-4 sm:gap-4 mb-4 w-full lg:flex sm:grid grid-cols-2">
+        <div className="grid w-full grid-cols-2 gap-4 mb-4 grid-row-2 sm:gap-4 lg:flex sm:grid">
           {filterLoading ? (
             <>
               <InvitationCardSkeleton />
@@ -677,7 +677,7 @@ function Invitation() {
           )}
         </div>
 
-        <div className="flex flex-col  w-fit p-3 items-start">
+        <div className="flex flex-col items-start p-3 w-fit">
           {/* Select Dropdown for Desktop */}
           <div className=".flex  items-center rounded-md shadow-sm px-3 py-2 bg-white dark:bg-[#020917] border-2 border-black dark:border-white space-x-2 h-8 hidden md:flex ">
             <FaFilter className="text-[#9e85f5]" />
@@ -694,14 +694,14 @@ function Invitation() {
             </select>
           </div>
           {filterRange === 'Custom range' && (
-            <div className="md:flex  flex-col items-start gap-1 hidden ">
+            <div className="flex-col items-start hidden gap-1 md:flex ">
               <label htmlFor="from">From:</label>
               <input
                 type="date"
                 name="startDate"
                 value={customRange.startDate}
                 onChange={handleCustomRangeChange}
-                className="border border-gray-300 rounded-md px-3 py-2 h-10 dark:bg-dark-bg dark:text:text-white"
+                className="h-10 px-3 py-2 border border-gray-300 rounded-md dark:bg-dark-bg dark:text:text-white"
               />
               <label htmlFor="to">To:</label>
               <input
@@ -709,7 +709,7 @@ function Invitation() {
                 name="endDate"
                 value={customRange.endDate}
                 onChange={handleCustomRangeChange}
-                className="border border-gray-300 rounded-md px-3 py-2 h-10 dark:bg-dark-bg dark:text:text-white"
+                className="h-10 px-3 py-2 border border-gray-300 rounded-md dark:bg-dark-bg dark:text:text-white"
               />
             </div>
           )}
@@ -717,7 +717,7 @@ function Invitation() {
       </div>
       {/* Search Section */}
       <div>
-        <h1 className="font-bold text-xl md:text-2xl mb-4">
+        <h1 className="mb-4 text-xl font-bold md:text-2xl">
           Search for Invitation Status
         </h1>
         <p className="mb-6 text-sm md:text-base">
@@ -740,7 +740,7 @@ function Invitation() {
               className="border border-gray-300 rounded-md pl-10 pr-4 py-2 w-full dark:text:text-black hover:border-[#7258ce] h-10  "
             />
             <IoIosSearch
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+              className="absolute text-gray-500 transform -translate-y-1/2 left-3 top-1/2"
               size={20}
             />
           </div>
@@ -764,7 +764,7 @@ function Invitation() {
           </p>
           <span className="w-full md:w-auto">
             <select
-              className="w-full max-w-xs md:w-auto dark:text-white dark:text:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
+              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white"
               value={selectedRole}
               onChange={(e) => setSelectedRole(e.target.value)}
             >
@@ -782,7 +782,7 @@ function Invitation() {
           </span>
           <span className="w-full md:w-auto">
             <select
-              className="w-full max-w-xs md:w-auto dark:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
+              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white"
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
             >
@@ -929,7 +929,7 @@ function Invitation() {
               {/* Email Input Field */}
               <div className="mb-4">
                 <label
-                  className="block text-sm font-bold dark:text-white mb-2"
+                  className="block mb-2 text-sm font-bold dark:text-white"
                   htmlFor="email"
                 >
                   {t('Email')}
@@ -944,7 +944,7 @@ function Invitation() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 {!isValid && (
-                  <p className="text-red-500 text-xs mt-1">
+                  <p className="mt-1 text-xs text-red-500">
                     Please enter a valid email address.
                   </p>
                 )}
@@ -953,7 +953,7 @@ function Invitation() {
               {/* Role Input Field */}
               <div className="mb-4">
                 <label
-                  className="block text-sm font-bold dark:text-white mb-2"
+                  className="block mb-2 text-sm font-bold dark:text-white"
                   htmlFor="role"
                 >
                   {t('Role')}

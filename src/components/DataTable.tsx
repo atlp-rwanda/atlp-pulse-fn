@@ -17,7 +17,7 @@ interface TableData {
   className?: string;
 }
 
-function DataTable({ data, columns, title, loading }: TableData) {
+function DataTable({ data, columns, title, loading, className }: TableData) {
   const [filterInput, setFilterInput] = useState('');
   const { t } = useTranslation();
 
@@ -63,7 +63,7 @@ function DataTable({ data, columns, title, loading }: TableData) {
 
   return (
     <div
-      className={`font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] "lg:ml-60 mx-auto"} mb-10`}
+      className={`font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] "lg:ml-60 mx-auto"} mb-10`}
     >
       <div className="flex items-center justify-between pb-6 ">
         <div>
@@ -74,12 +74,12 @@ function DataTable({ data, columns, title, loading }: TableData) {
             value={filterInput}
             aria-label="Filter table data"
             placeholder="Filter"
-            className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+            className="px-5 py-2 mt-4 font-sans text-xs border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-52 md:w-96"
             onChange={handleFilterChange}
           />
         </div>
       </div>
-      <div style={{ overflowX: 'auto' }}>
+      <div className="overflow-visible ">
         <table className="min-w-full leading-normal" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -150,10 +150,10 @@ function DataTable({ data, columns, title, loading }: TableData) {
             {!loading && data.length === 0 && (
               <tr>
                 {' '}
-                <td colSpan={columns.length || 100} className="text-center p-4">
+                <td colSpan={columns.length || 100} className="p-4 text-center">
                   <div className="flex flex-col items-center justify-center space-y-4">
                     {' '}
-                    <p className="text-gray-600 dark:text-gray-400 text-lg font-medium">
+                    <p className="text-lg font-medium text-gray-600 dark:text-gray-400">
                       {' '}
                       No records available{' '}
                     </p>

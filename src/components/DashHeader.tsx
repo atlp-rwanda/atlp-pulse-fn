@@ -171,16 +171,17 @@ function DashHeader() {
             </div>
           </div>
           <div className="flex items-center h-full lg:w-full">
-            <Link to="/super-admin" className="flex flex-row lg:px-5 text-dark dark:text-dark-text-fill">
+            <Link
+              to="/super-admin"
+              className="flex flex-row lg:px-5 text-dark dark:text-dark-text-fill"
+            >
               <LogoIcon />
-              <h1 className="text-3xl font-bold font-lexend">
-                PULSE
-              </h1>
+              <h1 className="text-3xl font-bold font-lexend">PULSE</h1>
             </Link>
           </div>
 
           <div className="inline-flex relative items-center p-0 text-sm font-medium text-center text-black  ml-auto dark:bg-dark-bg rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300   dark:focus:ring-blue-800">
-            <ToggleThemeButton className='dark:text-dark-text-fill' />
+            <ToggleThemeButton className="dark:text-dark-text-fill" />
             <BellIcon
               className="w-6 cursor-pointer ml-auto  dark:text-dark-text-fill"
               onClick={handleShowNotification}
@@ -207,11 +208,11 @@ function DashHeader() {
                 // eslint-disable-next-line no-nested-ternary
                 user?.profileImage
                   ? // eslint-disable-next-line no-nested-ternary
-                  user?.profileImage
+                    user?.profileImage
                   : profileData?.getProfile?.avatar
-                    ? // eslint-disable-next-line no-nested-ternary
+                  ? // eslint-disable-next-line no-nested-ternary
                     profileData?.getProfile?.avatar
-                    : Avatar
+                  : Avatar
               }
               alt="avatar"
             />

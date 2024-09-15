@@ -26,7 +26,7 @@ describe('Navbar component test', () => {
     localStorage.setItem('orgToken', 'orgSampleToken@12345');
     render(
       <MemoryRouter>
-        <UserContext.Provider value={{ user:{auth: true} }}>
+        <UserContext.Provider value={{ user: { auth: true } }}>
           <Navbar />
         </UserContext.Provider>
       </MemoryRouter>,

@@ -29,16 +29,15 @@ function Footer({ styles }: any) {
     }
   }, []);
   return (
-    <div className={`w-full bg-indigo-100 dark:bg-dark-bg ${styles} page-footer font-serif`}>
+    <div
+      className={`w-full bg-indigo-100 dark:bg-dark-bg ${styles} page-footer font-serif`}
+    >
       <div className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full">
         <div className="flex flex-col lg:flex-row items-center py-5">
           <div className="flex flex-col mr-12 lg:mr-0">
             <div className="flex mb-2 ml-10 text-dark dark:text-dark-text-fill">
               <LogoIcon />
-              <h1
-                className="text-3xl font-bold"
-                data-testid="pulse"
-              >
+              <h1 className="text-3xl font-bold" data-testid="pulse">
                 PULSE
               </h1>
             </div>

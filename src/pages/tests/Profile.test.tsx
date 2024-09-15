@@ -6,7 +6,6 @@ import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import '@testing-library/jest-dom';
 
-
 import { ApolloProvider } from '@apollo/client';
 import ProfileTabs from '../../components/ProfileTabs';
 import Profile from '../Profile';
@@ -54,16 +53,17 @@ describe('Profile Page', () => {
       .create(
         <MemoryRouter>
           <MockedProvider mocks={[]}>
-            <ProfileTabs data={{
-              name: 'Fabrice',
-              user: {
-                role: "superAdmin",
-                organizations: ["Andela"]
-              }
-            }} />
+            <ProfileTabs
+              data={{
+                name: 'Fabrice',
+                user: {
+                  role: 'superAdmin',
+                  organizations: ['Andela'],
+                },
+              }}
+            />
           </MockedProvider>
-        </MemoryRouter>
-          
+        </MemoryRouter>,
       )
       .toJSON();
 

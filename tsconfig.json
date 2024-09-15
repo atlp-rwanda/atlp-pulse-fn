@@ -19,7 +19,9 @@
     "src/pages/tests/TraineeRatingDashboard.test.tsx",
     "src/pages/LandingPage.tsx",
     "src/pages/About.tsx",
-    "src/tests/About.test.tsx"
-, "src/components/TraineeDashboardChart.tsx", "src/pages/TraineeRatingDashboard.tsx"  ],
+    "src/tests/About.test.tsx",
+    "src/components/TraineeDashboardChart.tsx",
+    "src/pages/TraineeRatingDashboard.tsx"
+  ],
   "exclude": ["node_modules"]
 }

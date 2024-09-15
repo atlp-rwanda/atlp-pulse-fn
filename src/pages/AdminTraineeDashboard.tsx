@@ -247,7 +247,7 @@ function AdminTraineeDashboard() {
             }
           >
             <button
-              // className="bg-black text-white rounded-xl px-3 "
+              // className="px-3 text-white bg-black rounded-xl "
               className={`${
                 row.original?.Status?.status === 'drop'
                   ? ' bg-gray-500'
@@ -278,12 +278,12 @@ function AdminTraineeDashboard() {
               onClick={() => toggleOptions(row.original.email)}
             />
             {selectedRow === row.original.email && (
-              <div className="dropdown absolute right-4 mt-2 w-64 bg-light-bg max-h-30 dark:bg-dark-bg border border-gray-300 shadow-md z-50 p-4 rounded-lg overflow-hidden">
+              <div className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
                 <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
                     <div
-                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
                         setSelectedOptionUpdate({
                           value: row.original.cohort,
@@ -319,7 +319,7 @@ function AdminTraineeDashboard() {
                   </div>
                   <div className="mb-4">
                     <div
-                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
                         removeTraineeMod();
                         setDeleteEmail(row.original.email);
@@ -345,7 +345,7 @@ function AdminTraineeDashboard() {
                   </div>
                   <div className="mb-4">
                     <div
-                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
                         dropModel(row.original.email);
                         setdropTraineeID(row.original.userId);
@@ -371,7 +371,7 @@ function AdminTraineeDashboard() {
                   </div>
                   <div>
                     <div
-                      className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
                         handleClickOpen(row.original.email);
                         toggleOptions(row.original.email);
@@ -964,7 +964,7 @@ function AdminTraineeDashboard() {
                 )}
 
               <div
-                className="text-sm font-sans"
+                className="font-sans text-sm"
                 style={{
                   display: 'flex',
                   gap: '50px',
@@ -1275,7 +1275,7 @@ function AdminTraineeDashboard() {
                   name="reason"
                   value={reason}
                   onChange={handleReasonChange} // Capture reason input value
-                  className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+                  className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
                 />
               </div>
 
@@ -1293,7 +1293,7 @@ function AdminTraineeDashboard() {
                   name="date"
                   value={currentDate} // Set the value to the current date
                   readOnly // Make the input read-only
-                  className="mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
+                  className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-primary dark:bg-dark-bg dark:text-white"
                 />
               </div>
 

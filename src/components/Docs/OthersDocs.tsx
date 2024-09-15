@@ -37,14 +37,14 @@ function TraineeDocs() {
       setDocumentations(
         user.role === 'trainee'
           ? data.getDocumentations.filter(
-            (documentation: any) => documentation.for === user.role,
-          )
+              (documentation: any) => documentation.for === user.role,
+            )
           : data.getDocumentations.filter(
-            (documentation: any) => documentation.for !== 'trainee',
-          ),
+              (documentation: any) => documentation.for !== 'trainee',
+            ),
       );
     },
-    onError: (error) => { },
+    onError: (error) => {},
   });
 
   useEffect(() => {

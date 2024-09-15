@@ -37,7 +37,7 @@ const GitHubActivityChart: React.FC<Props> = ({ data }) => {
 
   // eslint-disable-next-line no-nested-ternary
   return (
-    <div className='font-serif'>
+    <div className="font-serif">
       <h2>GitHub Activity Chart</h2>
       <Doughnut data={chartData} options={options} width={300} height={300} />
     </div>

@@ -25,7 +25,7 @@ export function Dashboard() {
       </CheckRole>
       <CheckRole roles={['manager']}>
         <ManagerCard />
-      </CheckRole> 
+      </CheckRole>
     </>
   );
 }

@@ -70,16 +70,13 @@ const TraineeDocs = React.lazy(() => import('../components/Docs/TraineeDocs'));
 const OthersDocs = React.lazy(() => import('../components/Docs/OthersDocs'));
 const HelpPage = React.lazy(() => import('../pages/HelpPage'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
-const Ticket = React.lazy(() => import('../pages/Ticket'));
-const AllTickets = React.lazy(() => import('../pages/AllTickets'))
-const TeamDetails = React.lazy(() => import('../components/teamDetails'))
+const AllTickets = React.lazy(() => import('../pages/AllTickets'));
+const TeamDetails = React.lazy(() => import('../components/teamDetails'));
 const ManagersCards = React.lazy(() => import('../components/ManagerCard'));
 const CoordinatorCards = React.lazy(
   () => import('../components/CoordinatorCard'),
 );
 const AdminSission = React.lazy(() => import('./admin-dashBoard/Sessions'));
-
-
 
 function DashRoutes() {
   const { toggleNav } = useContext(MenuContext);
@@ -157,7 +154,6 @@ function DashRoutes() {
             <Route path="/support" element={<HelpPage />} />
             <Route path="/tickets" element={<Tickets />}>
               <Route index element={<AllTickets />} />
-              <Route path=":ticketId" element={<Ticket />} />
             </Route>
 
             <Route path="/loginActivities" element={<LoginActivitiesTable />} />
