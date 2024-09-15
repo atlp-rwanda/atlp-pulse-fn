@@ -26,13 +26,13 @@ export const GET_RATINGS_DATA = gql`
       professionalRemark
       bodyProfessional
       approved
-      coordinator
+      ttl
       cohort {
         name
         phase {
           name
         }
-        coordinator {
+        ttl {
           email
           profile {
             firstName
@@ -93,7 +93,7 @@ function TraineePerfomance() {
         Sprint: item.sprint,
         Cohort: item?.cohort?.name,
         Phase: item?.cohort?.phase?.name,
-        Coodinator: item?.cohort?.coordinator?.profile?.name,
+        Coodinator: item?.cohort?.ttl?.profile?.name,
       }));
       setUserdata(customHeadings);
     }
@@ -139,8 +139,8 @@ function TraineePerfomance() {
       qualityremark: rate?.qualityRemark,
       professionalRemark: rate?.professionalRemark,
       id: user?.userId,
-      username: rate?.cohort?.coordinator?.profile?.name,
-      user: rate?.cohort?.coordinator?.email,
+      username: rate?.cohort?.ttl?.profile?.name,
+      user: rate?.cohort?.ttl?.email,
       feedbacks: rate?.feedbacks,
     }));
   };

@@ -31,6 +31,15 @@ export const GET_PROFILE = gql`
             startDate
           }
         }
+        cohort {
+          name
+          program {
+            name
+          }
+          phase {
+            name
+          }
+        }
         program {
           name
         }
@@ -60,19 +69,50 @@ export const GET_TTL_TRAINEES = gql`
   query GetTTLTrainees($orgToken: String) {
     getTTLTrainees(orgToken: $orgToken) {
       profile {
-        githubUsername
-        address
-        name
+        firstName
+        lastName
+        city
+        country
+        phoneNumber
+        biography
         avatar
+        id
+        user {
+          id
+          status {
+            status
+            date
+            reason
+          }
+        }
+        name
+        githubUsername
         resume
       }
       email
       role
       team {
         name
-        cohort{
+        cohort {
+          id
+          startDate
+          program {
+            name
+            manager {
+              profile {
+                name
+              }
+              email
+            }
+          }
           name
+          phase {
+            name
+          }
         }
+      }
+      ratings {
+        average
       }
       cohort {
         name
