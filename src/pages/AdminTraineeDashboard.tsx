@@ -37,6 +37,7 @@ import Spinner from '../components/Spinner';
 import { useTraineesContext } from '../hook/useTraineesData';
 import Dropdown from 'react-dropdown-select';
 import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
+import { FaTimes } from 'react-icons/fa';
 const organizationToken = localStorage.getItem('orgToken');
 
 function AdminTraineeDashboard() {
@@ -661,6 +662,12 @@ function AdminTraineeDashboard() {
             traineeStatus={
               traineeData ? traineeData[0]?.profile?.user?.status : ''
             }
+          />
+          <FaTimes
+            size={24}
+            color="red"
+            className="absolute right-5 top-2 cursor-pointer"
+            onClick={() => handleClose2()}
           />
         </Dialog>
         <Dialog
@@ -1315,7 +1322,7 @@ function AdminTraineeDashboard() {
                       //  also pass the reason value to the dropMemberFromCohort function
                       dropMemberFromCohort();
                     } else {
-                      setButtonLoading(false)
+                      setButtonLoading(false);
                       toast.error(
                         'Please enter a reason for dropping the trainee',
                       );
@@ -1336,108 +1343,112 @@ function AdminTraineeDashboard() {
       {/* =========================== Start::  AddTraineeModel =============================== */}
 
       <div
-  className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center px-4 ${registerTraineeModel ? 'block' : 'hidden'}`}
->
-  <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
-    <div className="flex flex-wrap items-center justify-center w-full card-title">
-      <h3 className="w-11/12 text-sm font-bold text-center dark:text-white">
-        {t('Add Trainee')}
-      </h3>
-      <hr className="w-full my-3 border-b bg-primary" />
-    </div>
-    <div className="card-body">
-      <form className="px-8 py-3">
-        <div className="my-3 input h-9">
-          <div className="flex items-center w-full h-full rounded-md grouped-input">
-            <Select
-              placeholder={t('choose trainee')}
-              className="my-react-select-container"
-              classNamePrefix="my-react-select"
-              styles={customStyles}
-              value={email}
-              onChange={(e) => setEmail(e)}
-              options={traineeOptions}
-              isSearchable
-            />
+        className={`h-screen w-screen z-20 bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 flex items-center justify-center px-4 ${
+          registerTraineeModel ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white">
+              {t('Add Trainee')}
+            </h3>
+            <hr className="w-full my-3 border-b bg-primary" />
+          </div>
+          <div className="card-body">
+            <form className="px-8 py-3">
+              <div className="my-3 input h-9">
+                <div className="flex items-center w-full h-full rounded-md grouped-input">
+                  <Select
+                    placeholder={t('choose trainee')}
+                    className="my-react-select-container"
+                    classNamePrefix="my-react-select"
+                    styles={customStyles}
+                    value={email}
+                    onChange={(e) => setEmail(e)}
+                    options={traineeOptions}
+                    isSearchable
+                  />
+                </div>
+              </div>
+              <div className="my-3 text-white input h-9">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
+                  <ControlledSelect
+                    placeholder={t('Select cohort')}
+                    // @ts-ignore
+                    value={selectedOption}
+                    noRegister={{
+                      onChange: (e) => {
+                        setSelectedOption(e);
+                        setCohortName(e.value);
+                        getTeam();
+                      },
+                    }}
+                    options={options}
+                  />
+                </div>
+              </div>
+              <div className="my-3 text-white input h-9">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
+                  <ControlledSelect
+                    placeholder={t('Select Team')}
+                    // @ts-ignore
+                    value={selectedTeamOption}
+                    noRegister={{
+                      onChange: (e) => setSelectedTeamOption(e),
+                    }}
+                    options={teamOptions}
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between w-full">
+                <Button
+                  data-testid="removeModel"
+                  variant="info"
+                  size="sm"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => removeModel()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="saveButton"
+                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    if (
+                      Object.values(email)[1] &&
+                      Object.values(selectedOption)[1] &&
+                      Object.values(selectedTeamOption)[1]
+                    ) {
+                      setButtonLoading(true);
+                      addMemberToTeam()
+                        .then(() => {
+                          setEmail([null]);
+                          setSelectedOption([null]);
+                          setSelectedTeamOption([null]);
+                          setButtonLoading(false);
+                        })
+                        .catch(() => {
+                          setButtonLoading(false);
+                        });
+                    } else if (
+                      !Object.values(email)[1] ||
+                      !Object.values(selectedOption)[1] ||
+                      !Object.values(selectedTeamOption)[1]
+                    ) {
+                      toast.error(t('Enter all the required information'));
+                    }
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('save')}
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="my-3 text-white input h-9">
-          <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
-            <ControlledSelect
-              placeholder={t('Select cohort')}
-              // @ts-ignore
-              value={selectedOption}
-              noRegister={{
-                onChange: (e) => {
-                  setSelectedOption(e);
-                  setCohortName(e.value);
-                  getTeam();
-                },
-              }}
-              options={options}
-            />
-          </div>
-        </div>
-        <div className="my-3 text-white input h-9">
-          <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
-            <ControlledSelect
-              placeholder={t('Select Team')}
-              // @ts-ignore
-              value={selectedTeamOption}
-              noRegister={{
-                onChange: (e) => setSelectedTeamOption(e),
-              }}
-              options={teamOptions}
-            />
-          </div>
-        </div>
-        <div className="flex justify-between w-full">
-          <Button
-            data-testid="removeModel"
-            variant="info"
-            size="sm"
-            style="w-[30%] md:w-1/4 text-sm font-sans"
-            onClick={() => removeModel()}
-          >
-            {t('Cancel')}
-          </Button>
-          <Button
-            variant="primary"
-            size="sm"
-            data-testid="saveButton"
-            style="w-[30%] md:w-1/4 text-sm font-sans"
-            onClick={() => {
-              if (
-                Object.values(email)[1] &&
-                Object.values(selectedOption)[1] &&
-                Object.values(selectedTeamOption)[1]
-              ) {
-                setButtonLoading(true);
-                addMemberToTeam().then(() => {
-                  setEmail([null]);
-                  setSelectedOption([null]);
-                  setSelectedTeamOption([null]);
-                  setButtonLoading(false);
-                }).catch(() => {
-                  setButtonLoading(false);
-                });
-              } else if (
-                !Object.values(email)[1] ||
-                !Object.values(selectedOption)[1] ||
-                !Object.values(selectedTeamOption)[1]
-              ) {
-                toast.error(t('Enter all the required information'));
-              }
-            }}
-            loading={buttonLoading}
-          >
-            {t('save')}
-          </Button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+      </div>
       {/* =========================== End::  AddTraineeModel =============================== */}
 
       <div className="flex flex-col">

@@ -4,11 +4,7 @@ import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { FETCH_ALL_RATINGS } from '../../../Mutations/Ratings';
 
-const useViewTraineeRatings = ({
-  traineeEmail,
-  selectSprint,
-  setOpenModel,
-}: any) => {
+const useViewTraineeRatings = ({ traineeEmail, selectSprint }: any) => {
   const organizationToken = localStorage.getItem('orgToken');
   const [selectViewSprint, setSelectViewSprint] = useState(false);
   const [viewAddNewRating, setViewAddNewRating] = useState(false);
@@ -65,8 +61,7 @@ const useViewTraineeRatings = ({
     : `Sprint ${maxSprint}`;
 
   const onClose = () => {
-    setOpenModel(false);
-    navigate('/trainees');
+    navigate('/ttl-trainees');
   };
   useEffect(() => {
     const updateWindowWidth = () => {

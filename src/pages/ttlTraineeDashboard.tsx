@@ -17,11 +17,14 @@ import { GET_TTL_TRAINEES } from '../Mutations/User';
 import { GET_GITHUB_STATISTICS } from '../Mutations/manageStudentMutations';
 import Button from '../components/Buttons';
 import Avatar from '../assets/avatar.png';
+import { MdCancel } from 'react-icons/md';
 import Spinner from '../components/Spinner';
 import GitHubActivityChart from '../components/chartGitHub';
 import ViewSprintRatings from '../components/ratings/ViewWeeklyRatings';
 import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 import { useTraineesContext } from '../hook/useTraineesData';
+import { XIcon } from '@heroicons/react/solid';
+import { FaTimes } from 'react-icons/fa';
 const organizationToken = localStorage.getItem('orgToken');
 ``;
 /* istanbul ignore next */
@@ -59,7 +62,9 @@ const TtlTraineeDashboard = () => {
     setOpen2(true);
   };
   const handleClose2 = () => {
+    console.log('this what you want');
     setOpen2(false);
+    setOpen(false);
   };
   const handleClick = () => setNav(!nav);
 
@@ -200,10 +205,10 @@ const TtlTraineeDashboard = () => {
       <div className="rounded-lg dark:bg-dark-bg font-serif">
         <Dialog
           open={open2}
-          onClick={handleClose2}
+          onClose={handleClose2}
           PaperComponent={PaperComponent}
           aria-labelledby="draggable-dialog-title"
-          className="rounded-lg"
+          className="rounded-lg relative"
           fullWidth
         >
           <ViewWeeklyRatings
@@ -214,6 +219,13 @@ const TtlTraineeDashboard = () => {
             traineeStatus={
               traineeData[0]?.profile?.user?.status || 'Status Unavailable'
             }
+          />
+
+          <FaTimes
+            size={24}
+            color="red"
+            className="absolute right-5 top-2 cursor-pointer"
+            onClick={() => handleClose2()}
           />
         </Dialog>
         <Dialog
