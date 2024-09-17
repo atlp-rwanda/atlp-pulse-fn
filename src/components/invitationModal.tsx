@@ -102,6 +102,7 @@ function InviteForm({ onClose }: InviteFormProps) {
       setEmail('');
       setRole('Role');
       setOrgToken('');
+      onClose();
     } catch (e: any) {
       toast.error(`Error sending invitation: ${e.message}`);
     }

@@ -28,3 +28,11 @@ export const UPLOAD_INVITATION_FILE = gql`
     }
   }
 `;
+
+export const DELETE_INVITATION = gql`
+  mutation DeleteInvitation($invitationId: ID!) {
+    deleteInvitation(invitationId: $invitationId) {
+      message
+    }
+  }
+`;
