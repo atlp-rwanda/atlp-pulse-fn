@@ -126,7 +126,7 @@ function DashRoutes() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/performance" element={<TraineePerfomance />} />
             {/* <Route path="/attendance" element={<TraineeAttendance />} /> */}
-            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/attendance" element={<Attendance/>} />
             <Route path="/attendance-details" element={<AttendanceDetails />} />
             <Route path="/teams" element={<AdminTeams />} />
             <Route path="/cohorts" element={<AdminCohorts />} />

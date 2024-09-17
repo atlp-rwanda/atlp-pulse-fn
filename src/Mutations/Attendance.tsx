@@ -1,22 +1,42 @@
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client';
 
-export const GET_ATTENDANCE = gql`
-  query ExampleQuery {
-    getTraineeAttendance {
+export const GET_TEAM_ATTENDANCE = gql`
+  query GetTeamAttendance($team: String!, $orgToken: String) {
+    getTeamAttendance(team: $team, orgToken: $orgToken) {
       id
-      trainees {
-        traineeId
-        traineeEmail
-        status {
-          days
-          value
+      week
+      phase {
+        id
+        name
+      }
+      cohort {
+        id
+        name
+      }
+      teams {
+        team {
+          id
+          name
+        }
+        trainees {
+          trainee {
+            id
+            email
+            profile {
+              id
+              name
+            }
+          }
+          status {
+            day
+            date
+            score
+          }
         }
       }
-      week
     }
   }
 `;
-
 export const GET_ATTENDANCE_BY_ID = gql`
   query GetAttendance($id: ID!) {
     getTraineeAttendanceByID(id: $id) {
@@ -33,7 +53,6 @@ export const GET_ATTENDANCE_BY_ID = gql`
     }
   }
 `;
-
 export const GET_WEEKLY_ATTENDANCE = gql`
   query GetTraineeAttendanceByID($traineeEmail: String!) {
     getTraineeAttendanceByID(traineeEmail: $traineeEmail) {
@@ -46,27 +65,126 @@ export const GET_WEEKLY_ATTENDANCE = gql`
   }
 `;
 
-export const UPDATE_ATTENDANCE = gql`
+export const RECORD_ATTENDANCE = gql`
   mutation RecordAttendance(
-    $week: String!
-    $days: String!
+    $week: Int!
+    $team: String!
+    $date: String!
     $trainees: [TraineeInput!]!
-    $recordAttendanceOrgToken2: String!
+    $orgToken: String!
   ) {
     recordAttendance(
       week: $week
-      days: $days
+      team: $team
+      date: $date
       trainees: $trainees
-      orgToken: $recordAttendanceOrgToken2
+      orgToken: $orgToken
+    ) {
+      team {
+        id
+        name
+        cohort {
+          name
+        }
+      }
+      trainees {
+        trainee {
+          profile {
+            name
+          }
+        }
+        status {
+          day
+          date
+          score
+        }
+      }
+    }
+  }
+`;
+
+export const UPDATE_ATTENDANCE = gql`
+  mutation UpdateAttendance(
+    $week: Int!
+    $team: String!
+    $phase: String!
+    $trainees: [TraineeInput!]!
+    $orgToken: String!
+  ) {
+    updateAttendance(
+      week: $week
+      team: $team
+      phase: $phase
+      trainees: $trainees
+      orgToken: $orgToken
     ) {
       id
       week
-      trainees {
-        traineeId
-        traineeEmail
-        status {
-          days
-          value
+      phase {
+        id
+        name
+      }
+      cohort {
+        id
+        name
+      }
+      teams {
+        team {
+          id
+          name
+        }
+        trainees {
+          trainee {
+            id
+            email
+            profile {
+              id
+              name
+            }
+          }
+          status {
+            day
+            date
+            score
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const DELETE_ATTENDANCE = gql`
+  mutation DeleteAttendance($week: String!, $team: String!, $day: String!) {
+    deleteAttendance(week: $week, team: $team, day: $day) {
+      id
+      week
+      phase {
+        id
+        name
+      }
+      cohort {
+        id
+        name
+      }
+      teams {
+        team {
+          id
+          name
+        }
+        trainees {
+          trainee {
+            id
+            email
+            profile {
+              id
+              name
+            }
+          }
+          status {
+            day
+            date
+            score
+          }
         }
       }
     }

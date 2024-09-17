@@ -115,7 +115,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@apollo/client": "^3.8.7",
+    "@apollo/client": "^3.11.8",
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
     "@heroicons/react": "^1.0.6",

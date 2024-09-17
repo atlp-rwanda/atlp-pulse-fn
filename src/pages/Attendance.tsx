@@ -2,12 +2,11 @@ import React from 'react';
 import CheckRole from '../utils/CheckRoles';
 
 const TraineeAttendanceTracker = React.lazy(
-  () => import('../pages/TraineeAttendance'),
+  () => import('../pages/TraineeAttendanceTracker'),
 );
 const TraineeAttendance = React.lazy(
   () => import('../components/TraineeAttendance'),
 );
-
 function Attendance() {
   return (
     <>
@@ -20,5 +19,4 @@ function Attendance() {
     </>
   );
 }
-
 export default Attendance;
