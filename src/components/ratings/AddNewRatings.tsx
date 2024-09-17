@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 
 import React from 'react';
+import { z } from 'zod';
 import Button from '../Buttons';
 import useAddRating from './hooks/useAddNewRating';
-import { z } from 'zod';
 
 // Define the Zod schema
 const ratingSchema = z.object({
@@ -17,7 +17,7 @@ interface RatingErrors {
   quality: string;
   quantity: string;
   professional: string;
-  feedback:string;
+  feedback: string;
 }
 
 interface AddNewRatingsProps {
@@ -77,10 +77,13 @@ function AddNewRatings({
     } catch (error) {
       if (error instanceof z.ZodError) {
         // Handle validation errors
-        const errors: Partial<RatingErrors> = error.errors.reduce((acc, err) => {
-          acc[err.path[0] as keyof RatingErrors] = err.message;
-          return acc;
-        }, {} as Partial<RatingErrors>);
+        const errors: Partial<RatingErrors> = error.errors.reduce(
+          (acc, err) => {
+            acc[err.path[0] as keyof RatingErrors] = err.message;
+            return acc;
+          },
+          {} as Partial<RatingErrors>,
+        );
 
         setRatingErrors({
           quality: errors.quality || '',

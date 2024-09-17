@@ -143,6 +143,9 @@ function ViewSprintRatings({
     setUpdateMessage('Waiting for the Admin to Approve');
     setopen(true);
   }; // Ensure it's a valid number
+  const handleClose = () => {
+    setopen(false);
+  };
 
   return (
     <div className="flex flex-col border-black w-full bg-[#E0E7FF] dark:bg-[#4B4B4B] px-8 font-serif">
@@ -150,14 +153,14 @@ function ViewSprintRatings({
         <h3 className="w-11/12 text-[16px] font-bold text-center dark:text-white">
           {t('Trainee')} : {traineeName}
         </h3>
-        <h1
+        {/* <h1
           className="absolute right-0 top-2 text-red-500   transform rotate-45 w-120 h-120 text-5xl cursor-pointer"
-          // onClick={() => {
-          //   onClose();
-          // }}
+          onClick={() => {
+            handleClose(); 
+          }}
         >
           +
-        </h1>
+        </h1> */}
       </div>
       <div className="flex flex-col gap-4">
         <h1 className="text-[#5F49AC] dark:text-[#C7B9F9] font-semibold">
@@ -326,34 +329,36 @@ function ViewSprintRatings({
           )}
         </div>
         <div>
-          {!viewAddNewRating &&
+          {(!viewAddNewRating &&
             !editRatingFormVisible &&
-            loggedUserRole === 'ttl' && (
-              <Button
-                type="submit"
-                variant="primary"
-                size="sm"
-                style="inline-flex justify-center float-left rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                onClick={openEditRatingForm}
-              >
-                {t('Edit Rating')}
-              </Button>
-            )}
+            loggedUserRole === 'ttl') ||
+          loggedUserRole === 'coordinator' ? (
+            <Button
+              type="submit"
+              variant="primary"
+              size="sm"
+              style="inline-flex justify-center float-left rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              onClick={openEditRatingForm}
+            >
+              {t('Edit Rating')}
+            </Button>
+          ) : null}
         </div>
         <div>
-          {!viewAddNewRating &&
+          {(!viewAddNewRating &&
             !editRatingFormVisible &&
-            loggedUserRole === 'ttl' && (
-              <Button
-                type="submit"
-                variant="primary"
-                size="sm"
-                style="inline-flex justify-center float-right rounded-md border border-transparent  bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                onClick={() => setViewAddNewRating(true)}
-              >
-                {t('Add Rating')}
-              </Button>
-            )}
+            loggedUserRole === 'ttl') ||
+          loggedUserRole === 'coordinator' ? (
+            <Button
+              type="submit"
+              variant="primary"
+              size="sm"
+              style="inline-flex justify-center float-right rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              onClick={() => setViewAddNewRating(true)}
+            >
+              {t('Add Rating')}
+            </Button>
+          ) : null}
         </div>
       </div>
 
