@@ -378,18 +378,16 @@ function AdminTraineeDashboard() {
                       }}
                     >
                       <Icon
-                        icon="flat-color-icons:view-details"
+                        icon="ph:eye-bold"
                         width="40"
                         height="40"
                         cursor="pointer"
                         color="#9e85f5"
                       />
-                      <div>
-                        <span className="font-bold">View</span>{' '}
-                        <>
-                          <br />
-                          View detailed information
-                        </>
+                      <div className="ml-2">
+                        <span className="font-bold">View</span>
+                        <br />
+                        <span>View detailed information</span>
                       </div>
                     </div>
                   </div>

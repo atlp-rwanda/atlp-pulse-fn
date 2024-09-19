@@ -17,37 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
 import { DELETE_INVITATION } from '../Mutations/invitationMutation';
 import Button from '../components/Buttons';
-
-const GET_ALL_INVITATIONS = gql`
-  query AllInvitations{
-    getAllInvitations{
-      invitations {
-        invitees {
-          email
-          role
-        }
-        id
-        status
-      }
-      totalInvitations
-    }
-  }
-`;
-
-const GET_INVITATIONS = gql`
-  query GetInvitations($query: String!) {
-    getInvitations(query: $query) {
-      invitations {
-        invitees {
-          email
-          role
-        }
-        id
-        status
-      }
-    }
-  }
-`;
+import { GET_ALL_INVITATIONS, GET_INVITATIONS, GET_ROLES_AND_STATUSES } from '../queries/invitation.queries';
 
 interface Invitee {
   email: string;
@@ -79,7 +49,11 @@ function Invitation() {
   const [removeInviteeModel, setRemoveInviteeModel] = useState(false);
   const [deleteInvitation, setDeleteInvitation] = useState('');
   const [buttonLoading, setButtonLoading] = useState(false);
-  
+  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
+  const [filterVariables, setFilterVariables] = useState({ role: '', status: '' });
+
+
   const organizationToken = localStorage.getItem('orgToken');
 
   const parseRange = (range: string) => {
@@ -113,6 +87,7 @@ function Invitation() {
       toast.error('testtes111');
     },
   });
+
   useEffect(() => {
     if (isLoading) {
       setFilterLoading(true);
@@ -133,6 +108,7 @@ function Invitation() {
     const { name, value } = e.target;
     setCustomRange((prev) => ({ ...prev, [name]: value }));
   };
+
   if (!organizationToken) {
     return <p>Organization token not found. Please log in.</p>;
   }
@@ -143,12 +119,17 @@ function Invitation() {
     error: queryError,
     refetch,
   } = useQuery(GET_ALL_INVITATIONS, {
+    fetchPolicy: 'network-only',
   });
 
   const [
     fetchInvitations,
     { data: searchData, loading: searchLoading, error: searchError },
-  ] = useLazyQuery(GET_INVITATIONS);
+  ] = useLazyQuery(GET_INVITATIONS, {
+    variables: {
+      query: searchQuery,
+    }, fetchPolicy: 'network-only',
+  });
 
     /* istanbul ignore next */
     const removeInviteeMod = () => {
@@ -156,8 +137,22 @@ function Invitation() {
       setRemoveInviteeModel(newState);
     };
 
+  const [
+      filterInvitations,
+      { data: filterData, loading: filterLoad, error: filterError },
+    ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
+      variables: filterVariables,
+      fetchPolicy: 'network-only',
+    });
+
   useEffect(() => {
-    if (queryLoading || searchLoading) {
+    if (filterVariables.role || filterVariables.status) {
+      filterInvitations();
+    }
+  }, [filterVariables, filterInvitations]);
+
+  useEffect(() => {
+    if (queryLoading || searchLoading || filterLoad) {
       setLoading(true);
     } else {
       setLoading(false);
@@ -167,18 +162,21 @@ function Invitation() {
       setError(queryError.message);
     } else if (searchError) {
       setError(searchError.message);
+    } else if (filterError) {
+      setError(filterError.message);
     } else if (
       searchData &&
       Array.isArray(searchData.getInvitations.invitations)
     ) {
-      refetch();
       setInvitations(searchData.getInvitations.invitations);
+    } else if (filterData && filterData.filterInvitations) {
+      setInvitations(filterData.filterInvitations.invitations);
+      setTotalInvitations(filterData.filterInvitations.totalInvitations);
     } else if (data && data.getAllInvitations) {
       setInvitations(data.getAllInvitations.invitations);
       setTotalInvitations(data.getAllInvitations.totalInvitations);
     }
-    refetch();
-  }, [data, searchData, queryLoading, searchLoading, queryError, searchError]);
+  }, [data, searchData, queryLoading, searchLoading, queryError, searchError, filterData, filterLoad, filterError]);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
@@ -190,12 +188,34 @@ function Invitation() {
     setError(null);
     setLoading(false);
 
-    fetchInvitations();
+    fetchInvitations({
+      variables: {
+        query: searchQuery,
+      },
+    });
   };
 
   const toggleOptions = (row: string) => {
     setSelectedRow(selectedRow === row ? null : row);
   }
+
+  const handleFilter = () => {
+    if (!selectedRole && !selectedStatus) {
+      toast.info('Please select role or status.');
+      return;
+    }
+
+    setInvitations([]);
+    setError(null);
+    setLoading(false);
+
+    setFilterVariables({
+      role: selectedRole,
+      status: selectedStatus,
+    });
+  };
+
+  const disabledSearch = !searchQuery.trim();
 
   // Defining invitation table
   let content;
@@ -336,14 +356,14 @@ function Invitation() {
       });
     });
   }
-  if (loading || searchLoading) {
+  if (loading || searchLoading || filterLoad) {
     content =                      <DataTableStats
     data={invitations?.length > 0 ? datum : []}
     columns={columns}
     loading={loading}
     error={error}
   />;
-  } else if (error || searchError) {
+  } else if (error || searchError || filterError) {
     content =                      <DataTableStats
     data={invitations?.length > 0 ? datum : []}
     columns={columns}
@@ -571,6 +591,7 @@ function Invitation() {
           </div>
           <button
             type="button"
+            disabled={disabledSearch}
             onClick={handleSearch}
             className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[10%] p-0 sm:p-5 xm:p-5"
           >
@@ -579,8 +600,49 @@ function Invitation() {
         </div>
       </div>
 
+      <div className='mt-6'>
+      <div className="flex flex-wrap items-center space-x-4 space-y-2 md:space-y-0">
+        <p className="w-full md:w-auto">Or filter by <span><b>ROLE: </b></span></p>
+        <span className="w-full md:w-auto">
+          <select 
+            className="w-full max-w-xs md:w-auto dark:text-white dark:text:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
+                      value={selectedRole}
+                      onChange={(e) => setSelectedRole(e.target.value)}
+                      >
+            <option  value="">-</option>
+            <option value="trainee">trainee</option>
+            <option value="ttl">ttl</option>
+            <option value="coordinator">coordinator</option>
+            <option value="manager">manager</option>
+            <option value="admin">admin</option>
+          </select>
+        </span>
+        <span className="w-full md:w-auto"> or <b>STATUS: </b></span>
+        <span className="w-full md:w-auto">
+          <select 
+          className="w-full max-w-xs md:w-auto dark:text-white bg-transparent text-gray-700 outline-none border border-gray-300 rounded px-2 py-1"
+                      value={selectedStatus}
+                      onChange={(e) => setSelectedStatus(e.target.value)}
+                      >
+            <option  value="">-</option>
+            <option  value="pending">pending</option>
+            <option  value="accepted">accepted</option>
+            <option  value="denied">denied</option>
+            <option  value="cancelled">cancelled</option>
+          </select>
+        </span>
+        <button
+          type="button"
+          // disabled={disabled}
+          onClick={handleFilter}
+          className="w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center px-4 py-2"
+        >
+          Filter
+        </button>
+      </div>
       {/* Table view */}
       {content}
+      </div>
 
             {/* =========================== Start::  DeleteInvitee Model =============================== */}
 

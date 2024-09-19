@@ -176,3 +176,4 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
 }
 
 export default DataTableStats;
+
