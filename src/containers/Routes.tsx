@@ -160,6 +160,7 @@ function MainRoutes() {
               }
             />
             <Route path="/noredirect" element={<Noredirect />} />
+            <Route path="/redirect" element={<RedirectHandler />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

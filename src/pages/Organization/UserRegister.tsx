@@ -1,21 +1,21 @@
 /* eslint-disable */
-import { useApolloClient, useLazyQuery, useMutation } from '@apollo/client';
-import React, { useContext, useState, useEffect } from 'react';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import jwt_decode from 'jwt-decode';
 import { useTranslation } from 'react-i18next';
-import { FaGoogle, FaRegEnvelope, FaRegEye } from 'react-icons/fa';
+import { FaRegEnvelope, FaRegEye } from 'react-icons/fa';
 import { FiEyeOff } from 'react-icons/fi';
 import { MdLockOutline } from 'react-icons/md';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ButtonLoading from '../../components/ButtonLoading';
 import Button from '../../components/Buttons';
+import ControlledSelect from '../../components/ControlledSelect';
 import { UserContext } from '../../hook/useAuth';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import { SIGN_UP_MUTATION, GET_SIGNUP_ORGANIZATION } from './Mutations';
-import ControlledSelect from '../../components/ControlledSelect';
-import jwt_decode from 'jwt-decode';
+import { GET_SIGNUP_ORGANIZATION, SIGN_UP_MUTATION } from './Mutations';
 
 const Signup = () => {
   const token: any = window.location.href.substring(
