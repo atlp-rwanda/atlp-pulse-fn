@@ -60,7 +60,7 @@ exports[`Attendance Detailed page Renders the Attendance Detailed Page  1`] = `
               className="py-3 px-8"
             >
               <button
-                className="btn primary sm px-4 py-0 text-sm font-serif"
+                className="btn primary sm px-4 py-0 text-sm font-serif "
                 disabled={false}
                 type="button"
               >
@@ -90,7 +90,7 @@ exports[`Attendance Detailed page Renders the Attendance Detailed Page  1`] = `
               className="py-3 "
             >
               <button
-                className="btn primary sm px-4 py-0 text-sm font-serif"
+                className="btn primary sm px-4 py-0 text-sm font-serif "
                 disabled={false}
                 type="button"
               >

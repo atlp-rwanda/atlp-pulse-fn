@@ -37,7 +37,7 @@ Array [
             className="flex justify-between w-full"
           >
             <button
-              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif"
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif "
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -46,7 +46,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -94,7 +94,7 @@ Array [
             className="flex justify-between w-full"
           >
             <button
-              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif"
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif "
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -103,7 +103,7 @@ Array [
               No
             </button>
             <button
-              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif"
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif "
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -285,7 +285,7 @@ Array [
               className="flex justify-start"
             >
               <button
-                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif"
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif "
                 disabled={false}
                 onClick={[Function]}
                 type="button"
@@ -297,7 +297,7 @@ Array [
               className="flex justify-end gap-2 flex-1"
             >
               <button
-                className="btn default sm text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif"
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif "
                 data-testid="removeModel"
                 disabled={false}
                 onClick={[Function]}
@@ -306,7 +306,7 @@ Array [
                 Cancel
               </button>
               <button
-                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif"
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif "
                 data-testid="saveGrade"
                 disabled={false}
                 type="submit"
@@ -350,7 +350,7 @@ Array [
                   </option>
                 </select>
                 <button
-                  className="btn primary lg m-0 font-serif"
+                  className="btn primary lg m-0 font-serif "
                   data-testid="gradeBtn"
                   disabled={false}
                   onClick={[Function]}

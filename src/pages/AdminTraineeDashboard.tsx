@@ -77,7 +77,7 @@ function AdminTraineeDashboard() {
   const teamOptions: any = [];
   const [isLoaded, setIsLoaded] = useState(false);
   const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
-  const { traineeData, setAllTrainees } = useTraineesContext();
+  const { traineeData, setAllTrainees } = useTraineesContext() || [];
   const [actionTraineeOptions, setActionTraineeOptions] = useState<any>(null);
 
   const [selectedTraineeId, setSelectedTraineeId]= useState<string[]>()
@@ -254,15 +254,13 @@ function AdminTraineeDashboard() {
       : 'bg-black'
     } text-white rounded-xl px-3`}
   onClick={() => {
-      if (row.original?.Status?.status !== 'drop') {
-          setSelectedTraineeId(row.original?.email);
-          handleClickOpen2();
-      }
+      setSelectedTraineeId(row.original?.email);
+      handleClickOpen2();
   }}
-  disabled={row.original?.Status?.status === 'drop'}
 >
   {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
 </button>
+
 
           </div>
         );
@@ -644,6 +642,7 @@ function AdminTraineeDashboard() {
       teamOptions[index].label = team?.name;
     });
   }
+  
 
   return (
     <>
@@ -657,8 +656,8 @@ function AdminTraineeDashboard() {
           className="rounded-lg"
           fullWidth
         >
-          {traineeData.map((data: { email: string[] | undefined; profile: { name: any; user: { id: any; status: any; }; }; team: { cohort: { id: any; }; }; }) => {
-            if (data.email === selectedTraineeId) {
+          {traineeData?.map((data:any) => {
+        if (data.email === selectedTraineeId) {
               return <ViewWeeklyRatings
             traineeName={data?.profile?.name || 'Unknown Name'}
             traineeEmail={data?.email || 'Unknown Email'}

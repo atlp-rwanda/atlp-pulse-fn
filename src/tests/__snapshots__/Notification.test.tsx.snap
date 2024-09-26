@@ -49,6 +49,7 @@ exports[`notification test should render notification 1`] = `
         data-testid="notificationsContainer"
       >
         <p>
+           
           There are no notifications for you!
         </p>
       </div>

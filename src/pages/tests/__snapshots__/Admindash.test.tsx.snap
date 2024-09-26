@@ -152,7 +152,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -160,7 +160,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -208,7 +208,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="remove"
               disabled={false}
               onClick={[Function]}
@@ -217,7 +217,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -252,7 +252,7 @@ Array [
                 className="flex gap-2"
               >
                 <button
-                  className="btn primary lg m-0 font-serif"
+                  className="btn primary lg m-0 font-serif "
                   data-testid="registerModel"
                   disabled={false}
                   onClick={[Function]}
@@ -672,7 +672,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="remove"
               disabled={false}
               onClick={[Function]}
@@ -682,7 +682,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -1088,7 +1088,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="remove"
               disabled={false}
               onClick={[Function]}
@@ -1098,7 +1098,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
               data-testid="confirmUpdateBtn"
               disabled={false}
               onClick={[Function]}
@@ -1489,7 +1489,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -1498,7 +1498,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -1542,7 +1542,7 @@ Array [
         className="flex gap-2"
       >
         <button
-          className="btn primary lg m-0 font-serif"
+          className="btn primary lg m-0 font-serif "
           data-testid="removeModel"
           disabled={false}
           onClick={[Function]}
