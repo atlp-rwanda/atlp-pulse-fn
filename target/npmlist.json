@@ -27,7 +27,6 @@
     "chart.js": { "version": "4.3.0" },
     "cleave.js": { "version": "1.6.0" },
     "cloudinary-react": { "version": "1.8.1" },
-    "copy-webpack-plugin": { "version": "11.0.0" },
     "crypto-browserify": { "version": "3.12.0" },
     "date-fns": { "version": "2.30.0" },
     "dotenv": { "version": "16.3.1" },
