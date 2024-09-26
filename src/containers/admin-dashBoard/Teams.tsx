@@ -12,6 +12,7 @@ import DeleteTeamModal from './DeleteTeamModal';
 import UpdateTeamModal from './UpdateTeamModal';
 import TeamTraineeModal from './TeamTraineeModal';
 import CreateTeamModal from './CreateTeamModal';
+import TtlSkeleton from'../../Skeletons/ttl.skeleton'
 
 export interface Cohort {
   id: string;
@@ -310,12 +311,16 @@ function AdminTeams() {
           </div>
         </div>
         <div className="">
+        {getLoading ? (
+          <TtlSkeleton />
+        ) : (
           <DataTable
             columns={teamColumns}
             data={teamData ? (teamData as [any]) : []}
             title={t('Teams list')}
-            loading={getLoading}
+            // loading={getLoading}
           />
+        )}
         </div>
       </div>
     </>

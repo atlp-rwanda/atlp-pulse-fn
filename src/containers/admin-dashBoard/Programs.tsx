@@ -9,6 +9,7 @@ import { PartialUser } from './Cohorts';
 import CreateProgramModal from './CreateProgramModal';
 import DeleteProgramModal from './DeleteProgramModal';
 import UpdateProgramModal from './UpdateProgramModal';
+import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 
 export interface Program {
   id: string;
@@ -214,12 +215,14 @@ function AdminPrograms() {
           </div>
         </div>
         <div className="">
+          {getLoading ?(<TtlSkeleton/>):(
           <DataTable
             data={programListData as [any]}
             columns={programListColumns}
             title="Program list"
             loading={getLoading}
           />
+        )}
         </div>
       </div>
     </>

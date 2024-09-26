@@ -25,6 +25,7 @@ import ControlledSelect from '../../components/ControlledSelect';
 import { GET_GITHUB_STATISTICS } from '../../Mutations/manageStudentMutations';
 import GitHubActivityChart from '../../components/chartGitHub';
 import { toast } from 'react-toastify';
+import TtlSkeleton from '../../Skeletons/ttl.skeleton'
 /* istanbul ignore next */
 export default function TtlsPage() {
   const { t } = useTranslation();
@@ -644,11 +645,8 @@ export default function TtlsPage() {
 
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
         <div className="">
-          {loading ? (
-            <div className="flex justify-center items-center h-48">
-              <Spinner />
-              <div className="spinner" />
-            </div>
+        {loading ? (
+            <TtlSkeleton />
           ) : (
             <DataTable
               columns={columns}

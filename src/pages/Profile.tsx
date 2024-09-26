@@ -57,7 +57,8 @@ export default function Profile() {
           </div>
         </>
       ) : (
-        <Square />
+        // <Square />
+        <></>
       )}
     </div>
   );

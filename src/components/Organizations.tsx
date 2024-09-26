@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
 
 import DataTable from '../components/DataTable';
+import OrgSkeleton from '../Skeletons/Organization.skeleton';
 
 export interface Admin {
   id: string;
@@ -564,12 +565,15 @@ const Organizations = () => {
           </div>
         </div>
         <div className="">
+        {getLoading ? (
+          <OrgSkeleton/>
+        ) : (
           <DataTable
             columns={organizationColumns}
             data={organizationData ? (organizationData as [any]) : []}
             title={t('Organizations list')}
-            loading={getLoading}
           />
+        )}
         </div>
       </div>
     </div>
