@@ -82,7 +82,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             </SideNavLink>
           </CheckRole>
           {/* INVITATION */}
-          <CheckRole roles={['admin', 'coordinator']}>
+          <CheckRole roles={['admin']}>
             <SideNavLink onClick={toggle} to="/invitation" name="Invitation">
               <FaEnvelopeOpenText className="w-5" />
             </SideNavLink>

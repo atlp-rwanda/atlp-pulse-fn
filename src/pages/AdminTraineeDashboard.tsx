@@ -79,7 +79,19 @@ function AdminTraineeDashboard() {
   const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
   const { traineeData, setAllTrainees } = useTraineesContext();
   const [actionTraineeOptions, setActionTraineeOptions] = useState<any>(null);
+  const modalRef = useRef<any>(null);
 
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setSelectedRow(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [modalRef]);
   function PaperComponent(props: PaperProps) {
     return (
       <Draggable
@@ -278,7 +290,9 @@ function AdminTraineeDashboard() {
               onClick={() => toggleOptions(row.original.email)}
             />
             {selectedRow === row.original.email && (
-              <div className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
+              <div
+               ref={modalRef}
+               className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
                 <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
@@ -1011,7 +1025,7 @@ function AdminTraineeDashboard() {
                 data-testid="removeInviteModel"
                 variant="info"
                 size="sm"
-                style="w-[20%] md:w-1/4 text-sm font-sans"
+                style="w-[40%] md:w-1/4 text-sm font-sans"
                 onClick={() => handleClose()}
               >
                 {t('Close')}
@@ -1069,7 +1083,7 @@ function AdminTraineeDashboard() {
                   data-testid="removeInviteModel"
                   variant="info"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => inviteModel()}
                 >
                   {t('Cancel')}
@@ -1078,7 +1092,7 @@ function AdminTraineeDashboard() {
                 <Button
                   variant="primary"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={HandleInvite}
                   loading={buttonLoading}
                 >
@@ -1157,7 +1171,7 @@ function AdminTraineeDashboard() {
                   data-testid="removeModel1"
                   variant="info"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => removeEditModel()}
                 >
                   {t('Cancel')}
@@ -1165,7 +1179,7 @@ function AdminTraineeDashboard() {
                 <Button
                   variant="primary"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     setButtonLoading(true);
                     setButtonLoading(true);
@@ -1215,7 +1229,7 @@ function AdminTraineeDashboard() {
                   data-testid="removeModel2"
                   variant="info"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => removeTraineeMod()}
                 >
                   {t('Cancel')}
@@ -1224,7 +1238,7 @@ function AdminTraineeDashboard() {
                   variant="primary"
                   size="sm"
                   data-testid="removeMemberFromCohort"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     setButtonLoading(true);
                     if (deleteEmail && deleteFromCohort) {
@@ -1302,7 +1316,7 @@ function AdminTraineeDashboard() {
                   data-testid="dropModel"
                   variant="info"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => setDropTraineeModel(false)}
                 >
                   {t('Cancel')}
@@ -1312,7 +1326,7 @@ function AdminTraineeDashboard() {
                   variant="primary"
                   size="sm"
                   data-testid="dropMemberFromCohort"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     setButtonLoading(true);
 
@@ -1403,7 +1417,7 @@ function AdminTraineeDashboard() {
                   data-testid="removeModel"
                   variant="info"
                   size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => removeModel()}
                 >
                   {t('Cancel')}
@@ -1412,7 +1426,7 @@ function AdminTraineeDashboard() {
                   variant="primary"
                   size="sm"
                   data-testid="saveButton"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
                   onClick={() => {
                     if (
                       Object.values(email)[1] &&
