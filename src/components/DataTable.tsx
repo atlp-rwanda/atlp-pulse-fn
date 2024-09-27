@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useGlobalFilter,
@@ -18,6 +18,7 @@ interface TableData {
 }
 
 function DataTable({ data, columns, title, loading, className }: TableData) {
+  const [pageIndex, setPageIndex] = useState(0);
   const [filterInput, setFilterInput] = useState('');
   const { t } = useTranslation();
 
@@ -30,7 +31,7 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
     {
       data: memoizedData,
       columns: memoizedColumns,
-      initialState: { pageSize: 3, globalFilter: filterInput },
+      initialState: { pageIndex, pageSize: 3, globalFilter: filterInput },
     },
     useGlobalFilter,
     useSortBy,
@@ -52,9 +53,11 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
     pageOptions,
     headerGroups,
     prepareRow,
-    state: { pageIndex, pageSize },
+    state: { pageIndex: currentPageIndex, pageSize },
   } = tableInstance;
-
+  useEffect(() => {
+    setPageIndex(currentPageIndex);
+  }, [currentPageIndex]);
   const handleFilterChange = (e) => {
     const value = e.target.value || '';
     setGlobalFilter(value);
