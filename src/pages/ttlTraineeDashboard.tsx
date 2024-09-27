@@ -129,12 +129,9 @@ const TtlTraineeDashboard = () => {
       : 'bg-black'
     } text-white rounded-xl px-3`}
   onClick={() => {
-      if (row.original?.Status?.status !== 'drop') {
-          setSelectedTraineeId(row.original?.email);
-          handleClickOpen2();
-      }
+      setSelectedTraineeId(row.original?.email);
+      handleClickOpen2();
   }}
-  disabled={row.original?.Status?.status === 'drop'}
 >
   {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
 </button>

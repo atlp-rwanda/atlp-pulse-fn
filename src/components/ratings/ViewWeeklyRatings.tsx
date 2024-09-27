@@ -350,7 +350,8 @@ function ViewSprintRatings({
             loggedUserRole === 'ttl') ||
           loggedUserRole === 'coordinator' ? (
             <Button
-              type="submit"
+                type="submit"
+                disabled={traineeStatus.status==="drop"}
               variant="primary"
               size="sm"
               style="inline-flex justify-center float-right rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
