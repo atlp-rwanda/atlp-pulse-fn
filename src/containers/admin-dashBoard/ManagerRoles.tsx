@@ -7,6 +7,7 @@ import rolemanagement from '../../dummyData/rolemanagement.json';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import Button from './../../components/Buttons';
 import devs from '../../dummyData/rolemanagement.json';
+import DELETE_USER_MUTATION from '../admin-dashBoard/DeleteUserMutation';
 import CREATE_ROLE_MUTATION from '../admin-dashBoard/createRoleMutation';
 import GET_ROLE_QUERY from '../admin-dashBoard/GetRolesQuery';
 import ASSIGN_ROLE_MUTATION from '../admin-dashBoard/AssignRolesMutation';
@@ -26,7 +27,6 @@ const AdminSission = () => {
   useDocumentTitle('Roles & Access');
   const [addMemberModel, setAddMemberModel] = useState(false);
   const [deleteModel, setDeleteModel] = useState(false);
-
   const [GetAllRoles] = useLazyQuery(GET_ROLE_QUERY);
   const [developers, setDevelopers] = useState(devs);
   const [tabName, setTabName] = useState('all');
@@ -42,9 +42,12 @@ const AdminSission = () => {
   const [createUserRole] = useMutation(CREATE_ROLE_MUTATION);
   const [updateUserRole] = useMutation(ASSIGN_ROLE_MUTATION);
   const [findFilter, setFindFilter] = useState('');
+  const [loggedUser, setLoggedUser] = useState('');
   const [allRoles, setallRoles] = useState<any>();
   const [selectingTTL, setSelectingTTL] = useState(false);
   const [selectedTeamId, setSelectedTeamId] = useState('');
+  const [deleteConfirmationModel, setDeleteConfirmationModel] = useState(false); // Modal for confirming deletion
+
   const { loading, error, data } = useQuery(GET_TEAMS, {
     variables: { orgToken: localStorage.getItem('orgToken') },
   });
@@ -61,6 +64,32 @@ const AdminSission = () => {
     let newState = !deleteModel;
     setDeleteModel(newState);
   };
+
+  const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
+    onCompleted: (data) => {
+      if (data.deleteUser.message) {
+        toast.success('User deleted successfully');
+        setToggle(!toggle); // Refresh or update state
+      } else {
+        toast.error('Failed to delete user');
+      }
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  useEffect(() => {
+    // Fetch the auth details from local storage
+    const authData = localStorage.getItem('auth');
+
+    if (authData) {
+      const parsedAuthData = JSON.parse(authData);
+      const userId = parsedAuthData.userId;
+      setLoggedUser(userId);
+    }
+  }, []);
+
   useEffect(() => {
     if (tabName === 'all') {
       setDataDev(rolemanagement);
@@ -224,17 +253,30 @@ const AdminSission = () => {
       accessor: '',
       /* istanbul ignore next */
       Cell: ({ row }: any) => (
-        <p
-          className="text-red-500 whitespace-no-wrap cursor-pointer"
-          onClick={
-            /* istanbul ignore next */ () => {
-              /* istanbul ignore next */
-              removeAssignModel(row.original);
+        <div className="flex gap-4">
+          <p
+            className="text-red-500  whitespace-no-wrap cursor-pointer"
+            onClick={
+              /* istanbul ignore next */ () => {
+                /* istanbul ignore next */
+                removeAssignModel(row.original);
+              }
             }
-          }
-        >
-          {t('Assign')}
-        </p>
+          >
+            {t('Assign')}
+          </p>
+          <p
+            className="text-red-500 whitespace-no-wrap cursor-pointer"
+            onClick={
+              /* istanbul ignore next */ () => {
+                /* istanbul ignore next */
+                handleDeleteUser(row.original.id);
+              }
+            }
+          >
+            {t('Delete')}
+          </p>
+        </div>
       ),
     },
   ];
@@ -252,12 +294,68 @@ const AdminSission = () => {
       name: 'ttl',
     },
   ];
+
+  const handleDeleteUser = (userId: any) => {
+    if (loggedUser === userId) {
+      toast.warn('You can not delete your self!');
+    } else {
+      setSelectedUser({ id: userId, role: 'user' });
+      setDeleteConfirmationModel(true);
+    }
+  };
+
+  const confirmDeleteUser = () => {
+    deleteUser({
+      variables: {
+        input: { id: selectedUser.id },
+        context: { userId: selectedUser.id },
+      },
+    });
+    setDeleteConfirmationModel(false);
+  };
+  console.log(selectedUser);
+
   /* istanbul ignore next */
   return (
     <>
       {users && allRoless ? (
         <>
           {/* ... Existing code ... */}
+          {/* =========================== Start:: Delete Confirmation Modal =============================== */}
+          <div
+            className={`w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
+              deleteConfirmationModel === true ? 'block' : 'hidden'
+            }`}
+          >
+            <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8">
+              <div className="card-title w-full flex justify-center items-center flex-col">
+                <h3 className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12">
+                  {t('Are you sure you want to delete this user?')}
+                </h3>
+                <hr className=" bg-primary border-b my-3 w-full" />
+              </div>
+              <div className="card-body">
+                <div className="w-full flex justify-between">
+                  <Button
+                    variant="info"
+                    size="sm"
+                    style="w-[30%] md:w-1/4 text-sm font-sans"
+                    onClick={() => setDeleteConfirmationModel(false)}
+                  >
+                    {t('Cancel')}
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    style="w-[30%] md:w-1/4 text-sm font-sans"
+                    onClick={confirmDeleteUser}
+                  >
+                    {t('Confirm')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
           {/* =========================== Start::  delete Session Model =============================== */}
           <div
             className={`w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${

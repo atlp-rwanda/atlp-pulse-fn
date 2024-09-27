@@ -23,9 +23,26 @@ import UserProvider from './hook/useAuth';
 import App from './App';
 import ThemeProvider from './hook/ThemeProvider';
 
+const specificMessagesToLogout = [
+  'User not authenticated',
+  'User account does not exist or has been deleted',
+  'User with this token no longer exist!!',
+];
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path, extensions }) => {
+      if (
+        specificMessagesToLogout.some((errorMessage) =>
+          message.includes(errorMessage),
+        )
+      ) {
+        const encodedMessage = encodeURIComponent(message); // Encode the message
+        window.location.href = `/users/login?redirect_message=${encodedMessage}`;
+        localStorage.removeItem('auth');
+        localStorage.removeItem('auth_token');
+        toast.error(message);
+      }
+
       if (extensions?.code === 'JWT_EXPIRED') {
         window.location.pathname = '/users/login';
         localStorage.removeItem('auth');

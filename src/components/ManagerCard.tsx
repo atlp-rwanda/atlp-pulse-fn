@@ -144,7 +144,7 @@ function ManagerCard() {
         grade,
         teamname: team.name,
         coordinator: team?.cohort?.coordinator?.profile
-          ? team.cohort?.coordinator.profile.name
+          ? team.cohort?.coordinator?.profile?.name
           : team?.cohort?.coordinator?.email,
         ttl: team?.ttl?.profile ? team.ttl.profile.name : team?.ttl?.email,
         phase: team?.cohort?.phase?.name,

@@ -78,9 +78,9 @@ function TeamDetails() {
         cohort: team?.cohort?.name,
         teamname: team.name,
         coordinator: team?.cohort?.coordinator?.profile
-          ? team.cohort?.coordinator.profile.name
+          ? team?.cohort?.coordinator?.profile?.name
           : team?.cohort?.coordinator?.email,
-        ttl: team?.ttl?.profile ? team.ttl.profile.name : team?.ttl?.email,
+        ttl: team?.ttl?.profile ? team?.ttl?.profile?.name : team?.ttl?.email,
         Qty,
         Qnty,
         skills,
@@ -228,12 +228,12 @@ function TeamDetails() {
                   <h1 className="font-bold text-xl">{teamname}</h1>
                   <div className="border-r-2 h-6 border-black" />
                   <h1 className="font-extrabold text-xl">
-                    {selectedTeam.cohort}
+                    {selectedTeam?.cohort}
                   </h1>
                 </div>
                 <div className="relative dark:text-black">
                   <p>Coordinator: {selectedTeam?.coordinator}</p>
-                  <p>TTL: {selectedTeam.ttl}</p>
+                  <p>TTL: {selectedTeam?.ttl}</p>
                 </div>
               </div>
 
@@ -285,12 +285,12 @@ function TeamDetails() {
                       <div className="flex flex-row lg:flex-row ">
                         <div className="w-[90px]">
                           <CircularProgressbar
-                            value={(selectedTeam.Qty / 2) * 100}
-                            text={`${selectedTeam.Qty.toFixed(1)}`}
-                            className={getRatingColorClass(selectedTeam.Qty)}
+                            value={(selectedTeam?.Qty / 2) * 100}
+                            text={`${selectedTeam?.Qty.toFixed(1)}`}
+                            className={getRatingColorClass(selectedTeam?.Qty)}
                             styles={{
                               path: {
-                                stroke: getColor(selectedTeam.Qty),
+                                stroke: getColor(selectedTeam?.Qty),
                                 transition: 'stroke-dashoffset 0.5s ease 0s',
                               },
                               trail: {
@@ -310,10 +310,11 @@ function TeamDetails() {
                           <ul className="list-disc">
                             <li>Quality</li>
                           </ul>
-                          <span style={{ color: getColor(selectedTeam.Qty) }}>
-                            {selectedTeam.Qty >= 1.5 && selectedTeam.Qty <= 2
+                          <span style={{ color: getColor(selectedTeam?.Qty) }}>
+                            {selectedTeam?.Qty >= 1.5 && selectedTeam?.Qty <= 2
                               ? 'Good'
-                              : selectedTeam.Qty >= 1 && selectedTeam.Qty < 1.5
+                              : selectedTeam?.Qty >= 1 &&
+                                selectedTeam?.Qty < 1.5
                               ? 'Improve'
                               : 'Poor'}
                           </span>
@@ -322,11 +323,11 @@ function TeamDetails() {
                       <div className="  flex flex-row  lg:flex-row ">
                         <div className="w-[90px] ">
                           <CircularProgressbar
-                            value={(selectedTeam.Qnty / 2) * 100}
-                            text={`${selectedTeam.Qnty.toFixed(1)}`}
+                            value={(selectedTeam?.Qnty / 2) * 100}
+                            text={`${selectedTeam?.Qnty.toFixed(1)}`}
                             styles={{
                               path: {
-                                stroke: getColor(selectedTeam.Qnty),
+                                stroke: getColor(selectedTeam?.Qnty),
                                 transition: 'stroke-dashoffset 0.5s ease 0s',
                               },
                               trail: {
@@ -346,11 +347,12 @@ function TeamDetails() {
                           <ul className="list-disc ">
                             <li>Quantity</li>
                           </ul>
-                          <span style={{ color: getColor(selectedTeam.Qnty) }}>
-                            {selectedTeam.Qnty >= 1.5 && selectedTeam.Qnty <= 2
+                          <span style={{ color: getColor(selectedTeam?.Qnty) }}>
+                            {selectedTeam?.Qnty >= 1.5 &&
+                            selectedTeam?.Qnty <= 2
                               ? 'Good'
-                              : selectedTeam.Qnty >= 1 &&
-                                selectedTeam.Qnty < 1.5
+                              : selectedTeam?.Qnty >= 1 &&
+                                selectedTeam?.Qnty < 1.5
                               ? 'Improve'
                               : 'Poor'}
                           </span>
@@ -360,11 +362,11 @@ function TeamDetails() {
                     <div className=" w-full flex flex-row">
                       <div className="w-[90px] ">
                         <CircularProgressbar
-                          value={(selectedTeam.skills / 2) * 100}
-                          text={`${selectedTeam.skills.toFixed(1)}`}
+                          value={(selectedTeam?.skills / 2) * 100}
+                          text={`${selectedTeam?.skills.toFixed(1)}`}
                           styles={{
                             path: {
-                              stroke: getColor(selectedTeam.skills),
+                              stroke: getColor(selectedTeam?.skills),
                               transition: 'stroke-dashoffset 0.5s ease 0s',
                             },
                             trail: {
@@ -384,12 +386,12 @@ function TeamDetails() {
                         <ul className="list-disc ">
                           <li>Professionalism</li>
                         </ul>
-                        <span style={{ color: getColor(selectedTeam.skills) }}>
-                          {selectedTeam.skills >= 1.5 &&
-                          selectedTeam.skills <= 2
+                        <span style={{ color: getColor(selectedTeam?.skills) }}>
+                          {selectedTeam?.skills >= 1.5 &&
+                          selectedTeam?.skills <= 2
                             ? 'Good'
-                            : selectedTeam.skills >= 1 &&
-                              selectedTeam.skills < 1.5
+                            : selectedTeam?.skills >= 1 &&
+                              selectedTeam?.skills < 1.5
                             ? 'Improve'
                             : 'Poor'}
                         </span>

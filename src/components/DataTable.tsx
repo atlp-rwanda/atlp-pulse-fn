@@ -146,7 +146,7 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
                   colSpan={columns.length}
                   className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
                 >
-                  Loading...
+                  A Loading...
                 </td>
               </tr>
             )}

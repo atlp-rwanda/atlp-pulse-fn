@@ -1,6 +1,7 @@
 /* eslint-disable */
+'use client';
 import { useApolloClient, useMutation } from '@apollo/client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FaRegEnvelope, FaRegEye } from 'react-icons/fa';
@@ -45,6 +46,19 @@ function AdminLogin() {
   const [LoginUser] = useMutation(LOGIN_MUTATION);
   const client = useApolloClient();
   const [searchParams] = useSearchParams();
+  // Function to get the redirect_message from the URL and toast it
+  const showRedirectMessage = () => {
+    const redirectMessage = searchParams.get('redirect_message');
+    console.log(redirectMessage);
+    if (redirectMessage) {
+      toast.error(redirectMessage);
+    }
+  };
+
+  // Call showRedirectMessage when the component mounts
+  useEffect(() => {
+    showRedirectMessage();
+  }, [searchParams]);
 
   const onSubmit = async (userInput: any) => {
     userInput.orgToken = orgToken;
