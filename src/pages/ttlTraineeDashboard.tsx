@@ -25,6 +25,7 @@ import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 import { useTraineesContext } from '../hook/useTraineesData';
 import { XIcon } from '@heroicons/react/solid';
 import { FaTimes } from 'react-icons/fa';
+import { log } from 'console';
 const organizationToken = localStorage.getItem('orgToken');
 ``;
 /* istanbul ignore next */
@@ -55,6 +56,8 @@ const TtlTraineeDashboard = () => {
   const [hasData, setHasData] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
+
+  const [selectedTraineeId, setSelectedTraineeId]= useState<string[]>()
 
   const handleClickOpen2 = async () => {
     setIsLoaded(true);
@@ -121,18 +124,18 @@ const TtlTraineeDashboard = () => {
             }
           >
             <button
-              // className="bg-black text-white rounded-xl px-3 "
-              className={`${
-                row.original?.Status?.status === 'drop'
-                  ? ' bg-gray-500'
-                  : 'bg-black'
-              } text-white rounded-xl px-3`}
-              onClick={() => {
-                handleClickOpen2();
-              }}
-            >
-              {row.original?.Status?.status === 'drop' ? 'Dropped' : 'view'}
-            </button>
+  className={`${row.original?.Status?.status === 'drop'
+      ? 'bg-gray-500'
+      : 'bg-black'
+    } text-white rounded-xl px-3`}
+  onClick={() => {
+      setSelectedTraineeId(row.original?.email);
+      handleClickOpen2();
+  }}
+>
+  {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
+</button>
+
           </div>
         );
       },
@@ -199,6 +202,8 @@ const TtlTraineeDashboard = () => {
     });
   }, []);
 
+  console.log("trainee data ig",traineeData)
+
   return (
     <>
       {/* Get Trainee user details */}
@@ -211,15 +216,20 @@ const TtlTraineeDashboard = () => {
           className="rounded-lg relative"
           fullWidth
         >
-          <ViewWeeklyRatings
-            traineeName={traineeData[0]?.profile?.name || 'Unknown Name'}
-            traineeEmail={traineeData[0]?.email || 'Unknown Email'}
-            traineeId={traineeData[0]?.profile?.user?.id || 'Unknown ID'}
-            traineeCohort={traineeData[0]?.team?.cohort?.id || 'Unknown Cohort'}
+          {traineeData.map(data => {
+            if (data.email === selectedTraineeId) {
+              return <ViewWeeklyRatings
+            traineeName={data?.profile?.name || 'Unknown Name'}
+            traineeEmail={data?.email || 'Unknown Email'}
+            traineeId={data?.profile?.user?.id || 'Unknown ID'}
+            traineeCohort={data?.team?.cohort?.id || 'Unknown Cohort'}
             traineeStatus={
-              traineeData[0]?.profile?.user?.status || 'Status Unavailable'
+              data?.profile?.user?.status || 'Status Unavailable'
             }
           />
+            }
+          }
+            )}
 
           <FaTimes
             size={24}

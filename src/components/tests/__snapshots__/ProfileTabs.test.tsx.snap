@@ -54,7 +54,7 @@ Object {
               class="grid gap-4 md:grid-cols-6 md:gap-7"
             >
               <div
-                class="flex flex-col items-start justify-start gap-y-3 py-6 px-7 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
+                class="flex flex-col items-start shadow-[0px_3px_4px_rgba(0,0,0,0.4)] justify-start gap-y-3 py-6 px-7 bg-indigo-100 md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
               >
                 <div>
                   <h2
@@ -194,7 +194,7 @@ Object {
                 </div>
               </div>
               <div
-                class="p-6 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg rounded-md"
+                class="p-6 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg rounded-md"
               >
                 <h2
                   class="font-semibold text-[.84rem] md:text-[.95rem] mb-2 uppercase"
@@ -216,7 +216,7 @@ Object {
               class="grid md:grid-cols-5 gap-4 md:gap-7 hidden"
             >
               <div
-                class="flex flex-col items-start justify-start py-5 pl-7 bg-indigo-100 rounded-md shadow-md md:col-span-2 dark:bg-dark-bg "
+                class="flex flex-col items-start justify-start py-5 pl-7 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-indigo-100 rounded-md md:col-span-2 dark:bg-dark-bg "
               >
                 <div
                   class="flex items-center gap-x-2 mb-3"
@@ -251,7 +251,7 @@ Object {
                 />
               </div>
               <div
-                class="py-2 px-7 bg-indigo-100 rounded-md shadow-sm md:col-span-3 dark:bg-dark-bg "
+                class="py-2 pl-7 pr-1 md:px-7 bg-indigo-100 rounded-md shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg "
               >
                 <div
                   class="flex items-center justify-between"
@@ -262,7 +262,7 @@ Object {
                     Repository
                   </h2>
                   <button
-                    class="btn default md flex justify-center py-[5px] px-3  text-sm font-medium rounded-[3px] text-white bg-primary hover:bg-[#7a5edc]  font-serif"
+                    class="btn default md flex py-[4px] md:py-[5px] px-3 text-[.78rem] md:text-sm font-semibold rounded-[3px] text-white bg-primary hover:bg-[#7A5EDC]  font-serif "
                     data-testid="change_password"
                     type="button"
                   >
@@ -278,18 +278,18 @@ Object {
             id="link3"
           >
             <div
-              class="relative p-2 m-1 -ml-2 -mr-2 "
+              class="relative p-2 m-1 -ml-2 -mr-2"
             >
               <div
-                class="flex items-start justify-start p-1 shadow-md bg-primary md:col-span-2 rounded-t-2xl"
+                class="flex items-start justify-start p-1 shadow bg-primary md:col-span-2 rounded-t-2xl"
               >
                 <img
                   alt="logo"
-                  class="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
+                  class="absolute w-11 h-11 mt-1 md:mt-6 ml-5 md:ml-8 md:shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-white border rounded-full cursor-pointer md:w-[50px] md:h-[50px] border-primary"
                   src="[object Object]"
                 />
                 <div
-                  class="flex flex-col items-start justify-start ml-36"
+                  class="flex flex-col items-start justify-start ml-20 md:ml-36"
                 >
                   <h2
                     class="text-lg font-bold text-center text-dark-text-fill md:text-xl"
@@ -297,28 +297,48 @@ Object {
                     Unavailabe
                   </h2>
                   <h3
-                    class="text-sm font-bold text-center text-dark-text-fill md:text-lg "
+                    class="text-sm font-medium text-center text-dark-text-fill md:text-[16px] text-red"
                   >
                     https://andela.pusle.com
                   </h3>
                 </div>
               </div>
               <div
-                class="flex flex-row"
+                class="flex flex-col gap-3 md:flex-row my-6 md:m-8"
               >
                 <div
-                  class="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow-md dark:bg-dark-bg "
+                  class="flex flex-col items-start justify-start w-full p-4 md:mx-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] dark:bg-dark-bg "
                 >
                   <h3
-                    class="mb-4 text-2xl font-bold"
+                    class="mb-3 text-[0.95rem] font-semibold"
                   >
-                    You in the organization
+                    YOUR ORGANISATION DETAILS
                   </h3>
                   <div
-                    class="flex pb-2"
+                    class="flex pb-2 text-sm ml-3"
                   >
                     <h4
-                      class="mr-4 text-base font-bold"
+                      class="mr-4 font-medium"
+                    >
+                      Organisation name
+                      :
+                    </h4>
+                  </div>
+                  <div
+                    class="flex pb-2 text-sm ml-3"
+                  >
+                    <h4
+                      class="mr-4 font-medium"
+                    >
+                      Admin email
+                      :
+                    </h4>
+                  </div>
+                  <div
+                    class="flex pb-2 text-sm ml-3"
+                  >
+                    <h4
+                      class="mr-4 font-medium"
                     >
                       Role
                       :
@@ -417,7 +437,7 @@ Object {
                       </div>
                     </div>
                     <button
-                      class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif"
+                      class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif "
                       data-testid="change_password"
                       type="button"
                     >
@@ -434,10 +454,10 @@ Object {
           class="fixed  h-screen w-screen z-20 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center top-0 left-0 hidden"
         >
           <div
-            class="w-full p-4 pb-5 bg-white rounded-md dark:bg-dark-bg sm:w-2/5 lg:w-2/5"
+            class=" p-2 pb-3 md:p-4 md:pb-5 bg-white rounded-md dark:bg-dark-bg w-[90%] xmd:w-[70%] md:w-3/5 lg:w-2/5"
           >
             <div
-              class="flex flex-wrap items-center justify-center w-full card-title "
+              class="flex flex-wrap items-center justify-center w-full card-title mt-1 md:mt-0"
             >
               <h3
                 class="w-11/12 text-sm font-bold text-center bg- dark:text-white uppercase"
@@ -450,7 +470,7 @@ Object {
               class="card-body"
             >
               <form
-                class="flex flex-col gap-y-4 px-8 py-3 "
+                class="flex flex-col gap-y-4 px-3 md:px-8 py-3 "
               >
                 <p
                   class="text-sm dark:text-white "
@@ -459,7 +479,7 @@ Object {
                   class="flex items-center w-full h-full text-white rounded-md grouped-input"
                 >
                   <input
-                    class="w-full px-4 py-2 text-xs text-black border outline-none dark:bg-dark-tertiary border-primary"
+                    class="w-full px-4 py-2 text-xs text-black dark:text-white border outline-none dark:bg-dark-tertiary border-primary"
                     name="email"
                     placeholder="Enter repository name"
                     type="email"
@@ -470,14 +490,14 @@ Object {
                   class="flex gap-x-1 w-full"
                 >
                   <button
-                    class="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif"
+                    class="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif "
                     data-testid="removeInviteModel"
                     type="button"
                   >
                     Cancel
                   </button>
                   <button
-                    class="btn primary sm cursor-not-allowed text-[.84rem] bg-neutral-500 hover:bg-neutral-500 m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif"
+                    class="btn primary sm cursor-not-allowed text-[.8rem] md:text-[.84rem] bg-neutral-500 hover:bg-neutral-500 text-white hover:text-white m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-300 hover:text-gray-500"
                     disabled=""
                     type="button"
                   >
@@ -541,7 +561,7 @@ Object {
             class="grid gap-4 md:grid-cols-6 md:gap-7"
           >
             <div
-              class="flex flex-col items-start justify-start gap-y-3 py-6 px-7 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
+              class="flex flex-col items-start shadow-[0px_3px_4px_rgba(0,0,0,0.4)] justify-start gap-y-3 py-6 px-7 bg-indigo-100 md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
             >
               <div>
                 <h2
@@ -681,7 +701,7 @@ Object {
               </div>
             </div>
             <div
-              class="p-6 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg rounded-md"
+              class="p-6 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg rounded-md"
             >
               <h2
                 class="font-semibold text-[.84rem] md:text-[.95rem] mb-2 uppercase"
@@ -703,7 +723,7 @@ Object {
             class="grid md:grid-cols-5 gap-4 md:gap-7 hidden"
           >
             <div
-              class="flex flex-col items-start justify-start py-5 pl-7 bg-indigo-100 rounded-md shadow-md md:col-span-2 dark:bg-dark-bg "
+              class="flex flex-col items-start justify-start py-5 pl-7 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-indigo-100 rounded-md md:col-span-2 dark:bg-dark-bg "
             >
               <div
                 class="flex items-center gap-x-2 mb-3"
@@ -738,7 +758,7 @@ Object {
               />
             </div>
             <div
-              class="py-2 px-7 bg-indigo-100 rounded-md shadow-sm md:col-span-3 dark:bg-dark-bg "
+              class="py-2 pl-7 pr-1 md:px-7 bg-indigo-100 rounded-md shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg "
             >
               <div
                 class="flex items-center justify-between"
@@ -749,7 +769,7 @@ Object {
                   Repository
                 </h2>
                 <button
-                  class="btn default md flex justify-center py-[5px] px-3  text-sm font-medium rounded-[3px] text-white bg-primary hover:bg-[#7a5edc]  font-serif"
+                  class="btn default md flex py-[4px] md:py-[5px] px-3 text-[.78rem] md:text-sm font-semibold rounded-[3px] text-white bg-primary hover:bg-[#7A5EDC]  font-serif "
                   data-testid="change_password"
                   type="button"
                 >
@@ -765,18 +785,18 @@ Object {
           id="link3"
         >
           <div
-            class="relative p-2 m-1 -ml-2 -mr-2 "
+            class="relative p-2 m-1 -ml-2 -mr-2"
           >
             <div
-              class="flex items-start justify-start p-1 shadow-md bg-primary md:col-span-2 rounded-t-2xl"
+              class="flex items-start justify-start p-1 shadow bg-primary md:col-span-2 rounded-t-2xl"
             >
               <img
                 alt="logo"
-                class="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
+                class="absolute w-11 h-11 mt-1 md:mt-6 ml-5 md:ml-8 md:shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-white border rounded-full cursor-pointer md:w-[50px] md:h-[50px] border-primary"
                 src="[object Object]"
               />
               <div
-                class="flex flex-col items-start justify-start ml-36"
+                class="flex flex-col items-start justify-start ml-20 md:ml-36"
               >
                 <h2
                   class="text-lg font-bold text-center text-dark-text-fill md:text-xl"
@@ -784,28 +804,48 @@ Object {
                   Unavailabe
                 </h2>
                 <h3
-                  class="text-sm font-bold text-center text-dark-text-fill md:text-lg "
+                  class="text-sm font-medium text-center text-dark-text-fill md:text-[16px] text-red"
                 >
                   https://andela.pusle.com
                 </h3>
               </div>
             </div>
             <div
-              class="flex flex-row"
+              class="flex flex-col gap-3 md:flex-row my-6 md:m-8"
             >
               <div
-                class="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow-md dark:bg-dark-bg "
+                class="flex flex-col items-start justify-start w-full p-4 md:mx-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] dark:bg-dark-bg "
               >
                 <h3
-                  class="mb-4 text-2xl font-bold"
+                  class="mb-3 text-[0.95rem] font-semibold"
                 >
-                  You in the organization
+                  YOUR ORGANISATION DETAILS
                 </h3>
                 <div
-                  class="flex pb-2"
+                  class="flex pb-2 text-sm ml-3"
                 >
                   <h4
-                    class="mr-4 text-base font-bold"
+                    class="mr-4 font-medium"
+                  >
+                    Organisation name
+                    :
+                  </h4>
+                </div>
+                <div
+                  class="flex pb-2 text-sm ml-3"
+                >
+                  <h4
+                    class="mr-4 font-medium"
+                  >
+                    Admin email
+                    :
+                  </h4>
+                </div>
+                <div
+                  class="flex pb-2 text-sm ml-3"
+                >
+                  <h4
+                    class="mr-4 font-medium"
                   >
                     Role
                     :
@@ -904,7 +944,7 @@ Object {
                     </div>
                   </div>
                   <button
-                    class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif"
+                    class="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif "
                     data-testid="change_password"
                     type="button"
                   >
@@ -921,10 +961,10 @@ Object {
         class="fixed  h-screen w-screen z-20 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center top-0 left-0 hidden"
       >
         <div
-          class="w-full p-4 pb-5 bg-white rounded-md dark:bg-dark-bg sm:w-2/5 lg:w-2/5"
+          class=" p-2 pb-3 md:p-4 md:pb-5 bg-white rounded-md dark:bg-dark-bg w-[90%] xmd:w-[70%] md:w-3/5 lg:w-2/5"
         >
           <div
-            class="flex flex-wrap items-center justify-center w-full card-title "
+            class="flex flex-wrap items-center justify-center w-full card-title mt-1 md:mt-0"
           >
             <h3
               class="w-11/12 text-sm font-bold text-center bg- dark:text-white uppercase"
@@ -937,7 +977,7 @@ Object {
             class="card-body"
           >
             <form
-              class="flex flex-col gap-y-4 px-8 py-3 "
+              class="flex flex-col gap-y-4 px-3 md:px-8 py-3 "
             >
               <p
                 class="text-sm dark:text-white "
@@ -946,7 +986,7 @@ Object {
                 class="flex items-center w-full h-full text-white rounded-md grouped-input"
               >
                 <input
-                  class="w-full px-4 py-2 text-xs text-black border outline-none dark:bg-dark-tertiary border-primary"
+                  class="w-full px-4 py-2 text-xs text-black dark:text-white border outline-none dark:bg-dark-tertiary border-primary"
                   name="email"
                   placeholder="Enter repository name"
                   type="email"
@@ -957,14 +997,14 @@ Object {
                 class="flex gap-x-1 w-full"
               >
                 <button
-                  class="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif"
+                  class="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif "
                   data-testid="removeInviteModel"
                   type="button"
                 >
                   Cancel
                 </button>
                 <button
-                  class="btn primary sm cursor-not-allowed text-[.84rem] bg-neutral-500 hover:bg-neutral-500 m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif"
+                  class="btn primary sm cursor-not-allowed text-[.8rem] md:text-[.84rem] bg-neutral-500 hover:bg-neutral-500 text-white hover:text-white m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-300 hover:text-gray-500"
                   disabled=""
                   type="button"
                 >

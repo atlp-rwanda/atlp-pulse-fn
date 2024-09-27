@@ -131,7 +131,7 @@ exports[`<Home /> Renders Home 1`] = `
           onClick={[Function]}
         >
           <button
-            className="btn primary lg undefined font-serif"
+            className="btn primary lg undefined font-serif "
             disabled={false}
             type="button"
           >
@@ -145,7 +145,7 @@ exports[`<Home /> Renders Home 1`] = `
           onClick={[Function]}
         >
           <button
-            className="btn bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill lg mr-8 font-serif"
+            className="btn bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill lg mr-8 font-serif "
             disabled={false}
             type="button"
           >
@@ -241,7 +241,7 @@ exports[`<Home /> Renders Home 1`] = `
         onClick={[Function]}
       >
         <button
-          className="btn transparentbtn  ml-0 lg mr-8 font-serif"
+          className="btn transparentbtn  ml-0 lg mr-8 font-serif "
           disabled={false}
           type="button"
         >
@@ -274,7 +274,7 @@ exports[`<Home /> Renders Home 1`] = `
           onClick={[Function]}
         >
           <button
-            className="btn secondary md lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal  font-serif"
+            className="btn secondary md lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal  font-serif "
             disabled={false}
             type="button"
           >

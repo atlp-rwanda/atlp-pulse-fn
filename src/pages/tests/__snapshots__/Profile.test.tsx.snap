@@ -125,7 +125,7 @@ Object {
           class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full my-1 md:my-4 p-4 md:p-7 rounded-lg"
         >
           <button
-            class="btn default md rounded-[3px] bg-primary text-[.78rem] md:text-[.85rem] text-white focus:outline-none px-2 md:px-3 py-[4px] md:py-[6px] m-0 mb-6 font-serif"
+            class="btn default md rounded-[3px] bg-primary text-[.78rem] md:text-[.85rem] text-white focus:outline-none px-2 md:px-3 py-[4px] md:py-[6px] m-0 mb-6 font-serif "
             type="button"
           >
              
@@ -399,6 +399,7 @@ Object {
               class="w-full xmd:w-[7.7rem] h-8 flex flex-row items-center justify-center my-3 text-[.81rem] md:text-sm font-semibold rounded-[3px]  text-white bg-primary  dark:focus:ring-secondary m-0"
               type="submit"
             >
+              ~
               Update Profile
             </button>
           </form>
@@ -527,7 +528,7 @@ Object {
         class="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full my-1 md:my-4 p-4 md:p-7 rounded-lg"
       >
         <button
-          class="btn default md rounded-[3px] bg-primary text-[.78rem] md:text-[.85rem] text-white focus:outline-none px-2 md:px-3 py-[4px] md:py-[6px] m-0 mb-6 font-serif"
+          class="btn default md rounded-[3px] bg-primary text-[.78rem] md:text-[.85rem] text-white focus:outline-none px-2 md:px-3 py-[4px] md:py-[6px] m-0 mb-6 font-serif "
           type="button"
         >
            
@@ -801,6 +802,7 @@ Object {
             class="w-full xmd:w-[7.7rem] h-8 flex flex-row items-center justify-center my-3 text-[.81rem] md:text-sm font-semibold rounded-[3px]  text-white bg-primary  dark:focus:ring-secondary m-0"
             type="submit"
           >
+            ~
             Update Profile
           </button>
         </form>
@@ -913,7 +915,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
         className="grid gap-4 md:grid-cols-6 md:gap-7"
       >
         <div
-          className="flex flex-col items-start justify-start gap-y-3 py-6 px-7 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
+          className="flex flex-col items-start shadow-[0px_3px_4px_rgba(0,0,0,0.4)] justify-start gap-y-3 py-6 px-7 bg-indigo-100 md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
         >
           <div>
             <h2
@@ -1063,7 +1065,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
           </div>
         </div>
         <div
-          className="p-6 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg rounded-md"
+          className="p-6 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg rounded-md"
         >
           <h2
             className="font-semibold text-[.84rem] md:text-[.95rem] mb-2 uppercase"
@@ -1085,7 +1087,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
         className="grid md:grid-cols-5 gap-4 md:gap-7 hidden"
       >
         <div
-          className="flex flex-col items-start justify-start py-5 pl-7 bg-indigo-100 rounded-md shadow-md md:col-span-2 dark:bg-dark-bg "
+          className="flex flex-col items-start justify-start py-5 pl-7 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-indigo-100 rounded-md md:col-span-2 dark:bg-dark-bg "
         >
           <div
             className="flex items-center gap-x-2 mb-3"
@@ -1126,7 +1128,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
           />
         </div>
         <div
-          className="py-2 px-7 bg-indigo-100 rounded-md shadow-sm md:col-span-3 dark:bg-dark-bg "
+          className="py-2 pl-7 pr-1 md:px-7 bg-indigo-100 rounded-md shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg "
         >
           <div
             className="flex items-center justify-between"
@@ -1137,7 +1139,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
               Repository
             </h2>
             <button
-              className="btn default md flex justify-center py-[5px] px-3  text-sm font-medium rounded-[3px] text-white bg-primary hover:bg-[#7a5edc]  font-serif"
+              className="btn default md flex py-[4px] md:py-[5px] px-3 text-[.78rem] md:text-sm font-semibold rounded-[3px] text-white bg-primary hover:bg-[#7A5EDC]  font-serif "
               data-testid="change_password"
               disabled={false}
               onClick={[Function]}
@@ -1155,18 +1157,18 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
       id="link3"
     >
       <div
-        className="relative p-2 m-1 -ml-2 -mr-2 "
+        className="relative p-2 m-1 -ml-2 -mr-2"
       >
         <div
-          className="flex items-start justify-start p-1 shadow-md bg-primary md:col-span-2 rounded-t-2xl"
+          className="flex items-start justify-start p-1 shadow bg-primary md:col-span-2 rounded-t-2xl"
         >
           <img
             alt="logo"
-            className="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
+            className="absolute w-11 h-11 mt-1 md:mt-6 ml-5 md:ml-8 md:shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-white border rounded-full cursor-pointer md:w-[50px] md:h-[50px] border-primary"
             src={Object {}}
           />
           <div
-            className="flex flex-col items-start justify-start ml-36"
+            className="flex flex-col items-start justify-start ml-20 md:ml-36"
           >
             <h2
               className="text-lg font-bold text-center text-dark-text-fill md:text-xl"
@@ -1174,28 +1176,48 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
               Unavailabe
             </h2>
             <h3
-              className="text-sm font-bold text-center text-dark-text-fill md:text-lg "
+              className="text-sm font-medium text-center text-dark-text-fill md:text-[16px] text-red"
             >
               https://andela.pusle.com
             </h3>
           </div>
         </div>
         <div
-          className="flex flex-row"
+          className="flex flex-col gap-3 md:flex-row my-6 md:m-8"
         >
           <div
-            className="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow-md dark:bg-dark-bg "
+            className="flex flex-col items-start justify-start w-full p-4 md:mx-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] dark:bg-dark-bg "
           >
             <h3
-              className="mb-4 text-2xl font-bold"
+              className="mb-3 text-[0.95rem] font-semibold"
             >
-              You in the organization
+              YOUR ORGANISATION DETAILS
             </h3>
             <div
-              className="flex pb-2"
+              className="flex pb-2 text-sm ml-3"
             >
               <h4
-                className="mr-4 text-base font-bold"
+                className="mr-4 font-medium"
+              >
+                Organisation name
+                :
+              </h4>
+            </div>
+            <div
+              className="flex pb-2 text-sm ml-3"
+            >
+              <h4
+                className="mr-4 font-medium"
+              >
+                Admin email
+                :
+              </h4>
+            </div>
+            <div
+              className="flex pb-2 text-sm ml-3"
+            >
+              <h4
+                className="mr-4 font-medium"
               >
                 Role
                 :
@@ -1301,7 +1323,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
                 </div>
               </div>
               <button
-                className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif"
+                className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif "
                 data-testid="change_password"
                 disabled={false}
                 onClick={[Function]}
@@ -1320,10 +1342,10 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
     className="fixed  h-screen w-screen z-20 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center top-0 left-0 hidden"
   >
     <div
-      className="w-full p-4 pb-5 bg-white rounded-md dark:bg-dark-bg sm:w-2/5 lg:w-2/5"
+      className=" p-2 pb-3 md:p-4 md:pb-5 bg-white rounded-md dark:bg-dark-bg w-[90%] xmd:w-[70%] md:w-3/5 lg:w-2/5"
     >
       <div
-        className="flex flex-wrap items-center justify-center w-full card-title "
+        className="flex flex-wrap items-center justify-center w-full card-title mt-1 md:mt-0"
       >
         <h3
           className="w-11/12 text-sm font-bold text-center bg- dark:text-white uppercase"
@@ -1336,7 +1358,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
         className="card-body"
       >
         <form
-          className="flex flex-col gap-y-4 px-8 py-3 "
+          className="flex flex-col gap-y-4 px-3 md:px-8 py-3 "
         >
           <p
             className="text-sm dark:text-white "
@@ -1345,7 +1367,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
             className="flex items-center w-full h-full text-white rounded-md grouped-input"
           >
             <input
-              className="w-full px-4 py-2 text-xs text-black border outline-none dark:bg-dark-tertiary border-primary"
+              className="w-full px-4 py-2 text-xs text-black dark:text-white border outline-none dark:bg-dark-tertiary border-primary"
               name="email"
               onChange={[Function]}
               placeholder="Enter repository name"
@@ -1357,7 +1379,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
             className="flex gap-x-1 w-full"
           >
             <button
-              className="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif"
+              className="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif "
               data-testid="removeInviteModel"
               disabled={false}
               onClick={[Function]}
@@ -1366,7 +1388,7 @@ exports[`Profile Page Renders the others role profile tabs 1`] = `
               Cancel
             </button>
             <button
-              className="btn primary sm cursor-not-allowed text-[.84rem] bg-neutral-500 hover:bg-neutral-500 m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif"
+              className="btn primary sm cursor-not-allowed text-[.8rem] md:text-[.84rem] bg-neutral-500 hover:bg-neutral-500 text-white hover:text-white m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-300 hover:text-gray-500"
               disabled={true}
               onClick={[Function]}
               type="button"
@@ -1419,7 +1441,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
         className="grid gap-4 md:grid-cols-6 md:gap-7"
       >
         <div
-          className="flex flex-col items-start justify-start gap-y-3 py-6 px-7 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
+          className="flex flex-col items-start shadow-[0px_3px_4px_rgba(0,0,0,0.4)] justify-start gap-y-3 py-6 px-7 bg-indigo-100 md:col-span-3 dark:bg-dark-bg w-100 rounded-md"
         >
           <div>
             <h2
@@ -1569,7 +1591,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
           </div>
         </div>
         <div
-          className="p-6 bg-indigo-100 shadow-md md:col-span-3 dark:bg-dark-bg rounded-md"
+          className="p-6 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg rounded-md"
         >
           <h2
             className="font-semibold text-[.84rem] md:text-[.95rem] mb-2 uppercase"
@@ -1591,7 +1613,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
         className="grid md:grid-cols-5 gap-4 md:gap-7 hidden"
       >
         <div
-          className="flex flex-col items-start justify-start py-5 pl-7 bg-indigo-100 rounded-md shadow-md md:col-span-2 dark:bg-dark-bg "
+          className="flex flex-col items-start justify-start py-5 pl-7 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-indigo-100 rounded-md md:col-span-2 dark:bg-dark-bg "
         >
           <div
             className="flex items-center gap-x-2 mb-3"
@@ -1632,7 +1654,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
           />
         </div>
         <div
-          className="py-2 px-7 bg-indigo-100 rounded-md shadow-sm md:col-span-3 dark:bg-dark-bg "
+          className="py-2 pl-7 pr-1 md:px-7 bg-indigo-100 rounded-md shadow-[0px_3px_4px_rgba(0,0,0,0.4)] md:col-span-3 dark:bg-dark-bg "
         >
           <div
             className="flex items-center justify-between"
@@ -1643,7 +1665,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
               Repository
             </h2>
             <button
-              className="btn default md flex justify-center py-[5px] px-3  text-sm font-medium rounded-[3px] text-white bg-primary hover:bg-[#7a5edc]  font-serif"
+              className="btn default md flex py-[4px] md:py-[5px] px-3 text-[.78rem] md:text-sm font-semibold rounded-[3px] text-white bg-primary hover:bg-[#7A5EDC]  font-serif "
               data-testid="change_password"
               disabled={false}
               onClick={[Function]}
@@ -1661,18 +1683,18 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
       id="link3"
     >
       <div
-        className="relative p-2 m-1 -ml-2 -mr-2 "
+        className="relative p-2 m-1 -ml-2 -mr-2"
       >
         <div
-          className="flex items-start justify-start p-1 shadow-md bg-primary md:col-span-2 rounded-t-2xl"
+          className="flex items-start justify-start p-1 shadow bg-primary md:col-span-2 rounded-t-2xl"
         >
           <img
             alt="logo"
-            className="absolute w-12 h-12 mt-6 ml-8 bg-white border rounded-full cursor-pointer md:w-16 md:h-16 dark:bg-dark-bg border-primary"
+            className="absolute w-11 h-11 mt-1 md:mt-6 ml-5 md:ml-8 md:shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-white border rounded-full cursor-pointer md:w-[50px] md:h-[50px] border-primary"
             src={Object {}}
           />
           <div
-            className="flex flex-col items-start justify-start ml-36"
+            className="flex flex-col items-start justify-start ml-20 md:ml-36"
           >
             <h2
               className="text-lg font-bold text-center text-dark-text-fill md:text-xl"
@@ -1680,28 +1702,48 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
               Andela
             </h2>
             <h3
-              className="text-sm font-bold text-center text-dark-text-fill md:text-lg "
+              className="text-sm font-medium text-center text-dark-text-fill md:text-[16px] text-red"
             >
               https://andela.pusle.com
             </h3>
           </div>
         </div>
         <div
-          className="flex flex-row"
+          className="flex flex-col gap-3 md:flex-row my-6 md:m-8"
         >
           <div
-            className="flex flex-col items-start justify-start w-full p-4 m-2 mt-6 bg-indigo-100 shadow-md dark:bg-dark-bg "
+            className="flex flex-col items-start justify-start w-full p-4 md:mx-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] dark:bg-dark-bg "
           >
             <h3
-              className="mb-4 text-2xl font-bold"
+              className="mb-3 text-[0.95rem] font-semibold"
             >
-              You in the organization
+              YOUR ORGANISATION DETAILS
             </h3>
             <div
-              className="flex pb-2"
+              className="flex pb-2 text-sm ml-3"
             >
               <h4
-                className="mr-4 text-base font-bold"
+                className="mr-4 font-medium"
+              >
+                Organisation name
+                :
+              </h4>
+            </div>
+            <div
+              className="flex pb-2 text-sm ml-3"
+            >
+              <h4
+                className="mr-4 font-medium"
+              >
+                Admin email
+                :
+              </h4>
+            </div>
+            <div
+              className="flex pb-2 text-sm ml-3"
+            >
+              <h4
+                className="mr-4 font-medium"
               >
                 Role
                 :
@@ -1807,7 +1849,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
                 </div>
               </div>
               <button
-                className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif"
+                className="btn default md group relative md:w-2/3 sm:w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-secondary sm:mx-0 font-serif "
                 data-testid="change_password"
                 disabled={false}
                 onClick={[Function]}
@@ -1826,10 +1868,10 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
     className="fixed  h-screen w-screen z-20 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center top-0 left-0 hidden"
   >
     <div
-      className="w-full p-4 pb-5 bg-white rounded-md dark:bg-dark-bg sm:w-2/5 lg:w-2/5"
+      className=" p-2 pb-3 md:p-4 md:pb-5 bg-white rounded-md dark:bg-dark-bg w-[90%] xmd:w-[70%] md:w-3/5 lg:w-2/5"
     >
       <div
-        className="flex flex-wrap items-center justify-center w-full card-title "
+        className="flex flex-wrap items-center justify-center w-full card-title mt-1 md:mt-0"
       >
         <h3
           className="w-11/12 text-sm font-bold text-center bg- dark:text-white uppercase"
@@ -1842,7 +1884,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
         className="card-body"
       >
         <form
-          className="flex flex-col gap-y-4 px-8 py-3 "
+          className="flex flex-col gap-y-4 px-3 md:px-8 py-3 "
         >
           <p
             className="text-sm dark:text-white "
@@ -1851,7 +1893,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
             className="flex items-center w-full h-full text-white rounded-md grouped-input"
           >
             <input
-              className="w-full px-4 py-2 text-xs text-black border outline-none dark:bg-dark-tertiary border-primary"
+              className="w-full px-4 py-2 text-xs text-black dark:text-white border outline-none dark:bg-dark-tertiary border-primary"
               name="email"
               onChange={[Function]}
               placeholder="Enter repository name"
@@ -1863,7 +1905,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
             className="flex gap-x-1 w-full"
           >
             <button
-              className="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif"
+              className="btn info sm px-4 m-0 py-[6px] text-sm rounded-[3px] bg-neutral-500 hover:bg-neutral-600 font-serif "
               data-testid="removeInviteModel"
               disabled={false}
               onClick={[Function]}
@@ -1872,7 +1914,7 @@ exports[`Profile Page Renders the superAdmin profile tabs 1`] = `
               Cancel
             </button>
             <button
-              className="btn primary sm cursor-not-allowed text-[.84rem] bg-neutral-500 hover:bg-neutral-500 m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif"
+              className="btn primary sm cursor-not-allowed text-[.8rem] md:text-[.84rem] bg-neutral-500 hover:bg-neutral-500 text-white hover:text-white m-0 px-4 min-w-16 py-[6px] h-8 text-[.84rem] rounded-[3px] font-serif bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-300 hover:text-gray-500"
               disabled={true}
               onClick={[Function]}
               type="button"

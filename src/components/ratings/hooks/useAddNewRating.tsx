@@ -119,7 +119,7 @@ const useAddRating = ({
         content: ratingData.feedback.toString(),
       },
       onError: (err) => {
-        setFeedbackError('Leave a feedback');
+        setFeedbackError('This Trainee was Dropped out ');
       },
       onCompleted: () => {
         setRatingData(initialRatingData);

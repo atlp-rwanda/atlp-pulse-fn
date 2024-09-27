@@ -72,7 +72,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                 className="text-gray-400 border border-primary py-2 dark:bg-dark-bg rounded outline-none px-5 font-sans text-xs w-full h-[38px] "
                 data-placeholder="Date of birth"
                 id="date-placeholder"
-                max="2024-09-13"
+                max="2024-09-26"
                 name="dateOfBirth"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -301,7 +301,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
             className="w-full justify-center"
           >
             <button
-              className="btn transparentbtn md border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white font-serif"
+              className="btn transparentbtn md border-2 hover:bg-primary inline-block rounded-full lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium hover:text-white font-serif "
               disabled={false}
               type="submit"
             >

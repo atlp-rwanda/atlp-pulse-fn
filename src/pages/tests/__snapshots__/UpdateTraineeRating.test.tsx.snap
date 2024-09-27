@@ -49,7 +49,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               data-testid="removeApproveModel"
               disabled={false}
               onClick={[Function]}
@@ -60,7 +60,7 @@ Array [
                
             </button>
             <button
-              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -108,7 +108,7 @@ Array [
             className="w-full flex justify-between"
           >
             <button
-              className="btn info sm w-[30%] md:w-1/4 text-sm font-serif font-serif"
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-serif font-serif "
               data-testid="removeRejectModel"
               disabled={false}
               onClick={[Function]}
@@ -117,7 +117,7 @@ Array [
               Cancel
             </button>
             <button
-              className="btn danger sm w-[30%] md:w-1/4 text-sm font-serif font-serif"
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-serif font-serif "
               disabled={false}
               onClick={[Function]}
               type="button"
