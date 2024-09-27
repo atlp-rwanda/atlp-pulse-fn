@@ -43,19 +43,6 @@ function CalendarSkeleton() {
             </div>
           ))}
         </div>
-
-        {/* Event List */}
-        <div className="mt-4 space-y-2">
-          {events.map((event) => (
-            <div
-              key={event.id}
-              className="flex items-center justify-between p-2 bg-gray-800 rounded"
-            >
-              <div className="h-4 bg-gray-200 rounded w-3/4" />
-              <div className="h-4 bg-gray-200 rounded w-6" />
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );

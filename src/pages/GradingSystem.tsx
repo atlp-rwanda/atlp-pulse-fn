@@ -381,7 +381,7 @@ function GradingSystem() {
                     </div>
                   </div>
                 ) : (
-                  <GradingSkeleton/>
+                  <></>
                 )}
               </div>
             </div>
