@@ -78,8 +78,8 @@ function TeamDetails() {
         cohort: team?.cohort?.name,
         teamname: team.name,
         coordinator: team?.cohort?.coordinator?.profile
-          ? team.cohort.coordinator.profile.name
-          : team?.cohort.coordinator?.email,
+          ? team.cohort?.coordinator.profile.name
+          : team?.cohort?.coordinator?.email,
         ttl: team?.ttl?.profile ? team.ttl.profile.name : team?.ttl?.email,
         Qty,
         Qnty,
@@ -90,8 +90,8 @@ function TeamDetails() {
 
   const selectedTeam = teamData
     ? teamData.find(
-      (team: { teamname: string | null }) => team.teamname === teamname,
-    )
+        (team: { teamname: string | null }) => team.teamname === teamname,
+      )
     : null;
   function getColor(rating: number) {
     if (rating >= 1.5 && rating <= 2) {
@@ -232,7 +232,7 @@ function TeamDetails() {
                   </h1>
                 </div>
                 <div className="relative dark:text-black">
-                  <p>Coordinator: {selectedTeam.coordinator}</p>
+                  <p>Coordinator: {selectedTeam?.coordinator}</p>
                   <p>TTL: {selectedTeam.ttl}</p>
                 </div>
               </div>
@@ -314,8 +314,8 @@ function TeamDetails() {
                             {selectedTeam.Qty >= 1.5 && selectedTeam.Qty <= 2
                               ? 'Good'
                               : selectedTeam.Qty >= 1 && selectedTeam.Qty < 1.5
-                                ? 'Improve'
-                                : 'Poor'}
+                              ? 'Improve'
+                              : 'Poor'}
                           </span>
                         </div>
                       </div>
@@ -351,8 +351,8 @@ function TeamDetails() {
                               ? 'Good'
                               : selectedTeam.Qnty >= 1 &&
                                 selectedTeam.Qnty < 1.5
-                                ? 'Improve'
-                                : 'Poor'}
+                              ? 'Improve'
+                              : 'Poor'}
                           </span>
                         </div>
                       </div>
@@ -386,12 +386,12 @@ function TeamDetails() {
                         </ul>
                         <span style={{ color: getColor(selectedTeam.skills) }}>
                           {selectedTeam.skills >= 1.5 &&
-                            selectedTeam.skills <= 2
+                          selectedTeam.skills <= 2
                             ? 'Good'
                             : selectedTeam.skills >= 1 &&
                               selectedTeam.skills < 1.5
-                              ? 'Improve'
-                              : 'Poor'}
+                            ? 'Improve'
+                            : 'Poor'}
                         </span>
                       </div>
                     </div>
