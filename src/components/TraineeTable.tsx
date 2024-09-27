@@ -1,4 +1,3 @@
-
 /* eslint-disable react/button-has-type */
 // @ts-nocheck
 import React from 'react';
@@ -55,7 +54,10 @@ function Table({ data, columns, title, loading }: TableData) {
   return (
     <div className=" shadow-lg py-6  w-[100%] mb-10 font-serif">
       <div style={{ overflowX: 'auto' }}>
-        <table className=" leading-3 rounded-full w-[100%]" {...getTableProps()}>
+        <table
+          className=" leading-3 rounded-full w-[100%]"
+          {...getTableProps()}
+        >
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -72,7 +74,7 @@ function Table({ data, columns, title, loading }: TableData) {
               </tr>
             ))}
           </thead>
-          <tbody  {...getTableBodyProps()}>
+          <tbody {...getTableBodyProps()}>
             {page.map((row) => {
               prepareRow(row);
 
@@ -124,11 +126,3 @@ function Table({ data, columns, title, loading }: TableData) {
 }
 
 export default Table;
-
-
-
-
-
-
-
-

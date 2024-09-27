@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const CREATE_TICKET = gql`
-  mutation CreateTicket($subject: String!, $message: String!) {
-    createTicket(subject: $subject, message: $message) {
+  mutation CreateTicket($subject: String!, $message: String!, $assignee: ID!) {
+    createTicket(subject: $subject, message: $message, assignee: $assignee) {
       responseMsg
     }
   }

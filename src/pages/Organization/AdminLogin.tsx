@@ -76,16 +76,16 @@ function AdminLogin() {
             redirect
               ? navigate(`${redirect}`)
               : data.loginUser.user.role === 'superAdmin'
-                ? navigate(`/organizations`)
-                : data.loginUser.user.role === 'admin'
-                  ? navigate(`/trainees`)
-                  : data.loginUser.user.role === 'coordinator'
-                    ? navigate(`/trainees`)
-                    : data.loginUser.user.role === 'manager'
-                      ? navigate(`/dashboard`)
-                      : data.loginUser.user.role === 'ttl'
-                        ? navigate('/ttl-trainees')
-                        : navigate('/performance');
+              ? navigate(`/organizations`)
+              : data.loginUser.user.role === 'admin'
+              ? navigate(`/trainees`)
+              : data.loginUser.user.role === 'coordinator'
+              ? navigate(`/trainees`)
+              : data.loginUser.user.role === 'manager'
+              ? navigate(`/dashboard`)
+              : data.loginUser.user.role === 'ttl'
+              ? navigate('/ttl-trainees')
+              : navigate('/performance');
           } else {
             navigate('/dashboard');
           }
@@ -93,9 +93,11 @@ function AdminLogin() {
         onError: (err) => {
           /* istanbul ignore next */
           if (err.networkError)
-            toast.error('There was a problem contacting the server')
+            toast.error('There was a problem contacting the server');
           else if (err.message.toLowerCase() !== 'invalid credential') {
-            const translateError = t('Please wait to be added to a program or cohort')
+            const translateError = t(
+              'Please wait to be added to a program or cohort',
+            );
             toast.error(translateError);
           } else {
             /* istanbul ignore next */
@@ -178,7 +180,7 @@ function AdminLogin() {
                 {t('Welcome to')}{' '}
                 {orgName
                   ? orgName.charAt(0).toUpperCase() +
-                  orgName.slice(1).toLowerCase()
+                    orgName.slice(1).toLowerCase()
                   : ''}
               </h2>
               <div className="border-[1px] w-10 bg-primary border-primary inline-block mb-2" />
@@ -202,7 +204,7 @@ function AdminLogin() {
                 data-testid="loginForm"
               >
                 {errors.password &&
-                  errors.password.message === t('Invalid credentials') ? (
+                errors.password.message === t('Invalid credentials') ? (
                   <div className=" bg-red-400 rounded-md w-full text-center p-4 my-4">
                     <small className="text-white">
                       {errors.password.message}
@@ -250,14 +252,13 @@ function AdminLogin() {
                 </div>
                 <div className="pl-4 mb-1 text-left">
                   {errors.password &&
-                    errors.password.message !== t('Invalid credentials') ? (
+                  errors.password.message !== t('Invalid credentials') ? (
                     <small className="text-red-600">
                       {errors.password.message}
                     </small>
                   ) : (
                     ''
                   )}
-
                 </div>
                 <div className="flex w-full flex-col sm:flex-row justify-between  items-center rounded mb-5 mt-5">
                   <div className="w-50%">

@@ -31,14 +31,17 @@ describe('Settings page tests', () => {
 
     const push = getByTestId('pushChange');
     fireEvent.click(push);
-    expect(push).toHaveClass('ml-auto border relative inline-flex h-6 w-12 items-center rounded-full');
+    expect(push).toHaveClass(
+      'ml-auto border relative inline-flex h-6 w-12 items-center rounded-full',
+    );
 
     const email = getByTestId('emailChange');
     fireEvent.click(email);
-    expect(email).toHaveClass('ml-auto border relative inline-flex h-6 w-12 items-center rounded-full');
-
+    expect(email).toHaveClass(
+      'ml-auto border relative inline-flex h-6 w-12 items-center rounded-full',
+    );
   });
-  
+
   it('changes value after selecting another theme', () => {
     const elem = renderer
       .create(

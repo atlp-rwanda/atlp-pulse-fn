@@ -108,8 +108,9 @@ const Calendar = () => {
     <>
       {/* =========================== Start::  RegisterTraineeModel =========================== */}
       <div
-        className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${addEventModel === true ? 'block' : 'hidden'
-          }`}
+        className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
+          addEventModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -155,9 +156,9 @@ const Calendar = () => {
                     value={newEvent.hostName}
                     onChange /* istanbul ignore next */={(e) =>
                       /* istanbul ignore next */ setNewEvent({
-                      ...newEvent,
-                      hostName: e.target.value,
-                    })
+                        ...newEvent,
+                        hostName: e.target.value,
+                      })
                     }
                   />
                 </div>
@@ -172,9 +173,9 @@ const Calendar = () => {
                     selected={newEvent.start}
                     onChange /* istanbul ignore next */={(start: any) =>
                       /* istanbul ignore next */ setNewEvent({
-                      ...newEvent,
-                      start,
-                    })
+                        ...newEvent,
+                        start,
+                      })
                     }
                   />
                 </div>

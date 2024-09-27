@@ -60,25 +60,25 @@ function SupAdDashboard() {
         className={`font-serif overflow-hidden h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
           }`}
       >
-        <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4  xl:w-4/12 rounded-lg p-4 pb-8">
-          <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-            <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+        <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
               {t('Send Invitation')}
             </h3>
-            <hr className=" bg-primary border-gray-400 my-3 w-full" />
+            <hr className="w-full my-3 border-gray-400  bg-primary" />
           </div>
           <div className="card-body">
-            <form className=" py-3 px-8">
-              <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
-                <h3 className="font-bold text-sm dark:text-white text-center w-11/12 ">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
                   {t(
                     'Fill in the email to invite an organisation to DevPulse.',
                   )}
                 </h3>
               </div>
 
-              <div className="text-white input my-3 h-9 ">
-                <div className="text-white grouped-input flex items-center h-full w-full rounded-md">
+              <div className="my-3 text-white input h-9 ">
+                <div className="flex items-center w-full h-full text-white rounded-md grouped-input">
                   <input
                     data-testid="inviteInput"
                     value={inviteEmail}
@@ -87,13 +87,13 @@ function SupAdDashboard() {
                     }}
                     type="email"
                     name="email"
-                    className=" dark:bg-dark-tertiary text-black border border-primary py-2 rounded outline-none px-5 font-sans text-xs w-full"
+                    className="w-full px-5 py-2 font-sans text-xs text-black border rounded outline-none  dark:bg-dark-tertiary border-primary"
                     placeholder={t('email')}
                   />
                 </div>
               </div>
 
-              <div className="w-full flex justify-between">
+              <div className="flex justify-between w-full">
                 <Button
                   data-testid="removeInviteModel"
                   variant="info"
@@ -125,7 +125,7 @@ function SupAdDashboard() {
       {/* =========================== End::  InviteTraineeModel =============================== */}
 
       <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
-        <div className="flex flex-row pb-8 justify-center">
+        <div className="flex flex-row justify-center pb-8">
           <div className="w-[100%] h-[100%]">
             {/* <div className="grid grid-cols-2 mb-12 md:mb-24 lg:mb-0 lg:grid-cols-4">
             <Card text={t('Coordinators')} number={47} />
@@ -135,8 +135,8 @@ function SupAdDashboard() {
           </div>
           <Chart title={t('Overall performance')} /> */}
             <div>
-              {/* <div className="bg-light-bg dark:bg-dark-frame-bg  ">
-                <div className="flex items-left px-10 lg:px-60 pt-24 pb-8"> */}
+              {/* <div className="bg-light-bg dark:bg-dark-frame-bg ">
+                <div className="flex px-10 pt-24 pb-8 items-left lg:px-60"> */}
               {/* <div className="flex gap-2 pt-5">
                 {user?.role === 'coordinator' || undefined ? (
                   ''

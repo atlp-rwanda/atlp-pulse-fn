@@ -360,7 +360,7 @@ export default function ProfileTabs({ data: profileData }: any) {
         <div className="lg:w-[40vw]">
           {/* Profile tabs option start */}
           <ul
-            className="flex  pt-3 pb-4 mb-0 text-black list-none dark:text-dark-text-fill"
+            className="flex pt-3 pb-4 mb-0 text-black list-none dark:text-dark-text-fill"
             role="tablist"
           >
             {tabs
@@ -429,7 +429,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                   <h2 className="font-semibold text-[.84rem] md:text-[.95rem] mb-3">
                     BASIC INFORMATION
                   </h2>
-                  <div className="flex flex-col gap-y-3 ml-5">
+                  <div className="flex flex-col ml-5 gap-y-3">
                     <div className="flex items-center gap-x-2">
                       <FaUserAlt className="w-5 dark:text-dark-text-fill" />
                       <span className="text-sm">
@@ -477,7 +477,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                   <h2 className="font-semibold text-[.84rem] md:text-[.95rem] mt-5 mb-3">
                     RESUME
                   </h2>
-                  <div className="flex items-center gap-x-2 ml-5">
+                  <div className="flex items-center ml-5 gap-x-2">
                     {traineeProfile?.resume ? (
                       <>
                         <BookOpenIcon className="w-5 dark:text-dark-text-fill" />
@@ -675,12 +675,12 @@ export default function ProfileTabs({ data: profileData }: any) {
               }`}
             >
               <div className="flex flex-col items-start justify-start py-5 pl-7 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] bg-indigo-100 rounded-md md:col-span-2 dark:bg-dark-bg ">
-                <div className="flex items-center gap-x-2 mb-3">
+                <div className="flex items-center mb-3 gap-x-2">
                   <h2 className="font-semibold text-[.84rem] md:text-[.95rem] uppercase">
                     {t('Github Organisation')}
                   </h2>
                   <FiEdit3
-                    className="text-base md:text-lg hover:text-primary text-black dark:text-dark-text-fill cursor-pointer"
+                    className="text-base text-black cursor-pointer md:text-lg hover:text-primary dark:text-dark-text-fill"
                     onClick={() => {
                       setOrg(organisation?.gitHubOrganisation);
                       setOrgModel(true);
@@ -692,7 +692,7 @@ export default function ProfileTabs({ data: profileData }: any) {
                     <a
                       href={`https://github.com/${organisation.gitHubOrganisation}`}
                       target="_blank"
-                      className="flex items-center gap-x-2 ml-5"
+                      className="flex items-center ml-5 gap-x-2"
                     >
                       <VscOrganization className="text-lg dark:text-dark-text-fill" />
                       <span className="text-sm">
@@ -732,7 +732,7 @@ Add New </button> */}
                           {repo}
                         </span>
                         <FaEraser
-                          className="text-sm mr-2 dark:text-dark-text-fill cursor-pointer"
+                          className="mr-2 text-sm cursor-pointer dark:text-dark-text-fill"
                           onClick={() => {
                             setRepo(repo);
                             setRemoveRepoModel(true);
@@ -766,32 +766,32 @@ Add New </button> */}
                   </h3>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 md:flex-row my-6 md:m-8">
+              <div className="flex flex-col gap-3 my-6 md:flex-row md:m-8">
                 <div className="flex flex-col items-start justify-start w-full p-4 md:mx-2 bg-indigo-100 shadow-[0px_3px_4px_rgba(0,0,0,0.4)] dark:bg-dark-bg ">
                   <h3 className="mb-3 text-[0.95rem] font-semibold">
                     {t('YOUR ORGANISATION DETAILS')}
                   </h3>
-                  <div className="flex pb-2 text-sm ml-3">
+                  <div className="flex pb-2 ml-3 text-sm">
                     <h4 className="mr-4 font-medium">
                       {t('Organisation name')}:
                     </h4>
                     {organisation.name}
                   </div>
                   {user?.role != 'admin' && (
-                    <div className="flex pb-2 text-sm ml-3">
+                    <div className="flex pb-2 ml-3 text-sm">
                       <h4 className="mr-4 font-medium">{t('Admin email')}:</h4>
                       {organisation?.admin?.email}
                     </div>
                   )}
                   {user?.role === 'admin' && (
-                    <div className="flex pb-2 text-sm ml-3">
+                    <div className="flex pb-2 ml-3 text-sm">
                       <h4 className="mr-4 font-medium">
                         {t('Github organisation')}:
                       </h4>
                       {organisation?.gitHubOrganisation}
                     </div>
                   )}
-                  <div className="flex pb-2 text-sm ml-3">
+                  <div className="flex pb-2 ml-3 text-sm">
                     <h4 className="mr-4 font-medium">{t('Role')}:</h4>
                     {user?.role}
                   </div>
@@ -805,25 +805,25 @@ Add New </button> */}
                         {t('MANAGEMENT')}
                       </h3>
                       {managementData.program && (
-                        <div className="flex justify-center pb-2 text-sm font-medium ml-3">
+                        <div className="flex justify-center pb-2 ml-3 text-sm font-medium">
                           <h4 className="mr-2">{t('Program')}:</h4>
                           {managementData.program}
                         </div>
                       )}
                       {managementData.cohort && (
-                        <div className="flex pb-2 text-sm font-medium ml-3">
+                        <div className="flex pb-2 ml-3 text-sm font-medium">
                           <h4 className="mr-2">{t('Cohort')}:</h4>
                           {managementData.cohort}
                         </div>
                       )}
                       {managementData.team && (
-                        <div className="flex pb-2 text-sm font-medium ml-3">
+                        <div className="flex pb-2 ml-3 text-sm font-medium">
                           <h4 className="mr-2">{t('Team')}:</h4>
                           {managementData.team}
                         </div>
                       )}
                       {managementData.phase && (
-                        <div className="flex pb-2 text-sm font-medium ml-3">
+                        <div className="flex pb-2 ml-3 text-sm font-medium">
                           <h4 className="mr-2">{t('Phase')}:</h4>
                           {managementData.phase}
                         </div>
@@ -850,8 +850,8 @@ Add New </button> */}
         }`}
       >
         <div className=" p-2 pb-3 md:p-4 md:pb-5 bg-white rounded-md dark:bg-dark-bg w-[90%] xmd:w-[70%] md:w-3/5 lg:w-2/5">
-          <div className="flex flex-wrap items-center justify-center w-full card-title mt-1 md:mt-0">
-            <h3 className="w-11/12 text-sm font-bold text-center bg- dark:text-white uppercase">
+          <div className="flex flex-wrap items-center justify-center w-full mt-1 card-title md:mt-0">
+            <h3 className="w-11/12 text-sm font-bold text-center uppercase bg- dark:text-white">
               {(orgModel && 'Add Edit Organisation') ||
                 (repoModel && 'Add New Repository') ||
                 (removeRepoModel && t('Remove Repository'))}
@@ -859,7 +859,7 @@ Add New </button> */}
             <hr className="w-full my-3 border-b bg-primary" />
           </div>
           <div className="card-body">
-            <form className="flex flex-col gap-y-4 px-3 md:px-8 py-3 ">
+            <form className="flex flex-col px-3 py-3 gap-y-4 md:px-8 ">
               <p className="text-sm dark:text-white ">
                 {(orgModel && 'Fill in the organisation name.') ||
                   (repoModel && 'Fill in the repository name.') ||
@@ -880,7 +880,7 @@ Add New </button> */}
                     }}
                     type="email"
                     name="email"
-                    className="w-full px-4 py-2 text-xs text-black dark:text-white border outline-none dark:bg-dark-tertiary border-primary"
+                    className="w-full px-4 py-2 text-xs text-black border outline-none dark:text-white dark:bg-dark-tertiary border-primary"
                     placeholder={
                       orgModel
                         ? 'Enter organisation name'
@@ -890,7 +890,7 @@ Add New </button> */}
                 </div>
               )}
 
-              <div className="flex gap-x-1 w-full">
+              <div className="flex w-full gap-x-1">
                 <Button
                   data-testid="removeInviteModel"
                   variant="info"

@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   scroll-behavior: smooth;
@@ -35,9 +35,11 @@
 
 /* 404 Page */
 .errorImg {
-  background-image: linear-gradient(90deg,
+  background-image: linear-gradient(
+      90deg,
       rgba(0, 0, 0, 0.724),
-      rgba(17, 0, 43, 0.753)),
+      rgba(17, 0, 43, 0.753)
+    ),
     url(https://res.cloudinary.com/deygsvbub/image/upload/v1691651478/Home_page_image_1_io1spq.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -124,7 +126,6 @@
 }
 
 @supports (-webkit-touch-callout: none) {
-
   /* CSS specific to iOS devices */
   .hero {
     background-attachment: scroll;
@@ -434,7 +435,7 @@ th {
   grid-template-rows: auto 1fr auto;
 }
 
-.page-layout>* {
+.page-layout > * {
   max-width: min(100%, 100vw);
   box-sizing: border-box;
 }
@@ -477,7 +478,7 @@ th {
 }
 
 /*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
-@media screen and (max-width:575px) {
+@media screen and (max-width: 575px) {
   .Progres-bar {
     display: flex;
     flex-direction: column;
@@ -514,7 +515,6 @@ th {
     display: flex;
     flex-direction: column;
     gap: 20px;
-
   }
 
   .cohort-phase {
@@ -531,15 +531,13 @@ th {
   }
 }
 
-
 .trainee-table tr:nth-child(even) {
   background-color: #fcfdff;
 }
 
 /* TRAINEE DASHBOARD */
 /*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
-@media screen and (max-width:375px) {
-
+@media screen and (max-width: 375px) {
   .cohort-phase {
     display: block;
     width: 100%;
@@ -553,8 +551,7 @@ th {
 
 /* TRAINEE DASHBOARD */
 /*====================MEDIA QUERIES(STUBBORN SMALL DEVICES)==================*/
-@media screen and (max-width:393px) {
-
+@media screen and (max-width: 393px) {
   .cohort-phase {
     display: flex;
     flex-direction: row;
@@ -564,9 +561,7 @@ th {
 
   .cohort-bar {
     display: none;
-
   }
-
 }
 
 .custom-scrollbar::-webkit-scrollbar {

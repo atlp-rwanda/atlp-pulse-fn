@@ -5,7 +5,7 @@ import DataTable from '../../components/DataTable';
 import Spinner from '../../components/Spinner';
 
 const GET_COORDINATORS = gql`
-  query Query ($orgToken: String){
+  query Query($orgToken: String) {
     getAllCoordinators(orgToken: $orgToken) {
       email
       profile {
@@ -51,12 +51,6 @@ export default function CoordinatorsPage() {
       setCoordinators(extractedCoordinators);
     }
   }, [data]);
-
-
-
-  
-
-
 
   const columns = [
     {

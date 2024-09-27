@@ -36,35 +36,60 @@ function SigninOrgDocs() {
                 </p>
                 <ol className="list-decimal ml-6">
                   <li className="mb-2">
-                    <b className=" text-black dark:text-white"> Locate the Sign In Button:</b> Once you are on the homepage,
-                    look for the Sign In button in the navigation bar.
+                    <b className=" text-black dark:text-white">
+                      {' '}
+                      Locate the Sign In Button:
+                    </b>{' '}
+                    Once you are on the homepage, look for the Sign In button in
+                    the navigation bar.
                   </li>
                   <li className="mb-2">
-                    <b className="text-black dark:text-white"> Choose the Organization:</b> After clicking the Sign In button,
-                    you will be prompted to either <span className="text-primary">select an organization from
-                      the available options or type in the name of the
-                      organization you belong to</span>.
+                    <b className="text-black dark:text-white">
+                      {' '}
+                      Choose the Organization:
+                    </b>{' '}
+                    After clicking the Sign In button, you will be prompted to
+                    either{' '}
+                    <span className="text-primary">
+                      select an organization from the available options or type
+                      in the name of the organization you belong to
+                    </span>
+                    .
                   </li>
                   <li className="mb-2">
-                    <b className="text-black dark:text-white">Verification:</b> If the organization you selected or typed in
-                    is registered on our platform, you will be directed to a
-                    user login page.
+                    <b className="text-black dark:text-white">Verification:</b>{' '}
+                    If the organization you selected or typed in is registered
+                    on our platform, you will be directed to a user login page.
                   </li>
                   <li className="mb-2">
-                    <b className="text-black dark:text-white">Provide Valid Credentials:</b> On the user login page, you must
-                    <span className="text-primary"> enter correct credentials</span>. These credentials include
-                    your registered email and password of an existing user
-                    within the organization.
+                    <b className="text-black dark:text-white">
+                      Provide Valid Credentials:
+                    </b>{' '}
+                    On the user login page, you must
+                    <span className="text-primary">
+                      {' '}
+                      enter correct credentials
+                    </span>
+                    . These credentials include your registered email and
+                    password of an existing user within the organization.
                   </li>
                   <li className="mb-2">
-                    <b className="text-black dark:text-white"> Access Granted:</b> If your provided credentials match those of
-                    an existing user in the organization, you will be granted
-                    access to proceed further into the organization's account.
+                    <b className="text-black dark:text-white">
+                      {' '}
+                      Access Granted:
+                    </b>{' '}
+                    If your provided credentials match those of an existing user
+                    in the organization, you will be granted access to proceed
+                    further into the organization's account.
                   </li>
                   <li className="mb-2">
-                    <b className="text-black dark:text-white"> Access Denied:</b> If the organization you selected is not
-                    registered or the credentials you provided are incorrect,
-                    access will be denied, and you will not be able to proceed.
+                    <b className="text-black dark:text-white">
+                      {' '}
+                      Access Denied:
+                    </b>{' '}
+                    If the organization you selected is not registered or the
+                    credentials you provided are incorrect, access will be
+                    denied, and you will not be able to proceed.
                   </li>
                 </ol>
                 <p className="text-gray-800 mt-4">

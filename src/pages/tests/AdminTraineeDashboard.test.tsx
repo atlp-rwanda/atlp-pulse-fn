@@ -4,7 +4,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import AdminTraineeDashboard from '../AdminTraineeDashboard';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
 describe('AdminTraineeDashboard Tests', () => {
   it('Renders AdminTraineeDashboard', () => {

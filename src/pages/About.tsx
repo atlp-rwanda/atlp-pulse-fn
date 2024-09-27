@@ -73,15 +73,12 @@ function Testimonial() {
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className={`bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl ${currentIndex === index ? 'visible' : 'hidden'
-              }`}
+            className={`bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl ${
+              currentIndex === index ? 'visible' : 'hidden'
+            }`}
           >
             <div className="flex flex-col sm:flex-row  mb-6 items-center">
-              <img
-                className="sm:w-1/4"
-                src={testimonial.image}
-                alt=""
-              />
+              <img className="sm:w-1/4" src={testimonial.image} alt="" />
 
               <ul>
                 <li className="text-xs ml-3  dark:text-slate-300 text-neutral-600">
@@ -225,4 +222,4 @@ function About({ styles }: any) {
     </div>
   );
 }
-export { About }
+export { About };

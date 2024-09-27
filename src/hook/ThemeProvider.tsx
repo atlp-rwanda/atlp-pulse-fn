@@ -1,6 +1,10 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, ReactNode, useState } from 'react';
-import useDarkMode, { getInitialTheme, setThemeHeader, ThemeType } from './useDarkMode';
+import useDarkMode, {
+  getInitialTheme,
+  setThemeHeader,
+  ThemeType,
+} from './useDarkMode';
 
 interface Props {
   children?: ReactNode;

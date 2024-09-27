@@ -91,13 +91,13 @@ const TraineeAttendance: React.FC = () => {
 
   return (
     <>
-      <div className="bg-light-bg dark:bg-dark-frame-bg font-serif">
+      <div className="font-serif bg-light-bg dark:bg-dark-frame-bg">
         <div className="">
-          <div className="bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-full">
+          <div className="w-full px-5 py-8 bg-white rounded-md shadow-lg dark:bg-dark-bg">
             <div className=""></div>
             <div>
-              <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-2 overflow-x-auto">
-                <div className="inline-block w-full lg:min-w-full shadow rounded-lg overflow-hidden">
+              <div className="px-4 py-2 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
+                <div className="inline-block w-full overflow-hidden rounded-lg shadow lg:min-w-full">
                   <table className="min-w-full leading-normal">
                     <tbody>
                       <tr>
@@ -113,14 +113,14 @@ const TraineeAttendance: React.FC = () => {
                           <tr key={week.weekNumber}>
                             <td
                               data-testid={week.weekNumber}
-                              className="border-b border-gray-300 px-4 py-2 text-center"
+                              className="px-4 py-2 text-center border-b border-gray-300"
                             >
                               {week.weekNumber}
                             </td>
                             {week.traineeAttendance.map((dayData: any) => (
                               <td
                                 data-testid={dayData.days}
-                                className="border-b border-gray-300 px-4 py-2 text-center"
+                                className="px-4 py-2 text-center border-b border-gray-300"
                                 key={dayData.days}
                               >
                                 {dayData.value}

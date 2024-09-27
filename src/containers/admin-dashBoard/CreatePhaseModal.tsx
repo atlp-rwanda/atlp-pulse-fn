@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import React  from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -61,9 +61,9 @@ export default function CreatePhaseModal({
       onCompleted() {
         reset();
         refetch();
-          setTimeout(() => {
-            removeModel();
-          }, 1000);
+        setTimeout(() => {
+          removeModel();
+        }, 1000);
         toast.success(t('Phase Created successfully') as TFunction);
       },
     });

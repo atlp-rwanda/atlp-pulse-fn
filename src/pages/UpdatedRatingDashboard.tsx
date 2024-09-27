@@ -255,8 +255,9 @@ function UpdatedRatingDashboard() {
     <>
       {/*= ===========================Start:: ViewFeedback ================================= */}
       <div
-        className={`font-serif min-h-full w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-30 bg-black bg-opacity-30 backdrop-blur-sm ${viewFeedback ? 'block' : 'hidden'
-          }`}
+        className={`font-serif min-h-full w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-30 bg-black bg-opacity-30 backdrop-blur-sm ${
+          viewFeedback ? 'block' : 'hidden'
+        }`}
         onClick={() => handleCloseModal()}
       >
         {rows.feedbackContent === rows.oldFeedback.toString() ? (
@@ -271,7 +272,7 @@ function UpdatedRatingDashboard() {
             <div className="font-serif card-title w-full flex flex-wrap justify-center items-center">
               <button
                 className="ml-auto font-serif"
-                aria-label='close-modal'
+                aria-label="close-modal"
                 type="submit"
                 onClick={() => handleCloseModal()}
                 style={{ color: 'red' }}
@@ -297,8 +298,9 @@ function UpdatedRatingDashboard() {
 
       {/* =========================== Start::  approveModel =============================== */}
       <div
-        className={`font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 ${approveModel ? 'block' : 'hidden'
-          }`}
+        className={`font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 ${
+          approveModel ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -349,8 +351,9 @@ function UpdatedRatingDashboard() {
 
       {/* =========================== Start::  rejectModel =============================== */}
       <div
-        className={` font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${rejectModel === true ? 'block' : 'hidden'
-          }`}
+        className={` font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 ${
+          rejectModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
