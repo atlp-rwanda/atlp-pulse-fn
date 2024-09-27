@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* istanbul ignore file */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, gql, useLazyQuery, useMutation } from '@apollo/client';
 import { IoIosAddCircleOutline, IoIosSearch } from 'react-icons/io';
 import { FaCheck, FaFilter } from 'react-icons/fa';
@@ -80,6 +80,7 @@ function Invitation() {
     role: '',
     status: '',
   });
+  const modalRef = useRef<any>(null);
 
   const organizationToken = localStorage.getItem('orgToken');
   
@@ -146,6 +147,18 @@ function Invitation() {
       }
     }
   }, [data, selectedInvitationId]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setSelectedRow(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [modalRef]);
 
   useEffect(() => {
     if (isLoading) {
@@ -334,7 +347,9 @@ function Invitation() {
               onClick={() => toggleOptions(row.id)}
             />
             {selectedRow === row.id && (
-              <div className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
+              <div 
+                ref={modalRef}
+                className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
                 <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
