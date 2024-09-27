@@ -34,6 +34,9 @@ export interface Team {
   name: string;
   cohort: Cohort;
   ttl: any;
+  manager: any;
+  phase: any;
+  program: any;
 }
 
 export const getAllTeam = gql`
@@ -72,6 +75,15 @@ export const getAllTeam = gql`
         quality
         professional_Skills
       }
+      phase {
+        name
+      }
+      program {
+        name
+      }
+      manager {
+        email
+      }
     }
 
     getAllCohorts(orgToken: $orgToken) {
@@ -95,6 +107,15 @@ export const getAllTeam = gql`
       email
       role
       organizations
+    }
+    getAllPrograms(orgToken: $orgToken) {
+      id
+      name
+    }
+    getAllPhases(orgToken: $orgToken) {
+      id
+      name
+      description
     }
   }
 `;
@@ -224,17 +245,16 @@ function AdminTeams() {
         }),
     },
   ];
-
-  const teamData = getData?.getAllTeams.map(({ name, cohort, ttl }) => ({
-    name,
-    cohortName: cohort?.name,
-    coordinator: cohort?.coordinator?.email
-      ? cohort?.coordinator?.email
-      : 'Not Assigned',
-    phase: cohort?.phase.name,
-    programName: cohort?.program?.name,
-    ttlEmail: ttl?.profile && ttl.profile.name ? ttl?.email : 'Not Assigned',
-  }));
+  const teamData = getData?.getAllTeams.map(
+    ({ name, cohort, ttl, phase, program, manager }) => ({
+      name,
+      cohortName: cohort?.name,
+      coordinator: manager?.email ? manager?.email : cohort?.coordinator?.email,
+      phase: phase?.name ? phase?.name : cohort?.phase?.name,
+      programName: program?.name ? program?.name : cohort?.program?.name,
+      ttlEmail: ttl?.profile && ttl.profile.name ? ttl?.email : 'Not Assigned',
+    }),
+  );
 
   return (
     <>

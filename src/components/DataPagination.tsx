@@ -24,7 +24,7 @@ function DataPagination({
           <tfoot className="w-full py-2">
             <tr className="w-full py-2">
               <td colSpan={columnLength}>
-                <div className="w-full justify-between flex mx-auto flex-row items-center">
+                <div className="flex flex-row items-center justify-between w-full mx-auto">
                   <div className="flex">
                     <button
                       type="button"
@@ -57,7 +57,7 @@ function DataPagination({
                       | Go to page:{' '}
                       <input
                         type="number"
-                        className=" outline-none border rounded-md appearance-none border-primary dark:bg-primary pl-1"
+                        className="pl-1 border rounded-md outline-none appearance-none  border-primary dark:bg-primary"
                         defaultValue={pageIndex + 1}
                         onChange={(e) => {
                           const pageNumber = e.target.value
@@ -74,7 +74,7 @@ function DataPagination({
                       />
                     </span>{' '}
                     <select
-                      className="px-1/2 font-raleway rounded-md border border-dark dark:bg-primary focus:outline-none"
+                      className="border rounded-md px-1/2 font-raleway border-dark dark:bg-primary focus:outline-none"
                       value={pageSize}
                       onChange={(e) => setPageSize(Number(e.target.value))}
                       style={{ height: '30px', border: 'solid 0.1rem #9e85f5' }}

@@ -1,7 +1,5 @@
 /* eslint-disable no-restricted-globals */
 
-
-
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 // import { MenuIcon, XIcon } from '@heroicons/react/outline';
@@ -113,7 +111,6 @@ function DashHeader() {
         setNotificationData(data.getAllNotification);
       } catch (error: any) {
         // eslint-disable-next-line no-console
-        console.log('error');
       }
     };
     fetchData();
@@ -167,7 +164,6 @@ function DashHeader() {
           </div>
 
           <div className="inline-flex relative items-center p-0 text-sm font-medium text-center text-black  ml-auto dark:bg-dark-bg rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300   dark:focus:ring-blue-800">
-
             <BellIcon
               className="w-6 cursor-pointer ml-auto  dark:text-dark-text-fill"
               onClick={handleShowNotification}
@@ -214,14 +210,13 @@ function DashHeader() {
                 user?.profileImage
                   ? user?.profileImage
                   : profileData?.getProfile?.avatar
-                    ? profileData?.getProfile?.avatar
-                    : Avatar
+                  ? profileData?.getProfile?.avatar
+                  : Avatar
               }
               alt="avatar"
             />
           </div>
           <div className="flex px-5 lg:hidden">
-
             {/* <button type="button" onClick={handleClick}>
             {!open ? (
               <MenuIcon className="w-7 dark:text-dark-text-fill" />

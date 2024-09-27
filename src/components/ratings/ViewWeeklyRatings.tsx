@@ -149,12 +149,12 @@ function ViewSprintRatings({
 
   return (
     <div className="flex flex-col border-black w-full bg-[#E0E7FF] dark:bg-[#4B4B4B] px-8 font-serif">
-      <div className=" relative py-8 ">
+      <div className="relative py-8 ">
         <h3 className="w-11/12 text-[16px] font-bold text-center dark:text-white">
           {t('Trainee')} : {traineeName}
         </h3>
         {/* <h1
-          className="absolute right-0 top-2 text-red-500   transform rotate-45 w-120 h-120 text-5xl cursor-pointer"
+          className="absolute right-0 text-5xl text-red-500 transform rotate-45 cursor-pointer top-2 w-120 h-120"
           onClick={() => {
             handleClose(); 
           }}
@@ -176,11 +176,11 @@ function ViewSprintRatings({
                     ? setSelectViewSprint(!selectViewSprint)
                     : setSelectViewSprint(false)
                 }
-                className="inline-flex font-light justify-center w-full rounded-md "
+                className="inline-flex justify-center w-full font-light rounded-md "
               >
                 {currentSprint}
                 <svg
-                  className="-mr-1 ml-3 h-5 w-5"
+                  className="w-5 h-5 ml-3 -mr-1"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -199,7 +199,7 @@ function ViewSprintRatings({
           )}
 
           {selectViewSprint ? (
-            <div className="fixed mt-1 w-56 rounded-md shadow-lg bg-white z-99">
+            <div className="fixed w-56 mt-1 bg-white rounded-md shadow-lg z-99">
               <div className="py-1">
                 {sprintOptions.map((sprint) => (
                   // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
@@ -209,7 +209,7 @@ function ViewSprintRatings({
                       setSelectSprint(sprint);
                       setSelectViewSprint(!selectViewSprint);
                     }}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer"
+                    className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100 hover:text-gray-900"
                   >
                     Sprint {sprint}
                   </p>
@@ -294,7 +294,7 @@ function ViewSprintRatings({
                   </table>
                 )}
               </div>
-              <div className="pt-6 flex gap-4">
+              <div className="flex gap-4 pt-6">
                 {t('Feedback')} :
                 <div>
                   {rating.feedbacks.length !== 0
@@ -369,8 +369,8 @@ function ViewSprintRatings({
           <h1 className="text-[#5F49AC] dark:text-[#C7B9F9] font-semibold">
             {t('Update Rating')}
           </h1>
-          <div className=" my-2 mt-6 md:mt-4 flex flex-col gap-3 md:flex-row ">
-            <div className=" w-40 h-28 flex flex-col gap-2 md:flex-col justify-start items-center ">
+          <div className="flex flex-col gap-3 my-2 mt-6  md:mt-4 md:flex-row">
+            <div className="flex flex-col items-center justify-start w-40 gap-2  h-28 md:flex-col">
               <div className="w-full font-medium">{t('Quality')}:</div>
               <select
                 name="quality"
@@ -382,7 +382,7 @@ function ViewSprintRatings({
                   });
                 }}
                 id="qualityRating"
-                className="rounded-md appearance-none relative block w-full px-0 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
+                className="relative block w-full px-0 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-dark-text-fill dark:border-white "
               >
                 <option value="-1" disabled>
                   {t('Select rating')}
@@ -394,7 +394,7 @@ function ViewSprintRatings({
                 </>
               </select>
             </div>
-            <div className="w-40 h-28 flex flex-col gap-2 md:flex-col justify-start items-center  ">
+            <div className="flex flex-col items-center justify-start w-40 gap-2 h-28 md:flex-col ">
               <div className="w-full font-medium">{t('Quantity')}:</div>
               <select
                 name="quantity"
@@ -406,7 +406,7 @@ function ViewSprintRatings({
                     quantity: e.target.value,
                   })
                 }
-                className="rounded-md appearance-none relative block w-full px-0 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
+                className="relative block w-full px-0 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-dark-text-fill dark:border-white "
               >
                 <option value="-1" disabled>
                   {t('Select rating')}
@@ -418,7 +418,7 @@ function ViewSprintRatings({
                 </>
               </select>
             </div>
-            <div className="w-40 h-28 flex flex-col gap-2 md:flex-col justify-start items-center ">
+            <div className="flex flex-col items-center justify-start w-40 gap-2 h-28 md:flex-col ">
               <div className="w-full font-medium">{t('Professionalism')}:</div>
               <select
                 name="professional"
@@ -430,7 +430,7 @@ function ViewSprintRatings({
                     professional: e.target.value,
                   })
                 }
-                className="rounded-md appearance-none relative block w-full px-0 py-2 border dark:bg-dark-bg border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm  dark:text-dark-text-fill dark:border-white "
+                className="relative block w-full px-0 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none dark:bg-dark-bg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:text-dark-text-fill dark:border-white "
               >
                 <option value="-1" disabled>
                   {t('Select rating')}
@@ -458,7 +458,7 @@ function ViewSprintRatings({
               className="h-32 w-full dark:bg-[#6F6F6F] rounded-xl px-3 py-2"
             />
 
-            <div className="mt-4 md:mt-8 flex justify-end">
+            <div className="flex justify-end mt-4 md:mt-8">
               <Button
                 type="button"
                 variant="primary"

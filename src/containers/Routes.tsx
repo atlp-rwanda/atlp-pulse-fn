@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React, { Suspense } from 'react';
-import { Routes, Route, Outlet } from 'react-router-dom';
-import Home from '../pages/Home';
-import Header from '../components/Header';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import Footer from '../components/Footer';
-import Error from './../pages/Error';
+import Header from '../components/Header';
 import Skeleton from '../components/Skeleton';
-import UserRegister from '../pages/Organization/UserRegister';
+import Home from '../pages/Home';
 import Message from '../pages/Organization/Message';
+import UserRegister from '../pages/Organization/UserRegister';
+import Error from './../pages/Error';
 /* istanbul ignore next */
 const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
 /* istanbul ignore next */
@@ -32,19 +32,20 @@ const SignupOrgDocs = React.lazy(
 const SigninOrgDocs = React.lazy(
   () => import('../components/Docs/SigninOrgDocs'),
 );
-const UsersDocs = React.lazy( () => import ('../components/Docs/users'),)
+const UsersDocs = React.lazy(() => import('../components/Docs/users'));
 /* istanbul ignore next */
+import DashRoutes from '../containers/DashRoutes';
 import Noredirect from '../pages/Noredirect';
+import RedirectHandler from '../pages/RedirectHandler';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
-import DashRoutes from '../containers/DashRoutes';
 
 function MainRoutes() {
   return (
     <div className="min-h-screen page-layout">
       <Suspense fallback={<Skeleton />}>
         <Routes>
-          <Route path="/*" element={<DashRoutes />} />     
+          <Route path="/*" element={<DashRoutes />} />
           <Route
             path="/"
             element={
@@ -91,7 +92,8 @@ function MainRoutes() {
             />
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
             <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
-            <Route path='/docs/getting-started' element={< UsersDocs />} />
+            <Route path="/docs/getting-started" element={<UsersDocs />} />
+            <Route path="/redirect" element={<RedirectHandler />} />
             <Route path="/noredirect" element={<Noredirect />} />
           </Route>
           <Route path="*" element={<Error />} />

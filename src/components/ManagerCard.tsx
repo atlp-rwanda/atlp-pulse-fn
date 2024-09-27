@@ -144,10 +144,10 @@ function ManagerCard() {
         grade,
         teamname: team.name,
         coordinator: team?.cohort?.coordinator?.profile
-          ? team.cohort.coordinator.profile.name
-          : team?.cohort.coordinator?.email,
+          ? team.cohort?.coordinator.profile.name
+          : team?.cohort?.coordinator?.email,
         ttl: team?.ttl?.profile ? team.ttl.profile.name : team?.ttl?.email,
-        phase: team.cohort.phase.name,
+        phase: team?.cohort?.phase?.name,
         week:
           calculateWeeks(team.startingPhase) > 0
             ? calculateWeeks(team.startingPhase)
@@ -161,9 +161,7 @@ function ManagerCard() {
     });
 
   return (
-    <div
-      className="font-serif px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto "
-    >
+    <div className="font-serif px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto ">
       {loading ? (
         <div className="flex items-center justify-center w-full h-full">
           <div className="spinner" />
@@ -172,7 +170,7 @@ function ManagerCard() {
         <div className="pl-10 flex">
           {teamData &&
             teamData.map((teamProps: any, index: number) => (
-              <Link key={index} to={`/team/${(teamProps.teamname)}`}>
+              <Link key={index} to={`/team/${teamProps.teamname}`}>
                 <Card {...teamProps} />
               </Link>
             ))}

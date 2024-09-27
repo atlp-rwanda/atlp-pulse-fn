@@ -12,16 +12,16 @@ function App() {
   return (
     <div className="min-h-screen">
       <TicketsProvider>
-          <TraineesProvider>
-            <Router>
-              <ScrollToTop>
-                <Routes>
-                  <Route path="/" element={<LandingPage />} />
-                  <Route path="/*" element={<MainRoutes />} />
-                </Routes>
-              </ScrollToTop>
-            </Router>
-          </TraineesProvider>
+        <TraineesProvider>
+          <Router>
+            <ScrollToTop>
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/*" element={<MainRoutes />} />
+              </Routes>
+            </ScrollToTop>
+          </Router>
+        </TraineesProvider>
       </TicketsProvider>
     </div>
   );

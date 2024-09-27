@@ -15,8 +15,10 @@ export const GET_INVITATIONS_STATISTICS_QUERY = gql`
     ) {
       totalInvitations
       pendingInvitationsCount
+      cancelledInvitationsCount
       getPendingInvitationsPercentsCount
       getAcceptedInvitationsPercentsCount
+      getCancelledInvitationsPercentsCount
       acceptedInvitationsCount
     }
   }

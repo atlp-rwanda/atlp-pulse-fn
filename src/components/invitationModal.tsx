@@ -27,6 +27,7 @@ function InviteForm({ onClose }: InviteFormProps) {
   const [email, setEmail] = useState<string>('');
   const [role, setRole] = useState<string>('Role');
   const [orgToken, setOrgToken] = useState<string>('');
+  const [orgName,setOrgName] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>('');
   const [sendInvitation, { loading, error }] = useMutation(SEND_INVITATION);
@@ -37,6 +38,7 @@ function InviteForm({ onClose }: InviteFormProps) {
   );
 
   const organisationToken = localStorage.getItem('orgToken');
+  const organisationName = localStorage.getItem('orgName');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] || null;
@@ -52,7 +54,7 @@ function InviteForm({ onClose }: InviteFormProps) {
     }
 
     try {
-      const { data } = await uploadFile({ variables: { file, orgToken } });
+      const { data } = await uploadFile({ variables: { file,orgName,orgToken } });
       if (data && data.uploadInvitationFile) {
         const { message, sentEmails } = data.uploadInvitationFile;
         if (sentEmails === 0) {
@@ -79,7 +81,10 @@ function InviteForm({ onClose }: InviteFormProps) {
     if (organisationToken) {
       setOrgToken(organisationToken);
     }
-  }, [organisationToken]);
+    if(organisationName){
+      setOrgName(organisationName)
+    }
+  }, [organisationToken,organisationName]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,12 +100,14 @@ function InviteForm({ onClose }: InviteFormProps) {
       await sendInvitation({
         variables: {
           invitees: [{ email, role }],
+          orgName,
           orgToken,
         },
       });
       toast.success('Invitation sent successfully!');
       setEmail('');
       setRole('Role');
+      setOrgName('');
       setOrgToken('');
       onClose();
     } catch (e: any) {

@@ -153,7 +153,7 @@ function AddRatings({
                           <div className="relative mt-0 md:mt-4">
                             <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-primary text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm">
                               <Combobox.Input
-                               /* istanbul ignore next */
+                                /* istanbul ignore next */
                                 placeholder={t('Select trainee')}
                                 className="w-full border-none py-2 pl-3 pr-10 text-sm placeholder:text-white leading-5 bg-primary text-white focus:border-white focus:outline-none focus:ring-1 focus:ring-white"
                                 displayValue={trainee.map((i: any) => i?.email)}
@@ -175,7 +175,7 @@ function AddRatings({
                             <Transition
                               as={Fragment}
                               leave="transition ease-in duration-100"
-                               /* istanbul ignore next */
+                              /* istanbul ignore next */
                               leaveFrom="opacity-100"
                               leaveTo="opacity-0"
                               afterLeave={() => setQuery('')}
@@ -212,7 +212,7 @@ function AddRatings({
                                         }`
                                       }
                                       value={trainee}
-                                       /* istanbul ignore next */
+                                      /* istanbul ignore next */
                                     >
                                       {({ selected, active }) => (
                                         <>
@@ -355,7 +355,7 @@ function AddRatings({
                         </Button>
                         <div className="flex flex-col justify-start items-start w-full my-0 md:my-2">
                           <select
-                           /* istanbul ignore next */
+                            /* istanbul ignore next */
                             name="quality"
                             value={ratingData.quality}
                             onChange={(e) =>

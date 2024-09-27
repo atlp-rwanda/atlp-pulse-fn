@@ -16,7 +16,6 @@ interface TableRow {
   quantity: number;
   professionalism: number;
   attendance: number;
-
 }
 
 interface TraineeChartProps {
@@ -24,7 +23,6 @@ interface TraineeChartProps {
 }
 
 const TraineeChart: React.FC<TraineeChartProps> = ({ barChartData }) => {
-
   const chartData = barChartData
     .map((entry) => ({
       name: entry.sprint,

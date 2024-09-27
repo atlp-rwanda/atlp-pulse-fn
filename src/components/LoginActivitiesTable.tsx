@@ -127,10 +127,13 @@ const LoginActivitiesTable: React.FC = () => {
         <tbody className="flex flex-col flex-wrap my-2">
           {displayActivities.map((activity) => (
             /* istanbul ignore next */
-            <tr className="w-full flex flex-wrap lg:pl-[3em] pt-2" key={activity.country_name}>
-
+            <tr
+              className="w-full flex flex-wrap lg:pl-[3em] pt-2"
+              key={activity.country_name}
+            >
               <td className="md:w-[25%] border-r border-[#148fb6]">
-                {new Date(activity.date).toLocaleString()} {/* Convert UTC date to local time */}
+                {new Date(activity.date).toLocaleString()}{' '}
+                {/* Convert UTC date to local time */}
               </td>
               <td className="md:w-[15%] border-r border-[#148fb6]">
                 {activity.country_name}
@@ -145,11 +148,12 @@ const LoginActivitiesTable: React.FC = () => {
               <td className="md:w-[20%] border-r border-[#148fb6]">
                 {activity.IPv4}
               </td>
-              <td className="md:w-[10%] ">{activity.failed > 0 ? "Failed" : "Success"}</td>
+              <td className="md:w-[10%] ">
+                {activity.failed > 0 ? 'Failed' : 'Success'}
+              </td>
             </tr>
           ))}
         </tbody>
-
 
         <tbody className="flex flex-col flex-wrap my-2">
           {displayActivities.map((activity) => (

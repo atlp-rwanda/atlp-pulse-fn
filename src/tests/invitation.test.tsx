@@ -35,6 +35,7 @@ const mocks = [
       query: SEND_INVITATION,
       variables: {
         invitees: [{ email: 'test@example.com', role: 'admin' }],
+        orgName:'mockName',
         orgToken: 'mockToken',
       },
     },
@@ -51,7 +52,9 @@ const mocks = [
 describe('InviteForm', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (localStorage.getItem as jest.Mock).mockReturnValue('mockToken');
+    (localStorage.getItem as jest.Mock)
+  .mockReturnValueOnce('mockToken')  
+  .mockReturnValueOnce('mockName');  
   });
 
   it('renders correctly', () => {

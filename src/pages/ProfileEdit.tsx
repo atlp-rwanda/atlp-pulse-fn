@@ -107,7 +107,7 @@ function EditProfile() {
   };
 
   return (
-    <div className="h-full mx-auto bg-light-bg dark:bg-dark-frame-bg font-serif">
+    <div className="h-full mx-auto font-serif bg-light-bg dark:bg-dark-frame-bg">
       <ProfileCoverpage data={profile} currentPage="editProfile" />
       <div className="flex flex-wrap mt-6 md:mt-5">
         <ul
@@ -145,7 +145,7 @@ function EditProfile() {
       </div>
 
       {tab === 0 && (
-        <div className="border bg-indigo-100 dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full my-1 md:my-4 p-4 md:p-7 rounded-lg">
+        <div className="w-full p-4 my-1 bg-indigo-100 border rounded-lg dark:border-dark-bg dark:bg-dark-bg dark:text-white md:my-4 md:p-7">
           <Button
             variant="default"
             size="md"
@@ -158,10 +158,10 @@ function EditProfile() {
             </Link>
           </Button>
           <form
-            className="flex flex-col gap-y-4 w-full"
+            className="flex flex-col w-full gap-y-4"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="flex flex-col xmd:flex-row gap-6 lg:gap-10 w-full">
+            <div className="flex flex-col w-full gap-6 xmd:flex-row lg:gap-10">
               <div className="flex flex-col gap-y-3 basis-1/2">
                 {profileFields.map((field) => {
                   if (
@@ -194,7 +194,7 @@ function EditProfile() {
                   }
                   return null;
                 })}
-                <div className="flex gap-x-4 w-full">
+                <div className="flex w-full gap-x-4">
                   {profileFields.map((field) => {
                     if (
                       ['address', 'city'].includes(
@@ -259,7 +259,7 @@ function EditProfile() {
                     )}
                   />
                 </div>
-                <div className="flex flex-col items-start justify-start md:col-span-2 h-full">
+                <div className="flex flex-col items-start justify-start h-full md:col-span-2">
                   <label
                     htmlFor="Biography"
                     className="mb-[2px] font-semibold text-[.84rem] md:text-[.87rem]"
@@ -292,7 +292,7 @@ function EditProfile() {
       )}
 
       {tab === 1 && (
-        <div className="font-serif lg:px-4 border bg-white dark:border-dark-bg  dark:bg-dark-bg dark:text-white w-full h-fit my-6 rounded-lg">
+        <div className="w-full my-6 font-serif bg-white border rounded-lg lg:px-4 dark:border-dark-bg dark:bg-dark-bg dark:text-white h-fit">
           <div>
             <Resume />
           </div>

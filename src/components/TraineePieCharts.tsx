@@ -29,7 +29,7 @@ export default function TraineePieCharts() {
     <div className="flex flex-row gap-4  max-w-[30%] max-h-[50%] ">
       {/* Performance Doughnut Chart */}
 
-      <div className='flex flex-col gap-4'>
+      <div className="flex flex-col gap-4">
         <PieChart width={200} height={200}>
           <Pie
             data={data}
@@ -57,25 +57,23 @@ export default function TraineePieCharts() {
             />
           </Pie>
           <Legend
-             payload={[
+            payload={[
               {
                 value: data[0].name,
-                type: "circle",
-                color: "#6F6F6F",
+                type: 'circle',
+                color: '#6F6F6F',
               },
             ]}
             iconSize={10}
-
           />
         </PieChart>
-        <p  className=' text-[#1b5e20] ml-16'>Good</p>
-
+        <p className=" text-[#1b5e20] ml-16">Good</p>
       </div>
 
       {/* Quality Doughnut Chart */}
-      <div className='flex flex-col gap-2'>
+      <div className="flex flex-col gap-2">
         <PieChart width={200} height={200}>
-        <Pie
+          <Pie
             data={qualityData}
             dataKey="value"
             cx="50%"
@@ -101,26 +99,23 @@ export default function TraineePieCharts() {
             />
           </Pie>
           <Legend
-             payload={[
+            payload={[
               {
                 value: qualityData[0].name,
-                type: "circle",
-                color: "#6F6F6F",
+                type: 'circle',
+                color: '#6F6F6F',
               },
-
             ]}
             iconSize={10}
           />
-
         </PieChart>
-        <p  className='text-[#b71c1c] ml-20 '>Need to improve</p>
-
+        <p className="text-[#b71c1c] ml-20 ">Need to improve</p>
       </div>
- 
+
       {/* Quantity Doughnut Chart */}
-      <div className='flex flex-col gap-2'>
+      <div className="flex flex-col gap-2">
         <PieChart width={200} height={200}>
-        <Pie
+          <Pie
             data={quantityData}
             dataKey="value"
             cx="50%"
@@ -146,20 +141,17 @@ export default function TraineePieCharts() {
             />
           </Pie>
           <Legend
-             payload={[
+            payload={[
               {
                 value: quantityData[0].name,
-                type: "circle",
-                color: "#6F6F6F",
+                type: 'circle',
+                color: '#6F6F6F',
               },
             ]}
             iconSize={10}
-
           />
-
         </PieChart>
-        <p  className='text-[#ffeb3b] ml-20'>Good</p>
-
+        <p className="text-[#ffeb3b] ml-20">Good</p>
       </div>
     </div>
   );

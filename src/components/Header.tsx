@@ -15,8 +15,8 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   /* istanbul ignore next */
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
-  const location = useLocation()
-  const pathname = location.pathname.split("/")[1]
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[1];
 
   const goTo = orgToken ? '/users/login' : '/login/org';
 
@@ -75,7 +75,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             <li className="px-5 text-xl dark:text-dark-text-fill">
               <NavLink
                 className={() => {
-                  if (pathname === "docs") return 'text-primary';
+                  if (pathname === 'docs') return 'text-primary';
                   return '';
                 }}
                 to="/docs/getting-started"
