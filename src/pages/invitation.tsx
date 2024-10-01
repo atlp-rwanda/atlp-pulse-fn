@@ -19,6 +19,7 @@ import {
   CANCEL_INVITATION,
   DELETE_INVITATION,
   UPDATE_INVITATION,
+  RESEND_INVITATION
 } from '../Mutations/invitationMutation';
 import Button from '../components/Buttons';
 import {
@@ -55,6 +56,7 @@ function Invitation() {
     startDate: '',
     endDate: '',
   });
+  const [resendInvitationModel,setResendInvatationModel]= useState(false)
   const { t }: any = useTranslation();
   const removeInviteeMod = () => {
     const newState = !removeInviteeModel;
@@ -69,6 +71,7 @@ function Invitation() {
   const [selectedRow, setSelectedRow] = useState<string | null>(null);
   const [removeInviteeModel, setRemoveInviteeModel] = useState(false);
   const [deleteInvitation, setDeleteInvitation] = useState('');
+  const[invitationToResend,setInvitationToResend]=useState('')
   const [updateInviteeModel, setUpdateInviteeModel] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('');
@@ -429,7 +432,12 @@ function Invitation() {
 
                   {row.original.Status === 'Pending' && (
                     <div className="mb-4">
-                      <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                      onClick={() => {
+                        setResendInvatationModel(true);
+                        setInvitationToResend(row.original.id);
+                        toggleOptions(row.original.email);
+                      }}>
                         <Icon
                           icon="mdi:arrow-up-circle"
                           width="40"
@@ -498,6 +506,28 @@ function Invitation() {
       </>
     );
   }
+
+  const [ResendInvitation]=useMutation(RESEND_INVITATION,{
+    variables:{
+      invitationId:invitationToResend,
+      orgToken:organizationToken 
+    },
+      onCompleted:(data)=>{
+        setTimeout(()=>{
+          setButtonLoading(false);
+          toast.success(data.resendInvitation.message);
+          refetch();
+          setResendInvatationModel(false)
+        })
+      }
+      ,onError:(error)=>{
+        setTimeout(() => {
+          setButtonLoading(false);
+          toast.error(error.message);
+        }, 500);
+      }
+
+  })
 
   const [DeleteInvitation] = useMutation(DELETE_INVITATION, {
     variables: {
@@ -622,7 +652,7 @@ function Invitation() {
             className="lg:bg-[#9e85f5] bg-none lg:text-white text-[#9e85f5] text-lg lg:text-lg rounded-md h-10 flex items-center justify-center w-[27%]"
           >
             <IoIosAddCircleOutline className="w-6 h-6 md:w-8 md:h-8 md:mr-2 xm:w-8 xm:h-8 sm:w-10 sm:h-10" />
-            <span className="hidden lg:block">Invite User</span>
+            <span className="hidden lg:block text-sm">Invite User</span>
           </button>
         </div>
       </div>
@@ -1013,6 +1043,60 @@ function Invitation() {
                   loading={buttonLoading}
                 >
                   {t('Update')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {/* resend invitation modal */}
+
+      <div
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          resendInvitationModel === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+              {t('Resend Invitation')}
+            </h3>
+            <hr className="w-full my-3 border-b bg-primary" />
+          </div>
+          <div className="card-body">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+                  {t('Are you sure you want to Resend this invitation?')}
+                </h3>
+              </div>
+
+              <div className="flex justify-between w-full">
+                <Button
+                  data-testid="removeModel2"
+                  variant="info"
+                  size="sm"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => setResendInvatationModel(false)}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="removeMemberFromCohort"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    setButtonLoading(true);
+                    if (invitationToResend) {
+                      ResendInvitation();
+                    } else {
+                      toast.error('No invitation selected');
+                    }
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('Proceed')}
                 </Button>
               </div>
             </form>
