@@ -4,14 +4,7 @@ import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Phase } from './Phases';
-
-export const DeletePhase = gql`
-  mutation DeletePhase($deletePhaseId: ID!, $orgToken: String) {
-    deletePhase(id: $deletePhaseId, orgToken: $orgToken) {
-      id
-    }
-  }
-`;
+import { DeletePhase } from '../../Mutations/phaseMutations';
 
 export default function DeletePhaseModal({
   deletePhaseModal,

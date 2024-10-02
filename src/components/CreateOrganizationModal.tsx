@@ -4,17 +4,7 @@ import { useForm } from 'react-hook-form';
 import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from './Buttons';
-
-export const AddOrganization = gql`
-  mutation AddOrganization(
-    $organizationInput: OrganizationInput
-    $action: String
-  ) {
-    addOrganization(organizationInput: $organizationInput, action: $action) {
-      id
-    }
-  }
-`;
+import { AddOrganization } from '../Mutations/OrganisationMutations';
 
 export default function CreateOrganizationModal({
   createOrganizationModel,

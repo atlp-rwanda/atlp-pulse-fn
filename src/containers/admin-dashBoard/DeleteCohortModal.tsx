@@ -4,14 +4,7 @@ import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Cohort } from './Cohorts';
-
-export const DeleteCohort = gql`
-  mutation DeleteCohort($deleteCohortId: ID!, $orgToken: String) {
-    deleteCohort(id: $deleteCohortId, orgToken: $orgToken) {
-      id
-    }
-  }
-`;
+import { DeleteCohort } from '../../Mutations/cohortMutations';
 
 export default function DeleteCohortModal({
   deleteCohortModal,

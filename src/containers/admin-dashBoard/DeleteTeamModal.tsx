@@ -4,12 +4,7 @@ import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Team } from './Teams';
-
-export const DeleteTeam = gql`
-  mutation Mutation($deleteTeamId: ID!) {
-    deleteTeam(id: $deleteTeamId)
-  }
-`;
+import { DeleteTeam } from '../../Mutations/teamMutation';
 
 export default function DeleteTeamModal({
   deleteTeamModal,

@@ -18,6 +18,7 @@ import { GET_PROFILE } from '../Mutations/User';
 import Avatar from '../assets/avatar.png';
 import Spinner from '../components/ButtonLoading';
 import { UserContext } from '../hook/useAuth';
+import { UPDATE_AVATAR, UPDATE_COVER } from '../Mutations/coverMutations';
 
 export default function ProfileCoverpage({
   currentPage,
@@ -28,21 +29,6 @@ export default function ProfileCoverpage({
 }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
-  const UPDATE_AVATAR = gql`
-    mutation UpdateAvatar($avatar: String) {
-      updateAvatar(avatar: $avatar) {
-        avatar
-      }
-    }
-  `;
-  const UPDATE_COVER = gql`
-    mutation UpdateCover($cover: String) {
-      updateCoverImage(cover: $cover) {
-        cover
-      }
-    }
-  `;
 
   const client = useApolloClient();
   const [UpdateAvatar, { loading }] = useMutation(UPDATE_AVATAR);
@@ -216,7 +202,7 @@ export default function ProfileCoverpage({
         <div className="flex items-center justify-center w-full h-screen mt-24 ml-auto bg-grey-lighter">
           <label className="flex items-center ml-auto mr-4 rounded-md bg-primary text-white hover:bg-[#7a5edc] p-[6px]  cursor-pointer">
             {spinnerCover ? (
-              <ClipLoader size={14} color="#ffffff" className='m-1'/>
+              <ClipLoader size={14} color="#ffffff" className="m-1" />
             ) : (
               <CameraIcon className="w-5 dark:text-dark-text-fill" />
             )}

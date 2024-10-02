@@ -4,14 +4,7 @@ import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Program } from './Programs';
-
-export const DeleteProgram = gql`
-  mutation DeleteProgram($deleteProgramId: ID!, $orgToken: String) {
-    deleteProgram(id: $deleteProgramId, orgToken: $orgToken) {
-      id
-    }
-  }
-`;
+import { DeleteProgram } from '../../Mutations/programMutations';
 
 export default function DeleteProgramModal({
   deleteProgramModal,

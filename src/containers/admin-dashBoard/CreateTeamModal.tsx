@@ -8,29 +8,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { Team, Cohort } from './Teams';
-
-export const AddTeam = gql`
-  mutation Mutation(
-    $name: String!
-    $cohortName: String!
-    $orgToken: String!
-    $startingPhase: DateTime!
-    $ttlEmail: String!
-  ) {
-    addTeam(
-      name: $name
-      cohortName: $cohortName
-      orgToken: $orgToken
-      startingPhase: $startingPhase
-      ttlEmail: $ttlEmail
-    ) {
-      name
-      cohort {
-        name
-      }
-    }
-  }
-`;
+import { AddTeam } from '../../Mutations/teamMutation';
 
 export default function CreateTeamModal({
   data,

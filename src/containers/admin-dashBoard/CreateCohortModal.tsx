@@ -6,42 +6,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { Cohort, PartialProgram, PartialUser, PartialPhase } from './Cohorts';
-
-export const AddCohort = gql`
-  mutation AddCohort(
-    $name: String!
-    $phaseName: String!
-    $coordinatorEmail: String!
-    $programName: String!
-    $startDate: DateTime!
-    $endDate: DateTime
-    $orgToken: String!
-  ) {
-    addCohort(
-      name: $name
-      phaseName: $phaseName
-      coordinatorEmail: $coordinatorEmail
-      programName: $programName
-      startDate: $startDate
-      endDate: $endDate
-      orgToken: $orgToken
-    ) {
-      id
-      name
-      phase {
-        name
-      }
-      coordinator {
-        email
-      }
-      program {
-        name
-      }
-      startDate
-      endDate
-    }
-  }
-`;
+import { AddCohort } from '../../Mutations/cohortMutations';
 
 export default function CreateCohortModal({
   data,
