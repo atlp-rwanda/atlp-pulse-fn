@@ -38,6 +38,7 @@ import { useTraineesContext } from '../hook/useTraineesData';
 import Dropdown from 'react-dropdown-select';
 import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 import { FaTimes } from 'react-icons/fa';
+import TtlSkeleton from '../Skeletons/ttl.skeleton';
 const organizationToken = localStorage.getItem('orgToken');
 
 function AdminTraineeDashboard() {
@@ -1506,12 +1507,16 @@ function AdminTraineeDashboard() {
                   </div>
                 </div>
                 <div className="">
+                  {loading? (
+                    <TtlSkeleton/>
+                  ):(
                   <DataTable
                     data={traineeData?.length > 0 ? datum : []}
                     columns={columns}
                     loading={loading}
                     title={t('Trainee list')}
                   />
+                  )}
                 </div>
               </div>
             </div>

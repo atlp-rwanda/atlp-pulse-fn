@@ -13,7 +13,7 @@ import GRADING_SYSTEM_QUERY from './GradingSystemQuery';
 import MAKE_DEFAULT_GRADING_SYSTEM from '../Mutations/MakeDefault';
 import GRADING_SYSTEM_MUTATION from './GradingSystemMutation';
 import AddGradingSystem from './gradeSystem/addNew';
-
+import GradingSkeleton from '../Skeletons/gradingSkeleton'
 type grade = {
   grade?: string;
   range?: string;
@@ -278,12 +278,12 @@ function GradingSystem() {
                 {value === '' && (
                   <div className="">
                     <div className="max-w-full">
-                      <DataTable
-                        columns={GradingsColumn}
-                        loading={gradeLoading}
-                        data={gradingData}
-                        title={t('Gradings List')}
-                      />
+                        <DataTable
+                          columns={GradingsColumn}
+                          loading={gradeLoading}
+                          data={gradingData}
+                          title={t('Gradings List')}
+                        />
                     </div>
                   </div>
                 )}
@@ -381,7 +381,7 @@ function GradingSystem() {
                     </div>
                   </div>
                 ) : (
-                  <div />
+                  <></>
                 )}
               </div>
             </div>

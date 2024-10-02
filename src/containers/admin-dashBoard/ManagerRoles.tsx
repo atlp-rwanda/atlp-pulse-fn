@@ -22,6 +22,7 @@ import Square from '../../Skeletons/Square';
 import { toast } from 'react-toastify';
 import { GET_TEAM_QUERY } from '../../Mutations/manageStudentMutations';
 import { GET_TEAMS } from '../../Mutations/teamMutation';
+import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 const AdminSission = () => {
   const { t } = useTranslation();
   useDocumentTitle('Roles & Access');
@@ -421,16 +422,16 @@ const AdminSission = () => {
           {/* =========================== End::  delete Session Model =============================== */}
           <div className="bg-light-bg dark:bg-dark-frame-bg pb-16 overflow-y-auto overflow-x-hidden">
             <div>
-              <DataTable
-                data={newUsers.length > 0 ? newUsers : users}
-                columns={columns}
-                title="Manageaccess"
-              />
+                <DataTable
+                  data={newUsers.length > 0 ? newUsers : users}
+                  columns={columns}
+                  title="Manageaccess"
+                />
             </div>
           </div>
         </>
       ) : (
-        <Square />
+        <TtlSkeleton/>
       )}
     </>
   );

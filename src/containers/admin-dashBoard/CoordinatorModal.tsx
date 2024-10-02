@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import DataTable from '../../components/DataTable';
 import Spinner from '../../components/Spinner';
+import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 
 const GET_COORDINATORS = gql`
   query Query($orgToken: String) {
@@ -70,10 +71,7 @@ export default function CoordinatorsPage() {
       </div>
       <div className=" overflow-x-auto">
         {loading ? (
-          <div className="flex justify-center items-center h-48">
-            <Spinner />
-            <div className="spinner" />
-          </div>
+          <TtlSkeleton/>
         ) : (
           <DataTable
             columns={columns}

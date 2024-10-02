@@ -9,6 +9,7 @@ import Sidebar from '../components/Sidebar';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
 import { REJECT_RATING, APPROVE_RATING } from '../Mutations/Ratings';
+import TtlSkeleton from '../Skeletons/ttl.skeleton';
 
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -409,9 +410,7 @@ function UpdatedRatingDashboard() {
                       title={t('Performance Ratings')}
                     />
                   ) : (
-                    <div className="text-center text-lg uppercase">
-                      <p> {t('No updated ratings found')}</p>
-                    </div>
+                   <TtlSkeleton />
                   )}
                 </div>
               </div>

@@ -11,6 +11,8 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { ADD_EVENT, GET_EVENTS } from '../Mutations/event';
 import moment from 'moment';
+import CalendarSkeleton from '../Skeletons/Calender.skeleton'
+
 /* istanbul ignore next */
 
 const Calendar = () => {
@@ -25,6 +27,7 @@ const Calendar = () => {
     timeToFinish: '',
   });
   const [data, setData] = useState<EventInput[]>([]);
+  const [loading, setLoading] = useState(true);
   const [getEvents] = useLazyQuery(GET_EVENTS);
   const [createEvent] = useMutation(ADD_EVENT);
   useEffect(() => {
@@ -48,6 +51,8 @@ const Calendar = () => {
       } catch (error) {
         console.log({ eventsError: data });
         // toast.error(error?.message || 'Something went wrong');
+      }finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -257,12 +262,16 @@ const Calendar = () => {
         >
           {t('Add event')}
         </button>
+        {loading ? (
+          <CalendarSkeleton />
+        ) : (
         <FullCalendar
           eventContent={renderEvent}
           events={data}
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
         />
+        )}
       </div>
     </>
   );

@@ -43,27 +43,64 @@ import RemoveTokenPage from '../utils/RemoveTokenPage';
 function MainRoutes() {
   return (
     <div className="min-h-screen page-layout">
-      <Suspense fallback={<Skeleton />}>
+      <Suspense>
         <Routes>
           <Route path="/*" element={<DashRoutes />} />
           <Route
             path="/"
             element={
               <>
-                <Header />
-                <main className="page-main bg-light-bg dark:bg-dark-frame-bg">
-                  <Outlet />
-                </main>
-                <Footer />
+                <Suspense fallback={<Skeleton />}>
+                  <Header />
+                  <main className="page-main bg-light-bg dark:bg-dark-frame-bg">
+                    <Outlet />
+                  </main>
+                  <Footer />
+                </Suspense>
               </>
             }
           >
-            <Route index element={<Home />} />
-            <Route path="/register/:token" element={<UserRegister />} />
+            <Route
+              index
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/register/:token"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <UserRegister />
+                </Suspense>
+              }
+            />
             <Route path="/register-successful" element={<Message />} />
-            <Route path="/signup/org" element={<OrgRegister />} />
-            <Route path="/signup/org/:token" element={<RemoveTokenPage />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/signup/org"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <OrgRegister />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/signup/org/:token"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <RemoveTokenPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/reset-password"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <ResetPassword />
+                </Suspense>
+              }
+            />
             <Route
               path="/forgot-password/:token"
               element={<ForgotPassword />}
@@ -72,7 +109,9 @@ function MainRoutes() {
               path="/login/org"
               element={
                 <ProtectedRoutes>
-                  <Orglogin />
+                  <Suspense fallback={<Skeleton />}>
+                    <Orglogin />
+                  </Suspense>
                 </ProtectedRoutes>
               }
             />
@@ -80,20 +119,46 @@ function MainRoutes() {
               path="/users/login"
               element={
                 <ProtectedRoutes>
-                  <Adminlogin />
+                  <Suspense fallback={<Skeleton />}>
+                    <Adminlogin />
+                  </Suspense>
                 </ProtectedRoutes>
               }
             />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/about" element={<About title={'About Page'} />} />
+            <Route
+              path="/pricing"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <Pricing />{' '}
+                </Suspense>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <About title={'About Page'} />
+                </Suspense>
+              }
+            />
             <Route
               path="/product"
-              element={<Product title={'Productpage'} />}
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <Product title={'Productpage'} />
+                </Suspense>
+              }
             />
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
             <Route path="/docs/org-signin" element={<SigninOrgDocs />} />
-            <Route path="/docs/getting-started" element={<UsersDocs />} />
-            <Route path="/redirect" element={<RedirectHandler />} />
+            <Route
+              path="/docs/getting-started"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <UsersDocs />
+                </Suspense>
+              }
+            />
             <Route path="/noredirect" element={<Noredirect />} />
           </Route>
           <Route path="*" element={<Error />} />

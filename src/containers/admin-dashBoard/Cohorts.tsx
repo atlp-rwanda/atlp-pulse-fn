@@ -11,6 +11,7 @@ import DeleteCohortModal from './DeleteCohortModal';
 import UpdateCohortModal from './UpdateCohortModal';
 import CohortTraineeModal from './CohortTraineeModal';
 import CohortTeamsModel from './CohortTeamsModal';
+import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 
 export interface Cohort {
   id: string;
@@ -352,8 +353,8 @@ function AdminCohort() {
             </Button>
           </div>
         </div>
-        <div>
-          {!getLoading && (
+        <div >
+          {getLoading ? TtlSkeleton ():(
             <DataTable
               columns={cohortColumns}
               data={cohortData ? (cohortData as [any]) : [{}]}

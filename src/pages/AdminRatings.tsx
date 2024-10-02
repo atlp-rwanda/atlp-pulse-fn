@@ -302,7 +302,7 @@ const TraineeRatingDashboard = () => {
                     </>
                   ) : (
                     <div className="text-center mt-7 text-lg uppercase">
-                      <Square></Square>
+                      {/* <Square></Square> */}
                     </div>
                   )}
                 </div>

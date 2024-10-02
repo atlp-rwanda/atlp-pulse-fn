@@ -9,6 +9,7 @@ import CreatephaseModal from './CreatePhaseModal';
 import UpdatePhaseModal from './UpdatePhaseModal';
 import DeletePhaseModal from './DeletePhaseModal';
 import { PartialUser } from './Cohorts';
+import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 
 export interface Phase {
   id: string;
@@ -176,12 +177,16 @@ function AdminPhases() {
           </div>
         </div>
         <div className="">
-          <DataTable
-            data={(phaseListData as any[]) ?? []}
-            columns={phaseListColumns}
-            title="Phase list"
-            loading={getLoading}
-          />
+          {getLoading? (
+            <TtlSkeleton/>
+          ):(
+            <DataTable
+              data={phaseListData as any [] ?? []}
+              columns={phaseListColumns}
+              title="Phase list"
+              loading={getLoading}
+            />
+          )}
         </div>
       </div>
     </>

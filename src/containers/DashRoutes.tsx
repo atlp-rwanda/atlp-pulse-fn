@@ -91,7 +91,7 @@ function DashRoutes() {
         <Sidebar toggle={toggleNav} style="" />
       </MenuProvider>
       <main className=" px-4 md:px-8 py-4 md:py-8 w-[100%] bg-light-bg dark:bg-dark-frame-bg"> 
-        <Suspense fallback={<Square />}>
+        {/* <Suspense fallback={<Square />}> */}
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/trainees" element={<AdminTraineeDashboard />} />
@@ -164,7 +164,7 @@ function DashRoutes() {
             <Route path="/cards" element={<CoordinatorCards />} />
             <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
           </Routes>
-        </Suspense>
+        {/* </Suspense> */}
       </main>
     </PrivateRoute>
   );
