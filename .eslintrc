@@ -19,7 +19,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "ignorePatterns": ["/root/webpack.config.js"],
+  "ignorePatterns": ["/root/vite.config.ts"],
   "rules": {
     "no-console": ["error"],
     "import/extensions": "off",
