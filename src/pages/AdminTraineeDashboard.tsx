@@ -27,6 +27,7 @@ import {
   GET_TEAM_QUERY,
   ADD_MEMBER_TO_TEAM,
   GET_GITHUB_STATISTICS,
+  UNDROP_TRAINEE,
 } from '../Mutations/manageStudentMutations';
 import { useNavigate } from 'react-router-dom';
 
@@ -70,6 +71,8 @@ function AdminTraineeDashboard() {
   const [editTeam, setEditTeam] = useState('');
   const [inviteEmail, setInviteEmail] = useState('');
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [restoreTraineeModel, setRestoreTraineeModel] = useState(false);
+
   const [toggle, setToggle] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const options: any = [];
@@ -81,9 +84,11 @@ function AdminTraineeDashboard() {
   const { traineeData, setAllTrainees } = useTraineesContext() || [];
   const [actionTraineeOptions, setActionTraineeOptions] = useState<any>(null);
   const modalRef = useRef<any>(null);
-
-  const [selectedTraineeId, setSelectedTraineeId]= useState<string[]>()
-
+  // restoreTraineeModel
+  // restoreTraineeMod
+  // unDropTrainee
+  // restoreMemberFromCohort
+  const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>();
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -168,7 +173,10 @@ function AdminTraineeDashboard() {
     const newState = !removeTraineeModel;
     setRemoveTraineeModel(newState);
   };
-
+  const restoreTraineeMod = () => {
+    const newState = !restoreTraineeModel;
+    setRestoreTraineeModel(newState);
+  };
   const removeModel = () => {
     const newState = !registerTraineeModel;
     setRegisterTraineeModel(newState);
@@ -264,18 +272,18 @@ function AdminTraineeDashboard() {
             }
           >
             <button
-  className={`${row.original?.Status?.status === 'drop'
-      ? 'bg-gray-500'
-      : 'bg-black'
-    } text-white rounded-xl px-3`}
-  onClick={() => {
-      setSelectedTraineeId(row.original?.email);
-      handleClickOpen2();
-  }}
->
-  {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
-</button>
-
+              className={`${
+                row.original?.Status?.status === 'drop'
+                  ? 'bg-gray-500'
+                  : 'bg-black'
+              } text-white rounded-xl px-3`}
+              onClick={() => {
+                setSelectedTraineeId(row.original?.email);
+                handleClickOpen2();
+              }}
+            >
+              {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
+            </button>
           </div>
         );
       },
@@ -296,8 +304,9 @@ function AdminTraineeDashboard() {
             />
             {selectedRow === row.original.email && (
               <div
-               ref={modalRef}
-               className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
+                ref={modalRef}
+                className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg"
+              >
                 <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
@@ -363,30 +372,58 @@ function AdminTraineeDashboard() {
                     </div>
                   </div>
                   <div className="mb-4">
-                    <div
-                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
-                      onClick={() => {
-                        dropModel(row.original.email);
-                        setdropTraineeID(row.original.userId);
-                        setReason(row.original.reason);
-                        toggleOptions(row.original.email);
-                      }}
-                    >
-                      <Icon
-                        icon="mdi:close-circle"
-                        width="40"
-                        height="40"
-                        cursor="pointer"
-                        color="#9e85f5"
-                      />
-                      <div>
-                        <span className="font-bold">Drop</span>{' '}
-                        <>
-                          <br />
-                          Drop trainee
-                        </>
+                    {row.original?.Status?.status !== 'drop' ? (
+                      <div
+                        className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                        onClick={() => {
+                          dropModel(row.original.email);
+                          setdropTraineeID(row.original.userId);
+                          setReason(row.original.reason);
+                          toggleOptions(row.original.email);
+                        }}
+                      >
+                        <Icon
+                          icon="mdi:close-circle"
+                          width="40"
+                          height="40"
+                          cursor="pointer"
+                          color="#9e85f5"
+                        />
+                        <div>
+                          <span className="font-bold">Drop</span>
+                          {row.original.status}
+                          <>
+                            <br />
+                            Drop trainee
+                          </>
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div
+                        className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                        onClick={() => {
+                          restoreTraineeMod();
+                          setdropTraineeID(row.original.userId);
+                          setReason(row.original.reason);
+                          toggleOptions(row.original.email);
+                        }}
+                      >
+                        <Icon
+                          icon="mdi:close-circle"
+                          width="40"
+                          height="40"
+                          cursor="pointer"
+                          color="#9e85f5"
+                        />
+                        <div>
+                          <span className="font-bold">Restore</span>{' '}
+                          <>
+                            <br />
+                            Restore Dropped Trainee
+                          </>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <div>
                     <div
@@ -559,6 +596,32 @@ function AdminTraineeDashboard() {
     },
   });
 
+  const [unDropTrainee] = useMutation(UNDROP_TRAINEE, {
+    variables: {
+      traineeId: dropTraineeID,
+    },
+    onCompleted: (data) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        if (data.undropTrainee) {
+          // Check the response structure
+          refetch();
+          toast.success('Trainee Undropped successfully');
+          setDropTraineeModel(false);
+          restoreTraineeMod();
+        } else {
+          toast.error('Failed to undrop trainee');
+        }
+      }, 1000);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        console.error('Mutation error:', err); // Log the error
+        toast.error(err.message);
+      }, 500);
+    },
+  });
   const [removeMemberFromCohort] = useMutation(
     REMOVE_MEMBER_FROM_COHORT_MUTATION,
     {
@@ -658,7 +721,6 @@ function AdminTraineeDashboard() {
       teamOptions[index].label = team?.name;
     });
   }
-  
 
   return (
     <>
@@ -672,20 +734,21 @@ function AdminTraineeDashboard() {
           className="rounded-lg"
           fullWidth
         >
-          {traineeData?.map((data:any) => {
-        if (data.email === selectedTraineeId) {
-              return <ViewWeeklyRatings
-            traineeName={data?.profile?.name || 'Unknown Name'}
-            traineeEmail={data?.email || 'Unknown Email'}
-            traineeId={data?.profile?.user?.id || 'Unknown ID'}
-            traineeCohort={data?.team?.cohort?.id || 'Unknown Cohort'}
-            traineeStatus={
-              data?.profile?.user?.status || 'Status Unavailable'
+          {traineeData?.map((data: any) => {
+            if (data.email === selectedTraineeId) {
+              return (
+                <ViewWeeklyRatings
+                  traineeName={data?.profile?.name || 'Unknown Name'}
+                  traineeEmail={data?.email || 'Unknown Email'}
+                  traineeId={data?.profile?.user?.id || 'Unknown ID'}
+                  traineeCohort={data?.team?.cohort?.id || 'Unknown Cohort'}
+                  traineeStatus={
+                    data?.profile?.user?.status || 'Status Unavailable'
+                  }
+                />
+              );
             }
-          />
-            }
-          }
-            )}
+          })}
           <FaTimes
             size={24}
             color="red"
@@ -1473,6 +1536,57 @@ function AdminTraineeDashboard() {
         </div>
       </div>
       {/* =========================== End::  AddTraineeModel =============================== */}
+      {/* =========================== Start::  RestoreTraineeModel =============================== */}
+
+      <div
+        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          restoreTraineeModel === true ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+          <div className="flex flex-wrap items-center justify-center w-full card-title ">
+            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+              {t('Restore Trainee')}
+            </h3>
+            <hr className="w-full my-3 border-b bg-primary" />
+          </div>
+          <div className="card-body">
+            <form className="px-8 py-3 ">
+              <div className="flex flex-wrap items-center justify-center w-full card-title ">
+                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+                  {t('Are you sure you want to undrop this trainee?')}
+                </h3>
+              </div>
+
+              <div className="flex justify-between w-full">
+                <Button
+                  data-testid="restoreModel2"
+                  variant="info"
+                  size="sm"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => restoreTraineeMod()}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  data-testid="restoreMemberFromCohort"
+                  style="w-[40%] md:w-1/4 text-sm font-sans"
+                  onClick={() => {
+                    setButtonLoading(true);
+                    unDropTrainee();
+                  }}
+                  loading={buttonLoading}
+                >
+                  {t('Proceed')}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {/* =========================== End::  RemoveTraineeModel =============================== */}
 
       <div className="flex flex-col">
         <div className="flex flex-row">
@@ -1507,15 +1621,15 @@ function AdminTraineeDashboard() {
                   </div>
                 </div>
                 <div className="">
-                  {loading? (
-                    <TtlSkeleton/>
-                  ):(
-                  <DataTable
-                    data={traineeData?.length > 0 ? datum : []}
-                    columns={columns}
-                    loading={loading}
-                    title={t('Trainee list')}
-                  />
+                  {loading ? (
+                    <TtlSkeleton />
+                  ) : (
+                    <DataTable
+                      data={traineeData?.length > 0 ? datum : []}
+                      columns={columns}
+                      loading={loading}
+                      title={t('Trainee list')}
+                    />
                   )}
                 </div>
               </div>
