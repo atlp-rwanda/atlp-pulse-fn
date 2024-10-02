@@ -109,10 +109,8 @@ function AdminTraineeDashboard() {
   }
 
   const [deleteFromCohort, setDeleteFromCohort] = useState('');
-  //const [status, setStatus] = useState(row.original?.Status?.status);
-  // Define state variables to store reason and date
+ 
   const [reason, setReason] = useState('');
-  //  const [date, setDate] = useState('');
   const currentDate = new Date().toISOString().split('T')[0]; // Get the current date
 
   // Function to handle the reason input change
@@ -247,8 +245,7 @@ function AdminTraineeDashboard() {
   const columns = [
     { Header: t('name'), accessor: 'name' },
     { Header: t('email'), accessor: 'email' },
-    // { Header: t('rating'), accessor: 'rating' },
-    // { Header: t('Team'), accessor: 'team' },
+    
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
     {
