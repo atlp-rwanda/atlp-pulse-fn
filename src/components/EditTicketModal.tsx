@@ -1,8 +1,7 @@
-/* eslint-disable react/function-component-definition */
-import React, { useState, FC, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
-import { UPDATE_TICKET } from '../queries/tickets.queries'; // Import the mutation
+import { UPDATE_TICKET } from '../queries/tickets.queries';
 
 interface EditTicketModalProps {
   isOpen: boolean;
@@ -12,31 +11,32 @@ interface EditTicketModalProps {
   refetchTickets: () => void;
 }
 
-const EditTicketModal: FC<EditTicketModalProps> = ({
+function EditTicketModal({
   isOpen,
   onClose,
   ticket,
   users,
   refetchTickets,
-}) => {
+}: EditTicketModalProps) {
   const [formData, setFormData] = useState<any>({});
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<any>({});
-  const [hasChanges, setHasChanges] = useState(false); // Track changes
+  const [hasChanges, setHasChanges] = useState(false);
   const authToken = localStorage.getItem('auth_token');
 
-  // Update formData when the ticket prop changes
   useEffect(() => {
-    setFormData(ticket || {});
+    setFormData({
+      ...ticket,
+      assignee: ticket?.assignee?.id || '',
+    });
   }, [ticket]);
 
-  // Check for changes in form data
   useEffect(() => {
     const isSameData =
       formData.subject === ticket?.subject &&
       formData.message === ticket?.message &&
       formData.status === ticket?.status &&
-      formData.assignee === ticket?.assignee?.id;
+      formData.assignee === (ticket?.assignee?.id || '');
     setHasChanges(!isSameData);
   }, [formData, ticket]);
 
@@ -46,7 +46,7 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
         Authorization: `Bearer ${authToken}`,
       },
     },
-    onCompleted: (data) => {
+    onCompleted: () => {
       setLoading(false);
       toast.success('Ticket updated successfully');
       refetchTickets();
@@ -58,7 +58,6 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
     },
   });
 
-  // Form validation
   const validateForm = () => {
     const newErrors: { subject?: string; status?: string; assignee?: string } =
       {};
@@ -69,7 +68,6 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form field changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
@@ -80,7 +78,6 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
     }));
   };
 
-  // Save the ticket after validation
   const handleSave = async () => {
     if (!validateForm()) return;
 
@@ -93,7 +90,7 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
             subject: formData.subject,
             message: formData.message,
             status: formData.status,
-            assignee: formData.assignee?.id, // Use only the ID for assignee
+            assignee: formData.assignee,
           },
         },
       });
@@ -182,8 +179,8 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
                 errors.status ? 'border-red-500' : 'border-gray-300'
               } rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600`}
             >
-              <option value="Open">Open</option>
-              <option value="Closed">Closed</option>
+              <option value="open">Open</option>
+              <option value="closed">Closed</option>
             </select>
             {errors.status && (
               <p className="mt-1 text-sm text-red-500">{errors.status}</p>
@@ -200,22 +197,18 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
             <select
               id="assignee"
               name="assignee"
-              value={formData.assignee || ticket.assignee?.id || ''}
+              value={formData.assignee || ''}
               onChange={handleChange}
               className={`block w-full px-4 py-2 mt-1 text-gray-900 bg-gray-200 border ${
                 errors.assignee ? 'border-red-500' : 'border-gray-300'
               } rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600`}
             >
-              <option value="">
-                {ticket.assignee?.email || 'Select Assignee'}
-              </option>
-              {users
-                .filter((user) => user.id !== ticket.assignee?.id) // Exclude current assignee
-                .map((user) => (
-                  <option key={user.id} value={user.id}>
-                    {user.email}
-                  </option>
-                ))}
+              <option value="">Select Assignee</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.email}
+                </option>
+              ))}
             </select>
             {errors.assignee && (
               <p className="mt-1 text-sm text-red-500">{errors.assignee}</p>
@@ -233,7 +226,7 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
             <button
               type="submit"
               className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
-              disabled={loading || !hasChanges} // Disable when loading or no changes
+              disabled={loading || !hasChanges}
             >
               Save
             </button>
@@ -242,6 +235,6 @@ const EditTicketModal: FC<EditTicketModalProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default EditTicketModal;
