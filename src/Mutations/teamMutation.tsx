@@ -34,6 +34,34 @@ export const ADD_TEAMS = gql`
     }
   }
 `;
+export const AddTeam = gql`
+  mutation Mutation(
+    $name: String!
+    $cohortName: String!
+    $orgToken: String!
+    $startingPhase: DateTime!
+    $ttlEmail: String!
+  ) {
+    addTeam(
+      name: $name
+      cohortName: $cohortName
+      orgToken: $orgToken
+      startingPhase: $startingPhase
+      ttlEmail: $ttlEmail
+    ) {
+      name
+      cohort {
+        name
+      }
+    }
+  }
+`;
+
+export const DeleteTeam = gql`
+  mutation Mutation($deleteTeamId: ID!) {
+    deleteTeam(id: $deleteTeamId)
+  }
+`;
 
 export const GET_TEAMS_CARDS = gql`
   query Query($orgToken: String!) {

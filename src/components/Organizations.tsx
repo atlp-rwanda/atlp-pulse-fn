@@ -2,18 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import { FaEllipsisV } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import CreateOrganizationModal, {
-  AddOrganization,
-} from './CreateOrganizationModal';
+import CreateOrganizationModal from './CreateOrganizationModal';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from './Buttons';
 import Tooltip from '@mui/material/Tooltip';
 import { toast } from 'react-toastify';
 import { Icon } from '@iconify/react';
-
 import DataTable from '../components/DataTable';
 import OrgSkeleton from '../Skeletons/Organization.skeleton';
+import { DeleteOrganization } from '../Mutations/OrganisationMutations';
+import { RegisterNewOrganization } from '../Mutations/OrganisationMutations';
+import { AddOrganization } from '../Mutations/OrganisationMutations';
 
 export interface Admin {
   id: string;
@@ -37,31 +37,6 @@ export const getOrganizations = gql`
         id
         email
       }
-      status
-    }
-  }
-`;
-
-export const DeleteOrganization = gql`
-  mutation DeleteOrganization($deleteOrganizationId: ID!) {
-    deleteOrganization(id: $deleteOrganizationId) {
-      id
-      name
-      description
-    }
-  }
-`;
-
-export const RegisterNewOrganization = gql`
-  mutation RegisterNewOrganization(
-    $organizationInput: OrganizationInput
-    $action: String
-  ) {
-    RegisterNewOrganization(
-      organizationInput: $organizationInput
-      action: $action
-    ) {
-      name
       status
     }
   }

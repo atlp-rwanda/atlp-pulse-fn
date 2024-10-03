@@ -18,6 +18,7 @@ import Resume from '../components/Resume';
 import Button from '../components/Buttons';
 import { COUNTRIES, SelectMenuOption } from '../constants/countries';
 import profileFields from '../constants/formFields';
+import { UPDATE_PROFILE } from '../Mutations/profileMutation';
 
 type fields = {
   [key: string]: string | number;
@@ -27,43 +28,6 @@ const fieldState: fields = {};
 profileFields.forEach((field) => {
   fieldState[field.id as keyof typeof fieldState] = '';
 });
-
-const UPDATE_PROFILE = gql`
-  mutation UpdateProfile(
-    $lastName: String
-    $firstName: String
-    $address: String
-    $city: String
-    $country: String
-    $phoneNumber: String
-    $biography: String
-    $fileName: String
-    $cover: String
-    $githubUsername: String
-  ) {
-    updateProfile(
-      lastName: $lastName
-      firstName: $firstName
-      address: $address
-      city: $city
-      country: $country
-      phoneNumber: $phoneNumber
-      biography: $biography
-      fileName: $fileName
-      cover: $cover
-      githubUsername: $githubUsername
-    ) {
-      id
-      lastName
-      firstName
-      biography
-      phoneNumber
-      address
-      city
-      country
-    }
-  }
-`;
 
 function EditProfile() {
   // eslint-disable-next-line  operator-linebreak
@@ -265,7 +229,9 @@ function EditProfile() {
                     className="mb-[2px] font-semibold text-[.84rem] md:text-[.87rem]"
                   >
                     {t('Biography')}
-                    <span className='font-light text-[.7rem] ml-2'>*Max(400 chars)</span>
+                    <span className="font-light text-[.7rem] ml-2">
+                      *Max(400 chars)
+                    </span>
                   </label>
                   <textarea
                     name="bio"
@@ -283,8 +249,8 @@ function EditProfile() {
             <button
               type={loading ? 'button' : 'submit'}
               className="w-full xmd:w-[7.7rem] h-8 flex flex-row items-center justify-center my-3 text-[.81rem] md:text-sm font-semibold rounded-[3px]  text-white bg-primary  dark:focus:ring-secondary m-0"
-            >~
-              {loading && <PulseLoader color="#ffffff" size={9} />}
+            >
+              ~{loading && <PulseLoader color="#ffffff" size={9} />}
               {!loading && t('Update Profile')}
             </button>
           </form>

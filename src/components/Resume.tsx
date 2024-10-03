@@ -8,14 +8,7 @@ import { toast } from 'react-toastify';
 import Button from './Buttons';
 import { UserContext } from '../hook/useAuth';
 import Spinner from './Spinner';
-
-const UPLOAD_RESUME = gql`
-  mutation UploadResume($userId: ID!, $resume: String!) {
-    uploadResume(userId: $userId, resume: $resume) {
-      resume
-    }
-  }
-`;
+import { UPLOAD_RESUME } from '../Mutations/resumeMutation';
 
 interface UploadFormProps {
   uploadType: number | null;

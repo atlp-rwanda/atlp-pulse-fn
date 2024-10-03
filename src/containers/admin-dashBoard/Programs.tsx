@@ -215,14 +215,16 @@ function AdminPrograms() {
           </div>
         </div>
         <div className="">
-          {getLoading ?(<TtlSkeleton/>):(
-          <DataTable
-            data={programListData as [any]}
-            columns={programListColumns}
-            title="Program list"
-            loading={getLoading}
-          />
-        )}
+          {getLoading ? (
+            <TtlSkeleton />
+          ) : (
+            <DataTable
+              data={programListData as [any]}
+              columns={programListColumns}
+              title="Program list"
+              loading={getLoading}
+            />
+          )}
         </div>
       </div>
     </>

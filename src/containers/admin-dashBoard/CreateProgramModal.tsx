@@ -7,24 +7,7 @@ import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { PartialUser } from './Cohorts';
 import { Program } from './Programs';
-
-export const AddProgram = gql`
-  mutation AddProgram(
-    $name: String!
-    $description: String!
-    $managerEmail: String!
-    $orgToken: String!
-  ) {
-    addProgram(
-      name: $name
-      description: $description
-      managerEmail: $managerEmail
-      orgToken: $orgToken
-    ) {
-      id
-    }
-  }
-`;
+import { AddProgram } from '../../Mutations/programMutations';
 
 export default function CreateProgramModal({
   data,

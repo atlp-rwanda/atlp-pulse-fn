@@ -4,14 +4,7 @@ import { useForm } from 'react-hook-form';
 import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
-
-export const AddPhase = gql`
-  mutation AddPhase($name: String!, $description: String!, $orgToken: String!) {
-    addPhase(name: $name, description: $description, orgToken: $orgToken) {
-      id
-    }
-  }
-`;
+import { AddPhase } from '../../Mutations/phaseMutations';
 
 export default function CreatePhaseModal({
   createPhaseModel,
