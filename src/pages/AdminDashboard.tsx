@@ -127,36 +127,6 @@ function SupAdDashboard() {
       <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-row justify-center pb-8">
           <div className="w-[100%] h-[100%]">
-            {/* <div className="grid grid-cols-2 mb-12 md:mb-24 lg:mb-0 lg:grid-cols-4">
-            <Card text={t('Coordinators')} number={47} />
-            <Card text={t('Trainees')} number={560} />
-            <Card text={t('Cohorts')} number={8} />
-            <Card text={t('Performance')} number={4} />
-          </div>
-          <Chart title={t('Overall performance')} /> */}
-            <div>
-              {/* <div className="bg-light-bg dark:bg-dark-frame-bg ">
-                <div className="flex px-10 pt-24 pb-8 items-left lg:px-60"> */}
-              {/* <div className="flex gap-2 pt-5">
-                {user?.role === 'coordinator' || undefined ? (
-                  ''
-                ) : (
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    data-testid="inviteModel"
-                    style="m-0"
-                    onClick={inviteModel}
-                  >
-                    {t('Invite an organization')}
-                  </Button>
-                )}
-              </div> */}
-            </div>
-
-            {/* </div>
-              </div> */}
-
             <Comingsoon title="Dashboard" />
           </div>
         </div>
