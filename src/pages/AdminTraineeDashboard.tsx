@@ -82,8 +82,7 @@ function AdminTraineeDashboard() {
   const [actionTraineeOptions, setActionTraineeOptions] = useState<any>(null);
   const modalRef = useRef<any>(null);
 
-  const [selectedTraineeId, setSelectedTraineeId]= useState<string[]>()
-
+  const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>();
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -261,18 +260,18 @@ function AdminTraineeDashboard() {
             }
           >
             <button
-  className={`${row.original?.Status?.status === 'drop'
-      ? 'bg-gray-500'
-      : 'bg-black'
-    } text-white rounded-xl px-3`}
-  onClick={() => {
-      setSelectedTraineeId(row.original?.email);
-      handleClickOpen2();
-  }}
->
-  {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
-</button>
-
+              className={`${
+                row.original?.Status?.status === 'drop'
+                  ? 'bg-gray-500'
+                  : 'bg-black'
+              } text-white rounded-xl px-3`}
+              onClick={() => {
+                setSelectedTraineeId(row.original?.email);
+                handleClickOpen2();
+              }}
+            >
+              {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
+            </button>
           </div>
         );
       },
@@ -293,8 +292,9 @@ function AdminTraineeDashboard() {
             />
             {selectedRow === row.original.email && (
               <div
-               ref={modalRef}
-               className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
+                ref={modalRef}
+                className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg"
+              >
                 <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
@@ -467,19 +467,19 @@ function AdminTraineeDashboard() {
 
   /* istanbul ignore if */
 
-  if (traineeData && traineeData.length > 0) {
-    traineeData?.map((data: any, index: number) => {
-      datum[index] = {};
-      datum[index].name = data.profile ? data.profile.name : 'undefined';
-      datum[index].email = data.email;
-      datum[index].rating = data.ratings.length ? data.ratings : 'not rated.';
-      datum[index].team = data.team?.name;
-      datum[index].cohort = data.team?.cohort?.name;
-      datum[index].program = data.team?.cohort?.program?.name;
-      datum[index].userId = data.profile?.user?.id;
-      datum[index].Status = data.profile?.user?.status;
-    });
-  }
+  traineeData?.forEach((data: any, index: number) => {
+    datum[index] = {
+      name: data.profile?.name || 'undefined',
+      email: data.email,
+      rating: data.ratings.length ? data.ratings : 'not rated.',
+      team: data.team?.name,
+      cohort: data.team?.cohort?.name,
+      program: data.team?.cohort?.program?.name,
+      userId: data.profile?.user?.id,
+      status: data.profile?.user?.status,
+    };
+  });
+  
 
   const [addMemberToTeam] = useMutation(ADD_MEMBER_TO_TEAM, {
     variables: {
@@ -655,11 +655,10 @@ function AdminTraineeDashboard() {
       teamOptions[index].label = team?.name;
     });
   }
-  
 
   return (
     <>
-      {/* =========================== Start::  InviteTraineeModel =============================== */}
+      {/* =========================== Start::  TraineeDetailsModel =============================== */}
       <div className="font-serif rounded-lg dark:bg-dark-bg">
         <Dialog
           open={open2}
@@ -669,20 +668,28 @@ function AdminTraineeDashboard() {
           className="rounded-lg"
           fullWidth
         >
-          {traineeData?.map((data:any) => {
-        if (data.email === selectedTraineeId) {
-              return <ViewWeeklyRatings
-            traineeName={data?.profile?.name || 'Unknown Name'}
-            traineeEmail={data?.email || 'Unknown Email'}
-            traineeId={data?.profile?.user?.id || 'Unknown ID'}
-            traineeCohort={data?.team?.cohort?.id || 'Unknown Cohort'}
-            traineeStatus={
-              data?.profile?.user?.status || 'Status Unavailable'
-            }
-          />
-            }
-          }
-            )}
+          {traineeData && traineeData.length > 0 ? (
+            traineeData.map((data: any) => {
+              if (data.email === selectedTraineeId) {
+                return (
+                  <ViewWeeklyRatings
+                    key={data.email} // Always use a unique key when mapping components
+                    traineeName={data?.profile?.name || 'Unknown Name'}
+                    traineeEmail={data?.email || 'Unknown Email'}
+                    traineeId={data?.profile?.user?.id || 'Unknown ID'}
+                    traineeCohort={data?.team?.cohort?.id || 'Unknown Cohort'}
+                    traineeStatus={
+                      data?.profile?.user?.status || 'Status Unavailable'
+                    }
+                  />
+                );
+              }
+              return null; // Ensures no empty component is returned
+            })
+          ) : (
+            // Fallback UI if no matching trainee is found
+            <p className="text-center">No trainee data available.</p>
+          )}
           <FaTimes
             size={24}
             color="red"
@@ -690,6 +697,7 @@ function AdminTraineeDashboard() {
             onClick={() => handleClose2()}
           />
         </Dialog>
+
         <Dialog
           open={open}
           onClose={handleClose}
