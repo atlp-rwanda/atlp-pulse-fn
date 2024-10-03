@@ -1,0 +1,2408 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin dashboard page Renders Manage role Page 1`] = `
+<div
+  className="p-4"
+>
+  <span
+    aria-busy={true}
+    aria-live="polite"
+  >
+    <span
+      className="react-loading-skeleton"
+      style={
+        Object {
+          "height": 30,
+          "width": 80,
+        }
+      }
+    >
+      ‌
+    </span>
+    <br />
+  </span>
+  <span
+    aria-busy={true}
+    aria-live="polite"
+  >
+    <span
+      className="react-loading-skeleton mt-6"
+      style={
+        Object {
+          "height": 30,
+          "width": "40%",
+        }
+      }
+    >
+      ‌
+    </span>
+    <br />
+  </span>
+  <div
+    className="p-6 border-b-2 bg-gray-100 mt-6"
+  >
+    <div
+      className="flex px-6"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton px-6 "
+          style={
+            Object {
+              "height": 20,
+              "width": 100,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton  px-6 ml-20"
+          style={
+            Object {
+              "height": 20,
+              "width": 100,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton  px-6 ml-20"
+          style={
+            Object {
+              "height": 20,
+              "width": 100,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton px-6 ml-20"
+          style={
+            Object {
+              "height": 20,
+              "width": 100,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton px-6 ml-28"
+          style={
+            Object {
+              "height": 20,
+              "width": 100,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+  </div>
+  <div
+    className="flex items-center mb-4"
+  >
+    <div
+      className="flex-1"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton mt-2"
+          style={
+            Object {
+              "height": 20,
+              "width": "85%",
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+    <div
+      className="flex space-x-4 mr-16"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+  </div>
+  <div
+    className="flex items-center mb-4"
+  >
+    <div
+      className="flex-1"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton mt-2"
+          style={
+            Object {
+              "height": 20,
+              "width": "85%",
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+    <div
+      className="flex space-x-4 mr-16"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+  </div>
+  <div
+    className="flex items-center mb-4"
+  >
+    <div
+      className="flex-1"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton mt-2"
+          style={
+            Object {
+              "height": 20,
+              "width": "85%",
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+    <div
+      className="flex space-x-4 mr-16"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "borderRadius": "50%",
+              "height": 30,
+              "width": 30,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+  </div>
+  <div
+    className="flex  justify-between"
+  >
+    <div
+      className="flex space-x-4 p-4"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "height": 30,
+              "width": 50,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "height": 30,
+              "width": 50,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+    <div
+      className="mr-14"
+    >
+      <span
+        aria-busy={true}
+        aria-live="polite"
+      >
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "height": 30,
+              "width": 300,
+            }
+          }
+        >
+          ‌
+        </span>
+        <br />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Admin dashboard page Renders Session Page 1`] = `
+Array [
+  <div
+    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm text-gray-700 text-center w-11/12 uppercase"
+        >
+          AddSession
+        </h3>
+        <hr
+          className=" bg-primary border-gray-400 my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary rounded outline-none px-5 font-sans dark:bg-dark-frame-bg dark:text-white text-xs py-2 w-full"
+                name="Sessionname"
+                onChange={[Function]}
+                placeholder="SessionName"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs w-full"
+                name="description"
+                onChange={[Function]}
+                placeholder="description"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 rounded dark:bg-dark-frame-bg dark:text-white outline-none px-5 font-sans text-xs w-full"
+                name="platform"
+                onChange={[Function]}
+                placeholder="platform"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="duration"
+                onChange={[Function]}
+                placeholder="duration"
+                type="time"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="organizer"
+                onChange={[Function]}
+                placeholder="organizer"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+    data-testid="delete-section"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12"
+        >
+          DeleteSession
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div>
+            <h2
+              className="text-base dark:text-white text-center m-4"
+            >
+              reallydeleteSession
+            </h2>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              data-testid="remove"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              data-testid="delete"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Delete
+               
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="flex flex-col h-screen"
+  >
+    <div
+      className="flex flex-row"
+    >
+      <div
+        className="w-full"
+      >
+        <div>
+          <div
+            className="bg-light-bg dark:bg-dark-frame-bg  "
+          >
+            <div
+              className="flex items-left pb-8"
+            >
+              <div
+                className="flex gap-2"
+              >
+                <button
+                  className="btn primary lg m-0 font-serif "
+                  data-testid="registerModel"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                   
+                  register
+                   +
+                   
+                </button>
+              </div>
+            </div>
+            <div>
+              <div>
+                Loading...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Admin dashboard page Renders cohort Page 1`] = `
+Array [
+  <div
+    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 uppercase"
+        >
+          Add Cohort
+        </h3>
+        <hr
+          className=" bg-primary border-gray-400 my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary rounded outline-none px-5 dark:bg-dark-bg-frame dark:text-white font-sans text-xs py-2 w-full"
+                name="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="name"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="my-react-select-container font-serif css-b62m3t-container"
+              onKeyDown={[Function]}
+            >
+              <span
+                className="css-1f43avz-a11yText-A11yText"
+                id="react-select-2-live-region"
+              />
+              <span
+                aria-atomic="false"
+                aria-live="polite"
+                aria-relevant="additions text"
+                className="css-1f43avz-a11yText-A11yText"
+                role="log"
+              />
+              <div
+                className="my-react-select__control css-1an72ab-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+              >
+                <div
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
+                >
+                  <div
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
+                    id="react-select-2-placeholder"
+                  >
+                    Select Phase Name
+                  </div>
+                  <div
+                    className="my-react-select__input-container css-qbdosj-Input"
+                    data-value=""
+                  >
+                    <input
+                      aria-activedescendant=""
+                      aria-autocomplete="list"
+                      aria-describedby="react-select-2-placeholder"
+                      aria-expanded={false}
+                      aria-haspopup={true}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      className="my-react-select__input"
+                      disabled={false}
+                      id="react-select-2-input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      role="combobox"
+                      spellCheck="false"
+                      style={
+                        Object {
+                          "background": 0,
+                          "border": 0,
+                          "color": "inherit",
+                          "font": "inherit",
+                          "gridArea": "1 / 2",
+                          "label": "input",
+                          "margin": 0,
+                          "minWidth": "2px",
+                          "opacity": 1,
+                          "outline": 0,
+                          "padding": 0,
+                          "width": "100%",
+                        }
+                      }
+                      tabIndex={0}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                >
+                  <span
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="css-tj5bde-Svg"
+                      focusable="false"
+                      height={20}
+                      viewBox="0 0 20 20"
+                      width={20}
+                    >
+                      <path
+                        d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <div
+                className="my-react-select-container font-serif css-b62m3t-container"
+                onKeyDown={[Function]}
+              >
+                <span
+                  className="css-1f43avz-a11yText-A11yText"
+                  id="react-select-3-live-region"
+                />
+                <span
+                  aria-atomic="false"
+                  aria-live="polite"
+                  aria-relevant="additions text"
+                  className="css-1f43avz-a11yText-A11yText"
+                  role="log"
+                />
+                <div
+                  className="my-react-select__control css-1an72ab-control"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <div
+                    className="my-react-select__value-container css-1fdsijx-ValueContainer"
+                  >
+                    <div
+                      className="my-react-select__placeholder css-1jqq78o-placeholder"
+                      id="react-select-3-placeholder"
+                    >
+                      Select Coordinator
+                    </div>
+                    <div
+                      className="my-react-select__input-container css-qbdosj-Input"
+                      data-value=""
+                    >
+                      <input
+                        aria-activedescendant=""
+                        aria-autocomplete="list"
+                        aria-describedby="react-select-3-placeholder"
+                        aria-expanded={false}
+                        aria-haspopup={true}
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="my-react-select__input"
+                        disabled={false}
+                        id="react-select-3-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        role="combobox"
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "color": "inherit",
+                            "font": "inherit",
+                            "gridArea": "1 / 2",
+                            "label": "input",
+                            "margin": 0,
+                            "minWidth": "2px",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "100%",
+                          }
+                        }
+                        tabIndex={0}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                  >
+                    <span
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
+                      onMouseDown={[Function]}
+                      onTouchEnd={[Function]}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="css-tj5bde-Svg"
+                        focusable="false"
+                        height={20}
+                        viewBox="0 0 20 20"
+                        width={20}
+                      >
+                        <path
+                          d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="my-react-select-container font-serif css-b62m3t-container"
+              onKeyDown={[Function]}
+            >
+              <span
+                className="css-1f43avz-a11yText-A11yText"
+                id="react-select-4-live-region"
+              />
+              <span
+                aria-atomic="false"
+                aria-live="polite"
+                aria-relevant="additions text"
+                className="css-1f43avz-a11yText-A11yText"
+                role="log"
+              />
+              <div
+                className="my-react-select__control css-1an72ab-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+              >
+                <div
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
+                >
+                  <div
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
+                    id="react-select-4-placeholder"
+                  >
+                    Select Program Name
+                  </div>
+                  <div
+                    className="my-react-select__input-container css-qbdosj-Input"
+                    data-value=""
+                  >
+                    <input
+                      aria-activedescendant=""
+                      aria-autocomplete="list"
+                      aria-describedby="react-select-4-placeholder"
+                      aria-expanded={false}
+                      aria-haspopup={true}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      className="my-react-select__input"
+                      disabled={false}
+                      id="react-select-4-input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      role="combobox"
+                      spellCheck="false"
+                      style={
+                        Object {
+                          "background": 0,
+                          "border": 0,
+                          "color": "inherit",
+                          "font": "inherit",
+                          "gridArea": "1 / 2",
+                          "label": "input",
+                          "margin": 0,
+                          "minWidth": "2px",
+                          "opacity": 1,
+                          "outline": 0,
+                          "padding": 0,
+                          "width": "100%",
+                        }
+                      }
+                      tabIndex={0}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                >
+                  <span
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="css-tj5bde-Svg"
+                      focusable="false"
+                      height={20}
+                      viewBox="0 0 20 20"
+                      width={20}
+                    >
+                      <path
+                        d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="startDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="StartingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="endDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="ClosingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              data-testid="remove"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 hidden"
+    data-testid="updateCohortModal"
+  >
+    <div
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12 uppercase"
+        >
+          Update Cohort
+        </h3>
+        <hr
+          className=" bg-primary border-gray-400 my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary rounded outline-none px-5 dark:bg-dark-bg-frame dark:text-white font-sans text-xs py-2 w-full"
+                name="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="name"
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="my-react-select-container font-serif css-b62m3t-container"
+              onKeyDown={[Function]}
+            >
+              <span
+                className="css-1f43avz-a11yText-A11yText"
+                id="react-select-5-live-region"
+              />
+              <span
+                aria-atomic="false"
+                aria-live="polite"
+                aria-relevant="additions text"
+                className="css-1f43avz-a11yText-A11yText"
+                role="log"
+              />
+              <div
+                className="my-react-select__control css-1an72ab-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+              >
+                <div
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
+                >
+                  <div
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
+                    id="react-select-5-placeholder"
+                  >
+                    Phase Name
+                  </div>
+                  <div
+                    className="my-react-select__input-container css-qbdosj-Input"
+                    data-value=""
+                  >
+                    <input
+                      aria-activedescendant=""
+                      aria-autocomplete="list"
+                      aria-describedby="react-select-5-placeholder"
+                      aria-expanded={false}
+                      aria-haspopup={true}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      className="my-react-select__input"
+                      disabled={false}
+                      id="react-select-5-input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      role="combobox"
+                      spellCheck="false"
+                      style={
+                        Object {
+                          "background": 0,
+                          "border": 0,
+                          "color": "inherit",
+                          "font": "inherit",
+                          "gridArea": "1 / 2",
+                          "label": "input",
+                          "margin": 0,
+                          "minWidth": "2px",
+                          "opacity": 1,
+                          "outline": 0,
+                          "padding": 0,
+                          "width": "100%",
+                        }
+                      }
+                      tabIndex={0}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                >
+                  <span
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="css-tj5bde-Svg"
+                      focusable="false"
+                      height={20}
+                      viewBox="0 0 20 20"
+                      width={20}
+                    >
+                      <path
+                        d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <div
+                className="my-react-select-container font-serif css-b62m3t-container"
+                onKeyDown={[Function]}
+              >
+                <span
+                  className="css-1f43avz-a11yText-A11yText"
+                  id="react-select-6-live-region"
+                />
+                <span
+                  aria-atomic="false"
+                  aria-live="polite"
+                  aria-relevant="additions text"
+                  className="css-1f43avz-a11yText-A11yText"
+                  role="log"
+                />
+                <div
+                  className="my-react-select__control css-1an72ab-control"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <div
+                    className="my-react-select__value-container css-1fdsijx-ValueContainer"
+                  >
+                    <div
+                      className="my-react-select__placeholder css-1jqq78o-placeholder"
+                      id="react-select-6-placeholder"
+                    >
+                      Select Coordinator
+                    </div>
+                    <div
+                      className="my-react-select__input-container css-qbdosj-Input"
+                      data-value=""
+                    >
+                      <input
+                        aria-activedescendant=""
+                        aria-autocomplete="list"
+                        aria-describedby="react-select-6-placeholder"
+                        aria-expanded={false}
+                        aria-haspopup={true}
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="my-react-select__input"
+                        disabled={false}
+                        id="react-select-6-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        role="combobox"
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "color": "inherit",
+                            "font": "inherit",
+                            "gridArea": "1 / 2",
+                            "label": "input",
+                            "margin": 0,
+                            "minWidth": "2px",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "100%",
+                          }
+                        }
+                        tabIndex={0}
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                  >
+                    <span
+                      className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
+                      onMouseDown={[Function]}
+                      onTouchEnd={[Function]}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="css-tj5bde-Svg"
+                        focusable="false"
+                        height={20}
+                        viewBox="0 0 20 20"
+                        width={20}
+                      >
+                        <path
+                          d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="my-react-select-container font-serif css-b62m3t-container"
+              onKeyDown={[Function]}
+            >
+              <span
+                className="css-1f43avz-a11yText-A11yText"
+                id="react-select-7-live-region"
+              />
+              <span
+                aria-atomic="false"
+                aria-live="polite"
+                aria-relevant="additions text"
+                className="css-1f43avz-a11yText-A11yText"
+                role="log"
+              />
+              <div
+                className="my-react-select__control css-1an72ab-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+              >
+                <div
+                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
+                >
+                  <div
+                    className="my-react-select__placeholder css-1jqq78o-placeholder"
+                    id="react-select-7-placeholder"
+                  >
+                    Program Name
+                  </div>
+                  <div
+                    className="my-react-select__input-container css-qbdosj-Input"
+                    data-value=""
+                  >
+                    <input
+                      aria-activedescendant=""
+                      aria-autocomplete="list"
+                      aria-describedby="react-select-7-placeholder"
+                      aria-expanded={false}
+                      aria-haspopup={true}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      className="my-react-select__input"
+                      disabled={false}
+                      id="react-select-7-input"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      role="combobox"
+                      spellCheck="false"
+                      style={
+                        Object {
+                          "background": 0,
+                          "border": 0,
+                          "color": "inherit",
+                          "font": "inherit",
+                          "gridArea": "1 / 2",
+                          "label": "input",
+                          "margin": 0,
+                          "minWidth": "2px",
+                          "opacity": 1,
+                          "outline": 0,
+                          "padding": 0,
+                          "width": "100%",
+                        }
+                      }
+                      tabIndex={0}
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                >
+                  <span
+                    className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="my-react-select__indicator my-react-select__dropdown-indicator css-1xc3v61-indicatorContainer"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="css-tj5bde-Svg"
+                      focusable="false"
+                      height={20}
+                      viewBox="0 0 20 20"
+                      width={20}
+                    >
+                      <path
+                        d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="startDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="StartingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="input my-5 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 dark:bg-dark-bg-frame dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="endDate"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="ClosingDate"
+                type="date"
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              data-testid="remove"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
+              data-testid="confirmUpdateBtn"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 hidden"
+  >
+    <div
+      className="font-serif bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[60%]"
+    >
+      <div
+        className="flex items-center justify-between pb-6 "
+      >
+        <div>
+          <h2
+            className="text-xl font-semibold text-gray-800 dark:text-white"
+          >
+            Trainees list
+          </h2>
+          <input
+            className="px-5 py-2 mt-4 font-sans text-xs border border-gray-300 rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+            defaultValue=""
+            onChange={[Function]}
+            placeholder="Filter"
+          />
+        </div>
+        <div
+          style={
+            Object {
+              "color": "red",
+              "marginTop": "-2.2cm",
+            }
+          }
+        >
+          <button
+            className="transform rotate-45 w-120 h-120 text-5xl"
+            data-testid="delete"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "overflowX": "auto",
+          }
+        }
+      >
+        <table
+          className="min-w-full leading-normal"
+          role="table"
+        >
+          <thead>
+            <tr
+              role="row"
+            >
+              <th
+                className=" thead"
+                colSpan={1}
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
+              >
+                name
+              </th>
+              <th
+                className=" thead"
+                colSpan={1}
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
+              >
+                email
+              </th>
+              <th
+                className=" thead"
+                colSpan={1}
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
+              >
+                rating
+              </th>
+              <th
+                className=" thead"
+                colSpan={1}
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
+              >
+                team
+              </th>
+              <th
+                className=" thead"
+                colSpan={1}
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
+              >
+                cohort
+              </th>
+              <th
+                className=" thead"
+                colSpan={1}
+                onClick={[Function]}
+                role="columnheader"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                title="Toggle SortBy"
+              >
+                program
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            role="rowgroup"
+          >
+            <tr
+              className=" bg-white dark:bg-dark-bg} "
+              role="row"
+            >
+              <td
+                className="data-cell"
+                role="cell"
+              />
+              <td
+                className="data-cell"
+                role="cell"
+              />
+              <td
+                className="data-cell"
+                role="cell"
+              />
+              <td
+                className="data-cell"
+                role="cell"
+              />
+              <td
+                className="data-cell"
+                role="cell"
+              />
+              <td
+                className="data-cell"
+                role="cell"
+              />
+            </tr>
+          </tbody>
+        </table>
+        <div
+          className="font-serif"
+        >
+          <table
+            className="w-full mt-2"
+          >
+            <tfoot
+              className="w-full py-2"
+            >
+              <tr
+                className="w-full py-2"
+              >
+                <td
+                  colSpan={6}
+                >
+                  <div
+                    className="flex flex-row items-center justify-between w-full mx-auto"
+                  >
+                    <div
+                      className="flex"
+                    >
+                      <button
+                        aria-label="left-arrow"
+                        className="page mx-2 text-white rounded-circle appearance-none font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                        disabled={true}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="w-5"
+                          fill="none"
+                          fontSize="sm"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                       
+                      <button
+                        aria-label="right-arrow"
+                        className="page mx-2 text-white rounded-circle font-bold flex items-center justify-center bg-primary h-[30px] w-[60px] cursor-pointer"
+                        disabled={true}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="w-5"
+                          fill="none"
+                          fontSize="sm"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                       
+                    </div>
+                    <div
+                      className="lg:flex flex-row justify-center w-1/3 sm:text-[12px] items-center"
+                    >
+                      <span
+                        className="inline-block mx-2"
+                      >
+                        Page
+                         
+                        <strong>
+                          1
+                           of
+                           1
+                        </strong>
+                         
+                      </span>
+                      <span
+                        className="inline-block mx-2"
+                      >
+                        | Go to page:
+                         
+                        <input
+                          className="pl-1 border rounded-md outline-none appearance-none  border-primary dark:bg-primary"
+                          defaultValue={1}
+                          onChange={[Function]}
+                          style={
+                            Object {
+                              "border": "solid 0.1rem #9e85f5",
+                              "height": "30px",
+                              "paddingLeft": "1.2rem",
+                              "width": "50px",
+                            }
+                          }
+                          type="number"
+                        />
+                      </span>
+                       
+                      <select
+                        className="border rounded-md px-1/2 font-raleway border-dark dark:bg-primary focus:outline-none"
+                        onChange={[Function]}
+                        style={
+                          Object {
+                            "border": "solid 0.1rem #9e85f5",
+                            "height": "30px",
+                          }
+                        }
+                        value={3}
+                      >
+                        <option
+                          value={3}
+                        >
+                          Show 
+                          3
+                        </option>
+                        <option
+                          value={5}
+                        >
+                          Show 
+                          5
+                        </option>
+                        <option
+                          value={10}
+                        >
+                          Show 
+                          10
+                        </option>
+                        <option
+                          value={25}
+                        >
+                          Show 
+                          25
+                        </option>
+                        <option
+                          value={50}
+                        >
+                          Show 
+                          50
+                        </option>
+                        <option
+                          value={100}
+                        >
+                          Show 
+                          100
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto p-4 hidden"
+  >
+    <div
+      className="bg-indigo-100 dark:bg-dark-bg w-screen md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-xl dark:text-white text-center w-11/12"
+        >
+          Delete Cohort
+        </h3>
+        <hr
+          className=" bg-primary border-gray-400 my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div>
+            <h2
+              className="text-base dark:text-white text-center m-4"
+            >
+              reallyRemoveCohort
+            </h2>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              data-testid="delete"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              data-testid="confirmDeleteBtn"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Delete
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-screen w-screen bg-black fixed top-0 left-0 z-20 bg-opacity-30 backdrop-blur-sm flex items-center justify-center overflow-auto mt-10 p-4 hidden"
+  >
+    <div
+      className="flex w-fit py-1 px-3 bg-primary justify-center font-bold rounded-full inline-block font-serif"
+    >
+      <div
+        className="flex w-full gap-2 justify-center items-center"
+      >
+        <div
+          className="loader"
+        />
+        <button
+          className=" text-white font-bold"
+          disabled={true}
+        >
+          Processing...
+        </button>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="bg-light-bg dark:bg-dark-frame-bg"
+  >
+    <div
+      className="flex items-left pb-8"
+    >
+      <div
+        className="flex gap-2"
+      >
+        <button
+          className="btn primary lg m-0 font-serif "
+          data-testid="removeModel"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+           
+          Cohort
+           +
+        </button>
+      </div>
+    </div>
+    <div>
+      <div
+        className="p-4"
+      >
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton"
+            style={
+              Object {
+                "height": 30,
+                "width": 80,
+              }
+            }
+          >
+            ‌
+          </span>
+          <br />
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton mt-6"
+            style={
+              Object {
+                "height": 30,
+                "width": "40%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <br />
+        </span>
+        <div
+          className="p-6 border-b-2 bg-gray-100 mt-6"
+        >
+          <div
+            className="flex px-6"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton px-6 "
+                style={
+                  Object {
+                    "height": 20,
+                    "width": 100,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton  px-6 ml-20"
+                style={
+                  Object {
+                    "height": 20,
+                    "width": 100,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton  px-6 ml-20"
+                style={
+                  Object {
+                    "height": 20,
+                    "width": 100,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton px-6 ml-20"
+                style={
+                  Object {
+                    "height": 20,
+                    "width": 100,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton px-6 ml-28"
+                style={
+                  Object {
+                    "height": 20,
+                    "width": 100,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+        </div>
+        <div
+          className="flex items-center mb-4"
+        >
+          <div
+            className="flex-1"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton mt-2"
+                style={
+                  Object {
+                    "height": 20,
+                    "width": "85%",
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            className="flex space-x-4 mr-16"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+        </div>
+        <div
+          className="flex items-center mb-4"
+        >
+          <div
+            className="flex-1"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton mt-2"
+                style={
+                  Object {
+                    "height": 20,
+                    "width": "85%",
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            className="flex space-x-4 mr-16"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+        </div>
+        <div
+          className="flex items-center mb-4"
+        >
+          <div
+            className="flex-1"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton mt-2"
+                style={
+                  Object {
+                    "height": 20,
+                    "width": "85%",
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            className="flex space-x-4 mr-16"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": 30,
+                    "width": 30,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+        </div>
+        <div
+          className="flex  justify-between"
+        >
+          <div
+            className="flex space-x-4 p-4"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "height": 30,
+                    "width": 50,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "height": 30,
+                    "width": 50,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            className="mr-14"
+          >
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
+              <span
+                className="react-loading-skeleton"
+                style={
+                  Object {
+                    "height": 30,
+                    "width": 300,
+                  }
+                }
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

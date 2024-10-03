@@ -1,0 +1,598 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UpdatedRatingDashboard /> Renders updatedRating 1`] = `
+Array [
+  <div
+    className="font-serif min-h-full w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-30 bg-black bg-opacity-30 backdrop-blur-sm hidden"
+    onClick={[Function]}
+  >
+    <div
+      className="font-serif bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8 grid place-items-center"
+    >
+      No Updated Feedback
+    </div>
+  </div>,
+  <div
+    className="font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute  flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12"
+        >
+          Approve updated ratings
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8 font-serif"
+        >
+          <div>
+            <h2
+              className="text-base dark:text-white m-4"
+            >
+              Are you sure you want to approve this updated ratings ?
+               
+              ?
+            </h2>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              data-testid="removeApproveModel"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Cancel
+               
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Approve
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className=" font-serif min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm dark:text-white text-center w-11/12"
+        >
+          Reject Updated ratings
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8 font-serif"
+        >
+          <div>
+            <h2
+              className="text-base dark:text-white m-4"
+            >
+              Are you sure you want to reject this updated ratings
+               ?
+            </h2>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-serif font-serif "
+              data-testid="removeRejectModel"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-serif font-serif "
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Reject
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="flex flex-col bg-light-bg font-serif"
+  >
+    <div
+      className="flex flex-row"
+    >
+      <div
+        className="w-full"
+      >
+        <div>
+          <div
+            className="bg-light-bg dark:bg-dark-frame-bg "
+          >
+            <div
+              className=""
+            >
+              <div
+                className="p-4"
+              >
+                <span
+                  aria-busy={true}
+                  aria-live="polite"
+                >
+                  <span
+                    className="react-loading-skeleton"
+                    style={
+                      Object {
+                        "height": 30,
+                        "width": 80,
+                      }
+                    }
+                  >
+                    ‌
+                  </span>
+                  <br />
+                </span>
+                <span
+                  aria-busy={true}
+                  aria-live="polite"
+                >
+                  <span
+                    className="react-loading-skeleton mt-6"
+                    style={
+                      Object {
+                        "height": 30,
+                        "width": "40%",
+                      }
+                    }
+                  >
+                    ‌
+                  </span>
+                  <br />
+                </span>
+                <div
+                  className="p-6 border-b-2 bg-gray-100 mt-6"
+                >
+                  <div
+                    className="flex px-6"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton px-6 "
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": 100,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton  px-6 ml-20"
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": 100,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton  px-6 ml-20"
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": 100,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton px-6 ml-20"
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": 100,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton px-6 ml-28"
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": 100,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="flex items-center mb-4"
+                >
+                  <div
+                    className="flex-1"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton mt-2"
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": "85%",
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                  <div
+                    className="flex space-x-4 mr-16"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="flex items-center mb-4"
+                >
+                  <div
+                    className="flex-1"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton mt-2"
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": "85%",
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                  <div
+                    className="flex space-x-4 mr-16"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="flex items-center mb-4"
+                >
+                  <div
+                    className="flex-1"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton mt-2"
+                        style={
+                          Object {
+                            "height": 20,
+                            "width": "85%",
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                  <div
+                    className="flex space-x-4 mr-16"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "borderRadius": "50%",
+                            "height": 30,
+                            "width": 30,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="flex  justify-between"
+                >
+                  <div
+                    className="flex space-x-4 p-4"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "height": 30,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "height": 30,
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                  <div
+                    className="mr-14"
+                  >
+                    <span
+                      aria-busy={true}
+                      aria-live="polite"
+                    >
+                      <span
+                        className="react-loading-skeleton"
+                        style={
+                          Object {
+                            "height": 30,
+                            "width": 300,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                      <br />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
