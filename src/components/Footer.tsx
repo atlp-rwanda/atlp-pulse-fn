@@ -30,70 +30,82 @@ function Footer({ styles }: any) {
   }, []);
   return (
     <div
-      className={`w-full bg-indigo-100 dark:bg-dark-bg ${styles} page-footer font-serif`}
+      className={`w-full bg-indigo-100 dark:bg-dark-bg ${styles} page-footer font-serif px-6 py-10`}
     >
-      <div className="px-2 flex flex-col lg:flex-row justify-between items-center w-full h-full">
-        <div className="flex flex-col lg:flex-row items-center py-5">
-          <div className="flex flex-col mr-12 lg:mr-0">
-            <div className="flex mb-2 ml-10 text-dark dark:text-dark-text-fill">
-              <LogoIcon />
-              <h1 className="text-3xl font-bold" data-testid="pulse">
+      <div className="flex flex-col md:flex-row">
+        {/* left */}
+        <div className="w-full md:w-[20%]   flex flex-col justify-start pt-4 mb-8 md:mb-0 ">
+          <div className="flex  items-center justify-center  ">
+            <div className="w-[15%] sm:w-[20%] md:w-[20%]  flex justify-end">
+              <LogoIcon className="ml-5 w-full h-10 w-10 " />
+            </div>
+            <div className="w-[30%] sm:w-[25%] md:w-[30%]  mr-7 md:mr-0 flex justify-start">
+              <h1
+                className="text-3xl font-bold m-0 leading-none text-center"
+                data-testid="pulse"
+              >
                 PULSE
               </h1>
             </div>
-            <div className="flex border-none justify-around items-center ml-16 mt-4 cursor-pointer">
-              <FaFacebook className=" fa-xs " />
-              <FaInstagram className=" " />
-              <FaTwitter className="mr-1 " />
-              <FaLinkedin className="mr-1 " />
-              <FaPlayCircle className="" />
-            </div>
           </div>
-          <div className="flex flex-col py-4 lg:py-0 lg:flex-row">
-            <div className="flex py-4">
-              <ul className="lg:flex lg:flex-col mr-[8vh] md:mr-[16vh] lg:mr-0 lg:ml-28 cursor-pointer">
-                <li className="py-2 text-sm font-bold">{t('Dev Pulse')}</li>
-                <li className="py-2 text-xs">{t('About us')}</li>
-                <li className="py-2 text-xs">{t('Contact us')}</li>
-              </ul>
-              <ul className="lg:flex lg:flex-col ml-[8vh] md:ml-[16vh] lg:ml-28 cursor-pointer">
-                <li className="py-2 text-sm font-bold">{t('Product')}</li>
-                <li className="py-2 text-xs">{t('Features')}</li>
-                <li className="py-2 text-xs">{t('Integrations')}</li>
+          <div className="flex  justify-center space-x-4 mt-4">
+            <FaFacebook className=" w-6 h-6" />
+            <FaInstagram className=" w-6 h-6" />
+            <FaTwitter className=" w-6 h-6" />
+            <FaLinkedin className=" w-6 h-6" />
+            <FaPlayCircle className=" w-6 h-6" />
+          </div>
+        </div>
+        {/* center */}
+        <div className="w-full md:w-[60%] ">
+          <div className="flex flex-wrap justify-center ">
+            <div className="w-full sm:w-1/2 md:w-1/4 p-4  text-center lg:text-left">
+              <h3 className="font-bold mb-2">{t('Dev Pulse')}</h3>
+              <ul>
+                <li className="mb-1">{t('About us')}</li>
+                <li className="mb-1">{t('Contact us')}</li>
               </ul>
             </div>
-            <div className="flex py-4">
-              <ul className="lg:flex lg:flex-col mr-[8vh] md:mr-[16vh] lg:mr-0 lg:ml-28 cursor-pointer">
-                <li className="py-2 text-sm font-bold">{t('Resources')}</li>
-                <li className="py-2 text-xs">{t('Community')}</li>
-                <li className="py-2 text-xs">{t('Help Center')}</li>
+            <div className="w-full sm:w-1/2 md:w-1/4 p-4  text-center lg:text-left">
+              <h3 className="font-bold mb-2 ">{t('Product')}</h3>
+              <ul>
+                <li className="mb-1">{t('Features')}</li>
+                <li className="mb-1">{t('Integrations')}</li>
               </ul>
-              <ul className="lg:flex lg:flex-col ml-[8vh] md:ml-[16vh] lg:ml-28 cursor-pointer">
-                <li className="py-2 text-sm font-bold">
-                  {t('Basic Settings')}
-                </li>
-                <li className="py-2 text-xs">{t('Terms and conditions')}</li>
-                <li className="py-2 text-xs">{t('Privacy and Policies')}</li>
-                <select
-                  name="language"
-                  defaultValue={userLang}
-                  data-testid="lanChange"
-                  ref={lanRef}
-                  onChange={(e) => {
-                    changeLan(e);
-                  }}
-                  className="mt-2 outline rounded-md px-2 py-1 dark:text-dark-text-fill dark:bg-dark-bg "
-                >
-                  <option value="en">English</option>
-                  <option value="kn">Kinyarwanda</option>
-                  <option value="fr">Français</option>
-                </select>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/4 p-4   text-center lg:text-left">
+              <h3 className="font-bold mb-2">{t('Resources')}</h3>
+              <ul>
+                <li className="mb-1">{t('Community')}</li>
+                <li className="mb-1">{t('Help Center')}</li>
               </ul>
+            </div>
+            <div className="w-full sm:w-1/2 md:w-1/4 p-4   text-center lg:text-left">
+              <h3 className="font-bold mb-2">{t('Basic Settings')}</h3>
+              <ul>
+                <li className="mb-1">{t('Terms and conditions')}</li>
+                <li className="mb-1">{t('Privacy and Policies')}</li>
+              </ul>
+              <select
+                name="language"
+                defaultValue={userLang}
+                data-testid="lanChange"
+                ref={lanRef}
+                onChange={(e) => {
+                  changeLan(e);
+                }}
+                className="mt-2 outline rounded-md px-2 py-1 dark:text-dark-text-fill dark:bg-dark-bg mx-auto sm:mx-0"
+              >
+                <option value="en">English</option>
+                <option value="kn">Kinyarwanda</option>
+                <option value="fr">Français</option>
+              </select>
             </div>
           </div>
         </div>
-        <div className=" lg:flex mr-10">
-          <span className="px-4 lg:py-3 cursor-pointer text-lg">
+        {/* right */}
+        <div className="w-full md:w-[20%]  flex items-center justify-center mt-10 mb-8 md:mt-0">
+          <span className="text-center lg:text-left">
             © {new Date().getFullYear()} Pulse Technologies
           </span>
         </div>
