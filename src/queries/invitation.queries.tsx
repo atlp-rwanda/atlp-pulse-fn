@@ -33,8 +33,8 @@ export const GET_INVITATIONS = gql`
 `;
 
 export const GET_ROLES_AND_STATUSES = gql`
-  query filterInvitations($limit: Int, $offset: Int, $role: String, $status: String) {
-    filterInvitations(limit: $limit, offset: $offset, role: $role, status: $status) {
+  query filterInvitations($limit: Int, $offset: Int, $role: String, $status: String, $orgToken: String!) {
+    filterInvitations(limit: $limit, offset: $offset, role: $role, status: $status, orgToken: $orgToken) {
       invitations {
         invitees {
           email

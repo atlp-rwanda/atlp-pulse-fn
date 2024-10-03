@@ -213,9 +213,15 @@ function Invitation() {
 
   useEffect(() => {
     if (filterVariables.role || filterVariables.status) {
-      filterInvitations();
+      filterInvitations({
+          variables: {
+          role: filterVariables.role || null,
+          status: typeof filterVariables.status === 'string' ? filterVariables.status : null,
+          orgToken: organizationToken,
+        },
+    });
     }
-  }, [filterVariables, filterInvitations]);
+  }, [filterVariables, filterInvitations,organizationToken]);
 
   // Consolidated effect to handle query and search data
   useEffect(() => {
@@ -278,7 +284,10 @@ function Invitation() {
     setError(null);
     setLoading(false);
 
-    setFilterVariables({ role: selectedRole, status: selectedStatus });
+      setFilterVariables({
+      role: selectedRole,
+      status: typeof selectedStatus === 'string' ? selectedStatus : '',
+    });
   };
 
   const toggleOptions = (row: string) => {
