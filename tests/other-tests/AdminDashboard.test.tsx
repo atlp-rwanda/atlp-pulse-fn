@@ -9,6 +9,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
+import '@testing-library/jest-dom'
 import { act } from 'react-dom/test-utils';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import AdminDashboard from '../../src/pages/AdminDashboard';

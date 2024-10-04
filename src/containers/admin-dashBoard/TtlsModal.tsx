@@ -15,14 +15,15 @@ import { Icon } from '@iconify/react';
 import { UserContext } from '../../hook/useAuth';
 import Button from '../../components/Buttons';
 import Avatar from '../../assets/avatar.png';
-import { GET_ALL_TTL_USERS, DROP_TTL_USER } from '../../Mutations/User';
+import { DROP_TTL_USER } from '../../Mutations/User';
+import { GET_ALL_TTL_USERS } from '../../queries/user.queries';
+import { EDIT_MEMBER_MUTATION } from '../../Mutations/manageStudentMutations';
 import {
-  EDIT_MEMBER_MUTATION,
   GET_COHORTS_QUERY,
   GET_TEAM_QUERY,
-} from '../../Mutations/manageStudentMutations';
+  GET_GITHUB_STATISTICS,
+} from '../../queries/manageStudent.queries';
 import ControlledSelect from '../../components/ControlledSelect';
-import { GET_GITHUB_STATISTICS } from '../../Mutations/manageStudentMutations';
 import GitHubActivityChart from '../../components/chartGitHub';
 import { toast } from 'react-toastify';
 import TtlSkeleton from '../../Skeletons/ttl.skeleton'

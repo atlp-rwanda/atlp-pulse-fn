@@ -14,7 +14,7 @@ import { CameraIcon } from '@heroicons/react/outline';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from './Buttons';
-import { GET_PROFILE } from '../Mutations/User';
+import { GET_PROFILE } from '../queries/user.queries';
 import Avatar from '../assets/avatar.png';
 import Spinner from '../components/ButtonLoading';
 import { UserContext } from '../hook/useAuth';

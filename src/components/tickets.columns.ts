@@ -27,4 +27,9 @@ export const ticketsColumns = [
     accessor: 'assignee',
     Cell: ({ value }: any) => value?.email || 'N/A',
   },
+  {
+    Header: 'Team',
+    accessor: 'assigneeTeam',
+    Cell: ({ value }: any) => value?.team.name || 'N/A',
+  },
 ];

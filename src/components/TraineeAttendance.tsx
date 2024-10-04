@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import Pagination from '../components/Pagination';
 import AttendanceData from '../dummyData/attendance.json';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import { GET_WEEKLY_ATTENDANCE } from '../Mutations/Attendance';
+import { GET_WEEKLY_ATTENDANCE } from '../queries/attendance.queries';
 
 interface TraineeAttendanceData {
   getTraineeAttendanceByID: {

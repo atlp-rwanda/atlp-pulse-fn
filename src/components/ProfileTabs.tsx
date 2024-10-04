@@ -21,7 +21,7 @@ import { passwordFields } from '../constants/formFields';
 import { UserContext } from '../hook/useAuth';
 import { CountryComponent } from '../pages/Profile';
 
-import { GET_ALL_TRAINEES } from '../Mutations/Ratings';
+import { GET_ALL_TRAINEES } from '../queries/ratings.queries';
 import {
   FaEdit,
   FaEraser,
@@ -33,12 +33,14 @@ import {
 } from 'react-icons/fa';
 import {
   ADD_REPO,
-  GET_GITHUB_STATISTICS,
-  GET_ORGANISATION,
   REMOVE_REPO,
   UPDATE_ORGANISATION_NAME,
-  GET_TRAINEE_PROFILE,
 } from '../Mutations/manageStudentMutations';
+import {
+  GET_GITHUB_STATISTICS,
+  GET_ORGANISATION,
+  GET_TRAINEE_PROFILE,
+} from '../queries/manageStudent.queries';
 import Spinner from './Spinner';
 import GitHubActivityChart from './chartGitHub';
 import BookOpenIcon from '@heroicons/react/outline/BookOpenIcon';

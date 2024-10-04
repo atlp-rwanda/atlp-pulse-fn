@@ -101,10 +101,24 @@ const splitLink = split(
   from([errorLink, authLink.concat(uploadLink)]),
 );
 
+const cache = new InMemoryCache({
+  typePolicies: {
+    User: {
+      fields: {
+        profile: {
+          merge(existing, incoming) {
+            return { ...existing, ...incoming };
+          },
+        },
+      },
+    },
+  },
+});
+
 // Initialize Apollo Client
 export const client = new ApolloClient({
   link: splitLink,
-  cache: new InMemoryCache(),
+  cache,
 });
 
 // Render the app using ApolloProvider

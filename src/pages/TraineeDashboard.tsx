@@ -26,7 +26,7 @@ import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import TraineeChart from '../components/TraineeDashboardChart';
 import Table from '../components/TraineeTable';
-import { TRAINEE_RATING } from '../Mutations/Ratings';
+import { TRAINEE_RATING } from '../queries/ratings.queries';
 // import { AiOutlineEye } from 'react-icons/ai';
 import Comment from '../components/ViewComment';
 import DataTable from '../components/DataTable';

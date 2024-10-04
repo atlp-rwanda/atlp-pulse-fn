@@ -1,34 +1,133 @@
+/* eslint-disable no-console */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import { toast } from 'react-toastify';
-import GET_TICKETS, {
-  DELETE_TICKET,
-  GET_TRAINEES,
-  UPDATE_TICKET,
-} from '../queries/tickets.queries';
 import DataTable from '../components/DataTable';
 import NewTicketModal from '../components/NewTicketModal';
 import ViewTicketModal from '../components/ViewTicketModal';
 import EditTicketModal from '../components/EditTicketModal';
 import ConfirmationModal from '../components/ConfirmationModal';
-import { ticketsColumns } from '../components/tickets.columns';
 import ActionDropdownCell from '../Mutations/ActionDropdownCell';
 import { UserContext } from '../hook/useAuth';
+
+// GraphQL Queries and Mutations
+const GET_TICKETS = gql`
+  query GetAllTickets {
+    getAllTickets {
+      id
+      subject
+      message
+      status
+      createdAt
+      user {
+        id
+        email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+        team {
+          id
+          name
+        }
+        cohort {
+          id
+          name
+        }
+      }
+      assignee {
+        id
+        email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+        team {
+          id
+          name
+        }
+        cohort {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
+const DELETE_TICKET = gql`
+  mutation DeleteTicket($deleteTicketId: ID!) {
+    deleteTicket(id: $deleteTicketId) {
+      responseMsg
+    }
+  }
+`;
+
+const GET_TRAINEES = gql`
+  query GetTrainees($orgToken: String!) {
+    getTrainees(orgToken: $orgToken) {
+      id
+      email
+      role
+      team {
+        id
+        name
+      }
+      cohort {
+        id
+        name
+      }
+    }
+  }
+`;
+
+const UPDATE_TICKET = gql`
+  mutation UpdateTicket($updateTicketId: ID!, $input: UpdateTicketInput!) {
+    updateTicket(id: $updateTicketId, input: $input) {
+      responseMsg
+    }
+  }
+`;
+
+// Interfaces
+interface Team {
+  id: string;
+  name: string;
+}
+
+interface Cohort {
+  id: string;
+  name: string;
+}
+
+interface Profile {
+  name: string;
+  firstName: string;
+  lastName: string;
+}
+
+interface User {
+  id: string;
+  email: string;
+  role: string;
+  profile: Profile;
+  team: Team;
+  cohort: Cohort;
+}
 
 interface Ticket {
   id: string;
   subject: string;
   message: string;
   status: string;
-  assignee: {
-    id: string;
-    email: string;
-  };
-}
-
-interface User {
-  id: string;
-  email: string;
+  createdAt: string;
+  user: User;
+  assignee: User;
 }
 
 interface ActionDropdownCellProps {
@@ -66,6 +165,7 @@ function TicketsPage() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [users, setUsers] = useState<User[]>([]);
+  const [teams, setTeams] = useState<Team[]>([]); // State for teams
 
   const { logout } = useContext(UserContext);
 
@@ -133,6 +233,7 @@ function TicketsPage() {
       setUsers(usersData.getTrainees);
     }
   }, [usersData, role]);
+  console.log(usersData);
 
   const handleNewTicketClick = () => setIsNewTicketModalOpen(true);
   const handleCloseNewTicketModal = () => setIsNewTicketModalOpen(false);
@@ -187,7 +288,51 @@ function TicketsPage() {
   const cancelDelete = () => setIsConfirmDeleteOpen(false);
 
   const columns = React.useMemo(() => {
-    const baseColumns = [...ticketsColumns];
+    const baseColumns = [
+      {
+        Header: 'Subject',
+        accessor: 'subject',
+      },
+      {
+        Header: 'Message',
+        accessor: 'message',
+        Cell: ({ value }: { value: string }) => {
+          const trimmedMessage =
+            value.length > 100 ? `${value.substring(0, 100)}...` : value;
+          return trimmedMessage;
+        },
+      },
+      {
+        Header: 'Created At',
+        accessor: 'createdAt',
+        Cell: ({ value }: { value: string }) =>
+          new Date(parseInt(value, 10)).toLocaleString(),
+      },
+      {
+        Header: 'Assigner Email',
+        accessor: 'user.email',
+        Cell: ({ value }: { value: string }) => value || 'N/A',
+      },
+      {
+        Header: 'Assignee Email',
+        accessor: 'assignee.email',
+        Cell: ({ value }: { value: string }) => value || 'N/A',
+      },
+    ];
+
+    const adminColumns = [
+      {
+        Header: 'Team',
+        accessor: 'assignee.team.name',
+        Cell: ({ value }: { value: string }) => value || 'N/A',
+      },
+      {
+        Header: 'Cohort',
+        accessor: 'assignee.cohort.name',
+        Cell: ({ value }: { value: string }) => value || 'N/A',
+      },
+    ];
+
     const actionColumn = {
       Header: 'Actions',
       accessor: 'actions',
@@ -201,7 +346,14 @@ function TicketsPage() {
         />
       ),
     };
-    return [...baseColumns, actionColumn];
+
+    let columnsToUse = [...baseColumns];
+
+    if (role === 'admin' || role === 'coordinator' || role === 'superAdmin') {
+      columnsToUse = [...columnsToUse, ...adminColumns];
+    }
+
+    return [...columnsToUse, actionColumn];
   }, [role, handleViewTicket, handleEditTicket, handleDeleteTicket]);
 
   return (

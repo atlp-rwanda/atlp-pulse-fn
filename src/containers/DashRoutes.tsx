@@ -90,81 +90,75 @@ function DashRoutes() {
         <DashHeader />
         <Sidebar toggle={toggleNav} style="" />
       </MenuProvider>
-      <main className=" px-4 md:px-8 py-4 md:py-8 w-[100%] bg-light-bg dark:bg-dark-frame-bg"> 
-        {/* <Suspense fallback={<Square />}> */}
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/trainees" element={<AdminTraineeDashboard />} />
-            <Route
-              path="/invitation"
-              element={
-                <>
-                  <CheckRole roles={['admin']}>
-                    <Invitation />
-                  </CheckRole>
-                </>
-              }
-            />
-            <Route path="/trainees/:userId" element={<ViewTraineeRatings />} />
-            <Route
-              path="/ratings"
-              element={
-                <>
-                  <CheckRole roles={['admin']}>
-                    <AdminRatings />
-                  </CheckRole>
-                  <CheckRole roles={['-admin']}>
-                    <TraineeRatingDashboard />
-                  </CheckRole>
-                </>
-              }
-            />
-            <Route
-              path="/updated-ratings"
-              element={<UpdatedRatingDashboard />}
-            />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/performance" element={<TraineePerfomance />} />
-            {/* <Route path="/attendance" element={<TraineeAttendance />} /> */}
-            <Route path="/attendance" element={<Attendance />} />
-            <Route path="/attendance-details" element={<AttendanceDetails />} />
-            <Route path="/teams" element={<AdminTeams />} />
-            <Route path="/cohorts" element={<AdminCohorts />} />
-            <Route path="/phases" element={<AdminPhases />} />
-            <Route path="/programs" element={<AdminPrograms />} />
-            <Route path="/sessions" element={<AdminSission />} />
-            <Route path="/manage" element={<AdminManageRoles />} />
-            <Route path="/grading" element={<GradingSystem />} />
-            <Route
-              path="/performance-details"
-              element={<PerformanceDetails />}
-            />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/edit" element={<EditProfile />} />
-            {/* <Route path="*" element={<Error />} /> */}
-            <Route path="/super-admin" element={<SupAdDashboard />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/organizations" element={<Organizations />} />
-            <Route path="/coordinators" element={<CoordinatorsPage />} />
-            <Route path="/docs/admin" element={<AdminDocs />} />
-            <Route path="/ttls" element={<TtlsPage />} />
-            <Route path="/coordinatorDocs" element={<CoordinatorDocs />} />
-            <Route path="/docs/trainee" element={<TraineeDocs />} />
-            <Route path="/docs" element={<OthersDocs />} />
-            <Route path="/support" element={<HelpPage />} />
-            <Route path="/tickets" element={<Tickets />}>
-              <Route index element={<AllTickets />} />
-            </Route>
+      <main className=" px-4 md:px-8 py-4 md:py-8 w-[100%] bg-light-bg overflow-hidden  dark:bg-dark-frame-bg">
+        <Suspense >
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/trainees" element={<AdminTraineeDashboard />} />
+          <Route
+            path="/invitation"
+            element={
+              <>
+                <CheckRole roles={['admin']}>
+                  <Invitation />
+                </CheckRole>
+              </>
+            }
+          />
+          <Route path="/trainees/:userId" element={<ViewTraineeRatings />} />
+          <Route
+            path="/ratings"
+            element={
+              <>
+                <CheckRole roles={['admin']}>
+                  <AdminRatings />
+                </CheckRole>
+                <CheckRole roles={['-admin']}>
+                  <TraineeRatingDashboard />
+                </CheckRole>
+              </>
+            }
+          />
+          <Route path="/updated-ratings" element={<UpdatedRatingDashboard />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/performance" element={<TraineePerfomance />} />
+          {/* <Route path="/attendance" element={<TraineeAttendance />} /> */}
+          <Route path="/attendance" element={<Attendance />} />
+          <Route path="/attendance-details" element={<AttendanceDetails />} />
+          <Route path="/teams" element={<AdminTeams />} />
+          <Route path="/cohorts" element={<AdminCohorts />} />
+          <Route path="/phases" element={<AdminPhases />} />
+          <Route path="/programs" element={<AdminPrograms />} />
+          <Route path="/sessions" element={<AdminSission />} />
+          <Route path="/manage" element={<AdminManageRoles />} />
+          <Route path="/grading" element={<GradingSystem />} />
+          <Route path="/performance-details" element={<PerformanceDetails />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
+          {/* <Route path="*" element={<Error />} /> */}
+          <Route path="/super-admin" element={<SupAdDashboard />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/organizations" element={<Organizations />} />
+          <Route path="/coordinators" element={<CoordinatorsPage />} />
+          <Route path="/docs/admin" element={<AdminDocs />} />
+          <Route path="/ttls" element={<TtlsPage />} />
+          <Route path="/coordinatorDocs" element={<CoordinatorDocs />} />
+          <Route path="/docs/trainee" element={<TraineeDocs />} />
+          <Route path="/docs" element={<OthersDocs />} />
+          <Route path="/support" element={<HelpPage />} />
+          <Route path="/tickets" element={<Tickets />}>
+            <Route index element={<AllTickets />} />
+          </Route>
 
-            <Route path="/loginActivities" element={<LoginActivitiesTable />} />
+          <Route path="/loginActivities" element={<LoginActivitiesTable />} />
 
-            <Route path="/team/:teamname" element={<TeamDetails />} />
+          <Route path="/team/:teamname" element={<TeamDetails />} />
 
-            <Route path="/team-cards" element={<ManagersCards />} />
-            <Route path="/cards" element={<CoordinatorCards />} />
-            <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
-          </Routes>
-        {/* </Suspense> */}
+          <Route path="/team-cards" element={<ManagersCards />} />
+          <Route path="/teams/cards" element={<CoordinatorCards />} />
+          <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
+        </Routes>
+        </Suspense>
       </main>
     </PrivateRoute>
   );

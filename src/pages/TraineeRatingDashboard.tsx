@@ -13,17 +13,18 @@ import { Icon } from '@iconify/react';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Sidebar from '../components/Sidebar';
 import Button from '../components/Buttons';
-import { DEFAULT_GRADE } from '../Mutations/MakeDefault';
+import { DEFAULT_GRADE } from '../queries/DefaultGrading.queries';
 import {
   ADD_RATING,
   UPDATE_RATING,
-  RATING_BY_COHORT,
   GET_FEEDBACKS_SUBSCRIPTION,
 } from '../Mutations/Ratings';
 import {
   GET_COHORTS_QUERY,
   GET_COHORT_TRAINEES_QUERY,
-} from '../Mutations/manageStudentMutations';
+} from '../queries/manageStudent.queries';
+
+import { RATING_BY_COHORT } from '../queries/ratings.queries';
 
 import { sprint } from '../dummyData/ratings';
 import DataTable from '../components/DataTable';

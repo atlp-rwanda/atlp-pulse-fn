@@ -1,0 +1,408 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
+<div
+  className="bg-tertiary dark:bg-dark-bg p-5 xmd:p-10 rounded-lg font-serif"
+>
+  <div
+    className=""
+  >
+    <div
+      className="flex flex-col gap-y-5 xmd:gap-y-9 rounded-md w-full mt-1 xmd:mt-0"
+    >
+      <div
+        className="text-lg xmd:text-xl font-semibold"
+      >
+        <h2>
+          Attendance
+        </h2>
+      </div>
+      <div
+        className="flex items-end justify-between"
+      >
+        <div>
+          <p
+            className="text-[.9rem] xmd:text-[.95rem]"
+          >
+            Team
+          </p>
+          <div
+            className="flex px-1 h-[1.85rem] xmd:h-8 w-24 xmd:w-32 rounded-[4px] border dark:border-white border-black text-black dark:text-white "
+          >
+            <select
+              className="w-full pl-1 bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer text-[.83rem] xmd:text-[.9rem]"
+              data-testid="team-test"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+        </div>
+        <button
+          className="bg-neutral-400/60 dark:bg-neutral-500 text-black dark:text-white cursor-not-allowed   text-[.84rem] xmd:text-[.9rem] font-semibold w-[8.9rem] xmd:w-[10rem] h-[1.9rem] xmd:h-[2.3rem] rounded-[4px] tracking-tight"
+          data-testid="submitAttend"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Submit Attendance
+        </button>
+      </div>
+      <div
+        className="flex justify-between mt-5"
+      >
+        <div
+          className="flex"
+        />
+        <div
+          className="flex items-center pl-2 pr-1 h-[1.85rem] xmd:h-8 w-24 xmd:w-28 rounded-[4px] border dark:border-white border-black text-black dark:text-white text-[.86rem] xmd:text-[.9rem]"
+        >
+          <span>
+            Week:
+          </span>
+          <select
+            className="w-full text-center bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer "
+            data-testid="week-test"
+            onChange={[Function]}
+          >
+            0
+          </select>
+        </div>
+      </div>
+      <div
+        className="flex justify-between items-center border border-neutral-400/60 dark:border-neutral-600 h-[1.85rem] xmd:h-9 text-[.88rem] xmd:text-base"
+      >
+        <div
+          className="bg-neutral-400/60 dark:bg-neutral-600 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          data-testid="days-test"
+          onClick={[Function]}
+        >
+          <span>
+            mon
+          </span>
+        </div>
+        <div
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          data-testid="days-test"
+          onClick={[Function]}
+        >
+          <span>
+            tue
+          </span>
+        </div>
+        <div
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          data-testid="days-test"
+          onClick={[Function]}
+        >
+          <span>
+            wed
+          </span>
+        </div>
+        <div
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          data-testid="days-test"
+          onClick={[Function]}
+        >
+          <span>
+            thu
+          </span>
+        </div>
+        <div
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          data-testid="days-test"
+          onClick={[Function]}
+        >
+          <span>
+            fri
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="flex items-center justify-between mb-1"
+        >
+          <div
+            className="flex items-center gap-[2px] "
+          />
+          <div
+            className="flex xmd:hidden text-[.9rem] gap-2"
+          >
+            <div
+              className="flex gap-x-1 items-center cursor-pointer"
+              data-testid="update-link"
+              onClick={[Function]}
+            >
+              <svg
+                className="text-xl"
+                fill="none"
+                height="1em"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  height="4"
+                  rx="1"
+                  ry="1"
+                  width="8"
+                  x="8"
+                  y="2"
+                />
+                <path
+                  d="M10.42 12.61a2.1 2.1 0 1 1 2.97 2.97L7.95 21 4 22l.99-3.95 5.43-5.44Z"
+                />
+                <path
+                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5"
+                />
+                <path
+                  d="M4 13.5V6a2 2 0 0 1 2-2h2"
+                />
+              </svg>
+            </div>
+            <div
+              className="flex gap-x-1 items-center cursor-pointer"
+              onClick={[Function]}
+            >
+              <svg
+                className="text-xl"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          className="overflow-x-scroll xmd:overflow-hidden"
+        >
+          <table
+            className="w-full overflow-hidden border border-neutral-400 dark:border-neutral-600"
+          >
+            <thead>
+              <tr
+                className="bg-neutral-400/60 dark:bg-neutral-600 h-10 text-[.88rem] xmd:text-base"
+              >
+                <th
+                  className="w-[40%] text-left pl-2 xmd:pl-10"
+                >
+                  Names
+                </th>
+                <th
+                  className="w-[40%] text-left pl-2 xmd:pl-10"
+                >
+                  Email
+                </th>
+                <th
+                  className="w-[20%]"
+                >
+                  Score
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              className="min-h-32 text-[.83rem] lg:text-[.9rem]"
+            >
+              <tr>
+                <td
+                  className="text-center h-20"
+                  colSpan={3}
+                >
+                  There is no attendance for the selected day
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        className="flex justify-between"
+      >
+        <div
+          className="hidden xmd:flex flex-col text-[.9rem] gap-2 capitalize"
+        >
+          <h2
+            className="mb-1 font-semibold"
+          >
+            ATTENDANCE ACTIONS
+          </h2>
+          <div
+            className="flex gap-x-1 items-center ml-4 cursor-pointer"
+            data-testid="update-link-2"
+            onClick={[Function]}
+          >
+            <svg
+              className="text-lg"
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                height="4"
+                rx="1"
+                ry="1"
+                width="8"
+                x="8"
+                y="2"
+              />
+              <path
+                d="M10.42 12.61a2.1 2.1 0 1 1 2.97 2.97L7.95 21 4 22l.99-3.95 5.43-5.44Z"
+              />
+              <path
+                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5.5"
+              />
+              <path
+                d="M4 13.5V6a2 2 0 0 1 2-2h2"
+              />
+            </svg>
+            <span>
+              Update Attendance (
+              mon
+              )
+            </span>
+          </div>
+          <div
+            className="flex gap-x-1 items-center ml-4 cursor-pointer"
+            data-testid="delete-btn-test"
+            onClick={[Function]}
+          >
+            <svg
+              className="text-xl"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"
+              />
+            </svg>
+            <span>
+              Delete Attendance (mon)
+            </span>
+          </div>
+        </div>
+        <div
+          className="flex flex-col gap-2 text-sm tracking-tight"
+        >
+          <div
+            className="flex gap-x-1 items-center"
+          >
+            <div
+              className="bg-[#0E8E0B] flex items-center justify-center w-[1.5rem] h-[1.5rem] rounded-full text-white"
+            >
+              <svg
+                className="text-[.8rem]"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+                />
+              </svg>
+            </div>
+            <span>
+              [2] Attended and communicated
+            </span>
+          </div>
+          <div
+            className="flex gap-x-1 items-center "
+          >
+            <div
+              className="bg-[#FE8903] flex items-center justify-center w-[1.5rem] h-[1.5rem] rounded-full text-white"
+            >
+              <img
+                alt=""
+                src={Object {}}
+              />
+            </div>
+            <span>
+              [1] Didn‘t attend and communicated
+            </span>
+          </div>
+          <div
+            className="flex gap-x-1 items-center"
+          >
+            <div
+              className="bg-[#C30909] flex items-center justify-center w-[1.5rem] h-[1.5rem] rounded-full text-white"
+            >
+              <svg
+                className="text-base"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 384 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                />
+              </svg>
+            </div>
+            <span>
+              [0] Didn‘t attend and didn‘t communicate
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

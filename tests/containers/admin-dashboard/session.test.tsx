@@ -4,11 +4,11 @@ import '@testing-library/jest-dom';
 import { MockedProvider } from '@apollo/client/testing';
 import AdminSission from '../../../src/containers/admin-dashBoard/Sessions';
 import {
-  GET_SESSIONS,
   CREATE_SESSION,
   DELETE_SESSION,
   EDIT_SESSION,
 } from '../../../src/Mutations/session';
+import{ GET_SESSIONS} from '../../../src/queries/session.queries';
 
 // Mock the custom hooks and modules
 jest.mock('react-i18next', () => ({

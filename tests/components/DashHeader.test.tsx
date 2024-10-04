@@ -13,8 +13,6 @@ import renderer from 'react-test-renderer';
 import '../../test/jest/__mocks__/matchMedia';
 import DashHeader from '../../src/components/DashHeader';
 
-import { GET_PROFILE } from '../../src/Mutations/User';
-
 const client = new ApolloClient({ cache: new InMemoryCache() });
 
 describe('DashHeader test ', () => {

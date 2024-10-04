@@ -77,7 +77,6 @@ function UpdatedRatingDashboard() {
     const newState = !rejectModel;
     setRejectModel(newState);
   };
-  const data = ratings;
   /* istanbul ignore next */
   const columns = [
     { Header: `${t('Name')}`, accessor: 'user[email]' },
@@ -188,7 +187,7 @@ function UpdatedRatingDashboard() {
     },
   ];
 
-  const [getRatings] = useLazyQuery(GET_USERS, {
+  const [getRatings, {loading: getRatingsLoading, error: getRatingsError}] = useLazyQuery(GET_USERS, {
     variables: {
       orgToken: organizationToken,
     },
@@ -247,6 +246,7 @@ function UpdatedRatingDashboard() {
         setRatings(data.fetchRatingsForAdmin);
       },
       onError: (error) => {
+        setRatings([])
         toast.error(error?.message || 'Something went wrong');
       },
     });
@@ -401,16 +401,21 @@ function UpdatedRatingDashboard() {
         <div className="flex flex-row">
           <div className="w-full">
             <div>
-              <div className="bg-light-bg dark:bg-dark-frame-bg ">
-                <div className="">
-                  {data?.length !== 0 ? (
+              <div className="bg-light-bg dark:bg-dark-frame-bg overflow-auto">
+                <div className="min-w-fit">
+                  {
+                    getRatingsLoading ?
+                    <TtlSkeleton/>
+                    : ''
+                  }
+                  { ratings && !getRatingsLoading ? (
                     <DataTable
-                      data={data}
+                      data={ratings}
                       columns={columns}
                       title={t('Performance Ratings')}
                     />
                   ) : (
-                   <TtlSkeleton />
+                    ''
                   )}
                 </div>
               </div>

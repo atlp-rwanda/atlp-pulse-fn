@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { GET_TRAINEES_QUERY } from '../Mutations/manageStudentMutations';
 
 // Query to fetch all tickets
 const GET_TICKETS = gql`
@@ -13,12 +12,39 @@ const GET_TICKETS = gql`
       user {
         id
         email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+        team {
+          id
+          name
+        }
+        cohort {
+          id
+          name
+        }
       }
       assignee {
         id
         email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+        team {
+          id
+          name
+        }
+        cohort {
+          id
+          name
+        }
       }
-
       replies {
         id
         createdAt
@@ -26,6 +52,20 @@ const GET_TICKETS = gql`
         sender {
           id
           email
+          role
+          team {
+            id
+            name
+          }
+        }
+        receiver {
+          id
+          email
+          role
+          team {
+            id
+            name
+          }
         }
       }
     }
@@ -44,6 +84,28 @@ export const NEW_TICKET_SUBSCRIPTION = gql`
       user {
         id
         email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+      }
+      assignee {
+        id
+        email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+        team {
+          name
+          cohort {
+            name
+          }
+        }
       }
     }
   }
@@ -56,12 +118,26 @@ export const NEW_REPLY_SUB = gql`
       id
       createdAt
       replyMessage
-      ticket {
-        id
-        subject
-      }
+      ticket
       sender {
         id
+        email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+      }
+      receiver {
+        id
+        email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
       }
     }
   }
@@ -71,47 +147,58 @@ export const NEW_REPLY_SUB = gql`
 export const DELETE_TICKET_MUTATION = gql`
   mutation DeleteTicket($id: ID!) {
     deleteTicket(id: $id) {
-      success
-      message
+      responseMsg
     }
   }
 `;
 
-// Mutation to edit a ticket's subject
-export const EDIT_TICKET_MUTATION = gql`
-  mutation EditTicket($id: ID!, $subject: String!) {
-    editTicket(id: $id, subject: $subject) {
-      success
-      ticket {
-        id
-        subject
-      }
-    }
-  }
-`;
+// export const EDIT_TICKET_MUTATION = gql`
+//   mutation EditTicket($id: ID!, $subject: String!) {
+//     editTicket(id: $id, subject: $subject) {
+//       success
+//       ticket {
+//         id
+//         subject
+//       }
+//     }
+//   }
+// `;
 
 // Mutation to close a ticket
 export const CLOSE_TICKET_MUTATION = gql`
-  mutation CloseTicket($id: ID!) {
-    closeTicket(id: $id) {
-      success
-      ticket {
-        id
-        status
-      }
+  mutation CloseTicket($ticketId: String!) {
+    closeTicket(ticketId: $ticketId) {
+      responseMsg
     }
   }
 `;
 
 // Mutation to add a reply to a ticket
 export const ADD_REPLY_MUTATION = gql`
-  mutation AddReply($ticketId: ID!, $replyMessage: String!) {
-    addReply(ticketId: $ticketId, replyMessage: $replyMessage) {
+  mutation ReplyToTicket($ticketId: String!, $replyMessage: String!) {
+    replyToTicket(ticketId: $ticketId, replyMessage: $replyMessage) {
       id
       createdAt
       replyMessage
       sender {
         id
+        email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
+      }
+      receiver {
+        id
+        email
+        role
+        profile {
+          name
+          firstName
+          lastName
+        }
       }
     }
   }

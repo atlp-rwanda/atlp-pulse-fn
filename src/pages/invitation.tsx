@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import InvitationCard from '../components/InvitationCard';
 import DataTableStats from '../components/InvitationTable';
 import InvitationModal from './invitationModalComponet';
-import { GET_INVITATIONS_STATISTICS_QUERY } from '../Mutations/invitationStats';
+import { GET_INVITATIONS_STATISTICS_QUERY } from '../queries/invitationStats.queries';
 import InvitationCardSkeleton from '../Skeletons/InvitationCardSkeleton';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
@@ -83,10 +83,10 @@ function Invitation() {
     role: '',
     status: '',
   });
+  const[filterDisabled,setFilterDisabled]=useState<boolean>(true)
   const modalRef = useRef<any>(null);
-
   const organizationToken = localStorage.getItem('orgToken');
-  
+
   const parseRange = (range: string) => {
     switch (range) {
       case 'Last 7 days':
@@ -133,7 +133,7 @@ function Invitation() {
 
   useEffect(() => {
     if (invitationStats) {
-      setSelectedStatus(invitationStats); // Set the fetched status as the default value
+      setSelectedStatus(''); // Set the fetched status as the default value
     }
   }, [invitationStats]);
 
@@ -200,9 +200,9 @@ function Invitation() {
     { data: searchData, loading: searchLoading, error: searchError },
   ] = useLazyQuery(GET_INVITATIONS, {
     variables: {
-       query: searchQuery,
-       orgToken: organizationToken,
-       },
+     query: searchQuery,
+     orgToken: organizationToken,
+    },
     fetchPolicy: 'network-only',
   });
 
@@ -219,7 +219,7 @@ function Invitation() {
       filterInvitations({
           variables: {
           role: filterVariables.role || null,
-          status: typeof filterVariables.status === 'string' ? filterVariables.status : null,
+          status:filterVariables.status || null,
           orgToken: organizationToken,
         },
     });
@@ -277,6 +277,27 @@ function Invitation() {
     fetchInvitations({ variables: { query: searchQuery } });
   };
 
+
+  useEffect(() => {
+    if (selectedRole || selectedStatus) {
+      setFilterDisabled(false);
+    } else {
+      setFilterDisabled(true);
+    }
+  }, [selectedRole, selectedStatus]);
+
+const handleRoleChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
+  const role=e.target.value
+  setSelectedRole(role)
+ 
+}
+
+const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
+  const status=e.target.value
+    setSelectedStatus(status)
+
+}
+
   const handleFilter = () => {
     if (!selectedRole && !selectedStatus) {
       toast.info('Please select role or status.');
@@ -291,6 +312,7 @@ function Invitation() {
       role: selectedRole,
       status: typeof selectedStatus === 'string' ? selectedStatus : '',
     });
+ 
   };
 
   const toggleOptions = (row: string) => {
@@ -360,11 +382,13 @@ function Invitation() {
             />
             {selectedRow === row.id && (
               <div 
-                ref={modalRef}
-                className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
-                <>
+              ref={modalRef}
+              className= 'absolute z-50 w-64 p-4 mt-2 transform -translate-y-[80%] overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg'>
+              
+              <>
                   <div className="mb-4"></div>
-                  <div className="mb-4">
+
+                  { row.original.Status === 'Pending' &&<div className="mb-4">
                     <div
                       className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
@@ -388,6 +412,7 @@ function Invitation() {
                       </div>
                     </div>
                   </div>
+                    }
 
                   {/* Conditionally render Cancel button */}
                   {row.original.Status === 'Pending' && (
@@ -676,6 +701,7 @@ function Invitation() {
               <InvitationCardSkeleton />
               <InvitationCardSkeleton />
               <InvitationCardSkeleton />
+              <InvitationCardSkeleton />
             </>
           ) : (
             <>
@@ -802,7 +828,7 @@ function Invitation() {
             type="button"
             disabled={disabledSearch}
             onClick={handleSearch}
-            className="bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[10%] p-0 sm:p-5 xm:p-5"
+            className={`bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[10%] p-0 sm:p-5 xm:p-5 ${disabledSearch?'cursor-not-allowed opacity-50':'cursor-pointer'}`}
           >
             Search
           </button>
@@ -818,9 +844,9 @@ function Invitation() {
           </p>
           <span className="w-full md:w-auto">
             <select
-              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white"
+              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
               value={selectedRole}
-              onChange={(e) => setSelectedRole(e.target.value)}
+              onChange={handleRoleChange}
             >
               <option value="">-</option>
               <option value="trainee">trainee</option>
@@ -836,9 +862,9 @@ function Invitation() {
           </span>
           <span className="w-full md:w-auto">
             <select
-              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white"
+              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:bg-[#04122F]"
               value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
+              onChange={ handleStatusChange}
             >
               <option value="">-</option>
               <option value="pending">pending</option>
@@ -848,13 +874,15 @@ function Invitation() {
             </select>
           </span>
           <button
-            type="button"
-            // disabled={disabled}
-            onClick={handleFilter}
-            className="w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center px-4 py-2"
-          >
-            Filter
-          </button>
+  type="button"
+  disabled={filterDisabled}
+  onClick={handleFilter}
+  className={`w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center px-4 py-2 
+    ${filterDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+>
+  Filter
+</button>
+
         </div>
         {/* Table view */}
         {content}

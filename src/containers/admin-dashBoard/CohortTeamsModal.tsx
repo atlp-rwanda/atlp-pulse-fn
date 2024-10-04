@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import ModalDataTable from '../../components/ModalDataTable';
-import { GET_COHORT_TRAINEES_QUERY } from '../../Mutations/manageStudentMutations';
 import ButtonLoading from '../../components/ButtonLoading';
 
 const organizationToken = localStorage.getItem('orgToken');

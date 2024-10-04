@@ -8,10 +8,8 @@ import { toast } from 'react-toastify';
 import Button from '../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import ButtonLoading from '../components/ButtonLoading';
-import {
-  FORGOT_PASSWORD,
-  VERIFY_RESET_PASSWORD_TOKEN,
-} from '../Mutations/resetPassword';
+import { FORGOT_PASSWORD } from '../Mutations/resetPassword';
+import { VERIFY_RESET_PASSWORD_TOKEN } from '../queries/resetPassword.queries';
 
 export default function ForgotPassword() {
   const navigate = useNavigate();

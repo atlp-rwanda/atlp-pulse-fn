@@ -8,7 +8,7 @@ import DataTable from '../DataTable';
 import Modal from './DocModel';
 import Button from '../Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
-import { GET_DOCUMENTATION } from '../../Mutations/manageStudentMutations';
+import { GET_DOCUMENTATION } from '../../queries/manageStudent.queries';
 import { UserContext } from '../../hook/useAuth';
 
 function TraineeDocs() {

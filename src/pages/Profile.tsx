@@ -6,7 +6,7 @@ import ProfileCoverPage from '../components/ProfileCoverpage';
 import ProfileTabs from '../components/ProfileTabs';
 import { COUNTRIES } from '../constants/countries';
 import useDocumentTitle from '../hook/useDocumentTitle';
-import { GET_PROFILE } from '../Mutations/User';
+import { GET_PROFILE } from '../queries/user.queries';
 import Square from '../Skeletons/Square';
 
 export function CountryComponent({ country }: any) {

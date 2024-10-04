@@ -11,7 +11,7 @@ import Table from '../components/TeamTable';
 import { useLazyQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { GET_TEAMS_CARDS } from './ManagerCard';
-import { FETCH_ALL_RATINGS } from '../Mutations/Ratings';
+import { FETCH_ALL_RATINGS } from '../queries/ratings.queries';
 import Spinner from './Spinner';
 
 function TeamDetails() {
