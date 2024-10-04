@@ -69,3 +69,13 @@ export const CANCEL_INVITATION = gql`
     }
   }
 `;
+
+export const RESEND_INVITATION = gql`
+  mutation ResendInvitation($invitationId: ID!, $orgToken: String!) {
+    resendInvitation(invitationId: $invitationId, orgToken: $orgToken) {
+      success
+      message
+    }
+  }
+`;
+
