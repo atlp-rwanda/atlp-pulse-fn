@@ -84,7 +84,11 @@ exports[`Organization Login Should render 1`] = `
         </label>
         <div>
           <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/OrgLogin.test.tsx.snap
+            className="btn primary lg w-full ml-0 hover:bg-violet-600 text-sm font-serif"
+=======
             className="btn primary lg w-full ml-0 hover:bg-violet-600 text-sm font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/OrgLogin.test.tsx.snap
             data-testid="loginForm"
             disabled={false}
             type="submit"

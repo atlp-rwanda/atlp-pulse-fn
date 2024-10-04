@@ -30,6 +30,10 @@ import { TRAINEE_RATING } from '../Mutations/Ratings';
 // import { AiOutlineEye } from 'react-icons/ai';
 import Comment from '../components/ViewComment';
 import DataTable from '../components/DataTable';
+import SimpleLineChart from '../components/MuiDashboard';
+import { BsGraphUpArrow } from "react-icons/bs";
+import { MdDonutLarge } from "react-icons/md";
+import { ImTable } from "react-icons/im";
 
 const GET_PROFILE = gql`
   query {
@@ -62,6 +66,8 @@ const organizationToken = localStorage.getItem('orgToken');
 /* istanbul ignore file */
 
 function SupAdDashboard() {
+  const [selectedTimeFrame, setSelectedTimeFrame] = useState('last24Hours');
+
   const { t } = useTranslation();
   const [profileData, setProfileData] = useState<any>();
   const [cohort, setCohort] = useState<any>();
@@ -75,6 +81,8 @@ function SupAdDashboard() {
   const [perfomanceValue, setPerfomanceValue] = useState<any>();
 
   const { loading, error, data } = useQuery(TRAINEE_RATING);
+
+
   const [getProfile, { refetch }] = useLazyQuery(GET_PROFILE);
   const columns = [
     { Header: `${t('Sprint')}`, accessor: 'sprint' },
@@ -119,6 +127,8 @@ function SupAdDashboard() {
   }
 
   useEffect(() => {
+    const now = new Date(Date.now())
+    console.log('thiis israw',data)
     let traineeData = data?.fetchRatingsTrainee
       ?.map(
         (item: {
@@ -294,214 +304,318 @@ function SupAdDashboard() {
   const handleSprintChange = (selectedSprint: any) => {
     setSelectedSprint(selectedSprint);
   };
+ 
+  const timeFrames = [
+    { label: 'Last 24 Hours', value: 'last24Hours' },
+    { label: 'Last Week', value: 'lastWeek' },
+    { label: 'Last Month', value: 'lastMonth' },
+    { label: 'Last 2 Months', value: 'lastTwoMonths' },
+  ];
+  const handleTimeFrameChange = (event:any) => {
+    event.preventDefault()
+    setSelectedTimeFrame(event.target.value);
+  };
 
   return (
-    <div className="flex flex-col  grow dark:bg-dark-frame-bg font-serif">
-      <div className="flex  flex-col justify-center  ">
-        <div className="w-[100%] pt-[4vh] h-[100%]   ">
-          <div className="">
-            <div className="flex bg-[#b8cdba] w-[30%] h-[48px]  ml-7 items-center justify-center  rounded-lg cohort-phase dark:bg-[#8667F2]">
-              <span className="flex  bg-[#b8cdba] pl-2 items-center rounded-md font-semibold text-xl w-[30%] dark:bg-[#8667F2]">
-                {cohort}
-              </span>
-              <span className="h-5 border-2 mx-1 text-xl cohort-bar"></span>
+    <div className="flex flex-col  grow dark:bg-dark-frame-bg font-serif" style={{ minHeight: '80vh' }}>
+      <div className="flex flex-col justify-center items-center flex-grow" style={{ flexGrow: 1 }}>
+          <div className="w-[100%] pt-[4vh] h-[100%]   ">
+            <div className="w-[90%]">
+              <div className="flex bg-[#b8cdba] w-[30%] h-[48px]  ml-7 items-center justify-center  rounded-lg cohort-phase dark:bg-[#8667F2]">
+                <span className="flex  bg-[#b8cdba] pl-2 items-center rounded-md font-semibold text-xl w-[30%] dark:bg-[#8667F2]">
+                  {cohort}
+                </span>
+                <span className="h-5 border-2 mx-1 text-xl cohort-bar"></span>
 
-              <span className="w-[45%] font-semibold text-xl pr-1 pl-3 c-phase ">
-                {rating && (
-                  <select
-                    className="flex items-center bg-[#b8cdba] rounded-md font-semibold text-xl cursor-pointer phasesss dark:bg-[#8667F2]"
-                    onChange={(e) => setPhase(e.target.value)}
-                    value={phase}
-                  >
-                    {phases.map((phase: any, index) => (
-                      <option key={index} value={phase}>
-                        {phase}
-                      </option>
-                    ))}
-                  </select>
-                )}
-              </span>
-            </div>
-          </div>
-
-          <p className=" font-bold ml-7 my-10 text-2xl"> Perfomance score</p>
-          <div className=" flex flex-row ">
-            <div className=" Progres-bar flex flex-row w-[90%]  justify-between ml-3  ">
-              <div className="  flex flex-col w-[30%] ml-3   lg:flex-row perfomance-bar">
-                <div className=" w-[130px]">
-                  <CircularProgressbar
-                    value={(quantityValue / 2) * 100}
-                    text={`${quantityValue}`}
-                    styles={getProgressBarStyles(quantityValue)}
-                  />
-                </div>
-
-                <div className=" flex flex-col justify-center ml-3">
-                  <ul className="list-disc ml-4">
-                    <li>Quantity</li>
-                  </ul>
-                  <p
-                    className={`ml-2 ${
-                      quantityValue > 1
-                        ? 'text-[#1b5e20]'
-                        : quantityValue === 1
-                        ? 'text-[#ffeb3b]'
-                        : 'text-[#b71c1c]'
-                    }`}
-                  >
-                    {norating ? (
-                      <h1>No ratings yet </h1>
-                    ) : quantityValue >= 1.5 ? (
-                      <h1>Very Good</h1>
-                    ) : quantityValue >= 1 ? (
-                      <h1>Good</h1>
-                    ) : (
-                      <h1>Need to improve</h1>
-                    )}
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col w-[30%]  flex-wrap   lg:flex-row quality-bar ">
-                <div className=" w-[130px]">
-                  <CircularProgressbar
-                    value={(qualityValue / 2) * 100}
-                    text={`${qualityValue}`}
-                    styles={getProgressBarStyles(qualityValue)}
-                  />
-                </div>
-
-                <div className=" flex flex-col justify-center ml-3">
-                  <ul className="list-disc ml-4">
-                    <li>Quality</li>
-                  </ul>
-                  <p
-                    className={`ml-2 ${
-                      qualityValue > 1
-                        ? 'text-[#1b5e20]'
-                        : qualityValue === 1
-                        ? 'text-[#ffeb3b]'
-                        : 'text-[#b71c1c]'
-                    }`}
-                  >
-                    {norating ? (
-                      <h1>No ratings yet </h1>
-                    ) : qualityValue >= 1.5 ? (
-                      <h1>Very Good</h1>
-                    ) : qualityValue >= 1 ? (
-                      <h1>Good</h1>
-                    ) : (
-                      <h1>Need to improve</h1>
-                    )}
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col w-[30%] flex-wrap  lg:flex-row quantity-bar ">
-                <div className=" w-[130px]">
-                  <CircularProgressbar
-                    value={(perfomanceValue / 2) * 100}
-                    text={`${perfomanceValue}`}
-                    styles={getProgressBarStyles(perfomanceValue)}
-                  />
-                </div>
-
-                <div className=" flex flex-col justify-center ml-3">
-                  <ul className="list-disc ml-4">
-                    <li>Professionalism</li>
-                  </ul>
-                  <p
-                    className={`ml-2 ${
-                      perfomanceValue > 1
-                        ? 'text-[#1b5e20]'
-                        : perfomanceValue === 1
-                        ? 'text-[#ffeb3b]'
-                        : 'text-[#b71c1c]'
-                    }`}
-                  >
-                    {norating ? (
-                      <h1> No ratings yet</h1>
-                    ) : perfomanceValue >= 1.5 ? (
-                      <h1>Very Good</h1>
-                    ) : perfomanceValue >= 1 ? (
-                      <h1>Good</h1>
-                    ) : (
-                      <h1>Need to improve</h1>
-                    )}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <p className=" font-bold ml-7 my-10 text-2xl"> Stats</p>
-
-          <div className=" w-[100%] ml-7">
-            <TraineeChart barChartData={chartData} />
-          </div>
-          <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4 ">Recents feedback</h1>
-            <div className="p-2 grid grid-cols-2 phases ">
-              <div className="flex  items-center ">
-                {phases.map((phase: any, index) => (
-                  <>
-                    <span
-                      key={index}
-                      className="mr-2 font-bold "
-                      style={{
-                        cursor: 'pointer',
-                        fontFamily: 'inter',
-                        fontSize: '14px',
-                        color: '#b1b1b1',
-                        borderBottom: '3px solid #6b6319',
-                        borderRadius: '1px',
-                      }}
-                      onClick={() => setPhase(phase)}
+                <span className="w-[45%] font-semibold text-xl pr-1 pl-3 c-phase ">
+                  {rating && (
+                    <select
+                      className="flex items-center bg-[#b8cdba] rounded-md font-semibold text-xl cursor-pointer phasesss dark:bg-[#8667F2]"
+                      onChange={(e) => setPhase(e.target.value)}
+                      value={phase}
                     >
-                      {phase}
-                    </span>
-                    <div className="h-5 border-2 bg-[#b1b1b1] mx-0" />
+                      {phases.map((phase: any, index) => (
+                        <option key={index} value={phase}>
+                          {phase}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </span>
+              </div>
+              {norating ? "": 
+              <div className="flex justify-end">
+                <div className='float-right rounded-[40px] border px-3 py-1 text-sm'>Period: 
+                  <div className=" relative inline ml-3">
+                    <select 
+                      id="timeFrame" value={selectedTimeFrame} onChange={handleTimeFrameChange}
+                      className="appearance-none bg-inherit py-0 border-none px-4 pr-8 rounded-md shadow-md focus:outline-none  focus:ring-black-100 focus:border-transparent"
+                    >
+                      {timeFrames.map((timeFrame) => (
+                        <option key={timeFrame.value} value={timeFrame.value}>
+                          {timeFrame.label}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                        <svg className="w-4 h-4 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 10l5 5 5-5" />
+                        </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              }
+            </div>
+
+            <p className=" font-bold ml-7 my-10 text-2xl"> Perfomance score</p>
+            <div className=" flex flex-row " style={{ marginBottom:'6rem'}}>
+              <div className=" Progres-bar flex flex-row w-[90%]  justify-between ml-3  ">
+                {norating ? 
+                <div className=' w-[97.5%] mx-auto border'>
+                  <div className="containered flex items-center justify-center w-full h-full py-5 ">
+                    <div className="centered d-block text-center justify-center py-5">
+                      <MdDonutLarge style={{height:'30px', width:'30',margin:'auto'}}/>
+                      <span className='text-muted text-sm font-bold text-red-500'>You have no performance scores yet</span><br/>
+                      <span className='text-muted text-[10px]'>Once you receive ratings, your performance scores will be displayed here</span>
+                    </div>
+                  </div>
+                </div>
+                :
+                  <>
+                    <div className="  flex flex-col w-[30%] ml-3   lg:flex-row perfomance-bar">
+                      <div className=" w-[130px]">
+                        <CircularProgressbar
+                          value={(quantityValue / 2) * 100}
+                          text={`${quantityValue}`}
+                          styles={getProgressBarStyles(quantityValue)}
+                        />
+                      </div>
+
+                      <div className=" flex flex-col justify-center ml-3">
+                        <ul className="list-disc ml-4">
+                          <li>Quantity</li>
+                        </ul>
+                        <p
+                          className={`ml-2 ${
+                            quantityValue > 1
+                              ? 'text-[#1b5e20]'
+                              : quantityValue === 1
+                              ? 'text-[#ffeb3b]'
+                              : 'text-[#b71c1c]'
+                          }`}
+                        >
+                          {norating ? (
+                            <h1>No ratings yet </h1>
+                          ) : quantityValue >= 1.5 ? (
+                            <h1>Very Good</h1>
+                          ) : quantityValue >= 1 ? (
+                            <h1>Good</h1>
+                          ) : (
+                            <h1>Need to improve</h1>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-[30%]  flex-wrap   lg:flex-row quality-bar ">
+                      <div className=" w-[130px]">
+                        <CircularProgressbar
+                          value={(qualityValue / 2) * 100}
+                          text={`${qualityValue}`}
+                          styles={getProgressBarStyles(qualityValue)}
+                        />
+                      </div>
+
+                      <div className=" flex flex-col justify-center ml-3">
+                        <ul className="list-disc ml-4">
+                          <li>Quality</li>
+                        </ul>
+                        <p
+                          className={`ml-2 ${
+                            qualityValue > 1
+                              ? 'text-[#1b5e20]'
+                              : qualityValue === 1
+                              ? 'text-[#ffeb3b]'
+                              : 'text-[#b71c1c]'
+                          }`}
+                        >
+                          {norating ? (
+                            <h1>No ratings yet </h1>
+                          ) : qualityValue >= 1.5 ? (
+                            <h1>Very Good</h1>
+                          ) : qualityValue >= 1 ? (
+                            <h1>Good</h1>
+                          ) : (
+                            <h1>Need to improve</h1>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-[30%] flex-wrap  lg:flex-row quantity-bar ">
+                      <div className=" w-[130px]">
+                        <CircularProgressbar
+                          value={(perfomanceValue / 2) * 100}
+                          text={`${perfomanceValue}`}
+                          styles={getProgressBarStyles(perfomanceValue)}
+                        />
+                      </div>
+
+                      <div className=" flex flex-col justify-center ml-3">
+                        <ul className="list-disc ml-4">
+                          <li>Professionalism</li>
+                        </ul>
+                        <p
+                          className={`ml-2 ${
+                            perfomanceValue > 1
+                              ? 'text-[#1b5e20]'
+                              : perfomanceValue === 1
+                              ? 'text-[#ffeb3b]'
+                              : 'text-[#b71c1c]'
+                          }`}
+                        >
+                          {norating ? (
+                            <h1> No ratings yet</h1>
+                          ) : perfomanceValue >= 1.5 ? (
+                            <h1>Very Good</h1>
+                          ) : perfomanceValue >= 1 ? (
+                            <h1>Good</h1>
+                          ) : (
+                            <h1>Need to improve</h1>
+                          )}
+                        </p>
+                      </div>
+                    </div>
                   </>
-                ))}
+                }
               </div>
             </div>
-            <div className="trainee-table">
-              <div className="font-bold my-10 w-[100%] text-lg ">
-                {chartData.length !== 0 ? (
-                  <DataTable
-                    columns={columns}
-                    data={chartData ? (chartData as [any]) : []}
-                    title={t('Sprint ratings')}
-                    loading={loading}
-                  />
-                ) : (
-                  <table className="min-w-full leading-normal">
-                    <thead>
-                      <tr>
-                        {columns.map((column, columnIndex) => (
-                          <th
-                            key={columnIndex}
-                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:bg-neutral-600 uppercase tracking-wider"
+
+            <p className=" font-bold ml-7 my-10 text-2xl" > Stats</p>
+
+            <div className={` ${norating ? 'px-6 w-[92%]' : 'ml-7 w-[100%]'}`}>
+              {norating ? 
+                <div className=" w-[100%] mx-auto border">
+                  <div className="containered flex items-center justify-center w-full h-full py-5 ">
+                    <div className="centered d-block text-center justify-center py-5">
+                      <BsGraphUpArrow style={{height:'30px', width:'30',margin:'auto'}}/>
+                      <span className='text-muted text-sm font-bold text-red-500'>You have no statistics yet</span><br/>
+                      <span className='text-muted text-[10px]'>Once you receive ratings they will be displayed here</span>
+                    </div>
+                  </div>
+                </div>
+              :
+                <TraineeChart barChartData={chartData} />
+              }
+            </div>
+            {/* <div className='w-[100%] ml-7 text-white'>
+              <SimpleLineChart/>
+            </div> */}
+            <div className="p-4" style={{ marginTop:'4rem'}}>
+              <h1 className="text-2xl font-bold mb-4  mt-5">Recents feedback</h1>
+              <div className={` ${norating ? 'w-[92%] ml-0' : 'w-[90%] ml-7'}`}>
+              {norating ? 
+                <div className=" w-[99%] mx-auto border">
+                  <div className="containered flex items-center justify-center w-full h-full py-5 ">
+                    <div className="centered d-block text-center justify-center py-5">
+                      <ImTable style={{height:'30px', width:'30',margin:'auto'}}/>
+                      <span className='text-muted text-sm font-bold text-red-500'>You have no feedbacks yet</span><br/>
+                      <span className='text-muted text-[10px]'>Once you receive ratings your recent feedbacks will be displayed here</span>
+                    </div>
+                  </div>
+                </div>
+              :
+                <>
+                  <div className="p-2 grid grid-cols-2 phases ">
+                    <div className="flex  items-center ">
+                      {phases.map((phase: any, index) => (
+                        <>
+                          <span
+                            key={index}
+                            className="mx-2 font-bold "
+                            style={{
+                              cursor: 'pointer',
+                              fontFamily: 'inter',
+                              fontSize: '14px',
+                              color: '#b1b1b1',
+                              borderBottom: '3px solid #6b6319',
+                              borderRadius: '1px',
+                            }}
+                            onClick={() => setPhase(phase)}
                           >
-                            {column.Header}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td
-                          colSpan={columns.length}
-                          className="px-6 py-4 whitespace-nowrap text-center text-gray-500"
-                        >
-                          {t('No ratings  yet')}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                )}
+                            {phase}
+                          </span>
+                          <div className="h-5 border-2 bg-[#b1b1b1] mx-2" />
+                        </>
+                      ))}
+
+                    </div>
+                    {norating ? "": 
+                      <div className="flex justify-end">
+                        <div className='float-right rounded-[40px] border px-3 py-1 text-sm'>Filter: 
+                          <div className=" relative inline ml-3">
+                            <select 
+                              id="timeFrame"
+                              // value={selectedTimeFrame} onChange={handleTimeFrameChange}
+                              className="appearance-none bg-inherit  py-0 border-none px-4 pr-8 rounded-md shadow-md focus:outline-none  focus:ring-black-100 focus:border-transparent"
+                            >
+                              {timeFrames.map((timeFrame) => (
+                                <option key={timeFrame.value} value={timeFrame.value}>
+                                  {timeFrame.label}
+                                </option>
+                              ))}
+                            </select>
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                <svg className="w-4 h-4 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 10l5 5 5-5" />
+                                </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                  <div className="trainee-table">
+                    <div className="font-bold my-10 w-[100%] text-lg rounded-t-lg">
+                      {chartData.length !== 0 ? (
+                        <DataTable
+                          columns={columns}
+                          data={chartData ? (chartData as [any]) : []}
+                          title={t('')}
+                          loading={loading}
+                        />
+                      ) : (
+                        <table className="min-w-full leading-normal rounded-[40px]">
+                          <thead>
+                            <tr>
+                              {columns.map((column, columnIndex) => (
+                                <th
+                                  key={columnIndex}
+                                  className="px-6 py-z text-center text-xs font-medium text-gray-500 dark:bg-neutral-600 uppercase tracking-wider"
+                                >
+                                  {column.Header}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td
+                                colSpan={columns.length}
+                                className="px-6 py-4 whitespace-nowrap text-center text-gray-500"
+                              >
+                                {t('No ratings  yet')}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      )}
+                    </div>
+                  </div>
+                </>
+              }
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

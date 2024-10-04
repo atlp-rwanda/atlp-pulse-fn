@@ -37,36 +37,39 @@ const TraineeChart: React.FC<TraineeChartProps> = ({ barChartData }) => {
 
   return (
     <div className="Trainee-chart font-serif">
-      <LineChart width={1000} height={220} data={chartData}>
+      <LineChart width={1000} height={230} data={chartData}>
         <CartesianGrid stroke="#ccc" />
         <XAxis
           dataKey="name"
-          label={{ value: 'Sprint', position: 'insideBottom', offset: -2 }}
+          label={{ value: 'Sprints', position: 'insideBottom', offset: -2 }}
+          interval={0}
+          tickFormatter={(value) => `${value}`} 
         />
         <YAxis label={{ value: 'Score', angle: -90, position: 'insideLeft' }} />
         <Tooltip />
-        <Legend iconType="circle" iconSize={10} />
-
+        <div className='mt-3'></div>
+          <Legend iconType="circle" iconSize={10} />
+        
         <Line
           type="monotone"
           dataKey="Professionalism"
           stroke="#1b5e20"
           strokeWidth={2}
-          dot={false}
+          dot={true}
         />
         <Line
           type="monotone"
           dataKey="Quality"
           stroke="#8667f2"
           strokeWidth={2}
-          dot={false}
+          dot={true}
         />
         <Line
           type="monotone"
           dataKey="Quantity"
           stroke="#b5a72a"
           strokeWidth={2}
-          dot={false}
+          dot={true}
         />
       </LineChart>
     </div>

@@ -220,7 +220,11 @@ Array [
                 className="w-full justify-center"
               >
                 <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/AdminLogin.test.tsx.snap
+                  className="btn transparentbtn md  w-full bg-primary m-0 inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white font-serif"
+=======
                   className="btn transparentbtn md  w-full bg-primary m-0 inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/AdminLogin.test.tsx.snap
                   disabled={false}
                   type="submit"
                 >

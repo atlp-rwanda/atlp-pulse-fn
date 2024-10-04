@@ -1076,7 +1076,11 @@ Array [
             className="w-full flex justify-between"
           >
             <button
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
               data-testid="remove"
               disabled={false}
               onClick={[Function]}
@@ -1086,7 +1090,11 @@ Array [
               Cancel
             </button>
             <button
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif"
+=======
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -1492,7 +1500,11 @@ Array [
             className="w-full flex justify-between"
           >
             <button
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
               data-testid="remove"
               disabled={false}
               onClick={[Function]}
@@ -1502,7 +1514,11 @@ Array [
               Cancel
             </button>
             <button
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif"
+=======
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
               data-testid="confirmUpdateBtn"
               disabled={false}
               onClick={[Function]}
@@ -1708,7 +1724,11 @@ Array [
                   colSpan={6}
                 >
                   <div
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+                    className="w-full justify-between flex mx-auto flex-row items-center"
+=======
                     className="flex flex-row items-center justify-between w-full mx-auto"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
                   >
                     <div
                       className="flex"
@@ -1801,7 +1821,11 @@ Array [
                       </span>
                        
                       <select
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+                        className="px-1/2 font-raleway rounded-md border border-dark dark:bg-primary focus:outline-none"
+=======
                         className="border rounded-md px-1/2 font-raleway border-dark dark:bg-primary focus:outline-none"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
                         onChange={[Function]}
                         style={
                           Object {
@@ -1893,7 +1917,11 @@ Array [
             className="w-full flex justify-between"
           >
             <button
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -1902,7 +1930,11 @@ Array [
               Cancel
             </button>
             <button
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -1946,7 +1978,11 @@ Array [
         className="flex gap-2"
       >
         <button
+<<<<<<< HEAD:src/containers/admin-dashBoard/tests/__snapshots__/Cohorts.test.tsx.snap
+          className="btn primary lg m-0 font-serif"
+=======
           className="btn primary lg m-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Admindash.test.tsx.snap
           data-testid="removeModel"
           disabled={false}
           onClick={[Function]}

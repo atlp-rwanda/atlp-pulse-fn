@@ -55,9 +55,11 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
     prepareRow,
     state: { pageIndex: currentPageIndex, pageSize },
   } = tableInstance;
+
   useEffect(() => {
     setPageIndex(currentPageIndex);
   }, [currentPageIndex]);
+
   const handleFilterChange = (e) => {
     const value = e.target.value || '';
     setGlobalFilter(value);
@@ -66,23 +68,24 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
 
   return (
     <div
-      className={`font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] "lg:ml-60 mx-auto"} mb-10`}
+      className={`font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-0 py-0 rounded-md w-full mb-0 ${className}`}
     >
-      <div className="flex items-center justify-between pb-6 ">
+      <div className="flex items-center justify-between pb-0">
         <div>
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white ">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
             {t(title)}
           </h2>
-          <input
+          {/* Uncomment if you want a filter input */}
+          {/* <input
             value={filterInput}
             aria-label="Filter table data"
             placeholder="Filter"
             className="px-5 py-2 mt-4 font-sans text-xs border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-52 md:w-96"
             onChange={handleFilterChange}
-          />
+          /> */}
         </div>
       </div>
-      <div className="overflow-visible ">
+      <div className="overflow-visible">
         <table className="min-w-full leading-normal" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -90,12 +93,11 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
                 {headerGroup.headers.map((column) => (
                   <th
                     key={column.id}
-                    className={column.isSorted ? 'sort-asc thead' : ' thead'}
+                    className={column.isSorted ? 'sort-asc thead' : 'thead'}
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                   >
                     {column.render('Header')}
                     <span>
-                      {/* //  {column.isSorted ? (column.isSortedDesc ? ' ▼' : ' ▲') : ''} */}
                     </span>
                   </th>
                 ))}
@@ -108,10 +110,9 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
                 <td
                   colSpan={columns.length}
                   className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300"
-                  aria-label="Empty cell" // Added for accessibility
+                  aria-label="Empty cell"
                 >
-                  &nbsp;{' '}
-                  {/* Non-breaking space to ensure it's not an empty tag */}
+                  &nbsp; {/* Non-breaking space */}
                 </td>
               </tr>
             ) : (
@@ -120,17 +121,17 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
                 return (
                   <tr
                     key={row.id}
-                    className={`border-b dark:border-gray-700 ${
+                    className={`border-b dark:border-gray-700 text-center ${
                       row.index % 2 === 0
-                        ? 'bg-light-bg dark:bg-neutral-600'
-                        : 'bg-white dark:bg-dark-bg'
+                        ? 'bg-gray-600 dark:bg-neutral-600' 
+                        : 'bg-transparent' 
                     }`}
                     {...row.getRowProps()}
                   >
                     {row.cells.map((cell) => (
                       <td
                         key={cell.id}
-                        className="data-cell "
+                        className="data-cell"
                         {...cell.getCellProps()}
                       >
                         {cell.render('Cell')}
@@ -144,30 +145,28 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
+                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300"
                 >
-                  A Loading...
+                  Loading...
                 </td>
               </tr>
             )}
             {!loading && data.length === 0 && (
               <tr>
-                {' '}
                 <td colSpan={columns.length || 100} className="p-4 text-center">
                   <div className="flex flex-col items-center justify-center space-y-4">
-                    {' '}
                     <p className="text-lg font-medium text-gray-600 dark:text-gray-400">
-                      {' '}
-                      No records available{' '}
+                      No records available
                     </p>
-                  </div>{' '}
-                </td>{' '}
+                  </div>
+                </td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
-      <div className="px-6 py-4">
+      {/* Uncomment if you want to include pagination */}
+      {/* <div className="px-6 py-4">
         <DataPagination
           pageOptions={pageOptions}
           canNextPage={canNextPage}
@@ -181,7 +180,7 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
           pageCount={pageCount}
           pageIndex={pageIndex}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

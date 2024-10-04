@@ -127,7 +127,11 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn primary lg undefined font-serif"
+=======
           className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -141,7 +145,11 @@ exports[`Header Tests Should render the header with home 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn transparentbtn lg mr-8 font-serif"
+=======
           className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -257,7 +265,11 @@ exports[`Header Tests Should render the header with home 1`] = `
       onClick={[Function]}
     >
       <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+        className="btn transparentbtn lg mr-8 font-serif"
+=======
         className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
         disabled={false}
         type="button"
       >
@@ -396,7 +408,11 @@ exports[`Header Tests Should render the header with no active 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn primary lg undefined font-serif"
+=======
           className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -410,7 +426,11 @@ exports[`Header Tests Should render the header with no active 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn transparentbtn lg mr-8 font-serif"
+=======
           className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -526,7 +546,11 @@ exports[`Header Tests Should render the header with no active 1`] = `
       onClick={[Function]}
     >
       <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+        className="btn transparentbtn lg mr-8 font-serif"
+=======
         className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
         disabled={false}
         type="button"
       >
@@ -655,7 +679,11 @@ exports[`Header Tests Should render the header with no active 2`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn primary lg undefined font-serif"
+=======
           className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -665,7 +693,11 @@ exports[`Header Tests Should render the header with no active 2`] = `
         </button>
       </a>
       <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+        className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill font-serif"
+=======
         className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
         disabled={false}
         onClick={[Function]}
         type="button"
@@ -768,7 +800,11 @@ exports[`Header Tests Should render the header with no active 2`] = `
       </a>
     </li>
     <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+      className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill font-serif"
+=======
       className="btn transparentbtn lg text-red-500 font-bolf dark:text-dark-text-fill mr-8 border border-red-600 dark:border-dark-text-fill font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
       disabled={false}
       onClick={[Function]}
       type="button"
@@ -906,7 +942,11 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn primary lg undefined font-serif"
+=======
           className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -920,7 +960,11 @@ exports[`Header Tests Should render the header with no active 3`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn transparentbtn lg mr-8 font-serif"
+=======
           className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -1036,7 +1080,11 @@ exports[`Header Tests Should render the header with no active 3`] = `
       onClick={[Function]}
     >
       <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+        className="btn transparentbtn lg mr-8 font-serif"
+=======
         className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
         disabled={false}
         type="button"
       >
@@ -1176,7 +1224,11 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn primary lg undefined font-serif"
+=======
           className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -1190,7 +1242,11 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn transparentbtn lg mr-8 font-serif"
+=======
           className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -1306,7 +1362,11 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
       onClick={[Function]}
     >
       <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+        className="btn transparentbtn lg mr-8 font-serif"
+=======
         className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
         disabled={false}
         type="button"
       >
@@ -1445,7 +1505,11 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn primary lg undefined font-serif"
+=======
           className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -1459,7 +1523,11 @@ exports[`Header Tests Should render the header with product active 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+          className="btn transparentbtn lg mr-8 font-serif"
+=======
           className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -1575,7 +1643,11 @@ exports[`Header Tests Should render the header with product active 1`] = `
       onClick={[Function]}
     >
       <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Header.test.tsx.snap
+        className="btn transparentbtn lg mr-8 font-serif"
+=======
         className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Header.test.tsx.snap
         disabled={false}
         type="button"
       >

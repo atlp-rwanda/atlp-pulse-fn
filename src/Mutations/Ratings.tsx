@@ -19,6 +19,7 @@ export const GET_RATINGS = gql`
       bodyQuality
       coordinator
       average
+      createdAt
       cohort {
         name
         phase {
@@ -316,6 +317,7 @@ export const TRAINEE_RATING = gql`
       professional_Skills
       professionalRemark
       average
+      createdAt
       cohort {
         name
         phase {
