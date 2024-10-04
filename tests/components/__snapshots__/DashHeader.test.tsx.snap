@@ -65,7 +65,7 @@ exports[`DashHeader test  Should render DashHeader 1`] = `
     >
       <a
         className="flex flex-row lg:px-5 text-dark dark:text-dark-text-fill"
-        href="/super-admin"
+        href="/"
         onClick={[Function]}
       >
         <svg

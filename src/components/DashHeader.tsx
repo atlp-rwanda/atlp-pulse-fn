@@ -172,7 +172,7 @@ function DashHeader() {
           </div>
           <div className="flex items-center h-full lg:w-full">
             <Link
-              to="/super-admin"
+              to="/"
               className="flex flex-row lg:px-5 text-dark dark:text-dark-text-fill"
             >
               <LogoIcon />
