@@ -133,7 +133,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           {/* FOR COORDINATORS */}
           <CheckRole roles={['coordinator']}>
             {/* team cards */}
-            <SideNavLink onClick={toggle} name="Teams" to="/cards">
+            <SideNavLink onClick={toggle} name="Teams" to="/teams/cards">
               <UserGroupIcon className="w-5 " />
             </SideNavLink>
 
