@@ -78,6 +78,7 @@ export const GET_TRAINEES_QUERY = gql`
       }
       team {
         name
+        id
         cohort {
           id
           startDate
@@ -393,6 +394,12 @@ export const ADD_MEMBER_TO_TEAM = gql`
 export const GET_TEAM_TRAINEE_QUERY = gql`
   query GetTeamTrainees($orgToken: String, $team: String) {
     getTeamTrainees(orgToken: $orgToken, team: $team) {
+      id
+      status {
+        date
+        reason
+        status
+      }
       profile {
         firstName
         lastName

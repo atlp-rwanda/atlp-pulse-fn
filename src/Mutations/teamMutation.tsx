@@ -10,6 +10,25 @@ export const GET_TEAMS = gql`
 `;
 export default GET_TEAMS;
 
+export const GET_ALL_TEAMS = gql`
+  query Query($orgToken: String) {
+    getAllTeams(orgToken: $orgToken) {
+      id
+      name
+      cohort {
+        name
+        phase {
+          id
+          name
+        }
+        coordinator {
+          id
+        }
+      }
+    }
+  }
+`;
+
 export const ADD_TEAMS = gql`
   mutation Mutation(
     $name: String!

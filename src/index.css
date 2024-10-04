@@ -21,9 +21,11 @@
   body {
     @apply font-serif;
   }
+
   * {
     font-family: 'PT Serif', serif;
   }
+
   .max-375-footrt-img img {
     margin-right: 0;
   }
@@ -35,11 +37,9 @@
 
 /* 404 Page */
 .errorImg {
-  background-image: linear-gradient(
-      90deg,
+  background-image: linear-gradient(90deg,
       rgba(0, 0, 0, 0.724),
-      rgba(17, 0, 43, 0.753)
-    ),
+      rgba(17, 0, 43, 0.753)),
     url(https://res.cloudinary.com/deygsvbub/image/upload/v1691651478/Home_page_image_1_io1spq.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -126,6 +126,7 @@
 }
 
 @supports (-webkit-touch-callout: none) {
+
   /* CSS specific to iOS devices */
   .hero {
     background-attachment: scroll;
@@ -266,6 +267,15 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .page {
@@ -425,19 +435,21 @@ th {
 }
 
 /* page layout style */
-.page-layout {
-  display: grid;
-  grid-template-areas:
-    'header header'
-    'side_nav main'
-    'footer footer';
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr auto;
-}
+@media (min-width: 976px) {
+  .page-layout {
+    display: grid;
+    grid-template-areas:
+      'header header'
+      'side_nav main'
+      'footer footer';
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
 
-.page-layout > * {
-  max-width: min(100%, 100vw);
-  box-sizing: border-box;
+  .page-layout>* {
+    max-width: min(100%, 100vw);
+    box-sizing: border-box;
+  }
 }
 
 .page-header {
@@ -572,6 +584,7 @@ th {
   background: #cdcdcd;
   border-radius: 10px;
 }
+
 .dark .custom-scrollbar::-webkit-scrollbar-track {
   background: #838383;
 }

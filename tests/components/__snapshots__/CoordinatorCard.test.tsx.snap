@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Record attendance modal Renders Record attendance modal 1`] = `
+<div
+  className="px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto "
+>
+  <div
+    className="flex items-center justify-center w-full h-full"
+  >
+    <div
+      className="spinner"
+      data-testid="spinner"
+    />
+  </div>
+</div>
+`;
