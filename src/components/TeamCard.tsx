@@ -95,7 +95,7 @@ function Card({
 
           <div>
             <h1 className="ml-3 pt-2">
-              {t('Week')} {week} {t('in')} {phase}
+              {t('Sprint')} {week} {t('in')} {phase}
             </h1>
           </div>
 

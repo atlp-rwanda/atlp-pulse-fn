@@ -106,6 +106,8 @@ function AdminLogin() {
         },
         onError: (err) => {
           /* istanbul ignore next */
+          console.log(err.message);
+
           if (err.networkError)
             toast.error('There was a problem contacting the server');
           else if (err.message.toLowerCase() !== 'invalid credential') {

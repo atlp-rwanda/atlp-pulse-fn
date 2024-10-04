@@ -1,12 +1,8 @@
 // @ts-nocheck
-import React, { useState,useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  useGlobalFilter,
-  usePagination,
-  useSortBy,
-  useTable,
-} from 'react-table';
+import { useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table';
+import { toast } from 'react-toastify';
 import DataPagination from './DataPagination';
 
 interface TableData {
@@ -31,7 +27,7 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
     {
       data: memoizedData,
       columns: memoizedColumns,
-      initialState: {pageIndex, pageSize: 3, globalFilter: filterInput },
+      initialState: { pageIndex, pageSize: 3, globalFilter: filterInput },
     },
     useGlobalFilter,
     useSortBy,
@@ -55,10 +51,17 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
     prepareRow,
     state: { pageIndex: currentPageIndex, pageSize },
   } = tableInstance;
-  
+
   useEffect(() => {
     setPageIndex(currentPageIndex);
   }, [currentPageIndex]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error('Network error. Please, try again later.');
+    }
+  }, [error]);
+
   const handleFilterChange = (e) => {
     const value = e.target.value || '';
     setGlobalFilter(value);
@@ -86,7 +89,17 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {!loading && memoizedData.length === 0 ? (
+            {loading && (
+              <tr>
+                <td
+                  colSpan={columns.length}
+                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
+                >
+                  Loading...
+                </td>
+              </tr>
+            )}
+            {!loading && memoizedData.length === 0 && (
               <tr>
                 <td
                   colSpan={columns.length}
@@ -97,7 +110,9 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
                   {/* Non-breaking space to ensure it's not an empty tag */}
                 </td>
               </tr>
-            ) : (
+            )}
+            {!loading &&
+              memoizedData.length > 0 &&
               page.map((row) => {
                 prepareRow(row);
                 return (
@@ -121,40 +136,16 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
                     ))}
                   </tr>
                 );
-              })
-            )}
-            {loading && (
-              <tr>
-                <td
-                  colSpan={columns.length}
-                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
-                >
-                  Loading...
-                </td>
-              </tr>
-            )}
-            {error && (
-              <tr>
-                <td
-                  colSpan={columns.length}
-                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
-                >
-                  Error occurred
-                </td>
-              </tr>
-            )}
+              })}
             {!loading && !error && data.length === 0 && (
               <tr>
-                {' '}
                 <td colSpan={columns.length || 100} className="text-center p-4">
                   <div className="flex flex-col items-center justify-center space-y-4">
-                    {' '}
                     <p className="text-gray-600 dark:text-gray-400 text-lg font-medium">
-                      {' '}
-                      No records available{' '}
+                      No records available
                     </p>
-                  </div>{' '}
-                </td>{' '}
+                  </div>
+                </td>
               </tr>
             )}
           </tbody>

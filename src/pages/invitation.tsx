@@ -317,8 +317,7 @@ function Invitation() {
     validateEmail(newEmail); // Validate on change
   };
 
-  // Defining invitation table
-  let content;
+  // Defining invitation table Actions
   const capitalizeStrings = (str: string): string => {
     if (!str) return '';
     if (str === 'ttl') {
@@ -472,6 +471,8 @@ function Invitation() {
     },
   ];
 
+ // Table definition
+  let content;
   const datum: any = [];
   if (invitations && invitations.length > 0) {
     invitations.forEach((invitation) => {

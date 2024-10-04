@@ -191,7 +191,7 @@ function Notification({
                         if (user.role === 'admin') {
                           navigate('/teams');
                         } else {
-                          navigate('/cards');
+                          navigate('/teams/cards');
                         }
                       } else if (notification.type === 'cohort') {
                         navigate('/cohorts');

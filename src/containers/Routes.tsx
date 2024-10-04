@@ -39,6 +39,8 @@ import Noredirect from '../pages/Noredirect';
 import RedirectHandler from '../pages/RedirectHandler';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
+import PrivateRoute from '../utils/PrivateRoute'
+import CalendarConfirmation from '../components/CalendarConfirmation';
 
 function MainRoutes() {
   return (
@@ -161,6 +163,12 @@ function MainRoutes() {
             />
             <Route path="/noredirect" element={<Noredirect />} />
             <Route path="/redirect" element={<RedirectHandler />} />
+            <Route path="/calendar/confirm" element={
+              <PrivateRoute>
+                <CalendarConfirmation/>
+              </PrivateRoute>
+            }>
+            </Route>
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

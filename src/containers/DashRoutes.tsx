@@ -161,7 +161,7 @@ function DashRoutes() {
             <Route path="/team/:teamname" element={<TeamDetails />} />
 
             <Route path="/team-cards" element={<ManagersCards />} />
-            <Route path="/cards" element={<CoordinatorCards />} />
+            <Route path="/teams/cards" element={<CoordinatorCards />} />
             <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
           </Routes>
         {/* </Suspense> */}
