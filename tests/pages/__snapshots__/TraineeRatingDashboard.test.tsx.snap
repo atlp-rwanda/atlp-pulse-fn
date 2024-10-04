@@ -119,7 +119,11 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                   className="mt-10 "
                 >
                   <div
+<<<<<<< HEAD:src/pages/tests/__snapshots__/TraineeRatingDashboard.test.tsx.snap
+                    className="font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] \\"lg:ml-60 mx-auto\\"} mb-10"
+=======
                     className="font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] \\"lg:ml-60 mx-auto\\"} mb-10"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/TraineeRatingDashboard.test.tsx.snap
                   >
                     <div
                       className="flex items-center justify-between pb-6 "
@@ -132,7 +136,11 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                         </h2>
                         <input
                           aria-label="Filter table data"
+<<<<<<< HEAD:src/pages/tests/__snapshots__/TraineeRatingDashboard.test.tsx.snap
+                          className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+=======
                           className="px-5 py-2 mt-4 font-sans text-xs border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/TraineeRatingDashboard.test.tsx.snap
                           onChange={[Function]}
                           placeholder="Filter"
                           value=""
@@ -295,7 +303,11 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
                               colSpan={9}
                             >
+<<<<<<< HEAD:src/pages/tests/__snapshots__/TraineeRatingDashboard.test.tsx.snap
+                              Loading...
+=======
                               A Loading...
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/TraineeRatingDashboard.test.tsx.snap
                             </td>
                           </tr>
                         </tbody>
@@ -320,7 +332,11 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                                 colSpan={9}
                               >
                                 <div
+<<<<<<< HEAD:src/pages/tests/__snapshots__/TraineeRatingDashboard.test.tsx.snap
+                                  className="w-full justify-between flex mx-auto flex-row items-center"
+=======
                                   className="flex flex-row items-center justify-between w-full mx-auto"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/TraineeRatingDashboard.test.tsx.snap
                                 >
                                   <div
                                     className="flex"
@@ -413,7 +429,11 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                                     </span>
                                      
                                     <select
+<<<<<<< HEAD:src/pages/tests/__snapshots__/TraineeRatingDashboard.test.tsx.snap
+                                      className="px-1/2 font-raleway rounded-md border border-dark dark:bg-primary focus:outline-none"
+=======
                                       className="border rounded-md px-1/2 font-raleway border-dark dark:bg-primary focus:outline-none"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/TraineeRatingDashboard.test.tsx.snap
                                       onChange={[Function]}
                                       style={
                                         Object {

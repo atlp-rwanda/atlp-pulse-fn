@@ -130,7 +130,11 @@ exports[`Main Routes Should render 1`] = `
           onClick={[Function]}
         >
           <button
+<<<<<<< HEAD:src/containers/tests/__snapshots__/MainRoutes.test.tsx.snap
+            className="btn primary lg undefined font-serif"
+=======
             className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/__snapshots__/MainRoutes.test.tsx.snap
             disabled={false}
             type="button"
           >
@@ -144,7 +148,11 @@ exports[`Main Routes Should render 1`] = `
           onClick={[Function]}
         >
           <button
+<<<<<<< HEAD:src/containers/tests/__snapshots__/MainRoutes.test.tsx.snap
+            className="btn transparentbtn lg mr-8 font-serif"
+=======
             className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/__snapshots__/MainRoutes.test.tsx.snap
             disabled={false}
             type="button"
           >
@@ -260,7 +268,11 @@ exports[`Main Routes Should render 1`] = `
         onClick={[Function]}
       >
         <button
+<<<<<<< HEAD:src/containers/tests/__snapshots__/MainRoutes.test.tsx.snap
+          className="btn transparentbtn lg mr-8 font-serif"
+=======
           className="btn transparentbtn lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/__snapshots__/MainRoutes.test.tsx.snap
           disabled={false}
           type="button"
         >
@@ -404,7 +416,11 @@ exports[`Main Routes Should render 1`] = `
               onClick={[Function]}
             >
               <button
+<<<<<<< HEAD:src/containers/tests/__snapshots__/MainRoutes.test.tsx.snap
+                className="btn primary lg undefined font-serif"
+=======
                 className="btn primary lg undefined font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/__snapshots__/MainRoutes.test.tsx.snap
                 disabled={false}
                 type="button"
               >
@@ -418,7 +434,11 @@ exports[`Main Routes Should render 1`] = `
               onClick={[Function]}
             >
               <button
+<<<<<<< HEAD:src/containers/tests/__snapshots__/MainRoutes.test.tsx.snap
+                className="btn bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill lg mr-8 font-serif"
+=======
                 className="btn bg-transparent text-primary text-white border border-primary dark:border-dark-text-fill lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/__snapshots__/MainRoutes.test.tsx.snap
                 disabled={false}
                 type="button"
               >
@@ -514,7 +534,11 @@ exports[`Main Routes Should render 1`] = `
             onClick={[Function]}
           >
             <button
+<<<<<<< HEAD:src/containers/tests/__snapshots__/MainRoutes.test.tsx.snap
+              className="btn transparentbtn  ml-0 lg mr-8 font-serif"
+=======
               className="btn transparentbtn  ml-0 lg mr-8 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/__snapshots__/MainRoutes.test.tsx.snap
               disabled={false}
               type="button"
             >
@@ -547,7 +571,11 @@ exports[`Main Routes Should render 1`] = `
               onClick={[Function]}
             >
               <button
+<<<<<<< HEAD:src/containers/tests/__snapshots__/MainRoutes.test.tsx.snap
+                className="btn secondary md lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal  font-serif"
+=======
                 className="btn secondary md lg:mt-0 px-8 bg-[#7851ff] rounded-md my-4 py-3 font-normal  font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/__snapshots__/MainRoutes.test.tsx.snap
                 disabled={false}
                 type="button"
               >

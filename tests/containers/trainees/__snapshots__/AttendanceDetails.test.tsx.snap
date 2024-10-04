@@ -60,7 +60,11 @@ exports[`Attendance Detailed page Renders the Attendance Detailed Page  1`] = `
               className="py-3 px-8"
             >
               <button
+<<<<<<< HEAD:src/containers/Trainee/tests/__snapshots__/AttendanceDetails.test.tsx.snap
+                className="btn primary sm px-4 py-0 text-sm font-serif"
+=======
                 className="btn primary sm px-4 py-0 text-sm font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/trainees/__snapshots__/AttendanceDetails.test.tsx.snap
                 disabled={false}
                 type="button"
               >
@@ -90,7 +94,11 @@ exports[`Attendance Detailed page Renders the Attendance Detailed Page  1`] = `
               className="py-3 "
             >
               <button
+<<<<<<< HEAD:src/containers/Trainee/tests/__snapshots__/AttendanceDetails.test.tsx.snap
+                className="btn primary sm px-4 py-0 text-sm font-serif"
+=======
                 className="btn primary sm px-4 py-0 text-sm font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/trainees/__snapshots__/AttendanceDetails.test.tsx.snap
                 disabled={false}
                 type="button"
               >

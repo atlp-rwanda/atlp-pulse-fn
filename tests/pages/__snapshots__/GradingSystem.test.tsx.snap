@@ -37,7 +37,11 @@ Array [
             className="flex justify-between w-full"
           >
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif"
+=======
               className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -46,7 +50,11 @@ Array [
               Cancel
             </button>
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -94,7 +102,11 @@ Array [
             className="flex justify-between w-full"
           >
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif"
+=======
               className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -103,7 +115,11 @@ Array [
               No
             </button>
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+              className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif"
+=======
               className="btn default sm w-[30%] md:w-1/4 text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -285,7 +301,11 @@ Array [
               className="flex justify-start"
             >
               <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif"
+=======
                 className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                 disabled={false}
                 onClick={[Function]}
                 type="button"
@@ -297,7 +317,11 @@ Array [
               className="flex justify-end gap-2 flex-1"
             >
               <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif"
+=======
                 className="btn default sm text-sm font-sans mx-0 my-2 px-4 border border-current text-violet-500 hover:text-violet-600 hover:bg-violet-600 hover:bg-opacity-5 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                 data-testid="removeModel"
                 disabled={false}
                 onClick={[Function]}
@@ -306,7 +330,11 @@ Array [
                 Cancel
               </button>
               <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif"
+=======
                 className="btn default sm text-sm font-sans mx-0 my-2 px-4 bg-violet-500 text-white hover:bg-violet-600 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                 data-testid="saveGrade"
                 disabled={false}
                 type="submit"
@@ -350,7 +378,11 @@ Array [
                   </option>
                 </select>
                 <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                  className="btn primary lg m-0 font-serif"
+=======
                   className="btn primary lg m-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                   data-testid="gradeBtn"
                   disabled={false}
                   onClick={[Function]}
@@ -369,7 +401,11 @@ Array [
                 className="max-w-full"
               >
                 <div
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                  className="font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] \\"lg:ml-60 mx-auto\\"} mb-10"
+=======
                   className="font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] \\"lg:ml-60 mx-auto\\"} mb-10"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                 >
                   <div
                     className="flex items-center justify-between pb-6 "
@@ -382,7 +418,11 @@ Array [
                       </h2>
                       <input
                         aria-label="Filter table data"
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                        className="px-5 py-2 mt-4 font-sans text-xs border border-primary rounded outline-none dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+=======
                         className="px-5 py-2 mt-4 font-sans text-xs border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                         onChange={[Function]}
                         placeholder="Filter"
                         value=""
@@ -463,7 +503,11 @@ Array [
                         <tr>
                            
                           <td
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                            className="text-center p-4"
+=======
                             className="p-4 text-center"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                             colSpan={3}
                           >
                             <div
@@ -471,7 +515,11 @@ Array [
                             >
                                
                               <p
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                                className="text-gray-600 dark:text-gray-400 text-lg font-medium"
+=======
                                 className="text-lg font-medium text-gray-600 dark:text-gray-400"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                               >
                                  
                                 No records available
@@ -504,7 +552,11 @@ Array [
                               colSpan={3}
                             >
                               <div
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                                className="w-full justify-between flex mx-auto flex-row items-center"
+=======
                                 className="flex flex-row items-center justify-between w-full mx-auto"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                               >
                                 <div
                                   className="flex"
@@ -597,7 +649,11 @@ Array [
                                   </span>
                                    
                                   <select
+<<<<<<< HEAD:src/pages/tests/__snapshots__/GradingSystem.test.tsx.snap
+                                    className="px-1/2 font-raleway rounded-md border border-dark dark:bg-primary focus:outline-none"
+=======
                                     className="border rounded-md px-1/2 font-raleway border-dark dark:bg-primary focus:outline-none"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/GradingSystem.test.tsx.snap
                                     onChange={[Function]}
                                     style={
                                       Object {

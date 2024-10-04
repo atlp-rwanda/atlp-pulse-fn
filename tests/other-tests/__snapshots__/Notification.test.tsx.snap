@@ -49,7 +49,10 @@ exports[`notification test should render notification 1`] = `
         data-testid="notificationsContainer"
       >
         <p>
+<<<<<<< HEAD:src/tests/__snapshots__/Notification.test.tsx.snap
+=======
            
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/other-tests/__snapshots__/Notification.test.tsx.snap
           There are no notifications for you!
         </p>
       </div>
