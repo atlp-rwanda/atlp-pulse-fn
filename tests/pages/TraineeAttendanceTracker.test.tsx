@@ -16,8 +16,8 @@ import {
   MockedProvider,
 } from '@apollo/client/testing';
 import TraineeAttendanceTracker from '../../src/pages/TraineeAttendanceTracker';
-import { GET_ALL_TEAMS } from '../../src/Mutations/teamMutation';
-import { GET_TEAM_ATTENDANCE } from '../../src/Mutations/Attendance';
+import { GET_ALL_TEAMS } from '../../src/queries/team.queries';
+import { GET_TEAM_ATTENDANCE } from '../../src/queries/attendance.queries';
 
 const mocks = [
   {

@@ -4,11 +4,11 @@ import { MockedProvider } from '@apollo/client/testing';
 import '@testing-library/jest-dom';
 import AdminSission from '../../../src/containers/admin-dashBoard/Sessions';
 import {
-  GET_SESSIONS,
   CREATE_SESSION,
   DELETE_SESSION,
   EDIT_SESSION,
 } from '../../../src/Mutations/session';
+import{ GET_SESSIONS} from '../../../src/queries/session.queries'
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),

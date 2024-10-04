@@ -4,7 +4,7 @@ import { useLazyQuery, gql, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import Pagination from './Pagination';
 import PerformanceData from '../dummyData/performance.json';
-import { TRAINEE_RATING } from '../Mutations/Ratings';
+import { TRAINEE_RATING } from '../queries/ratings.queries';
 import RemarksModal from '../pages/ratings/CoordinatorRemarks';
 import { UserContext } from '../hook/useAuth';
 import { rowsType } from '../pages/ratings/frame';

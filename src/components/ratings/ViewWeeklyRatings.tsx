@@ -11,7 +11,7 @@ import Dropout from './Dropout';
 import useViewTraineeRatings from './hooks/useViewTraineeRatings';
 import Button from '../Buttons';
 import { UPDATE_RATING } from '../../Mutations/Ratings';
-import { DEFAULT_GRADE } from '../../Mutations/MakeDefault';
+import { DEFAULT_GRADE } from '../../queries/DefaultGrading.queries';
 
 function ViewSprintRatings({
   traineeName,
@@ -350,8 +350,8 @@ function ViewSprintRatings({
             loggedUserRole === 'ttl') ||
           loggedUserRole === 'coordinator' ? (
             <Button
-                type="submit"
-                disabled={traineeStatus.status==="drop"}
+              type="submit"
+              disabled={traineeStatus.status === 'drop'}
               variant="primary"
               size="sm"
               style="inline-flex justify-center float-right rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"

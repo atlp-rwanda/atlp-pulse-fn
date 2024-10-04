@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { GET_TRAINEES_QUERY } from '../../Mutations/manageStudentMutations';
+import { GET_TRAINEES_QUERY } from '../../queries/manageStudent.queries';
 import ViewWeeklyRatings from '../../components/ratings/ViewWeeklyRatings';
 
 function ViewTraineeRatings() {

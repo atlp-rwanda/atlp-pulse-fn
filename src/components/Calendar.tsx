@@ -10,7 +10,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ReactTooltip from 'react-tooltip';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { ADD_EVENT, GET_EVENTS, EDIT_EVENT, CANCEL_EVENT } from '../Mutations/event';
+import { ADD_EVENT, EDIT_EVENT, CANCEL_EVENT } from '../Mutations/event';
+import { GET_EVENTS } from '../queries/event.queries';
 import moment from 'moment';
 import CalendarSkeleton from '../Skeletons/Calender.skeleton'
 import { toast } from 'react-toastify';

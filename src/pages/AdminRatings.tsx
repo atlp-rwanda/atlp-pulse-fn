@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Square from '../Skeletons/Square';
 import Sidebar from '../components/Sidebar';
-import { FETCH_ALL_RATINGS } from '../Mutations/Ratings';
+import { FETCH_ALL_RATINGS } from '../queries/ratings.queries';
 import { phase, sprint } from '../dummyData/ratings';
 import DataTable from '../components/DataTable';
 import { useLazyQuery } from '@apollo/client';

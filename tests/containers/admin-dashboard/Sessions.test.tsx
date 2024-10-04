@@ -6,11 +6,11 @@ import { MockedProvider } from '@apollo/client/testing';
 import { act } from 'react-dom/test-utils';
 import AdminSission from '../../../src/containers/admin-dashBoard/Sessions';
 import {
-  GET_SESSIONS,
   CREATE_SESSION,
   DELETE_SESSION,
   EDIT_SESSION,
 } from '../../../src/Mutations/session';
+import{ GET_SESSIONS} from '../../../src/queries/session.queries';
 
 const mockSessionData = {
   getAllSessions: [

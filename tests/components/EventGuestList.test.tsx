@@ -3,7 +3,7 @@ import { fireEvent, screen, render, waitFor, cleanup } from '@testing-library/re
 import React from 'react';
 import { MockedProvider } from "@apollo/client/testing";
 import { toast } from "react-toastify";
-import { GET_ALL_USERS_QUERY } from "../../src/Mutations/manageStudentMutations";
+import { GET_ALL_USERS_QUERY } from "../../src/queries/manageStudent.queries";
 import EventGuestList, { getRoleColor, getRoleTitle } from "../../src/components/EventGuestList";
 
 const getAllUsersMock = [{

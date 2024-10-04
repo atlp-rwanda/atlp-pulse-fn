@@ -17,18 +17,20 @@ import Button from '../components/Buttons';
 import Avatar from '../assets/avatar.png';
 
 import {
-  GET_USERS_QUERY,
-  GET_TRAINEES_QUERY,
-  GET_COHORTS_QUERY,
   REMOVE_MEMBER_FROM_COHORT_MUTATION,
   DROP_TRAINEE,
   EDIT_MEMBER_MUTATION,
   INVITE_USER_MUTATION,
-  GET_TEAM_QUERY,
   ADD_MEMBER_TO_TEAM,
-  GET_GITHUB_STATISTICS,
   UNDROP_TRAINEE,
 } from '../Mutations/manageStudentMutations';
+import {
+  GET_USERS_QUERY,
+  GET_TRAINEES_QUERY,
+  GET_COHORTS_QUERY,
+  GET_GITHUB_STATISTICS,
+  GET_TEAM_QUERY,
+} from '../queries/manageStudent.queries';
 import { useNavigate } from 'react-router-dom';
 
 import ControlledSelect from '../components/ControlledSelect';

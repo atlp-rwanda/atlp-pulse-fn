@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_LOGIN_ACTIVITIES } from '../Mutations/manageStudentMutations';
+import { GET_LOGIN_ACTIVITIES } from '../queries/manageStudent.queries';
 
 interface LoginActivitiesData {
   loginActivities: LoginActivity[];

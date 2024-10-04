@@ -6,11 +6,11 @@ import DataTable from '../../components/DataTable';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import Button from '../../components/Buttons';
 import {
-  GET_SESSIONS,
   CREATE_SESSION,
   DELETE_SESSION,
   EDIT_SESSION,
 } from '../../Mutations/session';
+import { GET_SESSIONS } from '../../queries/session.queries';
 
 interface Session {
   id: string;

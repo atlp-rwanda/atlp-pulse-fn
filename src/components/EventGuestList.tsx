@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { toast } from "react-toastify";
-import { GET_ALL_USERS_QUERY } from "../Mutations/manageStudentMutations";
+import { GET_ALL_USERS_QUERY } from "../queries/manageStudent.queries";
 
 export const getRoleColor = (role: string) => {
   switch (role) {

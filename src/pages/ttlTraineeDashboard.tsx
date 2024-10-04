@@ -13,8 +13,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { toast } from 'react-toastify';
 import { useLazyQuery } from '@apollo/client';
-import { GET_TTL_TRAINEES } from '../Mutations/User';
-import { GET_GITHUB_STATISTICS } from '../Mutations/manageStudentMutations';
+import { GET_TTL_TRAINEES } from '../queries/user.queries';
+import { GET_GITHUB_STATISTICS } from '../queries/manageStudent.queries';
 import Button from '../components/Buttons';
 import Avatar from '../assets/avatar.png';
 import { MdCancel } from 'react-icons/md';
@@ -57,7 +57,7 @@ const TtlTraineeDashboard = () => {
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
 
-  const [selectedTraineeId, setSelectedTraineeId]= useState<string[]>()
+  const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>()
 
   const handleClickOpen2 = async () => {
     setIsLoaded(true);
@@ -124,18 +124,17 @@ const TtlTraineeDashboard = () => {
             }
           >
             <button
-  className={`${row.original?.Status?.status === 'drop'
-      ? 'bg-gray-500'
-      : 'bg-black'
-    } text-white rounded-xl px-3`}
-  onClick={() => {
-      setSelectedTraineeId(row.original?.email);
-      handleClickOpen2();
-  }}
->
-  {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
-</button>
-
+            className={`${row.original?.Status?.status === 'drop'
+              ? 'bg-gray-500'
+              : 'bg-black'
+            } text-white rounded-xl px-3`}
+          onClick={() => {
+              setSelectedTraineeId(row.original?.email);
+              handleClickOpen2();
+          }}
+        >
+          {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
+            </button>
           </div>
         );
       },
@@ -202,7 +201,7 @@ const TtlTraineeDashboard = () => {
     });
   }, []);
 
-  console.log("trainee data ig",traineeData)
+  console.log('trainee data ig', traineeData);
 
   return (
     <>
@@ -216,7 +215,7 @@ const TtlTraineeDashboard = () => {
           className="rounded-lg relative"
           fullWidth
         >
-          {traineeData.map(data => {
+         {traineeData.map(data => {
             if (data.email === selectedTraineeId) {
               return <ViewWeeklyRatings
             traineeName={data?.profile?.name || 'Unknown Name'}

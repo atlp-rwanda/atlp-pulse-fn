@@ -20,8 +20,7 @@ import {
 import roles from '../../dummyData/roles.json';
 import Square from '../../Skeletons/Square';
 import { toast } from 'react-toastify';
-import { GET_TEAM_QUERY } from '../../Mutations/manageStudentMutations';
-import { GET_TEAMS } from '../../Mutations/teamMutation';
+import { GET_TEAMS } from '../../queries/team.queries';
 import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 const AdminSission = () => {
   const { t } = useTranslation();
