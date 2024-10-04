@@ -72,7 +72,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                 className="text-gray-400 border border-primary py-2 dark:bg-dark-bg rounded outline-none px-5 font-sans text-xs w-full h-[38px] "
                 data-placeholder="Date of birth"
                 id="date-placeholder"
-                max="2024-10-02"
+                max="2024-10-04"
                 name="dateOfBirth"
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -101,7 +101,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                 onTouchEnd={[Function]}
               >
                 <div
-                  className="my-react-select__value-container css-1fdsijx-ValueContainer"
+                  className="my-react-select__value-container css-hlgwow"
                 >
                   <div
                     className="my-react-select__placeholder css-1jqq78o-placeholder"
@@ -110,7 +110,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                     Select gender
                   </div>
                   <div
-                    className="my-react-select__input-container css-qbdosj-Input"
+                    className="my-react-select__input-container css-19bb58m"
                     data-value=""
                   >
                     <input
@@ -153,7 +153,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                   </div>
                 </div>
                 <div
-                  className="my-react-select__indicators css-1hb7zxy-IndicatorsContainer"
+                  className="my-react-select__indicators css-1wy0on6"
                 >
                   <span
                     className="my-react-select__indicator-separator css-1u9des2-indicatorSeparator"

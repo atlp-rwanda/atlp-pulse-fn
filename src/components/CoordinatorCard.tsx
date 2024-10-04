@@ -55,6 +55,7 @@ export const GET_TEAMS_CARDS = gql`
 
         coordinator {
           email
+          role
           profile {
             name
             firstName

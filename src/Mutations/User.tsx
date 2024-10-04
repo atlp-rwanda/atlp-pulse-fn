@@ -53,8 +53,10 @@ export const GET_ALL_TTL_USERS = gql`
     getAllTTLUsers(orgToken: $orgToken) {
       profile {
         name
+        id
       }
       email
+      role
       team {
         name
         cohort {
