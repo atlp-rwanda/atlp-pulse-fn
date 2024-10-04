@@ -317,7 +317,7 @@ function Invitation() {
     validateEmail(newEmail); // Validate on change
   };
 
-  // Defining invitation table
+  // Defining invitation table Actions
   let content;
   const capitalizeStrings = (str: string): string => {
     if (!str) return '';

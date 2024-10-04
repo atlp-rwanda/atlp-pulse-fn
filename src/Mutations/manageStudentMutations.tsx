@@ -12,6 +12,20 @@ export const GET_USERS_QUERY = gql`
   }
 `;
 
+export const GET_ALL_USERS_QUERY = gql`
+  query GetUsers($orgToken: String) {
+    getAllUsers(orgToken: $orgToken) {
+      id
+      email
+      role
+      profile{
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
 export const DROP_TRAINEE = gql`
   mutation DropTrainee(
     $traineeId: String!
@@ -21,7 +35,12 @@ export const DROP_TRAINEE = gql`
     dropTrainee(traineeId: $traineeId, reason: $reason, date: $date)
   }
 `;
-
+// Define the mutation
+export const UNDROP_TRAINEE = gql`
+  mutation UndropTrainee($traineeId: String!) {
+    undropTrainee(traineeId: $traineeId)
+  }
+`;
 export const GET_TRAINEES_QUERY = gql`
   query GetTrainees($orgToken: String) {
     getTrainees(orgToken: $orgToken) {
@@ -36,6 +55,7 @@ export const GET_TRAINEES_QUERY = gql`
         id
         user {
           id
+          role
           status {
             status
             date

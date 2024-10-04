@@ -29,6 +29,9 @@ export const GET_TEAMS_CARDS = gql`
         profile {
           name
         }
+         status{
+          status
+        }
       }
       active
       startingPhase
@@ -55,6 +58,7 @@ export const GET_TEAMS_CARDS = gql`
 
         coordinator {
           email
+          role
           profile {
             name
             firstName
@@ -140,6 +144,13 @@ function ManagerCard() {
           rating = 'text-red-700';
         }
 
+         const activeMembers = team.members.filter(
+        (member: any) => member.status?.status === 'active'
+      ).length;
+      const droppedMembers = team.members.filter(
+        (member: any) => member.status?.status === 'drop'
+      ).length;
+
         return {
           stylebg,
           stylebg1,
@@ -158,8 +169,8 @@ function ManagerCard() {
           skills,
           Qty,
           Qnty,
-          active: team?.members.length,
-          drop: 0,
+          active: activeMembers,
+          drop: droppedMembers,
         };
       });
 
