@@ -7,13 +7,13 @@ import { toast } from 'react-toastify';
 import Avatar from '../assets/avatar.png';
 import Notification from './Notification';
 import ProfileDropdown from './ProfileDropdown';
-import { GET_PROFILE } from '../Mutations/User';
+import { GET_PROFILE } from '../queries/user.queries';
 import { UserContext } from '../hook/useAuth';
 import {
-  getAllNotification,
   NotificationSubscription,
   PUSH_NOTIFICATION_SUB,
 } from '../Mutations/notificationMutation';
+import { getAllNotification } from '../queries/notification.queries';
 import { MenuContext } from '../hook/menuProvider';
 import ToggleThemeButton from './TogglethemeIcon';
 import LogoIcon from './logoIcon';

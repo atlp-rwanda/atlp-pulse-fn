@@ -18,8 +18,3 @@ export const RESET_PASSWORD_EMAIL = gql`
     forgotPassword(email: $email)
   }
 `;
-export const VERIFY_RESET_PASSWORD_TOKEN = gql`
-  query Query($token: String!) {
-    verifyResetPasswordToken(token: $token)
-  }
-`;

@@ -9,9 +9,11 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import {
   updatePushNotifications,
   updateEmailNotifications,
+} from '../Mutations/notificationMutation';
+import {
   updatedEmailNotifications,
   updatedPushNotifications,
-} from '../Mutations/notificationMutation';
+} from '../queries/notification.queries';
 import { UserContext } from '../hook/useAuth';
 import { ThemeContext } from '../hook/ThemeProvider';
 

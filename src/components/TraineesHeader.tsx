@@ -14,12 +14,10 @@ import useDarkMode from '../hook/useDarkMode';
 import Sidebar from './Sidebar';
 import Notification from './Notification';
 import ProfileDropdown from './ProfileDropdown';
-import { GET_PROFILE } from '../Mutations/User';
+import { GET_PROFILE } from '../queries/user.queries';
 import { UserContext } from '../hook/useAuth';
-import {
-  getAllNotification,
-  NotificationSubscription,
-} from '../Mutations/notificationMutation';
+import { NotificationSubscription } from '../Mutations/notificationMutation';
+import { getAllNotification } from '../queries/notification.queries';
 
 export const TICKETS_NOTS_SUB = gql`
   subscription OnTicket {

@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-import { GET_LOGIN_ACTIVITIES } from '../../src/Mutations/manageStudentMutations';
+import { GET_LOGIN_ACTIVITIES } from '../../src/queries/manageStudent.queries';
 import LoginActivitiesTable from '../../src/components/LoginActivitiesTable';
 
 const mockLoginActivities = [

@@ -15,9 +15,9 @@ import {
   ADD_SUB_DOCUMENTATION,
   DELETE_DOCUMENTATION,
   DELETE_SUB_DOCUMENTATION,
-  GET_DOCUMENTATION,
   UPDATE_DOCUMENTATION,
 } from '../../Mutations/manageStudentMutations';
+import { GET_DOCUMENTATION } from '../../queries/manageStudent.queries';
 
 function AdminDocs() {
   useDocumentTitle('Documentation');

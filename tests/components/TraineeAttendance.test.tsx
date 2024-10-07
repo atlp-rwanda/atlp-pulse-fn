@@ -5,7 +5,7 @@ import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import TraineeAttendance, { optimizeWeekData } from '../../src/components/TraineeAttendance'; // Adjust the import path accordingly
-import { GET_WEEKLY_ATTENDANCE } from '../../src/Mutations/Attendance';
+import { GET_WEEKLY_ATTENDANCE } from '../../src/queries/attendance.queries';
 
 const mockData = {
   getTraineeAttendanceByID: [

@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import InvitationCard from '../components/InvitationCard';
 import DataTableStats from '../components/InvitationTable';
 import InvitationModal from './invitationModalComponet';
-import { GET_INVITATIONS_STATISTICS_QUERY } from '../Mutations/invitationStats';
+import { GET_INVITATIONS_STATISTICS_QUERY } from '../queries/invitationStats.queries';
 import InvitationCardSkeleton from '../Skeletons/InvitationCardSkeleton';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
@@ -86,7 +86,7 @@ function Invitation() {
   const modalRef = useRef<any>(null);
 
   const organizationToken = localStorage.getItem('orgToken');
-  
+
   const parseRange = (range: string) => {
     switch (range) {
       case 'Last 7 days':
@@ -200,9 +200,9 @@ function Invitation() {
     { data: searchData, loading: searchLoading, error: searchError },
   ] = useLazyQuery(GET_INVITATIONS, {
     variables: {
-       query: searchQuery,
-       orgToken: organizationToken,
-       },
+     query: searchQuery,
+     orgToken: organizationToken,
+    },
     fetchPolicy: 'network-only',
   });
 
@@ -360,9 +360,9 @@ function Invitation() {
             />
             {selectedRow === row.id && (
               <div 
-                ref={modalRef}
-                className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
-                <>
+              ref={modalRef}
+              className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg">
+              <>
                   <div className="mb-4"></div>
                   <div className="mb-4">
                     <div

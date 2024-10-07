@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { Cohort } from './Cohorts';
 import ModalDataTable from '../../components/ModalDataTable';
-import { GET_COHORT_TRAINEES_QUERY } from '../../Mutations/manageStudentMutations';
+import { GET_COHORT_TRAINEES_QUERY } from '../../queries/manageStudent.queries';
 import ButtonLoading from '../../components/ButtonLoading';
 
 const organizationToken = localStorage.getItem('orgToken');

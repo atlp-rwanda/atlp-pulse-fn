@@ -4,7 +4,8 @@ import React from 'react';
 import Calendar from '../../src/components/Calendar';
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { toast } from "react-toastify";
-import { GET_EVENTS, ADD_EVENT, EDIT_EVENT, CANCEL_EVENT } from "../../src/Mutations/event";
+import { ADD_EVENT, EDIT_EVENT, CANCEL_EVENT } from "../../src/Mutations/event";
+import { GET_EVENTS } from "../../src/queries/event.queries";
 
 const getEventsMock: MockedResponse = {
   request: {

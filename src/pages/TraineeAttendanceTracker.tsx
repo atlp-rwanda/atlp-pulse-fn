@@ -11,13 +11,13 @@ import { isSameWeek } from 'date-fns';
 import { PulseLoader } from 'react-spinners';
 import {
   DELETE_ATTENDANCE,
-  GET_TEAM_ATTENDANCE,
   UPDATE_ATTENDANCE,
 } from '../Mutations/Attendance';
+import { GET_TEAM_ATTENDANCE } from '../queries/attendance.queries'
 import 'react-circular-progressbar/dist/styles.css';
-import { GET_ALL_TEAMS } from '../Mutations/teamMutation';
+import { GET_ALL_TEAMS } from '../queries/team.queries';
 import { GET_TEAMS_CARDS } from '../components/CoordinatorCard';
-import { GET_TEAM_TRAINEE_QUERY } from '../Mutations/manageStudentMutations';
+import { GET_TEAM_TRAINEE_QUERY } from '../queries/manageStudent.queries'
 import AttendanceSymbols from '../components/AttendanceSymbols';
 import { getDateForDays, Weekdays } from '../utils/getDateForDays';
 import Modal, { recordTraineeProps } from '../components/ModalAttendance';

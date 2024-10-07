@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { GET_TRAINEES_QUERY } from '../Mutations/manageStudentMutations';
 
 // Query to fetch all tickets
 const GET_TICKETS = gql`

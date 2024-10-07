@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-import { FETCH_ALL_RATINGS } from '../../../Mutations/Ratings';
+import { FETCH_ALL_RATINGS } from '../../../queries/ratings.queries';
 
 const useViewTraineeRatings = ({ traineeEmail, selectSprint }: any) => {
   const organizationToken = localStorage.getItem('orgToken');
