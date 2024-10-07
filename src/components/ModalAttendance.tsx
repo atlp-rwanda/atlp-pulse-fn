@@ -71,7 +71,41 @@ function ModalAttendance({
       if (data) {
         toast.success('Attendance recorded successfully.');
       }
-      setAttendanceData((prev) => [...prev, data.recordAttendance]);
+
+      setAttendanceData((prev) => {
+        let isSet = false;
+        const result = prev.map((attendance) => {
+          if (
+            attendance.week.toString() === week.toString() &&
+            attendance.cohort.id === data.recordAttendance.team.cohort.id &&
+            attendance.phase.id === data.recordAttendance.team.cohort.phase.id
+          ) {
+            isSet = true;
+            return {
+              ...attendance,
+              teams: [data.recordAttendance],
+            };
+          }
+          return attendance;
+        });
+
+        if (!isSet && team === data.recordAttendance.team.id) {
+          result.push({
+            week: week.toString(),
+            id: Math.random().toString(),
+            cohort: {
+              id: data.recordAttendance.team.cohort.id,
+              name: data.recordAttendance.team.cohort.name,
+            },
+            phase: {
+              id: data.recordAttendance.team.cohort.phase.id,
+              name: data.recordAttendance.team.cohort.phase.name,
+            },
+            teams: [data.recordAttendance],
+          });
+        }
+        return result;
+      });
       setTraineesAttendance([]);
       setRecordTrainees([]);
       onClose();
@@ -90,10 +124,12 @@ function ModalAttendance({
   }, [recordTrainees]);
 
   useEffect(() => {
-    const sanitizedTrainees = trainees.getTeamTrainees.filter(
-      (trainee: any) => trainee.status.status !== 'drop',
-    );
-    setAllTrainees(sanitizedTrainees);
+    if (trainees) {
+      const sanitizedTrainees = trainees.filter(
+        (trainee: any) => trainee.status.status !== 'drop',
+      );
+      setAllTrainees(sanitizedTrainees);
+    }
   }, [trainees]);
   useEffect(() => {
     setFilteredTrainees(
@@ -113,11 +149,11 @@ function ModalAttendance({
   ) => {
     let updatedAttendance;
     const updateAttendance = traineesAttendance.find(
-      (attendance) => attendance.name.toLowerCase() === name.toLowerCase(),
+      (attendance) => attendance.id === id,
     );
     if (updateAttendance) {
       updatedAttendance = traineesAttendance.map((attendance) => {
-        if (attendance.name.toLowerCase() === name.toLowerCase()) {
+        if (attendance.id === id) {
           return { ...attendance, score };
         }
         return attendance;
@@ -171,7 +207,7 @@ function ModalAttendance({
               </p>
               <div className="w-full min-h-[40px] max-h-[110px] overflow-auto custom-scrollbar">
                 {traineesAttendance.length ? (
-                  <div className="grid grid-cols-2 gap-1 xmd:gap-4 justify-between">
+                  <div className="grid grid-cols-2 gap-1 xmd:gap-3 justify-between">
                     {traineesAttendance.map((trainee) => (
                       <div
                         key={trainee.id}
@@ -255,6 +291,7 @@ function ModalAttendance({
                                       day,
                                     );
                                   }}
+                                  className="cursor-pointer hover:brightness-75"
                                   data-testid="test-score-2"
                                 >
                                   <AttendanceSymbols status={2} />
@@ -269,6 +306,7 @@ function ModalAttendance({
                                       day,
                                     );
                                   }}
+                                  className="cursor-pointer hover:brightness-75"
                                   data-testid="test-score-1"
                                 >
                                   <AttendanceSymbols status={1} />
@@ -283,6 +321,7 @@ function ModalAttendance({
                                       day,
                                     );
                                   }}
+                                  className="cursor-pointer hover:brightness-75"
                                   data-testid="test-score-0"
                                 >
                                   <AttendanceSymbols status={0} />

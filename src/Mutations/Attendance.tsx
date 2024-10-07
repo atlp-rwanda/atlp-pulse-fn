@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const RECORD_ATTENDANCE = gql`
   mutation RecordAttendance(
@@ -19,7 +19,12 @@ export const RECORD_ATTENDANCE = gql`
         id
         name
         cohort {
+          id
           name
+          phase {
+            name
+            id
+          }
         }
       }
       trainees {
@@ -27,6 +32,8 @@ export const RECORD_ATTENDANCE = gql`
           profile {
             name
           }
+          email
+          id
         }
         status {
           day

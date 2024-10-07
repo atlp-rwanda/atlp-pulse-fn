@@ -9,15 +9,11 @@ import { LuClipboardEdit } from 'react-icons/lu';
 import { MdCalendarMonth, MdOutlineCalendarMonth } from 'react-icons/md';
 import { isSameWeek } from 'date-fns';
 import { PulseLoader } from 'react-spinners';
-import {
-  DELETE_ATTENDANCE,
-  UPDATE_ATTENDANCE,
-} from '../Mutations/Attendance';
-import { GET_TEAM_ATTENDANCE } from '../queries/attendance.queries'
+import { DELETE_ATTENDANCE, UPDATE_ATTENDANCE } from '../Mutations/Attendance';
+import { GET_TEAM_ATTENDANCE } from '../queries/attendance.queries';
 import 'react-circular-progressbar/dist/styles.css';
 import { GET_ALL_TEAMS } from '../queries/team.queries';
 import { GET_TEAMS_CARDS } from '../components/CoordinatorCard';
-import { GET_TEAM_TRAINEE_QUERY } from '../queries/manageStudent.queries'
 import AttendanceSymbols from '../components/AttendanceSymbols';
 import { getDateForDays, Weekdays } from '../utils/getDateForDays';
 import Modal, { recordTraineeProps } from '../components/ModalAttendance';
@@ -34,6 +30,28 @@ interface TeamData {
       name: 'string';
     };
   };
+  members: [
+    {
+      id: string;
+      email: string;
+      status: {
+        date: string;
+        reason: string;
+        status: string;
+      };
+      profile: {
+        firstName: string;
+        lastName: string;
+        city: string;
+        country: string;
+        phoneNumber: string;
+        biography: string;
+        avatar: string;
+        id: string;
+        name: string;
+      };
+    },
+  ];
 }
 
 export interface TraineeAttendanceDataInterface {
@@ -48,7 +66,6 @@ export interface TraineeAttendanceDataInterface {
 }
 export interface TraineeAttendanceDayInterface {
   week: string;
-  data: boolean;
   phase: string;
   dates: Weekdays;
   days: {
@@ -78,13 +95,14 @@ function TraineeAttendanceTracker() {
     'mon' | 'tue' | 'wed' | 'thu' | 'fri'
   >('mon');
   const [selectedDayDate, setSelectedDayDate] = useState<string>('');
+  const [currentTime, setCurrentTime] = useState<number>();
   const [selectedDayHasData, setSelectedDayHasData] = useState<boolean>(false);
   const [selectedPhase, setSelectedPhase] = useState<
     PhaseInterface | undefined
   >();
   const [phases, setPhases] = useState<PhaseInterface[]>([]);
   const [teamsData, setTeamsData] = useState<TeamData[]>();
-  const [getAllTeams] = useLazyQuery(GET_ALL_TEAMS);
+  const [getAllTeams, { loading: teamLoading }] = useLazyQuery(GET_ALL_TEAMS);
   const [initialTraineeAttendanceData, setInitialTraineeAttendanceData] =
     useState<TraineeAttendanceDayInterface[]>([]);
   const [traineeAttendanceData, setTraineeAttendanceData] = useState<
@@ -92,7 +110,7 @@ function TraineeAttendanceTracker() {
   >([]);
   const [attendanceData, setAttendanceData] = useState<any[]>([]);
   const [orgToken, setOrgToken] = useState<string | null>('');
-  const [refetchTrainee, setRefetchTrainee] = useState<boolean | null>(null);
+  const [resetDayAndWeek, setResetDayAndWeek] = useState<boolean>(true);
   const [selectedTeamId, setSelectedTeamId] = useState('');
   const [selectedTeamData, setSelectedTeamData] = useState<TeamData>();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -114,6 +132,10 @@ function TraineeAttendanceTracker() {
       let hasData = false;
       !selectedWeek && index === 0 && setSelectedWeek(attendance.week);
 
+      if (resetDayAndWeek && selectedWeek! < attendance.week) {
+        setSelectedWeek(attendance.week);
+      }
+
       if (!tempPhases.find((p) => p.id === attendance.phase.id))
         tempPhases.push({
           id: attendance.phase.id,
@@ -122,7 +144,6 @@ function TraineeAttendanceTracker() {
 
       const result: TraineeAttendanceDayInterface = {
         week: attendance.week,
-        data: true,
         dates: {
           mon: '',
           tue: '',
@@ -160,11 +181,18 @@ function TraineeAttendanceTracker() {
               status: traineeStatus.score as string,
             });
           });
+          resetDayAndWeek &&
+            setSelectedDay(
+              traineeData.status[traineeData.status.length - 1].day,
+            );
+        }
+        if (!traineeData.status.length && !hasData) {
+          setSelectedDayHasData(false);
+          date = currentTime ? currentTime.toString() : Date.now().toString();
         }
       });
       if (date) result.dates = getDateForDays(date);
-      // setTraineeAttendanceData((prevData) => [...prevData, result]);
-      hasData && updatedTraineeData.push(result);
+      updatedTraineeData.push(result);
     });
 
     setTraineeAttendanceData(updatedTraineeData);
@@ -172,6 +200,7 @@ function TraineeAttendanceTracker() {
 
     teamsData?.forEach((team) => {
       if (team.id === selectedTeamId) {
+        
         const names = tempPhases.map((phase) => phase.name);
         let isDataSet = false;
         if (!data.length) {
@@ -179,14 +208,17 @@ function TraineeAttendanceTracker() {
           setWeeks(['1']);
           setSelectedWeek('1');
           setSelectedDayDate(
-            getDateForDays(Date.now().toString())[selectedDay],
+            getDateForDays(
+              currentTime ? currentTime.toString() : Date.now().toString(),
+            )[selectedDay],
           );
           setTraineeAttendanceData([
             {
               week: '1',
-              data: false,
               phase: team.cohort.phase.id,
-              dates: getDateForDays(Date.now().toString()),
+              dates: getDateForDays(
+                currentTime ? currentTime.toString() : Date.now().toString(),
+              ),
               days: {
                 mon: [],
                 tue: [],
@@ -203,17 +235,18 @@ function TraineeAttendanceTracker() {
             id: team.cohort.phase.id,
             name: team.cohort.phase.name,
           });
-          // setSelectedDayDate(
-          //   getDateForDays(Date.now().toString())[selectedDay],
-          // );
+          
           if (!isDataSet) {
+            setSelectedWeek('1');
             setTraineeAttendanceData((prevData) => [
               ...prevData,
               {
                 week: '1',
                 data: false,
                 phase: team.cohort.phase.id,
-                dates: getDateForDays(Date.now().toString()),
+                dates: getDateForDays(
+                  currentTime ? currentTime.toString() : Date.now().toString(),
+                ),
                 days: {
                   mon: [],
                   tue: [],
@@ -228,7 +261,7 @@ function TraineeAttendanceTracker() {
       }
     });
     setPhases(tempPhases);
-
+    setResetDayAndWeek(true);
     selectedTeamData &&
       !selectedPhase &&
       setSelectedPhase({
@@ -254,7 +287,7 @@ function TraineeAttendanceTracker() {
         setUpdate(false);
         setIsUpdatedMode(false);
         setAttendanceData(data.updateAttendance);
-        formatAttendanceData(attendanceData);
+        setResetDayAndWeek(false);
       },
       onError: (error) => {
         const errorMessage =
@@ -264,10 +297,25 @@ function TraineeAttendanceTracker() {
     },
   );
   useEffect(() => {
+    if (attendanceData) {
+      formatAttendanceData(attendanceData);
+    }
+  }, [attendanceData, currentTime]);
+  useEffect(() => {
     if (updateTrainees.length > 0) {
       updateAttendance();
     }
   }, [updateTrainees]);
+
+  useEffect(() => {
+    fetch('http://worldtimeapi.org/api/timezone/Etc/UTC')
+      .then((response) => response.json())
+      .then((data) => {
+        const utcDate = new Date(data.datetime);
+        setCurrentTime(utcDate.getTime());
+      })
+      .catch((error) => {});
+  }, []);
 
   useEffect(() => {
     setOrgToken(localStorage.getItem('orgToken'));
@@ -277,25 +325,16 @@ function TraineeAttendanceTracker() {
     variables: { orgToken },
   });
 
-  const [
-    getTeamMembers,
-    { data: teamMembersData, loading: loadingTeamMembers, refetch },
-  ] = useLazyQuery(GET_TEAM_TRAINEE_QUERY, {
-    variables: { orgToken, team: selectedTeam },
-  });
-
   useEffect(() => {
     if (!loading && data && data.getAllTeams.length > 0) {
       setSelectedTeam(data.getAllTeams[0].name);
     }
   }, [loading, data]);
 
-  // Get all teams data
   useEffect(() => {
     const fetchData = async () => {
       const orgToken = localStorage.getItem('orgToken');
       if (orgToken) {
-        // Execute the query and handle callbacks within useEffect
         getAllTeams({
           fetchPolicy: 'no-cache',
           variables: { orgToken },
@@ -319,7 +358,13 @@ function TraineeAttendanceTracker() {
 
   useEffect(() => {
     setTraineeAttendanceData([]);
-    selectedTeam &&
+    setAttendanceData([]);
+    teamsData?.forEach((team) => {
+      if (team.id === selectedTeamId) {
+        setSelectedTeam(team.name);
+      }
+    });
+    selectedTeamId &&
       getTeamAttendance({
         fetchPolicy: 'network-only',
         variables: {
@@ -328,20 +373,11 @@ function TraineeAttendanceTracker() {
         },
         onCompleted: (data) => {
           setAttendanceData(data.getTeamAttendance);
-          formatAttendanceData(attendanceData);
         },
         onError: (error) => {
           toast.error(error.message);
         },
       });
-  }, [selectedTeam, attendanceData]);
-
-  useEffect(() => {
-    teamsData?.forEach((team) => {
-      if (team.id === selectedTeamId) {
-        setSelectedTeam(team.name);
-      }
-    });
   }, [selectedTeamId]);
 
   // New week for team attendance
@@ -352,9 +388,7 @@ function TraineeAttendanceTracker() {
       const tempWeeks: string[] = traineeAttendanceData
         .map((attendanceData) => {
           if (
-            attendanceData.phase === tempTeam?.cohort.phase.id &&
-            attendanceData.phase === selectedPhase?.id &&
-            attendanceData.data
+            attendanceData.phase === selectedPhase?.id
           ) {
             if (attendanceData.dates.fri)
               lastDayDate = attendanceData.dates.fri;
@@ -364,17 +398,23 @@ function TraineeAttendanceTracker() {
         })
         .filter((week) => week);
 
-      if (tempWeeks.length) {
-        tempWeeks.push(String(tempWeeks.length + 1));
-        const isInSameWeek = isSameWeek(new Date(lastDayDate), new Date(), {
+      const isInSameWeek = isSameWeek(
+        new Date(lastDayDate),
+        new Date(currentTime || Date.now()),
+        {
           weekStartsOn: 1,
-        });
+        },
+      );
+
+      if (tempWeeks.length && !isInSameWeek) {
+        tempWeeks.push(String(tempWeeks.length + 1));
         const baseDate = isInSameWeek
-          ? Date.now() + 7 * 24 * 60 * 60 * 1000
-          : Date.now();
+          ? currentTime || Date.now() + 7 * 24 * 60 * 60 * 1000
+          : currentTime || Date.now();
 
         const dates = getDateForDays(baseDate.toString());
 
+        // setAttendanceData(prevData => [...prevData, {}])
         setTraineeAttendanceData((prevData) => [
           ...prevData,
           {
@@ -393,11 +433,10 @@ function TraineeAttendanceTracker() {
         ]);
 
         !selectedWeek && setSelectedWeek(tempWeeks[0]);
-        setWeeks([]);
-        setWeeks((prevData) => tempWeeks);
-      }
+      } 
+      setWeeks(tempWeeks);
     }
-  }, [selectedPhase, selectedTeamId]);
+  }, [selectedPhase, initialTraineeAttendanceData, currentTime]);
 
   // Change Date for selected Day
   useEffect(() => {
@@ -423,20 +462,12 @@ function TraineeAttendanceTracker() {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    if (teamMembersData) {
-      openModal();
-      setRefetchTrainee(true);
-    }
-  }, [teamMembersData, refetchTrainee]);
-
   const submitAttendance = async () => {
     if (
       isValidAttendanceDay &&
       selectedTeamData?.cohort.phase.id === selectedPhase?.id
     ) {
-      await getTeamMembers({ variables: { orgToken, team: selectedTeam } });
-      setRefetchTrainee(false);
+      openModal();
       return;
     }
     toast.error('Something went wrong, Please Try again');
@@ -498,7 +529,7 @@ function TraineeAttendanceTracker() {
       onCompleted: (data) => {
         toast.success('Attendance has been deleted successfully');
         setAttendanceData(data.deleteAttendance);
-        formatAttendanceData(attendanceData);
+        setResetDayAndWeek(false);
       },
       onError: (error) => {
         toast.error(error.message);
@@ -543,22 +574,19 @@ function TraineeAttendanceTracker() {
       editColumnRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [isUpdatedMode]);
-
   return (
     <div className="bg-tertiary dark:bg-dark-bg p-5 xmd:p-10 rounded-lg font-serif">
-      {teamMembersData && (
-        <Modal
-          isVisible={isModalOpen}
-          onClose={closeModal}
-          trainees={teamMembersData}
-          week={Number(selectedWeek)}
-          date={selectedDayDate}
-          day={selectedDay}
-          team={selectedTeamId}
-          teamName={selectedTeam}
-          setAttendanceData={setAttendanceData}
-        />
-      )}
+      <Modal
+        isVisible={isModalOpen}
+        onClose={closeModal}
+        trainees={selectedTeamData?.members}
+        week={Number(selectedWeek)}
+        date={selectedDayDate}
+        day={selectedDay}
+        team={selectedTeamId}
+        teamName={selectedTeam}
+        setAttendanceData={setAttendanceData}
+      />
       <div className="">
         <div className="flex flex-col gap-y-5 xmd:gap-y-9 rounded-md w-full mt-1 xmd:mt-0">
           <div className="text-lg xmd:text-xl font-semibold">
@@ -571,6 +599,7 @@ function TraineeAttendanceTracker() {
                 <select
                   data-testid="team-test"
                   className="w-full pl-1 bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer text-[.83rem] xmd:text-[.9rem]"
+                  value={selectedTeamId}
                   onChange={(event) => {
                     if (
                       isUpdatedMode &&
@@ -583,6 +612,7 @@ function TraineeAttendanceTracker() {
                       return;
                     }
                     setSelectedPhase(undefined);
+                    setIsUpdatedMode(false);
                     setSelectedTeamId(event.target.value.toString());
                     const teamData = teamsData?.find(
                       (team) => team.id === event.target.value.toString(),
@@ -604,6 +634,7 @@ function TraineeAttendanceTracker() {
               data-testid="submitAttend"
               className={`${
                 isValidAttendanceDay &&
+                !teamAttendanceLoading &&
                 !selectedDayHasData &&
                 selectedTeamData?.cohort.phase.id === selectedPhase?.id
                   ? 'bg-primary text-white'
@@ -612,11 +643,12 @@ function TraineeAttendanceTracker() {
               type="button"
               disabled={
                 !isValidAttendanceDay ||
+                teamAttendanceLoading ||
                 selectedDayHasData ||
                 selectedTeamData?.cohort.phase.id !== selectedPhase?.id
               }
             >
-              {!loadingTeamMembers ? t('Submit Attendance') : 'Loading...'}
+              {!teamLoading ? t('Submit Attendance') : 'Loading...'}
             </button>
           </div>
 
@@ -651,6 +683,7 @@ function TraineeAttendanceTracker() {
               <select
                 data-testid="week-test"
                 className="w-full text-center bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer "
+                value={selectedWeek}
                 onChange={(event) => {
                   if (
                     isUpdatedMode &&
@@ -662,6 +695,7 @@ function TraineeAttendanceTracker() {
                     });
                     return;
                   }
+                  setIsUpdatedMode(false);
                   setSelectedWeek(event.target.value);
                 }}
               >
@@ -867,7 +901,7 @@ function TraineeAttendanceTracker() {
                         !attendanceData.days[selectedDay].length
                       ) {
                         return (
-                          <tr key="no-attendance-xyz">
+                          <tr key={`no-attendance-${selectedDay}`}>
                             <td colSpan={3} className="text-center h-20">
                               There is no attendance for the selected day
                             </td>
@@ -876,20 +910,22 @@ function TraineeAttendanceTracker() {
                       }
                       return null;
                     })}
-                  {teamAttendanceLoading && (
+                  {(teamLoading || teamAttendanceLoading) && (
                     <tr key="no-attendance-abc">
                       <td colSpan={3} className="text-center h-20">
                         Loading Data...
                       </td>
                     </tr>
                   )}
-                  {!teamAttendanceLoading && !traineeAttendanceData.length && (
-                    <tr key="no-attendance-xyz">
-                      <td colSpan={3} className="text-center h-20">
-                        There is no attendance for the selected day
-                      </td>
-                    </tr>
-                  )}
+                  {!teamLoading &&
+                    !teamAttendanceLoading &&
+                    !traineeAttendanceData.length && (
+                      <tr key="no-attendance-xyz">
+                        <td colSpan={3} className="text-center h-20">
+                          There is no attendance for the selected day
+                        </td>
+                      </tr>
+                    )}
                 </tbody>
               </table>
             </div>
@@ -970,7 +1006,7 @@ function TraineeAttendanceTracker() {
                 <RiDeleteBin6Line className="text-xl" />
                 <span>
                   {loadingDeleteAttendance
-                    ? 'Loading Data...'
+                    ? 'Deleting Attendance ...'
                     : `Delete Attendance (${selectedDay})`}
                 </span>
               </div>
@@ -982,11 +1018,13 @@ function TraineeAttendanceTracker() {
               </div>
               <div className="flex gap-x-1 items-center ">
                 <AttendanceSymbols status={1} />
-                <span>[1] Attended and communicated</span>
+                <span>[1] Didn&lsquo;t attend and communicated</span>
               </div>
               <div className="flex gap-x-1 items-center">
                 <AttendanceSymbols status={0} />
-                <span>[0] Attended and communicated</span>
+                <span>
+                  [0] Didn&lsquo;t attend and didn&lsquo;t communicate
+                </span>
               </div>
             </div>
           </div>
