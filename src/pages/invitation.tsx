@@ -676,6 +676,7 @@ function Invitation() {
               <InvitationCardSkeleton />
               <InvitationCardSkeleton />
               <InvitationCardSkeleton />
+              <InvitationCardSkeleton />
             </>
           ) : (
             <>
