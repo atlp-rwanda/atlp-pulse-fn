@@ -70,7 +70,7 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
   };
 
   return (
-    <div className="">
+    <div className="relative">
       <div className="flex items-center justify-between pb-6 " />
       <div style={{ overflowX: 'auto' }}>
         {loading ? (
