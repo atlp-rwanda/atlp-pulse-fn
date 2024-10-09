@@ -27,9 +27,10 @@ function InviteForm({ onClose }: InviteFormProps) {
   const [email, setEmail] = useState<string>('');
   const [role, setRole] = useState<string>('Role');
   const [orgToken, setOrgToken] = useState<string>('');
-  const [orgName,setOrgName] = useState<string>('');
+  const [orgName, setOrgName] = useState<string>('');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>('');
+  const [roleError, setRoleError] = useState<string>(''); // Added for role error handling
   const [sendInvitation, { loading, error }] = useMutation(SEND_INVITATION);
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -54,7 +55,9 @@ function InviteForm({ onClose }: InviteFormProps) {
     }
 
     try {
-      const { data } = await uploadFile({ variables: { file,orgName,orgToken } });
+      const { data } = await uploadFile({
+        variables: { file, orgName, orgToken },
+      });
       if (data && data.uploadInvitationFile) {
         const { message, sentEmails } = data.uploadInvitationFile;
         if (sentEmails === 0) {
@@ -81,20 +84,36 @@ function InviteForm({ onClose }: InviteFormProps) {
     if (organisationToken) {
       setOrgToken(organisationToken);
     }
-    if(organisationName){
-      setOrgName(organisationName)
+    if (organisationName) {
+      setOrgName(organisationName);
     }
-  }, [organisationToken,organisationName]);
+  }, [organisationToken, organisationName]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    let hasError = false;
+
+    // Validate email
     if (!validateEmail(email)) {
       setEmailError('Please enter a valid email address.');
-      return;
+      hasError = true; // set error flag
+    } else {
+      setEmailError('');
     }
 
-    setEmailError('');
+    // Validate role
+    if (role === 'Role') {
+      setRoleError('Please select a role.');
+      hasError = true; // set error flag
+    } else {
+      setRoleError('');
+    }
+
+    // Prevent submission if there are errors
+    if (hasError) {
+      return; // exit function if errors exist
+    }
 
     try {
       await sendInvitation({
@@ -121,6 +140,7 @@ function InviteForm({ onClose }: InviteFormProps) {
 
   const handleRoleSelect = (selectedRole: string) => {
     setRole(selectedRole);
+    setRoleError('');
     setIsDropdownOpen(true);
   };
 
@@ -157,7 +177,7 @@ function InviteForm({ onClose }: InviteFormProps) {
         )}
         <div>
           <label className="pb-2">
-            <div className="flex justify-between pt-2 mb-8">
+            <div className="flex justify-between pt-2 mb-1">
               <div className="relative w-[50%]">
                 <button
                   type="button"
@@ -202,6 +222,10 @@ function InviteForm({ onClose }: InviteFormProps) {
               </div>
             </div>
           </label>
+          {/* Added role error below the dropdown */}
+          {roleError && (
+            <p className="text-red-600 text-sm mb-4">{roleError}</p>
+          )}
         </div>
       </form>
       <div className="border-t-[1px] border-[#d9d0fb] m-0" />
@@ -229,7 +253,6 @@ function InviteForm({ onClose }: InviteFormProps) {
                 columns: email, role, and name.
               </div>
             </div>
-
             <button
               type="submit"
               disabled={uploadLoading}
@@ -243,5 +266,4 @@ function InviteForm({ onClose }: InviteFormProps) {
     </div>
   );
 }
-
 export default InviteForm;
