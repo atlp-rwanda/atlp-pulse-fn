@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import CREATE_TICKET from '../Mutations/help.mutation';
@@ -18,11 +18,13 @@ function NewTicketModal({
 }: NewTicketModalProps) {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const [selectedUser, setSelectedUser] = useState<string>('');
+  const [selectedTeam, setSelectedTeam] = useState('');
+  const [selectedUser, setSelectedUser] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{
     subject?: string;
     message?: string;
+    team?: string;
     user?: string;
   }>({});
 
@@ -33,19 +35,38 @@ function NewTicketModal({
       refetchTickets();
       onClose();
     },
-
     onError: (error) => {
       setLoading(false);
       toast.error(`Error creating ticket: ${error.message}`);
     },
   });
 
+  const teams = useMemo(() => {
+    const uniqueTeams = new Set(users.map((user) => user.team.id));
+    return Array.from(uniqueTeams).map((teamId) => {
+      const teamUser = users.find((user) => user.team.id === teamId);
+      return { id: teamId, name: teamUser.team.name };
+    });
+  }, [users]);
+
+  const filteredUsers = useMemo(
+    () =>
+      selectedTeam ? users.filter((user) => user.team.id === selectedTeam) : [],
+    [selectedTeam, users],
+  );
+
   const validateForm = () => {
-    const newErrors: { subject?: string; message?: string; user?: string } = {};
+    const newErrors: {
+      subject?: string;
+      message?: string;
+      team?: string;
+      user?: string;
+    } = {};
     if (!subject.trim()) newErrors.subject = 'Subject is required';
     if (subject.length > 100)
       newErrors.subject = 'Subject must be less than 100 characters';
     if (!message.trim()) newErrors.message = 'Message is required';
+    if (!selectedTeam) newErrors.team = 'Team must be selected';
     if (!selectedUser) newErrors.user = 'User must be selected';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -63,8 +84,7 @@ function NewTicketModal({
           assignee: selectedUser,
         },
       });
-    } catch (error) {
-      // @ts-ignore
+    } catch (error: any) {
       toast.error(`Error submitting ticket: ${error.message}`);
     }
   };
@@ -129,6 +149,35 @@ function NewTicketModal({
           </div>
           <div className="mb-6">
             <label
+              htmlFor="teams"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Teams
+            </label>
+            <select
+              id="teams"
+              value={selectedTeam}
+              onChange={(e) => {
+                setSelectedTeam(e.target.value);
+                setSelectedUser('');
+              }}
+              className={`block w-full px-4 py-2 mt-1 text-gray-900 bg-gray-200 border ${
+                errors.team ? 'border-red-500' : 'border-gray-300'
+              } rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600`}
+            >
+              <option value="">Select Teams</option>
+              {teams.map((team) => (
+                <option key={team.id} value={team.id}>
+                  {team.name}
+                </option>
+              ))}
+            </select>
+            {errors.team && (
+              <p className="mt-1 text-sm text-red-500">{errors.team}</p>
+            )}
+          </div>
+          <div className="mb-6">
+            <label
               htmlFor="user"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
@@ -141,9 +190,10 @@ function NewTicketModal({
               className={`block w-full px-4 py-2 mt-1 text-gray-900 bg-gray-200 border ${
                 errors.user ? 'border-red-500' : 'border-gray-300'
               } rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600`}
+              disabled={!selectedTeam}
             >
               <option value="">Select assignee</option>
-              {users.map((user) => (
+              {filteredUsers.map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.email}
                 </option>
