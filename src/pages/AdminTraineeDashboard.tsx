@@ -304,7 +304,7 @@ function AdminTraineeDashboard() {
             {selectedRow === row.original.email && (
               <div
                 ref={modalRef}
-                className="absolute z-50 w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg"
+                className="absolute z-50 transform -translate-y-[80%]  w-64 p-4 mt-2 overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg"
               >
                 <>
                   <div className="mb-4"></div>
