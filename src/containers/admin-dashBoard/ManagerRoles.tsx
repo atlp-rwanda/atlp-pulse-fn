@@ -20,8 +20,9 @@ import {
 import roles from '../../dummyData/roles.json';
 import Square from '../../Skeletons/Square';
 import { toast } from 'react-toastify';
-import { GET_TEAMS } from '../../queries/team.queries';
+import { UNDROP_TRAINEE } from '../../Mutations/manageStudentMutations';
 import TtlSkeleton from '../../Skeletons/ttl.skeleton';
+import GET_TEAMS from '../../queries/team.queries';
 const AdminSission = () => {
   const { t } = useTranslation();
   useDocumentTitle('Roles & Access');
@@ -41,12 +42,17 @@ const AdminSission = () => {
   const [users, setUsers] = useState();
   const [createUserRole] = useMutation(CREATE_ROLE_MUTATION);
   const [updateUserRole] = useMutation(ASSIGN_ROLE_MUTATION);
+
+  const [traineeID, setTraineeID] = useState('');
   const [findFilter, setFindFilter] = useState('');
   const [loggedUser, setLoggedUser] = useState('');
   const [allRoles, setallRoles] = useState<any>();
   const [selectingTTL, setSelectingTTL] = useState(false);
   const [selectedTeamId, setSelectedTeamId] = useState('');
+
   const [deleteConfirmationModel, setDeleteConfirmationModel] = useState(false); // Modal for confirming deletion
+  const [restoreConfirmationModel, setRestoreConfirmationModel] =
+    useState(false); // Modal for confirming deletion
 
   const { loading, error, data } = useQuery(GET_TEAMS, {
     variables: { orgToken: localStorage.getItem('orgToken') },
@@ -68,10 +74,10 @@ const AdminSission = () => {
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: (data) => {
       if (data.deleteUser.message) {
-        toast.success('User deleted successfully');
+        toast.success('User suspended successfully');
         setToggle(!toggle); // Refresh or update state
       } else {
-        toast.error('Failed to delete user');
+        toast.error('Failed to suspended user');
       }
     },
     onError: (error) => {
@@ -180,6 +186,32 @@ const AdminSission = () => {
       }, 1000);
     },
   });
+  const [unDropTrainee] = useMutation(UNDROP_TRAINEE, {
+    variables: {
+      traineeId: traineeID,
+    },
+    onCompleted: (data) => {
+      setTimeout(() => {
+        // setButtonLoading(false);
+        if (data.undropTrainee) {
+          // Check the response structure
+          // handleAssignRole2();
+          setToggle(!toggle);
+          toast.success('User restored successfully');
+          setRestoreConfirmationModel(false);
+        } else {
+          toast.error('Failed to restore trainee');
+        }
+      }, 1000);
+    },
+    onError: (err) => {
+      setTimeout(() => {
+        handleAssignRole2();
+        console.error('Mutation error:', err); // Log the error
+        toast.error(err.message);
+      }, 500);
+    },
+  });
   /* istanbul ignore next */
   const [fetchData2] = useLazyQuery(GET_ROLE_QUERY, {
     variables: {
@@ -200,6 +232,7 @@ const AdminSission = () => {
           /* istanbul ignore next */
           newUsers[index] = {};
           newUsers[index].role = user.role;
+          newUsers[index].status = user?.status?.status;
           newUsers[index].email = user.email;
           newUsers[index].id = user.id;
           if (user.role === 'ttl') {
@@ -248,34 +281,77 @@ const AdminSission = () => {
       ),
     },
     { Header: 'Role', accessor: 'role' },
+
+    {
+      Header: 'Status',
+      accessor: 'status',
+
+      /* istanbul ignore next */
+      Cell: ({ row }: any) => (
+        /* istanbul ignore next */
+        <div className="flex items-left">
+          <span className="hidden  ml-2 md:inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100 dark:bg-dark-tertiary">
+            <svg
+              className="h-full w-full text-gray-300 dark:text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </span>
+          <div className="flex flex-col  leading-4 px-3 py-2">
+            <p className="text-sm sm:text-xs text-gray-400 dark:text-white">
+              {row.original.status.status}
+            </p>
+          </div>
+        </div>
+      ),
+    },
     {
       Header: 'Action',
       accessor: '',
-      /* istanbul ignore next */
+      // /* istanbul ignore next */  handleRestoreUser
       Cell: ({ row }: any) => (
         <div className="flex gap-4">
-          <p
-            className="text-red-500  whitespace-no-wrap cursor-pointer"
-            onClick={
-              /* istanbul ignore next */ () => {
-                /* istanbul ignore next */
-                removeAssignModel(row.original);
-              }
-            }
-          >
-            {t('Assign')}
-          </p>
-          <p
-            className="text-red-500 whitespace-no-wrap cursor-pointer"
-            onClick={
-              /* istanbul ignore next */ () => {
-                /* istanbul ignore next */
-                handleDeleteUser(row.original.id);
-              }
-            }
-          >
-            {t('Delete')}
-          </p>
+          {row.original.status.status == 'suspended' ? (
+            <>
+              {' '}
+              <p
+                className="text-red-500 whitespace-no-wrap cursor-pointer"
+                onClick={
+                  /* istanbul ignore next */ () => {
+                    handleRestoreUser(row.original.id);
+                  }
+                }
+              >
+                {t('Restore')}
+              </p>{' '}
+            </>
+          ) : (
+            <>
+              <p
+                className="text-red-500  whitespace-no-wrap cursor-pointer"
+                onClick={
+                  /* istanbul ignore next */ () => {
+                    /* istanbul ignore next */
+                    removeAssignModel(row.original);
+                  }
+                }
+              >
+                {t('Assign')}
+              </p>
+              <p
+                className="text-red-500 whitespace-no-wrap cursor-pointer"
+                onClick={
+                  /* istanbul ignore next */ () => {
+                    handleDeleteUser(row.original.id);
+                  }
+                }
+              >
+                {t('Suspend')}
+              </p>{' '}
+            </>
+          )}
         </div>
       ),
     },
@@ -297,7 +373,7 @@ const AdminSission = () => {
 
   const handleDeleteUser = (userId: any) => {
     if (loggedUser === userId) {
-      toast.warn('You can not delete your self!');
+      toast.warn('You can not suspended your self!');
     } else {
       setSelectedUser({ id: userId, role: 'user' });
       setDeleteConfirmationModel(true);
@@ -313,14 +389,67 @@ const AdminSission = () => {
     });
     setDeleteConfirmationModel(false);
   };
-  console.log(selectedUser);
-
+  const handleRestoreUser = (userId: any) => {
+    if (!userId) {
+      toast.warn('No user selected! ');
+    } else {
+      setSelectedUser({ id: userId, role: 'user' });
+      setTraineeID(userId);
+      setRestoreConfirmationModel(true);
+    }
+  };
+  const confirmRestoreUser = () => {
+    unDropTrainee({
+      variables: {
+        input: { id: selectedUser.id },
+        context: { userId: selectedUser.id },
+      },
+    });
+    setRestoreConfirmationModel(false);
+  };
   /* istanbul ignore next */
   return (
     <>
       {users && allRoless ? (
         <>
           {/* ... Existing code ... */}
+          {/* =========================== Start:: restore Confirmation Modal =============================== */}
+          <div
+            className={`w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
+              restoreConfirmationModel === true ? 'block' : 'hidden'
+            }`}
+          >
+            <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8">
+              <div className="card-title w-full flex justify-center items-center flex-col">
+                <h3 className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12">
+                  {t('Are you sure you want to restore this user?')}
+                </h3>
+                <hr className=" bg-primary border-b my-3 w-full" />
+              </div>
+              <div className="card-body">
+                <div className="w-full flex justify-between">
+                  <Button
+                    variant="info"
+                    size="sm"
+                    style="w-[30%] md:w-1/4 text-sm font-sans"
+                    onClick={() => setRestoreConfirmationModel(false)}
+                  >
+                    {t('Cancel')}
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    style="w-[30%] md:w-1/4 text-sm font-sans"
+                    onClick={confirmRestoreUser}
+                  >
+                    {t('Confirm')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* =========================== Start::  restore Session Model =============================== */}
+
           {/* =========================== Start:: Delete Confirmation Modal =============================== */}
           <div
             className={`w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
@@ -330,7 +459,7 @@ const AdminSission = () => {
             <div className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2 xl:w-4/12 rounded-lg p-4 pb-8">
               <div className="card-title w-full flex justify-center items-center flex-col">
                 <h3 className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12">
-                  {t('Are you sure you want to delete this user?')}
+                  {t('Are you sure you want to suspended this user?')}
                 </h3>
                 <hr className=" bg-primary border-b my-3 w-full" />
               </div>
@@ -421,16 +550,16 @@ const AdminSission = () => {
           {/* =========================== End::  delete Session Model =============================== */}
           <div className="bg-light-bg dark:bg-dark-frame-bg pb-16 overflow-y-auto overflow-x-hidden">
             <div>
-                <DataTable
-                  data={newUsers.length > 0 ? newUsers : users}
-                  columns={columns}
-                  title="Manageaccess"
-                />
+              <DataTable
+                data={newUsers.length > 0 ? newUsers : users}
+                columns={columns}
+                title="Manageaccess"
+              />
             </div>
           </div>
         </>
       ) : (
-        <TtlSkeleton/>
+        <TtlSkeleton />
       )}
     </>
   );

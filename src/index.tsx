@@ -27,6 +27,8 @@ const specificMessagesToLogout = [
   'User not authenticated',
   'User account does not exist or has been deleted',
   'User with this token no longer exist!!',
+  'suspend',
+  'please contact your organization admin for assistance',
 ];
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
