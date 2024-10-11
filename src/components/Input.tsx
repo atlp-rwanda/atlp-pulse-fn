@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { RegisterOptions } from 'react-hook-form';
 
 type DefaultProps = {
   customClass?: string;
@@ -21,6 +22,8 @@ type inputProps = {
   placeholder: string;
   register: any;
   errors: any;
+  readOnly?: boolean
+  validationRules?: RegisterOptions;
 };
 
 function Input({
@@ -32,8 +35,11 @@ function Input({
   errors,
   placeholder,
   customClass,
-  isRequired,
+  isRequired=false,
   register,
+  handleChange,
+  readOnly = false,
+  validationRules = {},
 }: inputProps & DefaultProps) {
   const { t } = useTranslation();
 
@@ -42,7 +48,7 @@ function Input({
   fieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
   /* Format error message end */
 
-  return (
+   return (
     <div className="flex flex-col items-start justify-start font-serif w-full">
       <label
         htmlFor={labelFor}
@@ -59,8 +65,12 @@ function Input({
         })}
         id={id}
         type={type}
-        className={`text-[.84rem] placeholder:text-[.85rem] rounded-[3px] appearance-none relative block w-full px-3 py-[5px] border border-gray-100 placeholder-gray-700 dark:placeholder-gray-300 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 dark:text-dark-text-fill dark:border-neutral-700  ${customClass}`}
+        className={`text-[.84rem] placeholder:text-[.85rem] rounded-[3px] appearance-none relative block w-full px-3 py-[5px] border border-gray-100 placeholder-gray-700 dark:placeholder-gray-300 text-gray-900 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:z-10 dark:text-dark-text-fill dark:border-neutral-700 ${
+          readOnly ? 'bg-gray-100 cursor-not-allowed' : ''
+        } ${customClass}`}
         placeholder={placeholder}
+        onChange={handleChange}
+        readOnly={readOnly}
       />
       <div className="text-[.78rem] md:text-[.83rem]">
         <small className="text-red-600">

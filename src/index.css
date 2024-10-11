@@ -35,6 +35,53 @@
   }
 }
 
+.phone-input-container {
+  background-color: transparent;
+  font-size: 0.8rem;
+  
+}
+.PhoneInputInput {
+  padding: 0.3rem;
+}
+.custom-phone-input .PhoneInputInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #8667f2;
+  border-radius: 2px;
+}
+
+
+.phone-input-container .PhoneInputCountry {
+  margin-right: 0.5rem;
+}
+
+.phone-input-container .PhoneInputCountrySelect {
+  background-color: white;
+}
+
+.dark .phone-input-container .PhoneInputCountrySelect {
+  background-color: #272728;
+  color: #F3F4F6;
+ 
+}
+
+.phone-input-container .PhoneInputCountryIcon {
+  background-color: transparent;
+}
+
+.phone-input-container .PhoneInputInput {
+  background-color: white;
+}
+
+.dark .phone-input-container .PhoneInputInput {
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #F3F4F6;
+}
+
+.dark .phone-input-container .PhoneInputCountrySelectArrow {
+  border-top-color: #F3F4F6;
+}
+
+
 /* 404 Page */
 .errorImg {
   background-image: linear-gradient(90deg,
