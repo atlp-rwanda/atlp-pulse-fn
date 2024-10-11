@@ -82,11 +82,15 @@ function DataTable({ data, columns, title, removeModel }: TableData) {
         <table className="min-w-full leading-normal" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                key={headerGroup.getHeaderGroupProps().key}
+              >
                 {headerGroup.headers.map((column) => (
                   <th
                     className={column.isSorted ? 'sort-asc thead' : ' thead'}
                     {...column.getHeaderProps(column.getSortByToggleProps())}
+                    key={column.getHeaderProps(column.getSortByToggleProps()).key}
                   >
                     {column.render('Header')}
                   </th>
@@ -105,9 +109,17 @@ function DataTable({ data, columns, title, removeModel }: TableData) {
                   : 'bg-white dark:bg-dark-bg';
 
               return (
-                <tr className={` ${rowTheme}} `} {...row.getRowProps()}>
+                <tr
+                  className={` ${rowTheme}} `}
+                  {...row.getRowProps()}
+                  key={row.getRowProps().key}
+                >
                   {row.cells.map((cell) => (
-                    <td className="data-cell" {...cell.getCellProps()}>
+                    <td
+                      className="data-cell"
+                      {...cell.getCellProps()}
+                      key={cell.getCellProps().key}
+                    >
                       {cell.render('Cell')}
                     </td>
                   ))}

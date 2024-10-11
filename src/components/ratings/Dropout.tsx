@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 
 import React from 'react';
+import formatDate from '../../utils/formatDate';
 
 function Dropout({ traineeStatus }: any) {
   return (
@@ -13,7 +14,7 @@ function Dropout({ traineeStatus }: any) {
           Drop Out
         </h1>
         <div className="pt-6 flex gap-4">
-          Date :<div>{traineeStatus.date}</div>
+          Date :<div>{formatDate(traineeStatus?.date)}</div>
         </div>
         <div className="pt-6 flex gap-4">
           Reason:

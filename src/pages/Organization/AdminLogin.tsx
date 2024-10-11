@@ -49,7 +49,6 @@ function AdminLogin() {
   // Function to get the redirect_message from the URL and toast it
   const showRedirectMessage = () => {
     const redirectMessage = searchParams.get('redirect_message');
-    console.log(redirectMessage);
     if (redirectMessage) {
       toast.error(redirectMessage);
     }
@@ -105,9 +104,6 @@ function AdminLogin() {
           }
         },
         onError: (err) => {
-          /* istanbul ignore next */
-          console.log(err.message);
-
           if (err.networkError)
             toast.error('There was a problem contacting the server');
           else if (err.message.toLowerCase() !== 'invalid credential') {

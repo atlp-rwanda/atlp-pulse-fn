@@ -10,6 +10,9 @@ const GET_ROLE_QUERY = gql`
       id
       email
       role
+      status {
+        status
+      }
     }
   }
 `;

@@ -233,7 +233,6 @@ function TicketsPage() {
       setUsers(usersData.getTrainees);
     }
   }, [usersData, role]);
-  console.log(usersData);
 
   const handleNewTicketClick = () => setIsNewTicketModalOpen(true);
   const handleCloseNewTicketModal = () => setIsNewTicketModalOpen(false);

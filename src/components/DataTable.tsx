@@ -85,13 +85,18 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
       <div className="overflow-visible ">
         <table className="min-w-full leading-normal" {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
+            {headerGroups.map((headerGroup, index) => (
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                key={headerGroup.getHeaderGroupProps().key}
+              >
+                {headerGroup.headers.map((column, colIndex) => (
                   <th
-                    key={column.id}
                     className={column.isSorted ? 'sort-asc thead' : ' thead'}
                     {...column.getHeaderProps(column.getSortByToggleProps())}
+                    key={
+                      column.getHeaderProps(column.getSortByToggleProps()).key
+                    }
                   >
                     {column.render('Header')}
                     <span>
@@ -103,35 +108,26 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {!loading && memoizedData.length === 0 ? (
-              <tr>
-                <td
-                  colSpan={columns.length}
-                  className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300"
-                  aria-label="Empty cell" // Added for accessibility
-                >
-                  &nbsp;{' '}
-                  {/* Non-breaking space to ensure it's not an empty tag */}
-                </td>
-              </tr>
-            ) : (
+            {memoizedData.length ? (
+              !loading &&
               page.map((row) => {
                 prepareRow(row);
+                // console.log(row.getRowProps());
                 return (
                   <tr
-                    key={row.id}
                     className={`border-b dark:border-gray-700 ${
                       row.index % 2 === 0
                         ? 'bg-light-bg dark:bg-neutral-600'
                         : 'bg-white dark:bg-dark-bg'
                     }`}
                     {...row.getRowProps()}
+                    key={row.getRowProps().key}
                   >
                     {row.cells.map((cell) => (
                       <td
-                        key={cell.id}
                         className="data-cell "
                         {...cell.getCellProps()}
+                        key={cell.getCellProps().key}
                       >
                         {cell.render('Cell')}
                       </td>
@@ -139,6 +135,17 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
                   </tr>
                 );
               })
+            ) : (
+              <tr>
+                <td
+                  colSpan={columns.length || 100}
+                  className="p-4 text-center h-24"
+                >
+                  <p className="text-lg font-medium text-gray-600 dark:text-gray-400 pt-8">
+                    No records available
+                  </p>
+                </td>
+              </tr>
             )}
             {loading && (
               <tr>
@@ -146,22 +153,8 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
                   colSpan={columns.length}
                   className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
                 >
-                  A Loading...
+                  Loading...
                 </td>
-              </tr>
-            )}
-            {!loading && data.length === 0 && (
-              <tr>
-                {' '}
-                <td colSpan={columns.length || 100} className="p-4 text-center">
-                  <div className="flex flex-col items-center justify-center space-y-4">
-                    {' '}
-                    <p className="text-lg font-medium text-gray-600 dark:text-gray-400">
-                      {' '}
-                      No records available{' '}
-                    </p>
-                  </div>{' '}
-                </td>{' '}
               </tr>
             )}
           </tbody>
