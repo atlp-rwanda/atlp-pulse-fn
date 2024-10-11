@@ -38,7 +38,7 @@ module.exports = {
         // josefin: ['Josefin Sans', 'sans-serif'],
         // lexend: ['Lexend Deca', 'sans-serif'],
         // sans: ['PT Serif', 'serif'],
-        serif: ['PT Serif', 'serif'],
+        serif: ['Inter', 'serif'],
       },
       extend: {
         borderRadius: {
