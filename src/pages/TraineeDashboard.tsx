@@ -112,7 +112,6 @@ function SupAdDashboard() {
       if (rating.feedbacks && rating.feedbacks.length > 0) {
         rating.feedbacks.forEach((feedback: any) => {
           const feedbackContent = feedback.content;
-          console.log('Feedback Content:', feedbackContent);
         });
       }
     });

@@ -65,7 +65,6 @@ const TtlTraineeDashboard = () => {
     setOpen2(true);
   };
   const handleClose2 = () => {
-    console.log('this what you want');
     setOpen2(false);
     setOpen(false);
   };
@@ -200,8 +199,6 @@ const TtlTraineeDashboard = () => {
       },
     });
   }, []);
-
-  console.log('trainee data ig', traineeData);
 
   return (
     <>

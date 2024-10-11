@@ -354,8 +354,6 @@ export default function ProfileTabs({ data: profileData }: any) {
     setSingleUser(singleTrainne[0]); // returns an object with single trainnee data that can be accessed singleUser.email
   }, [traineeData]);
 
-  console.log(organisation);
-
   return (
     <div className="flex flex-wrap">
       <>

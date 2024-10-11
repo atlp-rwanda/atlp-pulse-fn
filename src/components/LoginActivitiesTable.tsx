@@ -43,7 +43,6 @@ const LoginActivitiesTable: React.FC = () => {
   useEffect(() => {
     if (error) {
       setLoginActivities([]);
-      console.log('Error retrieving login activities:', error);
     }
   }, [error]);
   /* istanbul ignore next */
