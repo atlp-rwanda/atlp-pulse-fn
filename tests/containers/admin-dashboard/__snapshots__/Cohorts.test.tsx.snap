@@ -1,6 +1,288 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+exports[`Admin dashboard page Renders Manage role Page 1`] = `
+<div
+  className="w-full overflow-hidden h-full grow flex flex-col"
+>
+  <div
+    className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg overflow-hidden px-4"
+  >
+    <div
+      className="flex flex-row pb-8 justify-center"
+    >
+      <div
+        className="w-[100%] "
+      >
+        <div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+          <div
+            className=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+          />
+          <div
+            className=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+          />
+          <div
+            className=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+          />
+          <div
+            className=" bg-gray-300 py-4 dark:bg-gray-600 h-24 md:h-28 mt-12 md:mt-20 lg:mt-8 text-center flex flex-col justify-center items-center rounded-lg animate-pulse"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="items-center "
+    >
+      <div
+        className="w-[100%] h-[46vh] lg:h-[62vh] pb-14 mx-auto mt-8 bottom-0 bg-gray-300 dark:bg-gray-600 rounded-lg animate-pulse"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Admin dashboard page Renders Session Page 1`] = `
+Array [
+  <div
+    className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 hidden"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm text-gray-700 text-center w-11/12 uppercase"
+        >
+          AddSession
+        </h3>
+        <hr
+          className=" bg-primary border-gray-400 my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary rounded outline-none px-5 font-sans dark:bg-dark-frame-bg dark:text-white text-xs py-2 w-full"
+                name="Sessionname"
+                onChange={[Function]}
+                placeholder="SessionName"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 rounded outline-none px-5 dark:bg-dark-frame-bg dark:text-white font-sans text-xs w-full"
+                name="description"
+                onChange={[Function]}
+                placeholder="description"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 rounded dark:bg-dark-frame-bg dark:text-white outline-none px-5 font-sans text-xs w-full"
+                name="platform"
+                onChange={[Function]}
+                placeholder="platform"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className="border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="duration"
+                onChange={[Function]}
+                placeholder="duration"
+                type="time"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="input my-3 h-9 "
+          >
+            <div
+              className="grouped-input flex items-center h-full w-full rounded-md"
+            >
+              <input
+                className=" border border-primary py-2 dark:bg-dark-frame-bg dark:text-white rounded outline-none px-5 font-sans text-xs w-full"
+                name="organizer"
+                onChange={[Function]}
+                placeholder="organizer"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="min-h-full w-screen z-30 bg-black bg-opacity-30 backdrop-blur-sm absolute flex items-center justify-center px-4 hidden"
+    data-testid="delete-section"
+  >
+    <div
+      className="bg-white dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8"
+    >
+      <div
+        className="card-title w-full flex  flex-wrap justify-center items-center  "
+      >
+        <h3
+          className="font-bold text-sm text-gray-700 dark:text-white text-center w-11/12"
+        >
+          DeleteSession
+        </h3>
+        <hr
+          className=" bg-primary border-b my-3 w-full"
+        />
+      </div>
+      <div
+        className="card-body"
+      >
+        <form
+          className=" py-3 px-8"
+        >
+          <div>
+            <h2
+              className="text-base dark:text-white text-center m-4"
+            >
+              reallydeleteSession
+            </h2>
+          </div>
+          <div
+            className="w-full flex justify-between"
+          >
+            <button
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              data-testid="remove"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+              data-testid="delete"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+               
+              Delete
+               
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="flex flex-col h-screen"
+  >
+    <div
+      className="flex flex-row"
+    >
+      <div
+        className="w-full"
+      >
+        <div>
+          <div
+            className="bg-light-bg dark:bg-dark-frame-bg  "
+          >
+            <div
+              className="flex items-left pb-8"
+            >
+              <div
+                className="flex gap-2"
+              >
+                <button
+                  className="btn primary lg m-0 font-serif"
+                  data-testid="registerModel"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                   
+                  register
+                   +
+                   
+                </button>
+              </div>
+            </div>
+            <div>
+              <div>
+                Loading...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
+exports[`Admin dashboard page Renders cohort Page 1`] = `
+=======
 exports[`Cohorts tests Snapshots Cohorts Page 1`] = `
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
 Array [
   <div
     className="h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 hidden"
@@ -394,7 +676,11 @@ Array [
             className="w-full flex justify-between"
           >
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
               data-testid="remove"
               disabled={false}
               onClick={[Function]}
@@ -404,7 +690,11 @@ Array [
               Cancel
             </button>
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif"
+=======
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -810,7 +1100,11 @@ Array [
             className="w-full flex justify-between"
           >
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
               data-testid="remove"
               disabled={false}
               onClick={[Function]}
@@ -820,7 +1114,11 @@ Array [
               Cancel
             </button>
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+              className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif"
+=======
               className="btn primary sm w-[30%] md:w-1/4 text-sm font-sans p-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
               data-testid="confirmUpdateBtn"
               disabled={false}
               onClick={[Function]}
@@ -1026,7 +1324,11 @@ Array [
                   colSpan={6}
                 >
                   <div
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+                    className="w-full justify-between flex mx-auto flex-row items-center"
+=======
                     className="flex flex-row items-center justify-between w-full mx-auto"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
                   >
                     <div
                       className="flex"
@@ -1119,7 +1421,11 @@ Array [
                       </span>
                        
                       <select
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+                        className="px-1/2 font-raleway rounded-md border border-dark dark:bg-primary focus:outline-none"
+=======
                         className="border rounded-md px-1/2 font-raleway border-dark dark:bg-primary focus:outline-none"
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
                         onChange={[Function]}
                         style={
                           Object {
@@ -1211,7 +1517,11 @@ Array [
             className="w-full flex justify-between"
           >
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+              className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn info sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
               data-testid="delete"
               disabled={false}
               onClick={[Function]}
@@ -1220,7 +1530,11 @@ Array [
               Cancel
             </button>
             <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+              className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif"
+=======
               className="btn danger sm w-[30%] md:w-1/4 text-sm font-sans font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
               data-testid="confirmDeleteBtn"
               disabled={false}
               onClick={[Function]}
@@ -1264,7 +1578,11 @@ Array [
         className="flex gap-2"
       >
         <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Admindash.test.tsx.snap
+          className="btn primary lg m-0 font-serif"
+=======
           className="btn primary lg m-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/containers/admin-dashboard/__snapshots__/Cohorts.test.tsx.snap
           data-testid="removeModel"
           disabled={false}
           onClick={[Function]}

@@ -8,7 +8,11 @@ exports[`<Resume /> Renders Resume 1`] = `
     className="pb-5 flex gap-2 downbuttons"
   >
     <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Resume.test.tsx.snap
+      className="btn primary lg m-0 font-serif"
+=======
       className="btn primary lg m-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Resume.test.tsx.snap
       data-testid="registerModel"
       disabled={false}
       onClick={[Function]}
@@ -17,7 +21,11 @@ exports[`<Resume /> Renders Resume 1`] = `
       Upload from your pc
     </button>
     <button
+<<<<<<< HEAD:src/components/tests/__snapshots__/Resume.test.tsx.snap
+      className="btn primary lg m-0 font-serif"
+=======
       className="btn primary lg m-0 font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/components/__snapshots__/Resume.test.tsx.snap
       data-testid="registerModel"
       disabled={false}
       onClick={[Function]}

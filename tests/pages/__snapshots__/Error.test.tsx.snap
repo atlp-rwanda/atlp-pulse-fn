@@ -25,7 +25,11 @@ exports[`Page Not Found Renders the 404 Page 1`] = `
       error_page_paragraph
     </p>
     <button
+<<<<<<< HEAD:src/pages/tests/__snapshots__/Error.test.tsx.snap
+      className="btn primary lg mt-2 lg:mt-5 px-8 text-xl font-bold font-serif"
+=======
       className="btn primary lg mt-2 lg:mt-5 px-8 text-xl font-bold font-serif "
+>>>>>>> 48e913655f1f56ea84b95d65b141a1f3b94d12ba:tests/pages/__snapshots__/Error.test.tsx.snap
       data-testid="button-back"
       disabled={false}
       onClick={[Function]}
