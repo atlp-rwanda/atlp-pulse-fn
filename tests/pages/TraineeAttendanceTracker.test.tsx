@@ -3,6 +3,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer, { act } from 'react-test-renderer';
 import { toast } from 'react-toastify';
+import fetchMock from 'jest-fetch-mock';
 import {
   cleanup,
   fireEvent,
@@ -163,12 +164,19 @@ const mocks = [
 jest.mock('react-toastify', () => ({
   toast: {
     warning: jest.fn(),
+    error: jest.fn(),
   },
 }));
 
 describe('CRUD Of Trainee Attendance', () => {
   beforeEach(() => {
     localStorage.setItem('orgToken', 'mocked-org-token');
+    fetchMock.enableMocks();
+    fetchMock.mockResponseOnce(
+      JSON.stringify({
+        datetime: '2023-10-03T12:34:56Z',
+      }),
+    );
   });
 
   afterEach(async () => {
@@ -195,6 +203,13 @@ describe('CRUD Of Trainee Attendance', () => {
         <TraineeAttendanceTracker />
       </MockedProvider>,
     );
+
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(fetchMock).toHaveBeenCalledWith(
+        'http://worldtimeapi.org/api/timezone/Etc/UTC',
+      );
+    });
 
     expect(await screen.findByText('Loading Data...')).toBeInTheDocument();
 

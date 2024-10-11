@@ -33,6 +33,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
               className="w-full pl-1 bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer text-[.83rem] xmd:text-[.9rem]"
               data-testid="team-test"
               onChange={[Function]}
+              value=""
             />
           </div>
         </div>
@@ -366,7 +367,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
               />
             </div>
             <span>
-              [1] Attended and communicated
+              [1] Didn‘t attend and communicated
             </span>
           </div>
           <div
@@ -396,7 +397,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
               </svg>
             </div>
             <span>
-              [0] Attended and communicated
+              [0] Didn‘t attend and didn‘t communicate
             </span>
           </div>
         </div>

@@ -150,7 +150,7 @@ describe('Record attendance modal', () => {
             team="Team-I-id-123"
             date="11-11-2024"
             teamName="Team I"
-            trainees={sampleTrainees}
+            trainees={sampleTrainees.getTeamTrainees}
             setAttendanceData={() => true}
           />
         </MockedProvider>,
@@ -169,7 +169,7 @@ describe('Record attendance modal', () => {
           team="Team-I-id-123"
           date="11-11-2024"
           teamName="Team I"
-          trainees={sampleTrainees}
+          trainees={sampleTrainees.getTeamTrainees}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -191,7 +191,7 @@ describe('Record attendance modal', () => {
           team="Team-I-id-123"
           date="11-11-2024"
           teamName="Team I"
-          trainees={sampleTrainees}
+          trainees={sampleTrainees.getTeamTrainees}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -248,7 +248,7 @@ describe('Record attendance modal', () => {
           team="Team-I-id-123"
           date='11-11-2024'
           teamName="Team I"
-          trainees={{ getTeamTrainees: [sampleTrainees.getTeamTrainees[0]] }}
+          trainees={[sampleTrainees.getTeamTrainees[0]]}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -287,7 +287,7 @@ describe('Record attendance modal', () => {
           team="Team-I-id-123"
           date='11-11-2024'
           teamName="Team I"
-          trainees={{ getTeamTrainees: [sampleTrainees.getTeamTrainees[0]] }}
+          trainees={ [sampleTrainees.getTeamTrainees[0]]}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -307,7 +307,7 @@ describe('Record attendance modal', () => {
           team="Team-I-id-123"
           date="11-11-2024"
           teamName="Team I"
-          trainees={{ getTeamTrainees: [sampleTrainees.getTeamTrainees[0]] }}
+          trainees={[sampleTrainees.getTeamTrainees[0]]}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
