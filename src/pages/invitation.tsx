@@ -76,6 +76,7 @@ function Invitation() {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedSort,setSelectedSort] = useState<string>('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [selectedInvitationId, setSelectedInvitationId] = useState('');
@@ -86,7 +87,6 @@ function Invitation() {
   const[filterDisabled,setFilterDisabled]=useState<boolean>(true)
   const modalRef = useRef<any>(null);
   const organizationToken = localStorage.getItem('orgToken');
-
   const parseRange = (range: string) => {
     switch (range) {
       case 'Last 7 days':
@@ -205,7 +205,6 @@ function Invitation() {
     },
     fetchPolicy: 'network-only',
   });
-
   const [
     filterInvitations,
     { data: filterData, loading: filterLoad, error: filterError },
@@ -288,14 +287,12 @@ function Invitation() {
 
 const handleRoleChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
   const role=e.target.value
-  setSelectedRole(role)
- 
+  setSelectedRole(role);
 }
 
 const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
   const status=e.target.value
     setSelectedStatus(status)
-
 }
 
   const handleFilter = () => {
@@ -612,7 +609,6 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
       }, 500);
     },
   });
-
   const [CancelInvitation] = useMutation(CANCEL_INVITATION, {
     variables: {
       id: cancelInvitation,
@@ -636,7 +632,7 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     },
   });
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {/* Header and Invite Button */}
       <div className="flex flex-row items-center mb-8 sm:flex-rowmd:flex-row md:justify-between md:gap-4 ">
         <div className="flex items-center justify-between w-full">
@@ -809,80 +805,76 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
         </p>
 
         {/* Search form */}
-        <div className="flex flex-row md:flex-row gap-12 md:gap-8 md:w-[80%]  ">
-          <div className="relative flex-1 text-black ">
-            <input
-              type="text"
-              id="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by email, role or status of the invitation."
-              className="border border-gray-300 rounded-md pl-10 pr-4 py-2 w-full dark:text:text-black hover:border-[#7258ce] h-10  "
-            />
-            <IoIosSearch
-              className="absolute text-gray-500 transform -translate-y-1/2 left-3 top-1/2"
-              size={20}
-            />
-          </div>
-          <button
-            type="button"
-            disabled={disabledSearch}
-            onClick={handleSearch}
-            className={`bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center  md:w-[10%] p-0 sm:p-5 xm:p-5 ${disabledSearch?'cursor-not-allowed opacity-50':'cursor-pointer'}`}
-          >
-            Search
-          </button>
-        </div>
-      </div>
-      <div className="mt-6">
-        <div className="flex flex-wrap items-center space-x-4 space-y-2 md:space-y-0">
-          <p className="w-full md:w-auto">
-            Or filter by{' '}
-            <span>
-              <b>ROLE: </b>
-            </span>
-          </p>
-          <span className="w-full md:w-auto">
-            <select
-              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
-              value={selectedRole}
-              onChange={handleRoleChange}
-            >
-              <option value="">-</option>
-              <option value="trainee">trainee</option>
-              <option value="ttl">ttl</option>
-              <option value="coordinator">coordinator</option>
-              <option value="manager">manager</option>
-              <option value="admin">admin</option>
-            </select>
-          </span>
-          <span className="w-full md:w-auto">
-            {' '}
-            or <b>STATUS: </b>
-          </span>
-          <span className="w-full md:w-auto">
-            <select
-              className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:bg-[#04122F]"
-              value={selectedStatus}
-              onChange={ handleStatusChange}
-            >
-              <option value="">-</option>
-              <option value="pending">pending</option>
-              <option value="accepted">accepted</option>
-              <option value="denied">denied</option>
-              <option value="cancelled">cancelled</option>
-            </select>
-          </span>
-          <button
-  type="button"
-  disabled={filterDisabled}
-  onClick={handleFilter}
-  className={`w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md h-10 flex items-center justify-center px-4 py-2 
-    ${filterDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
->
-  Filter
-</button>
-
+        <div className='block lg:flex justify-between items-center'>
+            <div className="flex flex-row md:flex-row gap-2 md:gap-2 md:w-[50%] w-full">
+              <div className="relative flex-1 text-black ">
+                <input
+                  type="text"
+                  id="search"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value)
+                  }}
+                  placeholder="Search by email, role or status of the invitation."
+                  className="border border-gray-300 outline-none bg-transparent rounded-md pl-10 pr-4 py-1 w-full dark:text-white hover:border-[#7258ce] dark:text:text-white sm:text-normal text-md dark:bg-[#04122F]"
+                />
+                <IoIosSearch
+                  className="absolute text-gray-500 transform -translate-y-1/2 left-3 top-1/2"
+                  size={20}
+                />
+              </div>
+              <div>
+                <select
+                    className="w-full max-w-xs sm:px-2 px-0 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
+                    value={selectedSort}
+                    onChange={(e) => setSelectedSort(e.target.value)}
+                  >
+                    <option value="">Sort by</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+              </div>
+            </div>
+         
+          <div className="">
+          <div className="flex items-center sm:space-x-4 space-x-2 mt-3 lg:mt-0">
+              <span className="w-full md:w-auto">
+                <select
+                  className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
+                  value={selectedRole}
+                  onChange={handleRoleChange}
+                >
+                  <option value="">Role</option>
+                  <option value="trainee">trainee</option>
+                  <option value="ttl">ttl</option>
+                  <option value="coordinator">coordinator</option>
+                  <option value="manager">manager</option>
+                  <option value="admin">admin</option>
+                </select>
+              </span>
+              <span className="w-full md:w-auto">
+                <select
+                  className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:bg-[#04122F]"
+                  value={selectedStatus}
+                  onChange={ handleStatusChange}
+                >
+                  <option value="">Status</option>
+                  <option value="pending">pending</option>
+                  <option value="accepted">accepted</option>
+                  <option value="cancelled">cancelled</option>
+                </select>
+              </span> 
+              <button
+                      type="button"
+                      disabled={filterDisabled}
+                      onClick={handleFilter}
+                      className={`w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md flex items-center justify-center sm:px-4 px-0 py-1 
+                        ${filterDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                    >
+                      Filter
+              </button>
+              </div>
+            </div>
         </div>
         {/* Table view */}
         {content}

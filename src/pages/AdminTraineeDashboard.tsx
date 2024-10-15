@@ -1602,20 +1602,6 @@ function AdminTraineeDashboard() {
                     >
                       {t('add')} +{' '}
                     </Button>
-
-                    {user?.role === 'coordinator' || undefined ? (
-                      ''
-                    ) : (
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        data-testid="inviteModel"
-                        style="m-0"
-                        onClick={inviteModel}
-                      >
-                        {t('Invite')}
-                      </Button>
-                    )}
                   </div>
                 </div>
                 <div className="">
