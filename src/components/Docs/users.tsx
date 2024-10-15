@@ -8,16 +8,16 @@ function UsersDocs() {
         content={
           <div className="box-border flex items-start font-serif">
             <div className="w-full">
-              <div className="w-full pt-4 mb-10 ml-0 text-lg text-gray-600 sm:px-10 dark:text-slate-300">
-                <h2 className="mb-4 mt-4 text-4xl font-[800] text-primary">
+              <div className="w-full pt-4 ml-0 text-slate-700 sm:px-10 dark:text-slate-200">
+                <h2 className="mt-4 text-xl md:text-2xl font-[800] text-primary">
                   Getting started
                 </h2>
-                <div className="mt-5 w-[100%] sm:w-full mb-4">
+                <div className="mt-5 w-[100%] sm:w-full">
                   Devpulse is a semi-open platform i.e. using it, requires a
                   certain level of approval from the owners/managers. If you
                   browse the homepage, you might wonder why there is no signup
                   button, this is because to sign up you need an invitation.
-                  <h3 className="m-2 mb-4 text-2xl font-bold">
+                  <h3 className="m-2 mb-4 text-xl font-bold">
                     Terminology to be familiar with:
                   </h3>
                   <ul className="ml-12 list-disc ">
@@ -45,7 +45,7 @@ function UsersDocs() {
                       belongs to a program
                     </li>
                   </ul>
-                  <h3 className="m-2 mb-4 text-2xl font-bold">
+                  <h3 className="m-2 mb-4 text-xl font-bold">
                     Signing up as a user
                   </h3>
                   <p>
@@ -56,7 +56,7 @@ function UsersDocs() {
                     . The invitation email will contain the details of how to
                     sign up
                   </p>
-                  <h3 className="m-2 mb-4 text-2xl font-bold">
+                  <h3 className="m-2 mb-4 text-xl font-bold">
                     Signing in as a user
                   </h3>
                   <p>
