@@ -3,33 +3,93 @@ import { gql } from '@apollo/client';
 export const GET_TEAM_ATTENDANCE = gql`
   query GetTeamAttendance($team: String!, $orgToken: String) {
     getTeamAttendance(team: $team, orgToken: $orgToken) {
-      id
-      week
-      phase {
-        id
-        name
-      }
-      cohort {
-        id
-        name
-      }
-      teams {
-        team {
+      today
+      yesterday
+      attendanceWeeks {
+        phase {
           id
           name
         }
-        trainees {
-          trainee {
-            id
-            email
-            profile {
-              id
-              name
-            }
-          }
-          status {
-            day
+        weeks
+      }
+      attendance {
+        week
+        phase {
+          id
+          name
+        }
+        dates {
+          mon {
             date
+            isValid
+          }
+          tue {
+            date
+            isValid
+          }
+          wed {
+            date
+            isValid
+          }
+          thu {
+            date
+            isValid
+          }
+          fri {
+            date
+            isValid
+          }
+        }
+        days {
+          mon {
+            trainee {
+              id
+              email
+              profile {
+                id
+                name
+              }
+            }
+            score
+          }
+          tue {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          wed {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          thu {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          fri {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
             score
           }
         }
