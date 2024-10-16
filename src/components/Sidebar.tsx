@@ -140,12 +140,16 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/sessions" name="Sessions">
               <BookOpenIcon className="w-5" />
             </SideNavLink>
-            <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
-              <ClipboardCheckIcon className="w-5 " />
-            </SideNavLink>
 
             <SideNavLink onClick={toggle} name="Docs" to="/coordinatorDocs">
               <FolderIcon className="w-5" />
+            </SideNavLink>
+          </CheckRole>
+
+          {/* FOR COORDINATORS AND A TTL */}
+          <CheckRole roles={['coordinator', 'ttl']}>
+            <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
+              <ClipboardCheckIcon className="w-5 " />
             </SideNavLink>
           </CheckRole>
 

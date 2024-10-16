@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,46 +12,50 @@ import { PulseLoader } from 'react-spinners';
 import { DELETE_ATTENDANCE, UPDATE_ATTENDANCE } from '../Mutations/Attendance';
 import { GET_TEAM_ATTENDANCE } from '../queries/attendance.queries';
 import 'react-circular-progressbar/dist/styles.css';
-import { GET_ALL_TEAMS } from '../queries/team.queries';
+import { GET_ALL_TEAMS, GET_TTL_TEAMS } from '../queries/team.queries';
 import { GET_TEAMS_CARDS } from '../components/CoordinatorCard';
 import AttendanceSymbols from '../components/AttendanceSymbols';
-import { getDateForDays, Weekdays } from '../utils/getDateForDays';
-import Modal, { recordTraineeProps } from '../components/ModalAttendance';
+import Modal from '../components/ModalAttendance';
 import EditAttendanceButton from '../components/EditAttendenceButton';
+import { UserContext } from '../hook/useAuth';
 
 /* istanbul ignore next */
+interface UserInterface {
+  id: string;
+  email: string;
+  role: string;
+  status: {
+    date: string;
+    reason: string;
+    status: string;
+  };
+  profile: {
+    firstName?: string;
+    lastName?: string;
+    city?: string;
+    country?: string;
+    phoneNumber?: string;
+    biography?: string;
+    avatar?: string;
+    id?: string;
+    name?: string;
+  };
+}
 interface TeamData {
   id: string;
   name: string;
+  phase?: {
+    id: string
+    name: string
+  }
   cohort: {
     name: string;
     phase: {
-      id: 'string';
-      name: 'string';
+      id: string;
+      name: string;
     };
   };
-  members: [
-    {
-      id: string;
-      email: string;
-      status: {
-        date: string;
-        reason: string;
-        status: string;
-      };
-      profile: {
-        firstName: string;
-        lastName: string;
-        city: string;
-        country: string;
-        phoneNumber: string;
-        biography: string;
-        avatar: string;
-        id: string;
-        name: string;
-      };
-    },
-  ];
+  members: UserInterface[];
 }
 
 export interface TraineeAttendanceDataInterface {
@@ -62,12 +66,28 @@ export interface TraineeAttendanceDataInterface {
       name: string;
     };
   };
-  status: string;
+  score: number;
+}
+interface DayInterface {
+  date: string;
+  isValid: boolean;
+}
+export interface WeekdaysInterface {
+  mon: DayInterface;
+  tue: DayInterface;
+  wed: DayInterface;
+  thu: DayInterface;
+  fri: DayInterface;
+}
+
+interface PhaseInterface {
+  id: string;
+  name: string;
 }
 export interface TraineeAttendanceDayInterface {
-  week: string;
-  phase: string;
-  dates: Weekdays;
+  week: number;
+  phase: PhaseInterface;
+  dates: WeekdaysInterface;
   days: {
     mon: TraineeAttendanceDataInterface[];
     tue: TraineeAttendanceDataInterface[];
@@ -77,17 +97,23 @@ export interface TraineeAttendanceDayInterface {
   };
 }
 
-interface PhaseInterface {
-  id: string;
-  name: string;
+interface ValidDatesInterface {
+  today: string;
+  yesterday: string;
+}
+
+export interface AttendanceDataInterface extends ValidDatesInterface {
+  attendanceWeeks: Array<PhaseInterface & { weeks: Array<number> }>;
+  attendance: Array<TraineeAttendanceDayInterface>;
 }
 
 function TraineeAttendanceTracker() {
   const { t } = useTranslation();
+  const { user } = useContext(UserContext);
   const [getTeamAttendance, { loading: teamAttendanceLoading }] =
     useLazyQuery(GET_TEAM_ATTENDANCE);
-  const [selectedWeek, setSelectedWeek] = useState<string>();
-  const [weeks, setWeeks] = useState<string[]>([]);
+  const [selectedWeek, setSelectedWeek] = useState<number>();
+  const [weeks, setWeeks] = useState<number[]>([]);
   const [selectedTeam, setSelectedTeam] = useState<string>('');
   const [isValidAttendanceDay, SetIsValidAttendanceDay] =
     useState<boolean>(false);
@@ -95,195 +121,46 @@ function TraineeAttendanceTracker() {
     'mon' | 'tue' | 'wed' | 'thu' | 'fri'
   >('mon');
   const [selectedDayDate, setSelectedDayDate] = useState<string>('');
-  const [currentTime, setCurrentTime] = useState<number>();
   const [selectedDayHasData, setSelectedDayHasData] = useState<boolean>(false);
   const [selectedPhase, setSelectedPhase] = useState<
     PhaseInterface | undefined
   >();
   const [phases, setPhases] = useState<PhaseInterface[]>([]);
   const [teamsData, setTeamsData] = useState<TeamData[]>();
-  const [getAllTeams, { loading: teamLoading }] = useLazyQuery(GET_ALL_TEAMS);
+  const [getAllTeams, { loading: teamsLoading }] = useLazyQuery(GET_ALL_TEAMS);
+  const [getTTLTeams, { loading: teamLoading }] = useLazyQuery(GET_TTL_TEAMS);
   const [initialTraineeAttendanceData, setInitialTraineeAttendanceData] =
     useState<TraineeAttendanceDayInterface[]>([]);
   const [traineeAttendanceData, setTraineeAttendanceData] = useState<
     TraineeAttendanceDayInterface[]
   >([]);
-  const [attendanceData, setAttendanceData] = useState<any[]>([]);
+  const [attendanceData, setAttendanceData] =
+    useState<AttendanceDataInterface>();
   const [orgToken, setOrgToken] = useState<string | null>('');
   const [resetDayAndWeek, setResetDayAndWeek] = useState<boolean>(true);
   const [selectedTeamId, setSelectedTeamId] = useState('');
   const [selectedTeamData, setSelectedTeamData] = useState<TeamData>();
+  const [selectedTeamTrainees, setSelectedTeamTrainees] =
+    useState<UserInterface[]>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdatedMode, setIsUpdatedMode] = useState<boolean>(false);
   const [deleteAttendance, { loading: loadingDeleteAttendance }] =
     useMutation(DELETE_ATTENDANCE);
   const [updated, setUpdate] = useState<boolean>(false);
-  const [updateTrainees, setUpdateTrainees] = useState<recordTraineeProps[]>(
-    [],
+  const [dayType, setDayType] = useState<'today' | 'yesterday' | 'others'>(
+    'others',
   );
+  const [validDate, setValidDate] = useState<ValidDatesInterface>({
+    today: '',
+    yesterday: '',
+  });
   const editColumnRef = useRef<HTMLTableCellElement | null>(null);
-
-  const formatAttendanceData = (data: any) => {
-    const tempPhases: PhaseInterface[] = [];
-
-    const updatedTraineeData: TraineeAttendanceDayInterface[] = [];
-
-    data.forEach((attendance: any, index: any) => {
-      let hasData = false;
-      !selectedWeek && index === 0 && setSelectedWeek(attendance.week);
-
-      if (resetDayAndWeek && selectedWeek! < attendance.week) {
-        setSelectedWeek(attendance.week);
-      }
-
-      if (!tempPhases.find((p) => p.id === attendance.phase.id))
-        tempPhases.push({
-          id: attendance.phase.id,
-          name: attendance.phase.name,
-        });
-
-      const result: TraineeAttendanceDayInterface = {
-        week: attendance.week,
-        dates: {
-          mon: '',
-          tue: '',
-          wed: '',
-          thu: '',
-          fri: '',
-        },
-        phase: attendance.phase.id,
-        days: {
-          mon: [],
-          tue: [],
-          wed: [],
-          thu: [],
-          fri: [],
-        },
-      };
-
-      let date = '';
-
-      attendance.teams[0].trainees.forEach((traineeData: any) => {
-        if (traineeData.status.length) {
-          hasData = true;
-          traineeData.status.forEach((traineeStatus: any) => {
-            if (traineeStatus.day === selectedDay) {
-              setSelectedDayHasData(true);
-            }
-            if (traineeStatus.date && !date) {
-              date = traineeStatus.date;
-            }
-
-            result.days[
-              traineeStatus.day as 'mon' | 'tue' | 'wed' | 'thu' | 'fri'
-            ].push({
-              trainee: traineeData.trainee,
-              status: traineeStatus.score as string,
-            });
-          });
-          resetDayAndWeek &&
-            setSelectedDay(
-              traineeData.status[traineeData.status.length - 1].day,
-            );
-        }
-        if (!traineeData.status.length && !hasData) {
-          setSelectedDayHasData(false);
-          date = currentTime ? currentTime.toString() : Date.now().toString();
-        }
-      });
-      if (date) result.dates = getDateForDays(date);
-      updatedTraineeData.push(result);
-    });
-
-    setTraineeAttendanceData(updatedTraineeData);
-    setInitialTraineeAttendanceData(updatedTraineeData);
-
-    teamsData?.forEach((team) => {
-      if (team.id === selectedTeamId) {
-        
-        const names = tempPhases.map((phase) => phase.name);
-        let isDataSet = false;
-        if (!data.length) {
-          isDataSet = true;
-          setWeeks(['1']);
-          setSelectedWeek('1');
-          setSelectedDayDate(
-            getDateForDays(
-              currentTime ? currentTime.toString() : Date.now().toString(),
-            )[selectedDay],
-          );
-          setTraineeAttendanceData([
-            {
-              week: '1',
-              phase: team.cohort.phase.id,
-              dates: getDateForDays(
-                currentTime ? currentTime.toString() : Date.now().toString(),
-              ),
-              days: {
-                mon: [],
-                tue: [],
-                wed: [],
-                thu: [],
-                fri: [],
-              },
-            },
-          ]);
-        }
-
-        if (!names.includes(team.cohort.phase.name)) {
-          tempPhases.push({
-            id: team.cohort.phase.id,
-            name: team.cohort.phase.name,
-          });
-          
-          if (!isDataSet) {
-            setSelectedWeek('1');
-            setTraineeAttendanceData((prevData) => [
-              ...prevData,
-              {
-                week: '1',
-                data: false,
-                phase: team.cohort.phase.id,
-                dates: getDateForDays(
-                  currentTime ? currentTime.toString() : Date.now().toString(),
-                ),
-                days: {
-                  mon: [],
-                  tue: [],
-                  wed: [],
-                  thu: [],
-                  fri: [],
-                },
-              },
-            ]);
-          }
-        }
-      }
-    });
-    setPhases(tempPhases);
-    setResetDayAndWeek(true);
-    selectedTeamData &&
-      !selectedPhase &&
-      setSelectedPhase({
-        id: selectedTeamData?.cohort.phase.id,
-        name: selectedTeamData?.cohort.phase.name,
-      });
-  };
 
   const [updateAttendance, { loading: loadingupdateAttendance }] = useMutation(
     UPDATE_ATTENDANCE,
     {
-      variables: {
-        week: Number(selectedWeek),
-        team: selectedTeamId,
-        phase: selectedPhase?.id,
-        trainees: updateTrainees,
-        orgToken: localStorage.getItem('orgToken'),
-      },
       onCompleted: (data) => {
-        if (data) {
-          toast.success('Attendance updated successfully.');
-        }
+        toast.success('Attendance updated successfully.');
         setUpdate(false);
         setIsUpdatedMode(false);
         setAttendanceData(data.updateAttendance);
@@ -296,69 +173,74 @@ function TraineeAttendanceTracker() {
       },
     },
   );
-  useEffect(() => {
-    if (attendanceData) {
-      formatAttendanceData(attendanceData);
-    }
-  }, [attendanceData, currentTime]);
-  useEffect(() => {
-    if (updateTrainees.length > 0) {
-      updateAttendance();
-    }
-  }, [updateTrainees]);
-
-  useEffect(() => {
-    fetch('http://worldtimeapi.org/api/timezone/Etc/UTC')
-      .then((response) => response.json())
-      .then((data) => {
-        const utcDate = new Date(data.datetime);
-        setCurrentTime(utcDate.getTime());
-      })
-      .catch((error) => {});
-  }, []);
 
   useEffect(() => {
     setOrgToken(localStorage.getItem('orgToken'));
   }, []);
 
-  const { data, loading } = useQuery(GET_TEAMS_CARDS, {
-    variables: { orgToken },
-  });
-
-  useEffect(() => {
-    if (!loading && data && data.getAllTeams.length > 0) {
-      setSelectedTeam(data.getAllTeams[0].name);
-    }
-  }, [loading, data]);
-
   useEffect(() => {
     const fetchData = async () => {
       const orgToken = localStorage.getItem('orgToken');
+
       if (orgToken) {
-        getAllTeams({
-          fetchPolicy: 'no-cache',
-          variables: { orgToken },
-          onCompleted: (data) => {
-            setTeamsData(data.getAllTeams);
-            setSelectedTeam(data.getAllTeams[0].name);
-            setSelectedTeamData(data.getAllTeams[0]);
-            setSelectedTeamId(data.getAllTeams[0].id);
-          },
-          onError: (error) => {
-            const errorMessage =
-              error.graphQLErrors?.[0]?.message ||
-              'An unexpected error occurred';
-            toast.error(errorMessage);
-          },
-        });
+        if (user.role === 'coordinator') {
+          getAllTeams({
+            fetchPolicy: 'no-cache',
+            variables: { orgToken },
+            onCompleted: (data) => {
+              setTeamsData(data.getAllTeams);
+              setSelectedTeam(data.getAllTeams[0].name);
+              setSelectedTeamData(data.getAllTeams[0]);
+              setSelectedPhase(data.getAllTeams[0].phase || data.getAllTeams[0].cohort.phase);
+              setSelectedTeamId(data.getAllTeams[0].id);
+            },
+            onError: (error) => {
+              const errorMessage =
+                error.graphQLErrors?.[0]?.message ||
+                'An unexpected error occurred';
+              toast.error(errorMessage);
+            },
+          });
+        }
+        if (user.role === 'ttl') {
+          getTTLTeams({
+            fetchPolicy: 'no-cache',
+            variables: {
+              orgToken,
+            },
+            onCompleted: (data) => {
+              setTeamsData(data.getTTLTeams);
+              setSelectedTeam(data.getTTLTeams[0].name);
+              setSelectedTeamData(data.getTTLTeams[0]);
+              setPhases([
+                data.getTTLTeams[0].phase || data.getTTLTeams[0].cohort.phase,
+              ]);
+              setSelectedPhase(data.getTTLTeams[0].phase || data.getTTLTeams[0].cohort.phase);
+              setSelectedTeamId(data.getTTLTeams[0].id);
+            },
+            onError: (error) => {
+              const errorMessage =
+                error.graphQLErrors?.[0]?.message ||
+                'An unexpected error occurred';
+              toast.error(errorMessage);
+            },
+          });
+        }
       }
     };
-    fetchData();
-  }, [getAllTeams]);
 
+    fetchData();
+  }, [getAllTeams, getTTLTeams]);
   useEffect(() => {
+    if (selectedTeamData) {
+      const trainees = selectedTeamData?.members.filter(
+        (member: UserInterface) => member.role === 'trainee',
+      );
+      setSelectedTeamTrainees(trainees);
+    }
+
     setTraineeAttendanceData([]);
-    setAttendanceData([]);
+    setAttendanceData(undefined);
     teamsData?.forEach((team) => {
       if (team.id === selectedTeamId) {
         setSelectedTeam(team.name);
@@ -372,6 +254,10 @@ function TraineeAttendanceTracker() {
           team: selectedTeamId,
         },
         onCompleted: (data) => {
+          setSelectedPhase({
+            id: selectedTeamData!.phase?.id || selectedTeamData!.cohort.phase.id,
+            name: selectedTeamData!.phase?.name || selectedTeamData!.cohort.phase.name,
+          });
           setAttendanceData(data.getTeamAttendance);
         },
         onError: (error) => {
@@ -380,78 +266,74 @@ function TraineeAttendanceTracker() {
       });
   }, [selectedTeamId]);
 
-  // New week for team attendance
+  // Handle retrieved attendance data
   useEffect(() => {
-    const tempTeam = teamsData?.find((team) => team.id === selectedTeamId);
-    let lastDayDate = '';
-    if (tempTeam) {
-      const tempWeeks: string[] = traineeAttendanceData
-        .map((attendanceData) => {
-          if (
-            attendanceData.phase === selectedPhase?.id
-          ) {
-            if (attendanceData.dates.fri)
-              lastDayDate = attendanceData.dates.fri;
-            return attendanceData.week;
-          }
-          return '';
-        })
-        .filter((week) => week);
-
-      const isInSameWeek = isSameWeek(
-        new Date(lastDayDate),
-        new Date(currentTime || Date.now()),
-        {
-          weekStartsOn: 1,
+    if (attendanceData) {
+      setValidDate({
+        today: attendanceData.today,
+        yesterday: attendanceData.yesterday,
+      });
+      setTraineeAttendanceData(attendanceData.attendance);
+      setInitialTraineeAttendanceData(attendanceData.attendance);
+      const teamAttendancePhases: PhaseInterface[] = [];
+      const attendanceWeek = attendanceData.attendanceWeeks.filter(
+        (attendanceWeek: any) => {
+          teamAttendancePhases.push(attendanceWeek.phase);
+          return attendanceWeek.phase.id === selectedTeamData?.phase?.id || selectedTeamData?.cohort.phase.id;
         },
       );
-
-      if (tempWeeks.length && !isInSameWeek) {
-        tempWeeks.push(String(tempWeeks.length + 1));
-        const baseDate = isInSameWeek
-          ? currentTime || Date.now() + 7 * 24 * 60 * 60 * 1000
-          : currentTime || Date.now();
-
-        const dates = getDateForDays(baseDate.toString());
-
-        // setAttendanceData(prevData => [...prevData, {}])
-        setTraineeAttendanceData((prevData) => [
-          ...prevData,
-          {
-            week: String(tempWeeks[tempWeeks.length - 1]),
-            data: false,
-            phase: tempTeam!.cohort.phase.id,
-            dates,
-            days: {
-              mon: [],
-              tue: [],
-              wed: [],
-              thu: [],
-              fri: [],
-            },
-          },
-        ]);
-
-        !selectedWeek && setSelectedWeek(tempWeeks[0]);
-      } 
+      setPhases(teamAttendancePhases);
+      const tempWeeks = [...attendanceWeek[0].weeks];
+      tempWeeks.sort((a, b) => (a - b));
       setWeeks(tempWeeks);
+      !selectedWeek && setSelectedWeek(tempWeeks[tempWeeks.length - 1]);
     }
-  }, [selectedPhase, initialTraineeAttendanceData, currentTime]);
+  }, [attendanceData]);
 
+  // Handle week on phase change
+  useEffect(() => {
+    if (attendanceData && selectedPhase) {
+      const attendanceWeek = attendanceData.attendanceWeeks.filter(
+        (attendanceWeek: any) => attendanceWeek.phase.id === selectedPhase?.id,
+      );
+      setWeeks(attendanceWeek[0].weeks);
+      const tempWeeks = [...attendanceWeek[0].weeks];
+      tempWeeks.sort((a, b) => a - b);
+      setWeeks(tempWeeks);
+      setSelectedWeek(tempWeeks[tempWeeks.length - 1]);
+    }
+  }, [selectedPhase]);
   // Change Date for selected Day
   useEffect(() => {
     const result = traineeAttendanceData.find((attendanceData) => {
       setSelectedDayHasData(!!attendanceData.days[selectedDay].length);
       if (
-        attendanceData.phase === selectedPhase?.id &&
+        attendanceData.phase.id === selectedPhase?.id &&
         attendanceData.week === selectedWeek
       ) {
         return true;
       }
       return null;
     });
+    if (result) {
+      const selectedDate = new Date(result.dates[selectedDay].date)
+        .toISOString()
+        .split('T')[0];
+      const today = new Date(Number(validDate.today))
+        .toISOString()
+        .split('T')[0];
+      const yesterday = new Date(Number(validDate.yesterday))
+        .toISOString()
+        .split('T')[0];
 
-    result && setSelectedDayDate(result.dates[selectedDay]);
+      (selectedDate === today && setDayType('today')) ||
+        (selectedDate === yesterday && setDayType('yesterday')) ||
+        (selectedDate !== today &&
+          selectedDate !== yesterday &&
+          setDayType('others'));
+
+      setSelectedDayDate(result.dates[selectedDay].date);
+    }
   }, [selectedDay, selectedPhase, selectedWeek, traineeAttendanceData]);
 
   const openModal = () => {
@@ -465,7 +347,7 @@ function TraineeAttendanceTracker() {
   const submitAttendance = async () => {
     if (
       isValidAttendanceDay &&
-      selectedTeamData?.cohort.phase.id === selectedPhase?.id
+      ((selectedTeamData?.phase?.id || selectedTeamData?.cohort.phase.id) === selectedPhase?.id)
     ) {
       openModal();
       return;
@@ -477,7 +359,7 @@ function TraineeAttendanceTracker() {
     const attendanceToUpdate = traineeAttendanceData.find(
       (attendance) =>
         attendance.week === selectedWeek &&
-        attendance.phase === selectedPhase?.id,
+        attendance.phase.id === selectedPhase?.id,
     );
     if (!attendanceToUpdate) {
       toast.error('This day has no attendance yet');
@@ -486,17 +368,24 @@ function TraineeAttendanceTracker() {
     const traineesAttendance = attendanceToUpdate.days[selectedDay];
     const updatedRecords = traineesAttendance.map((attendance) => ({
       trainee: attendance.trainee.id,
-      status: {
-        day: selectedDay,
-        score: attendance.status.toString(),
-      },
+      score: attendance.score,
     }));
-    setUpdateTrainees(updatedRecords);
+
+    updatedRecords.length &&
+      updateAttendance({
+        variables: {
+          week: selectedWeek,
+          day: selectedDay,
+          team: selectedTeamId,
+          phase: selectedPhase?.id,
+          trainees: updatedRecords,
+          orgToken: localStorage.getItem('orgToken'),
+        },
+      });
   };
 
   const handleDeleteAttendance = () => {
     if (loadingDeleteAttendance) return;
-    const date = new Date().toISOString().split('T')[0];
     if (!selectedDayHasData) {
       toast.warning(
         'You cannot delete attendance for the day without any entries.',
@@ -504,7 +393,10 @@ function TraineeAttendanceTracker() {
       );
       return;
     }
-    if (selectedTeamData?.cohort.phase.id !== selectedPhase?.id) {
+    if (
+      (selectedTeamData?.phase?.id || selectedTeamData?.cohort.phase.id) !==
+      selectedPhase?.id
+    ) {
       toast.warning(
         'Attendance records from previous phase cannot be deleted; they can only be updated.',
         { style: { color: '#000', lineHeight: '.95rem' } },
@@ -532,7 +424,7 @@ function TraineeAttendanceTracker() {
         setResetDayAndWeek(false);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error("Couldn't delete attendance, please try again");
       },
     });
   };
@@ -579,10 +471,10 @@ function TraineeAttendanceTracker() {
       <Modal
         isVisible={isModalOpen}
         onClose={closeModal}
-        trainees={selectedTeamData?.members}
+        trainees={selectedTeamTrainees}
         week={Number(selectedWeek)}
+        dayType={dayType}
         date={selectedDayDate}
-        day={selectedDay}
         team={selectedTeamId}
         teamName={selectedTeam}
         setAttendanceData={setAttendanceData}
@@ -636,7 +528,8 @@ function TraineeAttendanceTracker() {
                 isValidAttendanceDay &&
                 !teamAttendanceLoading &&
                 !selectedDayHasData &&
-                selectedTeamData?.cohort.phase.id === selectedPhase?.id
+                (selectedTeamData?.phase?.id ||
+                  selectedTeamData?.cohort.phase.id) === selectedPhase?.id
                   ? 'bg-primary text-white'
                   : 'bg-neutral-400/60 dark:bg-neutral-500 text-black dark:text-white cursor-not-allowed'
               }   text-[.84rem] xmd:text-[.9rem] font-semibold w-[8.9rem] xmd:w-[10rem] h-[1.9rem] xmd:h-[2.3rem] rounded-[4px] tracking-tight`}
@@ -645,10 +538,11 @@ function TraineeAttendanceTracker() {
                 !isValidAttendanceDay ||
                 teamAttendanceLoading ||
                 selectedDayHasData ||
-                selectedTeamData?.cohort.phase.id !== selectedPhase?.id
+                (selectedTeamData?.phase?.id ||
+                  selectedTeamData?.cohort.phase.id) !== selectedPhase?.id
               }
             >
-              {!teamLoading ? t('Submit Attendance') : 'Loading...'}
+              {!teamsLoading ? t('Submit Attendance') : 'Loading...'}
             </button>
           </div>
 
@@ -687,7 +581,7 @@ function TraineeAttendanceTracker() {
                 onChange={(event) => {
                   if (
                     isUpdatedMode &&
-                    selectedWeek !== event.target.value &&
+                    selectedWeek !== Number(event.target.value) &&
                     updated
                   ) {
                     toast.warning('First Discard or Update your changes', {
@@ -696,7 +590,7 @@ function TraineeAttendanceTracker() {
                     return;
                   }
                   setIsUpdatedMode(false);
-                  setSelectedWeek(event.target.value);
+                  setSelectedWeek(Number(event.target.value));
                 }}
               >
                 {weeks.length &&
@@ -813,7 +707,7 @@ function TraineeAttendanceTracker() {
                     traineeAttendanceData.length > 0 &&
                     traineeAttendanceData.map((attendanceData) => {
                       if (
-                        attendanceData.phase === selectedPhase?.id &&
+                        attendanceData.phase.id === selectedPhase?.id &&
                         attendanceData.week === selectedWeek &&
                         attendanceData.days[selectedDay].length
                       ) {
@@ -863,9 +757,7 @@ function TraineeAttendanceTracker() {
                                 // eslint-disable-next-line jsx-a11y/control-has-associated-label
                                 <td className="text-center">
                                   <div className="flex justify-center">
-                                    <AttendanceSymbols
-                                      status={dayData.status}
-                                    />
+                                    <AttendanceSymbols status={dayData.score} />
                                   </div>
                                 </td>
                               }
@@ -896,7 +788,7 @@ function TraineeAttendanceTracker() {
                       }
                       if (
                         traineeAttendanceData.length > 0 &&
-                        attendanceData.phase === selectedPhase?.id &&
+                        attendanceData.phase.id === selectedPhase?.id &&
                         attendanceData.week === selectedWeek &&
                         !attendanceData.days[selectedDay].length
                       ) {
@@ -910,14 +802,14 @@ function TraineeAttendanceTracker() {
                       }
                       return null;
                     })}
-                  {(teamLoading || teamAttendanceLoading) && (
+                  {(teamsLoading || teamAttendanceLoading) && (
                     <tr key="no-attendance-abc">
                       <td colSpan={3} className="text-center h-20">
                         Loading Data...
                       </td>
                     </tr>
                   )}
-                  {!teamLoading &&
+                  {!teamsLoading &&
                     !teamAttendanceLoading &&
                     !traineeAttendanceData.length && (
                       <tr key="no-attendance-xyz">
