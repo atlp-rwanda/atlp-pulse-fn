@@ -4,15 +4,18 @@ import { useMutation } from '@apollo/client';
 import { format } from 'date-fns';
 import { RECORD_ATTENDANCE } from '../Mutations/Attendance';
 import AttendanceSymbols from './AttendanceSymbols';
+import { AttendanceDataInterface } from '../pages/TraineeAttendanceTracker';
 
 interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
-  setAttendanceData: React.Dispatch<React.SetStateAction<any[]>>;
+  setAttendanceData: React.Dispatch<
+    React.SetStateAction<AttendanceDataInterface | undefined>
+  >;
   trainees: any;
   week: number;
   date: string;
-  day: string;
+  dayType: 'today' | 'yesterday' | 'others';
   team: string;
   teamName: string;
 }
@@ -20,17 +23,11 @@ interface attendanceProps {
   name: string;
   score: number;
   id: string;
-  day: string;
-}
-
-interface StatusInput {
-  day: string;
-  score: string;
 }
 
 export interface recordTraineeProps {
   trainee: string;
-  status: StatusInput;
+  score: number;
 }
 
 function ModalAttendance({
@@ -39,7 +36,7 @@ function ModalAttendance({
   trainees,
   week,
   date,
-  day,
+  dayType,
   setAttendanceData,
   team,
   teamName,
@@ -60,52 +57,18 @@ function ModalAttendance({
     { data: recordAttendanceData, loading: loadingRecordAttendance, error },
   ] = useMutation(RECORD_ATTENDANCE, {
     variables: {
+      today: dayType === 'today',
+      yesterday: dayType === 'yesterday',
       week,
       team,
-      date,
       trainees: recordTrainees,
       orgToken: localStorage.getItem('orgToken'),
     },
     fetchPolicy: 'no-cache',
     onCompleted: (data) => {
-      if (data) {
-        toast.success('Attendance recorded successfully.');
-      }
+      toast.success('Attendance recorded successfully.');
 
-      setAttendanceData((prev) => {
-        let isSet = false;
-        const result = prev.map((attendance) => {
-          if (
-            attendance.week.toString() === week.toString() &&
-            attendance.cohort.id === data.recordAttendance.team.cohort.id &&
-            attendance.phase.id === data.recordAttendance.team.cohort.phase.id
-          ) {
-            isSet = true;
-            return {
-              ...attendance,
-              teams: [data.recordAttendance],
-            };
-          }
-          return attendance;
-        });
-
-        if (!isSet && team === data.recordAttendance.team.id) {
-          result.push({
-            week: week.toString(),
-            id: Math.random().toString(),
-            cohort: {
-              id: data.recordAttendance.team.cohort.id,
-              name: data.recordAttendance.team.cohort.name,
-            },
-            phase: {
-              id: data.recordAttendance.team.cohort.phase.id,
-              name: data.recordAttendance.team.cohort.phase.name,
-            },
-            teams: [data.recordAttendance],
-          });
-        }
-        return result;
-      });
+      setAttendanceData(data.recordAttendance);
       setTraineesAttendance([]);
       setRecordTrainees([]);
       onClose();
@@ -141,12 +104,7 @@ function ModalAttendance({
 
   if (!isVisible) return null;
 
-  const handleGiveAttendance = (
-    name: string,
-    score: number,
-    id: string,
-    day: string,
-  ) => {
+  const handleGiveAttendance = (name: string, score: number, id: string) => {
     let updatedAttendance;
     const updateAttendance = traineesAttendance.find(
       (attendance) => attendance.id === id,
@@ -159,7 +117,7 @@ function ModalAttendance({
         return attendance;
       });
     } else {
-      updatedAttendance = [...traineesAttendance, { name, score, id, day }];
+      updatedAttendance = [...traineesAttendance, { name, score, id }];
     }
 
     setTraineesAttendance(updatedAttendance);
@@ -175,10 +133,7 @@ function ModalAttendance({
 
     const updatedRecords = traineesAttendance.map((attendance) => ({
       trainee: attendance.id,
-      status: {
-        day: attendance.day,
-        score: attendance.score.toString(),
-      },
+      score: attendance.score,
     }));
 
     setRecordTrainees(updatedRecords);
@@ -288,7 +243,6 @@ function ModalAttendance({
                                       trainee.profile.name,
                                       2,
                                       trainee.id,
-                                      day,
                                     );
                                   }}
                                   className="cursor-pointer hover:brightness-75"
@@ -303,7 +257,6 @@ function ModalAttendance({
                                       trainee.profile.name,
                                       1,
                                       trainee.id,
-                                      day,
                                     );
                                   }}
                                   className="cursor-pointer hover:brightness-75"
@@ -318,7 +271,6 @@ function ModalAttendance({
                                       trainee.profile.name,
                                       0,
                                       trainee.id,
-                                      day,
                                     );
                                   }}
                                   className="cursor-pointer hover:brightness-75"

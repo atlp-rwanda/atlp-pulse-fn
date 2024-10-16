@@ -10,7 +10,7 @@ const TraineeAttendance = React.lazy(
 function Attendance() {
   return (
     <>
-      <CheckRole roles={['coordinator']}>
+      <CheckRole roles={['coordinator', 'ttl']}>
         <TraineeAttendanceTracker />
       </CheckRole>
       <CheckRole roles={['trainee']}>

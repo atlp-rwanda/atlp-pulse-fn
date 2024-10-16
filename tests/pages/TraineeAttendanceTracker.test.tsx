@@ -3,7 +3,6 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer, { act } from 'react-test-renderer';
 import { toast } from 'react-toastify';
-import fetchMock from 'jest-fetch-mock';
 import {
   cleanup,
   fireEvent,
@@ -17,7 +16,7 @@ import {
   MockedProvider,
 } from '@apollo/client/testing';
 import TraineeAttendanceTracker from '../../src/pages/TraineeAttendanceTracker';
-import { GET_ALL_TEAMS } from '../../src/queries/team.queries';
+import { GET_ALL_TEAMS, GET_TTL_TEAMS } from '../../src/queries/team.queries';
 import { GET_TEAM_ATTENDANCE } from '../../src/queries/attendance.queries';
 
 const mocks = [
@@ -32,18 +31,76 @@ const mocks = [
       data: {
         getAllTeams: [
           {
-            id: '66eea29cba07ede8a49e8bc6',
+            id: 'Team-I-id-123',
             name: 'Team I',
+            isJobActive: true,
+            active: true,
+            phase: {
+              id: 'test-phase-i',
+              name: 'Phase I',
+            },
             cohort: {
               name: 'cohort 1',
               phase: {
+                id: 'test-phase-i',
                 name: 'Phase I',
-                id: '66eea29cba07ede8a49e8bad',
               },
               coordinator: {
-                id: '66eea29cba07ede8a49e8dcz',
+                id: 'coordinator-id',
               },
             },
+            members: [
+              {
+                id: 'test-trainee-name',
+                email: 'test-trainee-name@gmail.com',
+                role: 'trainee',
+                status: {
+                  date: null,
+                  reason: null,
+                  status: 'active',
+                },
+                profile: {
+                  id: 'trainee-name-profile',
+                  name: 'test-trainee-name',
+                },
+              },
+            ],
+          },
+          {
+            id: 'Team-II-id-123',
+            name: 'Team II',
+            isJobActive: true,
+            active: true,
+            phase: {
+              id: 'test-phase-i',
+              name: 'Phase I',
+            },
+            cohort: {
+              name: 'cohort 1',
+              phase: {
+                id: 'test-phase-i',
+                name: 'Phase I',
+              },
+              coordinator: {
+                id: 'coordinator-id',
+              },
+            },
+            members: [
+              {
+                id: 'test-trainee-name2',
+                email: 'test-trainee-name2@gmail.com',
+                role: 'ttl',
+                status: {
+                  date: null,
+                  reason: null,
+                  status: 'active',
+                },
+                profile: {
+                  id: 'trainee-name2-profile',
+                  name: 'test-trainee-name2',
+                },
+              },
+            ],
           },
           {
             id: '66eea29cba07ede8a49e8bc7',
@@ -58,6 +115,58 @@ const mocks = [
                 id: '66eea29cba07ede8a49e8dcz',
               },
             },
+            members: [],
+          },
+        ],
+      },
+    },
+    maxUsageCount: 10,
+  },
+  {
+    request: {
+      query: GET_TTL_TEAMS,
+      variables: {
+        orgToken: 'mocked-org-token',
+      },
+    },
+    result: {
+      data: {
+        getTTLTeams: [
+          {
+            id: 'Team-I-id-123',
+            name: 'Team I',
+            isJobActive: true,
+            active: true,
+            phase: {
+              id: 'test-phase-i',
+              name: 'Phase I',
+            },
+            cohort: {
+              name: 'cohort 1',
+              phase: {
+                id: 'test-phase-i',
+                name: 'Phase I',
+              },
+              coordinator: {
+                id: 'coordinator-id',
+              },
+            },
+            members: [
+              {
+                id: 'test-trainee-name',
+                email: 'test-trainee-name@gmail.com',
+                role: 'trainee',
+                status: {
+                  date: null,
+                  reason: null,
+                  status: 'active',
+                },
+                profile: {
+                  id: 'trainee-name-profile',
+                  name: 'test-trainee-name',
+                },
+              },
+            ],
           },
         ],
       },
@@ -70,91 +179,92 @@ const mocks = [
       query: GET_TEAM_ATTENDANCE,
       variables: {
         orgToken: 'mocked-org-token',
-        team: '66eea29cba07ede8a49e8bc6',
+        team: 'Team-I-id-123',
       },
     },
     result: {
       data: {
-        getTeamAttendance: [
-          {
-            id: '66faedaab256018b1efcd57a',
-            week: '1',
-            phase: {
-              name: 'Phase I',
-              id: '66eea29cba07ede8a49e8bad',
+        getTeamAttendance: {
+          today: '1729533725697',
+          yesterday: '1729274525697',
+          attendanceWeeks: [
+            {
+              phase: {
+                id: 'test-phase-i',
+                name: 'Phase I',
+              },
+              weeks: [1],
             },
-            cohort: {
-              id: '66eea29cba07ede8a49e8bbb',
-              name: 'cohort 1',
+            {
+              phase: {
+                id: 'test-phase-ii',
+                name: 'Phase II',
+              },
+              weeks: [1, 2],
             },
-            teams: [
-              {
-                team: {
-                  id: '66eea29cba07ede8a49e8bc6',
-                  name: 'Team I',
+          ],
+          attendance: [
+            {
+              week: 1,
+              phase: {
+                id: 'test-phase-i',
+                name: 'Phase I',
+              },
+              dates: {
+                mon: {
+                  date: '2024-10-21',
+                  isValid: true,
                 },
-                trainees: [
+                tue: {
+                  date: '2024-10-22',
+                  isValid: false,
+                },
+                wed: {
+                  date: '2024-10-23',
+                  isValid: false,
+                },
+                thu: {
+                  date: '2024-10-24',
+                  isValid: false,
+                },
+                fri: {
+                  date: '2024-10-25',
+                  isValid: false,
+                },
+              },
+              days: {
+                mon: [
                   {
                     trainee: {
-                      id: '66eea29cba07ede8a49e8b81',
-                      email: 'example@gmail.com',
+                      id: 'test-trainee-name',
+                      email: 'test-trainee-name@gmail.com',
                       profile: {
-                        id: '66eea29cba07ede8a49e8b90',
-                        name: 'Example Virgile',
+                        id: 'trainee-name-profile',
+                        name: 'test-trainee-name',
                       },
                     },
-                    status: [
-                      {
-                        day: 'mon',
-                        date: '1727654400000',
-                        score: 2,
-                      },
-                    ],
+                    score: 2,
                   },
-                ],
-              },
-            ],
-          },
-          {
-            id: '66fc3cd78788248998569bb7',
-            week: '1',
-            phase: {
-              name: 'Phase II',
-              id: '66eea29cba07ede8a49ewxyz',
-            },
-            cohort: {
-              id: '66eea29cba07ede8a49e8bbb',
-              name: 'cohort 1',
-            },
-            teams: [
-              {
-                team: {
-                  id: '66eea29cba07ede8a49e8bc6',
-                  name: 'Team I',
-                },
-                trainees: [
                   {
                     trainee: {
-                      id: '66eea29cba07ede8a49e8b81',
-                      email: 'example@gmail.com',
+                      id: 'test-trainee-name2',
+                      email: 'test-trainee-name2@gmail.com',
                       profile: {
-                        id: '66eea29cba07ede8a49e8b90',
-                        name: 'Example Virgile',
+                        id: 'trainee-name2-profile',
+                        name: 'test-trainee-name2',
                       },
                     },
-                    status: [
-                      {
-                        day: 'mon',
-                        date: '1728259200000',
-                        score: 1,
-                      },
-                    ],
+                    score: 1,
                   },
                 ],
+                tue: [],
+                wed: [],
+                thu: [],
+                fri: [],
               },
-            ],
-          },
-        ],
+            },
+          ],
+        },
       },
     },
     maxUsageCount: 10,
@@ -171,12 +281,6 @@ jest.mock('react-toastify', () => ({
 describe('CRUD Of Trainee Attendance', () => {
   beforeEach(() => {
     localStorage.setItem('orgToken', 'mocked-org-token');
-    fetchMock.enableMocks();
-    fetchMock.mockResponseOnce(
-      JSON.stringify({
-        datetime: '2023-10-03T12:34:56Z',
-      }),
-    );
   });
 
   afterEach(async () => {
@@ -186,30 +290,31 @@ describe('CRUD Of Trainee Attendance', () => {
   });
 
   it('Renders the TraineeAttendance Page', () => {
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      user: {
+        role: 'coordinator',
+      },
+    }));
     const elem = renderer
       .create(
-        <MemoryRouter>
-          <MockedProvider mocks={[]} addTypename={false}>
+          <MockedProvider mocks={mocks} addTypename={false}>
             <TraineeAttendanceTracker />
           </MockedProvider>
-        </MemoryRouter>,
       )
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
   it('Renders the TraineeAttendance Page', async () => {
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      user: {
+        role: 'ttl',
+      },
+    }));
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <TraineeAttendanceTracker />
       </MockedProvider>,
     );
-
-    await waitFor(() => {
-      expect(fetchMock).toHaveBeenCalledTimes(1);
-      expect(fetchMock).toHaveBeenCalledWith(
-        'http://worldtimeapi.org/api/timezone/Etc/UTC',
-      );
-    });
 
     expect(await screen.findByText('Loading Data...')).toBeInTheDocument();
 
@@ -217,7 +322,7 @@ describe('CRUD Of Trainee Attendance', () => {
     expect(teamElement).toBeInTheDocument();
 
     fireEvent.change(teamElement, {
-      target: { value: '66eea29cba07ede8a49e8bc6' },
+      target: { value: 'Team-I-id-123' },
     });
 
     const weeksElement = await screen.findByTestId('week-test');
@@ -244,7 +349,11 @@ describe('CRUD Of Trainee Attendance', () => {
     });
     fireEvent.click(daysElement[0]);
 
-    expect(await screen.findByText('Example Virgile')).toBeInTheDocument();
+    // Back to Phase I
+    fireEvent.click(phase1Element);
+
+    // Find row with trainee name test-trainee-name
+    expect(await screen.findByText('test-trainee-name')).toBeInTheDocument();
 
     fireEvent.click(updateLink2);
 
@@ -264,15 +373,16 @@ describe('CRUD Of Trainee Attendance', () => {
       { style: { color: '#000', lineHeight: '.95rem' } },
     );
 
-    const editButton = await screen.findByTestId('edit-button');
-    expect(editButton).toBeInTheDocument();
+    const editButton = await screen.findAllByTestId('edit-button');
+    expect(editButton).toHaveLength(2);
 
-    fireEvent.click(editButton);
+    fireEvent.click(editButton[0]);
 
     const zeroScore = await screen.findByTestId('score-0');
+    expect(zeroScore).toBeInTheDocument();
     fireEvent.click(zeroScore);
 
-    fireEvent.click(phase2Element);
+    await fireEvent.click(phase2Element);
 
     expect(toast.warning).toHaveBeenCalledWith(
       'First Discard or Update your changes',
@@ -301,6 +411,11 @@ describe('CRUD Of Trainee Attendance', () => {
   });
   it("Doesn't Delete attendance Test for day without entries", async () => {
     await cleanup();
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      user: {
+        role: 'coordinator',
+      },
+    }));
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <TraineeAttendanceTracker />
@@ -327,7 +442,7 @@ describe('CRUD Of Trainee Attendance', () => {
     const updateLink2 = screen.getByTestId('update-link-2');
     expect(updateLink2).toBeInTheDocument();
 
-    expect(await screen.findByText('Example Virgile')).toBeInTheDocument();
+    expect(await screen.findByText('test-trainee-name')).toBeInTheDocument();
 
     fireEvent.change(weeksElement, { target: { value: '2' } });
     fireEvent.change(weeksElement, { target: { value: '1' } });
