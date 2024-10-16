@@ -25,13 +25,17 @@ const mockedUseLocationValue = {
   search: '',
   key: '',
   hash: '',
-  state: {
-    profile: {
-      lastName: 'Doe',
-      firstName: 'John',
-      country: 'AD',
+state: {
+  profile: {
+    lastName: 'Doe',
+    firstName: 'John',
+    country: 'AD',
+    user: {
+      email: 'john.doe@example.com'
     },
+    phoneNumber: '+1234567890'
   },
+},
 };
 
 describe('Profile Page', () => {

@@ -19,6 +19,9 @@ import Button from '../components/Buttons';
 import { COUNTRIES, SelectMenuOption } from '../constants/countries';
 import profileFields from '../constants/formFields';
 import { UPDATE_PROFILE } from '../Mutations/profileMutation';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import { isValidPhoneNumber } from 'react-phone-number-input';
 
 type fields = {
   [key: string]: string | number;
@@ -30,7 +33,7 @@ profileFields.forEach((field) => {
 });
 
 function EditProfile() {
-  // eslint-disable-next-line  operator-linebreak
+    // eslint-disable-next-line  operator-linebreak
   const { setName } = useContext(UserContext);
   const [profileFieldState, setProfileFieldState] =
     useState<fields>(fieldState);
@@ -45,7 +48,7 @@ function EditProfile() {
   const location = useLocation();
 
   const { profile }: any = location.state;
-  // eslint-disable-next-line no-underscore-dangle
+    // eslint-disable-next-line no-underscore-dangle
 
   useDocumentTitle('Edit Profile');
   const {
@@ -54,17 +57,24 @@ function EditProfile() {
     handleSubmit,
 
     formState: { errors },
-  }: any = useForm({ mode: 'all', defaultValues: profile });
+  }: any = useForm({
+    mode: 'all',
+    defaultValues: {
+      ...profile,
+      email: profile.user.email,
+      phoneNumber: profile.phoneNumber || '',
+    }
+  });
   const client = useApolloClient();
   const [UpdateProfile, { loading }] = useMutation(UPDATE_PROFILE);
   const onSubmit = async (data: any) => {
-    /* istanbul ignore next */
+        /* istanbul ignore next */
     try {
       await UpdateProfile({
         variables: { ...data },
       });
       await client.resetStore();
-      /* istanbul ignore next */
+            /* istanbul ignore next */
       toast.success('Profile has been updated');
       navigate('/profile');
     } catch (error) {}
@@ -127,6 +137,21 @@ function EditProfile() {
           >
             <div className="flex flex-col w-full gap-6 xmd:flex-row lg:gap-10">
               <div className="flex flex-col gap-y-3 basis-1/2">
+                <Input
+                  key="email"
+                  labelText="Email"
+                  labelFor="email"
+                  id="email"
+                  register={register}
+                  errors={errors}
+                  name="email"
+                  type="email"
+                  isRequired={true}
+                  placeholder="Your email"
+                  customClass="dark:bg-black/45"
+                  readOnly={true} 
+                  handleChange={() => {}}
+                />
                 {profileFields.map((field) => {
                   if (
                     !['address', 'city'].includes(field.labelText.toLowerCase())
@@ -173,12 +198,12 @@ function EditProfile() {
                           id={field.id}
                           register={register}
                           errors={errors}
+
                           name={field.name}
                           type={field.type}
                           isRequired={field.isRequired}
                           placeholder={t(`${field.placeholder}`)}
                           customClass="dark:bg-black/45"
-                          /* istanbul ignore next */
                           handleChange={(
                             e: React.ChangeEvent<HTMLInputElement>,
                           ) => {
@@ -195,10 +220,10 @@ function EditProfile() {
                 </div>
               </div>
               <div className="flex flex-col gap-y-3 basis-1/2">
-                <div className="flex flex-col items-start justify-start mt-auto font-serif">
+                <div className="flex flex-col items-start justify-start mt-auto font-serif ">
                   <label
                     htmlFor="Country"
-                    className="mb-[2px] font-semibold text-[.84rem] md:text-[.87rem]"
+                    className="mb-[2px] font-semibold text-[.84rem] md:text-[.87rem] "
                   >
                     {t('Country')}
                   </label>
@@ -222,6 +247,36 @@ function EditProfile() {
                       />
                     )}
                   />
+                </div>
+                <div className="flex flex-col items-start justify-start">
+                  <label
+                    htmlFor="phoneNumber"
+                    className="mb-[2px] font-semibold text-[.84rem] md:text-[.87rem]"
+                  >
+                    {t('Phone Number')} (Optional)
+                  </label>
+                  <Controller
+                    name="phoneNumber"
+                    control={control}
+                    rules={{
+                      validate: (value) => 
+                        !value || isValidPhoneNumber(value) || 
+                        "Please enter a valid phone number with country code"
+                    }}
+                    render={({ field: { onChange, value } }) => (
+                      <PhoneInput
+                        international
+                        countryCallingCodeEditable={false}
+                        placeholder={t('Select country code')}
+                        value={value}
+                        onChange={onChange}
+                        className="w-full phone-input-container custom-phone-input dark:bg-black/45"
+                      />
+                    )}
+                  />
+                  {errors.phoneNumber && (
+                    <span className="text-red-500 text-sm">{errors.phoneNumber.message}</span>
+                  )}
                 </div>
                 <div className="flex flex-col items-start justify-start h-full md:col-span-2">
                   <label
