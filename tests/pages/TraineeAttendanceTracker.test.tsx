@@ -18,6 +18,89 @@ import {
 import TraineeAttendanceTracker from '../../src/pages/TraineeAttendanceTracker';
 import { GET_ALL_TEAMS, GET_TTL_TEAMS } from '../../src/queries/team.queries';
 import { GET_TEAM_ATTENDANCE } from '../../src/queries/attendance.queries';
+import { PAUSE_AND_RESUME_ATTENDANCE } from '../../src/Mutations/Attendance';
+
+const sampleResult = {
+  today: '1729533725697',
+  yesterday: '1729274525697',
+  attendanceWeeks: [
+    {
+      phase: {
+        id: 'test-phase-i',
+        name: 'Phase I',
+      },
+      weeks: [1],
+    },
+    {
+      phase: {
+        id: 'test-phase-ii',
+        name: 'Phase II',
+      },
+      weeks: [1, 2],
+    },
+  ],
+  attendance: [
+    {
+      week: 1,
+      phase: {
+        id: 'test-phase-i',
+        name: 'Phase I',
+      },
+      dates: {
+        mon: {
+          date: '2024-10-21',
+          isValid: true,
+        },
+        tue: {
+          date: '2024-10-22',
+          isValid: false,
+        },
+        wed: {
+          date: '2024-10-23',
+          isValid: false,
+        },
+        thu: {
+          date: '2024-10-24',
+          isValid: false,
+        },
+        fri: {
+          date: '2024-10-25',
+          isValid: false,
+        },
+      },
+      days: {
+        mon: [
+          {
+            trainee: {
+              id: 'test-trainee-name',
+              email: 'test-trainee-name@gmail.com',
+              profile: {
+                id: 'trainee-name-profile',
+                name: 'test-trainee-name',
+              },
+            },
+            score: 2,
+          },
+          {
+            trainee: {
+              id: 'test-trainee-name2',
+              email: 'test-trainee-name2@gmail.com',
+              profile: {
+                id: 'trainee-name2-profile',
+                name: 'test-trainee-name2',
+              },
+            },
+            score: 1,
+          },
+        ],
+        tue: [],
+        wed: [],
+        thu: [],
+        fri: [],
+      },
+    },
+  ],
+};
 
 const mocks = [
   {
@@ -69,7 +152,7 @@ const mocks = [
           {
             id: 'Team-II-id-123',
             name: 'Team II',
-            isJobActive: true,
+            isJobActive: false,
             active: true,
             phase: {
               id: 'test-phase-i',
@@ -184,86 +267,29 @@ const mocks = [
     },
     result: {
       data: {
-        getTeamAttendance: {
-          today: '1729533725697',
-          yesterday: '1729274525697',
-          attendanceWeeks: [
-            {
-              phase: {
-                id: 'test-phase-i',
-                name: 'Phase I',
-              },
-              weeks: [1],
-            },
-            {
-              phase: {
-                id: 'test-phase-ii',
-                name: 'Phase II',
-              },
-              weeks: [1, 2],
-            },
-          ],
-          attendance: [
-            {
-              week: 1,
-              phase: {
-                id: 'test-phase-i',
-                name: 'Phase I',
-              },
-              dates: {
-                mon: {
-                  date: '2024-10-21',
-                  isValid: true,
-                },
-                tue: {
-                  date: '2024-10-22',
-                  isValid: false,
-                },
-                wed: {
-                  date: '2024-10-23',
-                  isValid: false,
-                },
-                thu: {
-                  date: '2024-10-24',
-                  isValid: false,
-                },
-                fri: {
-                  date: '2024-10-25',
-                  isValid: false,
-                },
-              },
-              days: {
-                mon: [
-                  {
-                    trainee: {
-                      id: 'test-trainee-name',
-                      email: 'test-trainee-name@gmail.com',
-                      profile: {
-                        id: 'trainee-name-profile',
-                        name: 'test-trainee-name',
-                      },
-                    },
-                    score: 2,
-                  },
-                  {
-                    trainee: {
-                      id: 'test-trainee-name2',
-                      email: 'test-trainee-name2@gmail.com',
-                      profile: {
-                        id: 'trainee-name2-profile',
-                        name: 'test-trainee-name2',
-                      },
-                    },
-                    score: 1,
-                  },
-                ],
-                tue: [],
-                wed: [],
-                thu: [],
-                fri: [],
-              },
-            },
-          ],
+        getTeamAttendance: sampleResult,
+      },
+    },
+    maxUsageCount: 10,
+  },
+  {
+    delay: 500,
+    request: {
+      query: PAUSE_AND_RESUME_ATTENDANCE,
+      variables: {
+        orgToken: 'mocked-org-token',
+        team: 'Team-I-id-123',
+      },
+    },
+    result: {
+      data: {
+        pauseAndResumeTeamAttendance: {
+          team: {
+            id: 'Team-I-id-123',
+            name: 'Team-I-id-123',
+            isJobActive: true,
+          },
+          sanitizedAttendance: sampleResult,
         },
       },
     },
@@ -289,7 +315,7 @@ describe('CRUD Of Trainee Attendance', () => {
     await cleanup();
   });
 
-  it('Renders the TraineeAttendanceTracker Page', () => {
+  it('Renders the TraineeAttendance Page', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       user: {
         role: 'coordinator',
@@ -297,9 +323,9 @@ describe('CRUD Of Trainee Attendance', () => {
     }));
     const elem = renderer
       .create(
-          <MockedProvider mocks={mocks} addTypename={false}>
-            <TraineeAttendanceTracker />
-          </MockedProvider>
+        <MockedProvider mocks={mocks} addTypename={false}>
+          <TraineeAttendanceTracker />
+        </MockedProvider>,
       )
       .toJSON();
     expect(elem).toMatchSnapshot();
@@ -459,5 +485,76 @@ describe('CRUD Of Trainee Attendance', () => {
     expect(deleteBtn).toBeInTheDocument();
 
     fireEvent.click(deleteBtn);
+  });
+  it('Pause attendance for team with active attendance', async () => {
+    await cleanup();
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      user: {
+        role: 'coordinator',
+      },
+    }));
+
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <TraineeAttendanceTracker />
+      </MockedProvider>,
+    );
+
+    expect(await screen.findByText('Loading Data...')).toBeInTheDocument();
+
+    const teamElement = await screen.findByTestId('team-test');
+    expect(teamElement).toBeInTheDocument();
+
+    fireEvent.change(teamElement, {
+      target: { value: 'Team-I-id-123' },
+    });
+
+    const pauseAttendanceElement = await screen.findByText('Pause Attendance');
+    expect(pauseAttendanceElement).toBeInTheDocument();
+
+    fireEvent.click(pauseAttendanceElement);
+
+    const cancelBtn = screen.getByText('Cancel');
+    expect(cancelBtn).toBeInTheDocument();
+    fireEvent.click(cancelBtn);
+  });
+  it('Resume attendance for team with inactive attendance', async () => {
+    await cleanup();
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      user: {
+        role: 'coordinator',
+      },
+    }));
+
+    mocks[0].result.data.getAllTeams![0].isJobActive = false;
+
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <TraineeAttendanceTracker />
+      </MockedProvider>,
+    );
+
+    expect(await screen.findByText('Loading Data...')).toBeInTheDocument();
+
+    const teamElement = await screen.findByTestId('team-test');
+    expect(teamElement).toBeInTheDocument();
+
+    fireEvent.change(teamElement, {
+      target: { value: 'Team-I-id-123' },
+    });
+
+    const phase1Element = await screen.findByText('Phase I');
+    expect(phase1Element).toBeInTheDocument();
+
+    const resumeAttendanceElement = await screen.findByText(
+      'Resume Attendance',
+    );
+    expect(resumeAttendanceElement).toBeInTheDocument();
+
+    fireEvent.click(resumeAttendanceElement);
+
+    const confirmBtn = screen.getByText('Confirm');
+    expect(confirmBtn).toBeInTheDocument();
+    fireEvent.click(confirmBtn);
   });
 });

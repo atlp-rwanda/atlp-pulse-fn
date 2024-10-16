@@ -88,7 +88,6 @@ function Orglogin() {
     }
   };
   const names = name.replace(/ /gi, '').toLowerCase();
-  // console.log(names)
   const completeOrgUrl = `${names}`;
 
   return (

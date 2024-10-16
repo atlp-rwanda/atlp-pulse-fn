@@ -24,13 +24,13 @@ import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
 
 /* istanbul ignore next */
-interface UserInterface {
+export interface UserInterface {
   id: string;
   email: string;
   role: string;
   status: {
-    date: string;
-    reason: string;
+    date: string | null;
+    reason: string | null;
     status: string;
   };
   profile: {
@@ -42,7 +42,7 @@ interface UserInterface {
     biography?: string;
     avatar?: string;
     id?: string;
-    name?: string;
+    name: string;
   };
 }
 interface TeamData {
@@ -55,6 +55,7 @@ interface TeamData {
     name: string;
   };
   cohort: {
+    coordinator?: UserInterface;
     name: string;
     phase: {
       id: string;
@@ -148,10 +149,13 @@ function TraineeAttendanceTracker() {
   const [resetDayAndWeek, setResetDayAndWeek] = useState<boolean>(true);
   const [selectedTeamId, setSelectedTeamId] = useState('');
   const [selectedTeamData, setSelectedTeamData] = useState<TeamData>();
-  const [selectedTeamTrainees, setSelectedTeamTrainees] =
-    useState<UserInterface[]>();
+  const [selectedTeamTrainees, setSelectedTeamTrainees] = useState<
+    UserInterface[]
+  >([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdatedMode, setIsUpdatedMode] = useState<boolean>(false);
+  const [pauseResumeAttendance, setPauseResumeAttendance] =
+    useState<boolean>(false);
   const [deleteAttendance, { loading: loadingDeleteAttendance }] =
     useMutation(DELETE_ATTENDANCE);
   const [updated, setUpdate] = useState<boolean>(false);
@@ -184,6 +188,7 @@ function TraineeAttendanceTracker() {
   const [pauseAndResumeTeamAttendance, { loading: loadingPRTeamAttendance }] =
     useMutation(PAUSE_AND_RESUME_ATTENDANCE, {
       onCompleted: (data) => {
+        setPauseResumeAttendance(false);
         setSelectedWeek(undefined);
         setAttendanceData(
           data.pauseAndResumeTeamAttendance.sanitizedAttendance,
@@ -204,6 +209,7 @@ function TraineeAttendanceTracker() {
         });
       },
       onError: (error) => {
+        setPauseResumeAttendance(false);
         const errorMessage =
           error.graphQLErrors?.[0]?.message || 'An unexpected error occurred';
         toast.error(errorMessage);
@@ -223,7 +229,15 @@ function TraineeAttendanceTracker() {
             fetchPolicy: 'no-cache',
             variables: { orgToken },
             onCompleted: (data) => {
-              setTeamsData(data.getAllTeams);
+              setTeamsData((prevData) => {
+                const result = (data.getAllTeams as Array<TeamData>).filter(
+                  (team) =>
+                    team.cohort &&
+                    team.cohort.coordinator &&
+                    team.cohort.coordinator.id === user.userId,
+                );
+                return result;
+              });
               setSelectedTeam(data.getAllTeams[0].name);
               setSelectedTeamData(data.getAllTeams[0]);
               data.getAllTeams[0].isJobActive &&
@@ -297,6 +311,7 @@ function TraineeAttendanceTracker() {
           team: selectedTeamId,
         },
         onCompleted: (data) => {
+          setSelectedDayDate('');
           selectedTeamData?.isJobActive &&
             selectedTeamData.active &&
             setSelectedPhase({
@@ -362,8 +377,10 @@ function TraineeAttendanceTracker() {
       const attendanceWeek = attendanceData.attendanceWeeks.filter(
         (attendanceWeek: any) => attendanceWeek.phase.id === selectedPhase?.id,
       );
-      setWeeks(attendanceWeek[0].weeks);
-      const tempWeeks = [...attendanceWeek[0].weeks];
+      attendanceWeek.length ? setWeeks(attendanceWeek[0].weeks) : setWeeks([1]);
+      const tempWeeks = attendanceWeek.length
+        ? [...attendanceWeek[0].weeks]
+        : [0];
       tempWeeks.sort((a, b) => a - b);
       setWeeks(tempWeeks);
       setSelectedWeek(tempWeeks[tempWeeks.length - 1]);
@@ -504,11 +521,15 @@ function TraineeAttendanceTracker() {
   // Check if date for selected day is valid
   useEffect(() => {
     setIsValidAttendanceDay((prevData) =>
-      Object.values(validDate).some(
-        (date) =>
-          new Date(Number(date)).toISOString().split('T')[0] ===
-          selectedDayDate,
-      ),
+      Object.values(validDate).some((date) => {
+        const newDate = new Date(Number(date));
+        if (newDate.getUTCHours() >= 22) {
+          newDate.setUTCDate(newDate.getUTCDate() + 1);
+          newDate.setUTCHours(0, 0, 0, 0); // Set the time to midnight of the next day
+        }
+
+        return newDate.toISOString().split('T')[0] === selectedDayDate;
+      }),
     );
   }, [selectedDayDate]);
 
@@ -530,6 +551,55 @@ function TraineeAttendanceTracker() {
         teamName={selectedTeam}
         setAttendanceData={setAttendanceData}
       />
+      {pauseResumeAttendance && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-50 p-4">
+          <div className="flex flex-col justify-between bg-tertiary dark:bg-dark-bg h-[13rem] xmd:h-[15rem] w-[27rem] rounded-md p-4">
+            <div className="xmd:pt-1 pb-2 xmd:pb-3 pl-2 border-b-2 border-neutral-600 dark:border-white font-bold text-[.92rem] xmd:text-[.98rem]">
+              <p>
+                {selectedTeamData?.isJobActive
+                  ? 'Pause Attendance'
+                  : 'Resume Attendance'}
+              </p>
+            </div>
+            <p className="text-[.82rem]  xmd:text-[.88rem] text-justify mx-2 font-normal">
+              {selectedTeamData?.isJobActive
+                ? "By confirming, automatic attendance week additions for upcoming weeks will be paused. You can still record attendance for the current week. Don't worry you can reactivate this feature at any time!."
+                : "By confirming, automatic attendance week additions for upcoming weeks will be activated again. If you ever wish to pause this feature again, it's easy to do!"}
+            </p>
+            <div className="flex justify-end gap-x-3 text-[.83rem] xmd:text-[.93rem] font-medium mt-1 text-white">
+              <button
+                type="button"
+                onClick={() => setPauseResumeAttendance(false)}
+                className="bg-neutral-600/80 dark:bg-neutral-600 hover:bg-neutral-600/75 h-[1.9rem] xmd:h-[2.15rem] px-3 xmd:px-4 rounded-[4px]"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  !loadingPRTeamAttendance &&
+                    pauseAndResumeTeamAttendance({
+                      variables: {
+                        team: selectedTeamId,
+                        orgToken: localStorage.getItem('orgToken'),
+                      },
+                    });
+                }}
+                disabled={loadingPRTeamAttendance}
+                className="bg-primary hover:bg-primary/75 h-[1.9rem] xmd:h-[2.15rem] w-20 xmd:w-[5.4rem] rounded-[4px]"
+              >
+                {!loadingPRTeamAttendance ? (
+                  <span>Confirm</span>
+                ) : (
+                  <div className="flex items-center justify-center">
+                    <PulseLoader size={9} color="#FFFFFF" />
+                  </div>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="">
         <div className="flex flex-col gap-y-5 xmd:gap-y-9 rounded-md w-full mt-1 xmd:mt-0">
           <div className="text-lg xmd:text-xl font-semibold">
@@ -573,7 +643,7 @@ function TraineeAttendanceTracker() {
                     ))}
                   {!teamLoading && !teamsData?.length && (
                     <option value="" disabled>
-                      No teams.
+                      No teams
                     </option>
                   )}
                 </select>
@@ -614,7 +684,7 @@ function TraineeAttendanceTracker() {
                     phase.id === selectedPhase?.id
                       ? 'border-black dark:border-white dark:text-white'
                       : 'dark:border-neutral-600 dark:text-neutral-500 border-neutral-400 text-neutral-500 '
-                  } h-6 xmd:h-7 px-2 xmd:px-3 border-b-4 capitalize cursor-pointer font-medium whitespace-nowrap text-[.85rem] xmd:text-[.95rem]`}
+                  } h-6 xmd:h-7 px-2 xmd:px-3 border-b-[3px] capitalize cursor-pointer font-medium whitespace-nowrap text-[.85rem] xmd:text-[.95rem]`}
                   onClick={() => {
                     if (isUpdatedMode && selectedPhase !== phase && updated) {
                       toast.warning('First Discard or Update your changes', {
@@ -661,7 +731,7 @@ function TraineeAttendanceTracker() {
             </div>
           </div>
 
-          <div className="flex justify-between items-center border border-neutral-400/60 dark:border-neutral-600 h-[1.85rem] xmd:h-9 text-[.83rem] xmd:text-base">
+          <div className="flex justify-between items-center border-2 border-neutral-400/60 dark:border-neutral-600 h-[1.85rem] xmd:h-9 text-[.83rem] xmd:text-base">
             {['mon', 'tue', 'wed', 'thu', 'fri'].map((day, index) => (
               <div
                 // eslint-disable-next-line react/no-array-index-key
@@ -670,7 +740,7 @@ function TraineeAttendanceTracker() {
                   selectedDay === day
                     ? 'bg-neutral-400/60 dark:bg-neutral-600'
                     : 'hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15'
-                } flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full`}
+                } flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full`}
                 onClick={() => {
                   if (isUpdatedMode && selectedDay !== day && updated) {
                     toast.warning('First Discard or Update your changes', {
@@ -713,7 +783,7 @@ function TraineeAttendanceTracker() {
                   }}
                   data-testid="update-link"
                 >
-                  <LuClipboardEdit className="text-xl" />
+                  <LuClipboardEdit className="text-lg" />
                 </div>
                 <div
                   onClick={() => {
@@ -728,33 +798,49 @@ function TraineeAttendanceTracker() {
                   }}
                   className="flex gap-x-1 items-center cursor-pointer"
                 >
-                  <RiDeleteBin6Line className="text-xl" />
+                  <RiDeleteBin6Line className="text-lg" />
+                </div>
+                <div
+                  onClick={() => {
+                    setPauseResumeAttendance(true);
+                  }}
+                  className="flex gap-x-[5px] items-center cursor-pointer"
+                >
+                  {selectedTeamData?.isJobActive ? (
+                    <FaRegCirclePause className="text-[1.12rem]" />
+                  ) : (
+                    <FaRegCirclePlay className="text-[1.12rem]" />
+                  )}
                 </div>
               </div>
             </div>
             <div className="overflow-x-scroll xmd:overflow-hidden">
               <table className="w-full overflow-hidden border border-neutral-400 dark:border-neutral-600">
                 <thead>
-                  <tr className="bg-neutral-400/60 dark:bg-neutral-600 h-8 xmd:h-10 text-[.84rem] xmd:text-base">
+                  <tr className="bg-neutral-400/60 dark:bg-neutral-600 h-8 xmd:h-10 md:h-[2.7rem] text-[.84rem] xmd:text-base">
                     <th
                       className={`${
                         isUpdatedMode ? 'w-[35%] ' : 'w-[40%]'
-                      } text-left pl-2 xmd:pl-10`}
+                      } text-left pl-2 xmd:pl-10 font-semibold`}
                     >
                       Names
                     </th>
                     <th
                       className={`${
                         isUpdatedMode ? 'w-[35%] ' : 'w-[40%]'
-                      } text-left pl-2 xmd:pl-10`}
+                      } text-left pl-2 xmd:pl-10 font-semibold`}
                     >
                       Email
                     </th>
-                    <th className={`${isUpdatedMode ? 'w-[15%]' : 'w-[20%]'}`}>
+                    <th
+                      className={`${
+                        isUpdatedMode ? 'w-[15%]' : 'w-[20%]'
+                      } font-semibold`}
+                    >
                       Score
                     </th>
                     {isUpdatedMode && (
-                      <th ref={editColumnRef} className="w-[15%]">
+                      <th ref={editColumnRef} className="w-[15%] font-semibold">
                         Action
                       </th>
                     )}
@@ -774,7 +860,7 @@ function TraineeAttendanceTracker() {
                             <tr
                               // eslint-disable-next-line react/no-array-index-key
                               key={index}
-                              className="even:bg-neutral-400/20 dark:even:bg-black/20  h-10 font-light"
+                              className="even:bg-neutral-400/20 dark:even:bg-black/20  h-10 even:border-y border-neutral-400/30 dark:border-neutral-600/40"
                             >
                               <td
                                 className="pl-2 xmd:pl-10 whitespace-nowrap"
@@ -852,7 +938,7 @@ function TraineeAttendanceTracker() {
                       ) {
                         return (
                           <tr key={`no-attendance-${selectedDay}`}>
-                            <td colSpan={3} className="text-center h-20">
+                            <td colSpan={3} className="text-center h-28">
                               There is no attendance for the selected day
                             </td>
                           </tr>
@@ -862,7 +948,7 @@ function TraineeAttendanceTracker() {
                     })}
                   {(teamsLoading || teamAttendanceLoading) && (
                     <tr key="no-attendance-abc">
-                      <td colSpan={3} className="text-center h-20">
+                      <td colSpan={3} className="text-center h-28">
                         Loading Data...
                       </td>
                     </tr>
@@ -871,7 +957,7 @@ function TraineeAttendanceTracker() {
                     !teamAttendanceLoading &&
                     !traineeAttendanceData.length && (
                       <tr key="no-attendance-xyz">
-                        <td colSpan={3} className="text-center h-20">
+                        <td colSpan={3} className="text-center h-28">
                           There is no attendance for the selected day
                         </td>
                       </tr>
@@ -962,13 +1048,7 @@ function TraineeAttendanceTracker() {
               </div>
               <div
                 onClick={() => {
-                  !loadingPRTeamAttendance &&
-                    pauseAndResumeTeamAttendance({
-                      variables: {
-                        team: selectedTeamId,
-                        orgToken: localStorage.getItem('orgToken'),
-                      },
-                    });
+                  setPauseResumeAttendance(true);
                 }}
                 className="flex gap-x-[5px] items-center ml-4 cursor-pointer hover:text-primary font-medium leading-3"
               >
@@ -978,13 +1058,9 @@ function TraineeAttendanceTracker() {
                   <FaRegCirclePlay className="text-[1.125rem]" />
                 )}
                 <span>
-                  {loadingPRTeamAttendance
-                    ? 'Please wait ...'
-                    : `${
-                        selectedTeamData?.isJobActive
-                          ? 'Pause Attendance'
-                          : 'Resume Attendance'
-                      }`}
+                  {selectedTeamData?.isJobActive
+                    ? 'Pause Attendance'
+                    : 'Resume Attendance'}
                 </span>
               </div>
             </div>
