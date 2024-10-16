@@ -44,7 +44,7 @@ describe('attendance update button', () => {
         <MemoryRouter>
           <EditAttendenceButton
             day="mon"
-            week="3"
+            week={3}
             traineeId="trainee-id-1234"
             setUpdated={(value) => value}
             phase="Phase !"
@@ -67,7 +67,7 @@ describe('attendance update button', () => {
       <MemoryRouter>
         <EditAttendenceButton
           day="mon"
-          week="1"
+          week={1}
           traineeId="trainee-id-1234"
           setUpdated={setUpdatedMock}
           phase="Phase I"
@@ -93,7 +93,7 @@ describe('attendance update button', () => {
       <MemoryRouter>
         <EditAttendenceButton
           day="mon"
-          week="1"
+          week={1}
           traineeId="trainee-id-1234"
           setUpdated={setUpdatedMock}
           phase="Phase I"
@@ -119,7 +119,7 @@ describe('attendance update button', () => {
       <MemoryRouter>
         <EditAttendenceButton
           day="mon"
-          week="1"
+          week={1}
           traineeId="trainee-id-1234"
           setUpdated={setUpdatedMock}
           phase="Phase I"

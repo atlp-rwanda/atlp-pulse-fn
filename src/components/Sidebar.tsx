@@ -140,24 +140,29 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/sessions" name="Sessions">
               <BookOpenIcon className="w-5" />
             </SideNavLink>
-            <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
-              <ClipboardCheckIcon className="w-5 " />
-            </SideNavLink>
 
             <SideNavLink onClick={toggle} name="Docs" to="/coordinatorDocs">
               <FolderIcon className="w-5" />
             </SideNavLink>
           </CheckRole>
 
-          {/* manger role */}
-          <CheckRole roles={['manager']}>
-            <SideNavLink onClick={toggle} name="Teams" to="/team-cards">
-              <UserGroupIcon className="w-5" />
-            </SideNavLink>
-          </CheckRole>
           {/* TTL role */}
           <CheckRole roles={['ttl']}>
             <SideNavLink onClick={toggle} to="/ttl-trainees" name="Trainees">
+              <UserGroupIcon className="w-5" />
+            </SideNavLink>
+          </CheckRole>
+          
+          {/* FOR COORDINATORS AND A TTL */}
+          <CheckRole roles={['coordinator', 'ttl']}>
+            <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
+              <ClipboardCheckIcon className="w-5 " />
+            </SideNavLink>
+          </CheckRole>
+
+          {/* manger role */}
+          <CheckRole roles={['manager']}>
+            <SideNavLink onClick={toggle} name="Teams" to="/team-cards">
               <UserGroupIcon className="w-5" />
             </SideNavLink>
           </CheckRole>
@@ -186,7 +191,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           </SideNavLink>
 
           <SideNavLink onClick={toggle} name="Help" to="/support">
-            <SupportIcon className="w-5 text-red-700 dark:text-red-600 hover:text-red-900" />
+            <SupportIcon className="w-5" />
           </SideNavLink>
           <SideNavLink onClick={logout} to="#link">
             <LogoutIcon className="w-5 text-red-700 dark:text-red-600 hover:text-red-900" />

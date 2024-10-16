@@ -104,6 +104,7 @@ function AdminLogin() {
           }
         },
         onError: (err) => {
+          console.log(err)
           if (err.networkError)
             toast.error('There was a problem contacting the server');
           else if (err.message.toLowerCase() !== 'invalid credential') {
