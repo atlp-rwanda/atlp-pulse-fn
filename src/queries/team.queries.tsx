@@ -28,6 +28,7 @@ export const GET_ALL_TEAMS = gql`
       members {
         id
         email
+        role
         status {
           date
           reason

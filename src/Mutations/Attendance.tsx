@@ -2,43 +2,110 @@ import { gql } from '@apollo/client';
 
 export const RECORD_ATTENDANCE = gql`
   mutation RecordAttendance(
+    $today: Boolean!
+    $yesterday: Boolean!
     $week: Int!
     $team: String!
-    $date: String!
     $trainees: [TraineeInput!]!
     $orgToken: String!
   ) {
     recordAttendance(
+      today: $today
+      yesterday: $yesterday
       week: $week
       team: $team
-      date: $date
       trainees: $trainees
       orgToken: $orgToken
     ) {
-      team {
-        id
-        name
-        cohort {
+      today
+      yesterday
+      attendanceWeeks {
+        phase {
           id
           name
-          phase {
-            name
-            id
-          }
         }
+        weeks
       }
-      trainees {
-        trainee {
-          profile {
-            name
-          }
-          email
+      attendance {
+        week
+        phase {
           id
+          name
         }
-        status {
-          day
-          date
-          score
+        dates {
+          mon {
+            date
+            isValid
+          }
+          tue {
+            date
+            isValid
+          }
+          wed {
+            date
+            isValid
+          }
+          thu {
+            date
+            isValid
+          }
+          fri {
+            date
+            isValid
+          }
+        }
+        days {
+          mon {
+            trainee {
+              id
+              email
+              profile {
+                id
+                name
+              }
+            }
+            score
+          }
+          tue {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          wed {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          thu {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          fri {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
         }
       }
     }
