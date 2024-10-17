@@ -42,6 +42,7 @@ interface Invitationn {
 
 function Invitation() {
   const [invitationStats, setInvitationStats] = useState<any>(null);
+  const [sortBy,setSortBy]=useState<number>(-1)
   const [invitations, setInvitations] = useState<Invitationn[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -127,6 +128,7 @@ function Invitation() {
   } = useQuery(GET_ALL_INVITATIONS, {
     variables:{
       orgToken: organizationToken,
+      sortBy:sortBy
     },
     fetchPolicy: 'network-only',
   });
@@ -202,6 +204,7 @@ function Invitation() {
     variables: {
      query: searchQuery,
      orgToken: organizationToken,
+     sortBy:sortBy
     },
     fetchPolicy: 'network-only',
   });
@@ -220,6 +223,7 @@ function Invitation() {
           role: filterVariables.role || null,
           status:filterVariables.status || null,
           orgToken: organizationToken,
+          sortBy:sortBy
         },
     });
     }
@@ -300,7 +304,6 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
       toast.info('Please select role or status.');
       return;
     }
-
     setInvitations([]);
     setError(null);
     setLoading(false);
@@ -309,6 +312,11 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
       role: selectedRole,
       status: typeof selectedStatus === 'string' ? selectedStatus : '',
     });
+    filterInvitations({
+      variables:{
+        sortBy:sortBy
+      }
+    })
  
   };
 
@@ -631,6 +639,18 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
       }, 500);
     },
   });
+
+
+  useEffect(()=>{
+      refetch()
+   
+  },[sortBy])
+const  changeSortQuery=(e:React.ChangeEvent<HTMLSelectElement>)=>{
+let sortBy=parseInt(e.target.value)
+setSortBy(sortBy)
+
+}
+
   return (
     <div className="w-full ">
       {/* Header and Invite Button */}
@@ -826,12 +846,12 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
               <div>
                 <select
                     className="w-full max-w-xs sm:px-2 px-0 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
-                    value={selectedSort}
-                    onChange={(e) => setSelectedSort(e.target.value)}
+                    value={sortBy}
+                    onChange={changeSortQuery}
                   >
                     <option value="">Sort by</option>
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
+                    <option value="-1">Newest</option>
+                    <option value="1">Oldest</option>
                 </select>
               </div>
             </div>
