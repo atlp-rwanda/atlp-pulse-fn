@@ -39,12 +39,14 @@ const LoginActivitiesTable: React.FC = () => {
   const [loginActivities, setLoginActivities] = useState<LoginActivity[]>([]);
 
   const { loading, data, error } = useQuery<Response>(GET_LOGIN_ACTIVITIES);
+
   /* istanbul ignore next */
   useEffect(() => {
     if (error) {
       setLoginActivities([]);
     }
   }, [error]);
+
   /* istanbul ignore next */
   useEffect(() => {
     if (data) {
@@ -55,7 +57,7 @@ const LoginActivitiesTable: React.FC = () => {
         // Create a copy of the profile.activity array before sorting it
         const sortedActivities = [...profile.activity]
           .filter((activity) => activity && activity.date)
-          .sort((a, b) => Number(a.date) - Number(b.date));
+          .sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)));
 
         // Use reduce to filter out duplicates based on the date property
         const uniqueActivities = sortedActivities.reduce(
@@ -68,7 +70,7 @@ const LoginActivitiesTable: React.FC = () => {
           [],
         );
 
-        setLoginActivities(uniqueActivities.reverse()); // Reversing the array to show most recent first
+        setLoginActivities(uniqueActivities.reverse());
       } else {
         setLoginActivities([]);
       }
@@ -79,6 +81,7 @@ const LoginActivitiesTable: React.FC = () => {
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
+
   /* istanbul ignore next */
   const handleGoBack = () => {
     if (page > 1) {
@@ -90,25 +93,26 @@ const LoginActivitiesTable: React.FC = () => {
   const totalActivities = loginActivities.length;
   const totalPages = Math.ceil(totalActivities / pageSize);
 
-  // Calculate the start and end index for the current page
   const startIndex = (page - 1) * pageSize;
   const endIndex = Math.min(startIndex + pageSize, totalActivities);
 
-  // Get the activities to display on the current page
   const displayActivities = loginActivities.slice(startIndex, endIndex);
+  console.log('displayActivities', displayActivities);
 
   if (loading && page === 1) {
     return <div>Loading login activities...</div>;
   }
+
   /* istanbul ignore next */
   if (error) {
     return <div>Error retrieving login activities.</div>;
   }
-  /* istanbul ignore next */
+
   /* istanbul ignore next */
   if (displayActivities.length === 0) {
     return <div>No login activities yet.</div>;
   }
+
   /* istanbul ignore next */
   return (
     <div className="flex flex-col items-center mt-4 font-serif">
@@ -124,18 +128,20 @@ const LoginActivitiesTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {displayActivities.map((activity) => (
+          {displayActivities.map((activity, index) => (
             <tr
-              key={activity.country_name}
+              key={`${activity.date || index}-${activity.IPv4 || index}`}
               className="transition-colors duration-200"
             >
               <td className="py-2 px-4 border">
                 {new Date(Number(activity.date)).toLocaleString()}
               </td>
-              <td className="py-2 px-4 border">{activity.country_name}</td>
+              <td className="py-2 px-4 border">
+                {activity.country_name || 'N/A'}
+              </td>
               <td className="py-2 px-4 border">{activity.city || 'N/A'}</td>
               <td className="py-2 px-4 border">{activity.state || 'N/A'}</td>
-              <td className="py-2 px-4 border">{activity.IPv4}</td>
+              <td className="py-2 px-4 border">{activity.IPv4 || 'N/A'}</td>
               <td className="py-2 px-4 border">
                 {activity.failed > 0 ? 'Failed' : 'Success'}
               </td>
