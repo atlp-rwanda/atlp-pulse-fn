@@ -39,21 +39,25 @@ const LoginActivitiesTable: React.FC = () => {
   const [loginActivities, setLoginActivities] = useState<LoginActivity[]>([]);
 
   const { loading, data, error } = useQuery<Response>(GET_LOGIN_ACTIVITIES);
+
   /* istanbul ignore next */
   useEffect(() => {
     if (error) {
       setLoginActivities([]);
     }
   }, [error]);
+
   /* istanbul ignore next */
   useEffect(() => {
     if (data) {
       const profile = data.getProfile;
       if (profile && profile.activity) {
+        console.log('profile activity', profile.activity);
+
         // Create a copy of the profile.activity array before sorting it
-        const sortedActivities = [...profile.activity].sort(
-          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-        );
+        const sortedActivities = [...profile.activity]
+          .filter((activity) => activity && activity.date)
+          .sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)));
 
         // Use reduce to filter out duplicates based on the date property
         const uniqueActivities = sortedActivities.reduce(
@@ -66,7 +70,7 @@ const LoginActivitiesTable: React.FC = () => {
           [],
         );
 
-        setLoginActivities(uniqueActivities.reverse()); // Reversing the array to show most recent first
+        setLoginActivities(uniqueActivities.reverse());
       } else {
         setLoginActivities([]);
       }
@@ -77,6 +81,7 @@ const LoginActivitiesTable: React.FC = () => {
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
+
   /* istanbul ignore next */
   const handleGoBack = () => {
     if (page > 1) {
@@ -88,96 +93,56 @@ const LoginActivitiesTable: React.FC = () => {
   const totalActivities = loginActivities.length;
   const totalPages = Math.ceil(totalActivities / pageSize);
 
-  // Calculate the start and end index for the current page
   const startIndex = (page - 1) * pageSize;
   const endIndex = Math.min(startIndex + pageSize, totalActivities);
 
-  // Get the activities to display on the current page
   const displayActivities = loginActivities.slice(startIndex, endIndex);
+  console.log('displayActivities', displayActivities);
 
   if (loading && page === 1) {
     return <div>Loading login activities...</div>;
   }
+
   /* istanbul ignore next */
   if (error) {
     return <div>Error retrieving login activities.</div>;
   }
-  /* istanbul ignore next */
+
   /* istanbul ignore next */
   if (displayActivities.length === 0) {
     return <div>No login activities yet.</div>;
   }
+
   /* istanbul ignore next */
   return (
     <div className="flex flex-col items-center mt-4 font-serif">
-      <table className="flex flex-col flex-wrap w-full pt-[6em] justify-end pl-0 lg:pl-[10em] ">
-        {/* Render login activities from the loginActivities state */}
-        <thead className="flex flex-wrap w-full justify-evenly ">
-          <tr className="flex w-full text-[#148fb6]">
-            <th className="w-[25%]">Date</th>
-            <th className="w-[18%]">Country Name</th>
-            <th className="w-[15%]">City</th>
-            <th className="w-[10%]">State</th>
-            <th className="w-[20%]">IPv4</th>
-            <th className="w-[15%]">Attempt</th>
+      <table className="w-full border border-gray-300">
+        <thead className="bg-[#163274a3] text-white">
+          <tr>
+            <th className="py-2 px-4 border">Date</th>
+            <th className="py-2 px-4 border">Country Name</th>
+            <th className="py-2 px-4 border">City</th>
+            <th className="py-2 px-4 border">State</th>
+            <th className="py-2 px-4 border">IPv4</th>
+            <th className="py-2 px-4 border">Attempt</th>
           </tr>
         </thead>
-
-        <tbody className="flex flex-col flex-wrap my-2">
-          {displayActivities.map((activity) => (
-            /* istanbul ignore next */
+        <tbody>
+          {displayActivities.map((activity, index) => (
             <tr
-              className="w-full flex flex-wrap lg:pl-[3em] pt-2"
-              key={activity.country_name}
+              key={`${activity.date || index}-${activity.IPv4 || index}`}
+              className="transition-colors duration-200"
             >
-              <td className="md:w-[25%] border-r border-[#148fb6]">
-                {new Date(activity.date).toLocaleString()}{' '}
-                {/* Convert UTC date to local time */}
+              <td className="py-2 px-4 border">
+                {new Date(Number(activity.date)).toLocaleString()}
               </td>
-              <td className="md:w-[15%] border-r border-[#148fb6]">
-                {activity.country_name}
+              <td className="py-2 px-4 border">
+                {activity.country_name || 'N/A'}
               </td>
-
-              <td className="md:w-[15%] border-r border-[#148fb6]">
-                {activity.city || 'N/A'}
-              </td>
-              <td className="md:w-[15%] border-r border-[#148fb6]">
-                {activity.state || 'N/A'}
-              </td>
-              <td className="md:w-[20%] border-r border-[#148fb6]">
-                {activity.IPv4}
-              </td>
-              <td className="md:w-[10%] ">
-                {activity.failed > 0 ? 'Failed' : 'Success'}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-
-        <tbody className="flex flex-col flex-wrap my-2">
-          {displayActivities.map((activity) => (
-            <tr
-              className="w-full flex flex-wrap lg:pl-[3em] pt-2"
-              key={activity.country_name}
-            >
-              <td className="md:w-[25%] border-r border-[#148fb6]">
-                {new Date(activity.date).toLocaleString()}{' '}
-                {/* Convert UTC date to local time */}
-              </td>
-              <td className="md:w-[15%] border-r border-[#148fb6]">
-                {activity.country_name}
-              </td>
-
-              <td className="md:w-[15%] border-r border-[#148fb6]">
-                {activity.city || 'N/A'}
-              </td>
-              <td className="md:w-[15%] border-r border-[#148fb6]">
-                {activity.state || 'N/A'}
-              </td>
-              <td className="md:w-[20%] border-r border-[#148fb6]">
-                {activity.IPv4}
-              </td>
-              <td className="md:w-[10%] ">
+              <td className="py-2 px-4 border">{activity.city || 'N/A'}</td>
+              <td className="py-2 px-4 border">{activity.state || 'N/A'}</td>
+              <td className="py-2 px-4 border">{activity.IPv4 || 'N/A'}</td>
+              <td className="py-2 px-4 border">
                 {activity.failed > 0 ? 'Failed' : 'Success'}
               </td>
             </tr>
@@ -185,14 +150,13 @@ const LoginActivitiesTable: React.FC = () => {
         </tbody>
       </table>
 
-      {/* Pagination at the bottom of the page */}
-      <div className="flex justify-center mb-20">
+      <div className="flex justify-center mb-20 mt-4">
         <span className="mr-2 text-gray-600">
           Page {page} of {totalPages}
         </span>
         {page > 1 && (
           <button
-            className="px-4 py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-700"
+            className="px-4 py-2 mr-2 font-bold text-white bg-gray-500 rounded"
             onClick={handleGoBack}
           >
             Previous
@@ -200,7 +164,7 @@ const LoginActivitiesTable: React.FC = () => {
         )}
         {page < totalPages && (
           <button
-            className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 "
+            className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             onClick={handleLoadMore}
           >
             Next
