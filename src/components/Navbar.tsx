@@ -7,6 +7,7 @@ import Button from './Buttons';
 import WithClickOutside from './WithClickOutside';
 import ToggleThemeButton from './TogglethemeIcon';
 import LogoIcon from './logoIcon';
+import MobileDropdown from './Docs/MobileDropdown';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const orgToken: any = localStorage.getItem('orgToken');
@@ -17,6 +18,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const pathname = location.pathname.split('/')[1];
   const handleClick = () => setOpen(!open);
   const { user, logout } = useContext(UserContext);
+  const [mobileDocsOpen, setMobileDocsOpen] = useState<boolean>(false);
 
   const goTo = orgToken ? '/users/login' : '/login/org';
   // scroll behaviour to header
@@ -150,7 +152,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         className={
           !open
             ? 'hidden'
-            : 'absolute bg-indigo-200 dark:bg-dark-bg w-1/8 justify-end px-8 m-1 right-0 lg:hidden'
+            : 'absolute bg-white dark:bg-dark-bg w-[320px] justify-end px-4 m-1 right-0 lg:hidden'
         }
       >
         <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
@@ -163,6 +165,25 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         ) : (
           ' '
         )}
+        <li className="w-full p-2 dark:text-dark-text-fill">
+          <Link to="/product" className="w-full">
+            {t('Product')}
+          </Link>
+        </li>
+        <div className="flex flex-col p-2 dark:text-dark-text-fill">
+          <div
+            onClick={() => setMobileDocsOpen((prev) => !prev)}
+            className="inline-flex gap-2 items-center"
+          >
+            <p>{t('Docs')}</p>
+            <span>{mobileDocsOpen ? '▲' : '▼'}</span>
+          </div>
+          {mobileDocsOpen && (
+            <div className="ml-4">
+              <MobileDropdown />
+            </div>
+          )}
+        </div>
         <li className="p-2 w-56 text-center dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md">
           <Link to={user?.auth ? '/dashboard' : goTo} className="w-full">
             {' '}

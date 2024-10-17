@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function SideBarDocs() {
+function MobileDropdown() {
   return (
-    <section className="py-5 font-serif">
+    <section className="py-1 pt-2 font-serif max-h-[300px] pr-3 overflow-auto custom-scrollbar">
       <ul className="py-2 flex flex-col gap-4 text-[16px]">
         <NavLink
           className={(navData) => {
@@ -38,4 +38,4 @@ function SideBarDocs() {
   );
 }
 
-export default SideBarDocs;
+export default MobileDropdown;

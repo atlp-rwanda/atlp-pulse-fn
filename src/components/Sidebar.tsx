@@ -125,7 +125,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
             <SideNavLink onClick={toggle} to="/manage" name="Roles & Access">
               <KeyIcon className="w-5" />
             </SideNavLink>
-            <SideNavLink onClick={toggle} name="Docs" to="/adminDocs">
+            <SideNavLink onClick={toggle} name="Docs" to="/docs/admin">
               <FolderIcon className="w-5 " />
             </SideNavLink>
           </CheckRole>
@@ -161,6 +161,12 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
               <UserGroupIcon className="w-5" />
             </SideNavLink>
           </CheckRole>
+
+          <CheckRole roles={['ttl']}>
+            <SideNavLink onClick={toggle} to="/docs/ttl" name="Docs">
+              <FolderIcon className="w-5" />
+            </SideNavLink>
+          </CheckRole>
           {/* FOR TRAINEES */}
           <CheckRole roles={['trainee']}>
             <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
@@ -170,7 +176,7 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
               <TrendingUpIcon className="w-5" />
             </SideNavLink>
 
-            <SideNavLink onClick={toggle} name="Docs" to="/traineeDocs">
+            <SideNavLink onClick={toggle} name="Docs" to="/docs/trainee">
               <FolderIcon className="w-5" />
             </SideNavLink>
           </CheckRole>

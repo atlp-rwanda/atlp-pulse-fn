@@ -2,25 +2,42 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable react/button-has-type */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLazyQuery } from '@apollo/client';
 import DataTable from '../DataTable';
 import Modal from './DocModel';
 import Button from '../Buttons';
 import useDocumentTitle from '../../hook/useDocumentTitle';
+import { GET_DOCUMENTATION } from '../../queries/manageStudent.queries';
 
 function CoordinatorDocs() {
-  useDocumentTitle('How to Rate Trainees');
+  useDocumentTitle('Coordinator Docs');
   const { t } = useTranslation();
-  const [selectedContent, setSelectedContent] = useState<string | null>(null);
-
-  const [page, setPage] = useState<string | null>('');
-
+  const [documentations, setDocumentations] = useState<any[]>([]);
+  const [selectedContent, setSelectedContent] = useState<any | null>(null);
+  const [openedDoc, setOpenedDoc] = useState<string | null>(null);
   const columns = [{ Header: t('Contents'), accessor: 'Contents' }];
 
-  const handleRowClick = (content: string) => {
-    setSelectedContent(content);
-  };
+  const [getDocumentations, { loading }] = useLazyQuery(GET_DOCUMENTATION, {
+    fetchPolicy: 'network-only',
+
+    onCompleted: (data) => {
+      setDocumentations(
+        data.getDocumentations.filter(
+          (documentation: any) =>
+            documentation.for.toLowerCase() === 'coordinator' ||
+            documentation.for.toLowerCase() === 'not trainees' ||
+            documentation.for.toLowerCase() === 'all users',
+        ),
+      );
+    },
+    onError: (error) => {},
+  });
+
+  useEffect(() => {
+    getDocumentations();
+  }, []);
 
   const closeModal = () => {
     setSelectedContent(null);
@@ -136,10 +153,11 @@ function CoordinatorDocs() {
   );
 
   const togglePage = (pageNumber: string) => {
-    if (page === pageNumber) {
-      setPage(null);
+    if (openedDoc === pageNumber) {
+      setOpenedDoc(null);
     } else {
-      setPage(pageNumber);
+      setOpenedDoc(null);
+      setOpenedDoc(pageNumber);
     }
   };
 
@@ -151,28 +169,97 @@ function CoordinatorDocs() {
 
   const tableData2 = contents2.map((content) => ({ Contents: content }));
 
+  const retrivedCoordinatorDocs = (
+    <>
+      {!loading &&
+        documentations.length > 0 &&
+        documentations.map((documentation, index: number) => (
+          <React.Fragment key={documentation.id}>
+            <div key={documentation.id} className="flex gap-2 items-center">
+              <p>{index + 3}.</p>
+              <Button
+                variant="primary"
+                size="sm"
+                style="bg-light-bg dark:bg-transparent hover:dark:bg-gray-500 text-light-text dark:text-dark-text-fill"
+                onClick={() => togglePage(`${documentation.id}`)}
+              >
+                {documentation.title}
+              </Button>
+            </div>
+
+            {openedDoc === documentation.id && (
+              <div>
+                <div className="w-full pr-2 md:w-2/3 mb-10 ml-0 md:ml-48 max-h-[430px] overflow-auto custom-scrollbar">
+                  <div>{documentation.description}</div>
+                </div>
+
+                {!loading && documentation.subDocuments.length > 0 && (
+                  <div>
+                    <DataTable
+                      data={documentation.subDocuments.map(
+                        (subDocument: any) => ({
+                          Contents: (
+                            <Button
+                              key={`${subDocument.title}${subDocument.description}`}
+                              variant="primary"
+                              size="sm"
+                              style="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text-fill -ml-5"
+                              onClick={() => {
+                                setSelectedContent({
+                                  title: subDocument.title,
+                                  description: subDocument.description,
+                                });
+                              }}
+                            >
+                              {t(`${subDocument.title}`)}
+                            </Button>
+                          ),
+                        }),
+                      )}
+                      columns={columns}
+                      title={t('')}
+                    />
+                  </div>
+                )}
+
+                {loading && (
+                  <p className="text-lg text-center">Loading More Docs ...</p>
+                )}
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+    </>
+  );
+
   const page1 = (
     <>
-      <div className="flex items-start">
+      <div className="flex gap-2 items-center">
+        <p>1.</p>
         <Button
           variant="primary"
           size="sm"
-          style="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text-fill -ml-5"
+          style="bg-light-bg dark:bg-transparent hover:dark:bg-gray-500 text-light-text dark:text-dark-text-fill"
           onClick={() => togglePage('p1')}
         >
           {t('How to Rate Trainees')}
         </Button>
       </div>
 
-      {page === 'p1' && (
+      {openedDoc === 'p1' && (
         <div>
-          <div className="w-2/3 px-10 mb-10 ml-0 lg:ml-48">
-            <div className="mt-5 ml-10">
-              {t('Doc introduction Coordinator')}
+          <div className="w-full pr-2 md:w-2/3 mb-10 ml-0 md:ml-48 max-h-[420px] overflow-auto custom-scrollbar">
+            <div>
+              This page provides comprehensive documentation on how to
+              effectively rate trainees within the system. As a coordinator,
+              your ability to provide accurate and insightful ratings plays a
+              crucial role in tracking and evaluating the progress of trainees.
+              This guide will walk you through the steps involved in rating
+              trainees and ensure that you make the most of DevPulse's features
             </div>
           </div>
 
-          <div className="mt-5 text-xl md:text-3xl bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[100%] lg:mx-auto mb-10">
+          <div>
             <DataTable data={tableData1} columns={columns} title={t('')} />
           </div>
         </div>
@@ -182,21 +269,22 @@ function CoordinatorDocs() {
 
   const page2 = (
     <>
-      <div className="flex items-start">
+      <div className="flex gap-2 items-center">
+        <p>2.</p>
         <Button
           variant="primary"
           size="sm"
-          style="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text-fill -ml-5"
+          style="bg-light-bg dark:bg-transparent hover:dark:bg-gray-500 text-light-text dark:text-dark-text-fill"
           onClick={() => togglePage('p2')}
         >
           {t('How to create calendar')}
         </Button>
       </div>
 
-      {page === 'p2' && (
+      {openedDoc === 'p2' && (
         <div>
-          <div className="w-2/3 px-10 mb-10 ml-0 lg:ml-48">
-            <div className="mt-5 ml-10">
+          <div className="w-full pr-2 md:w-4/5 mb-10 ml-0 md:ml-48 max-h-[430px] overflow-auto custom-scrollbar">
+            <div>
               Creating a calendar event is an essential feature that empowers
               coordinators to efficiently schedule and organize crucial dates
               and appointments. In our system, coordinators can easily create
@@ -207,7 +295,7 @@ function CoordinatorDocs() {
             </div>
           </div>
 
-          <div className="mt-5 text-xl md:text-3xl bg-white dark:bg-dark-bg shadow-lg px-5 py-8 rounded-md w-[100%] mx-auto lg:w-[100%] lg:mx-auto mb-10">
+          <div>
             <DataTable data={tableData2} columns={columns} title={t('')} />
           </div>
         </div>
@@ -216,28 +304,30 @@ function CoordinatorDocs() {
   );
 
   return (
-    <div className="flex flex-col pl-10 grow bg-light-bg dark:bg-dark-frame-bg text-light-text dark:text-dark-text-fill font-serif">
+    <div className="flex flex-col px-5 grow bg-light-bg dark:bg-dark-frame-bg text-light-text dark:text-dark-text-fill font-serif">
       {page1}
 
       {page2}
 
+      {retrivedCoordinatorDocs}
+
       {selectedContent && (
         <Modal onClose={closeModal}>
           {selectedContent === 'Accessing Trainee Ratings' && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+            <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-80">
+              <div className="relative overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 pt-3 text-left align-middle shadow-xl transition-all">
                 <button
-                  className="absolute text-gray-500 top-2 right-2 hover:text-gray-800"
+                  className="sticky text-black top-2 ml-[90%] px-2 py-[2px] rounded-[4px] dark:bg-gray-600 bg-gray-200 hover:bg-gray-400 dark:text-white"
                   onClick={closeModal}
                 >
                   close
                 </button>
 
-                <h2 className="mb-4 text-2xl font-bold">
+                <h2 className="mb-4 mt-[2px] text-[16px] sm:text-[20px] font-bold">
                   Details of how trainee ratings can be accessed.
                 </h2>
 
-                <p>
+                <p className="text-[14px] sm:text-[15px]">
                   As a coordinator, accessing trainee ratings is a
                   straightforward process. To begin, click on the "Rating" link
                   in the sidebar. This will direct you to a page where you can
@@ -255,20 +345,20 @@ function CoordinatorDocs() {
           )}
 
           {selectedContent === 'Understanding the Rating Scale' && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+              <div className="relative overflow-auto min-h-[300px] max-h-[500px] lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 pt-3 text-left align-middle shadow-xl transition-all custom-scrollbar">
                 <button
-                  className="absolute text-gray-500 top-2 right-2 hover:text-gray-800"
+                  className="sticky text-black top-2 ml-[90%] px-2 py-[2px] rounded-[4px] dark:bg-gray-600 bg-gray-200 hover:bg-gray-400 dark:text-white"
                   onClick={closeModal}
                 >
                   close
                 </button>
 
-                <h2 className="mb-4 text-2xl font-bold">
+                <h2 className="mb-4 mt-[2px] text-[16px] sm:text-[20px] font-bold">
                   Understanding the Rating Scale
                 </h2>
 
-                <p>
+                <p className="text-[14px] sm:text-[15px]">
                   The rating scale is used to assess trainees based on various
                   criteria. There are three main categories: quality, quantity,
                   and professional skills. Each rating falls into one of three
@@ -299,20 +389,20 @@ function CoordinatorDocs() {
           )}
 
           {selectedContent === 'Submitting Ratings' && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+              <div className="relative overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 pt-3 text-left align-middle shadow-xl transition-all">
                 <button
-                  className="absolute text-gray-500 top-2 right-2 hover:text-gray-800"
+                  className="sticky text-black top-2 ml-[90%] px-2 py-[2px] rounded-[4px] dark:bg-gray-600 bg-gray-200 hover:bg-gray-400 dark:text-white"
                   onClick={closeModal}
                 >
                   close
                 </button>
 
-                <h2 className="mb-4 text-2xl font-bold">
+                <h2 className="mb-4 mt-[2px] text-[16px] sm:text-[20px] font-bold">
                   Creating and Submitting Ratings
                 </h2>
 
-                <p>
+                <p className="text-[14px] sm:text-[15px]">
                   To create and submit ratings for a trainee, click on the "Add
                   New Rating" button on the trainee ratings page. This will open
                   a model where you can choose the trainee and the relevant
@@ -333,19 +423,19 @@ function CoordinatorDocs() {
           )}
 
           {selectedContent === 'Accessing the Calendar' && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+              <div className="relative overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 pt-3 text-left align-middle shadow-xl transition-all">
                 <button
-                  className="absolute text-gray-500 top-2 right-2 hover:text-gray-800"
+                  className="sticky text-black top-2 ml-[90%] px-2 py-[2px] rounded-[4px] dark:bg-gray-600 bg-gray-200 hover:bg-gray-400 dark:text-white"
                   onClick={closeModal}
                 >
                   close
                 </button>
-                <h2 className="mb-4 text-2xl font-bold">
+                <h2 className="mb-4 mt-[2px] text-[16px] sm:text-[20px] font-bold">
                   How you can access the Calendar
                 </h2>
 
-                <p>
+                <p className="text-[14px] sm:text-[15px]">
                   {' '}
                   To access the calendar in our system, coordinators can
                   conveniently locate and click on the dedicated calendar link
@@ -371,18 +461,18 @@ function CoordinatorDocs() {
           )}
 
           {selectedContent === 'Creating new event' && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="overflow-auto lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 text-left align-middle shadow-xl transition-all">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+              <div className="relative overflow-auto min-h-[300px] max-h-[500px] lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 pt-3 text-left align-middle shadow-xl transition-all custom-scrollbar">
                 <button
-                  className="absolute text-gray-500 top-2 right-2 hover:text-gray-800"
+                  className="sticky text-black top-2 ml-[90%] px-2 py-[2px] rounded-[4px] dark:bg-gray-600 bg-gray-200 hover:bg-gray-400 dark:text-white"
                   onClick={closeModal}
                 >
                   close
                 </button>
-                <h2 className="mb-4 text-2xl font-bold">
+                <h2 className="mb-4 mt-[2px] text-[16px] sm:text-[20px] font-bold">
                   How to Create a New Calendar Event
                 </h2>
-                <p>
+                <p className="text-[14px] sm:text-[15px]">
                   To create a calendar event in our system, coordinators can
                   follow a simple process using the "Add Event" button available
                   on the calendar page. When the coordinator clicks on the "Add
@@ -413,6 +503,30 @@ function CoordinatorDocs() {
                 </p>
               </div>
             </div>
+          )}
+
+          {selectedContent.title && selectedContent.description && (
+            <Modal onClose={closeModal}>
+              {selectedContent && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+                  <div className="relative overflow-auto min-h-[300px] max-h-[500px] lg:mx-60 xl:mx-96 w-[800px] md:w-[600px] transform rounded-2xl bg-white dark:bg-dark-bg p-6 pt-3 text-left align-middle shadow-xl transition-all custom-scrollbar">
+                    <button
+                      className="sticky text-black top-2 ml-[90%] px-2 py-[2px] rounded-[4px] dark:bg-gray-600 bg-gray-200 hover:bg-gray-400 dark:text-white"
+                      onClick={closeModal}
+                    >
+                      close
+                    </button>
+
+                    <h2 className="mb-4 mt-[2px] text-[16px] sm:text-[20px] font-bold">
+                      {selectedContent.title}
+                    </h2>
+                    <p className="text-[14px] sm:text-[15px]">
+                      {selectedContent.description}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </Modal>
           )}
         </Modal>
       )}
