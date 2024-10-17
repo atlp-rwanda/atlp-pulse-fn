@@ -9,7 +9,6 @@ import { LuHourglass } from 'react-icons/lu';
 import { BsPersonFillX } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import InvitationCard from '../components/InvitationCard';
-import DataTableStats from '../components/InvitationTable';
 import InvitationModal from './invitationModalComponet';
 import { GET_INVITATIONS_STATISTICS_QUERY } from '../queries/invitationStats.queries';
 import InvitationCardSkeleton from '../Skeletons/InvitationCardSkeleton';
@@ -28,6 +27,8 @@ import {
   GET_ROLES_AND_STATUSES,
 } from '../queries/invitation.queries';
 import { isValid } from 'date-fns';
+import DataTableStats, { InvitationVariables } from '../components/InvitationTable';
+import stack from '../utils/Stack';
 
 interface Invitee {
   email: string;
@@ -84,6 +85,12 @@ function Invitation() {
     role: '',
     status: '',
   });
+  const [invitationData, setInvitationData] = useState<{invitations: any[], totalInvitations: number}>({invitations:[], totalInvitations: 0})
+  const usedQuery = stack.isEmpty() ? 'all' : stack.peek();
+  const [previousQuery, setPreviousQuery] = useState(usedQuery);
+  const [previousFilter, setPreviousFilter] = useState({ role: '', status: '' });
+  const [previousSearchQuery, setPreviousSearchQuery] = useState("");
+
   const[filterDisabled,setFilterDisabled]=useState<boolean>(true)
   const modalRef = useRef<any>(null);
   const organizationToken = localStorage.getItem('orgToken');
@@ -131,6 +138,85 @@ function Invitation() {
     fetchPolicy: 'network-only',
   });
 
+  const [
+    fetchInvitations,
+    { data: searchData, loading: searchLoading, error: searchError },
+  ] = useLazyQuery(GET_INVITATIONS, {
+    variables: {
+     query: searchQuery,
+     orgToken: organizationToken,
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  const [
+    filterInvitations,
+    { data: filterData, loading: filterLoad, error: filterError },
+  ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
+    variables:filterVariables,
+    fetchPolicy: 'network-only',
+  });
+
+  useEffect(() => {
+
+    if (usedQuery === 'all' && data && data.getAllInvitations) {
+      // If the previous query was 'all', append the new invitations
+      if (previousQuery === 'all') {
+        setInvitationData(prevData => ({
+          invitations: [...prevData.invitations, ...data.getAllInvitations.invitations],
+          totalInvitations: data.getAllInvitations.totalInvitations
+        }));
+      } else {
+        // If the previous query was not 'all', reset and set the new invitations
+        setInvitationData({
+          invitations: [...data.getAllInvitations.invitations],
+          totalInvitations: data.getAllInvitations.totalInvitations
+        });
+      }
+    } 
+    else if (usedQuery === 'filter' && filterData && filterData.filterInvitations.invitations) {
+      const currentFilter = { role: filterVariables.role, status: filterVariables.status };
+      // Append new invitations if the previous query was also 'filter'
+      if (previousQuery === 'filter' && previousFilter.role === currentFilter.role && previousFilter.status === currentFilter.status) {
+        setInvitationData(prevData => ({
+          invitations: [...prevData.invitations, ...filterData.filterInvitations.invitations],
+          totalInvitations: filterData.filterInvitations.totalInvitations
+        }));
+      } else {
+        // Reset invitations if switching from another query
+        setInvitationData({
+          invitations: [...filterData.filterInvitations.invitations],
+          totalInvitations: filterData.filterInvitations.totalInvitations
+        });
+      }
+      setPreviousFilter(currentFilter);
+    } 
+    else if (usedQuery === 'search' && searchData && searchData.getInvitations.invitations) {
+      // console.log(previousQuery, searchQuery, previousSearchQuery)
+      // Append new invitations if the previous query was also 'filter'
+      if (previousQuery === 'search' && previousSearchQuery === searchQuery) {
+        // console.log(invitationData)
+        // console.log(searchData.getInvitations.invitations)
+        setInvitationData(prevData => ({
+          invitations: [...prevData.invitations, ...searchData.getInvitations.invitations],
+          totalInvitations: searchData.getInvitations.totalInvitations
+        }));
+        // console.log('hereeee2',invitationData)
+      } else {
+        // console.log('rn')
+        // Reset invitations if switching from another query
+        setInvitationData({
+          invitations: [...searchData.getInvitations.invitations],
+          totalInvitations: searchData.getInvitations.totalInvitations
+        });
+      }
+      setPreviousSearchQuery(searchQuery);
+    }
+    // console.log(usedQuery)
+    // Update the previous query after processing
+    setPreviousQuery(usedQuery);
+  }, [data, filterData, searchData, usedQuery, filterVariables.role, filterVariables.status, searchQuery]);
+
   useEffect(() => {
     if (invitationStats) {
       setSelectedStatus(''); // Set the fetched status as the default value
@@ -139,8 +225,8 @@ function Invitation() {
 
   // Set email and role when modal opens
   useEffect(() => {
-    if (data && data.getAllInvitations) {
-      const invitation = data.getAllInvitations.invitations.find(
+    if (invitationData.invitations.length) {
+      const invitation = invitationData.invitations.find(
         (inv: Invitationn) => inv.id === selectedInvitationId,
       );
 
@@ -149,8 +235,7 @@ function Invitation() {
         setRole(invitation.invitees[0].role);
       }
     }
-  }, [data, selectedInvitationId]);
-
+  }, [invitationData, selectedInvitationId]);
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -195,30 +280,31 @@ function Invitation() {
     setUpdateInviteeModel(newState);
   };
 
-  const [
-    fetchInvitations,
-    { data: searchData, loading: searchLoading, error: searchError },
-  ] = useLazyQuery(GET_INVITATIONS, {
-    variables: {
-     query: searchQuery,
-     orgToken: organizationToken,
-    },
-    fetchPolicy: 'network-only',
-  });
-  const [
-    filterInvitations,
-    { data: filterData, loading: filterLoad, error: filterError },
-  ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
-    variables:filterVariables,
-    fetchPolicy: 'network-only',
-  });
+  // const [
+  //   fetchInvitations,
+  //   { data: searchData, loading: searchLoading, error: searchError },
+  // ] = useLazyQuery(GET_INVITATIONS, {
+  //   variables: {
+  //    query: searchQuery,
+  //    orgToken: organizationToken,
+  //   },
+  //   fetchPolicy: 'network-only',
+  // });
+
+  // const [
+  //   filterInvitations,
+  //   { data: filterData, loading: filterLoad, error: filterError },
+  // ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
+  //   variables:filterVariables,
+  //   fetchPolicy: 'network-only',
+  // });
 
   useEffect(() => {
     if (filterVariables.role || filterVariables.status) {
       filterInvitations({
           variables: {
-          role: filterVariables.role || null,
-          status:filterVariables.status || null,
+          role: filterVariables.role || "",
+          status:filterVariables.status || "",
           orgToken: organizationToken,
         },
     });
@@ -239,20 +325,27 @@ function Invitation() {
       setError(searchError.message);
     } else if (filterError) {
       setError(filterError.message);
-    } else if (
-      searchData &&
-      Array.isArray(searchData.getInvitations.invitations)
-    ) {
+    } else if (searchData && searchData.getInvitations.invitations) {
       setInvitations(searchData.getInvitations.invitations);
+      setTotalInvitations(searchData.getInvitations.totalInvitations);
+      // setInvitations(invitationData.invitations);
+      // setTotalInvitations(invitationData.totalInvitations);
+      // stack.push("search");
     } else if (filterData && filterData.filterInvitations) {
-      setInvitations(filterData.filterInvitations.invitations);
-      setTotalInvitations(filterData.filterInvitations.totalInvitations);
-    } else if (data && data.getAllInvitations) {
-      setInvitations(data.getAllInvitations.invitations);
-      setTotalInvitations(data.getAllInvitations.totalInvitations);
+      // console.log('hhh')
+      // setInvitations(filterData.filterInvitations.invitations);
+      // setTotalInvitations(filterData.filterInvitations.totalInvitations);
+      setInvitations(invitationData.invitations);
+      setTotalInvitations(invitationData.totalInvitations);
+      // stack.push("filter");f
+    } else if (data && invitationData) {
+      setInvitations(invitationData.invitations);
+      setTotalInvitations(invitationData.totalInvitations);
+      //stack.push("all");
     }
   }, [
     data,
+    invitationData,
     searchData,
     queryLoading,
     searchLoading,
@@ -272,6 +365,7 @@ function Invitation() {
     setInvitations([]);
     setError(null);
     setLoading(false);
+    stack.push("search");
 
     fetchInvitations({ variables: { query: searchQuery } });
   };
@@ -304,8 +398,9 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     setInvitations([]);
     setError(null);
     setLoading(false);
+    stack.push("filter");
 
-      setFilterVariables({
+    setFilterVariables({
       role: selectedRole,
       status: typeof selectedStatus === 'string' ? selectedStatus : '',
     });
@@ -335,6 +430,37 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     setEmail(newEmail);
     validateEmail(newEmail); // Validate on change
   };
+
+  // Refetching Invitation
+  const fetchNextInvitationsHandler = ({limit, offset}: InvitationVariables) => {
+    const previousUsedQuery = stack.peek()
+    // console.log(`InvitationNextPageHandler: ${previousUsedQuery}`);
+
+    if(previousUsedQuery === 'search'){
+      fetchInvitations({variables: {query: searchQuery, limit, offset}})
+    } else if(previousUsedQuery === 'filter'){
+      filterInvitations({
+        variables: {
+          role: filterVariables.role || "",
+          status: filterVariables.status || "",
+          limit,
+          offset,
+          orgToken: organizationToken
+        },
+      });
+    } else {
+      refetch({limit, offset})
+    }
+  }
+
+  useEffect(() => {
+    if (usedQuery === 'filter' && filterData) {
+      setInvitationData({
+        invitations: filterData.filterInvitations.invitations,
+        totalInvitations: filterData.filterInvitations.totalInvitations,
+      });
+    }
+  }, [usedQuery, filterData]);
 
   // Defining invitation table
   let content;
@@ -494,7 +620,23 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     },
   ];
 
+  //let invitationsToRender = isFilterApplied ? filteredInvitationData.invitations : invitationData.invitations;
+
   const datum: any = [];
+
+  // if (invitationsToRender && invitationsToRender.length > 0) {
+  //   invitationsToRender.forEach((invitation) => {
+  //     invitation.invitees?.forEach((data: any) => {
+  //       let entry: any = {};
+  //       entry.email = data.email;
+  //       entry.role = capitalizeStrings(data.role);
+  //       entry.Status = capitalizeStrings(invitation.status);
+  //       entry.id = invitation.id;
+  //       datum.push(entry);
+  //     });
+  //   });
+  // }
+
   if (invitations && invitations.length > 0) {
     invitations.forEach((invitation) => {
       invitation.invitees?.forEach((data: any) => {
@@ -514,6 +656,9 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
         columns={columns}
         loading={loading}
         error={error}
+        totalInvitations = {totalInvitations}
+        // totalInvitations={isFilterApplied ? filteredInvitationData.totalInvitations : invitationData.totalInvitations}
+        fetchNextInvitations={fetchNextInvitationsHandler}
       />
     );
   } else if (error || searchError || filterError) {
@@ -523,6 +668,9 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
         columns={columns}
         loading={loading}
         error={error}
+        totalInvitations = {totalInvitations}
+        // totalInvitations={isFilterApplied ? filteredInvitationData.totalInvitations : invitationData.totalInvitations}
+        fetchNextInvitations={fetchNextInvitationsHandler}
       />
     );
   } else {
@@ -533,6 +681,9 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
           columns={columns}
           loading={loading}
           error={error}
+          totalInvitations = {totalInvitations}
+          // totalInvitations={isFilterApplied ? filteredInvitationData.totalInvitations : invitationData.totalInvitations}
+          fetchNextInvitations={fetchNextInvitationsHandler}
         />
       </>
     );
