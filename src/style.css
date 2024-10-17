@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
 
 .font {
-  font-family: 'PT Serif', serif;
+  
 }
 .radio-toolbar input[type='radio'] {
   display: none;
@@ -12,7 +12,7 @@
   background-color: #ddd;
   padding: 4px 11px;
   /* font-family: Arial; */
-  font-family: 'PT Serif', serif;
+  
   font-size: 16px;
   cursor: pointer;
 }

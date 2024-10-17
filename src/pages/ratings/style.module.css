@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
 
 .font {
-  font-family: 'PT Serif', serif;
+  
 }
 .frame {
   align-items: stretch;
@@ -14,7 +14,7 @@
 }
 
 .frame .text_wrapper {
-  font-family: 'Roboto-Bold', Helvetica;
+  
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0;
@@ -66,7 +66,7 @@
 }
 
 .frame .text_wrapper_2 {
-  font-family: 'Roboto-Bold', Helvetica;
+  
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0;
