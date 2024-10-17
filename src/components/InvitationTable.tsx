@@ -57,12 +57,6 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
     setPageIndex(currentPageIndex);
   }, [currentPageIndex]);
 
-  useEffect(() => {
-    if (error) {
-      toast.error('Network error. Please, try again later.');
-    }
-  }, [error]);
-
   const handleFilterChange = (e) => {
     const value = e.target.value || '';
     setGlobalFilter(value);
