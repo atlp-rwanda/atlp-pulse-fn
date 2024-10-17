@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { toast } from 'react-toastify';
 import { PulseLoader } from 'react-spinners';
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import { UserContext } from '../hook/useAuth';
 import CountrySelector from '../components/CountrySelector';
 import Input from '../components/Input';
@@ -19,9 +20,7 @@ import Button from '../components/Buttons';
 import { COUNTRIES, SelectMenuOption } from '../constants/countries';
 import profileFields from '../constants/formFields';
 import { UPDATE_PROFILE } from '../Mutations/profileMutation';
-import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import { isValidPhoneNumber } from 'react-phone-number-input';
 
 type fields = {
   [key: string]: string | number;
@@ -33,7 +32,7 @@ profileFields.forEach((field) => {
 });
 
 function EditProfile() {
-    // eslint-disable-next-line  operator-linebreak
+  // eslint-disable-next-line  operator-linebreak
   const { setName } = useContext(UserContext);
   const [profileFieldState, setProfileFieldState] =
     useState<fields>(fieldState);
@@ -48,7 +47,7 @@ function EditProfile() {
   const location = useLocation();
 
   const { profile }: any = location.state;
-    // eslint-disable-next-line no-underscore-dangle
+  // eslint-disable-next-line no-underscore-dangle
 
   useDocumentTitle('Edit Profile');
   const {
@@ -63,18 +62,18 @@ function EditProfile() {
       ...profile,
       email: profile.user.email,
       phoneNumber: profile.phoneNumber || '',
-    }
+    },
   });
   const client = useApolloClient();
   const [UpdateProfile, { loading }] = useMutation(UPDATE_PROFILE);
   const onSubmit = async (data: any) => {
-        /* istanbul ignore next */
+    /* istanbul ignore next */
     try {
       await UpdateProfile({
         variables: { ...data },
       });
       await client.resetStore();
-            /* istanbul ignore next */
+      /* istanbul ignore next */
       toast.success('Profile has been updated');
       navigate('/profile');
     } catch (error) {}
@@ -146,10 +145,10 @@ function EditProfile() {
                   errors={errors}
                   name="email"
                   type="email"
-                  isRequired={true}
+                  isRequired
                   placeholder="Your email"
                   customClass="dark:bg-black/45"
-                  readOnly={true} 
+                  readOnly
                   handleChange={() => {}}
                 />
                 {profileFields.map((field) => {
@@ -198,7 +197,6 @@ function EditProfile() {
                           id={field.id}
                           register={register}
                           errors={errors}
-
                           name={field.name}
                           type={field.type}
                           isRequired={field.isRequired}
@@ -259,9 +257,10 @@ function EditProfile() {
                     name="phoneNumber"
                     control={control}
                     rules={{
-                      validate: (value) => 
-                        !value || isValidPhoneNumber(value) || 
-                        "Please enter a valid phone number with country code"
+                      validate: (value) =>
+                        !value ||
+                        isValidPhoneNumber(value) ||
+                        'Please enter a valid phone number with country code',
                     }}
                     render={({ field: { onChange, value } }) => (
                       <PhoneInput
@@ -275,7 +274,9 @@ function EditProfile() {
                     )}
                   />
                   {errors.phoneNumber && (
-                    <span className="text-red-500 text-sm">{errors.phoneNumber.message}</span>
+                    <span className="text-red-500 text-sm">
+                      {errors.phoneNumber.message}
+                    </span>
                   )}
                 </div>
                 <div className="flex flex-col items-start justify-start h-full md:col-span-2">

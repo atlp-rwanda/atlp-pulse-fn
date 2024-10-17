@@ -10,43 +10,36 @@ import person from '../assets/person.png';
 import person2 from '../assets/person2.png';
 import ur from '../assets/ur.png';
 
-const testimonials = [
-  {
-    id: 1,
-    name: 'Bernard Dushimimana',
-    role: 'Sr.Manager',
-    organization: 'Andela',
-    image: person,
-    content: `I'm extremely impressed with Pulse and their performance management platform.
-        Since using their services, it has been a game-changer for our organization.
-        The platform is intuitive, easy to navigate, and packed with powerful features.`,
-  },
-  {
-    id: 2,
-    name: 'Susan',
-    role: 'Sr.Manager',
-    organization: 'Andela',
-    image: person2,
-    content: `I'm delighted to share my positive experience with Pulse and their exceptional
-        performance management platform. Implementing their services has led to remarkable
-        improvements in our performance tracking and management processes.`,
-  },
-  {
-    id: 3,
-    name: 'Dr. Jack',
-    role: 'Director',
-    organization: 'University of Rwanda',
-    image: ur,
-    content: `
-        We are thrilled with the services provided by Pulse. Their performance management platform
-        has exceeded our expectations in every way. The user-friendly interface and comprehensive
-        features have made tracking and monitoring our performance metrics a breeze.
-        `,
-  },
-];
-
 function Testimonial() {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Bernard Dushimimana',
+      role: t('Sr.Manager'),
+      organization: t('Andela'),
+      image: person,
+      content: t('Content1'),
+    },
+    {
+      id: 2,
+      name: 'Susan',
+      role: t('Sr.Manager'),
+      organization: t('Andela'),
+      image: person2,
+      content: t('Content2'),
+    },
+    {
+      id: 3,
+      name: 'Dr. Jack',
+      role: t('Director'),
+      organization: t('University of Rwanda'),
+      image: ur,
+      content: t('Content3'),
+    },
+  ];
 
   const prevTestimonial = () => {
     setCurrentIndex(
@@ -214,7 +207,7 @@ function About({ styles }: any) {
         <div className="px-5 mt-20">
           <h1 className="font text-center text-neutral-700 lg:text-4xl sm:text-2xl dark:text-slate-100">
             {' '}
-            Come shape the future together{' '}
+            {t('Come shape the future together')}
           </h1>
         </div>
         <Testimonial />
