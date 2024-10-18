@@ -116,7 +116,7 @@ function AdminTraineeDashboard() {
   }
 
   const [deleteFromCohort, setDeleteFromCohort] = useState('');
- 
+
   const [reason, setReason] = useState('');
   const currentDate = new Date().toISOString().split('T')[0]; // Get the current date
 
@@ -255,7 +255,7 @@ function AdminTraineeDashboard() {
   const columns = [
     { Header: t('name'), accessor: 'name' },
     { Header: t('email'), accessor: 'email' },
-    
+
     { Header: t('cohort'), accessor: 'cohort' },
     { Header: t('program'), accessor: 'program' },
     {
@@ -408,7 +408,7 @@ function AdminTraineeDashboard() {
                         }}
                       >
                         <Icon
-                          icon="mdi:close-circle"
+                          icon="mdi:restore"
                           width="40"
                           height="40"
                           cursor="pointer"
