@@ -9,11 +9,8 @@ export const ADD_RATING = gql`
     $cohort: String!
     $professionalSkills: String!
     $orgToken: String!
-    $quantityRemark: String
     $bodyQuality: String
-    $qualityRemark: String
     $bodyQuantity: String
-    $professionalRemark: String
     $bodyProfessional: String
   ) {
     addRatings(
@@ -24,11 +21,8 @@ export const ADD_RATING = gql`
       cohort: $cohort
       professional_Skills: $professionalSkills
       orgToken: $orgToken
-      quantityRemark: $quantityRemark
       bodyQuality: $bodyQuality
-      qualityRemark: $qualityRemark
       bodyQuantity: $bodyQuantity
-      professionalRemark: $professionalRemark
       bodyProfessional: $bodyProfessional
     ) {
       user {
@@ -45,7 +39,6 @@ export const ADD_RATING = gql`
         }
       }
       quantity
-      quantityRemark
       feedbacks {
         sender {
           email
@@ -61,10 +54,8 @@ export const ADD_RATING = gql`
       }
       bodyQuantity
       quality
-      qualityRemark
       bodyQuality
       professional_Skills
-      professionalRemark
       bodyProfessional
       approved
       coordinator
@@ -77,11 +68,8 @@ export const UPDATE_RATING = gql`
     $user: String!
     $sprint: Int!
     $quantity: [String]
-    $quantityRemark: [String]
     $quality: [String]
-    $qualityRemark: [String]
     $professionalSkills: [String]
-    $professionalRemark: [String]
     $feedbacks: [String]
     $orgToken: String!
   ) {
@@ -89,22 +77,16 @@ export const UPDATE_RATING = gql`
       user: $user
       sprint: $sprint
       quantity: $quantity
-      quantityRemark: $quantityRemark
       quality: $quality
-      qualityRemark: $qualityRemark
       professional_Skills: $professionalSkills
-      professionalRemark: $professionalRemark
       feedbacks: $feedbacks
       orgToken: $orgToken
     ) {
       user
       sprint
       quantity
-      quantityRemark
       quality
-      qualityRemark
       professional_Skills
-      professionalRemark
       feedbacks {
         content
       }
@@ -164,9 +146,6 @@ export const APPROVE_RATING = gql`
       user
       sprint
       quantity
-      quantityRemark
-      qualityRemark
-      professionalRemark
       professional_Skills
       approved
       quality

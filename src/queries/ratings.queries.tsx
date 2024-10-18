@@ -10,12 +10,9 @@ export const GET_RATINGS = gql`
       sprint
       quantity
       bodyQuantity
-      quantityRemark
       quality
       bodyProfessional
-      qualityRemark
       professional_Skills
-      professionalRemark
       bodyQuality
       coordinator
       average
@@ -51,13 +48,10 @@ export const RATING_BY_COHORT = gql`
           name
         }
       }
-      quantityRemark
       bodyQuantity
       quality
-      qualityRemark
       bodyQuality
       professional_Skills
-      professionalRemark
       bodyProfessional
       feedbacks {
         sender {
@@ -76,13 +70,10 @@ export const RATING_BY_COHORT = gql`
         id
         email
       }
-      quantityRemark
       bodyQuantity
       quality
-      qualityRemark
       bodyQuality
       professional_Skills
-      professionalRemark
       bodyProfessional
     }
   }
@@ -104,11 +95,8 @@ export const FETCH_ALL_RATINGS = gql`
       }
       sprint
       quantity
-      quantityRemark
       quality
-      qualityRemark
       professional_Skills
-      professionalRemark
       average
       cohort {
         name
@@ -135,11 +123,8 @@ export const TRAINEE_RATING = gql`
       phase
       sprint
       quantity
-      quantityRemark
       quality
-      qualityRemark
       professional_Skills
-      professionalRemark
       average
       cohort {
         name
