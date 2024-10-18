@@ -7,6 +7,7 @@ import PrivateRoute from '../utils/PrivateRoute';
 import Square from '../Skeletons/Square';
 import MenuProvider, { MenuContext } from '../hook/menuProvider';
 import CheckRole from '../utils/CheckRoles';
+import NotFound from '../components/NotFoundPage';
 
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const Settings = React.lazy(() => import('../pages/Settings'));
@@ -166,6 +167,7 @@ function DashRoutes() {
             <Route path="/team-cards" element={<ManagersCards />} />
             <Route path="/teams/cards" element={<CoordinatorCards />} />
             <Route path="/ttl-trainees" element={<TtlTraineeDashboard />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
