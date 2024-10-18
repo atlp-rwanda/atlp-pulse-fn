@@ -381,7 +381,7 @@ function AddRatings({
                           onChange={(e) =>
                             setRatingData({
                               ...ratingData,
-                              qualityRemark: e.target.value,
+                              // generalRemark: e.target.value,
                             })
                           }
                           id=""
@@ -429,7 +429,7 @@ function AddRatings({
                           onChange={(e) =>
                             setRatingData({
                               ...ratingData,
-                              quantityRemark: e.target.value,
+                              // quantityRemark: e.target.value,
                             })
                           }
                           rows={5}
@@ -469,7 +469,7 @@ function AddRatings({
                           onChange={(e) =>
                             setRatingData({
                               ...ratingData,
-                              professionalRemark: e.target.value,
+                              // professionalRemark: e.target.value,
                             })
                           }
                           rows={5}

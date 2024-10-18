@@ -18,11 +18,9 @@ const GET_USERS = gql`
     fetchRatingsForAdmin(orgToken: $orgToken) {
       sprint
       quantity
-      quantityRemark
       quality
-      qualityRemark
+      # generalRemark
       professional_Skills
-      professionalRemark
       feedbacks {
         content
       }
