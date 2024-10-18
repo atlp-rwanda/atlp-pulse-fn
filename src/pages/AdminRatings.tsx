@@ -77,20 +77,16 @@ const TraineeRatingDashboard = () => {
   let [isOpen, setIsOpen] = useState(false);
   const [ratingData, setRatingData] = useState({
     quality: '0',
-    qualityRemark: '',
+    // generalRemark: '',
     quantity: '0',
-    quantityRemark: '',
     professional: '0',
-    professionalRemark: '',
     userEmail: '',
   });
   const [rows, setRows] = useState({
     quality: '0',
-    qualityremark: 'no remarks',
+    // generalRemark: 'no remarks',
     quantity: '0',
-    quantityremark: 'no remarks',
     professional: '0',
-    professionalRemark: 'no remarks',
     sprint: '0',
     user: '',
     id: '',
@@ -112,11 +108,9 @@ const TraineeRatingDashboard = () => {
       const customHeadings = ratings.map((row: any) => ({
         Email: row.user.email,
         Quality: row.quality,
-        Qualityremark: row.qualityRemark,
+        // generalRemark: row.generalRemark,
         Quantity: row.quantity,
-        Quantityremark: row.quantityRemark,
         Professional: row.professional_Skills,
-        ProfessionalRemark: row.professionalRemark,
         Sprint: row.sprint,
         Cohort: row.cohort.name,
       }));
@@ -144,11 +138,9 @@ const TraineeRatingDashboard = () => {
                 setRows({
                   ...rows,
                   quality: row.original.quality,
-                  qualityremark: row.original.qualityRemark,
+                  // generalRemark: row.original.generalRemark,
                   quantity: row.original.quantity,
-                  quantityremark: row.original.quantityRemark,
                   professional: row.original.professional_Skills,
-                  professionalRemark: row.original.professionalRemark,
                   sprint: row.original.sprint,
                   user: row.original.user.email,
                   id: row.original.user.id,
@@ -238,9 +230,8 @@ const TraineeRatingDashboard = () => {
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200 dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
                         <th className="p-4 text-semibold">
-                          {t('Quantity Remarks')}
+                          {t(' Remarks')}
                         </th>
-                        <td>{rows.quantityremark}</td>
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200  dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
                         <th className="p-4 text-semibold">
@@ -250,9 +241,9 @@ const TraineeRatingDashboard = () => {
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200  dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
                         <th className="p-4 text-semibold">
-                          {t('Quality Remarks')}
+                          {t(' Remarks')}
                         </th>
-                        <td>{rows.qualityremark}</td>
+                        {/* <td>{rows.generalRemark}</td> */}
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200  dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
                         <th className="p-4 text-semibold">
@@ -262,9 +253,8 @@ const TraineeRatingDashboard = () => {
                       </tr>
                       <tr className="border dark:text-slate-200  dark:bg-dark-frame-bg border-spacing-4 bg-slate-200 border-b-white">
                         <th className="p-4 text-semibold">
-                          {t('Professionalism Remarks')}
+                          {t(' Remarks')}
                         </th>
-                        <td>{rows.professionalRemark}</td>
                       </tr>
                     </table>
                     <div className="flex justify-center mt-4">

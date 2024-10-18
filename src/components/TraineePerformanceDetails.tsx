@@ -120,7 +120,7 @@ function TraineePerfomanceDetails() {
               <td className="py-10 px-10 text-left">{t('Quality')}</td>
               <td className="py-3 ">{ratings.quality}</td>
               <td className="py-3  text-start text-sm">
-                {ratings?.quality_remark}
+                {ratings?.general_remark}
               </td>
               <td className="py-3 ">
                 <Button
@@ -312,7 +312,7 @@ function TraineePerfomanceDetails() {
                       <div className="w-2/3 flex flex-col border border-gray-200 mb-4 float-left rounded-tr-lg rounded-bl-lg">
                         <div className="m-8">
                           <p className="float-left">
-                            {ratings?.quality_remark}
+                            {ratings?.general_remark}
                           </p>
                         </div>
                         <div className="ml-9 text-primary ">
@@ -400,13 +400,13 @@ function TraineePerfomanceDetails() {
                       as="h3"
                       className=" font-medium content-center  text-gray-900 dark:text-dark-text-fill"
                     >
-                      {t('Reply on Professional Remarks')}
+                      {t('Reply on Remarks')}
                     </Dialog.Title>
                     <div className="mt-4 md:mt-8">
                       <div className="w-2/3 flex flex-col border border-gray-200 mb-4 float-left rounded-tr-lg rounded-bl-lg">
                         <div className="m-8">
                           <p className="float-left">
-                            {ratings?.professional_remark}
+                            {ratings?.remark}
                           </p>
                         </div>
                         <div className="ml-9 text-primary ">
@@ -483,7 +483,7 @@ function TraineePerfomanceDetails() {
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
                 <td className="py-10 px-10 text-left">{t('Remark')}</td>
                 <td className="py-3  text-start text-sm">
-                  {ratings?.quantity_remark}
+                  {ratings?.remark}
                 </td>
               </tr>
             </tbody>
@@ -516,7 +516,7 @@ function TraineePerfomanceDetails() {
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill  ">
                 <td className="py-10 px-10 text-left">{t('Remark')}</td>
                 <td className="py-3  text-start text-sm">
-                  {ratings?.quality_remark}
+                  {ratings?.remark}
                 </td>
               </tr>
             </tbody>
@@ -551,7 +551,7 @@ function TraineePerfomanceDetails() {
               <tr className="text-black bg-gray-100 dark:bg-dark-tertiary dark:text-dark-text-fill ">
                 <td className="py-10 px-10 text-left">{t('Remark')}</td>
                 <td className="py-3  text-start text-sm">
-                  {ratings?.professional_remark}
+                  {ratings?.remark}
                 </td>
               </tr>
             </tbody>

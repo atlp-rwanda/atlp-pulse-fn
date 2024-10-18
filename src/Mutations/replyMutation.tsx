@@ -16,9 +16,7 @@ export const ADD_REPLY = gql`
       id
       user
       sprint
-      quantityRemark
-      qualityRemark
-      professionalRemark
+      # generalRemark
       bodyQuantity
       bodyQuality
       bodyProfessional
@@ -36,11 +34,9 @@ export const UPDATE_TO_REPLY = gql`
     $bodyQuantity: [String]
     $bodyProfessional: [String]
     $quantity: [String]
-    $quantityRemark: [String]
     $quality: [String]
-    $qualityRemark: [String]
+    # $generalRemark: [String]
     $professionalSkills: [String]
-    $professionalRemark: [String]
   ) {
     updateToReply(
       user: $user
@@ -50,11 +46,9 @@ export const UPDATE_TO_REPLY = gql`
       bodyQuantity: $bodyQuantity
       bodyProfessional: $bodyProfessional
       quantity: $quantity
-      quantityRemark: $quantityRemark
       quality: $quality
-      qualityRemark: $qualityRemark
+      # generalRemark: $generalRemark
       professional_Skills: $professionalSkills
-      professionalRemark: $professionalRemark
     ) {
       user
       sprint
@@ -62,11 +56,9 @@ export const UPDATE_TO_REPLY = gql`
       bodyQuality
       bodyQuantity
       quantity
-      quantityRemark
       quality
-      qualityRemark
+      # generalRemark
       professional_Skills
-      professionalRemark
       approved
     }
   }

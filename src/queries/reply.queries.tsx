@@ -6,9 +6,7 @@ export const GET_REPLIES = gql`
       id
       user
       sprint
-      quantityRemark
-      qualityRemark
-      professionalRemark
+      # generalRemark
       bodyQuantity
       bodyQuality
       bodyProfessional
@@ -23,9 +21,7 @@ export const GET_REPLIES_BY_USER = gql`
       id
       user
       sprint
-      quantityRemark
-      qualityRemark
-      professionalRemark
+      # generalRemark
       bodyQuantity
       bodyQuality
       bodyProfessional
