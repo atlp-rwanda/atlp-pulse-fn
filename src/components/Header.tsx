@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
@@ -7,6 +7,7 @@ import Button from './Buttons';
 import WithClickOutside from './WithClickOutside';
 import LogoIcon from './logoIcon';
 import ToggleThemeButton from './TogglethemeIcon';
+import MobileDropdown from './Docs/MobileDropdown';
 
 const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const orgToken: any = localStorage.getItem('orgToken');
@@ -17,12 +18,13 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
   const { user, logout } = useContext(UserContext);
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
+  const [mobileDocsOpen, setMobileDocsOpen] = useState<boolean>(false);
 
   const goTo = orgToken ? '/users/login' : '/login/org';
 
   return (
     <div
-      className={`w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header ${props?.className} font-serif`}
+      className={`w-screen h-[5em] z-10 bg-white dark:bg-dark-bg page-header ${props?.className} font-serif`}
       style={props?.style}
     >
       <div className="px-3 flex justify-between items-center w-full h-full">
@@ -128,7 +130,7 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
         className={
           !open
             ? 'hidden'
-            : 'absolute bg-white dark:bg-dark-bg w-1/8 justify-end px-8 m-1 right-0 lg:hidden'
+            : 'absolute bg-white dark:bg-dark-bg w-[320px] justify-end px-4 m-1 right-0 lg:hidden'
         }
       >
         <li className="w-full p-2 mt-2 dark:text-dark-text-fill text-primary">
@@ -147,9 +149,20 @@ const Header = forwardRef(({ open, setOpen, ...props }: any, ref: any) => {
             {t('Product')}
           </Link>
         </li>
-        <li className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary">
-          <Link to="/docs/getting-started">{t('Docs')}</Link>
-        </li>
+        <div className="flex flex-col p-2 dark:text-dark-text-fill">
+          <div
+            onClick={() => setMobileDocsOpen((prev) => !prev)}
+            className="inline-flex gap-2 items-center"
+          >
+            <p>{t('Docs')}</p>
+            <span>{mobileDocsOpen ? '▲' : '▼'}</span>
+          </div>
+          {mobileDocsOpen && (
+            <div className="ml-4">
+              <MobileDropdown />
+            </div>
+          )}
+        </div>
 
         <li className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]">
           <Link to={user?.auth ? '/dashboard' : goTo} className="w-full">

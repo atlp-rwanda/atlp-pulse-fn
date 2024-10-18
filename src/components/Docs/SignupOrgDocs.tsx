@@ -10,8 +10,8 @@ function SignupOrgDocs() {
         content={
           <div className="flex items-start font-serif">
             <div className="w-full">
-              <div className=" w-full sm:px-10 mb-10 ml-0 text-lg text-gray-600 dark:text-slate-300 sm:w-full pt-4">
-                <h2 className="mb-4 mt-4 text-4xl font-[800] text-primary">
+              <div className=" w-full sm:px-10 ml-0 text-slate-700 dark:text-slate-200 sm:w-full pt-4">
+                <h2 className="mt-4 text-2xl font-[800] text-primary">
                   How to Register an Organisation.
                 </h2>
                 <div className="mt-5 w-[100%] sm:w-full mb-4">
@@ -28,7 +28,7 @@ function SignupOrgDocs() {
                   manage their organization's profile, and utilize our
                   platform's services effectively.
                 </div>
-                <h2 className="mb-4 text-3xl font-bold text-black dark:text-white">
+                <h2 className="mb-4 text-xl font-bold text-black dark:text-white">
                   Steps on how to:
                 </h2>
                 <ol className="list-decimal ml-6">
