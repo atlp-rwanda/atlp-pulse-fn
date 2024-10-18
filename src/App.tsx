@@ -7,10 +7,12 @@ import './index.css';
 import MainRoutes from './containers/Routes';
 import LandingPage from './pages/Home';
 import { TraineesProvider } from './hook/useTraineesData';
+import NotFound from './components/NotFoundPage';
 
 function App() {
   return (
     <div className="min-h-screen">
+      
       <TicketsProvider>
         <TraineesProvider>
           <Router>
@@ -18,6 +20,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/*" element={<MainRoutes />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </ScrollToTop>
           </Router>
