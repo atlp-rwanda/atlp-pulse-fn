@@ -203,8 +203,7 @@ function Invitation() {
   ] = useLazyQuery(GET_INVITATIONS, {
     variables: {
      query: searchQuery,
-     orgToken: organizationToken,
-     sortBy:sortBy
+     orgToken: organizationToken
     },
     fetchPolicy: 'network-only',
   });
@@ -222,8 +221,7 @@ function Invitation() {
           variables: {
           role: filterVariables.role || null,
           status:filterVariables.status || null,
-          orgToken: organizationToken,
-          sortBy:sortBy
+          orgToken: organizationToken
         },
     });
     }
@@ -269,8 +267,10 @@ function Invitation() {
 
   const handleSearch = () => {
     if (!searchQuery.trim()) {
-      setError('Search query cannot be empty');
-      return;
+      if (data && data.getAllInvitations) {
+        setInvitations(data.getAllInvitations.invitations);
+        setTotalInvitations(data.getAllInvitations.totalInvitations);
+      }
     }
 
     setInvitations([]);
@@ -279,6 +279,14 @@ function Invitation() {
 
     fetchInvitations({ variables: { query: searchQuery } });
   };
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      handleSearch();
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuery]);
 
 
   useEffect(() => {
@@ -323,8 +331,6 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
   const toggleOptions = (row: string) => {
     setSelectedRow(selectedRow === row ? null : row);
   };
-
-  const disabledSearch = !searchQuery.trim();
 
   interface EmailInputProps {
     email: string;
@@ -820,21 +826,19 @@ setSortBy(sortBy)
           The “Search bar” below enables you to effortlessly check the status of
           sent invitations.
           <br />
-          Simply type in the email or name of the invitee in the search bar to
+          Simply type in the email, or role of the invitee or status of the invitation in the search bar to
           instantly retrieve real-time updates.
         </p>
 
         {/* Search form */}
         <div className='block lg:flex justify-between items-center'>
             <div className="flex flex-row md:flex-row gap-2 md:gap-2 md:w-[50%] w-full">
-              <div className="relative flex-1 text-black ">
+              <div className="relative flex-1 text-black">
                 <input
                   type="text"
                   id="search"
                   value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value)
-                  }}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by email, role or status of the invitation."
                   className="border border-gray-300 outline-none bg-transparent rounded-md pl-10 pr-4 py-1 w-full dark:text-white hover:border-[#7258ce] dark:text:text-white sm:text-normal text-md dark:bg-[#04122F]"
                 />
