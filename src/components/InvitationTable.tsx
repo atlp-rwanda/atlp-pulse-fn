@@ -6,15 +6,23 @@ import { toast } from 'react-toastify';
 import DataPagination from './DataPagination';
 import SkeletonTable from '../Skeletons/SkeletonTable'; 
 
+export interface InvitationVariables {
+  limit: number,
+  offset: number,
+  role?: string,
+  status?: string
+}
 interface TableData {
   data: any[];
   columns: any;
   error: string | null;
   loading?: boolean;
   className?: string;
+  totalInvitations?: number;
+  fetchNextInvitations: ({limit, offset}: InvitationVariables) => void;
 }
 
-function DataTableStats({ data, columns, error, loading }: TableData) {
+function DataTableStats({ data, columns, error, loading, fetchNextInvitations, totalInvitations }: TableData) {
   const [filterInput, setFilterInput] = useState('');
   const { t } = useTranslation();
   const [pageIndex, setPageIndex] = useState(0);
@@ -53,6 +61,68 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
     state: { pageIndex: currentPageIndex, pageSize },
   } = tableInstance;
 
+  // const invitationNextPageHandler = () => {
+  //   console.log(pageIndex, pageSize)
+  //   // Check if more data needs to be fetched
+  //   if ((data.length - (pageSize * (pageIndex + 1))) < 0) {
+  //     console.log('in------!!!!')
+  //     fetchNextInvitations({limit: pageSize, offset: data.length})
+  //     return
+  //   }
+
+  //    // Check if there's less data left to fill a new page
+  //   if ((data.length - (pageSize * (pageIndex + 1))) < pageSize) {
+  //     console.log('in------!!!!2')
+  //     fetchNextInvitations({limit: pageSize, offset: data.length})
+  //     setPageIndex(prevData => prevData + 1)
+  //     nextPage()
+  //     return
+  //   }
+    
+  //   const totalPages = data.length / pageSize
+  //   // Check if the user is on the last page
+  //   if (totalPages <= (pageIndex + 1)) {
+  //     logger.debug('in------!!!!3')
+  //     fetchNextInvitations({limit: pageSize, offset: data.length})
+  //     setPageIndex(prevData => prevData + 1)
+  //   } else {
+  //     nextPage()
+  //   }
+  // }
+
+  // // useEffect(() => {
+  // //   invitationNextPageHandler()
+  // // }, [pageSize])
+  // useEffect(() => {
+  //   setPageIndex(currentPageIndex);
+  // }, [currentPageIndex]);
+
+  const invitationNextPageHandler = () => {
+    const totalFetchedData = data.length; 
+    const totalPages = Math.ceil(totalInvitations / pageSize);
+    const currentPage = pageIndex + 1;
+  
+    // If current page is the last one, stop fetching
+    if (currentPage >= totalPages) {
+      return;
+    }
+  
+    // Check if more data needs to be fetched
+    const currentOffset = pageSize * currentPage;
+  
+    if (totalFetchedData <= currentOffset) {
+      fetchNextInvitations({ limit: pageSize, offset: totalFetchedData });
+      setPageIndex(prevIndex => prevIndex + 1); // Increment page index after fetching
+      return;
+    }
+  
+    // If there's enough data to display the next page, simply move to the next page
+    if (totalFetchedData > currentOffset) {
+      nextPage();
+      setPageIndex(prevIndex => prevIndex + 1);
+    }
+  };
+
   useEffect(() => {
     setPageIndex(currentPageIndex);
   }, [currentPageIndex]);
@@ -62,6 +132,11 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
     setGlobalFilter(value);
     setFilterInput(value);
   };
+
+  const invitationPageOption = [];
+  for (let i = 0; i < totalInvitations/pageSize; i=i+1) {
+    invitationPageOption.push(i);
+  }
 
   return (
     <div className="relative">
@@ -141,15 +216,15 @@ function DataTableStats({ data, columns, error, loading }: TableData) {
       </div>
       <div className="px-6 py-4">
         <DataPagination
-          pageOptions={pageOptions}
-          canNextPage={canNextPage}
+          pageOptions={invitationPageOption}
+          canNextPage={true}
           gotoPage={gotoPage}
           columnLength={columns.length}
           canPreviousPage={canPreviousPage}
           pageSize={pageSize}
           setPageSize={setPageSize}
           previousPage={previousPage}
-          nextPage={nextPage}
+          nextPage={invitationNextPageHandler}
           pageCount={pageCount}
           pageIndex={pageIndex}
         />
