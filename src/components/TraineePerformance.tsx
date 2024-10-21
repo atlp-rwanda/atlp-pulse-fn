@@ -26,19 +26,10 @@ export const GET_RATINGS_DATA = gql`
       professionalRemark
       bodyProfessional
       approved
-      ttl
       cohort {
         name
         phase {
           name
-        }
-        ttl {
-          email
-          profile {
-            firstName
-            name
-            lastName
-          }
         }
         program {
           name
