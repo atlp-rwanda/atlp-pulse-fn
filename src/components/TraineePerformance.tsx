@@ -15,15 +15,12 @@ export const GET_RATINGS_DATA = gql`
   query FetchRatingsTrainee {
     fetchRatingsTrainee {
       quality
-      qualityRemark
       bodyQuality
       professional_Skills
       bodyQuantity
-      quantityRemark
       quantity
       average
       sprint
-      professionalRemark
       bodyProfessional
       approved
       ttl
@@ -71,9 +68,6 @@ function TraineePerfomance() {
     sprint: 0,
     username: 'string',
     user: 'string',
-    qualityremark: '',
-    quantityremark: '',
-    professionalRemark: '',
   });
 
   useEffect(() => {
@@ -84,11 +78,8 @@ function TraineePerfomance() {
         Name: item?.user?.profile?.name,
         Email: item?.user?.email,
         Quality: item.quality,
-        QualityRemark: item.qualityRemark,
         Quantity: item.quantity,
-        QuantityRemark: item.quantityRemark,
         Professional_Skills: item.professional_Skills,
-        Professional_SkillsRemark: item.professionalRemark,
         Average: item.average,
         Sprint: item.sprint,
         Cohort: item?.cohort?.name,
@@ -135,9 +126,6 @@ function TraineePerfomance() {
     setRow((prev) => ({
       ...prev,
       sprint: rate?.sprint,
-      quantityremark: rate?.quantityRemark,
-      qualityremark: rate?.qualityRemark,
-      professionalRemark: rate?.professionalRemark,
       id: user?.userId,
       username: rate?.cohort?.ttl?.profile?.name,
       user: rate?.cohort?.ttl?.email,

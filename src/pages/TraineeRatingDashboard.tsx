@@ -40,11 +40,8 @@ function classNames(...classes: any) {
 
 const initialRatingData = {
   quality: '',
-  qualityRemark: '',
   quantity: '',
-  quantityRemark: '',
   professional: '',
-  professionalRemark: '',
   userEmail: '',
   average: '',
 };
@@ -52,11 +49,8 @@ const initialRatingData = {
 type UserDataItem = {
   Email: any;
   Quality: any;
-  Qualityremark: any;
   Quantity: any;
-  Quantityremark: any;
   Professional: any;
-  ProfessionalRemark: any;
   Sprint: any;
   Cohort: any;
 };
@@ -76,12 +70,9 @@ function TraineeRatingDashboard() {
   const [ratingData, setRatingData] = useState(initialRatingData);
   const [rows, setRows] = useState({
     quality: '0',
-    qualityremark: '',
     quantity: '0',
-    quantityremark: '',
     feedbacks: [],
     professional: '0',
-    professionalRemark: '',
     bodyQuantity: '',
     bodyQuality: '',
     bodyProfessional: '',
@@ -105,11 +96,8 @@ function TraineeRatingDashboard() {
         (row: any) => ({
           Email: row.user.email,
           Quality: row.quality,
-          Qualityremark: row.qualityRemark,
           Quantity: row.quantity,
-          Quantityremark: row.quantityRemark,
           Professional: row.professional_Skills,
-          ProfessionalRemark: row.professionalRemark,
           Sprint: row.sprint,
           Cohort: row.cohort.name,
           Feedback: row.feedbacks,
@@ -191,11 +179,8 @@ function TraineeRatingDashboard() {
                 setRows({
                   ...rows,
                   quality: row.original.quality,
-                  qualityremark: row.original.qualityRemark,
                   quantity: row.original.quantity,
-                  quantityremark: row.original.quantityRemark,
                   professional: row.original.professional_Skills,
-                  professionalRemark: row.original.professionalRemark,
                   sprint: row.original.sprint,
                   username: row.original.user.profile.name,
                   user: row.original.user.email,
@@ -224,14 +209,11 @@ function TraineeRatingDashboard() {
                 setRows({
                   ...rows,
                   quality: row.original.quality,
-                  qualityremark: row.original.qualityRemark,
                   bodyQuality: row.original.bodyQuality,
                   quantity: row.original.quantity,
-                  quantityremark: row.original.quantityRemark,
                   feedbacks: row.original.feedbacks,
                   bodyQuantity: row.original.bodyQuantity,
                   professional: row.original.professional_Skills,
-                  professionalRemark: row.original.professionalRemark,
                   bodyProfessional: row.original.bodyProfessional,
                   sprint: row.original.sprint,
                   username: row.original.user.profile.name,
@@ -257,11 +239,8 @@ function TraineeRatingDashboard() {
       user: ratingData.userEmail,
       sprint: selectedSprint?.name,
       quantity: ratingData.quantity.toString(),
-      quantityRemark: ratingData.quantityRemark.toString(),
       quality: ratingData.quality.toString(),
-      qualityRemark: ratingData.qualityRemark.toString(),
       professionalSkills: ratingData.professional.toString(),
-      professionalRemark: ratingData.professionalRemark.toString(),
       orgToken: organizationToken,
     },
     onError: (err) => {
@@ -280,11 +259,8 @@ function TraineeRatingDashboard() {
       user: rows.id,
       sprint: rows.sprint,
       quantity: rows?.quantity,
-      quantityRemark: rows?.quantityremark,
       quality: rows?.quality,
-      qualityRemark: rows?.qualityremark,
       professionalSkills: rows?.professional,
-      professionalRemark: rows?.professionalRemark,
       orgToken: organizationToken,
     },
     onError: (err) => {
@@ -602,11 +578,9 @@ function TraineeRatingDashboard() {
                                       </select>
                                     </div>
                                     <textarea
-                                      value={rows.qualityremark}
                                       onChange={(e) =>
                                         setRows({
                                           ...rows,
-                                          qualityremark: e.target.value,
                                         })
                                       }
                                       id=""
@@ -648,14 +622,14 @@ function TraineeRatingDashboard() {
                                         </>
                                       </select>
                                     </div>
-                                    <textarea
+                                                                        <textarea
                                       name="quantityDescription"
                                       id=""
-                                      value={rows.quantityremark}
+                                      // value={rows.quantityremark}
                                       onChange={(e) =>
                                         setRows({
                                           ...rows,
-                                          quantityremark: e.target.value,
+                                          // quantityremark: e.target.value,
                                         })
                                       }
                                       rows={5}
@@ -694,14 +668,14 @@ function TraineeRatingDashboard() {
                                         </>
                                       </select>
                                     </div>
-                                    <textarea
+                                                                        <textarea
                                       name="proffessionalDescription"
                                       id=""
-                                      value={rows.professionalRemark}
+                                      // value={rows.professionalRemark}
                                       onChange={(e) =>
                                         setRows({
                                           ...rows,
-                                          professionalRemark: e.target.value,
+                                          // professionalRemark: e.target.value,
                                         })
                                       }
                                       rows={5}
