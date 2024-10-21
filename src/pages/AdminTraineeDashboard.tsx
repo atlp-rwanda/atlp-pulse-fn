@@ -42,6 +42,7 @@ import Dropdown from 'react-dropdown-select';
 import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 import { FaTimes } from 'react-icons/fa';
 import TtlSkeleton from '../Skeletons/ttl.skeleton';
+import BulkRatingModal from '../components/BulkRatingModal';
 import { handleError } from '../components/ErrorHandle';
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -92,6 +93,9 @@ function AdminTraineeDashboard() {
   // unDropTrainee
   // restoreMemberFromCohort
   const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>();
+
+  //BulkRatingModal
+  const [bulkRateModal, setBulkRateModal] = useState(false)
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -1584,7 +1588,14 @@ function AdminTraineeDashboard() {
         </div>
       </div>
       {/* =========================== End::  RemoveTraineeModel =============================== */}
-
+      {/*============================ Start:: BulkRateModal =================================== */}
+      {
+        bulkRateModal?
+        <BulkRatingModal
+        setBulkRateModal={setBulkRateModal}
+        />: ''
+      }
+      {/*============================ End:: BulkRateModal =================================== */}
       <div className="flex flex-col">
         <div className="flex flex-row">
           <div className="w-full">
@@ -1601,6 +1612,18 @@ function AdminTraineeDashboard() {
                     >
                       {t('add')} +{' '}
                     </Button>
+                    {
+                      JSON.parse(localStorage.getItem('auth')!) && ['coordinator','ttl'].includes(JSON.parse(localStorage.getItem('auth')!).role) ?
+                      <Button
+                      variant="primary"
+                      size="lg"
+                      data-testid="registerModel"
+                      style="m-0"
+                      onClick={()=>setBulkRateModal(true)}
+                    >
+                      {t('Bulk Rate')}
+                    </Button> : ''
+                    }
                   </div>
                 </div>
                 <div className="">

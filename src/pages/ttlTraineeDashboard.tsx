@@ -29,6 +29,7 @@ import { log } from 'console';
 import { FaEye } from 'react-icons/fa';
 import { handleError } from '../components/ErrorHandle';
 
+import BulkRatingModal from '../components/BulkRatingModal';
 const organizationToken = localStorage.getItem('orgToken');
 ``;
 /* istanbul ignore next */
@@ -61,6 +62,7 @@ const TtlTraineeDashboard = () => {
   const [open2, setOpen2] = React.useState(false);
 
   const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>()
+  const [bulkRateModal, setBulkRateModal] = useState<boolean>(false)
 
   const handleClickOpen2 = async () => {
     setIsLoaded(true);
@@ -419,6 +421,17 @@ const TtlTraineeDashboard = () => {
             <div>
               <div className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg">
                 <div className="">
+                <div className="my-5">
+                  <Button
+                      variant="primary"
+                      size="lg"
+                      data-testid="registerModel"
+                      style="m-0"
+                      onClick={()=>setBulkRateModal(true)}
+                    >
+                      {t('Bulk Rate')}
+                  </Button>
+                </div>
                   {fetchError || traineeData?.length === 0 ? ( // Check both fetchError and traineeData length
                     <DataTable
                       data={[]} // Pass an empty array as data
@@ -436,6 +449,12 @@ const TtlTraineeDashboard = () => {
                   )}
                 </div>
               </div>
+              {
+                bulkRateModal? 
+                <BulkRatingModal
+                setBulkRateModal={setBulkRateModal}
+                /> : ''
+              }
             </div>
           </div>
         </div>
