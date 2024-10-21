@@ -1,44 +1,216 @@
 import { gql } from '@apollo/client';
 
+export const PAUSE_AND_RESUME_ATTENDANCE = gql`
+  mutation PauseAndResumeTeamAttendance($team: String!, $orgToken: String) {
+    pauseAndResumeTeamAttendance(team: $team, orgToken: $orgToken) {
+      team {
+        id
+        name
+        isJobActive
+      },
+      sanitizedAttendance {
+        today
+        yesterday
+        attendanceWeeks {
+          phase {
+            id
+            name
+          }
+          weeks
+        }
+        attendance {
+          week
+          phase {
+            id
+            name
+          }
+          dates {
+            mon {
+              date
+              isValid
+            }
+            tue {
+              date
+              isValid
+            }
+            wed {
+              date
+              isValid
+            }
+            thu {
+              date
+              isValid
+            }
+            fri {
+              date
+              isValid
+            }
+          }
+          days {
+            mon {
+              trainee {
+                id
+                email
+                profile {
+                  id
+                  name
+                }
+              }
+              score
+            }
+            tue {
+              trainee {
+                id
+                email
+                profile {
+                  name
+                }
+              }
+              score
+            }
+            wed {
+              trainee {
+                id
+                email
+                profile {
+                  name
+                }
+              }
+              score
+            }
+            thu {
+              trainee {
+                id
+                email
+                profile {
+                  name
+                }
+              }
+              score
+            }
+            fri {
+              trainee {
+                id
+                email
+                profile {
+                  name
+                }
+              }
+              score
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const RECORD_ATTENDANCE = gql`
   mutation RecordAttendance(
+    $today: Boolean!
+    $yesterday: Boolean!
     $week: Int!
     $team: String!
-    $date: String!
     $trainees: [TraineeInput!]!
     $orgToken: String!
   ) {
     recordAttendance(
+      today: $today
+      yesterday: $yesterday
       week: $week
       team: $team
-      date: $date
       trainees: $trainees
       orgToken: $orgToken
     ) {
-      team {
-        id
-        name
-        cohort {
+      today
+      yesterday
+      attendanceWeeks {
+        phase {
           id
           name
-          phase {
-            name
-            id
-          }
         }
+        weeks
       }
-      trainees {
-        trainee {
-          profile {
-            name
-          }
-          email
+      attendance {
+        week
+        phase {
           id
+          name
         }
-        status {
-          day
-          date
-          score
+        dates {
+          mon {
+            date
+            isValid
+          }
+          tue {
+            date
+            isValid
+          }
+          wed {
+            date
+            isValid
+          }
+          thu {
+            date
+            isValid
+          }
+          fri {
+            date
+            isValid
+          }
+        }
+        days {
+          mon {
+            trainee {
+              id
+              email
+              profile {
+                id
+                name
+              }
+            }
+            score
+          }
+          tue {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          wed {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          thu {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          fri {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
         }
       }
     }
@@ -48,6 +220,7 @@ export const RECORD_ATTENDANCE = gql`
 export const UPDATE_ATTENDANCE = gql`
   mutation UpdateAttendance(
     $week: Int!
+    $day: String!
     $team: String!
     $phase: String!
     $trainees: [TraineeInput!]!
@@ -55,38 +228,99 @@ export const UPDATE_ATTENDANCE = gql`
   ) {
     updateAttendance(
       week: $week
+      day: $day
       team: $team
       phase: $phase
       trainees: $trainees
       orgToken: $orgToken
     ) {
-      id
-      week
-      phase {
-        id
-        name
-      }
-      cohort {
-        id
-        name
-      }
-      teams {
-        team {
+      today
+      yesterday
+      attendanceWeeks {
+        phase {
           id
           name
         }
-        trainees {
-          trainee {
-            id
-            email
-            profile {
-              id
-              name
-            }
-          }
-          status {
-            day
+        weeks
+      }
+      attendance {
+        week
+        phase {
+          id
+          name
+        }
+        dates {
+          mon {
             date
+            isValid
+          }
+          tue {
+            date
+            isValid
+          }
+          wed {
+            date
+            isValid
+          }
+          thu {
+            date
+            isValid
+          }
+          fri {
+            date
+            isValid
+          }
+        }
+        days {
+          mon {
+            trainee {
+              id
+              email
+              profile {
+                id
+                name
+              }
+            }
+            score
+          }
+          tue {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          wed {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          thu {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          fri {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
             score
           }
         }
@@ -96,35 +330,95 @@ export const UPDATE_ATTENDANCE = gql`
 `;
 
 export const DELETE_ATTENDANCE = gql`
-  mutation DeleteAttendance($week: String!, $team: String!, $day: String!) {
+  mutation DeleteAttendance($week: Int!, $team: String!, $day: String!) {
     deleteAttendance(week: $week, team: $team, day: $day) {
-      id
-      week
-      phase {
-        id
-        name
-      }
-      cohort {
-        id
-        name
-      }
-      teams {
-        team {
+      today
+      yesterday
+      attendanceWeeks {
+        phase {
           id
           name
         }
-        trainees {
-          trainee {
-            id
-            email
-            profile {
-              id
-              name
-            }
-          }
-          status {
-            day
+        weeks
+      }
+      attendance {
+        week
+        phase {
+          id
+          name
+        }
+        dates {
+          mon {
             date
+            isValid
+          }
+          tue {
+            date
+            isValid
+          }
+          wed {
+            date
+            isValid
+          }
+          thu {
+            date
+            isValid
+          }
+          fri {
+            date
+            isValid
+          }
+        }
+        days {
+          mon {
+            trainee {
+              id
+              email
+              profile {
+                id
+                name
+              }
+            }
+            score
+          }
+          tue {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          wed {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          thu {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
+            score
+          }
+          fri {
+            trainee {
+              id
+              email
+              profile {
+                name
+              }
+            }
             score
           }
         }
