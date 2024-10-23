@@ -9,7 +9,6 @@ import { LuHourglass } from 'react-icons/lu';
 import { BsPersonFillX } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import InvitationCard from '../components/InvitationCard';
-import DataTableStats from '../components/InvitationTable';
 import InvitationModal from './invitationModalComponet';
 import { GET_INVITATIONS_STATISTICS_QUERY } from '../queries/invitationStats.queries';
 import InvitationCardSkeleton from '../Skeletons/InvitationCardSkeleton';
@@ -28,6 +27,8 @@ import {
   GET_ROLES_AND_STATUSES,
 } from '../queries/invitation.queries';
 import { isValid } from 'date-fns';
+import InvitationTable from '../components/InvitationTable'
+import usePagination from '../hook/UsePagination'
 
 interface Invitee {
   email: string;
@@ -85,6 +86,11 @@ function Invitation() {
     role: '',
     status: '',
   });
+
+
+  const [isFiltering, setIsFiltering] = useState(false);
+  const { limit, skip, pagination, onPaginationChange } = usePagination(3);
+
   const[filterDisabled,setFilterDisabled]=useState<boolean>(true)
   const modalRef = useRef<any>(null);
   const organizationToken = localStorage.getItem('orgToken');
@@ -128,11 +134,71 @@ function Invitation() {
   } = useQuery(GET_ALL_INVITATIONS, {
     variables:{
       orgToken: organizationToken,
-      sortBy:sortBy
+      sortBy:sortBy,
+      limit,
+      offset: skip
+    },
+    fetchPolicy: 'network-only',
+    skip: isFiltering
+  });
+
+  const [
+    fetchInvitations,
+    { data: searchData, loading: searchLoading, error: searchError },
+  ] = useLazyQuery(GET_INVITATIONS, {
+    variables: {
+     query: searchQuery,
+     orgToken: organizationToken,
+     limit,
+     offset: skip,
+     sortBy:sortBy
     },
     fetchPolicy: 'network-only',
   });
 
+  const [
+    filterInvitations,
+    { data: filterData, loading: filterLoad, error: filterError, refetch: refetchFiltered },
+  ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
+    variables:{
+      ...filterVariables,
+      limit,
+      offset: skip,
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  const isSearching = searchQuery && searchQuery.trim() !== "";
+
+// Refetch data on pagination change and filter clearing
+useEffect(() => {
+  if (isSearching) {
+    fetchInvitations({
+      variables: {
+        query: searchQuery,
+        orgToken: organizationToken,
+        sortBy: sortBy,
+        limit,
+        offset: skip,
+      },
+    });
+  } else if (isFiltering) {
+    refetchFiltered({
+      ...filterVariables,
+      limit,
+      offset: skip,
+    });
+  } else {
+    refetch({
+      orgToken: organizationToken,
+      sortBy: sortBy,
+      limit,
+      offset: skip,
+    });
+  }
+}, [limit, skip, refetch, refetchFiltered, fetchInvitations, isFiltering, filterVariables, searchQuery, isSearching]);
+
+ 
   useEffect(() => {
     if (invitationStats) {
       setSelectedStatus(''); // Set the fetched status as the default value
@@ -141,17 +207,27 @@ function Invitation() {
 
   // Set email and role when modal opens
   useEffect(() => {
-    if (data && data.getAllInvitations) {
-      const invitation = data.getAllInvitations.invitations.find(
-        (inv: Invitationn) => inv.id === selectedInvitationId,
+    let invitation;
+  
+    if (isSearching && searchData?.getInvitations) {
+      invitation = searchData.getInvitations.invitations.find(
+        (inv) => inv.id === selectedInvitationId
       );
-
-      if (invitation && invitation.invitees.length > 0) {
-        setEmail(invitation.invitees[0].email);
-        setRole(invitation.invitees[0].role);
-      }
+    } else if (isFiltering && filterData?.filterInvitations) {
+      invitation = filterData.filterInvitations.invitations.find(
+        (inv) => inv.id === selectedInvitationId
+      );
+    } else if (data && data.getAllInvitations) {
+      invitation = data.getAllInvitations.invitations.find(
+        (inv) => inv.id === selectedInvitationId
+      );
     }
-  }, [data, selectedInvitationId]);
+  
+    if (invitation && invitation.invitees.length > 0) {
+      setEmail(invitation.invitees[0].email);
+      setRole(invitation.invitees[0].role);
+    }
+  }, [data, searchData, filterData, selectedInvitationId, isSearching, isFiltering]);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -197,36 +273,6 @@ function Invitation() {
     setUpdateInviteeModel(newState);
   };
 
-  const [
-    fetchInvitations,
-    { data: searchData, loading: searchLoading, error: searchError },
-  ] = useLazyQuery(GET_INVITATIONS, {
-    variables: {
-     query: searchQuery,
-     orgToken: organizationToken
-    },
-    fetchPolicy: 'network-only',
-  });
-  const [
-    filterInvitations,
-    { data: filterData, loading: filterLoad, error: filterError },
-  ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
-    variables:filterVariables,
-    fetchPolicy: 'network-only',
-  });
-
-  useEffect(() => {
-    if (filterVariables.role || filterVariables.status) {
-      filterInvitations({
-          variables: {
-          role: filterVariables.role || null,
-          status:filterVariables.status || null,
-          orgToken: organizationToken
-        },
-    });
-    }
-  }, [filterVariables, filterInvitations,organizationToken]);
-
   // Consolidated effect to handle query and search data
   useEffect(() => {
     if (queryLoading || searchLoading || filterLoad) {
@@ -241,26 +287,12 @@ function Invitation() {
       setError(searchError.message);
     } else if (filterError) {
       setError(filterError.message);
-    } else if (
-      searchData &&
-      Array.isArray(searchData.getInvitations.invitations)
-    ) {
-      setInvitations(searchData.getInvitations.invitations);
-    } else if (filterData && filterData.filterInvitations) {
-      setInvitations(filterData.filterInvitations.invitations);
-      setTotalInvitations(filterData.filterInvitations.totalInvitations);
-    } else if (data && data.getAllInvitations) {
-      setInvitations(data.getAllInvitations.invitations);
-      setTotalInvitations(data.getAllInvitations.totalInvitations);
     }
   }, [
-    data,
-    searchData,
     queryLoading,
     searchLoading,
     queryError,
     searchError,
-    filterData,
     filterLoad,
     filterError,
   ]);
@@ -276,6 +308,8 @@ function Invitation() {
     setInvitations([]);
     setError(null);
     setLoading(false);
+
+    onPaginationChange({ pageSize: pagination.pageSize, pageIndex: 0 });
 
     fetchInvitations({ variables: { query: searchQuery } });
   };
@@ -307,26 +341,41 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     setSelectedStatus(status)
 }
 
-  const handleFilter = () => {
-    if (!selectedRole && !selectedStatus) {
-      toast.info('Please select role or status.');
-      return;
-    }
-    setInvitations([]);
-    setError(null);
-    setLoading(false);
+// Handle filter application
+const handleFilter = () => {
+  if (!selectedRole && !selectedStatus) {
+    toast.info('Please select role or status.');
+    return;
+  }
 
-      setFilterVariables({
-      role: selectedRole,
-      status: typeof selectedStatus === 'string' ? selectedStatus : '',
-    });
-    filterInvitations({
-      variables:{
-        sortBy:sortBy
-      }
-    })
- 
-  };
+  onPaginationChange({ pageSize: pagination.pageSize, pageIndex: 0 });
+
+  setIsFiltering(true);
+
+  setFilterVariables({
+    role: selectedRole,
+    status: typeof selectedStatus === 'string' ? selectedStatus : '',
+  });
+
+  filterInvitations({
+    variables: {
+      role: selectedRole || "",
+      status: selectedStatus || "",
+      orgToken: organizationToken,
+      limit,
+      offset: skip,
+    },
+  });
+};
+
+
+useEffect(() => {
+  if (selectedRole || selectedStatus) {
+    setFilterDisabled(false);
+  } else {
+    setFilterDisabled(true);
+  }
+}, [selectedRole, selectedStatus]);
 
   const toggleOptions = (row: string) => {
     setSelectedRow(selectedRow === row ? null : row);
@@ -360,28 +409,28 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   const columns = [
-    { Header: t('email'), accessor: 'email' },
-    { Header: t('role'), accessor: 'role' },
     {
-      Header: t('Status'),
-      accessor: 'status',
-      Cell: ({ row }: any) => {
-        return (
-          <div
-            className={
-              'font-serif items-center' +
-              (invitations?.length > 0 ? ' flex' : ' hidden')
-            }
-          >
-            {row.original.Status}
-          </div>
-        );
-      },
+      id: "email",
+      header: t('email'),
+      accessor: (row) => row.email,
+      cell: (info) => <div>{info.getValue()}</div>,
     },
     {
-      Header: t('action'),
-      accessor: '',
-      Cell: ({ row }: any) => (
+      id: "role",
+      header: t('role'),
+      accessor: (row) => row.role,
+      cell: (info) => <div>{info.getValue()}</div>,
+    },
+    {
+      id: "Status",
+      header: t('Status'),
+      accessor: (row) => row.Status,
+      cell: (info) => <div>{info.getValue()}</div>,
+    },
+    {
+      id: "Action",
+      header: t('Action'),
+      cell: ({ row }: any) => (
         <div className="static">
           <div className="static inline-block">
             <Icon
@@ -508,45 +557,65 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     },
   ];
 
-  const datum: any = [];
-  if (invitations && invitations.length > 0) {
-    invitations.forEach((invitation) => {
-      invitation.invitees?.forEach((data: any) => {
-        let entry: any = {};
-        entry.email = data.email;
-        entry.role = capitalizeStrings(data.role);
-        entry.Status = capitalizeStrings(invitation.status);
-        entry.id = invitation.id;
-        datum.push(entry);
-      });
+const datum: any = [];
+
+const currentInvitations = isSearching && searchData?.getInvitations
+  ? searchData.getInvitations.invitations
+  : isFiltering && filterData?.filterInvitations
+  ? filterData.filterInvitations.invitations
+  : data?.getAllInvitations?.invitations;
+
+const currentInvitationsTotal = isSearching && searchData?.getInvitations
+  ? searchData.getInvitations.totalInvitations
+  : isFiltering && filterData?.filterInvitations
+  ? filterData.filterInvitations.totalInvitations
+  : data?.getAllInvitations?.totalInvitations;
+
+if (currentInvitations && currentInvitations.length > 0) {
+  currentInvitations.forEach((invitation) => {
+    invitation.invitees?.forEach((invitee: any) => {
+      let entry: any = {};
+      entry.email = invitee.email;
+      entry.role = capitalizeStrings(invitee.role);
+      entry.Status = capitalizeStrings(invitation.status);
+      entry.id = invitation.id;
+      datum.push(entry);
     });
-  }
+  });
+}
+
   if (loading || searchLoading || filterLoad) {
     content = (
-      <DataTableStats
-        data={invitations?.length > 0 ? datum : []}
-        columns={columns}
-        loading={loading}
-        error={error}
+      <InvitationTable
+        data={datum.length > 0 ? datum : []}
+        cols={columns}
+        loading={loading || searchLoading}
+        rowCount={currentInvitationsTotal}
+        onPaginationChange={onPaginationChange}
+        pagination={pagination}
       />
     );
   } else if (error || searchError || filterError) {
     content = (
-      <DataTableStats
-        data={invitations?.length > 0 ? datum : []}
-        columns={columns}
-        loading={loading}
-        error={error}
+      <InvitationTable
+        data={datum.length > 0 ? datum : []}
+        cols={columns}
+        loading={loading || searchLoading}
+        rowCount={currentInvitationsTotal}
+        onPaginationChange={onPaginationChange}
+        pagination={pagination}
       />
     );
   } else {
     content = (
       <>
-        <DataTableStats
-          data={invitations?.length > 0 ? datum : []}
-          columns={columns}
-          loading={loading}
-          error={error}
+        <InvitationTable
+          data={datum.length > 0 ? datum : []}
+          cols={columns}
+          loading={loading || searchLoading}
+          rowCount={currentInvitationsTotal}
+          onPaginationChange={onPaginationChange}
+          pagination={pagination}
         />
       </>
     );
@@ -562,6 +631,7 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
           setButtonLoading(false);
           toast.success(data.resendInvitation.message);
           refetch();
+          refreshData();
           setResendInvatationModel(false)
         })
       }
@@ -583,6 +653,7 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
         setButtonLoading(false);
         toast.success(data.deleteInvitation.message);
         refetch();
+        refreshData();
         removeInviteeMod();
       }, 1000);
     },
@@ -635,6 +706,7 @@ const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
           data.cancelInvitation.message || 'Invitation canceled successfully.',
         );
         refetch();
+        refreshData();
         cancelInviteeMod();
       }, 1000);
     },
