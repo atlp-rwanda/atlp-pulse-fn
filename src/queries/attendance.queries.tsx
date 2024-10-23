@@ -97,6 +97,47 @@ export const GET_TEAM_ATTENDANCE = gql`
     }
   }
 `;
+
+export const GET_TRAINEE_ATTENDANCE = gql`
+  query GetTraineeAttendance {
+    getTraineeAttendance {
+      teamName
+      traineeId
+      phases {
+        phase {
+          _id
+          name
+        }
+        weeks {
+          week
+          daysStatus {
+            mon {
+              date
+              score
+            }
+            tue {
+              date
+              score
+            }
+            wed {
+              date
+              score
+            }
+            thu {
+              date
+              score
+            }
+            fri {
+              date
+              score
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GET_ATTENDANCE_BY_ID = gql`
   query GetAttendance($id: ID!) {
     getTraineeAttendanceByID(id: $id) {

@@ -5,7 +5,7 @@ const TraineeAttendanceTracker = React.lazy(
   () => import('../pages/TraineeAttendanceTracker'),
 );
 const TraineeAttendance = React.lazy(
-  () => import('../components/TraineeAttendance'),
+  () => import('../pages/TraineeAttendance'),
 );
 function Attendance() {
   return (
