@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders the TraineeAttendance Page renders trainee attendance data correctly 1`] = `
+<div
+  className="flex flex-col gap-y-7 xmd:gap-y-9 bg-tertiary dark:bg-dark-bg p-5 xmd:p-7 md:p-10 xmd:m-5 rounded-lg font-serif"
+>
+  <div
+    className="flex justify-between"
+  >
+    <h2
+      className="flex items-center w-[145px] xmd:w-[200px] h-7 animate-pulse duration-75 bg-gray-400/90 mb-5 rounded-[6px]"
+    />
+    <h2
+      className="flex items-center w-[145px] xmd:w-[200px] h-7 animate-pulse duration-75 bg-gray-400/90 mb-5 rounded-[6px]"
+    />
+  </div>
+  <div
+    className="flex justify-between items-end mt-3 xmd:mt-5"
+  >
+    <h2
+      className="flex items-center w-[145px] xmd:w-[200px] h-7 animate-pulse duration-75 bg-gray-400/90 mb-5 rounded-[6px]"
+    />
+    <h2
+      className="flex items-center w-[145px] xmd:w-[200px] h-7 animate-pulse duration-75 bg-gray-400/90 mb-5 rounded-[6px]"
+    />
+  </div>
+  <div>
+    <div
+      className="flex items-center w-full h-44 animate-pulse duration-200 bg-gray-400/90 mb-5 rounded-[6px] px-5"
+    />
+    <div
+      className="flex flex-col gap-4 ml-2 xmd:ml-5 mt-6"
+    >
+      <h2
+        className="flex items-center w-[280px] h-7 animate-pulse duration-75 bg-gray-400/90 rounded-[4px]"
+      />
+      <h2
+        className="flex items-center w-[280px] h-7 animate-pulse duration-75 bg-gray-400/90 rounded-[4px]"
+      />
+      <h2
+        className="flex items-center w-[280px] h-7 animate-pulse duration-75 bg-gray-400/90 rounded-[4px]"
+      />
+    </div>
+  </div>
+</div>
+`;

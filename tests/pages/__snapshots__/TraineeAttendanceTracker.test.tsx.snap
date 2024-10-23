@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
+exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`] = `
 <div
   className="bg-tertiary dark:bg-dark-bg p-5 xmd:p-7 md:p-10 rounded-lg font-serif"
 >

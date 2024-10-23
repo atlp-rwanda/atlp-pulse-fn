@@ -289,7 +289,7 @@ describe('CRUD Of Trainee Attendance', () => {
     await cleanup();
   });
 
-  it('Renders the TraineeAttendance Page', () => {
+  it('Renders the TraineeAttendanceTracker Page', () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
       user: {
         role: 'coordinator',

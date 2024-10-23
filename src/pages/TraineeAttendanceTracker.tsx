@@ -21,6 +21,7 @@ import AttendanceSymbols from '../components/AttendanceSymbols';
 import Modal from '../components/ModalAttendance';
 import EditAttendanceButton from '../components/EditAttendenceButton';
 import { UserContext } from '../hook/useAuth';
+import useDocumentTitle from '../hook/useDocumentTitle';
 
 /* istanbul ignore next */
 interface UserInterface {
@@ -75,7 +76,8 @@ export interface TraineeAttendanceDataInterface {
 }
 interface DayInterface {
   date: string;
-  isValid: boolean;
+  isValid?: boolean;
+  score?: string | null;
 }
 export interface WeekdaysInterface {
   mon: DayInterface;
@@ -113,6 +115,7 @@ export interface AttendanceDataInterface extends ValidDatesInterface {
 }
 
 function TraineeAttendanceTracker() {
+  useDocumentTitle('Attendance');
   const { t } = useTranslation();
   const { user } = useContext(UserContext);
   const [getTeamAttendance, { loading: teamAttendanceLoading }] =
@@ -338,14 +341,15 @@ function TraineeAttendanceTracker() {
         },
       );
       teamAttendancePhases.length &&
-        (!selectedTeamData?.isJobActive ||
-        !selectedTeamData?.active) &&
+        (!selectedTeamData?.isJobActive || !selectedTeamData?.active) &&
         setSelectedPhase({
           id: teamAttendancePhases[0].id,
           name: teamAttendancePhases[0].name,
         });
       setPhases(teamAttendancePhases);
-      const tempWeeks = attendanceWeek.length ? [...attendanceWeek[0].weeks] : [1];
+      const tempWeeks = attendanceWeek.length
+        ? [...attendanceWeek[0].weeks]
+        : [1];
       tempWeeks.sort((a, b) => a - b);
       setWeeks(tempWeeks);
       !selectedWeek && setSelectedWeek(tempWeeks[tempWeeks.length - 1]);
@@ -610,7 +614,7 @@ function TraineeAttendanceTracker() {
                     phase.id === selectedPhase?.id
                       ? 'border-black dark:border-white dark:text-white'
                       : 'dark:border-neutral-600 dark:text-neutral-500 border-neutral-400 text-neutral-500 '
-                  } h-6 xmd:h-7 px-2 xmd:px-3 border-b-2 capitalize cursor-pointer font-medium whitespace-nowrap text-[.85rem] xmd:text-[.95rem]`}
+                  } h-6 xmd:h-7 px-2 xmd:px-3 border-b-4 capitalize cursor-pointer font-medium whitespace-nowrap text-[.85rem] xmd:text-[.95rem]`}
                   onClick={() => {
                     if (isUpdatedMode && selectedPhase !== phase && updated) {
                       toast.warning('First Discard or Update your changes', {
