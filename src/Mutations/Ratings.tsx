@@ -209,7 +209,13 @@ export const ADD_RATINGS_BY_FILE = gql`
         name
       }
     }
-    RejectedRatings,
+    RejectedRatings{
+      email
+      quantity
+      quality
+      professional_skills
+      feedBacks
+    }
     UpdatedRatings {
       quantity
       quality

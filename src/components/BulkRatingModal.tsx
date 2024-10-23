@@ -40,8 +40,7 @@ const BulkRatingModal = ({ bulkRateModal, setBulkRateModal }: BulkRatingModalPro
                     orgToken
                 },
             })
-            console.log(ratings)
-            toast.success("Rating completed susccefully")
+            toast.success("Rating completed succefully")
         }catch(err: any){
             toast.error(err?.message)
         }
@@ -65,15 +64,29 @@ const BulkRatingModal = ({ bulkRateModal, setBulkRateModal }: BulkRatingModalPro
                         <div className="flex flex-col gap-1">
                         <label>Choose a sprint</label>
                         <select className="p-2 text-black dark:text-white rounded-lg bg-white dark:bg-dark border-2 border-primary" 
+                        defaultValue={""}
                         onChange={(e)=>{
                             e.preventDefault()
                             setFormData({...formData, sprint: e.target.value})
                         }}
                         >
+                            <option>Choose a sprint</option>
                             {
-                                sprints?
-                                [...sprints.fetchSprints, sprints.fetchSprints[sprints.fetchSprints.length-1]+1].map((sprint: number)=>(<option key={sprint} value={sprint}>Sprint {sprint}</option>))
-                                :<option>loading...</option>
+                                sprints && !sprints.fetchSprints.length ?
+                                <option value={1}>Sprint 1</option>
+                                : ''
+                            }
+                            {
+                                sprints && sprints.fetchSprints.length ?
+                                [...sprints.fetchSprints, sprints.fetchSprints[sprints.fetchSprints.length-1]+1].map((sprint: number)=>
+                                    <option key={sprint} value={sprint}>Sprint {sprint}</option>
+                                )
+                                :''
+                            }
+                            {
+                                loadingSprints?
+                                <option>Loading ...</option>
+                                : ''
                             }
                         </select>
                         </div>
@@ -87,6 +100,39 @@ const BulkRatingModal = ({ bulkRateModal, setBulkRateModal }: BulkRatingModalPro
                         }}
                         >
                         </input>
+                        <div>
+                            {
+                                ratings && ratings.addRatingsByFile.RejectedRatings.length > 0?
+                                <div className="my-1 overflow-x-auto">
+                                <table className="table-fixed min-w-full">
+                                    <caption className="caption-top text-left my-2">
+                                        Rejected Ratings
+                                    </caption>
+                                    <thead className="border-b bg-neutral-700 border-neutral-400">
+                                        <tr>
+                                            <th scope="col" className="text-left py-4 px-2">Email</th>
+                                            <th scope="col" className="text-left py-4 px-2">Quantity</th>
+                                            <th scope="col" className="text-left py-4 px-2">Quality</th>
+                                            <th scope="col" className="text-left py-4 px-2">Professional_Skills</th>
+                                            <th scope="col" className="text-left py-4 px-2">Feedback</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {ratings.addRatingsByFile?.RejectedRatings.map((rating: any, index: number)=>
+                                    <tr key={index} className="text-red-400">
+                                        <td className="text-left py-1 px-2">{rating.email ? rating.email : "null"}</td>
+                                        <td className="text-left py-1 px-2">{rating.quantity ? rating.quantity : "null"}</td>
+                                        <td className="text-left py-1 px-2">{rating.quality ? rating.quality : "null"}</td>
+                                        <td className="text-left py-1 px-2">{rating.professional_skills ? rating.professional_skills : "null"}</td>
+                                        <td className="text-left py-1 px-2">{rating.feedBacks ? rating.feedBacks : "null"}</td>
+                                    </tr>
+                                    )}
+                                    </tbody>
+                                </table>
+                                </div>
+                                : ''
+                            }
+                        </div>
                         <div className="flex justify-between w-full">
                             <button className="w-[40%] md:w-1/4 p-3 text-white rounded-lg bg-primary text-sm font-serif font-semibold" type="button" onClick={() => setBulkRateModal(false)}>
                                 Cancel

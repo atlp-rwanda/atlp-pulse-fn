@@ -1611,7 +1611,9 @@ function AdminTraineeDashboard() {
                     >
                       {t('add')} +{' '}
                     </Button>
-                    <Button
+                    {
+                      JSON.parse(localStorage.getItem('auth')!) && ['coordinator','ttl'].includes(JSON.parse(localStorage.getItem('auth')!).role) ?
+                      <Button
                       variant="primary"
                       size="lg"
                       data-testid="registerModel"
@@ -1619,7 +1621,8 @@ function AdminTraineeDashboard() {
                       onClick={()=>setBulkRateModal(true)}
                     >
                       {t('Bulk Rate')}
-                    </Button>
+                    </Button> : ''
+                    }
                   </div>
                 </div>
                 <div className="">
