@@ -732,7 +732,7 @@ export default function TtlsPage() {
       <form className="px-8 py-3 ">
         <div className="flex flex-wrap items-center justify-center w-full card-title ">
           <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-            {t('Are you sure you want to Undrop this TTL?')}
+            {t('Are you sure you want to Undrop this TTL ?')}
           </h3>
         </div>
         {/* Reason input field */}
