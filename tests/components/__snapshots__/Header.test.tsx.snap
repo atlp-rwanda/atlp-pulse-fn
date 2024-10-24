@@ -2,7 +2,7 @@
 
 exports[`Header Tests Should render the header with home 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
+  className="w-screen h-[5em] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -230,16 +230,21 @@ exports[`Header Tests Should render the header with home 1`] = `
         Product
       </a>
     </li>
-    <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    <div
+      className="flex flex-col p-2 dark:text-dark-text-fill"
     >
-      <a
-        href="/docs/getting-started"
+      <div
+        className="inline-flex gap-2 items-center"
         onClick={[Function]}
       >
-        Docs
-      </a>
-    </li>
+        <p>
+          Docs
+        </p>
+        <span>
+          ▼
+        </span>
+      </div>
+    </div>
     <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
@@ -272,7 +277,7 @@ exports[`Header Tests Should render the header with home 1`] = `
 
 exports[`Header Tests Should render the header with no active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
+  className="w-screen h-[5em] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -499,16 +504,21 @@ exports[`Header Tests Should render the header with no active 1`] = `
         Product
       </a>
     </li>
-    <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    <div
+      className="flex flex-col p-2 dark:text-dark-text-fill"
     >
-      <a
-        href="/docs/getting-started"
+      <div
+        className="inline-flex gap-2 items-center"
         onClick={[Function]}
       >
-        Docs
-      </a>
-    </li>
+        <p>
+          Docs
+        </p>
+        <span>
+          ▼
+        </span>
+      </div>
+    </div>
     <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
@@ -541,7 +551,7 @@ exports[`Header Tests Should render the header with no active 1`] = `
 
 exports[`Header Tests Should render the header with no active 2`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
+  className="w-screen h-[5em] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -745,16 +755,21 @@ exports[`Header Tests Should render the header with no active 2`] = `
         Product
       </a>
     </li>
-    <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    <div
+      className="flex flex-col p-2 dark:text-dark-text-fill"
     >
-      <a
-        href="/docs/getting-started"
+      <div
+        className="inline-flex gap-2 items-center"
         onClick={[Function]}
       >
-        Docs
-      </a>
-    </li>
+        <p>
+          Docs
+        </p>
+        <span>
+          ▼
+        </span>
+      </div>
+    </div>
     <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
@@ -781,7 +796,7 @@ exports[`Header Tests Should render the header with no active 2`] = `
 
 exports[`Header Tests Should render the header with no active 3`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
+  className="w-screen h-[5em] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1009,16 +1024,21 @@ exports[`Header Tests Should render the header with no active 3`] = `
         Product
       </a>
     </li>
-    <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    <div
+      className="flex flex-col p-2 dark:text-dark-text-fill"
     >
-      <a
-        href="/docs/getting-started"
+      <div
+        className="inline-flex gap-2 items-center"
         onClick={[Function]}
       >
-        Docs
-      </a>
-    </li>
+        <p>
+          Docs
+        </p>
+        <span>
+          ▼
+        </span>
+      </div>
+    </div>
     <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
@@ -1051,7 +1071,7 @@ exports[`Header Tests Should render the header with no active 3`] = `
 
 exports[`Header Tests Should render the header with pricing active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
+  className="w-screen h-[5em] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1279,16 +1299,21 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
         Product
       </a>
     </li>
-    <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    <div
+      className="flex flex-col p-2 dark:text-dark-text-fill"
     >
-      <a
-        href="/docs/getting-started"
+      <div
+        className="inline-flex gap-2 items-center"
         onClick={[Function]}
       >
-        Docs
-      </a>
-    </li>
+        <p>
+          Docs
+        </p>
+        <span>
+          ▼
+        </span>
+      </div>
+    </div>
     <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >
@@ -1321,7 +1346,7 @@ exports[`Header Tests Should render the header with pricing active 1`] = `
 
 exports[`Header Tests Should render the header with product active 1`] = `
 <div
-  className="w-screen h-[8vh] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
+  className="w-screen h-[5em] z-10 bg-white dark:bg-dark-bg page-header undefined font-serif"
 >
   <div
     className="px-3 flex justify-between items-center w-full h-full"
@@ -1548,16 +1573,21 @@ exports[`Header Tests Should render the header with product active 1`] = `
         Product
       </a>
     </li>
-    <li
-      className="p-2 w-full mt-2 dark:text-dark-text-fill text-primary"
+    <div
+      className="flex flex-col p-2 dark:text-dark-text-fill"
     >
-      <a
-        href="/docs/getting-started"
+      <div
+        className="inline-flex gap-2 items-center"
         onClick={[Function]}
       >
-        Docs
-      </a>
-    </li>
+        <p>
+          Docs
+        </p>
+        <span>
+          ▼
+        </span>
+      </div>
+    </div>
     <li
       className="p-2 w-full dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md px-[35%]"
     >

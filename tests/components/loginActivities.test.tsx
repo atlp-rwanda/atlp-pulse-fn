@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import { GET_LOGIN_ACTIVITIES } from '../../src/queries/manageStudent.queries';
 import LoginActivitiesTable from '../../src/components/LoginActivitiesTable';
+import LoginActivitiesSkeleton from '../../src/Skeletons/loginActivities.skeleton';
 
 const mockLoginActivities = [
   {
@@ -38,15 +39,13 @@ const mocks = [
 ];
 
 describe('LoginActivities', () => {
-  it('renders login activities table', async () => {
+  it('renders login activities skeleton table', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <LoginActivitiesTable />
       </MockedProvider>,
     );
-    expect(
-      screen.getByText(/Loading login activities.../i),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('login-activities-skeleton')).toBeInTheDocument();
   });
   it('displays loading state while fetching login activities', () => {
     render(
@@ -55,7 +54,7 @@ describe('LoginActivities', () => {
       </MockedProvider>,
     );
 
-    expect(screen.getByText('Loading login activities...')).toBeTruthy();
+    expect(screen.getByTestId('login-activities-skeleton')).toBeTruthy();
   });
 
   it('displays error state if login activities retrieval fails', async () => {
