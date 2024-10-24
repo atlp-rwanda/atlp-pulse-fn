@@ -15,7 +15,7 @@ import { Icon } from '@iconify/react';
 import { UserContext } from '../../hook/useAuth';
 import Button from '../../components/Buttons';
 import Avatar from '../../assets/avatar.png';
-import { DROP_TTL_USER } from '../../Mutations/User';
+import { DROP_TTL_USER, UNDROP_TTL_USER } from '../../Mutations/User';
 import { GET_ALL_TTL_USERS } from '../../queries/user.queries';
 import { EDIT_MEMBER_MUTATION } from '../../Mutations/manageStudentMutations';
 import {
@@ -42,6 +42,7 @@ export default function TtlsPage() {
 
   const [registerTraineeModel, setRegisterTraineeModel] = useState(false);
   const [removeTraineeModel, setRemoveTraineeModel] = useState(false);
+  const [undropTTLModel, setUndropTTLModel] = useState(false);
   const [editTraineeModel, setEditTraineeModel] = useState(false);
   const [inviteTraineeModel, setInviteTraineeModel] = useState(false);
   const [traineeData, setTraineeData] = useState<any[]>([]);
@@ -78,6 +79,7 @@ export default function TtlsPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [gitHubStatistics, setGitHubStatistics] = useState<any>({});
   const [dropTTLUser, { loading: dropLoading }] = useMutation(DROP_TTL_USER);
+  const [undropTTLUser, { loading: undropLoading }] = useMutation(UNDROP_TTL_USER);
   function PaperComponent(props: PaperProps) {
     return (
       <Draggable
@@ -115,6 +117,11 @@ export default function TtlsPage() {
   const removeTraineeMod = () => {
     let newState = !removeTraineeModel;
     setRemoveTraineeModel(newState);
+  };
+
+   const undropTTLMod = () => {
+    let newState = !undropTTLModel;
+    setUndropTTLModel(newState);
   };
 
   const removeModel = () => {
@@ -216,7 +223,8 @@ export default function TtlsPage() {
                   cursor="pointer"
                   color="#9e85f5"
                   /* istanbul ignore next */
-                  onClick={() => {
+                onClick={() => {
+                  if (row.original.status?.status === "active") {
                     setSelectedOptionUpdate({
                       value: row.original.team?.cohort?.name,
                       label: row.original.team?.cohort?.name,
@@ -229,21 +237,43 @@ export default function TtlsPage() {
                     setEditEmail(row.original?.email);
                     setEditCohort(row.original.team?.cohort?.name);
                     setEditTeam(row.original.team?.name);
-                  }}
-                />
-                <Icon
-                  icon="mdi:close-circle-outline"
-                  width="30"
-                  height="30"
-                  cursor="pointer"
-                  color="#9e85f5"
-                  /* istanbul ignore next */
-                  onClick={() => {
-                    removeTraineeMod();
-                    setDeleteEmail(row.original?.email);
-                  }}
-                />
+                  }
+                  else {
+                    toast.error("This TTL is Dropped out")
+                  }
+                }}
+              />
 
+              {row.original.status?.status === "active" ? (
+    <Icon
+      icon="mdi:close-circle-outline"
+      width="30"
+      height="30"
+      cursor="pointer"
+      color="#9e85f5"
+      onClick={() => {
+        
+          removeTraineeMod();
+          setDeleteEmail(row.original?.email);
+        
+      }}
+    />
+  ) : (
+    <Icon
+      icon="mdi:restore"
+      width="30"
+      height="30"
+      cursor="pointer"
+      color="#9e85f5"
+      onClick={() => {
+        console.log(row.original.status?.status);
+        
+          undropTTLMod();
+          setDeleteEmail(row.original?.email);
+        
+      }}
+    />
+  )}
                 <Icon
                   icon="flat-color-icons:view-details"
                   width="30"
@@ -375,10 +405,16 @@ export default function TtlsPage() {
                   onClick={() => {
                     setButtonLoading(true);
                     setButtonLoading(true);
-                    if (editEmail) {
-                      editMemberMutation();
+                    if (traineeDetails.status?.status === "active") {
+                      if (editEmail) {
+                        editMemberMutation();
+                      } else {
+                        toast.error('Please select the trainee again ');
+                      }
                     } else {
-                      toast.error('Please select the trainee again ');
+                      toast.error("This TTL is Dropped out")
+                      removeEditModel()
+                      setButtonLoading(false);
                     }
                   }}
                   loading={buttonLoading}
@@ -506,6 +542,29 @@ export default function TtlsPage() {
                   </p>
                 </div>
 
+                <div
+                  className="font-sans text-sm"
+                  style={{
+                    display: 'flex',
+                    gap: '50px',
+                    justifyContent: 'space-between',
+                    paddingBlock: '10px',
+                    marginBottom: '20px',
+                    borderBottom: '0.5px solid #EAECEE',
+                  }}
+                >
+                  {' '}
+                  <h3>
+                    <b>STATUS</b>{' '}
+                  </h3>
+                  <p>
+                    <i>
+                      {' '}
+                      {traineeDetails.status?.status}
+                    </i>
+                  </p>
+                </div>
+
                 {/* Show resume URL for admins and managers */}
                 {user &&
                   (user.role === 'admin' || user.role === 'coordinator') && (
@@ -537,8 +596,10 @@ export default function TtlsPage() {
                           'Unavailable'
                         )}
                       </p>
-                    </div>
+                  </div>
+                  
                   )}
+                
 
                 <Button
                   data-testid="removeInviteModel"
@@ -558,91 +619,175 @@ export default function TtlsPage() {
       {/* =========================== Start::  RemoveTraineeModel =============================== */}
 
       <div
-        className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
-          removeTraineeModel === true ? 'block' : 'hidden'
-        }`}
-      >
-        <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
-          <div className="flex flex-wrap items-center justify-center w-full card-title ">
-            <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-              {t('Remove TTL')}
-            </h3>
-            <hr className="w-full my-3 border-b bg-primary" />
-          </div>
-          <div className="card-body">
-            <form className="px-8 py-3 ">
-              <div className="flex flex-wrap items-center justify-center w-full card-title ">
-                <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
-                  {t('Are you sure you want to remove TTL from this cohort?')}
-                </h3>
-              </div>
-              {/* Reason input field */}
-              <div className="mt-4">
-                <input
-                  type="text"
-                  className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-primary dark:bg-dark-bg dark:border-gray-600 dark:text-white"
-                  placeholder={t('Enter reason')}
-                  value={removalReason}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setRemovalReason(e.target.value)
-                  }
-                />
-              </div>
-
-              <div className="flex justify-between w-full">
-                <Button
-                  data-testid="removeModel2"
-                  variant="info"
-                  size="sm"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => {
-                    removeTraineeMod();
-                    setRemovalReason('');
-                  }}
-                >
-                  {t('Cancel')}
-                </Button>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  data-testid="removeMemberFromCohort"
-                  style="w-[30%] md:w-1/4 text-sm font-sans"
-                  onClick={() => {
-                    if (deleteEmail) {
-                      dropTTLUser({
-                        variables: {
-                          email: deleteEmail,
-                          reason: removalReason,
-                        },
-                        onCompleted: () => refetch(),
-                      })
-                        .then((response) => {
-                          toast.success('TLL Dropped Successfully');
-                          setButtonLoading(true);
-                          removeTraineeMod();
-                        })
-                        .catch((error) => {
-                          {
-                            setButtonLoading(true);
-                            toast.error(error);
-                            removeTraineeMod();
-                          }
-                        });
-                    } else {
-                      setButtonLoading(true);
-                      toast.error('Please select the TTL again');
-                    }
-                  }}
-                  loading={buttonLoading}
-                >
-                  {t('Proceed')}
-                </Button>
-              </div>
-            </form>
-          </div>
+  className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+    removeTraineeModel === true ? 'block' : 'hidden'
+  }`}
+>
+  <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+    <div className="flex flex-wrap items-center justify-center w-full card-title ">
+      <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+        {t('Remove TTL')}
+      </h3>
+      <hr className="w-full my-3 border-b bg-primary" />
+    </div>
+    <div className="card-body">
+      <form className="px-8 py-3 ">
+        <div className="flex flex-wrap items-center justify-center w-full card-title ">
+          <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+            {t('Are you sure you want to remove TTL from this cohort?')}
+          </h3>
         </div>
-      </div>
+        {/* Reason input field */}
+        <div className="mt-4">
+          <input
+            type="text"
+            className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-primary dark:bg-dark-bg dark:border-gray-600 dark:text-white"
+            placeholder={t('Enter reason')}
+            value={removalReason}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setRemovalReason(e.target.value)
+            }
+            id="removalReason"
+          />
+          <p id="errorMessage" className="text-red-500 text-xs mt-1 hidden">
+  Reason is required!
+</p>
+
+        </div>
+
+        <div className="flex justify-between w-full">
+          <Button
+            data-testid="removeModel2"
+            variant="info"
+            size="sm"
+            style="w-[30%] md:w-1/4 text-sm font-sans"
+            onClick={() => {
+              removeTraineeMod();
+              setRemovalReason('');
+              document.getElementById('errorMessage')!.classList.add('hidden'); 
+            }}
+          >
+            {t('Cancel')}
+          </Button>
+          <Button
+  variant="primary"
+  size="sm"
+  // data-testid="removeMemberFromCohort"
+  // className="w-[30%] md:w-1/4 text-sm font-sans"
+  onClick={() => {
+    if (!removalReason.trim()) {
+      document.getElementById('errorMessage')!.classList.remove('hidden'); 
+    } else if (deleteEmail) {
+      setButtonLoading(true); // Set loading to true before the mutation
+      dropTTLUser({
+        variables: {
+          email: deleteEmail,
+          reason: removalReason,
+        },
+      })
+        .then((response) => {
+          toast.success('TTL Dropped Successfully');
+          refetch(); // Refetch data after mutation
+          removeTraineeMod();
+        })
+        .catch((error) => {
+          toast.error(error.message || 'An error occurred'); // Use error.message for better error handling
+        })
+        .finally(() => {
+          setButtonLoading(false); // Set loading to false in finally block to ensure it's set regardless of success or error
+        });
+    } else {
+      toast.error('Please select the TTL again');
+    }
+  }}
+  loading={buttonLoading}
+>
+  {t('Proceed')}
+</Button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
       {/* =========================== End::  RemoveTraineeModel =============================== */}
+
+
+      {/* =========================== Start::  UndropTTLModel =============================== */}
+
+      <div
+  className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+    undropTTLModel === true ? 'block' : 'hidden'
+  }`}
+>
+  <div className="w-full p-4 pb-8 bg-white rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
+    <div className="flex flex-wrap items-center justify-center w-full card-title ">
+      <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+        {t('Undrop TTL')}
+      </h3>
+      <hr className="w-full my-3 border-b bg-primary" />
+    </div>
+    <div className="card-body">
+      <form className="px-8 py-3 ">
+        <div className="flex flex-wrap items-center justify-center w-full card-title ">
+          <h3 className="w-11/12 text-sm font-bold text-center dark:text-white ">
+            {t('Are you sure you want to Undrop this TTL?')}
+          </h3>
+        </div>
+        {/* Reason input field */}
+        <div className="flex justify-between w-full">
+          <Button
+            data-testid="removeModel2"
+            variant="info"
+            size="sm"
+            style="w-[30%] md:w-1/4 text-sm font-sans"
+            onClick={() => {
+              undropTTLMod();
+            }}
+          >
+            {t('Cancel')}
+          </Button>
+          <Button
+  variant="primary"
+  size="sm"
+  // data-testid="removeMemberFromCohort"
+  // className="w-[30%] md:w-1/4 text-sm font-sans"
+  onClick={() => {
+  if (deleteEmail) {
+      setButtonLoading(true); // Set loading to true before the mutation
+      undropTTLUser({
+        variables: {
+          email: deleteEmail,
+        },
+      })
+        .then((response) => {
+          toast.success('TTL Undropped Successfully');
+          refetch(); // Refetch data after mutation
+          undropTTLMod();
+        })
+        .catch((error) => {
+          toast.error(error.message || 'An error occurred'); // Use error.message for better error handling
+        })
+        .finally(() => {
+          setButtonLoading(false); // Set loading to false in finally block to ensure it's set regardless of success or error
+        });
+    } else {
+      toast.error('Please select the TTL again');
+    }
+  }}
+  loading={buttonLoading}
+>
+  {t('Proceed')}
+</Button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+      {/* =========================== End::  UndropTTLModel  =============================== */}
 
       <div className="bg-light-bg dark:bg-dark-frame-bg min-h-screen overflow-y-auto overflow-x-hidden">
         <div className="">
