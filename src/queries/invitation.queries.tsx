@@ -28,6 +28,7 @@ export const GET_INVITATIONS = gql`
         id
         status
       }
+      totalInvitations
     }
   }
 `;
@@ -43,6 +44,7 @@ export const GET_ROLES_AND_STATUSES = gql`
         id
         status
       }
+      totalInvitations
     }
   }
 `;

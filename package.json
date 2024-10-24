@@ -48,6 +48,7 @@
     "@mui/styled-engine": "^5.13.2",
     "@mui/x-data-grid": "^5.17.26",
     "@react-pdf-viewer/core": "^3.12.0",
+    "@tanstack/react-table": "^8.20.5",
     "@testing-library/dom": "^8.20.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/node": "^20.4.2",
