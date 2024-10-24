@@ -125,7 +125,6 @@ function SupAdDashboard() {
           quality: string;
           quantity: string;
           professional_Skills: string;
-          professionalRemark: any;
           phase: any;
         }) => ({
           sprint: item.sprint,
@@ -255,7 +254,6 @@ function SupAdDashboard() {
         quality: string;
         quantity: string;
         professional_Skills: string;
-        professionalRemark: any;
         phase: any;
         feedbacks: any;
       }) => ({
