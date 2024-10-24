@@ -463,7 +463,7 @@ Array [
               name="date"
               readOnly={true}
               type="text"
-              value="2024-10-06"
+              value="2024-10-24"
             />
           </div>
           <div
@@ -954,15 +954,6 @@ Array [
                   add
                    +
                    
-                </button>
-                <button
-                  className="btn primary lg m-0 font-serif "
-                  data-testid="inviteModel"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Invite
                 </button>
               </div>
             </div>
