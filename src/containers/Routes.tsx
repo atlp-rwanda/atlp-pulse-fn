@@ -41,6 +41,7 @@ import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
 import PrivateRoute from '../utils/PrivateRoute'
 import CalendarConfirmation from '../components/CalendarConfirmation';
+import NotFound from '../components/NotFoundPage';
 
 function MainRoutes() {
   return (
@@ -170,7 +171,7 @@ function MainRoutes() {
             }>
             </Route>
           </Route>
-          <Route path="*" element={<Error />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>
