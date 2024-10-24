@@ -6,4 +6,10 @@ export const DROP_TTL_USER = gql`
   }
 `;
 
+export const UNDROP_TTL_USER = gql`
+  mutation UnDropTTLUser($email: String!) {
+    undropTTLUser(email: $email)
+  }
+`;
+
 export default DROP_TTL_USER;
