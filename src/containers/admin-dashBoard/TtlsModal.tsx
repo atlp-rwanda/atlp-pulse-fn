@@ -405,17 +405,13 @@ export default function TtlsPage() {
                   onClick={() => {
                     setButtonLoading(true);
                     setButtonLoading(true);
-                    if (traineeDetails.status?.status === "active") {
+                    
                       if (editEmail) {
                         editMemberMutation();
                       } else {
                         toast.error('Please select the trainee again ');
                       }
-                    } else {
-                      toast.error("This TTL is Dropped out")
-                      removeEditModel()
-                      setButtonLoading(false);
-                    }
+                    
                   }}
                   loading={buttonLoading}
                 >
