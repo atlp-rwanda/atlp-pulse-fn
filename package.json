@@ -113,6 +113,7 @@
     "url-polyfill": "^1.1.12",
     "vite": "^5.4.7",
     "vite-tsconfig-paths": "^5.0.1",
+    "xlsx": "^0.18.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {

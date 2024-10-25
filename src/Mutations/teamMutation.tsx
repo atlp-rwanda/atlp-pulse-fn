@@ -53,3 +53,15 @@ export const DeleteTeam = gql`
   }
 `;
 
+export const GET_TEAMS_BY_ROLE = gql`
+  query getTeamsByRole($orgToken: String!) {
+    getTeamsByRole(orgToken: $orgToken){
+      id
+      name
+      members {
+        email
+        role
+      }
+    }
+  }
+`
