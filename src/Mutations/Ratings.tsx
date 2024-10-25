@@ -179,3 +179,52 @@ export const REJECT_RATING = gql`
     rejectRating(user: $user, sprint: $sprint)
   }
 `;
+
+export const FETCH_SPRINTS = gql`
+  query fetchSprints($orgToken: String!){
+    fetchSprints(orgToken: $orgToken)
+  }
+`
+
+export const ADD_RATINGS_BY_FILE = gql`
+  mutation addRatingsByFile($file: Upload!, $sprint: Int!, $orgToken: String!){
+    addRatingsByFile(file: $file, sprint: $sprint orgToken: $orgToken){
+      NewRatings {
+      user {
+        email
+      }
+      sprint
+      phase
+      quality
+      quantity
+      professional_Skills
+      feedbacks {
+        sender {
+          email
+        }
+        content
+        createdAt
+      }
+      cohort {
+        name
+      }
+    }
+    RejectedRatings{
+      email
+      quantity
+      quality
+      professional_skills
+      feedBacks
+    }
+    UpdatedRatings {
+      quantity
+      quality
+      professional_Skills
+      feedbacks {
+        content
+      }
+      oldFeedback
+    }
+    }
+  }
+`
