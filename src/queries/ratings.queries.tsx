@@ -11,6 +11,11 @@ export const GET_RATINGS = gql`
       quantity
       quality
       professional_Skills
+      bodyQuantity
+      quality
+      bodyProfessional
+      professional_Skills
+      bodyQuality
       coordinator
       average
       cohort {
@@ -77,6 +82,7 @@ export const FETCH_ALL_RATINGS = gql`
         id
         email
         profile {
+          avatar
           firstName
           lastName
         }
@@ -109,6 +115,10 @@ export const TRAINEE_RATING = gql`
       user {
         id
         email
+        profile {
+          avatar
+          name
+        }
       }
       sprint
       phase

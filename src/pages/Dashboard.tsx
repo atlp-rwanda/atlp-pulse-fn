@@ -4,6 +4,7 @@ import SupAdDashboard from './SupAdDashboard';
 import AdminDashboard from './AdminDashboard';
 import TraineeDashboard from './TraineeDashboard';
 import ManagerCard from '../components/ManagerCard';
+import CoordinatorDashboard from './CoordinatorDashboard';
 
 export function Dashboard() {
   return (
@@ -21,7 +22,7 @@ export function Dashboard() {
         <TraineeDashboard />
       </CheckRole>
       <CheckRole roles={['coordinator']}>
-        <AdminDashboard />
+        <CoordinatorDashboard />
       </CheckRole>
       <CheckRole roles={['manager']}>
         <ManagerCard />
