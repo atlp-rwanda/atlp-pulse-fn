@@ -7,6 +7,7 @@ import Skeleton from '../components/Skeleton';
 import Home from '../pages/Home';
 import Message from '../pages/Organization/Message';
 import UserRegister from '../pages/Organization/UserRegister';
+import { SuccessOrgMessage } from '../pages/Organization/successOrgMessage';
 import Error from './../pages/Error';
 /* istanbul ignore next */
 const OrgRegister = React.lazy(() => import('../pages/OrgRegister'));
@@ -39,7 +40,7 @@ import Noredirect from '../pages/Noredirect';
 import RedirectHandler from '../pages/RedirectHandler';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
-import PrivateRoute from '../utils/PrivateRoute'
+import PrivateRoute from '../utils/PrivateRoute';
 import CalendarConfirmation from '../components/CalendarConfirmation';
 import NotFound from '../components/NotFoundPage';
 
@@ -119,6 +120,16 @@ function MainRoutes() {
               }
             />
             <Route
+              path="/org-message"
+              element={
+                <ProtectedRoutes>
+                  <Suspense fallback={<Skeleton />}>
+                    <SuccessOrgMessage />
+                  </Suspense>
+                </ProtectedRoutes>
+              }
+            />
+            <Route
               path="/users/login"
               element={
                 <ProtectedRoutes>
@@ -164,12 +175,14 @@ function MainRoutes() {
             />
             <Route path="/noredirect" element={<Noredirect />} />
             <Route path="/redirect" element={<RedirectHandler />} />
-            <Route path="/calendar/confirm" element={
-              <PrivateRoute>
-                <CalendarConfirmation/>
-              </PrivateRoute>
-            }>
-            </Route>
+            <Route
+              path="/calendar/confirm"
+              element={
+                <PrivateRoute>
+                  <CalendarConfirmation />
+                </PrivateRoute>
+              }
+            ></Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
