@@ -12,7 +12,7 @@ export const UpdateCohort = gql`
   mutation UpdateCohort(
     $updateCohortId: ID!
     $orgToken: String
-    $coordinatorEmail: String!
+    $coordinatorEmail: String
     $programName: String!
     $name: String
     $phaseName: String

@@ -46,7 +46,7 @@ export default function CohortTraineeModal({
   if (traineeData && traineeData.length > 0) {
     traineeData?.map((data: any, index: number): any => {
       datum[index] = {};
-      datum[index].name = data.profile.name;
+      datum[index].name = data.profile?.name;
       datum[index].email = data.email;
       datum[index].rating = '2';
       datum[index].team = data.team.name;
