@@ -955,11 +955,9 @@ function AdminTraineeDashboard() {
                 <p>
                   <i>
                     {' '}
-                    {traineeDetails && traineeDetails.ratings
-                      ? traineeDetails.ratings[0]
-                        ? traineeDetails.ratings[0]
-                        : 'not yet rated'
-                      : 'unavailable.'}
+                    {traineeDetails?.ratings && traineeDetails.ratings.length > 0
+                      ? Number(traineeDetails.ratings[0].average).toFixed(1) ?? 'not yet rated'
+                      : 'Not yet rated'}
                   </i>
                 </p>
               </div>
