@@ -46,6 +46,7 @@ function AdminLogin() {
   const [LoginUser] = useMutation(LOGIN_MUTATION);
   const client = useApolloClient();
   const [searchParams] = useSearchParams();
+
   // Function to get the redirect_message from the URL and toast it
   const showRedirectMessage = () => {
     const redirectMessage = searchParams.get('redirect_message');
@@ -85,11 +86,12 @@ function AdminLogin() {
           toast.success(t(`Welcome`) as ToastContent<unknown>);
           /* istanbul ignore next */
 
+          const redirectParams=sessionStorage.getItem("redirectParams")||''
           if (data.loginUser) {
             redirect
               ? navigate(`${redirect}`)
               : data.loginUser.user.role === 'superAdmin'
-              ? navigate(`/organizations`)
+              ? navigate(`/organizations${redirectParams}`)
               : data.loginUser.user.role === 'admin'
               ? navigate(`/trainees`)
               : data.loginUser.user.role === 'coordinator'
@@ -99,6 +101,7 @@ function AdminLogin() {
               : data.loginUser.user.role === 'ttl'
               ? navigate('/ttl-trainees')
               : navigate('/performance');
+              sessionStorage.removeItem("redirectParams")
           } else {
             navigate('/dashboard');
           }

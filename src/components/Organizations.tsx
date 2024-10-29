@@ -14,6 +14,8 @@ import OrgSkeleton from '../Skeletons/Organization.skeleton';
 import { DeleteOrganization } from '../Mutations/OrganisationMutations';
 import { RegisterNewOrganization } from '../Mutations/OrganisationMutations';
 import { AddOrganization } from '../Mutations/OrganisationMutations';
+import jwtDecode from 'jwt-decode';
+import { useSearchParams,useNavigate } from 'react-router-dom';
 
 export interface Admin {
   id: string;
@@ -145,6 +147,23 @@ const Organizations = () => {
     refetch: Function;
   } = useQuery(getOrganizations);
 
+const  ApproveNewOrganization= async (token:string)=>{
+  try {
+    const decodedToken:any = await jwtDecode(token);
+     if(! decodedToken) throw new Error("Failed to decode token")
+      const {nm:name,desc:description,email}=decodedToken;
+      const approvalResult = await ApproveOrganization({ name, description, email });
+
+      if (approvalResult && approvalResult.success) {
+        toast.success(`${name} organization has been approved.`);
+      } else {
+        toast.error(`${name} organization approval failed.`);
+      }
+  } catch (error:any) {
+    toast.error(`An error occurred, Try again`);
+  }
+}
+
   const [createOrganizationModel, setCreateOrganizationModel] = useState(false);
   const [deleteOrganizationModel, setDeleteOrganizationModel] = useState(false);
   const [showActions, setShowActions] = useState(false);
@@ -161,6 +180,20 @@ const Organizations = () => {
     },
     description: '',
   });
+
+  const [searchParams]=useSearchParams()
+const navigate = useNavigate();
+
+
+useEffect(() => {
+  const newOrgToken = searchParams.get("newOrgToken");
+  if (newOrgToken) {
+    ApproveNewOrganization(newOrgToken);
+    searchParams.delete('newOrgToken');
+    navigate(`?${searchParams.toString()}`, { replace: true });
+   
+  }
+}, []);
 
   const handleShowActions = () => {
     setShowActions(!showActions);
@@ -230,9 +263,19 @@ const Organizations = () => {
   }
 
   async function ApproveOrganization(data: any) {
-    await RegisterOrganizationMutation({
-      variables: { organizationInput: data, action: 'approve' },
-    });
+    try {
+      const { data: mutationResult } = await RegisterOrganizationMutation({
+        variables: { organizationInput: data, action: 'approve' },
+      });
+
+      if (mutationResult) {
+        return { success: true };
+      } else {
+        return { success: false};
+      }
+    } catch (error:any) {
+      toast.error(`An error occurred, Try again`);
+    }
   }
 
   async function RejectOrganization(data: any) {
