@@ -37,11 +37,8 @@ const useAddRating = ({
       user: traineeId,
       sprint: maxSprint + 1,
       quantity: ratingData.quantity.toString(),
-      quantityRemark: '',
       quality: ratingData.quality.toString(),
-      qualityRemark: '',
       professionalSkills: ratingData.professional.toString(),
-      professionalRemark: '',
       orgToken: organizationToken,
     },
     onError: (err) => {

@@ -6,12 +6,6 @@ export const GET_REPLIES = gql`
       id
       user
       sprint
-      quantityRemark
-      qualityRemark
-      professionalRemark
-      bodyQuantity
-      bodyQuality
-      bodyProfessional
       createdAt
     }
   }
@@ -23,12 +17,6 @@ export const GET_REPLIES_BY_USER = gql`
       id
       user
       sprint
-      quantityRemark
-      qualityRemark
-      professionalRemark
-      bodyQuantity
-      bodyQuality
-      bodyProfessional
       createdAt
     }
   }

@@ -92,15 +92,9 @@ function ViewSprintRatings({
       const ratingChosen: any = selectedSprintRatings[0];
       setRows({
         quality: ratingChosen.quality,
-        qualityremark: '',
         quantity: ratingChosen.quantity,
-        quantityremark: '',
         feedbacks: ratingChosen.feedbacks[0].content,
         professional: ratingChosen.professional_Skills,
-        professionalRemark: '',
-        bodyQuantity: '',
-        bodyQuality: '',
-        bodyProfessional: ratingChosen.professionalRemark,
         sprint: ratingChosen.sprint,
         username: '',
         user: {},
@@ -124,11 +118,8 @@ function ViewSprintRatings({
         user: traineeId,
         sprint: rows.sprint,
         quantity: rows?.quantity,
-        quantityRemark: rows?.quantityremark,
         quality: rows?.quality,
-        qualityRemark: rows?.qualityremark,
         professionalSkills: rows?.professional,
-        professionalRemark: rows?.professionalRemark,
         feedbacks: rows?.feedbacks,
         orgToken: organizationToken,
       };

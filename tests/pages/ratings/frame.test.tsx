@@ -8,11 +8,8 @@ import Frame from '../../../src/pages/ratings/frame';
 it('testing testarea', () => {
   const rows = {
     quantity: '2',
-    quantityRemark: 'good',
     quality: '1',
-    qualityRemark: 'woo',
     professional_Skills: '2',
-    professionalRemark: 'good',
   };
   const allFeeds: any[] = [
     {
