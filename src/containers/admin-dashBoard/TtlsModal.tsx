@@ -506,7 +506,7 @@ export default function TtlsPage() {
                   <p>
                     <i>
                       {' '}
-                      {traineeDetails.team
+                      {traineeDetails.team!==undefined
                         ? traineeDetails.team.name
                         : 'Not assigned'}
                     </i>
@@ -751,7 +751,7 @@ export default function TtlsPage() {
   // className="w-[30%] md:w-1/4 text-sm font-sans"
   onClick={() => {
   if (deleteEmail) {
-      setButtonLoading(true); // Set loading to true before the mutation
+    setButtonLoading(true); // Set loading to true before the mutation
       undropTTLUser({
         variables: {
           email: deleteEmail,
@@ -761,6 +761,7 @@ export default function TtlsPage() {
           toast.success('TTL Undropped Successfully');
           refetch(); // Refetch data after mutation
           undropTTLMod();
+          
         })
         .catch((error) => {
           toast.error(error.message || 'An error occurred'); // Use error.message for better error handling
