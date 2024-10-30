@@ -12,7 +12,7 @@ import InvitationCard from '../components/InvitationCard';
 import InvitationModal from './invitationModalComponet';
 import { GET_INVITATIONS_STATISTICS_QUERY } from '../queries/invitationStats.queries';
 import InvitationCardSkeleton from '../Skeletons/InvitationCardSkeleton';
-import { useTranslation } from 'react-i18next';
+import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import { Icon } from '@iconify/react';
 import {
   CANCEL_INVITATION,
@@ -211,15 +211,15 @@ useEffect(() => {
   
     if (isSearching && searchData?.getInvitations) {
       invitation = searchData.getInvitations.invitations.find(
-        (inv) => inv.id === selectedInvitationId
+        (inv: { id: string; }) => inv.id === selectedInvitationId
       );
     } else if (isFiltering && filterData?.filterInvitations) {
       invitation = filterData.filterInvitations.invitations.find(
-        (inv) => inv.id === selectedInvitationId
+        (inv: { id: string; }) => inv.id === selectedInvitationId
       );
     } else if (data && data.getAllInvitations) {
       invitation = data.getAllInvitations.invitations.find(
-        (inv) => inv.id === selectedInvitationId
+        (inv: { id: string; }) => inv.id === selectedInvitationId
       );
     }
   
@@ -412,20 +412,20 @@ useEffect(() => {
     {
       id: "email",
       header: t('email'),
-      accessor: (row) => row.email,
-      cell: (info) => <div>{info.getValue()}</div>,
+      accessor: (row: { email: any; }) => row.email,
+      cell: (info: { getValue: () => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Iterable<ReactI18NextChild> | null | undefined; }) => <div>{info.getValue()}</div>,
     },
     {
       id: "role",
       header: t('role'),
-      accessor: (row) => row.role,
-      cell: (info) => <div>{info.getValue()}</div>,
+      accessor: (row: { role: any; }) => row.role,
+      cell: (info: { getValue: () => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Iterable<ReactI18NextChild> | null | undefined; }) => <div>{info.getValue()}</div>,
     },
     {
       id: "Status",
       header: t('Status'),
-      accessor: (row) => row.Status,
-      cell: (info) => <div>{info.getValue()}</div>,
+      accessor: (row: { Status: any; }) => row.Status,
+      cell: (info: { getValue: () => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Iterable<ReactI18NextChild> | null | undefined; }) => <div>{info.getValue()}</div>,
     },
     {
       id: "Action",
@@ -572,7 +572,7 @@ const currentInvitationsTotal = isSearching && searchData?.getInvitations
   : data?.getAllInvitations?.totalInvitations;
 
 if (currentInvitations && currentInvitations.length > 0) {
-  currentInvitations.forEach((invitation) => {
+  currentInvitations.forEach((invitation: { invitees: any[]; status: string; id: any; }) => {
     invitation.invitees?.forEach((invitee: any) => {
       let entry: any = {};
       entry.email = invitee.email;
