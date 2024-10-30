@@ -42,6 +42,7 @@ import RemoveTokenPage from '../utils/RemoveTokenPage';
 import PrivateRoute from '../utils/PrivateRoute'
 import CalendarConfirmation from '../components/CalendarConfirmation';
 import NotFound from '../components/NotFoundPage';
+import TwoFactorPage from '../pages/LoginWith2fa';
 
 function MainRoutes() {
   return (
@@ -121,13 +122,14 @@ function MainRoutes() {
             <Route
               path="/users/login"
               element={
-                <ProtectedRoutes>
+                 <ProtectedRoutes>
                   <Suspense fallback={<Skeleton />}>
                     <Adminlogin />
                   </Suspense>
-                </ProtectedRoutes>
+                 </ProtectedRoutes>
               }
             />
+             <Route path="/users/LoginWith2fa" element={<TwoFactorPage/>}/>
             <Route
               path="/pricing"
               element={
