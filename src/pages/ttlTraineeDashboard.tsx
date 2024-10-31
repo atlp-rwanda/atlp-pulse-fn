@@ -26,6 +26,8 @@ import { useTraineesContext } from '../hook/useTraineesData';
 import { XIcon } from '@heroicons/react/solid';
 import { FaTimes } from 'react-icons/fa';
 import { log } from 'console';
+import { FaEye } from 'react-icons/fa';
+
 const organizationToken = localStorage.getItem('orgToken');
 ``;
 /* istanbul ignore next */
@@ -144,16 +146,15 @@ const TtlTraineeDashboard = () => {
       accessor: '',
       Cell: ({ row }: any) =>
         hasData && ( // Only render the button if there is data
-          <Button
-            variant="primary"
-            size="sm"
+          <button
             onClick={() => {
               handleClickOpen(row.original?.email);
             }}
-            style="px-4 py-0 text-sm"
+            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600"
+            aria-label="View Details"
           >
-            {t('View more')}
-          </Button>
+            <FaEye className="text-2xl text-[#9e85f5]" />
+          </button>
         ),
     },
   ];
