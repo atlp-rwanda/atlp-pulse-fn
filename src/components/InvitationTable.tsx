@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react';
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import Pagination from "../components/InvitationDataPagination";
+} from '@tanstack/react-table';
+import Pagination from '../components/InvitationDataPagination';
 import SkeletonTable from '../Skeletons/SkeletonTable';
 
 interface Column {
@@ -19,7 +19,10 @@ interface TableProps {
   data: any[];
   loading: boolean;
   rowCount: number;
-  onPaginationChange: (pagination: { pageIndex: number; pageSize: number }) => void;
+  onPaginationChange: (pagination: {
+    pageIndex: number;
+    pageSize: number;
+  }) => void;
   pagination: { pageSize: number; pageIndex: number };
 }
 
@@ -42,22 +45,29 @@ function InvitationTable({
       cols.map((column) => {
         if (typeof column.accessor === 'string') {
           return columnHelper.accessor(column.accessor, {
-            header: typeof column.header === 'string' ? column.header : column.header(),
-            cell: column.cell,
-          });
-        } else if (typeof column.accessor === 'function') {
-          return columnHelper.accessor((row) => column.accessor(row), {
-            header: typeof column.header === 'string' ? column.header : column.header(),
-            cell: column.cell,
-          });
-        } else {
-          return columnHelper.display({
-            header: typeof column.header === 'string' ? column.header : column.header(),
+            header:
+              typeof column.header === 'string'
+                ? column.header
+                : column.header(),
             cell: column.cell,
           });
         }
+        if (typeof column.accessor === 'function') {
+          return columnHelper.accessor((row) => column.accessor(row), {
+            header:
+              typeof column.header === 'string'
+                ? column.header
+                : column.header(),
+            cell: column.cell,
+          });
+        }
+        return columnHelper.display({
+          header:
+            typeof column.header === 'string' ? column.header : column.header(),
+          cell: column.cell,
+        });
       }),
-    [cols]
+    [cols],
   );
 
   const tableLib = useReactTable({
@@ -83,11 +93,11 @@ function InvitationTable({
               {tableLib.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <th
-                      key={header.id}
-                      className="thead"
-                    >
-                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    <th key={header.id} className="thead">
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                     </th>
                   ))}
                 </tr>
@@ -116,18 +126,21 @@ function InvitationTable({
                   }`}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <td
-                      key={cell.id}
-                      className="data-cell "
-                    >
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    <td key={cell.id} className="data-cell ">
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </td>
                   ))}
                 </tr>
               ))}
               {!loading && data.length === 0 && (
                 <tr>
-                  <td colSpan={tableColumns.length || 100} className="text-center p-4">
+                  <td
+                    colSpan={tableColumns.length || 100}
+                    className="text-center p-4"
+                  >
                     <div className="flex flex-col items-center justify-center space-y-4">
                       <p className="text-gray-600 dark:text-gray-400 text-lg font-medium">
                         No records available

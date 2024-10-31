@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Team } from './Teams';
 import ModalDataTable from '../../components/ModalDataTable';
 import { GET_TEAM_TRAINEE_QUERY } from '../../queries/manageStudent.queries';
+import { TRAINEE_RATING } from '../../queries/ratings.queries';
 import ButtonLoading from '../../components/ButtonLoading';
 
 const organizationToken = localStorage.getItem('orgToken');
@@ -23,6 +24,7 @@ export default function TeamTraineeModal({
   const { t } = useTranslation();
 
   const [traineeData, setTraineeData] = useState<any[]>([]);
+
   const columns = [
     { Header: t('name'), accessor: 'name' },
     { Header: t('email'), accessor: 'email' },
@@ -41,13 +43,20 @@ export default function TeamTraineeModal({
       },
     },
   );
-
   if (traineeData && traineeData.length > 0) {
     traineeData?.map((data: any, index: number): any => {
       datum[index] = {};
       datum[index].name = data.profile.name;
       datum[index].email = data.email;
-      datum[index].rating = '2';
+      datum[index].rating =
+        data.ratings.length > 0
+          ? (
+              data.ratings.reduce(
+                (acc: number, rating: any) => acc + parseFloat(rating.average),
+                0,
+              ) / data.ratings.length
+            ).toFixed(2)
+          : '0';
       datum[index].cohort = data.team?.cohort.name;
       datum[index].program = data.team?.cohort.program.name;
       return datum;
