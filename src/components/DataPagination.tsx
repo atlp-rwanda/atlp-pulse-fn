@@ -46,18 +46,22 @@ function DataPagination({
                   </div>
 
                   <div className="flex flex-row relative md:ml-80 lg:flex-row   justify-center items-baseline w-full lg:w-1/3 w-1/2 text-xs lg:text-md  mx-2 -mr-5">
-                    <span className="flex justify-center sm:w-[50%] w-[70%] lg:mb-0">
+                    <div className='flex justify-center items-center w-full'>
+                    <span className="text-gray-900 dark:text-white whitespace-nowrap">
                       Page{' '}
                       <strong>
                         {pageIndex + 1} of
                         {` ${pageOptions.length}`}
                       </strong>{' '}
                     </span>
+                    </div>
 
                     <div className="flex flex-row sm:justify-center justify-end items-center w-full">
                       {/* Go to page */}
                       <div className="hidden lg:flex items-center mx-2 mb-2 lg:mb-0">
+                        <div className='text-gray-900 dark:text-white w-[5rem]'>
                         <span className="mr-1">| Go to page: </span>
+                        </div>
                         <input
                           type="number"
                           className="pl-1 border rounded-md outline-none appearance-none border-primary dark:bg-primary"
