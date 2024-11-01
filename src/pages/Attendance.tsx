@@ -5,12 +5,12 @@ const TraineeAttendanceTracker = React.lazy(
   () => import('../pages/TraineeAttendanceTracker'),
 );
 const TraineeAttendance = React.lazy(
-  () => import('../components/TraineeAttendance'),
+  () => import('../pages/TraineeAttendance'),
 );
 function Attendance() {
   return (
     <>
-      <CheckRole roles={['coordinator']}>
+      <CheckRole roles={['coordinator', 'ttl']}>
         <TraineeAttendanceTracker />
       </CheckRole>
       <CheckRole roles={['trainee']}>

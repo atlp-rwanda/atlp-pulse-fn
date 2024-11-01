@@ -16,56 +16,56 @@ import { RECORD_ATTENDANCE } from '../../src/Mutations/Attendance';
 const closeModal = jest.fn();
 const setTraineeAttendanceDataMock = jest.fn();
 
-
 const cache = new InMemoryCache();
 
-const sampleTrainees = {
-  getTeamTrainees: [
-    {
-      id: 'trainee-123',
-      email: 'test-trainee-name@gmail.com',
-      profile: {
-        name: 'test-trainee-name',
-      },
-      status: {
-        status: 'active',
-      },
+const sampleTrainees = [
+  {
+    id: 'test-trainee-name',
+    email: 'test-trainee-name@gmail.com',
+    role: 'trainee',
+    status: {
+      date: null,
+      reason: null,
+      status: 'active',
     },
-    {
-      id: 'trainee-456',
-      email: 'test-trainee-name2@gmail.com',
-      profile: {
-        name: 'test-trainee-name2',
-      },
-      status: {
-        status: 'active',
-      },
+    profile: {
+      id: 'trainee-name-profile',
+      name: 'test-trainee-name',
     },
-  ],
-};
+  },
+  {
+    id: 'test-trainee-name2',
+    email: 'test-trainee-name2@gmail.com',
+    role: 'ttl',
+    status: {
+      date: null,
+      reason: null,
+      status: 'active',
+    },
+    profile: {
+      id: 'trainee-name2-profile',
+      name: 'test-trainee-name2',
+    },
+  },
+];
 
 const mocks = [
   {
     request: {
       query: RECORD_ATTENDANCE,
       variables: {
-        week: 3,
+        week: 1,
+        today: true,
+        yesterday: false,
         team: 'Team-I-id-123',
-        date: '11-11-2024',
         trainees: [
           {
-            trainee: 'trainee-123',
-            status: {
-              day: 'mon',
-              score: '0',
-            },
+            trainee: 'test-trainee-name',
+            score: 0,
           },
           {
-            trainee: 'trainee-456',
-            status: {
-              day: 'mon',
-              score: '1',
-            },
+            trainee: 'test-trainee-name2',
+            score: 1,
           },
         ],
         orgToken: 'mocked-org-token',
@@ -74,41 +74,77 @@ const mocks = [
     result: {
       data: {
         recordAttendance: {
-          team: {
-            id: 'Team-I-id-123',
-            name: 'Team I',
-            cohort: {
-              name: 'Cohort 1',
-            },
-          },
-          trainees: [
+          today: '1729533725697',
+          yesterday: '1729274525697',
+          attendanceWeeks: [
             {
-              trainee: {
-                profile: {
-                  name: 'test-trainee-name',
-                },
+              phase: {
+                id: 'test-phase-i',
+                name: 'Phase I',
               },
-              status: [
-                {
-                  day: 'mon',
-                  date: '1727806679051',
-                  score: '0',
-                },
-              ],
+              weeks: [1],
             },
+          ],
+          attendance: [
             {
-              trainee: {
-                profile: {
-                  name: 'test-trainee-name2',
-                },
+              week: 1,
+              phase: {
+                id: 'test-phase-i',
+                name: 'Phase I',
               },
-              status: [
-                {
-                  day: 'mon',
-                  date: '1727806679051',
-                  score: '0',
+              dates: {
+                mon: {
+                  date: '2024-10-21',
+                  isValid: true,
                 },
-              ],
+                tue: {
+                  date: '2024-10-22',
+                  isValid: false,
+                },
+                wed: {
+                  date: '2024-10-23',
+                  isValid: false,
+                },
+                thu: {
+                  date: '2024-10-24',
+                  isValid: false,
+                },
+                fri: {
+                  date: '2024-10-25',
+                  isValid: false,
+                },
+                __typename: 'AttendanceDates',
+              },
+              days: {
+                mon: [
+                  {
+                    trainee: {
+                      id: 'test-trainee-name',
+                      email: 'test-trainee-name@gmail.com',
+                      profile: {
+                        id: 'trainee-name-profile',
+                        name: 'test-trainee-name',
+                      },
+                    },
+                    score: 0,
+                  },
+                  {
+                    trainee: {
+                      id: 'test-trainee-name2',
+                      email: 'test-trainee-name2@gmail.com',
+                      profile: {
+                        id: 'trainee-name2-profile',
+                        name: 'test-trainee-name2',
+                      },
+                    },
+                    score: 1,
+                  },
+                ],
+                tue: [],
+                wed: [],
+                thu: [],
+                fri: [],
+              },
             },
           ],
         },
@@ -124,7 +160,7 @@ const errorMocks = [
       query: RECORD_ATTENDANCE,
     },
     variableMatcher: jest.fn().mockReturnValue(true),
-    error: new Error("An error occurred"),
+    error: new Error('An error occurred'),
     maxUsageCount: 5,
   },
 ];
@@ -143,14 +179,14 @@ describe('Record attendance modal', () => {
       .create(
         <MockedProvider>
           <ModalAttendance
-            day="mon"
+            dayType="today"
             week={3}
             isVisible
             onClose={closeModal}
             team="Team-I-id-123"
             date="11-11-2024"
             teamName="Team I"
-            trainees={sampleTrainees.getTeamTrainees}
+            trainees={sampleTrainees}
             setAttendanceData={() => true}
           />
         </MockedProvider>,
@@ -162,14 +198,14 @@ describe('Record attendance modal', () => {
     render(
       <MockedProvider>
         <ModalAttendance
-          day="mon"
+          dayType="today"
           week={3}
           isVisible
           onClose={closeModal}
           team="Team-I-id-123"
           date="11-11-2024"
           teamName="Team I"
-          trainees={sampleTrainees.getTeamTrainees}
+          trainees={sampleTrainees}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -184,14 +220,14 @@ describe('Record attendance modal', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <ModalAttendance
-          day="mon"
-          week={3}
+          dayType="today"
+          week={1}
           isVisible
           onClose={closeModal}
           team="Team-I-id-123"
           date="11-11-2024"
           teamName="Team I"
-          trainees={sampleTrainees.getTeamTrainees}
+          trainees={sampleTrainees}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -241,14 +277,14 @@ describe('Record attendance modal', () => {
     render(
       <MockedProvider mocks={errorMocks} addTypename={false}>
         <ModalAttendance
-          day="mon"
-          week={3}
+          dayType="today"
+          week={1}
           isVisible
           onClose={closeModal}
           team="Team-I-id-123"
-          date='11-11-2024'
+          date="11-11-2024"
           teamName="Team I"
-          trainees={[sampleTrainees.getTeamTrainees[0]]}
+          trainees={[sampleTrainees[0]]}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -276,18 +312,18 @@ describe('Record attendance modal', () => {
     expect(await screen.findByText('Loading...')).toBeInTheDocument();
     expect(await screen.findByText('Submit')).toBeInTheDocument();
   });
-  it('Doesn\'t Record attendance modal, when prop isvisible has falsy value', async () => {
+  it("Doesn't Record attendance modal, when prop isvisible has falsy value", async () => {
     render(
       <MockedProvider mocks={errorMocks} addTypename={false}>
         <ModalAttendance
-          day="mon"
-          week={3}
+          dayType="today"
+          week={1}
           isVisible={false}
           onClose={closeModal}
           team="Team-I-id-123"
-          date='11-11-2024'
+          date="11-11-2024"
           teamName="Team I"
-          trainees={ [sampleTrainees.getTeamTrainees[0]]}
+          trainees={[sampleTrainees[0]]}
           setAttendanceData={() => true}
         />
       </MockedProvider>,
@@ -296,18 +332,18 @@ describe('Record attendance modal', () => {
     const submitButton = screen.queryByText('Submit');
     expect(submitButton).toBeNull();
   });
-  it('Render Record attendance modal,attendance can\'t be made, there are no trainees in team', async () => {
+  it("Render Record attendance modal,attendance can't be made, there are no trainees in team", async () => {
     render(
       <MockedProvider mocks={errorMocks} addTypename={false}>
         <ModalAttendance
-          day="mon"
-          week={3}
+          dayType="today"
+          week={1}
           isVisible
           onClose={closeModal}
           team="Team-I-id-123"
           date="11-11-2024"
           teamName="Team I"
-          trainees={[sampleTrainees.getTeamTrainees[0]]}
+          trainees={[sampleTrainees[0]]}
           setAttendanceData={() => true}
         />
       </MockedProvider>,

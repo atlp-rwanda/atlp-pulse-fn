@@ -225,6 +225,32 @@ exports[`<Home /> Renders Home 1`] = `
         </a>
       </li>
       <li
+        className="w-full p-2 dark:text-dark-text-fill"
+      >
+        <a
+          className="w-full"
+          href="/product"
+          onClick={[Function]}
+        >
+          Product
+        </a>
+      </li>
+      <div
+        className="flex flex-col p-2 dark:text-dark-text-fill"
+      >
+        <div
+          className="inline-flex gap-2 items-center"
+          onClick={[Function]}
+        >
+          <p>
+            Docs
+          </p>
+          <span>
+            ▼
+          </span>
+        </div>
+      </div>
+      <li
         className="p-2 w-56 text-center dark:text-dark-text-fill mt-6 mb-2 bg-primary text-white rounded-md"
       >
         <a
@@ -453,7 +479,6 @@ exports[`<Home /> Renders Home 1`] = `
         >
            
           Come shape the future together
-           
         </h1>
       </div>
       <div
@@ -488,9 +513,7 @@ exports[`<Home /> Renders Home 1`] = `
           <p
             className="text-base  dark:text-slate-300 text-neutral-900"
           >
-            I'm extremely impressed with Pulse and their performance management platform.
-        Since using their services, it has been a game-changer for our organization.
-        The platform is intuitive, easy to navigate, and packed with powerful features.
+            Content1
           </p>
         </div>
         <div
@@ -522,9 +545,7 @@ exports[`<Home /> Renders Home 1`] = `
           <p
             className="text-base  dark:text-slate-300 text-neutral-900"
           >
-            I'm delighted to share my positive experience with Pulse and their exceptional
-        performance management platform. Implementing their services has led to remarkable
-        improvements in our performance tracking and management processes.
+            Content2
           </p>
         </div>
         <div
@@ -556,11 +577,7 @@ exports[`<Home /> Renders Home 1`] = `
           <p
             className="text-base  dark:text-slate-300 text-neutral-900"
           >
-            
-        We are thrilled with the services provided by Pulse. Their performance management platform
-        has exceeded our expectations in every way. The user-friendly interface and comprehensive
-        features have made tracking and monitoring our performance metrics a breeze.
-        
+            Content3
           </p>
         </div>
         <span
@@ -644,9 +661,7 @@ exports[`<Home /> Renders Home 1`] = `
           <p
             className="text-base dark:text-slate-300  text-neutral-900"
           >
-            I'm extremely impressed with Pulse and their performance management platform.
-        Since using their services, it has been a game-changer for our organization.
-        The platform is intuitive, easy to navigate, and packed with powerful features.
+            Content1
           </p>
         </div>
         <div
@@ -678,9 +693,7 @@ exports[`<Home /> Renders Home 1`] = `
           <p
             className="text-base dark:text-slate-300  text-neutral-900"
           >
-            I'm delighted to share my positive experience with Pulse and their exceptional
-        performance management platform. Implementing their services has led to remarkable
-        improvements in our performance tracking and management processes.
+            Content2
           </p>
         </div>
         <div
@@ -712,11 +725,7 @@ exports[`<Home /> Renders Home 1`] = `
           <p
             className="text-base dark:text-slate-300  text-neutral-900"
           >
-            
-        We are thrilled with the services provided by Pulse. Their performance management platform
-        has exceeded our expectations in every way. The user-friendly interface and comprehensive
-        features have made tracking and monitoring our performance metrics a breeze.
-        
+            Content3
           </p>
         </div>
       </div>
