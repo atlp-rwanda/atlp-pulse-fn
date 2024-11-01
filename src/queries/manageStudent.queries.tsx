@@ -15,7 +15,7 @@ export const GET_ALL_USERS_QUERY = gql`
       id
       email
       role
-      profile{
+      profile {
         firstName
         lastName
       }
@@ -213,6 +213,9 @@ export const GET_TEAM_TRAINEE_QUERY = gql`
         date
         reason
         status
+      }
+      ratings {
+        average
       }
       profile {
         firstName
