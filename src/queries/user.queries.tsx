@@ -57,6 +57,9 @@ export const GET_ALL_TTL_USERS = gql`
       }
       email
       role
+      status{
+        status
+      }
       team {
         name
         cohort {
