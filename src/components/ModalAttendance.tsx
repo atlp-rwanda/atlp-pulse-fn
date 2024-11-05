@@ -4,7 +4,10 @@ import { useMutation } from '@apollo/client';
 import { format } from 'date-fns';
 import { RECORD_ATTENDANCE } from '../Mutations/Attendance';
 import AttendanceSymbols from './AttendanceSymbols';
-import { AttendanceDataInterface } from '../pages/TraineeAttendanceTracker';
+import {
+  AttendanceDataInterface,
+  UserInterface,
+} from '../pages/TraineeAttendanceTracker';
 
 interface ModalProps {
   isVisible: boolean;
@@ -12,7 +15,7 @@ interface ModalProps {
   setAttendanceData: React.Dispatch<
     React.SetStateAction<AttendanceDataInterface | undefined>
   >;
-  trainees: any;
+  trainees: UserInterface[];
   week: number;
   date: string;
   dayType: 'today' | 'yesterday' | 'others';
@@ -41,7 +44,7 @@ function ModalAttendance({
   team,
   teamName,
 }: ModalProps) {
-  const [allTrainees, setAllTrainees] = useState<any[]>([]);
+  const [allTrainees, setAllTrainees] = useState<(UserInterface & {recorded: boolean})[]>([]);
   const [filteredTrainees, setFilteredTrainees] = useState<any[]>([]);
   const [searchName, setSearchName] = useState('');
   const [inputFocus, setInputFocus] = useState(false);
@@ -88,19 +91,28 @@ function ModalAttendance({
 
   useEffect(() => {
     if (trainees) {
-      const sanitizedTrainees = trainees.filter(
-        (trainee: any) => trainee.status.status !== 'drop',
-      );
+      const sanitizedTrainees = trainees
+        .map((trainee: UserInterface) => ({ ...trainee, recorded: false }))
+        .filter((trainee: any) => trainee.status.status !== 'drop');
       setAllTrainees(sanitizedTrainees);
     }
   }, [trainees]);
   useEffect(() => {
     setFilteredTrainees(
       allTrainees.filter((trainee) =>
-        trainee.profile.name.toLowerCase().includes(searchName.toLowerCase()),
+        trainee.profile.name
+          .toLowerCase()
+          .includes(searchName.trim().toLowerCase()),
       ),
     );
   }, [allTrainees, searchName]);
+
+  useEffect(() => {
+    traineesAttendance.length &&
+      setFilteredTrainees(
+        allTrainees.sort((a, b) => Number(a.recorded) - Number(b.recorded)),
+      );
+  }, [traineesAttendance]);
 
   if (!isVisible) return null;
 
@@ -117,6 +129,15 @@ function ModalAttendance({
         return attendance;
       });
     } else {
+      setFilteredTrainees(
+        allTrainees.map((trainee, index) => {
+          if (trainee.id === id) {
+            allTrainees[index].recorded = true;
+            return { ...trainee, recorded: true };
+          }
+          return trainee;
+        }),
+      );
       updatedAttendance = [...traineesAttendance, { name, score, id }];
     }
 
@@ -137,27 +158,52 @@ function ModalAttendance({
     }));
 
     setRecordTrainees(updatedRecords);
+    setFilteredTrainees(
+      allTrainees.map((trainee, index) => {
+        allTrainees[index].recorded = false;
+        return { ...trainee, recorded: false };
+      }),
+    );
   };
 
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-50 p-4">
       <div className="bg-[#FFFFFF] dark:bg-[#020917] md:w-[500px] rounded-lg w-96 px-5 py-4 xmd:p-6 shadow-lg flex flex-col gap-3 text-[#111827] dark:text-white">
         <div className="w-full">
-          <div className="w-full flex flex-col gap-3">
+          <div className="w-full flex flex-col gap-4">
             <h2 className="text-[1.1rem] xmd:text-xl font-bold text-center text-purple-400 mb-2">
               Take Attendance
             </h2>
-            <div className="flex justify-between">
-              <h3 className="font-semibold text-[.85rem] xmd:text-[.95rem] ">
-                Week {week}
-              </h3>
-              <p className="text-sm">
-                {format(new Date(date), 'EE, do MMMM yyyy')}
+            <div className="flex flex-col justify-between  text-[.85rem] xmd:text-[.9rem] md:text-[.95rem]">
+              <p className="">
+                <span className="font-semibold">Week&nbsp;:&nbsp;</span>
+                <span className="text-[.82rem] xmd:text-[.86rem] md:text-[.9rem] font-light">
+                  {week}
+                </span>
+              </p>
+              <p className="">
+                <span className="font-semibold">Team&nbsp;:&nbsp;</span>
+                <span className="text-[.82rem] xmd:text-[.86rem] md:text-[.9rem] font-light capitalize">
+                  {teamName}
+                </span>
+              </p>
+              <p>
+                <span className="font-semibold">Date&nbsp;:&nbsp;</span>
+                <span
+                  className="text-[.82rem] xmd:text-[.86rem] md:text-[.9rem] font-light"
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: format(new Date(date), 'EEEE, do MMM yyyy').replace(
+                      /(st|nd|rd|th)\b/,
+                      (match) => `<sup>${match}</sup>`,
+                    ),
+                  }}
+                />
               </p>
             </div>
 
             <div className="flex flex-col gap-2">
-              <p className="font-semibold text-[..84rem] xmd:text-[.95rem]">
+              <p className="font-semibold text-[..84rem] xmd:text-[.9rem] md:text-[.95rem]">
                 Trainees:
               </p>
               <div className="w-full min-h-[40px] max-h-[110px] overflow-auto custom-scrollbar">
@@ -195,7 +241,7 @@ function ModalAttendance({
                     ))}
                   </div>
                 ) : (
-                  <p className="text-center text-[.83rem] xmd:text-[.9rem] font-medium">
+                  <p className="pl-5 text-[.83rem] xmd:text-[.88rem] font-light">
                     No trainee given attendance.
                   </p>
                 )}
@@ -203,7 +249,7 @@ function ModalAttendance({
             </div>
 
             <div className="mt-4">
-              <label className="block text-[.86rem] xmd:text-[.95rem] font-medium">
+              <label className="block text-[.86rem] xmd:text-[.9rem] md:text-[.95rem] font-medium">
                 Trainee Name
               </label>
               <div className="flex">
@@ -216,21 +262,25 @@ function ModalAttendance({
                     onChange={(e) => {
                       setSearchName(e.target.value);
                     }}
-                    className="placeholder:text-neutral-600 dark:placeholder:text-neutral-400 text-[.82rem] xmd:text-sm bg-gray-200 dark:bg-gray-700 w-full py-[5px] px-3 rounded-[2px] focus:outline-none focus:ring-1 focus:ring-purple-500"
+                    className="placeholder:text-neutral-600 dark:placeholder:text-neutral-400 text-[.82rem] xmd:text-[.85rem] bg-gray-300 dark:bg-gray-700 w-full py-[6px] px-3 rounded-[2px] focus:outline-none focus:ring-1 focus:ring-purple-500"
                     placeholder="Find trainee by name"
                   />
 
                   <div className="min-h-[100px]">
                     {inputFocus && (
-                      <div className="bg-[#EDF2EE] dark:bg-[#202B3E] z-20 left-0 right-0 w-full max-h-[100px] overflow-y-auto p-2 flex flex-col gap-1 custom-scrollbar">
-                        {filteredTrainees.length === 0 ? (
-                          <p className="text-[.78rem] xmd:text-sm">{`No trainee found in team ${teamName}.`}</p>
+                      <div className="bg-[#c4c4c4] dark:bg-[#202B3E] z-20 left-0 right-0 w-full max-h-[100px] overflow-y-auto py-1 px-2 flex flex-col gap-1 custom-scrollbar">
+                        {!filteredTrainees.length ? (
+                          <p className="text-[.78rem] xmd:text-[.83rem] py-2 px-1">{`No trainee found in team ${teamName}.`}</p>
                         ) : (
                           filteredTrainees.map((trainee) => (
                             <div
                               key={trainee.email}
                               onMouseDown={(e) => e.preventDefault()}
-                              className="flex items-center border-[#858585] border-b-[1px] py-[2px] xmd:py-1"
+                              className={`${
+                                trainee.recorded
+                                  ? 'brightness-[.6] text-neutral-500 dark:text-white'
+                                  : ''
+                              } flex items-center border-[#858585] border-b-[1px] py-[2px] xmd:py-1 px-2`}
                             >
                               <p className="flex-1 text-[.83rem] xmd:text-sm">
                                 {trainee.profile.name}
@@ -291,24 +341,30 @@ function ModalAttendance({
           </div>
         </div>
 
-        <div className="mt-3 flex justify-between text-[.9rem] xmd:text-[.95rem]">
+        <div className="mt-3 flex justify-between text-[.92rem] xmd:text-[.95rem] leading-6 font-medium">
           <button
             type="button"
             onClick={() => {
+              setFilteredTrainees(
+                allTrainees.map((trainee, index) => {
+                  allTrainees[index].recorded = false;
+                  return { ...trainee, recorded: false };
+                }),
+              );
               setTraineesAttendance([]);
               onClose();
             }}
-            className="bg-gray-500 text-white py-[4px] xmd:py-[6px] px-4 rounded-[4px] hover:bg-gray-600"
+            className="bg-gray-500 text-white py-[4px] xmd:py-[5px] px-4 rounded-[4px] hover:bg-gray-600"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={traineesAttendance.length === 0}
-            className={`py-[4px] xmd:py-[6px] px-4 rounded-[4px] ${
+            className={`py-[4px] xmd:py-[5px] px-4 rounded-[4px] ${
               traineesAttendance.length === 0 || loadingRecordAttendance
                 ? 'bg-gray-300 text-gray-800 cursor-not-allowed'
-                : 'bg-purple-500 text-white hover:bg-purple-600'
+                : 'bg-primary text-white hover:bg-primary/90'
             }`}
             onClick={() => {
               handleSubmitAttendance();

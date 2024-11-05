@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`] = `
+exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
 <div
   className="bg-tertiary dark:bg-dark-bg p-5 xmd:p-7 md:p-10 rounded-lg font-serif"
 >
@@ -39,7 +39,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
                 disabled={true}
                 value=""
               >
-                No teams.
+                No teams
               </option>
             </select>
           </div>
@@ -76,10 +76,10 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
         </div>
       </div>
       <div
-        className="flex justify-between items-center border border-neutral-400/60 dark:border-neutral-600 h-[1.85rem] xmd:h-9 text-[.83rem] xmd:text-base"
+        className="flex justify-between items-center border-2 border-neutral-400/60 dark:border-neutral-600 h-[1.85rem] xmd:h-9 text-[.83rem] xmd:text-base"
       >
         <div
-          className="bg-neutral-400/60 dark:bg-neutral-600 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          className="bg-neutral-400/60 dark:bg-neutral-600 flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
           data-testid="days-test"
           onClick={[Function]}
         >
@@ -88,7 +88,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
           </span>
         </div>
         <div
-          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
           data-testid="days-test"
           onClick={[Function]}
         >
@@ -97,7 +97,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
           </span>
         </div>
         <div
-          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
           data-testid="days-test"
           onClick={[Function]}
         >
@@ -106,7 +106,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
           </span>
         </div>
         <div
-          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
           data-testid="days-test"
           onClick={[Function]}
         >
@@ -115,7 +115,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
           </span>
         </div>
         <div
-          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
+          className="hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15 flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full"
           data-testid="days-test"
           onClick={[Function]}
         >
@@ -140,7 +140,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
               onClick={[Function]}
             >
               <svg
-                className="text-xl"
+                className="text-lg"
                 fill="none"
                 height="1em"
                 stroke="currentColor"
@@ -180,7 +180,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
               onClick={[Function]}
             >
               <svg
-                className="text-xl"
+                className="text-lg"
                 fill="currentColor"
                 height="1em"
                 stroke="currentColor"
@@ -199,6 +199,30 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
                 />
               </svg>
             </div>
+            <div
+              className="flex gap-x-[5px] items-center cursor-pointer"
+              onClick={[Function]}
+            >
+              <svg
+                className="text-[1.12rem]"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 512 512"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9V168c0-8.7 4.7-16.7 12.3-20.9z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
         <div
@@ -209,20 +233,20 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
           >
             <thead>
               <tr
-                className="bg-neutral-400/60 dark:bg-neutral-600 h-8 xmd:h-10 text-[.84rem] xmd:text-base"
+                className="bg-neutral-400/60 dark:bg-neutral-600 h-8 xmd:h-10 md:h-[2.7rem] text-[.84rem] xmd:text-base"
               >
                 <th
-                  className="w-[40%] text-left pl-2 xmd:pl-10"
+                  className="w-[40%] text-left pl-2 xmd:pl-10 font-semibold"
                 >
                   Names
                 </th>
                 <th
-                  className="w-[40%] text-left pl-2 xmd:pl-10"
+                  className="w-[40%] text-left pl-2 xmd:pl-10 font-semibold"
                 >
                   Email
                 </th>
                 <th
-                  className="w-[20%]"
+                  className="w-[20%] font-semibold"
                 >
                   Score
                 </th>
@@ -233,7 +257,7 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendanceTracker Page 1`
             >
               <tr>
                 <td
-                  className="text-center h-20"
+                  className="text-center h-28"
                   colSpan={3}
                 >
                   There is no attendance for the selected day

@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom"
 import { fireEvent, screen, render, waitFor, cleanup} from '@testing-library/react';
 import React from 'react';
-import Calendar from '../../src/components/Calendar';
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { toast } from "react-toastify";
+import Calendar from '../../src/components/Calendar';
 import { ADD_EVENT, EDIT_EVENT, CANCEL_EVENT } from "../../src/Mutations/event";
 import { GET_EVENTS } from "../../src/queries/event.queries";
 
@@ -20,9 +20,9 @@ const getEventsMock: MockedResponse = {
       {
         id: "1",
         user: "1",
-        end: "2024-10-02T00:00:00.000Z",
+        end: new Date(),
         hostName: "Jack",
-        start: "2024-10-02T00:00:00.000Z",
+        start: new Date(),
         timeToEnd: "03:00",
         timeToStart: "04:00",
         title: "Mocked Event",
@@ -31,9 +31,9 @@ const getEventsMock: MockedResponse = {
       {
         id: "2",
         user: "1",
-        end: "2024-10-02T00:00:00.000Z",
+        end: new Date(),
         hostName: "Jones",
-        start: "2024-10-02T00:00:00.000Z",
+        start: new Date(),
         timeToEnd: "03:00",
         timeToStart: "04:00",
         title: "Another Mocked Event",

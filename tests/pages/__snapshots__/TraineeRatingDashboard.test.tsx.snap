@@ -119,20 +119,20 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                   className="mt-10 "
                 >
                   <div
-                    className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] \\"lg:ml-60 mx-auto\\"} mb-10"
+                    className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-full lg:w-auto mx-auto mb-10 undefined"
                   >
                     <div
-                      className="flex items-center justify-between pb-6 "
+                      className="flex flex-col md:flex-row items-center justify-between pb-6 space-y-4 md:space-y-0"
                     >
                       <div>
                         <h2
-                          className="text-xl font-semibold text-gray-800 dark:text-white "
+                          className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white"
                         >
                           Performance Ratings
                         </h2>
                         <input
                           aria-label="Filter table data"
-                          className="px-5 py-2 mt-4 font-sans text-xs border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-52 md:w-96"
+                          className="px-4 py-2 mt-4 font-sans text-xs md:text-sm border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-full sm:w-52 md:w-96"
                           onChange={[Function]}
                           placeholder="Filter"
                           value=""
@@ -140,10 +140,10 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                       </div>
                     </div>
                     <div
-                      className="overflow-visible "
+                      className="overflow-x-auto"
                     >
                       <table
-                        className="min-w-full leading-normal"
+                        className="min-w-full leading-normal text-xs md:text-sm"
                         role="table"
                       >
                         <thead>
@@ -151,7 +151,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                             role="row"
                           >
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -163,10 +163,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Email
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -178,10 +177,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Phase
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -193,10 +191,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Sprint
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -208,10 +205,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Quantity
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -223,10 +219,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Quality
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -238,10 +233,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Professional skills
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -253,10 +247,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Average
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -268,10 +261,9 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Actions
-                              <span />
                             </th>
                             <th
-                              className=" thead"
+                              className="thead "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -283,7 +275,6 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               title="Toggle SortBy"
                             >
                               Remarks
-                              <span />
                             </th>
                           </tr>
                         </thead>
@@ -296,7 +287,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               colSpan={9}
                             >
                               <p
-                                className="text-lg font-medium text-gray-600 dark:text-gray-400 pt-8"
+                                className="text-sm md:text-lg font-medium text-gray-600 dark:text-gray-400"
                               >
                                 No records available
                               </p>
@@ -304,7 +295,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                           </tr>
                           <tr>
                             <td
-                              className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300 "
+                              className="px-6 py-4 text-sm text-center text-gray-500 dark:text-gray-300"
                               colSpan={9}
                             >
                               Loading...
@@ -314,7 +305,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                       </table>
                     </div>
                     <div
-                      className="px-6 py-4"
+                      className="px-4 md:px-6 py-4"
                     >
                       <div
                         className="font-serif"

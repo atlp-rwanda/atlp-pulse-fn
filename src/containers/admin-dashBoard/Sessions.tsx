@@ -158,7 +158,6 @@ function AdminSission() {
           getSessionRefetch();
         })
         .catch((error) => {});
-      // console.log("------",id)
     }
   };
 
