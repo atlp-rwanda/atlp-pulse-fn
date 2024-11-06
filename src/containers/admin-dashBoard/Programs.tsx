@@ -10,6 +10,7 @@ import CreateProgramModal from './CreateProgramModal';
 import DeleteProgramModal from './DeleteProgramModal';
 import UpdateProgramModal from './UpdateProgramModal';
 import TtlSkeleton from '../../Skeletons/ttl.skeleton';
+import { ProgramUsersModal } from '../../components/ProgramUsersModal';
 
 export interface Program {
   id: string;
@@ -53,13 +54,32 @@ function ActionButtons({
   setCurrentProgram,
   setUpdateProgramModal,
   setDeleteProgramModal,
+  setViewUsersModal,
   ...props
 }: any) {
   return (
     <div className="flex relative flex-row align-middle justify-center items-center">
       <div
-        data-testid="updateIcon"
         onClick={() => {
+          const program = getData?.getAllPrograms[props.row.index];
+          setCurrentProgram(program);
+          setViewUsersModal(true);
+        }}
+      >
+        <Icon
+          icon="heroicons:eye"
+          className="mr-2"
+          width="25"
+          height="25"
+          cursor="pointer"
+          color="#9e85f5"
+        />
+      </div>
+      <div
+        data-testid="updateIcon"
+        /* istanbul ignore next */
+        onClick={() => {
+          /* istanbul ignore next */
           const program = getData?.getAllPrograms[props.row.index];
           setCurrentProgram(program);
           setUpdateProgramModal(true);
@@ -76,9 +96,7 @@ function ActionButtons({
       </div>
       <div
         data-testid="deleteIcon"
-        /* istanbul ignore next */
         onClick={() => {
-          /* istanbul ignore next */
           const program = getData?.getAllPrograms[props.row.index];
           setCurrentProgram(program);
           setDeleteProgramModal(true);
@@ -120,6 +138,7 @@ function AdminPrograms() {
   const [createProgramModel, setCreateProgramModel] = useState(false);
   const [updateProgramModal, setUpdateProgramModal] = useState(false);
   const [deleteProgramModal, setDeleteProgramModal] = useState(false);
+  const [viewUsersModal, setViewUsersModal] = useState(false);
   const [currentProgram, setCurrentProgram] = useState<Program | undefined>(
     undefined,
   );
@@ -131,7 +150,6 @@ function AdminPrograms() {
     { Header: t('Manager'), accessor: 'manager' },
     { Header: t('Organization'), accessor: 'organization' },
     { Header: t('Description'), accessor: 'description' },
-
     {
       Header: t('Actions'),
       accessor: '',
@@ -141,11 +159,12 @@ function AdminPrograms() {
           setCurrentProgram,
           setUpdateProgramModal,
           setDeleteProgramModal,
+          setViewUsersModal,
           ...props,
         }),
     },
   ];
-  /* istanbul ignore next */
+ 
   const programListData = getData
     ? getData.getAllPrograms.map(
         ({
@@ -163,7 +182,7 @@ function AdminPrograms() {
         }),
       )
     : [{}];
-  /* istanbul ignore next */
+
   const removeModel = () => {
     const newState = !createProgramModel;
     setCreateProgramModel(newState);
@@ -181,7 +200,6 @@ function AdminPrograms() {
       <UpdateProgramModal
         data={getData}
         updateProgramModal={updateProgramModal}
-        /* istanbul ignore next */
         currentProgram={currentProgram}
         removeModel={() => {
           setUpdateProgramModal(false);
@@ -190,15 +208,19 @@ function AdminPrograms() {
       />
       <DeleteProgramModal
         deleteProgramModal={deleteProgramModal}
-        /* istanbul ignore next */
         currentProgram={currentProgram}
         removeModel={() => {
           setDeleteProgramModal(false);
         }}
         refetch={getRefetch}
       />
+      <ProgramUsersModal
+        programId={currentProgram?.id ?? ''}
+        programName={currentProgram?.name ?? ''}
+        isOpen={viewUsersModal}
+        onClose={() => setViewUsersModal(false)}
+      />
       {/* =========================== End::  CreateProgramModel =============================== */}
-
       <div className="bg-light-bg dark:bg-dark-frame-bg ">
         <div className="flex items-left pb-8">
           <div className="flex gap-2">
