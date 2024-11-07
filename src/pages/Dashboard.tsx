@@ -1,6 +1,6 @@
 import React from 'react';
 import CheckRole from '../utils/CheckRoles';
-import SupAdDashboard from './SupAdDashboard';
+import SuperAdminDashboard from './SuperAdminDashboard';
 import AdminDashboard from './AdminDashboard';
 import TraineeDashboard from './TraineeDashboard';
 import ManagerCard from '../components/ManagerCard';
@@ -10,7 +10,7 @@ export function Dashboard() {
   return (
     <>
       <CheckRole roles={['superAdmin']}>
-        <SupAdDashboard />
+        <SuperAdminDashboard />
       </CheckRole>
       <CheckRole roles={['admin']}>
         <AdminDashboard />

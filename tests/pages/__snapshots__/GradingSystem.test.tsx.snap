@@ -369,7 +369,7 @@ Array [
                 className="max-w-full"
               >
                 <div
-                  className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-full lg:w-auto mx-auto mb-10 undefined"
+                  className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] overflow-scroll \\"lg:ml-60 mx-auto\\"} mb-10 undefined"
                 >
                   <div
                     className="flex flex-col md:flex-row items-center justify-between pb-6 space-y-4 md:space-y-0"
@@ -540,29 +540,37 @@ Array [
                                 <div
                                   className="flex flex-row relative md:ml-80 lg:flex-row   justify-center items-baseline w-full lg:w-1/3 w-1/2 text-xs lg:text-md  mx-2 -mr-5"
                                 >
-                                  <span
-                                    className="flex justify-center sm:w-[50%] w-[70%] lg:mb-0"
+                                  <div
+                                    className="flex justify-center items-center w-full"
                                   >
-                                    Page
-                                     
-                                    <strong>
-                                      1
-                                       of
-                                       0
-                                    </strong>
-                                     
-                                  </span>
+                                    <span
+                                      className="text-gray-900 dark:text-white whitespace-nowrap"
+                                    >
+                                      Page
+                                       
+                                      <strong>
+                                        1
+                                         of
+                                         0
+                                      </strong>
+                                       
+                                    </span>
+                                  </div>
                                   <div
                                     className="flex flex-row sm:justify-center justify-end items-center w-full"
                                   >
                                     <div
                                       className="hidden lg:flex items-center mx-2 mb-2 lg:mb-0"
                                     >
-                                      <span
-                                        className="mr-1"
+                                      <div
+                                        className="text-gray-900 dark:text-white w-[5rem]"
                                       >
-                                        | Go to page: 
-                                      </span>
+                                        <span
+                                          className="mr-1"
+                                        >
+                                          | Go to page: 
+                                        </span>
+                                      </div>
                                       <input
                                         className="pl-1 border rounded-md outline-none appearance-none border-primary dark:bg-primary"
                                         defaultValue={1}

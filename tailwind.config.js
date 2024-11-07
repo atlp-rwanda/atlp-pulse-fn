@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xm:'360px',
+        xm: '360px',
         sm: '375px',
+        xsm: '500px',
         xmd: '600px',
         md: '768px',
         lg: '976px',
@@ -40,27 +41,31 @@ module.exports = {
         // sans: ['PT Serif', 'serif'],
         serif: ['Inter', 'serif'],
       },
-      extend: {
-        borderRadius: {
-          '4xl': '2rem',
+      borderRadius: {
+        '4xl': '2rem',
+      },
+      keyframes: {
+        wave: {
+          '0%': { transform: 'rotate(0.0deg)' },
+          '10%': { transform: 'rotate(14deg)' },
+          '20%': { transform: 'rotate(-8deg)' },
+          '30%': { transform: 'rotate(14deg)' },
+          '40%': { transform: 'rotate(-4deg)' },
+          '50%': { transform: 'rotate(10.0deg)' },
+          '60%': { transform: 'rotate(0.0deg)' },
+          '100%': { transform: 'rotate(0.0deg)' },
         },
-        keyframes: {
-          wave: {
-            '0%': { transform: 'rotate(0.0deg)' },
-            '10%': { transform: 'rotate(14deg)' },
-            '20%': { transform: 'rotate(-8deg)' },
-            '30%': { transform: 'rotate(14deg)' },
-            '40%': { transform: 'rotate(-4deg)' },
-            '50%': { transform: 'rotate(10.0deg)' },
-            '60%': { transform: 'rotate(0.0deg)' },
-            '100%': { transform: 'rotate(0.0deg)' },
-          },
-        },
-        animation: {
-          'waving-hand': 'wave 10s linear infinite',
+        'ping-live': {
+          '0%': { transform: 'scale(0.8)', opacity: '1' },
+          '50%': { transform: 'scale(1)', opacity: '0.7' },
+          '100%': { transform: 'scale(0.8)', opacity: '1' },
         },
       },
+      animation: {
+        'waving-hand': 'wave 10s linear infinite',
+        'ping-live': 'ping-live 1.5s ease-in-out infinite',
+      },
     },
-    plugins: [],
   },
+  plugins: [],
 };
