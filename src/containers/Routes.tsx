@@ -22,6 +22,7 @@ const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
 const Pricing = React.lazy(() => import('../pages/Pricing'));
 /* istanbul ignore next */
 const About = React.lazy(() => import('../pages/Comingsoon'));
+const Community = React.lazy(() => import('../pages/Community'));
 /* istanbul ignore next */
 const Product = React.lazy(() => import('../pages/Comingsoon'));
 /* istanbul ignore next */
@@ -39,7 +40,7 @@ import Noredirect from '../pages/Noredirect';
 import RedirectHandler from '../pages/RedirectHandler';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
-import PrivateRoute from '../utils/PrivateRoute'
+import PrivateRoute from '../utils/PrivateRoute';
 import CalendarConfirmation from '../components/CalendarConfirmation';
 import NotFound from '../components/NotFoundPage';
 
@@ -48,6 +49,7 @@ function MainRoutes() {
     <div className="min-h-screen page-layout">
       <Suspense>
         <Routes>
+          {/* <Route path="/community" element={<h1>Hello my son</h1>} /> */}
           <Route path="/*" element={<DashRoutes />} />
           <Route
             path="/"
@@ -145,6 +147,14 @@ function MainRoutes() {
               }
             />
             <Route
+              path="/community"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <Community />
+                </Suspense>
+              }
+            />
+            <Route
               path="/product"
               element={
                 <Suspense fallback={<Skeleton />}>
@@ -164,12 +174,14 @@ function MainRoutes() {
             />
             <Route path="/noredirect" element={<Noredirect />} />
             <Route path="/redirect" element={<RedirectHandler />} />
-            <Route path="/calendar/confirm" element={
-              <PrivateRoute>
-                <CalendarConfirmation/>
-              </PrivateRoute>
-            }>
-            </Route>
+            <Route
+              path="/calendar/confirm"
+              element={
+                <PrivateRoute>
+                  <CalendarConfirmation />
+                </PrivateRoute>
+              }
+            ></Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
