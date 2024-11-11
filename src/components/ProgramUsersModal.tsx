@@ -1,10 +1,10 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import DataTable from './DataTable';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
+import DataTable from './DataTable';
 
 interface User {
   email: string;
@@ -70,7 +70,7 @@ export function ProgramUsersModal({
   isOpen,
   onClose,
   // defaultProgram = 'default',
-  programName
+  programName,
 }: ProgramUsersModalProps) {
   const { data, loading, error } = useQuery(GET_ALL_USERS, {
     variables: {
@@ -79,10 +79,11 @@ export function ProgramUsersModal({
     skip: !isOpen,
   });
 
-  const programUsers = data?.getAllUsers.filter(
-    (user: User) => user.team?.cohort?.program?.name === programName
+  const programUsers =
+    data?.getAllUsers.filter(
+      (user: User) => user.team?.cohort?.program?.name === programName,
       // || (user.team === null && programName === defaultProgram)
-  ) || [];
+    ) || [];
 
   const columns = [
     {
@@ -91,7 +92,11 @@ export function ProgramUsersModal({
       Cell: ({ value }: CellProps) => (
         <div className="flex items-center">
           <span className="hidden ml-2 md:inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700">
-            <svg className="h-full w-full text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="h-full w-full text-gray-300 dark:text-gray-500"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           </span>
@@ -119,7 +124,7 @@ export function ProgramUsersModal({
     if (loading) {
       return (
         <div className="flex justify-center items-center h-48">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
         </div>
       );
     }
@@ -152,12 +157,7 @@ export function ProgramUsersModal({
   };
 
   return (
-    <StyledDialog 
-      open={isOpen} 
-      onClose={onClose} 
-      maxWidth="md" 
-      fullWidth
-    >
+    <StyledDialog open={isOpen} onClose={onClose} maxWidth="md" fullWidth>
       <div className="bg-white dark:bg-gray-800 rounded-t-lg">
         <StyledDialogTitle className="text-gray-900 dark:text-white border-b dark:border-gray-700">
           {programName} - Users
