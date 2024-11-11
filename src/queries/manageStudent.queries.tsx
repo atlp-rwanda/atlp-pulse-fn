@@ -111,6 +111,9 @@ export const GET_COHORTS_QUERY = gql`
     getCohorts(orgToken: $orgToken) {
       name
       id
+      coordinator {
+        id
+      }
     }
   }
 `;

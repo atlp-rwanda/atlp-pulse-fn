@@ -115,12 +115,12 @@ const TwoFactorPage: React.FC = () => {
           toast.success(response.message);
 
           const rolePaths: Record<string, string> = {
-            superAdmin: '/organizations',
+            superAdmin: '/dashboard',
             admin: '/trainees',
             coordinator: '/trainees',
             manager: '/dashboard',
             ttl: '/ttl-trainees',
-            trainee: '/performance',
+            trainee: '/dashboard',
           };
 
           const redirectPath = rolePaths[response.user.role] || '/dashboard';

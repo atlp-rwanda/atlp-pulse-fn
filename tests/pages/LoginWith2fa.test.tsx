@@ -15,56 +15,58 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
   useLocation: () => ({
     state: {
-      email: "user@example.com",
-      TwoWayVerificationToken: "test-token"
-    }
-  })
+      email: 'user@example.com',
+      TwoWayVerificationToken: 'test-token',
+    },
+  }),
 }));
 
 // Mock UserContext
 const mockLogin = jest.fn();
 interface UserContextWrapperProps {
-    children: React.ReactNode;
-  }
-  
-  const UserContextWrapper: React.FC<UserContextWrapperProps> = ({ children }) => (
-    <UserContext.Provider value={{ login: mockLogin }}>
-      {children}
-    </UserContext.Provider>
-  );
+  children: React.ReactNode;
+}
+
+const UserContextWrapper: React.FC<UserContextWrapperProps> = ({
+  children,
+}) => (
+  <UserContext.Provider value={{ login: mockLogin }}>
+    {children}
+  </UserContext.Provider>
+);
 const mocks = [
   {
     request: {
       query: LOGIN_WITH_2FA,
       variables: {
-        email: "user@example.com",
-        otp: "123456",
-        TwoWayVerificationToken: "test-token",
+        email: 'user@example.com',
+        otp: '123456',
+        TwoWayVerificationToken: 'test-token',
       },
     },
     result: {
       data: {
         loginWithTwoFactorAuthentication: {
-          token: "jwt-token",
+          token: 'jwt-token',
           user: {
-            id: "1",
-            role: "trainee",
-            email: "user@example.com",
+            id: '1',
+            role: 'trainee',
+            email: 'user@example.com',
             profile: {
-              id: "1",
-              firstName: "John",
-              lastName: "Doe",
-              name: "John Doe",
-              address: "",
-              city: "",
-              country: "",
-              phoneNumber: "",
-              biography: "",
-              avatar: "",
-              cover: "",
+              id: '1',
+              firstName: 'John',
+              lastName: 'Doe',
+              name: 'John Doe',
+              address: '',
+              city: '',
+              country: '',
+              phoneNumber: '',
+              biography: '',
+              avatar: '',
+              cover: '',
             },
           },
-          message: "Login successful",
+          message: 'Login successful',
         },
       },
     },
@@ -73,13 +75,13 @@ const mocks = [
     request: {
       query: LOGIN_WITH_2FA,
       variables: {
-        email: "user@example.com",
-        otp: "654321",
-        TwoWayVerificationToken: "test-token",
+        email: 'user@example.com',
+        otp: '654321',
+        TwoWayVerificationToken: 'test-token',
       },
     },
     result: {
-      errors: [{ message: "Invalid OTP" }],
+      errors: [{ message: 'Invalid OTP' }],
     },
   },
 ];
@@ -95,7 +97,7 @@ describe('TwoFactorPage', () => {
         <UserContextWrapper>
           <TwoFactorPage />
         </UserContextWrapper>
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     // Type OTP digits
@@ -106,7 +108,7 @@ describe('TwoFactorPage', () => {
 
     // Get and click submit button
     const submitButton = screen.getByRole('button', { name: /verify(ing)?/i });
-    
+
     // Wait for the button to be enabled after all inputs are filled
     // await waitFor(() => {
     //   expect(submitButton).not.toBeDisabled();
@@ -117,7 +119,9 @@ describe('TwoFactorPage', () => {
     // Wait for success message and navigation
     await waitFor(() => {
       expect(mockLogin).toHaveBeenCalled();
-      expect(mockNavigate).toHaveBeenCalledWith('/performance', { replace: true });
+      expect(mockNavigate).toHaveBeenCalledWith('/dashboard', {
+        replace: true,
+      });
     });
   });
 
@@ -127,7 +131,7 @@ describe('TwoFactorPage', () => {
         <UserContextWrapper>
           <TwoFactorPage />
         </UserContextWrapper>
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     // Type incorrect OTP
@@ -138,7 +142,7 @@ describe('TwoFactorPage', () => {
 
     // Get and click submit button
     const submitButton = screen.getByRole('button', { name: /verify(ing)?/i });
-    
+
     // await waitFor(() => {
     //   expect(submitButton).not.toBeDisabled();
     // });
