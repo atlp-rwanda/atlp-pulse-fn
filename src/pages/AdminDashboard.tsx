@@ -3,6 +3,8 @@ import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
+import BarChart from '../Chart/BarChart';
+import AppointmentsChart from '../Chart/AppointmentsChart';
 // eslint-disable-next-line import/no-useless-path-segments
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Comingsoon from './Comingsoon';
@@ -54,11 +56,10 @@ function SupAdDashboard() {
   }, [inviteEmail]);
   return (
     <>
-      {/* =========================== Start::  InviteTraineeModel =============================== */}
-
       <div
-        className={`font-serif overflow-hidden h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${inviteTraineeModel === true ? 'block' : 'hidden'
-          }`}
+        className={`font-serif overflow-hidden h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
+          inviteTraineeModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="w-full p-4 pb-8 bg-indigo-100 rounded-lg dark:bg-dark-bg sm:w-3/4 xl:w-4/12">
           <div className="flex flex-wrap items-center justify-center w-full card-title ">
@@ -122,12 +123,20 @@ function SupAdDashboard() {
           </div>
         </div>
       </div>
-      {/* =========================== End::  InviteTraineeModel =============================== */}
-
       <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
-        <div className="flex flex-row justify-center pb-8">
-          <div className="w-[100%] h-[100%]">
-            <Comingsoon title="Dashboard" />
+        <div className="flex flex-col justify-between">
+          <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">
+            <div className="flex flex-col justify-center">
+              <span className="mr-[80px] rotate-90 ">Users</span>
+            </div>
+            <AppointmentsChart />
+          </div>
+
+          <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">
+            <div className="flex flex-col justify-center">
+              <span className="mr-[80px] rotate-90 ">Teams</span>
+            </div>
+            <BarChart />
           </div>
         </div>
       </div>
