@@ -31,8 +31,19 @@ export const GET_TEAMS_CARDS = gql`
           name
           lastName
           firstName
+          address
+          activity {
+            date
+            city
+            IPv4
+            state
+            latitude
+            longitude
+            postal
+            failed
+          }
         }
-         status{
+        status {
           status
         }
       }
@@ -147,12 +158,12 @@ function ManagerCard() {
           rating = 'text-red-700';
         }
 
-         const activeMembers = team.members.filter(
-        (member: any) => member.status?.status === 'active'
-      ).length;
-      const droppedMembers = team.members.filter(
-        (member: any) => member.status?.status === 'drop'
-      ).length;
+        const activeMembers = team.members.filter(
+          (member: any) => member.status?.status === 'active',
+        ).length;
+        const droppedMembers = team.members.filter(
+          (member: any) => member.status?.status === 'drop',
+        ).length;
 
         return {
           stylebg,
