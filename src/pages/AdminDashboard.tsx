@@ -3,8 +3,9 @@ import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
+import PieChart from '../Chart/PieChart';
 import BarChart from '../Chart/BarChart';
-import AppointmentsChart from '../Chart/AppointmentsChart';
+import UsersChart from '../Chart/usersChart';
 // eslint-disable-next-line import/no-useless-path-segments
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Comingsoon from './Comingsoon';
@@ -25,7 +26,6 @@ function SupAdDashboard() {
   const inviteModel = () => {
     const newState = !inviteTraineeModel;
     setInviteTraineeModel(newState);
-    //  this is true
   };
 
   const [inviteUser] = useMutation(INVITE_USER_MUTATION, {
@@ -125,11 +125,14 @@ function SupAdDashboard() {
       </div>
       <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
         <div className="flex flex-col justify-between">
+          <div className="w-[80%] h-[100%] pl-[210px] pb-8  flex flex-row ">
+            <PieChart />
+          </div>
           <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">
             <div className="flex flex-col justify-center">
               <span className="mr-[80px] rotate-90 ">Users</span>
             </div>
-            <AppointmentsChart />
+            <UsersChart />
           </div>
 
           <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">

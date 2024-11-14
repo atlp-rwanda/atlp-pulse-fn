@@ -40,14 +40,14 @@ const BarChart: React.FC<Props> = () => {
     ],
     datasets: [
       {
-        label: 'Last 8 days',
+        label: 'Nova',
         data: [12, 19, 3, 5, 2, 3, 12, 14, 5, 7, 9, 11],
         backgroundColor: '#5A6ACF',
         borderRadius: 0,
         barThickness: 8,
       },
       {
-        label: 'Last Week',
+        label: 'Fighters',
         data: [10, 15, 5, 8, 6, 9, 13, 9, 6, 8, 7, 10],
         backgroundColor: '#D1D5DB',
         borderRadius: 0,
@@ -63,7 +63,7 @@ const BarChart: React.FC<Props> = () => {
       legend: {
         position: 'bottom' as const,
         labels: {
-          color: '#121212',
+          color: '#D1D5DB',
         },
       },
       tooltip: {
