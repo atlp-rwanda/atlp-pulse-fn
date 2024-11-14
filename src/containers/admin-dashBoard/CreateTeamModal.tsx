@@ -20,6 +20,7 @@ export default function CreateTeamModal({
     getAllTeams: Team[];
     getAllCohorts: Cohort[];
     getAllUsers: any;
+    getAllTTLUsers:any,
   };
   createTeamModel: boolean;
   removeModel: Function;
@@ -141,8 +142,8 @@ export default function CreateTeamModal({
                     },
                   }}
                   options={
-                    data?.getAllUsers
-                      ?.filter((user: any) => user.role === 'ttl')
+                    data?.getAllTTLUsers
+                      ?.filter((user: any) => !user.team)
                       ?.map((user: any) => ({
                         value: user.email,
                         label: user.email,

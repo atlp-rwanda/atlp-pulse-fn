@@ -118,6 +118,20 @@ export const getAllTeam = gql`
       name
       description
     }
+    getAllTTLUsers(orgToken: $orgToken) {
+      profile {
+        name
+        id
+      }
+      email
+      role
+      team {
+        name
+        cohort {
+          name
+        }
+      }
+    }
   }
 `;
 
@@ -196,6 +210,7 @@ function AdminTeams() {
       getAllTeams: Team[];
       getAllCohorts: Cohort[];
       getAllUsers: any;
+      getAllTTLUsers:any,
     };
     loading: boolean;
     error?: any;
