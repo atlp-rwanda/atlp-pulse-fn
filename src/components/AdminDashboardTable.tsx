@@ -1,12 +1,16 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import DataTable from './DataTable';
 import { GET_TEAMS_CARDS } from './CoordinatorCard';
+import TeamDetailsModal from './AdminTeamDetails';
 
 function DashboardTableDesign() {
   const { t } = useTranslation();
+  const [selectedTeam, setSelectedTeam] = useState<any | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   const {
     data: TeamsData,
     loading,
@@ -18,6 +22,7 @@ function DashboardTableDesign() {
     },
     fetchPolicy: 'network-only',
   });
+
   const TableData = TeamsData?.getAllTeams.map((items: any) => ({
     teams: items.name,
     users: items.members.length,
@@ -27,6 +32,11 @@ function DashboardTableDesign() {
     ),
   }));
 
+  const handleViewClick = (team: any) => {
+    setSelectedTeam(team);
+    setIsModalOpen(true);
+  };
+
   const organizationColumns = [
     { Header: t('Teams'), accessor: 'teams' },
     { Header: t('Logins'), accessor: 'logins' },
@@ -34,17 +44,16 @@ function DashboardTableDesign() {
     {
       Header: t('action'),
       accessor: '',
-      Cell: () => (
-        <>
-          <button
-            type="button"
-            className="flex items-center space-x-2 text-blue-500 hover:text-blue-700"
-            aria-label="View"
-          >
-            <FaEye className="w-4 h-4" />
-            <span>{t('View')}</span>
-          </button>
-        </>
+      Cell: ({ row }: any) => (
+        <button
+          type="button"
+          className="flex items-center space-x-2 text-blue-500 hover:text-blue-700"
+          aria-label="View"
+          onClick={() => handleViewClick(row.original)}
+        >
+          <FaEye className="w-4 h-4" />
+          <span>{t('View')}</span>
+        </button>
       ),
     },
   ];
@@ -54,6 +63,12 @@ function DashboardTableDesign() {
         columns={organizationColumns}
         data={TableData ? (TableData as any[]) : []}
         title={t('Teams metrices')}
+        loading={loading}
+      />
+      <TeamDetailsModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        teamData={selectedTeam}
       />
     </div>
   );
