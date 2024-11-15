@@ -91,7 +91,7 @@ function AdminLogin() {
             redirect
               ? navigate(`${redirect}`)
               : data.loginUser.user.role === 'superAdmin'
-              ? navigate(`/organizations${redirectParams}`)
+              ? navigate(`/dashboard`)
               : data.loginUser.user.role === 'admin'
               ? navigate(`/trainees`)
               : data.loginUser.user.role === 'coordinator'

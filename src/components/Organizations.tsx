@@ -14,11 +14,16 @@ import OrgSkeleton from '../Skeletons/Organization.skeleton';
 import { DeleteOrganization } from '../Mutations/OrganisationMutations';
 import { RegisterNewOrganization } from '../Mutations/OrganisationMutations';
 import { AddOrganization } from '../Mutations/OrganisationMutations';
+import { GET_ORGANIZATIONS } from '../queries/organization.queries';
 import jwtDecode from 'jwt-decode';
 import { useSearchParams,useNavigate } from 'react-router-dom';
 
 export interface Admin {
   id: string;
+  profile: {
+    name: string;
+    phoneNumber: string
+  };
   email: string;
 }
 export interface Organization {
@@ -26,23 +31,9 @@ export interface Organization {
   name: string;
   description: string;
   admin: Admin;
+  status: 'active' | 'rejected' | 'pending';
   [x: string]: any;
 }
-
-export const getOrganizations = gql`
-  query GetOrganizations {
-    getOrganizations {
-      id
-      name
-      description
-      admin {
-        id
-        email
-      }
-      status
-    }
-  }
-`;
 
 function ActionButtons({
   getData,
@@ -145,7 +136,7 @@ const Organizations = () => {
     loading: boolean;
     error?: any;
     refetch: Function;
-  } = useQuery(getOrganizations);
+  } = useQuery(GET_ORGANIZATIONS);
 
 const  ApproveNewOrganization= async (token:string)=>{
   try {
@@ -583,15 +574,15 @@ useEffect(() => {
           </div>
         </div>
         <div className="">
-        {getLoading ? (
-          <OrgSkeleton/>
-        ) : (
-          <DataTable
-            columns={organizationColumns}
-            data={organizationData ? (organizationData as [any]) : []}
-            title={t('Organizations list')}
-          />
-        )}
+          {getLoading ? (
+            <OrgSkeleton />
+          ) : (
+            <DataTable
+              columns={organizationColumns}
+              data={organizationData ? (organizationData as [any]) : []}
+              title={t('Organizations list')}
+            />
+          )}
         </div>
       </div>
     </div>

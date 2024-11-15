@@ -50,7 +50,7 @@ const AdminRatings = React.lazy(() => import('../pages/AdminRatings'));
 const UpdatedRatingDashboard = React.lazy(
   () => import('../pages/UpdatedRatingDashboard'),
 );
-const SupAdDashboard = React.lazy(() => import('../pages/SupAdDashboard'));
+const SuperAdminDashboard = React.lazy(() => import('../pages/SuperAdminDashboard'));
 const Calendar = React.lazy(() => import('../components/Calendar'));
 const CoordinatorsPage = React.lazy(
   () => import('../containers/admin-dashBoard/CoordinatorModal'),
@@ -143,7 +143,7 @@ function DashRoutes() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<EditProfile />} />
             {/* <Route path="*" element={<Error />} /> */}
-            <Route path="/super-admin" element={<SupAdDashboard />} />
+            <Route path="/super-admin" element={<SuperAdminDashboard />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
             <Route path="/coordinators" element={<CoordinatorsPage />} />
