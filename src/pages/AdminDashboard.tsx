@@ -3,6 +3,7 @@ import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
+import { FaEye } from 'react-icons/fa';
 import PieChart from '../Chart/PieChart';
 import BarChart from '../Chart/BarChart';
 import UsersChart from '../Chart/usersChart';
@@ -12,8 +13,9 @@ import Comingsoon from './Comingsoon';
 import Button from '../components/Buttons';
 import { UserContext } from '../hook/useAuth';
 import { INVITE_USER_MUTATION } from '../Mutations/manageStudentMutations';
+import DashboardTableDesign from '../components/AdminDashboardTable';
 
-function SupAdDashboard() {
+function AdminDashboard() {
   const { user } = useContext(UserContext);
   const { t }: any = useTranslation();
 
@@ -143,8 +145,11 @@ function SupAdDashboard() {
           </div>
         </div>
       </div>
+      <div className="w-full ">
+        <DashboardTableDesign />
+      </div>
     </>
   );
 }
 
-export default SupAdDashboard;
+export default AdminDashboard;

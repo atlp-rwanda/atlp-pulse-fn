@@ -61,7 +61,7 @@ const PieChart: React.FC = () => {
   return (
     <div className="flex flex-col items-center -ml-8 mb-8">
       <div className="flex space-x-8">
-        <div className="relative w-[200px] h-[200px] bg-red-200 p-2 rounded">
+        <div className="relative w-[200px] h-[200px] bg-red-200   p-2 rounded">
           <Doughnut data={data} options={options} />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
