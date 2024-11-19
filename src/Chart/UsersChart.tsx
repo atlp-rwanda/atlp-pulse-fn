@@ -21,8 +21,7 @@ ChartJS.register(
   Legend,
 );
 
-// eslint-disable-next-line react/function-component-definition
-const usersChart: React.FC = () => {
+function UsersChart() {
   const data = {
     labels: [
       '01',
@@ -83,6 +82,7 @@ const usersChart: React.FC = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom' as const,
@@ -104,10 +104,10 @@ const usersChart: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-[300px]">
-      <Line data={data} options={options} className="-ml-8" />
+    <div className="w-full max-w-4xl h-[60vh] max-h-[500px] mx-auto p-4 md:p-6 lg:p-8 bg-white dark:bg-gray-800 rounded-md shadow-md">
+      <Line data={data} options={options} />
     </div>
   );
-};
+}
 
-export default usersChart;
+export default UsersChart;
