@@ -64,7 +64,9 @@ function Footer({ styles }: any) {
               <h3 className="font-bold mb-2">{t('Dev Pulse')}</h3>
               <ul>
                 <li className="mb-1">{t('About us')}</li>
-                <li className="mb-1">{t('Contact us')}</li>
+                <li className="mb-1">
+                  <Link to="/contact-us">{t('Contact us')} </Link>
+                </li>
               </ul>
             </div>
             <div className="w-full sm:w-1/2 md:w-1/4 p-4  text-center lg:text-left">
