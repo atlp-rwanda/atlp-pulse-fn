@@ -196,13 +196,13 @@ function CommunityQuestions() {
               value={questionTitleText}
               onChange={(e) => setQuestionTitleText(e.target.value)}
               placeholder="Write question title..."
-              className="p-2 border dark:bg-dark-tertiary  border-gray-300 dark:border-gray-600 dark:text-black rounded w-full"
+              className="p-2 border dark:bg-dark-tertiary  dark:text-white border-gray-300 dark:border-gray-600 rounded w-full"
             />
             <textarea
               value={questionText}
               onChange={(e) => setQuestionText(e.target.value)}
               rows={3}
-              className="w-full dark:bg-dark-tertiary  p-2 border rounded-md dark:text-black"
+              className="w-full dark:bg-dark-tertiary dark:text-white p-2 border rounded-md "
               placeholder="Ask a question..."
             />
             <button
@@ -234,7 +234,7 @@ function CommunityQuestions() {
             >
               <p className="text-md font-semibold">{question?.title}</p>
               <p className="text-sm text-secondary dark:text-dark-text-fill">
-                Asked by: {question?.author?.email}
+                Asked by: {question?.author?.profile?.name}
               </p>
             </li>
           ))}
@@ -249,7 +249,7 @@ function CommunityQuestions() {
             </h2>
             <span>{selectedQuestion?.content}</span>
             <p className="text-sm text-secondary dark:text-dark-text-fill">
-              Asked by {selectedQuestion?.author?.email}
+              Asked by {selectedQuestion?.author?.profile?.name}
             </p>
             {loggedUser && loggedUser === selectedQuestion?.author?.id && (
               <button
@@ -285,7 +285,7 @@ function CommunityQuestions() {
                     >
                       <p>{answer.content}</p>
                       <p className="text-sm text-secondary  dark:text-white">
-                        Answered by {answer.author.email}
+                        Answered by {answer.author?.profile?.name}
                       </p>
                     </div>
 
@@ -307,7 +307,6 @@ function CommunityQuestions() {
                 </p>
               )}
 
-              {/* Answer submission form for the logged-in user */}
               {loggedUser && (
                 <div className="mt-4 flex items-start flex-col w-full">
                   <textarea

@@ -12,6 +12,7 @@ export const GET_ALL_QUESTIONS = gql`
         profile {
           avatar
           bio
+          name
         }
       }
       createdAt
@@ -21,6 +22,9 @@ export const GET_ALL_QUESTIONS = gql`
         author {
           id
           email
+          profile {
+            name
+          }
         }
         createdAt
       }
