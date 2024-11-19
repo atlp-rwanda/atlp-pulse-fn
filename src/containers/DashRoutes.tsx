@@ -42,6 +42,9 @@ const ViewTraineeRatings = React.lazy(
 const TtlTraineeDashboard = React.lazy(
   () => import('../pages/ttlTraineeDashboard'),
 );
+const LoginWith2fa = React.lazy(
+  () => import('../pages/LoginWith2fa'),
+);
 
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
