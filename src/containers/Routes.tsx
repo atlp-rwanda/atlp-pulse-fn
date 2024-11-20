@@ -25,6 +25,7 @@ const About = React.lazy(() => import('../pages/Comingsoon'));
 const Community = React.lazy(() => import('../pages/Community'));
 /* istanbul ignore next */
 const Product = React.lazy(() => import('../pages/Comingsoon'));
+const ContactUs = React.lazy(() => import('../pages/ContactUs'));
 /* istanbul ignore next */
 const SignupOrgDocs = React.lazy(
   () => import('../components/Docs/SignupOrgDocs'),
@@ -162,6 +163,14 @@ function MainRoutes() {
                 <Suspense fallback={<Skeleton />}>
                   <Product title={'Productpage'} />
                 </Suspense>
+              }
+            />
+            <Route
+              path="/contact-us"
+              element={
+                  <Suspense fallback={<Skeleton />}>
+                    <ContactUs />
+                  </Suspense>
               }
             />
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />
