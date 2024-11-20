@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { PartialUser } from './Cohorts';
 import { Phase } from './Phases';
+import { handleError } from '../../components/ErrorHandle';
 
 export const UpdatePhase = gql`
   mutation UpdatePhase(
@@ -54,7 +55,7 @@ export default function UpdatePhaseModal({
 
   const [updatePhaseMutation, { loading }] = useMutation(UpdatePhase, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       refetch();

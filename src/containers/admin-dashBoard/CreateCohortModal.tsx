@@ -7,6 +7,7 @@ import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { Cohort, PartialProgram, PartialUser, PartialPhase } from './Cohorts';
 import { AddCohort } from '../../Mutations/cohortMutations';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function CreateCohortModal({
   data,
@@ -37,7 +38,7 @@ export default function CreateCohortModal({
   /* istanbul ignore next */
   const [addCohortMutation, { loading }] = useMutation(AddCohort, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       refetch();

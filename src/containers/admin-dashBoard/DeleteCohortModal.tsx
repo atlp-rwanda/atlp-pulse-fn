@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Cohort } from './Cohorts';
 import { DeleteCohort } from '../../Mutations/cohortMutations';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function DeleteCohortModal({
   deleteCohortModal,
@@ -21,7 +22,7 @@ export default function DeleteCohortModal({
   const [deleteCohortMutation, { loading }] = useMutation(DeleteCohort, {
     onError(error) {
       removeModel();
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       refetch();

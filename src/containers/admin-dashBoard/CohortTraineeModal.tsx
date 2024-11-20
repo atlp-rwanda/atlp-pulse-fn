@@ -6,6 +6,7 @@ import { Cohort } from './Cohorts';
 import ModalDataTable from '../../components/ModalDataTable';
 import { GET_COHORT_TRAINEES_QUERY } from '../../queries/manageStudent.queries';
 import ButtonLoading from '../../components/ButtonLoading';
+import { handleError } from '../../components/ErrorHandle';
 
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -63,7 +64,7 @@ export default function CohortTraineeModal({
         setTraineeData(data.getCohortTrainees);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
   }, [currentCohort]);

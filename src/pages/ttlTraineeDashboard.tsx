@@ -27,6 +27,7 @@ import { XIcon } from '@heroicons/react/solid';
 import { FaTimes } from 'react-icons/fa';
 import { log } from 'console';
 import { FaEye } from 'react-icons/fa';
+import { handleError } from '../components/ErrorHandle';
 
 const organizationToken = localStorage.getItem('orgToken');
 ``;
@@ -195,8 +196,8 @@ const TtlTraineeDashboard = () => {
       },
       onError: (error) => {
         setTraineeLoading(false);
-        setFetchError(true); // Set fetch error state to true on error
-        toast.error(error.message);
+        setFetchError(true); 
+        toast.error(handleError(error));
       },
     });
   }, []);

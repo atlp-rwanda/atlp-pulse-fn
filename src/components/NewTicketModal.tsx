@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import CREATE_TICKET from '../Mutations/help.mutation';
+import { handleError } from './ErrorHandle';
 
 interface NewTicketModalProps {
   isOpen: boolean;
@@ -37,7 +38,7 @@ function NewTicketModal({
     },
     onError: (error) => {
       setLoading(false);
-      toast.error(`Error creating ticket: ${error.message}`);
+      toast.error(handleError(error));
     },
   });
 
@@ -85,7 +86,7 @@ function NewTicketModal({
         },
       });
     } catch (error: any) {
-      toast.error(`Error submitting ticket: ${error.message}`);
+      toast.error(handleError(error));
     }
   };
 

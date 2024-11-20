@@ -14,6 +14,7 @@ import pulseStars from '../../assets/Property 1=Logo_flie (1).svg';
 import LOGIN_ORGANIZATION_MUTATION from './LoginOrganisationMutation';
 import ButtonLoading from '../../components/ButtonLoading';
 import './orgName.css';
+import { handleError } from '../../components/ErrorHandle';
 // import { input } from '@testing-library/user-event/dist/types/event/input';
 
 function Orglogin() {
@@ -76,7 +77,7 @@ function Orglogin() {
       onError(error) {
         /* istanbul ignore next */
         setError('name', {
-          message: t(`${error.message}`),
+          message: t(`${handleError(error)}`),
         });
       },
     });

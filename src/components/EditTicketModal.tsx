@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { UPDATE_TICKET } from '../queries/tickets.queries';
+import { handleError } from './ErrorHandle';
 
 interface EditTicketModalProps {
   isOpen: boolean;
@@ -54,7 +55,7 @@ function EditTicketModal({
     },
     onError: (error) => {
       setLoading(false);
-      toast.error(`Error updating ticket: ${error.message}`);
+      toast.error(`Error updating ticket: ${handleError(error)}`);
     },
   });
 
@@ -95,7 +96,7 @@ function EditTicketModal({
         },
       });
     } catch (error: any) {
-      toast.error(`Error updating ticket: ${error.message}`);
+      toast.error(`Error updating ticket: ${handleError(error)}`);
       setLoading(false);
     }
   };

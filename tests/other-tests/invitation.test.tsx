@@ -129,7 +129,7 @@ describe('InviteForm', () => {
   it('handles invitation error', async () => {
     const errorMock = {
       ...mocks[0],
-      error: new Error('Invitation failed'),
+      error: new Error("Sending invitation failed"),
     };
 
     render(
@@ -148,7 +148,7 @@ describe('InviteForm', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('Error sending invitation: Invitation failed');
+      expect(toast.error).toHaveBeenCalledWith("Sending invitation failed");
     });
   });
 

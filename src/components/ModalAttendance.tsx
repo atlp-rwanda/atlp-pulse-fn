@@ -77,9 +77,7 @@ function ModalAttendance({
       onClose();
     },
     onError: (error) => {
-      const errorMessage =
-        error.graphQLErrors?.[0]?.message || 'An unexpected error occurred';
-      toast.error(errorMessage);
+      toast.error("Something went wrong!");
     },
   });
 

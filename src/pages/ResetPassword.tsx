@@ -9,6 +9,7 @@ import Button from '../components/Buttons';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import { RESET_PASSWORD_EMAIL } from '../Mutations/resetPassword';
 import ButtonLoading from '../components/ButtonLoading';
+import { handleError } from '../components/ErrorHandle';
 
 function ResetPassword() {
   useDocumentTitle('Reset Password');
@@ -24,7 +25,7 @@ function ResetPassword() {
     },
     onError: (err) => {
       setTimeout(() => {
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 1000);
     },
   });

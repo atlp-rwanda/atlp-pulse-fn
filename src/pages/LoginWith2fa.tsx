@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../hook/useAuth';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { handleError } from '../components/ErrorHandle';
 
 interface Profile {
   id: string;
@@ -126,13 +127,11 @@ const TwoFactorPage: React.FC = () => {
           const redirectPath = rolePaths[response.user.role] || '/dashboard';
           navigate(redirectPath, { replace: true });
         } catch (error) {
-          toast.error('Login Error');
+          toast.error(handleError(error));
         }
       },
       onError: (error) => {
-        const errorMessage = error.message || 'Verification Failed';
-        setError(errorMessage);
-        toast.error(errorMessage);
+        toast.error(handleError(error));
         setInput(Array(6).fill(''));
       },
     },

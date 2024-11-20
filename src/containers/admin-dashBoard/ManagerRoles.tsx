@@ -23,6 +23,7 @@ import { toast } from 'react-toastify';
 import { UNDROP_TRAINEE } from '../../Mutations/manageStudentMutations';
 import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 import GET_TEAMS from '../../queries/team.queries';
+import { handleError } from '../../components/ErrorHandle';
 const AdminSission = () => {
   const { t } = useTranslation();
   useDocumentTitle('Roles & Access');
@@ -81,7 +82,7 @@ const AdminSission = () => {
       }
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(handleError(error));
     },
   });
 
@@ -175,7 +176,7 @@ const AdminSission = () => {
     /* istanbul ignore next */
     onError: /* istanbul ignore next */ (err) => {
       /* istanbul ignore next */
-      toast.error(err.message);
+      toast.error(handleError(err));
       setToggle(!toggle);
       /* istanbul ignore next */
       let newState = !deleteModel;
@@ -208,7 +209,7 @@ const AdminSission = () => {
       setTimeout(() => {
         handleAssignRole2();
         console.error('Mutation error:', err); // Log the error
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 500);
     },
   });

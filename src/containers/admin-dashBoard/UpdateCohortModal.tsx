@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { Cohort, PartialProgram, PartialUser, PartialPhase } from './Cohorts';
+import { handleError } from '../../components/ErrorHandle';
 
 export const UpdateCohort = gql`
   mutation UpdateCohort(
@@ -64,7 +65,7 @@ export default function UpdateCohortModal({
   } = useForm();
   const [updateCohortMutation, { loading }] = useMutation(UpdateCohort, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     /* istanbul ignore next */
     onCompleted() {

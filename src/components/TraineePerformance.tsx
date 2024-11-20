@@ -10,6 +10,7 @@ import { UserContext } from '../hook/useAuth';
 import { rowsType } from '../pages/ratings/frame';
 import oop from '../assets/oops.svg';
 import Spinner from './Spinner';
+import { handleError } from './ErrorHandle';
 
 export const GET_RATINGS_DATA = gql`
   query FetchRatingsTrainee {
@@ -105,7 +106,7 @@ function TraineePerfomance() {
         sessionStorage.removeItem('data');
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       },
     });
   }, []);

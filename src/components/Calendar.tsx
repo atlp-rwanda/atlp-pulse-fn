@@ -16,6 +16,7 @@ import moment from 'moment';
 import CalendarSkeleton from '../Skeletons/Calender.skeleton';
 import { toast } from 'react-toastify';
 import EventGuestList from './EventGuestList';
+import { handleError } from './ErrorHandle';
 /* istanbul ignore next */
 
 const Calendar = () => {
@@ -48,7 +49,7 @@ const Calendar = () => {
         fetchPolicy: 'network-only',
       });
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(handleError(error));
     }
   };
 
@@ -95,7 +96,7 @@ const Calendar = () => {
     })
       .then(() => {
         fetchData();
-        toast.success('Event has been added!'); // {{ edit_1 }}
+        toast.success('Event has been added!');
         setNewEvent({
           title: '',
           start: new Date(),
@@ -110,7 +111,7 @@ const Calendar = () => {
         }, 1000);
       })
       .catch((error) => {
-        toast.error(error.message); // Handle error if needed
+        toast.error(handleError(error)); 
       });
   };
 
@@ -189,7 +190,7 @@ const Calendar = () => {
         }, 1000);
       })
       .catch((error) => {
-        toast.error(error.message); // Handle error if needed
+        toast.error(handleError(error)); 
       });
   };
 
@@ -235,7 +236,7 @@ const Calendar = () => {
         }, 1000);
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(handleError(err));
       });
   };
 

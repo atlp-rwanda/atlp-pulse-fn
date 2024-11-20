@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { toast } from "react-toastify";
 import { GET_ALL_USERS_QUERY } from "../queries/manageStudent.queries";
+import { handleError } from "./ErrorHandle";
 
 export const getRoleColor = (role: string) => {
   switch (role) {
@@ -46,7 +47,7 @@ function EventGuestList({ selectedGuests, handleAddGuest }: { selectedGuests: st
       },
       fetchPolicy: 'network-only',
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     },
   );
