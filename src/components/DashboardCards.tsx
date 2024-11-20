@@ -65,18 +65,21 @@ function DashboardCards() {
   });
 
   const { loading: getInvitationsDataLoading } = useQuery(GET_ALL_INVITATIONS, {
+    variables: {
+      orgToken: localStorage.getItem('orgToken'),
+    },
     onCompleted: (data) => {
-      const invitations = data.getAllInvitations || [];
+      const invitations = data.getAllInvitations?.invitations || [];
       setInvitationData(invitations);
       // Count active and closed tickets
       const acceptedInvitationsCount = invitations.filter(
-        (invite: { status: string }) => invite.status === 'accepted',
+        (invitees: { status: string }) => invitees.status === 'accepted',
       ).length;
       const pendingInvitationsCount = invitations.filter(
-        (invite: { status: string }) => invite.status === 'pending',
+        (invitees: { status: string }) => invitees.status === 'pending',
       ).length;
       const declinedInvitationsCount = invitations.filter(
-        (invite: { status: string }) => invite.status === 'cancelled',
+        (invitees: { status: string }) => invitees.status === 'cancelled',
       ).length;
       setAcceptedTicketsCount(acceptedInvitationsCount);
       setPendingTicketsCount(pendingInvitationsCount);
