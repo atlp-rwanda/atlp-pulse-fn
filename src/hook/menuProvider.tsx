@@ -14,7 +14,6 @@ export const MenuContext = createContext<any>({
 export function ThemeProvider({ children }: Props) {
   const [minimized, setMinimized] = useState(false);
   const [showNav, setShowNav] = useState(false);
-
   const toggleMinMenu = () => setMinimized((p) => !p);
 
   const toggleNav = () => setShowNav((p) => !p);

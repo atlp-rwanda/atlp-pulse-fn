@@ -83,18 +83,17 @@ const CoordinatorCards = React.lazy(
 const AdminSission = React.lazy(() => import('./admin-dashBoard/Sessions'));
 
 function DashRoutes() {
-  const { toggleNav } = useContext(MenuContext);
-
+  const {  toggleNav } = useContext(MenuContext);
+  const [minimized, setMinimized] = useState(false);
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-
   return (
     <PrivateRoute>
       <MenuProvider>
-        <DashHeader />
+        <DashHeader minimize={setMinimized} />
         <Sidebar toggle={toggleNav} style="" />
       </MenuProvider>
-      <main className=" px-4 md:px-8 py-4 md:py-8 w-[100%] bg-light-bg overflow-hidden  dark:bg-dark-frame-bg">
+      <main className={`px-4 md:px-8 py-4 md:py-8 ${!minimized ? 'lg:w-[calc(100%-14rem)]' : 'lg:w-[calc(100%-5rem)]'} ml-auto mr-0 bg-light-bg overflow-hidden  dark:bg-dark-frame-bg`}>
         <Suspense>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />

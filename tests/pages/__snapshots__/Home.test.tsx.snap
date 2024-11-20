@@ -946,7 +946,13 @@ exports[`Home page renders the landing page 1`] = `
               <li
                 className="mb-1"
               >
-                Community
+                <a
+                  href="/community"
+                  onClick={[Function]}
+                >
+                  Community
+                   
+                </a>
               </li>
               <li
                 className="mb-1"

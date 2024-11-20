@@ -5,7 +5,7 @@ exports[`Super Admin Dashboard test  Should render SuperAdminDashboard 1`] = `
   className="flex flex-col gap-5 lg:gap-8 text-[.92rem] xmd:text-[.95rem]"
 >
   <div
-    className="flex flex-wrap justify-center gap-7 items-center xl:justify-between bg-tertiary dark:bg-dark-bg rounded-md px-9 py-10"
+    className="flex flex-wrap justify-center gap-7 items-center  bg-tertiary dark:bg-dark-bg rounded-md px-9 py-10"
   >
     <div
       className="h-[7rem] xmd:h-[7.6rem] w-[15rem] md:w-[17rem] lg:w-[18rem] flex flex-col items-center gap-2 bg-tertiary dark:bg-[#262627] py-4 xmd:py-4 px-6 shadow-[1px_4px_8px_-1px_rgba(0,0,0,0.4)] rounded-sm"
@@ -514,7 +514,7 @@ exports[`Super Admin Dashboard test  Should render SuperAdminDashboard 1`] = `
         </h2>
       </div>
       <div
-        className="flex flex-col gap-y-3"
+        className="flex flex-col gap-y-4"
       />
     </div>
     <div
