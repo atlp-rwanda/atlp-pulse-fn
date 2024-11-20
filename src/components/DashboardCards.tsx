@@ -165,7 +165,7 @@ function DashboardCards() {
     labels: [
       'Accepted Invitations',
       'Pending Invitations',
-      'Declined Invitations',
+      'Cancelled Invitations',
     ],
     datasets: [
       {
@@ -187,7 +187,9 @@ function DashboardCards() {
       <div className="flex flex-wrap justify-center gap-7 items-start rounded-md px-9 py-10">
         {/* Tickets Overview */}
         <div className="w-full md:w-[40%] flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6 shadow-md">
-          <h2 className="font-semibold text-lg">Tickets Overview</h2>
+          <h2 className="font-semibold text-lg text-center">
+            Tickets Overview
+          </h2>
           {getTicketsDataLoading ? (
             <Skeleton
               baseColor={colorTheme === 'dark' ? '#4b4b4e' : '#ccd2e3'}
@@ -204,7 +206,9 @@ function DashboardCards() {
 
         {/* Invitations Overview */}
         <div className="w-full md:w-[40%] flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6 shadow-md">
-          <h2 className="font-semibold text-lg">Invitations Overview</h2>
+          <h2 className="font-semibold text-lg text-center">
+            Invitations Overview
+          </h2>
           {getInvitationsDataLoading ? (
             <Skeleton
               baseColor={colorTheme === 'dark' ? '#4b4b4e' : '#ccd2e3'}
@@ -220,18 +224,17 @@ function DashboardCards() {
         </div>
 
         {/* Teams Card */}
-        <div className="h-[7rem] xmd:h-[7.6rem] w-full md:w-[15rem] lg:w-[18rem] flex flex-col items-center gap-2 bg-tertiary dark:bg-[#262627] py-4 xmd:py-4 px-6 shadow-md rounded-sm">
+        <div className="w-full md:w-[40%] flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6 shadow-md min-h-[24rem] justify-center">
           {!getAllTeamsDataLoading && (
             <>
-              <div className="flex items-end xmd:items-center gap-1 xmd:gap-2">
-                <RiTeamFill className="w-8 h-8 text-primary" />{' '}
-                {/* Increased icon size */}
-                <p className="uppercase font-semibold text-[1rem] xmd:text-lg">
+              <div className="flex items-center justify-center gap-2">
+                <RiTeamFill className="w-10 h-10 text-primary" />
+                <p className="uppercase font-semibold xmd:text-lg text-center text-3xl">
                   TEAMS
                 </p>
               </div>
-              <div>
-                <span className="text-[2.5rem] xmd:text-[2.8rem] md:text-5xl font-bold">
+              <div className="flex justify-center">
+                <span className="text-[2.5rem] xmd:text-[2.8rem] md:text-5xl font-bold text-center">
                   {totalTeams}
                 </span>
               </div>
@@ -241,54 +244,10 @@ function DashboardCards() {
         </div>
 
         {/* Upcoming Events */}
-        <div className="w-full md:w-[40%] flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6 shadow-md">
-          <h2 className="font-semibold text-lg">Upcoming Events</h2>
-          <div
-            className={`${
-              upcomingEvents.length ? 'justify-start' : 'justify-center'
-            } flex flex-col gap-y-3 items-center min-h-[18rem]`}
-          >
-            {upcomingEvents.length ? (
-              upcomingEvents.map((event) => (
-                <Link key={event.id} to="/calendar" className="w-full">
-                  <div className="flex items-center gap-1 p-2 lg:p-3 text-[.85rem] lg:text-[.9rem] capitalize bg-tertiary dark:bg-[#262627] hover:bg-[#c9cee0ea] hover:dark:bg-[#19191aea] shadow-md cursor-pointer">
-                    <MdOutlineEventAvailable className="text-[3.9rem]" />
-                    <div>
-                      <div className="flex flex-wrap items-center gap-1 font-semibold leading-3">
-                        <span>{event.title} -</span>
-                        <p className="flex items-center">
-                          <span>By {event.hostName}</span>
-                        </p>
-                      </div>
-                      <div className="text-[.73rem] md:text-[.78rem] lg:text-[.83rem] leading-4 dark:text-[#B3B3B3] text-[#3c3c3c] mt-1">
-                        <p>
-                          {event.timeToStart}
-                          {event.timeToEnd && ` - ${event.timeToEnd}`}
-                        </p>
-                        <p className="flex items-center flex-wrap italic leading-3">
-                          <span>
-                            {format(new Date(event.start), 'dd, MMM yyyy')}
-                          </span>
-                          <span>&nbsp;-&nbsp;</span>
-                          <span>
-                            {format(new Date(event.end), 'dd, MMM yyyy')}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <div className="flex flex-col items-center">
-                <MdOutlineEventBusy className="text-[3.9rem]" />
-                <p className="text-[.83rem] md:text-[.88rem] lg:text-[.92rem] text-center leading-4">
-                  Oops! No upcoming events scheduled
-                </p>
-              </div>
-            )}
-          </div>
-          {getEventsDataLoading && (
+        <div className="w-full md:w-[40%] flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6 shadow-md min-h-[24rem]">
+          <h2 className="font-semibold text-lg text-center">Upcoming Events</h2>
+
+          {getEventsDataLoading ? (
             <div>
               <Skeleton
                 baseColor={colorTheme === 'dark' ? '#4b4b4e' : '#ccd2e3'}
@@ -302,6 +261,52 @@ function DashboardCards() {
                 count={3}
                 className="h-[5.3rem] mt-3"
               />
+            </div>
+          ) : (
+            <div
+              className={`${
+                upcomingEvents.length ? 'justify-start' : 'justify-center'
+              } flex flex-col gap-y-3 items-center min-h-[18rem]`}
+            >
+              {upcomingEvents.length ? (
+                upcomingEvents.map((event) => (
+                  <Link key={event.id} to="/calendar" className="w-full">
+                    <div className="flex items-center gap-2 p-3 text-[.85rem] lg:text-[.9rem] capitalize bg-tertiary dark:bg-[#262627] hover:bg-[#c9cee0ea] hover:dark:bg-[#19191aea] shadow-md cursor-pointer rounded-md">
+                      <MdOutlineEventAvailable className="text-[3.9rem]" />
+                      <div>
+                        <div className="flex flex-wrap items-center gap-1 font-semibold leading-3">
+                          <span>{event.title} -</span>
+                          <p className="flex items-center">
+                            <span>By {event.hostName}</span>
+                          </p>
+                        </div>
+                        <div className="text-[.73rem] md:text-[.78rem] lg:text-[.83rem] leading-4 dark:text-[#B3B3B3] text-[#3c3c3c] mt-1">
+                          <p>
+                            {event.timeToStart}
+                            {event.timeToEnd && ` - ${event.timeToEnd}`}
+                          </p>
+                          <p className="flex items-center flex-wrap italic leading-3">
+                            <span>
+                              {format(new Date(event.start), 'dd, MMM yyyy')}
+                            </span>
+                            <span>&nbsp;-&nbsp;</span>
+                            <span>
+                              {format(new Date(event.end), 'dd, MMM yyyy')}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="flex flex-col items-center">
+                  <MdOutlineEventBusy className="text-[3.9rem]" />
+                  <p className="text-[.83rem] md:text-[.88rem] lg:text-[.92rem] text-center leading-4">
+                    Oops! No upcoming events scheduled
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>
