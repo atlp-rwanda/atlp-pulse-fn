@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-plusplus */
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -23,16 +26,102 @@ ChartJS.register(
 
 interface TeamChartProps {
   timeframe?: 'daily' | 'weekly' | 'monthly';
+  CurrentTeam: any[];
+  loginsbyDate: any[];
 }
 
-function TeamChart({ timeframe = 'daily' }: TeamChartProps) {
+function TeamChart({
+  timeframe = 'daily',
+  CurrentTeam,
+  loginsbyDate,
+}: TeamChartProps) {
+  function organizeLoginData(loginData: any) {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    function getWeekNumber(date: any) {
+      const tempDate: any = new Date(date);
+      tempDate.setUTCDate(
+        tempDate.getUTCDate() + 4 - (tempDate.getUTCDay() || 7),
+      );
+      const yearStart: any = new Date(
+        Date.UTC(tempDate.getUTCFullYear(), 0, 1),
+      );
+      return Math.ceil(((tempDate - yearStart) / 86400000 + 1) / 7);
+    }
+    // Initialize result arrays
+    const weeklyData = Array(54)
+      .fill(0)
+      .map((_, i) => ({ week: i + 1, success: 0, failed: 0 }));
+    const monthlyData = Array(12)
+      .fill(0)
+      .map((_, i) => ({ month: i + 1, success: 0, failed: 0 }));
+    const dailyData = Array(7)
+      .fill(0)
+      .map((_, i) => ({ day: i, success: 0, failed: 0 }));
+    for (const [dateString, { success, failed }] of Object.entries(
+      loginData,
+    ) as any) {
+      const date = new Date(dateString);
+      const isoWeekNumber = getWeekNumber(date);
+      const month = date.getUTCMonth();
+      const dayOfWeek = (date.getUTCDay() + 6) % 7;
+      const weekStart = new Date(currentDate);
+      weekStart.setUTCDate(
+        currentDate.getUTCDate() - currentDate.getUTCDay() + 1,
+      );
+      const weekEnd = new Date(weekStart);
+      weekEnd.setUTCDate(weekStart.getUTCDate() + 6);
+      if (date >= weekStart && date <= weekEnd) {
+        dailyData[dayOfWeek].success += success;
+        dailyData[dayOfWeek].failed += failed;
+      }
+      // Weekly data
+      if (isoWeekNumber <= 54) {
+        weeklyData[isoWeekNumber - 1].success += success;
+        weeklyData[isoWeekNumber - 1].failed += failed;
+      }
+      // Monthly data
+      monthlyData[month].success += success;
+      monthlyData[month].failed += failed;
+    }
+    const weekDays = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+    const currentWeekData = dailyData.map((data, index) => ({
+      day: weekDays[index],
+      success: data.success,
+      failed: data.failed,
+    }));
+    return {
+      currentWeek: currentWeekData,
+      weekly: weeklyData,
+      monthly: monthlyData.map((data, index) => ({
+        month: new Date(0, index).toLocaleString('en', { month: 'long' }),
+        success: data.success,
+        failed: data.failed,
+      })),
+    };
+  }
+
+  const organizedData = organizeLoginData(loginsbyDate);
+
+  const weeklyDataset = organizedData.weekly
+    .filter((_, index) => index % 3 === 0)
+    .map((item) => item.success);
+
   const chartData = {
     daily: {
       labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
       datasets: [
         {
-          label: 'Andela',
-          data: [1, 3, 0, 2, 1, 3, 2],
+          label: CurrentTeam[0].name,
+          data: organizedData.currentWeek.map((item: any) => item.success),
           fill: false,
           borderColor: '#4F46E5',
           tension: 0.4,
@@ -62,8 +151,8 @@ function TeamChart({ timeframe = 'daily' }: TeamChartProps) {
       ],
       datasets: [
         {
-          label: 'Andela',
-          data: [1, 3, 0, 2, 1, 3, 2, 0, 2, 1, 3, 0, 2, 1, 4, 1, 2, 4],
+          label: CurrentTeam[0].name,
+          data: weeklyDataset,
           fill: false,
           borderColor: '#4F46E5',
           tension: 0.4,
@@ -71,13 +160,13 @@ function TeamChart({ timeframe = 'daily' }: TeamChartProps) {
       ],
     },
     monthly: {
-      labels: Array.from({ length: 31 }, (_, i) =>
+      labels: Array.from({ length: 12 }, (_, i) =>
         String(i + 1).padStart(2, '0'),
       ),
       datasets: [
         {
-          label: 'Andela',
-          data: Array.from({ length: 31 }, () => Math.floor(Math.random() * 8)),
+          label: CurrentTeam[0].name,
+          data: organizedData.monthly.map((item: any) => item.success),
           fill: false,
           borderColor: '#4F46E5',
           tension: 0.4,

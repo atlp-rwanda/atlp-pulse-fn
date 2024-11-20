@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa6';
 import TeamChart from '../Chart/TeamChart';
 import ProgressBar from '../Chart/ProgressBar';
+import UsersChart from '../Chart/usersChart';
 
 interface TeamData {
   ttlName?: string;
-  team?: string;
+  teams?: string;
   organization?: string;
   program?: string;
   phase?: string;
@@ -18,7 +19,8 @@ interface TeamData {
 interface TeamDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  teamData: TeamData | null;
+  selectedteam: TeamData | null;
+  Teams?: any;
 }
 
 // Add this near the top of your TeamDetailsModal component
@@ -43,7 +45,8 @@ const loginStats = {
 function TeamDetailsModal({
   isOpen,
   onClose,
-  teamData,
+  selectedteam,
+  Teams,
 }: TeamDetailsModalProps) {
   const [activeTab, setActiveTab] = useState<'overview' | 'logins'>('overview');
   const [timeframe, setTimeframe] = useState<'daily' | 'weekly' | 'monthly'>(
@@ -55,6 +58,75 @@ function TeamDetailsModal({
   const handleAttendanceSummaryLeave = () => setShowAttendanceSummary(false);
 
   if (!isOpen) return null;
+
+  const CurrentTeam = Teams?.filter(
+    (items: any) => items?.name === selectedteam?.teams,
+  );
+
+  const average =
+    (parseInt(CurrentTeam[0]?.avgRatings?.quality, 2) +
+      parseInt(CurrentTeam[0]?.avgRatings?.quantity, 2) +
+      parseInt(CurrentTeam[0]?.avgRatings?.professional_Skills, 2)) /
+    3;
+
+  const activeMembers = CurrentTeam[0]?.members.filter(
+    (item: any) => item.status.status !== 'suspended',
+  );
+  const droppedMembers = CurrentTeam[0]?.members.filter(
+    (item: any) => item.status.status === 'suspended',
+  );
+  function mapLoginsByDate(team: any) {
+    if (!team || !Array.isArray(team[0].members)) {
+      throw new Error('Invalid team object');
+    }
+    const loginCounts: any = {};
+    team[0].members.forEach((member: any) => {
+      const activities = member.profile?.activity;
+
+      if (Array.isArray(activities)) {
+        activities.forEach((activity) => {
+          const rawDate = activity.date;
+          const timestamp = parseInt(rawDate, 10);
+          if (!Number.isNaN(timestamp)) {
+            const loginDate = new Date(timestamp).toISOString().split('T')[0];
+            if (!loginCounts[loginDate]) {
+              loginCounts[loginDate] = { success: 0, failed: 0 };
+            }
+            if (activity.failed === 1) {
+              loginCounts[loginDate].failed += 1;
+            } else {
+              loginCounts[loginDate].success += 1;
+            }
+          }
+        });
+      }
+    });
+    return loginCounts;
+  }
+  const loginsbyDate = mapLoginsByDate(CurrentTeam);
+  const orgName = localStorage.getItem('orgName');
+
+  function calculateLoginPercentages(data: any) {
+    let totalSuccess = 0;
+    let totalFailed = 0;
+
+    // Sum up all successes and failures
+    Object.values(data).forEach(({ success, failed }: any) => {
+      totalSuccess += success;
+      totalFailed += failed;
+    });
+
+    // Calculate percentages
+    const total = totalSuccess + totalFailed;
+    const successPercentage = total > 0 ? (totalSuccess / total) * 100 : 0;
+    const failedPercentage = total > 0 ? (totalFailed / total) * 100 : 0;
+
+    return {
+      successPercentage: successPercentage.toFixed(2),
+      failedPercentage: failedPercentage.toFixed(2),
+      totalLogins: total,
+    };
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
@@ -101,15 +173,18 @@ function TeamDetailsModal({
             <div>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  ['TTL Name', teamData?.ttlName || 'Sostene'],
-                  ['Team Name', teamData?.team || 'Team Name'],
+                  ['TTL Name', CurrentTeam[0]?.ttl?.profile?.name || 'Sostene'],
+                  ['Team Name', selectedteam?.teams || 'Team Name'],
+                  ['Organization', selectedteam?.organization || orgName],
                   [
-                    'Organization',
-                    teamData?.organization || 'Organization Name',
+                    'Program',
+                    CurrentTeam[0]?.cohort?.program?.name || 'Program Name',
                   ],
-                  ['Program', teamData?.program || 'Program Name'],
-                  ['Phase', teamData?.phase || 'Current Phase'],
-                  ['Cohort', teamData?.cohort || 'Current Cohort'],
+                  [
+                    'Phase',
+                    CurrentTeam[0]?.cohort?.phase?.name || 'Current Phase',
+                  ],
+                  ['Cohort', CurrentTeam[0]?.cohort.name || 'Current Cohort'],
                 ].map(([label, value], idx) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <div key={idx} className="space-y-2">
@@ -132,7 +207,7 @@ function TeamDetailsModal({
                         Active Members
                       </p>
                       <p className="text-xl font-semibold text-green-600 dark:text-green-400">
-                        {teamData?.activeUsers || '0'}
+                        {activeMembers?.length || '0'}
                       </p>
                     </div>
                     <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
@@ -140,7 +215,7 @@ function TeamDetailsModal({
                         Dropped Members
                       </p>
                       <p className="text-xl font-semibold text-red-600 dark:text-red-400">
-                        {teamData?.droppedUsers || '0'}
+                        {droppedMembers?.length || '0'}
                       </p>
                     </div>
                   </div>
@@ -162,13 +237,14 @@ function TeamDetailsModal({
                   {showAttendanceSummary && (
                     <div className="absolute z-10 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-[200px] border border-gray-200 dark:border-gray-700">
                       <p className="text-gray-800 dark:text-gray-200">
-                        Quality: 1.5
+                        Quality: {CurrentTeam[0]?.avgRatings?.quality || 0}
                       </p>
                       <p className="text-gray-800 dark:text-gray-200">
-                        Quantity: 2.3
+                        Quantity: {CurrentTeam[0]?.avgRatings?.quality || 0}
                       </p>
                       <p className="text-gray-800 dark:text-gray-200">
-                        Professionalism: 3.1
+                        Professionalism:{' '}
+                        {CurrentTeam[0]?.avgRatings?.professional_Skills || 0}
                       </p>
                     </div>
                   )}
@@ -180,7 +256,7 @@ function TeamDetailsModal({
                   </label>
                   <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                     <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
-                      {teamData?.rating || '4.5'} / 5.0
+                      {average || '0'} / 5.0
                     </p>
                   </div>
                 </div>
@@ -231,20 +307,30 @@ function TeamDetailsModal({
                     Logins Attempt Status
                   </h3>
                   <ProgressBar
-                    passedPercentage={loginStats[timeframe].passed}
-                    failedPercentage={loginStats[timeframe].failed}
+                    passedPercentage={parseInt(
+                      calculateLoginPercentages(loginsbyDate).successPercentage,
+                      10,
+                    )}
+                    failedPercentage={parseInt(
+                      calculateLoginPercentages(loginsbyDate).failedPercentage,
+                      10,
+                    )}
                   />
                 </div>
                 <p className="mt-4 ml-[12%]">
                   Total Logins:{' '}
                   <span className="font-bold text-primary">
                     {' '}
-                    {loginStats[timeframe].total}
+                    {calculateLoginPercentages(loginsbyDate).totalLogins}
                   </span>
                 </p>
               </div>
 
-              <TeamChart timeframe={timeframe} />
+              <TeamChart
+                timeframe={timeframe}
+                CurrentTeam={CurrentTeam}
+                loginsbyDate={loginsbyDate}
+              />
             </div>
           )}
         </div>

@@ -8,7 +8,6 @@ import PieChart from '../Chart/PieChart';
 // import PieChart from '../Chart/PieChart';
 import DashboardCards from '../components/DashboardCards';
 import BarChart from '../Chart/BarChart';
-import UsersChart from '../Chart/UsersChart';
 // eslint-disable-next-line import/no-useless-path-segments
 import useDocumentTitle from '../hook/useDocumentTitle';
 import Comingsoon from './Comingsoon';
@@ -16,6 +15,7 @@ import Button from '../components/Buttons';
 import { UserContext } from '../hook/useAuth';
 import { INVITE_USER_MUTATION } from '../Mutations/manageStudentMutations';
 import DashboardTableDesign from '../components/AdminDashboardTable';
+import { UserChart } from '../Chart/LineChart';
 
 function AdminDashboard() {
   const { user } = useContext(UserContext);
@@ -131,20 +131,14 @@ function AdminDashboard() {
         <DashboardCards />
       </div>
       <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
-        <div className="flex flex-col justify-between">
-          <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">
-            <div className="flex flex-col justify-center">
-              <span className="mr-[80px] rotate-90 ">Users</span>
-            </div>
-            <UsersChart />
+        <div className="m-auto w-10/12 bg-tertiary p-10 dark:bg-dark-bg">
+          <UserChart />
+        </div>
+        <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">
+          <div className="flex flex-col justify-center">
+            <span className="mr-[80px] rotate-90 ">Teams</span>
           </div>
-
-          <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">
-            <div className="flex flex-col justify-center">
-              <span className="mr-[80px] rotate-90 ">Teams</span>
-            </div>
-            <BarChart />
-          </div>
+          <BarChart />
         </div>
       </div>
       <div className="w-full ">

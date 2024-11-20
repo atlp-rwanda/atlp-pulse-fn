@@ -68,7 +68,8 @@ function DashboardTableDesign() {
       <TeamDetailsModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        teamData={selectedTeam}
+        selectedteam={selectedTeam}
+        Teams={TeamsData?.getAllTeams}
       />
     </div>
   );
