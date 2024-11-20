@@ -9,6 +9,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { useQuery } from '@apollo/client';
+import { GET_ALL_TEAMS } from '../queries/team.queries';
+import { FETCH_ALL_RATINGS } from '../queries/ratings.queries';
 
 ChartJS.register(
   CategoryScale,
@@ -23,77 +26,80 @@ interface Props {}
 
 // eslint-disable-next-line react/function-component-definition
 const BarChart: React.FC<Props> = () => {
-  const data = {
-    labels: [
-      '01',
-      '02',
-      '03',
-      '04',
-      '05',
-      '06',
-      '07',
-      '08',
-      '09',
-      '10',
-      '11',
-      '12',
-    ],
+  const orgToken = localStorage.getItem('orgToken');
+  const { data, loading, error } = useQuery(GET_ALL_TEAMS, {
+    variables: {
+      orgToken,
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  const {
+    data: ratingsData,
+    loading: ratingsLoading,
+    error: ratingsError,
+  } = useQuery(FETCH_ALL_RATINGS, {
+    variables: {
+      orgToken,
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  if (ratingsLoading) return <p>Loading ratings...</p>;
+  if (ratingsError) return <p>Error loading ratings: {ratingsError.message}</p>;
+
+  const teamNames = data?.getAllTeams?.map(
+    (team: { name: string }) => team.name,
+  );
+  const ratingsArray = ratingsData?.fetchAllRatings || [];
+
+  const professionalismData = ratingsArray.map(
+    (rating: { professional_Skills: string }) =>
+      parseFloat(rating.professional_Skills),
+  );
+  const qualityData = ratingsArray.map((rating: { quality: string }) =>
+    parseFloat(rating.quality),
+  );
+  const quantityData = ratingsArray.map((rating: { quantity: string }) =>
+    parseFloat(rating.quantity),
+  );
+  if (!teamNames || teamNames.length === 0) {
+    return <p>No team data available.</p>;
+  }
+
+  const datas = {
+    labels: teamNames,
     datasets: [
       {
-        label: 'Nova',
-        data: [12, 19, 3, 5, 2, 3, 12, 14, 5, 7, 9, 11],
+        label: 'Professionalism',
+        data: professionalismData,
         backgroundColor: '#5A6ACF',
-        borderRadius: 0,
-        barThickness: 8,
+        borderRadius: 20,
+        barThickness: 14,
       },
       {
-        label: 'Fighters',
-        data: [10, 15, 5, 8, 6, 9, 13, 9, 6, 8, 7, 10],
-        backgroundColor: '#D1D5DB',
-        borderRadius: 0,
-        barThickness: 8,
+        label: 'Quality',
+        data: qualityData,
+        backgroundColor: '#fcffa4',
+        borderRadius: 20,
+        barThickness: 14,
+      },
+      {
+        label: 'Quantity',
+        data: quantityData,
+        backgroundColor: '#9f5233',
+        borderRadius: 20,
+        barThickness: 14,
       },
     ],
-  };
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'bottom' as const,
-        labels: {
-          color: '#D1D5DB',
-        },
-      },
-      tooltip: {
-        enabled: true,
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          color: '#737B8B',
-        },
-      },
-      y: {
-        grid: {
-          borderDash: [5, 5],
-          color: '#ffffff',
-        },
-        ticks: {
-          color: '#ffffff',
-        },
-      },
-    },
   };
 
   return (
     <div className="w-full h-[300px]">
-      <Bar data={data} options={options} className="-ml-8" />
+      <Bar data={datas} options={{ responsive: true }} className="-ml-2" />
     </div>
   );
 };
