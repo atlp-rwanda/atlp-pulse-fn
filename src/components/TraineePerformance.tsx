@@ -19,6 +19,7 @@ export const GET_RATINGS_DATA = gql`
       quantity
       average
       sprint
+      attendance
       approved
       cohort {
         name
