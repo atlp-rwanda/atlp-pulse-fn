@@ -27,7 +27,6 @@ function AdminLogin() {
   const orgName: any = localStorage.getItem('orgName');
   const [loading, setLoading] = useState(false);
   const [otpRequired, setOtpRequired] = useState(false);
-  const [TwoWayVerificationToken, setTwoWayVerificationToken] = useState('');
   const [otp, setOtp] = useState('');
 
   useDocumentTitle('Login');
@@ -79,11 +78,11 @@ function AdminLogin() {
         onCompleted: async (data) => {
           if (data.loginUser.otpRequired) {
             setOtpRequired(true);
-            setTwoWayVerificationToken(data.loginUser.TwoWayVerificationToken);
+            
             navigate('/users/LoginWith2fa', {
               state: {
                 email: userInput.email,
-                TwoWayVerificationToken: data.loginUser.TwoWayVerificationToken,
+            
               },
             });
           } else {

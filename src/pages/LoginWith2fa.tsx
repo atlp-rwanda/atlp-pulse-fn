@@ -43,12 +43,12 @@ export const LOGIN_WITH_2FA = gql`
   mutation LoginWithTwoFactorAuthentication(
     $email: String!
     $otp: String!
-    $TwoWayVerificationToken: String!
+   
   ) {
     loginWithTwoFactorAuthentication(
       email: $email
       otp: $otp
-      TwoWayVerificationToken: $TwoWayVerificationToken
+
     ) {
       token
       user {
@@ -85,7 +85,7 @@ const TwoFactorPage: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const { email, TwoWayVerificationToken } = location.state || {};
+  const { email } = location.state || {};
   useEffect(() => {
     // Update document class and localStorage when theme changes
     if (isDark) {
@@ -98,10 +98,10 @@ const TwoFactorPage: React.FC = () => {
   }, [isDark]);
 
   useEffect(() => {
-    if (!email || !TwoWayVerificationToken) {
+    if (!email ) {
       navigate('/login');
     }
-  }, [email, TwoWayVerificationToken, navigate]);
+  }, [email,  navigate]);
 
   const [loginWithTwoFactorAuthentication] = useMutation<LoginResponse>(
     LOGIN_WITH_2FA,
@@ -109,19 +109,19 @@ const TwoFactorPage: React.FC = () => {
       onCompleted: async (data) => {
         const response = data.loginWithTwoFactorAuthentication;
         try {
-          localStorage.setItem('authToken', response.token);
+          //localStorage.setItem('authToken', response.token);
           localStorage.setItem('user', JSON.stringify(response.user));
           await login(response);
           await client.resetStore();
           toast.success(response.message);
 
           const rolePaths: Record<string, string> = {
-            superAdmin: '/dashboard',
+            superAdmin: '/organizations',
             admin: '/trainees',
             coordinator: '/trainees',
             manager: '/dashboard',
             ttl: '/ttl-trainees',
-            trainee: '/dashboard',
+            trainee: '/performance',
           };
 
           const redirectPath = rolePaths[response.user.role] || '/dashboard';
@@ -151,7 +151,7 @@ const TwoFactorPage: React.FC = () => {
         variables: {
           email,
           otp: currentInput.join(''),
-          TwoWayVerificationToken,
+         // TwoWayVerificationToken,
         },
       });
     } finally {
