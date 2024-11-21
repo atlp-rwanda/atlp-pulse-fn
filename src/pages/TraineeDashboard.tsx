@@ -131,6 +131,10 @@ function traineeDashboard() {
       setTraineeRatingData(filtered);
       setNoRating(filtered.length === 0);
     }
+    if (error) {
+      toast.error('Something went wrong');
+      setNoRating(true);
+    }
   }, [selectedPhase, selectedTimeFrame]);
 
   const columns = [

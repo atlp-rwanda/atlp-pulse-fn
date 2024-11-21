@@ -22,6 +22,7 @@ import Modal from '../components/ModalAttendance';
 import EditAttendanceButton from '../components/EditAttendenceButton';
 import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import AttendanceSkeleton from '../Skeletons/attendance.skeleton';
 import { handleError } from '../components/ErrorHandle';
 
 /* istanbul ignore next */
@@ -531,549 +532,581 @@ function TraineeAttendanceTracker() {
   }, [isUpdatedMode]);
   return (
     <div className="bg-tertiary dark:bg-dark-bg p-5 xmd:p-7 md:p-10 rounded-lg font-serif">
-      <Modal
-        isVisible={isModalOpen}
-        onClose={closeModal}
-        trainees={selectedTeamTrainees}
-        week={Number(selectedWeek)}
-        dayType={dayType}
-        date={selectedDayDate}
-        team={selectedTeamId}
-        teamName={selectedTeam}
-        setAttendanceData={setAttendanceData}
-      />
-      {pauseResumeAttendance && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-50 p-4">
-          <div className="flex flex-col justify-between bg-tertiary dark:bg-dark-bg h-[13rem] xmd:h-[15rem] w-[27rem] rounded-md p-4">
-            <div className="xmd:pt-1 pb-2 xmd:pb-3 pl-2 border-b-2 border-neutral-600 dark:border-white font-bold text-[.92rem] xmd:text-[.98rem]">
-              <p>
-                {selectedTeamData?.isJobActive
-                  ? 'Pause Attendance'
-                  : 'Resume Attendance'}
-              </p>
-            </div>
-            <p className="text-[.82rem]  xmd:text-[.88rem] text-justify mx-2 font-normal">
-              {selectedTeamData?.isJobActive
-                ? "By confirming, automatic attendance week additions for upcoming weeks will be paused. You can still record attendance for the current week. Don't worry you can reactivate this feature at any time!."
-                : "By confirming, automatic attendance week additions for upcoming weeks will be activated again. If you ever wish to pause this feature again, it's easy to do!"}
-            </p>
-            <div className="flex justify-end gap-x-3 text-[.83rem] xmd:text-[.93rem] font-medium mt-1 text-white">
-              <button
-                type="button"
-                onClick={() => setPauseResumeAttendance(false)}
-                className="bg-neutral-600/80 dark:bg-neutral-600 hover:bg-neutral-600/75 h-[1.9rem] xmd:h-[2.15rem] px-3 xmd:px-4 rounded-[4px]"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  !loadingPRTeamAttendance &&
-                    pauseAndResumeTeamAttendance({
-                      variables: {
-                        team: selectedTeamId,
-                        orgToken: localStorage.getItem('orgToken'),
-                      },
-                    });
-                }}
-                disabled={loadingPRTeamAttendance}
-                className="bg-primary hover:bg-primary/75 h-[1.9rem] xmd:h-[2.15rem] w-20 xmd:w-[5.4rem] rounded-[4px]"
-              >
-                {!loadingPRTeamAttendance ? (
-                  <span>Confirm</span>
-                ) : (
-                  <div className="flex items-center justify-center">
-                    <PulseLoader size={9} color="#FFFFFF" />
-                  </div>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      <div className="">
-        <div className="flex flex-col gap-y-5 xmd:gap-y-9 rounded-md w-full mt-1 xmd:mt-0">
-          <div className="text-lg xmd:text-xl font-semibold">
-            <h2>{t('Attendance')}</h2>
-          </div>
-          <div className="flex items-end justify-between">
-            <div>
-              <p className="text-[.9rem] xmd:text-[.95rem] font-medium -mb-[2px]">
-                Team
-              </p>
-              <div className="flex px-1 h-[1.85rem] xmd:h-8 w-24 xmd:w-32 rounded-[4px] border dark:border-white border-black text-black dark:text-white ">
-                <select
-                  data-testid="team-test"
-                  className="w-full pl-1 bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer text-[.83rem] xmd:text-[.9rem]"
-                  value={selectedTeamId}
-                  onChange={(event) => {
-                    if (
-                      isUpdatedMode &&
-                      selectedTeamId !== event.target.value.toString() &&
-                      updated
-                    ) {
-                      toast.warning('First Discard or Update your changes', {
-                        style: { color: '#000', lineHeight: '.95rem' },
-                      });
-                      return;
-                    }
-                    setSelectedPhase(undefined);
-                    setIsUpdatedMode(false);
-                    setSelectedTeamId(event.target.value.toString());
-                    const teamData = teamsData?.find(
-                      (team) => team.id === event.target.value.toString(),
-                    );
-                    setSelectedTeamData(teamData);
-                  }}
-                >
-                  {teamsData?.length &&
-                    teamsData.map((teamData) => (
-                      <option key={teamData.id} value={teamData.id}>
-                        {teamData.name}
-                      </option>
-                    ))}
-                  {!teamLoading && !teamsData?.length && (
-                    <option value="" disabled>
-                      No teams
-                    </option>
-                  )}
-                </select>
-              </div>
-            </div>
-            <button
-              onClick={submitAttendance}
-              data-testid="submitAttend"
-              className={`${
-                isValidAttendanceDay &&
-                !teamAttendanceLoading &&
-                !selectedDayHasData &&
-                (selectedTeamData?.phase?.id ||
-                  selectedTeamData?.cohort.phase.id) === selectedPhase?.id
-                  ? 'bg-primary text-white'
-                  : 'bg-neutral-400/60 dark:bg-neutral-500 text-black dark:text-white cursor-not-allowed'
-              }   text-[.84rem] xmd:text-[.9rem] font-semibold w-[8.9rem] xmd:w-[10rem] h-[1.9rem] xmd:h-[2.3rem] rounded-[4px] tracking-tight`}
-              type="button"
-              disabled={
-                !isValidAttendanceDay ||
-                teamAttendanceLoading ||
-                selectedDayHasData ||
-                (selectedTeamData?.phase?.id ||
-                  selectedTeamData?.cohort.phase.id) !== selectedPhase?.id
-              }
-            >
-              {!teamsLoading ? t('Submit Attendance') : 'Loading...'}
-            </button>
-          </div>
-
-          <div className="flex justify-between items-end mt-5">
-            <div className="flex flex-shrink-0 w-32 xm:w-44 xmd:w-[70%] overflow-x-scroll xmd:overflow-x-auto  xmd:custom-scrollbar">
-              {phases.map((phase, index) => (
-                <div
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  className={`${
-                    phase.id === selectedPhase?.id
-                      ? 'border-black dark:border-white dark:text-white'
-                      : 'dark:border-neutral-600 dark:text-neutral-500 border-neutral-400 text-neutral-500 '
-                  } h-6 xmd:h-7 px-2 xmd:px-3 border-b-[3px] capitalize cursor-pointer font-medium whitespace-nowrap text-[.85rem] xmd:text-[.95rem]`}
-                  onClick={() => {
-                    if (isUpdatedMode && selectedPhase !== phase && updated) {
-                      toast.warning('First Discard or Update your changes', {
-                        style: { color: '#000', lineHeight: '.95rem' },
-                      });
-                      return;
-                    }
-                    setIsUpdatedMode(false);
-                    setSelectedPhase(phase);
-                  }}
-                >
-                  <span>{phase.name}</span>
+      <span className="opacity-0">Loading Data...</span>
+      {teamAttendanceLoading || teamsLoading || teamLoading ? (
+        <>
+          <AttendanceSkeleton />
+        </>
+      ) : (
+        <>
+          <Modal
+            isVisible={isModalOpen}
+            onClose={closeModal}
+            trainees={selectedTeamTrainees}
+            week={Number(selectedWeek)}
+            dayType={dayType}
+            date={selectedDayDate}
+            team={selectedTeamId}
+            teamName={selectedTeam}
+            setAttendanceData={setAttendanceData}
+          />
+          {pauseResumeAttendance && (
+            <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center z-50 p-4">
+              <div className="flex flex-col justify-between bg-tertiary dark:bg-dark-bg h-[13rem] xmd:h-[15rem] w-[27rem] rounded-md p-4">
+                <div className="xmd:pt-1 pb-2 xmd:pb-3 pl-2 border-b-2 border-neutral-600 dark:border-white font-bold text-[.92rem] xmd:text-[.98rem]">
+                  <p>
+                    {selectedTeamData?.isJobActive
+                      ? 'Pause Attendance'
+                      : 'Resume Attendance'}
+                  </p>
                 </div>
-              ))}
-            </div>
-            <div className="flex items-center pl-2 pr-1 h-[1.85rem] xmd:h-8 w-24 xmd:w-28 rounded-[4px] border dark:border-white border-black text-black dark:text-white text-[.84rem] xmd:text-[.9rem]">
-              <span>Week:</span>
-              <select
-                data-testid="week-test"
-                className="w-full text-center bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer "
-                value={selectedWeek}
-                onChange={(event) => {
-                  if (
-                    isUpdatedMode &&
-                    selectedWeek !== Number(event.target.value) &&
-                    updated
-                  ) {
-                    toast.warning('First Discard or Update your changes', {
-                      style: { color: '#000', lineHeight: '.95rem' },
-                    });
-                    return;
-                  }
-                  setIsUpdatedMode(false);
-                  setSelectedWeek(Number(event.target.value));
-                }}
-              >
-                {weeks.length &&
-                  weeks.map((week) => (
-                    <option key={week} value={week}>
-                      {week}
-                    </option>
-                  ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center border-2 border-neutral-400/60 dark:border-neutral-600 h-[1.85rem] xmd:h-9 text-[.83rem] xmd:text-base">
-            {['mon', 'tue', 'wed', 'thu', 'fri'].map((day, index) => (
-              <div
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                className={`${
-                  selectedDay === day
-                    ? 'bg-neutral-400/60 dark:bg-neutral-600'
-                    : 'hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15'
-                } flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full`}
-                onClick={() => {
-                  if (isUpdatedMode && selectedDay !== day && updated) {
-                    toast.warning('First Discard or Update your changes', {
-                      style: { color: '#000', lineHeight: '.95rem' },
-                    });
-                    return;
-                  }
-                  setIsUpdatedMode(false);
-                  setSelectedDay(day as 'mon' | 'tue' | 'wed' | 'thu' | 'fri');
-                }}
-                data-testid="days-test"
-              >
-                <span>{day}</span>
-              </div>
-            ))}
-          </div>
-          <div>
-            <div className="flex items-center justify-between mb-1">
-              <div className="flex items-center gap-[2px] ">
-                {selectedDayDate && (
-                  <>
-                    <MdOutlineCalendarMonth className="text-[1.2rem]" />
-                    <span className="text-[.8rem] xmd:text-[.85rem] leading-3">
-                      {selectedDayDate}
-                    </span>
-                  </>
-                )}
-              </div>
-              <div className="flex xmd:hidden text-[.9rem] gap-2">
-                <div
-                  className="flex gap-x-1 items-center cursor-pointer"
-                  onClick={() => {
-                    if (!selectedDayHasData) {
-                      return toast.warning(
-                        'You cannot update attendance for the day without any entries.',
-                        { style: { color: '#000', lineHeight: '.95rem' } },
-                      );
-                    }
-                    return setIsUpdatedMode(true);
-                  }}
-                  data-testid="update-link"
-                >
-                  <LuClipboardEdit className="text-lg" />
-                </div>
-                <div
-                  onClick={() => {
-                    if (isUpdatedMode) {
-                      toast.warning(
-                        'You cannot delete the attendance while it is being updated.',
-                        { style: { color: '#000', lineHeight: '.95rem' } },
-                      );
-                      return;
-                    }
-                    handleDeleteAttendance();
-                  }}
-                  className="flex gap-x-1 items-center cursor-pointer"
-                >
-                  <RiDeleteBin6Line className="text-lg" />
-                </div>
-                <div
-                  onClick={() => {
-                    setPauseResumeAttendance(true);
-                  }}
-                  className="flex gap-x-[5px] items-center cursor-pointer"
-                >
-                  {selectedTeamData?.isJobActive ? (
-                    <FaRegCirclePause className="text-[1.12rem]" />
-                  ) : (
-                    <FaRegCirclePlay className="text-[1.12rem]" />
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="overflow-x-scroll xmd:overflow-hidden">
-              <table className="w-full overflow-hidden border border-neutral-400 dark:border-neutral-600">
-                <thead>
-                  <tr className="bg-neutral-400/60 dark:bg-neutral-600 h-8 xmd:h-10 md:h-[2.7rem] text-[.84rem] xmd:text-base">
-                    <th
-                      className={`${
-                        isUpdatedMode ? 'w-[35%] ' : 'w-[40%]'
-                      } text-left pl-2 xmd:pl-10 font-semibold`}
-                    >
-                      Names
-                    </th>
-                    <th
-                      className={`${
-                        isUpdatedMode ? 'w-[35%] ' : 'w-[40%]'
-                      } text-left pl-2 xmd:pl-10 font-semibold`}
-                    >
-                      Email
-                    </th>
-                    <th
-                      className={`${
-                        isUpdatedMode ? 'w-[15%]' : 'w-[20%]'
-                      } font-semibold`}
-                    >
-                      Score
-                    </th>
-                    {isUpdatedMode && (
-                      <th ref={editColumnRef} className="w-[15%] font-semibold">
-                        Action
-                      </th>
+                <p className="text-[.82rem]  xmd:text-[.88rem] text-justify mx-2 font-normal">
+                  {selectedTeamData?.isJobActive
+                    ? "By confirming, automatic attendance week additions for upcoming weeks will be paused. You can still record attendance for the current week. Don't worry you can reactivate this feature at any time!."
+                    : "By confirming, automatic attendance week additions for upcoming weeks will be activated again. If you ever wish to pause this feature again, it's easy to do!"}
+                </p>
+                <div className="flex justify-end gap-x-3 text-[.83rem] xmd:text-[.93rem] font-medium mt-1 text-white">
+                  <button
+                    type="button"
+                    onClick={() => setPauseResumeAttendance(false)}
+                    className="bg-neutral-600/80 dark:bg-neutral-600 hover:bg-neutral-600/75 h-[1.9rem] xmd:h-[2.15rem] px-3 xmd:px-4 rounded-[4px]"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      !loadingPRTeamAttendance &&
+                        pauseAndResumeTeamAttendance({
+                          variables: {
+                            team: selectedTeamId,
+                            orgToken: localStorage.getItem('orgToken'),
+                          },
+                        });
+                    }}
+                    disabled={loadingPRTeamAttendance}
+                    className="bg-primary hover:bg-primary/75 h-[1.9rem] xmd:h-[2.15rem] w-20 xmd:w-[5.4rem] rounded-[4px]"
+                  >
+                    {!loadingPRTeamAttendance ? (
+                      <span>Confirm</span>
+                    ) : (
+                      <div className="flex items-center justify-center">
+                        <PulseLoader size={9} color="#FFFFFF" />
+                      </div>
                     )}
-                  </tr>
-                </thead>
-                <tbody className="min-h-32 text-[.83rem] lg:text-[.9rem]">
-                  {!teamAttendanceLoading &&
-                    traineeAttendanceData.length > 0 &&
-                    traineeAttendanceData.map((attendanceData) => {
-                      if (
-                        attendanceData.phase.id === selectedPhase?.id &&
-                        attendanceData.week === selectedWeek &&
-                        attendanceData.days[selectedDay].length
-                      ) {
-                        return attendanceData.days[selectedDay].map(
-                          (dayData, index) => (
-                            <tr
-                              // eslint-disable-next-line react/no-array-index-key
-                              key={index}
-                              className="even:bg-neutral-400/20 dark:even:bg-black/20  h-10 even:border-y border-neutral-400/30 dark:border-neutral-600/40"
-                            >
-                              <td
-                                className="pl-2 xmd:pl-10 whitespace-nowrap"
-                                title={dayData.trainee.profile.name}
-                              >
-                                {
-                                  // eslint-disable-next-line no-nested-ternary
-                                  window.innerWidth < 520 &&
-                                  dayData.trainee.profile.name.length > 16
-                                    ? `${dayData.trainee.profile.name.slice(
-                                        0,
-                                        16,
-                                      )}..`
-                                    : dayData.trainee.profile.name
-                                }
-                              </td>
-                              <td
-                                className="px-2 xmd:pl-10"
-                                title={dayData.trainee.email}
-                              >
-                                {
-                                  // eslint-disable-next-line no-nested-ternary
-                                  window.innerWidth < 600 &&
-                                  dayData.trainee.email.length > 20
-                                    ? window.innerWidth > 530
-                                      ? `${dayData.trainee.email.slice(
-                                          0,
-                                          22,
-                                        )}..`
-                                      : `${dayData.trainee.email.slice(
-                                          0,
-                                          16,
-                                        )}..`
-                                    : dayData.trainee.email
-                                }
-                              </td>
-                              {
-                                // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                                <td className="text-center">
-                                  <div className="flex justify-center">
-                                    <AttendanceSymbols status={dayData.score} />
-                                  </div>
-                                </td>
-                              }
-                              {isUpdatedMode && (
-                                // eslint-disable-next-line jsx-a11y/control-has-associated-label
-                                <td
-                                  className={`${
-                                    isUpdatedMode
-                                      ? 'px-3 xmd:px-0 w-[10%]'
-                                      : 'w-[20%]'
-                                  }  text-center`}
-                                >
-                                  <EditAttendanceButton
-                                    week={selectedWeek}
-                                    day={selectedDay}
-                                    phase={selectedPhase.id}
-                                    traineeId={dayData.trainee.id}
-                                    setTraineeAttendanceData={
-                                      setTraineeAttendanceData
-                                    }
-                                    setUpdated={setUpdate}
-                                  />
-                                </td>
-                              )}
-                            </tr>
-                          ),
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+            className={`${
+              teamAttendanceLoading || teamsLoading || teamLoading
+                ? 'opacity-0'
+                : ''
+            }`}
+          >
+            <div className="flex flex-col gap-y-5 xmd:gap-y-9 rounded-md w-full mt-1 xmd:mt-0">
+              <div className="text-lg xmd:text-xl font-semibold">
+                <h2>{t('Attendance')}</h2>
+              </div>
+              <div className="flex items-end justify-between">
+                <div>
+                  <p className="text-[.9rem] xmd:text-[.95rem] font-medium -mb-[2px]">
+                    Team
+                  </p>
+                  <div className="flex px-1 h-[1.85rem] xmd:h-8 w-24 xmd:w-32 rounded-[4px] border dark:border-white border-black text-black dark:text-white ">
+                    <select
+                      data-testid="team-test"
+                      className="w-full pl-1 bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer text-[.83rem] xmd:text-[.9rem]"
+                      value={selectedTeamId}
+                      onChange={(event) => {
+                        if (
+                          isUpdatedMode &&
+                          selectedTeamId !== event.target.value.toString() &&
+                          updated
+                        ) {
+                          toast.warning(
+                            'First Discard or Update your changes',
+                            {
+                              style: { color: '#000', lineHeight: '.95rem' },
+                            },
+                          );
+                          return;
+                        }
+                        setSelectedPhase(undefined);
+                        setIsUpdatedMode(false);
+                        setSelectedTeamId(event.target.value.toString());
+                        const teamData = teamsData?.find(
+                          (team) => team.id === event.target.value.toString(),
                         );
-                      }
+                        setSelectedTeamData(teamData);
+                      }}
+                    >
+                      {teamsData?.length &&
+                        teamsData.map((teamData) => (
+                          <option key={teamData.id} value={teamData.id}>
+                            {teamData.name}
+                          </option>
+                        ))}
+                      {!teamLoading && !teamsData?.length && (
+                        <option value="" disabled>
+                          No teams
+                        </option>
+                      )}
+                    </select>
+                  </div>
+                </div>
+                <button
+                  onClick={submitAttendance}
+                  data-testid="submitAttend"
+                  className={`${
+                    isValidAttendanceDay &&
+                    !teamAttendanceLoading &&
+                    !selectedDayHasData &&
+                    (selectedTeamData?.phase?.id ||
+                      selectedTeamData?.cohort.phase.id) === selectedPhase?.id
+                      ? 'bg-primary text-white'
+                      : 'bg-neutral-400/60 dark:bg-neutral-500 text-black dark:text-white cursor-not-allowed'
+                  }   text-[.84rem] xmd:text-[.9rem] font-semibold w-[8.9rem] xmd:w-[10rem] h-[1.9rem] xmd:h-[2.3rem] rounded-[4px] tracking-tight`}
+                  type="button"
+                  disabled={
+                    !isValidAttendanceDay ||
+                    teamAttendanceLoading ||
+                    selectedDayHasData ||
+                    (selectedTeamData?.phase?.id ||
+                      selectedTeamData?.cohort.phase.id) !== selectedPhase?.id
+                  }
+                >
+                  {!teamsLoading ? t('Submit Attendance') : 'Loading...'}
+                </button>
+              </div>
+
+              <div className="flex justify-between items-end mt-5">
+                <div className="flex flex-shrink-0 w-32 xm:w-44 xmd:w-[70%] overflow-x-scroll xmd:overflow-x-auto  xmd:custom-scrollbar">
+                  {phases.map((phase, index) => (
+                    <div
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={index}
+                      className={`${
+                        phase.id === selectedPhase?.id
+                          ? 'border-black dark:border-white dark:text-white'
+                          : 'dark:border-neutral-600 dark:text-neutral-500 border-neutral-400 text-neutral-500 '
+                      } h-6 xmd:h-7 px-2 xmd:px-3 border-b-[3px] capitalize cursor-pointer font-medium whitespace-nowrap text-[.85rem] xmd:text-[.95rem]`}
+                      onClick={() => {
+                        if (
+                          isUpdatedMode &&
+                          selectedPhase !== phase &&
+                          updated
+                        ) {
+                          toast.warning(
+                            'First Discard or Update your changes',
+                            {
+                              style: { color: '#000', lineHeight: '.95rem' },
+                            },
+                          );
+                          return;
+                        }
+                        setIsUpdatedMode(false);
+                        setSelectedPhase(phase);
+                      }}
+                    >
+                      <span>{phase.name}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center pl-2 pr-1 h-[1.85rem] xmd:h-8 w-24 xmd:w-28 rounded-[4px] border dark:border-white border-black text-black dark:text-white text-[.84rem] xmd:text-[.9rem]">
+                  <span>Week:</span>
+                  <select
+                    data-testid="week-test"
+                    className="w-full text-center bg-tertiary dark:bg-dark-bg border-none outline-none cursor-pointer "
+                    value={selectedWeek}
+                    onChange={(event) => {
                       if (
-                        traineeAttendanceData.length > 0 &&
-                        attendanceData.phase.id === selectedPhase?.id &&
-                        attendanceData.week === selectedWeek &&
-                        !attendanceData.days[selectedDay].length
+                        isUpdatedMode &&
+                        selectedWeek !== Number(event.target.value) &&
+                        updated
                       ) {
-                        return (
-                          <tr key={`no-attendance-${selectedDay}`}>
+                        toast.warning('First Discard or Update your changes', {
+                          style: { color: '#000', lineHeight: '.95rem' },
+                        });
+                        return;
+                      }
+                      setIsUpdatedMode(false);
+                      setSelectedWeek(Number(event.target.value));
+                    }}
+                  >
+                    {weeks.length &&
+                      weeks.map((week) => (
+                        <option key={week} value={week}>
+                          {week}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center border-2 border-neutral-400/60 dark:border-neutral-600 h-[1.85rem] xmd:h-9 text-[.83rem] xmd:text-base">
+                {['mon', 'tue', 'wed', 'thu', 'fri'].map((day, index) => (
+                  <div
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
+                    className={`${
+                      selectedDay === day
+                        ? 'bg-neutral-400/60 dark:bg-neutral-600'
+                        : 'hover:bg-neutral-400/20 dark:hover:bg-neutral-400/15'
+                    } flex justify-center items-center basis-1/5 capitalize border-l-2 border-neutral-400/60 dark:border-neutral-600 cursor-pointer h-full`}
+                    onClick={() => {
+                      if (isUpdatedMode && selectedDay !== day && updated) {
+                        toast.warning('First Discard or Update your changes', {
+                          style: { color: '#000', lineHeight: '.95rem' },
+                        });
+                        return;
+                      }
+                      setIsUpdatedMode(false);
+                      setSelectedDay(
+                        day as 'mon' | 'tue' | 'wed' | 'thu' | 'fri',
+                      );
+                    }}
+                    data-testid="days-test"
+                  >
+                    <span>{day}</span>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center gap-[2px] ">
+                    {selectedDayDate && (
+                      <>
+                        <MdOutlineCalendarMonth className="text-[1.2rem]" />
+                        <span className="text-[.8rem] xmd:text-[.85rem] leading-3">
+                          {selectedDayDate}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  <div className="flex xmd:hidden text-[.9rem] gap-2">
+                    <div
+                      className="flex gap-x-1 items-center cursor-pointer"
+                      onClick={() => {
+                        if (!selectedDayHasData) {
+                          return toast.warning(
+                            'You cannot update attendance for the day without any entries.',
+                            { style: { color: '#000', lineHeight: '.95rem' } },
+                          );
+                        }
+                        return setIsUpdatedMode(true);
+                      }}
+                      data-testid="update-link"
+                    >
+                      <LuClipboardEdit className="text-lg" />
+                    </div>
+                    <div
+                      onClick={() => {
+                        if (isUpdatedMode) {
+                          toast.warning(
+                            'You cannot delete the attendance while it is being updated.',
+                            { style: { color: '#000', lineHeight: '.95rem' } },
+                          );
+                          return;
+                        }
+                        handleDeleteAttendance();
+                      }}
+                      className="flex gap-x-1 items-center cursor-pointer"
+                    >
+                      <RiDeleteBin6Line className="text-lg" />
+                    </div>
+                    <div
+                      onClick={() => {
+                        setPauseResumeAttendance(true);
+                      }}
+                      className="flex gap-x-[5px] items-center cursor-pointer"
+                    >
+                      {selectedTeamData?.isJobActive ? (
+                        <FaRegCirclePause className="text-[1.12rem]" />
+                      ) : (
+                        <FaRegCirclePlay className="text-[1.12rem]" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="overflow-x-scroll xmd:overflow-hidden">
+                  <table className="w-full overflow-hidden border border-neutral-400 dark:border-neutral-600">
+                    <thead>
+                      <tr className="bg-neutral-400/60 dark:bg-neutral-600 h-8 xmd:h-10 md:h-[2.7rem] text-[.84rem] xmd:text-base">
+                        <th
+                          className={`${
+                            isUpdatedMode ? 'w-[35%] ' : 'w-[40%]'
+                          } text-left pl-2 xmd:pl-10 font-semibold`}
+                        >
+                          Names
+                        </th>
+                        <th
+                          className={`${
+                            isUpdatedMode ? 'w-[35%] ' : 'w-[40%]'
+                          } text-left pl-2 xmd:pl-10 font-semibold`}
+                        >
+                          Email
+                        </th>
+                        <th
+                          className={`${
+                            isUpdatedMode ? 'w-[15%]' : 'w-[20%]'
+                          } font-semibold`}
+                        >
+                          Score
+                        </th>
+                        {isUpdatedMode && (
+                          <th
+                            ref={editColumnRef}
+                            className="w-[15%] font-semibold"
+                          >
+                            Action
+                          </th>
+                        )}
+                      </tr>
+                    </thead>
+                    <tbody className="min-h-32 text-[.83rem] lg:text-[.9rem]">
+                      {!teamAttendanceLoading &&
+                        traineeAttendanceData.length > 0 &&
+                        traineeAttendanceData.map((attendanceData) => {
+                          if (
+                            attendanceData.phase.id === selectedPhase?.id &&
+                            attendanceData.week === selectedWeek &&
+                            attendanceData.days[selectedDay].length
+                          ) {
+                            return attendanceData.days[selectedDay].map(
+                              (dayData, index) => (
+                                <tr
+                                  // eslint-disable-next-line react/no-array-index-key
+                                  key={index}
+                                  className="even:bg-neutral-400/20 dark:even:bg-black/20  h-10 even:border-y border-neutral-400/30 dark:border-neutral-600/40"
+                                >
+                                  <td
+                                    className="pl-2 xmd:pl-10 whitespace-nowrap"
+                                    title={dayData.trainee.profile.name}
+                                  >
+                                    {
+                                      // eslint-disable-next-line no-nested-ternary
+                                      window.innerWidth < 520 &&
+                                      dayData.trainee.profile.name.length > 16
+                                        ? `${dayData.trainee.profile.name.slice(
+                                            0,
+                                            16,
+                                          )}..`
+                                        : dayData.trainee.profile.name
+                                    }
+                                  </td>
+                                  <td
+                                    className="px-2 xmd:pl-10"
+                                    title={dayData.trainee.email}
+                                  >
+                                    {
+                                      // eslint-disable-next-line no-nested-ternary
+                                      window.innerWidth < 600 &&
+                                      dayData.trainee.email.length > 20
+                                        ? window.innerWidth > 530
+                                          ? `${dayData.trainee.email.slice(
+                                              0,
+                                              22,
+                                            )}..`
+                                          : `${dayData.trainee.email.slice(
+                                              0,
+                                              16,
+                                            )}..`
+                                        : dayData.trainee.email
+                                    }
+                                  </td>
+                                  {
+                                    // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                                    <td className="text-center">
+                                      <div className="flex justify-center">
+                                        <AttendanceSymbols
+                                          status={dayData.score}
+                                        />
+                                      </div>
+                                    </td>
+                                  }
+                                  {isUpdatedMode && (
+                                    // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                                    <td
+                                      className={`${
+                                        isUpdatedMode
+                                          ? 'px-3 xmd:px-0 w-[10%]'
+                                          : 'w-[20%]'
+                                      }  text-center`}
+                                    >
+                                      <EditAttendanceButton
+                                        week={selectedWeek}
+                                        day={selectedDay}
+                                        phase={selectedPhase.id}
+                                        traineeId={dayData.trainee.id}
+                                        setTraineeAttendanceData={
+                                          setTraineeAttendanceData
+                                        }
+                                        setUpdated={setUpdate}
+                                      />
+                                    </td>
+                                  )}
+                                </tr>
+                              ),
+                            );
+                          }
+                          if (
+                            traineeAttendanceData.length > 0 &&
+                            attendanceData.phase.id === selectedPhase?.id &&
+                            attendanceData.week === selectedWeek &&
+                            !attendanceData.days[selectedDay].length
+                          ) {
+                            return (
+                              <tr key={`no-attendance-${selectedDay}`}>
+                                <td colSpan={3} className="text-center h-28">
+                                  There is no attendance for the selected day
+                                </td>
+                              </tr>
+                            );
+                          }
+                          return null;
+                        })}
+                      {(teamsLoading || teamAttendanceLoading) && (
+                        <tr key="no-attendance-abc">
+                          <td colSpan={3} className="text-center h-28">
+                            Loading Data...
+                          </td>
+                        </tr>
+                      )}
+                      {!teamsLoading &&
+                        !teamAttendanceLoading &&
+                        !traineeAttendanceData.length && (
+                          <tr key="no-attendance-xyz">
                             <td colSpan={3} className="text-center h-28">
                               There is no attendance for the selected day
                             </td>
                           </tr>
+                        )}
+                    </tbody>
+                  </table>
+                </div>
+                {isUpdatedMode && (
+                  <div className="w-full flex gap-2 justify-end mt-2 xmd:mt-3 text-[.85rem] xmd:text-[.9rem] text-white font-semibold">
+                    <button
+                      type="button"
+                      className="border border-primary px-3 xmd:px-4 py-[3px] xmd:py-[5px] rounded-[4px] text-primary"
+                      onClick={() => {
+                        setUpdate(false);
+                        setTraineeAttendanceData(initialTraineeAttendanceData);
+                        setIsUpdatedMode(false);
+                      }}
+                      data-testid="cancel-button"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      disabled={!updated}
+                      className={`w-20 xmd:w-24 xmd:px-4 py-[3px] xmd:py-[5px] rounded-[4px] ${
+                        !updated || loadingupdateAttendance
+                          ? 'bg-neutral-400/60 dark:bg-neutral-500 text-black dark:text-white cursor-not-allowed'
+                          : 'bg-primary text-white hover:bg-purple-600'
+                      }`}
+                      onClick={() => {
+                        if (updated) {
+                          handleUpdateAttendance();
+                        }
+                      }}
+                      data-testid="update-button"
+                    >
+                      {loadingupdateAttendance ? (
+                        <div className="flex items-center justify-center">
+                          <PulseLoader size={9} color="#FFFFFF" />
+                        </div>
+                      ) : (
+                        'Update'
+                      )}
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex justify-between">
+                <div className="hidden xmd:flex flex-col text-[.78rem] md:text-[.84rem] gap-2 capitalize">
+                  <h2 className="mb-1 font-semibold">ATTENDANCE ACTIONS</h2>
+                  <div
+                    className="flex gap-x-1 items-center ml-4 cursor-pointer hover:text-primary font-medium"
+                    onClick={() => {
+                      if (!selectedDayHasData) {
+                        return toast.warning(
+                          'You cannot update attendance for the day without any entries.',
+                          { style: { color: '#000', lineHeight: '.95rem' } },
                         );
                       }
-                      return null;
-                    })}
-                  {(teamsLoading || teamAttendanceLoading) && (
-                    <tr key="no-attendance-abc">
-                      <td colSpan={3} className="text-center h-28">
-                        Loading Data...
-                      </td>
-                    </tr>
-                  )}
-                  {!teamsLoading &&
-                    !teamAttendanceLoading &&
-                    !traineeAttendanceData.length && (
-                      <tr key="no-attendance-xyz">
-                        <td colSpan={3} className="text-center h-28">
-                          There is no attendance for the selected day
-                        </td>
-                      </tr>
+                      return setIsUpdatedMode(true);
+                    }}
+                    data-testid="update-link-2"
+                  >
+                    <LuClipboardEdit className="text-[1.1rem]" />
+                    <span>Update Attendance ({selectedDay})</span>
+                  </div>
+                  <div
+                    onClick={() => {
+                      if (isUpdatedMode) {
+                        toast.warning(
+                          'You cannot delete the attendance while it is being updated.',
+                          { style: { color: '#000', lineHeight: '.95rem' } },
+                        );
+                        return;
+                      }
+                      handleDeleteAttendance();
+                    }}
+                    className="flex gap-x-1 items-center ml-4 cursor-pointer hover:text-primary font-medium"
+                    data-testid="delete-btn-test"
+                  >
+                    <RiDeleteBin6Line className="text-[1.15rem]" />
+                    <span>
+                      {loadingDeleteAttendance
+                        ? 'Deleting Attendance ...'
+                        : `Delete Attendance (${selectedDay})`}
+                    </span>
+                  </div>
+                  <div
+                    onClick={() => {
+                      setPauseResumeAttendance(true);
+                    }}
+                    className="flex gap-x-[5px] items-center ml-4 cursor-pointer hover:text-primary font-medium leading-3"
+                  >
+                    {selectedTeamData?.isJobActive ? (
+                      <FaRegCirclePause className="text-[1.125rem]" />
+                    ) : (
+                      <FaRegCirclePlay className="text-[1.125rem]" />
                     )}
-                </tbody>
-              </table>
-            </div>
-            {isUpdatedMode && (
-              <div className="w-full flex gap-2 justify-end mt-2 xmd:mt-3 text-[.85rem] xmd:text-[.9rem] text-white font-semibold">
-                <button
-                  type="button"
-                  className="border border-primary px-3 xmd:px-4 py-[3px] xmd:py-[5px] rounded-[4px] text-primary"
-                  onClick={() => {
-                    setUpdate(false);
-                    setTraineeAttendanceData(initialTraineeAttendanceData);
-                    setIsUpdatedMode(false);
-                  }}
-                  data-testid="cancel-button"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  disabled={!updated}
-                  className={`w-20 xmd:w-24 xmd:px-4 py-[3px] xmd:py-[5px] rounded-[4px] ${
-                    !updated || loadingupdateAttendance
-                      ? 'bg-neutral-400/60 dark:bg-neutral-500 text-black dark:text-white cursor-not-allowed'
-                      : 'bg-primary text-white hover:bg-purple-600'
-                  }`}
-                  onClick={() => {
-                    if (updated) {
-                      handleUpdateAttendance();
-                    }
-                  }}
-                  data-testid="update-button"
-                >
-                  {loadingupdateAttendance ? (
-                    <div className="flex items-center justify-center">
-                      <PulseLoader size={9} color="#FFFFFF" />
-                    </div>
-                  ) : (
-                    'Update'
-                  )}
-                </button>
-              </div>
-            )}
-          </div>
-
-          <div className="flex justify-between">
-            <div className="hidden xmd:flex flex-col text-[.78rem] md:text-[.84rem] gap-2 capitalize">
-              <h2 className="mb-1 font-semibold">ATTENDANCE ACTIONS</h2>
-              <div
-                className="flex gap-x-1 items-center ml-4 cursor-pointer hover:text-primary font-medium"
-                onClick={() => {
-                  if (!selectedDayHasData) {
-                    return toast.warning(
-                      'You cannot update attendance for the day without any entries.',
-                      { style: { color: '#000', lineHeight: '.95rem' } },
-                    );
-                  }
-                  return setIsUpdatedMode(true);
-                }}
-                data-testid="update-link-2"
-              >
-                <LuClipboardEdit className="text-[1.1rem]" />
-                <span>Update Attendance ({selectedDay})</span>
-              </div>
-              <div
-                onClick={() => {
-                  if (isUpdatedMode) {
-                    toast.warning(
-                      'You cannot delete the attendance while it is being updated.',
-                      { style: { color: '#000', lineHeight: '.95rem' } },
-                    );
-                    return;
-                  }
-                  handleDeleteAttendance();
-                }}
-                className="flex gap-x-1 items-center ml-4 cursor-pointer hover:text-primary font-medium"
-                data-testid="delete-btn-test"
-              >
-                <RiDeleteBin6Line className="text-[1.15rem]" />
-                <span>
-                  {loadingDeleteAttendance
-                    ? 'Deleting Attendance ...'
-                    : `Delete Attendance (${selectedDay})`}
-                </span>
-              </div>
-              <div
-                onClick={() => {
-                  setPauseResumeAttendance(true);
-                }}
-                className="flex gap-x-[5px] items-center ml-4 cursor-pointer hover:text-primary font-medium leading-3"
-              >
-                {selectedTeamData?.isJobActive ? (
-                  <FaRegCirclePause className="text-[1.125rem]" />
-                ) : (
-                  <FaRegCirclePlay className="text-[1.125rem]" />
-                )}
-                <span>
-                  {selectedTeamData?.isJobActive
-                    ? 'Pause Attendance'
-                    : 'Resume Attendance'}
-                </span>
-              </div>
-            </div>
-            <div className="flex flex-col gap-2 text-[.8rem] xmd:text-[.83rem] md:text-sm tracking-tight ml-2 xmd:ml-0">
-              <div className="flex gap-x-1 items-center">
-                <AttendanceSymbols status={2} />
-                <span>[2] Attended and communicated</span>
-              </div>
-              <div className="flex gap-x-1 items-center ">
-                <AttendanceSymbols status={1} />
-                <span>[1] Didn&lsquo;t attend and communicated</span>
-              </div>
-              <div className="flex gap-x-1 items-center">
-                <AttendanceSymbols status={0} />
-                <span>
-                  [0] Didn&lsquo;t attend and didn&lsquo;t communicate
-                </span>
+                    <span>
+                      {selectedTeamData?.isJobActive
+                        ? 'Pause Attendance'
+                        : 'Resume Attendance'}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 text-[.8rem] xmd:text-[.83rem] md:text-sm tracking-tight ml-2 xmd:ml-0">
+                  <div className="flex gap-x-1 items-center">
+                    <AttendanceSymbols status={2} />
+                    <span>[2] Attended and communicated</span>
+                  </div>
+                  <div className="flex gap-x-1 items-center ">
+                    <AttendanceSymbols status={1} />
+                    <span>[1] Didn&lsquo;t attend and communicated</span>
+                  </div>
+                  <div className="flex gap-x-1 items-center">
+                    <AttendanceSymbols status={0} />
+                    <span>
+                      [0] Didn&lsquo;t attend and didn&lsquo;t communicate
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 }
