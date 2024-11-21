@@ -68,36 +68,33 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
 
   return (
     <div
-      className={`relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 md:py-4 lg:py-5 rounded-md w-[100%] overflow-auto custom-scrollbar "lg:ml-60 mx-auto"} lg:mb-10 ${className}`}
+      className={`relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] overflow-scroll "lg:ml-60 mx-auto"} mb-10 ${className}`}
     >
       <div className="flex flex-col md:flex-row items-center justify-between pb-6 space-y-4 md:space-y-0">
         <div>
           <h2 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white">
             {t(title)}
           </h2>
-          {/* Uncomment if you want a filter input */}
-          {/* <input
+          <input
             value={filterInput}
             aria-label="Filter table data"
             placeholder="Filter"
             className="px-4 py-2 mt-4 font-sans text-xs md:text-sm border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-full sm:w-52 md:w-96"
             onChange={handleFilterChange}
-          /> */}
+          />
         </div>
       </div>
-      <div className="overflow-x-auto custom-scrollbar">
+      <div className="overflow-x-auto">
         <table
           className="min-w-full leading-normal text-xs md:text-sm"
           {...getTableProps()}
         >
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+              <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
-                    className={`thead w-1/${columns.length} text-center  ${
-                      column.isSorted ? 'sort-asc' : ''
-                    }`}
+                    className={`thead ${column.isSorted ? 'sort-asc' : ''}`}
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={column.id}
                   >
@@ -116,15 +113,15 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
                   <tr
                     className={`border-b dark:border-gray-700 ${
                       row.index % 2 === 0
-                        ? 'bg-gray-600 dark:bg-neutral-600'
-                        : 'bg-transparent'
+                        ? 'bg-light-bg dark:bg-neutral-600'
+                        : 'bg-white dark:bg-dark-bg'
                     }`}
                     {...row.getRowProps()}
                     key={row.id}
                   >
                     {row.cells.map((cell) => (
                       <td
-                        className={`w-1/${columns.length} data-cell px-4 py-2 text-center`}
+                        className="data-cell px-4 py-2"
                         {...cell.getCellProps()}
                         key={cell.column.id}
                       >

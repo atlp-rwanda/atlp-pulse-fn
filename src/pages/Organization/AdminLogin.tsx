@@ -75,7 +75,6 @@ function AdminLogin() {
           },
         },
 
-
         /* istanbul ignore next */
         onCompleted: async (data) => {
           if (data.loginUser.otpRequired) {
@@ -85,36 +84,37 @@ function AdminLogin() {
               state: {
                 email: userInput.email,
                 TwoWayVerificationToken: data.loginUser.TwoWayVerificationToken,
-              },})
-
-          }else{
-            /* istanbul ignore next */
-          toast.success(data.addMemberToCohort);
-          /* istanbul ignore next */
-          login(data.loginUser);
-          /* istanbul ignore next */
-          await client.resetStore();
-          /* istanbul ignore next */
-          toast.success(t(`Welcome`) as ToastContent<unknown>);
-          /* istanbul ignore next */
-          if (data.loginUser) {
-            redirect
-              ? navigate(`${redirect}`)
-              : data.loginUser.user.role === 'superAdmin'
-              ? navigate(`/dashboard`)
-              : data.loginUser.user.role === 'admin'
-              ? navigate(`/trainees`)
-              : data.loginUser.user.role === 'coordinator'
-              ? navigate(`/trainees`)
-              : data.loginUser.user.role === 'manager'
-              ? navigate(`/dashboard`)
-              : data.loginUser.user.role === 'ttl'
-              ? navigate('/ttl-trainees')
-              : navigate('/performance');
+              },
+            });
           } else {
-            navigate('/dashboard');
+            /* istanbul ignore next */
+            toast.success(data.addMemberToCohort);
+            /* istanbul ignore next */
+            login(data.loginUser);
+            /* istanbul ignore next */
+            await client.resetStore();
+            /* istanbul ignore next */
+            toast.success(t(`Welcome`) as ToastContent<unknown>);
+            /* istanbul ignore next */
+            if (data.loginUser) {
+              redirect
+                ? navigate(`${redirect}`)
+                : data.loginUser.user.role === 'superAdmin'
+                ? navigate(`/dashboard`)
+                : data.loginUser.user.role === 'admin'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'coordinator'
+                ? navigate(`/trainees`)
+                : data.loginUser.user.role === 'manager'
+                ? navigate(`/dashboard`)
+                : data.loginUser.user.role === 'ttl'
+                ? navigate('/ttl-trainees')
+                : navigate('/dashboard');
+            } else {
+              navigate('/dashboard');
+            }
           }
-        }},
+        },
         onError: (err) => {
           /* istanbul ignore next */
           console.log(err.message);

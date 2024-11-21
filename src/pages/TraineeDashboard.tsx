@@ -133,11 +133,41 @@ function traineeDashboard() {
   }, [selectedPhase, selectedTimeFrame]);
 
   const columns = [
-    { Header: `${t('Sprint')}`, accessor: 'sprint' },
-    { Header: `${t('Quantity')}`, accessor: 'quantity' },
-    { Header: `${t('Quality')}`, accessor: 'quality' },
-    { Header: `${t('Professionalism')}`, accessor: 'professionalism' },
-    { Header: `${t('Attendance')}`, accessor: 'attendance' },
+    {
+      Header: `${t('Sprint')}`,
+      accessor: 'sprint',
+      Cell: ({ value }: any) => (
+        <div className="flex justify-center items-center">{value}</div>
+      ),
+    },
+    {
+      Header: `${t('Quantity')}`,
+      accessor: 'quantity',
+      Cell: ({ value }: any) => (
+        <div className="flex justify-center items-center">{value}</div>
+      ),
+    },
+    {
+      Header: `${t('Quality')}`,
+      accessor: 'quality',
+      Cell: ({ value }: any) => (
+        <div className="flex justify-center items-center">{value}</div>
+      ),
+    },
+    {
+      Header: `${t('Professionalism')}`,
+      accessor: 'professionalism',
+      Cell: ({ value }: any) => (
+        <div className="flex justify-center items-center">{value}</div>
+      ),
+    },
+    {
+      Header: `${t('Attendance')}`,
+      accessor: 'attendance',
+      Cell: ({ value }: any) => (
+        <div className="flex justify-center items-center">{value}</div>
+      ),
+    },
     {
       Header: `${t('Comment')}`,
       accessor: '',
@@ -155,7 +185,7 @@ function traineeDashboard() {
         setCohort(data?.getProfile?.user?.team?.cohort?.name);
         if (selectedPhase === undefined) {
           setSelectedPhase(data?.getProfile?.user?.team?.cohort?.phase?.name);
-          setAllPhase([data?.getProfile?.user?.team?.cohort?.phase?.name]);
+          // setAllPhase([data?.getProfile?.user?.team?.cohort?.phase?.name]);
         }
       } catch (error: any) {}
     };
