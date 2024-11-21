@@ -157,7 +157,6 @@ Array [
                     >
                       Performance Ratings
                     </h2>
-<<<<<<< HEAD
                     <input
                       aria-label="Filter table data"
                       className="px-4 py-2 mt-4 font-sans text-xs md:text-sm border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-full sm:w-52 md:w-96"
@@ -165,8 +164,6 @@ Array [
                       placeholder="Filter"
                       value=""
                     />
-=======
->>>>>>> 09b452f (updating-trainee-dashboard)
                   </div>
                 </div>
                 <div

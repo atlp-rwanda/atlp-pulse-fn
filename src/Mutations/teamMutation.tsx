@@ -53,3 +53,15 @@ export const DeleteTeam = gql`
   }
 `;
 
+export const GET_TEAMS_BY_COHORT = gql`
+  query getTeamsByCohort($cohortId: String!,$orgToken: String!) {
+    getTeamsByCohort(cohortId: $cohortId,orgToken: $orgToken){
+      id
+      name
+      members {
+        email
+        role
+      }
+    }
+  }
+`

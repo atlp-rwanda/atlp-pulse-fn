@@ -149,3 +149,55 @@ export const REJECT_RATING = gql`
     rejectRating(user: $user, sprint: $sprint)
   }
 `;
+
+export const GET_RATINGS_BY_COHORT = gql`
+  query getRatingsByCohort($cohortId: String!, $orgToken: String!){
+    getRatingsByCohort(cohortId: $cohortId, orgToken: $orgToken){
+      id
+      sprint
+  }
+}
+`
+
+export const ADD_RATINGS_BY_FILE = gql`
+  mutation addRatingsByFile($file: Upload!, $cohortId: String!, $sprint: Int!, $orgToken: String!){
+    addRatingsByFile(file: $file, cohortId: $cohortId, sprint: $sprint orgToken: $orgToken){
+      NewRatings {
+      user {
+        email
+      }
+      sprint
+      phase
+      quality
+      quantity
+      professional_Skills
+      feedbacks {
+        sender {
+          email
+        }
+        content
+        createdAt
+      }
+      cohort {
+        name
+      }
+    }
+    RejectedRatings{
+      email
+      quantity
+      quality
+      professional_skills
+      feedBacks
+    }
+    UpdatedRatings {
+      quantity
+      quality
+      professional_Skills
+      feedbacks {
+        content
+      }
+      oldFeedback
+    }
+    }
+  }
+`
