@@ -40,16 +40,8 @@ interface LoginResponse {
 }
 
 export const LOGIN_WITH_2FA = gql`
-  mutation LoginWithTwoFactorAuthentication(
-    $email: String!
-    $otp: String!
-   
-  ) {
-    loginWithTwoFactorAuthentication(
-      email: $email
-      otp: $otp
-
-    ) {
+  mutation LoginWithTwoFactorAuthentication($email: String!, $otp: String!) {
+    loginWithTwoFactorAuthentication(email: $email, otp: $otp) {
       token
       user {
         id
@@ -98,10 +90,10 @@ const TwoFactorPage: React.FC = () => {
   }, [isDark]);
 
   useEffect(() => {
-    if (!email ) {
+    if (!email) {
       navigate('/login');
     }
-  }, [email,  navigate]);
+  }, [email, navigate]);
 
   const [loginWithTwoFactorAuthentication] = useMutation<LoginResponse>(
     LOGIN_WITH_2FA,
@@ -116,12 +108,12 @@ const TwoFactorPage: React.FC = () => {
           toast.success(response.message);
 
           const rolePaths: Record<string, string> = {
-            superAdmin: '/organizations',
+            superAdmin: '/dashboard',
             admin: '/trainees',
-            coordinator: '/trainees',
+            coordinator: '/dashboard',
             manager: '/dashboard',
-            ttl: '/ttl-trainees',
-            trainee: '/performance',
+            ttl: '/dashboard',
+            trainee: '/dashboard',
           };
 
           const redirectPath = rolePaths[response.user.role] || '/dashboard';
@@ -151,7 +143,7 @@ const TwoFactorPage: React.FC = () => {
         variables: {
           email,
           otp: currentInput.join(''),
-         // TwoWayVerificationToken,
+          // TwoWayVerificationToken,
         },
       });
     } finally {

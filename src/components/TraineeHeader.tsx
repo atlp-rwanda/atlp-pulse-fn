@@ -7,6 +7,7 @@ import { MenuIcon, SunIcon, XIcon } from '@heroicons/react/outline';
 import { MoonIcon, BellIcon } from '@heroicons/react/solid';
 import { useLazyQuery, useSubscription, gql } from '@apollo/client';
 import { toast } from 'react-toastify';
+import { h } from '@fullcalendar/core/preact';
 import Logo from '../assets/logo.svg';
 import LogoWhite from '../assets/logoWhite.svg';
 import Avatar from '../assets/avatar.png';
@@ -18,7 +19,6 @@ import { GET_PROFILE } from '../queries/user.queries';
 import { UserContext } from '../hook/useAuth';
 import { NotificationSubscription } from '../Mutations/notificationMutation';
 import { getAllNotification } from '../queries/notification.queries';
-import { h } from '@fullcalendar/core/preact';
 import { handleError } from './ErrorHandle';
 
 export const TICKETS_NOTS_SUB = gql`

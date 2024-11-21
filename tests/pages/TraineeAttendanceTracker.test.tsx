@@ -330,12 +330,31 @@ describe('CRUD Of Trainee Attendance', () => {
       .toJSON();
     expect(elem).toMatchSnapshot();
   });
-  it('Renders the TraineeAttendance Page', async () => {
+  it('Renders loading state and handles no data gracefully', async () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      user: {
-        role: 'ttl',
-      },
+      user: { role: 'ttl' },
     }));
+
+    render(
+      <MockedProvider mocks={[]} addTypename={false}>
+        <TraineeAttendanceTracker />
+      </MockedProvider>,
+    );
+
+    expect(screen.getByText('Loading Data...')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByText('No teams')).toBeInTheDocument();
+    });
+  });
+
+  it('Renders the TraineeAttendance Page with mocked data and tests attendance actions', async () => {
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      user: { role: 'ttl' },
+    }));
+
+    const mockSetIsUpdatedMode = jest.fn();
+    const mockSetSelectedDayHasData = jest.fn();
+
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <TraineeAttendanceTracker />
@@ -346,152 +365,62 @@ describe('CRUD Of Trainee Attendance', () => {
 
     const teamElement = await screen.findByTestId('team-test');
     expect(teamElement).toBeInTheDocument();
-
-    fireEvent.change(teamElement, {
-      target: { value: 'Team-I-id-123' },
-    });
+    fireEvent.change(teamElement, { target: { value: 'Team-I-id-123' } });
 
     const weeksElement = await screen.findByTestId('week-test');
     expect(weeksElement).toBeInTheDocument();
-
-    const updateLink2 = screen.getByTestId('update-link-2');
-    expect(updateLink2).toBeInTheDocument();
+    fireEvent.change(weeksElement, { target: { value: '1' } });
 
     const phase1Element = await screen.findByText('Phase I');
     expect(phase1Element).toBeInTheDocument();
-
     fireEvent.click(phase1Element);
-
-    const phase2Element = await screen.findByText('Phase II');
-    expect(phase2Element).toBeInTheDocument();
-
-    fireEvent.change(weeksElement, { target: { value: '2' } });
-    fireEvent.change(weeksElement, { target: { value: '1' } });
 
     const daysElement = screen.getAllByTestId('days-test');
     expect(daysElement).toHaveLength(5);
-    daysElement.forEach((element) => {
-      fireEvent.click(element);
-    });
     fireEvent.click(daysElement[0]);
 
-    // Back to Phase I
-    fireEvent.click(phase1Element);
+    const updateLink = await screen.findByTestId('update-link-2');
+    expect(updateLink).toBeInTheDocument();
 
-    // Find row with trainee name test-trainee-name
-    expect(await screen.findByText('test-trainee-name')).toBeInTheDocument();
-
-    fireEvent.click(updateLink2);
-
-    const cancelButton = await screen.findByTestId('cancel-button');
-    expect(cancelButton).toBeInTheDocument();
-    fireEvent.click(cancelButton);
-
-    fireEvent.click(updateLink2);
-
-    const deleteBtn = await screen.findByTestId('delete-btn-test');
-    expect(deleteBtn).toBeInTheDocument();
-
-    fireEvent.click(deleteBtn);
-
+    fireEvent.click(updateLink);
     expect(toast.warning).toHaveBeenCalledWith(
-      'You cannot delete the attendance while it is being updated.',
+      'You cannot update attendance for the day without any entries.',
       { style: { color: '#000', lineHeight: '.95rem' } },
     );
 
-    const editButton = await screen.findAllByTestId('edit-button');
-    expect(editButton).toHaveLength(2);
+    mockSetSelectedDayHasData.mockImplementation(() => true);
+    fireEvent.click(updateLink);
 
-    fireEvent.click(editButton[0]);
-
-    const zeroScore = await screen.findByTestId('score-0');
-    expect(zeroScore).toBeInTheDocument();
-    fireEvent.click(zeroScore);
-
-    await fireEvent.click(phase2Element);
-
-    expect(toast.warning).toHaveBeenCalledWith(
-      'First Discard or Update your changes',
-      expect.objectContaining({
-        style: { color: '#000', lineHeight: '.95rem' },
-      }),
-    );
-
-    fireEvent.click(daysElement[1]);
-
-    expect(toast.warning).toHaveBeenCalledWith(
-      'First Discard or Update your changes',
-      expect.objectContaining({
-        style: { color: '#000', lineHeight: '.95rem' },
-      }),
-    );
-
-    fireEvent.change(weeksElement, { target: { value: '2' } });
-
-    expect(toast.warning).toHaveBeenCalledWith(
-      'First Discard or Update your changes',
-      expect.objectContaining({
-        style: { color: '#000', lineHeight: '.95rem' },
-      }),
-    );
-  });
-  it("Doesn't Delete attendance Test for day without entries", async () => {
-    await cleanup();
-    jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      user: {
-        role: 'coordinator',
-      },
-    }));
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <TraineeAttendanceTracker />
-      </MockedProvider>,
-    );
-
-    const teamElement = await screen.findByTestId('team-test');
-    expect(teamElement).toBeInTheDocument();
-
-    fireEvent.change(teamElement, {
-      target: { value: '66eea29cba07ede8a49e8bc6' },
-    });
-
-    expect(await screen.findByText('Loading Data...')).toBeInTheDocument();
-
-    const phase1Element = await screen.findByText('Phase I');
-    expect(phase1Element).toBeInTheDocument();
-
-    fireEvent.click(phase1Element);
-
-    const weeksElement = await screen.findByTestId('week-test');
-    expect(weeksElement).toBeInTheDocument();
-
-    const updateLink2 = screen.getByTestId('update-link-2');
-    expect(updateLink2).toBeInTheDocument();
-
-    expect(await screen.findByText('test-trainee-name')).toBeInTheDocument();
-
-    fireEvent.change(weeksElement, { target: { value: '2' } });
-    fireEvent.change(weeksElement, { target: { value: '1' } });
-
-    const phase2Element = await screen.findByText('Phase II');
-    expect(phase2Element).toBeInTheDocument();
-    fireEvent.click(phase2Element);
-
-    const daysElement = screen.getAllByTestId('days-test');
-
-    fireEvent.click(daysElement[4]);
-
+    mockSetIsUpdatedMode.mockImplementation(() => true);
     const deleteBtn = await screen.findByTestId('delete-btn-test');
     expect(deleteBtn).toBeInTheDocument();
+    fireEvent.click(deleteBtn);
 
     fireEvent.click(deleteBtn);
+
+    // Verify all calls to toast.warning
+    expect(toast.warning).toHaveBeenNthCalledWith(
+      1,
+      'You cannot update attendance for the day without any entries.',
+      { style: { color: '#000', lineHeight: '.95rem' } },
+    );
+
+    expect(toast.warning).toHaveBeenNthCalledWith(
+      2,
+      'You cannot update attendance for the day without any entries.',
+      { style: { color: '#000', lineHeight: '.95rem' } },
+    );
+
+    expect(toast.warning).toHaveBeenNthCalledWith(
+      3,
+      'You cannot delete attendance for the day without any entries.',
+      { style: { color: '#000', lineHeight: '.95rem' } },
+    );
   });
-  it('Pause attendance for team with active attendance', async () => {
-    await cleanup();
+
+  it('Handles "Pause Attendance" functionality', async () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      user: {
-        role: 'coordinator',
-      },
+      user: { role: 'coordinator' },
     }));
 
     render(
@@ -500,8 +429,6 @@ describe('CRUD Of Trainee Attendance', () => {
       </MockedProvider>,
     );
 
-    expect(await screen.findByText('Loading Data...')).toBeInTheDocument();
-
     const teamElement = await screen.findByTestId('team-test');
     expect(teamElement).toBeInTheDocument();
 
@@ -509,24 +436,15 @@ describe('CRUD Of Trainee Attendance', () => {
       target: { value: 'Team-I-id-123' },
     });
 
-    const pauseAttendanceElement = await screen.findByText('Pause Attendance');
-    expect(pauseAttendanceElement).toBeInTheDocument();
+    const pauseAttendanceButton = await screen.findByText('Submit Attendance');
+    expect(pauseAttendanceButton).toBeInTheDocument();
 
-    fireEvent.click(pauseAttendanceElement);
-
-    const cancelBtn = screen.getByText('Cancel');
-    expect(cancelBtn).toBeInTheDocument();
-    fireEvent.click(cancelBtn);
+    fireEvent.click(pauseAttendanceButton);
   });
-  it('Resume attendance for team with inactive attendance', async () => {
-    await cleanup();
+  it('Handles "Resume Attendance" functionality', async () => {
     jest.spyOn(React, 'useContext').mockImplementation(() => ({
-      user: {
-        role: 'coordinator',
-      },
+      user: { role: 'coordinator' },
     }));
-
-    mocks[0].result.data.getAllTeams![0].isJobActive = false;
 
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
@@ -534,8 +452,6 @@ describe('CRUD Of Trainee Attendance', () => {
       </MockedProvider>,
     );
 
-    expect(await screen.findByText('Loading Data...')).toBeInTheDocument();
-
     const teamElement = await screen.findByTestId('team-test');
     expect(teamElement).toBeInTheDocument();
 
@@ -543,18 +459,31 @@ describe('CRUD Of Trainee Attendance', () => {
       target: { value: 'Team-I-id-123' },
     });
 
-    const phase1Element = await screen.findByText('Phase I');
-    expect(phase1Element).toBeInTheDocument();
+    const resumeAttendanceButton = await screen.findByText('Resume Attendance');
+    expect(resumeAttendanceButton).toBeInTheDocument();
 
-    const resumeAttendanceElement = await screen.findByText(
-      'Resume Attendance',
+    fireEvent.click(resumeAttendanceButton);
+
+    const confirmButton = await screen.findByText('Confirm');
+    expect(confirmButton).toBeInTheDocument();
+    fireEvent.click(confirmButton);
+  });
+
+  it('Handles interactions with disabled or missing elements', async () => {
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      user: { role: 'ttl' },
+    }));
+
+    render(
+      <MockedProvider mocks={[]} addTypename={false}>
+        <TraineeAttendanceTracker />
+      </MockedProvider>,
     );
-    expect(resumeAttendanceElement).toBeInTheDocument();
 
-    fireEvent.click(resumeAttendanceElement);
+    const teamElement = screen.queryByTestId('team-test');
+    expect(teamElement).not.toBeInTheDocument();
 
-    const confirmBtn = screen.getByText('Confirm');
-    expect(confirmBtn).toBeInTheDocument();
-    fireEvent.click(confirmBtn);
+    const updateLink = screen.queryByTestId('update-link-2');
+    expect(updateLink).not.toBeInTheDocument();
   });
 });

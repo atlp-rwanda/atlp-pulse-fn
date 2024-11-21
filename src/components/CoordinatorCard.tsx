@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Card from './TeamCard';
 import { UserContext } from '../hook/useAuth';
 import Spinner from './Spinner';
+import TeamsSkeleton from '../Skeletons/Team.skeleton';
 
 export const GET_TEAMS_CARDS = gql`
   query GetAllTeams($orgToken: String!) {
@@ -32,7 +33,7 @@ export const GET_TEAMS_CARDS = gql`
           lastName
           firstName
         }
-         status{
+        status {
           status
         }
       }
@@ -147,12 +148,12 @@ function ManagerCard() {
           rating = 'text-red-700';
         }
 
-         const activeMembers = team.members.filter(
-        (member: any) => member.status?.status === 'active'
-      ).length;
-      const droppedMembers = team.members.filter(
-        (member: any) => member.status?.status === 'drop'
-      ).length;
+        const activeMembers = team.members.filter(
+          (member: any) => member.status?.status === 'active',
+        ).length;
+        const droppedMembers = team.members.filter(
+          (member: any) => member.status?.status === 'drop',
+        ).length;
 
         return {
           stylebg,
@@ -180,11 +181,13 @@ function ManagerCard() {
   return (
     <div className="px-4 md:px-0 pb-20 w-full dark:bg-dark-frame-bg dark:text-black h-full flex overflow-x-auto ">
       {loading ? (
-        <div className="flex items-center justify-center w-full h-full">
-          <div className="spinner" data-testid="spinner" />
+        <div className="flex md:flex-wrap " data-testid="spinner">
+          <TeamsSkeleton />
+          <TeamsSkeleton />
+          <TeamsSkeleton />
         </div>
       ) : (
-        <div className="pl-10 flex">
+        <div className=" flex">
           {teamData &&
             teamData.map((teamProps: any, index: number) => (
               <Link key={index} to={`/team/${teamProps.teamname}`}>

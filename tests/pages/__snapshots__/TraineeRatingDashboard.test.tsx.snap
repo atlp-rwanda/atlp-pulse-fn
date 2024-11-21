@@ -119,7 +119,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                   className="mt-10 "
                 >
                   <div
-                    className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-[100%] overflow-scroll \\"lg:ml-60 mx-auto\\"} mb-10 undefined"
+                    className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 md:py-4 lg:py-5 rounded-md w-[100%] overflow-auto custom-scrollbar \\"lg:ml-60 mx-auto\\"} lg:mb-10 undefined"
                   >
                     <div
                       className="flex flex-col md:flex-row items-center justify-between pb-6 space-y-4 md:space-y-0"
@@ -130,17 +130,10 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                         >
                           Performance Ratings
                         </h2>
-                        <input
-                          aria-label="Filter table data"
-                          className="px-4 py-2 mt-4 font-sans text-xs md:text-sm border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-full sm:w-52 md:w-96"
-                          onChange={[Function]}
-                          placeholder="Filter"
-                          value=""
-                        />
                       </div>
                     </div>
                     <div
-                      className="overflow-x-auto"
+                      className="overflow-x-auto custom-scrollbar"
                     >
                       <table
                         className="min-w-full leading-normal text-xs md:text-sm"
@@ -151,7 +144,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                             role="row"
                           >
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -165,7 +158,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Email
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -179,7 +172,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Phase
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -193,7 +186,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Sprint
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -207,7 +200,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Quantity
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -221,7 +214,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Quality
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -235,7 +228,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Professional skills
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -249,7 +242,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Average
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
@@ -263,7 +256,7 @@ exports[`TraineeRatingDashboard Tests Renders TraineeRatingDashboard 1`] = `
                               Actions
                             </th>
                             <th
-                              className="thead "
+                              className="thead w-1/9 text-center  "
                               colSpan={1}
                               onClick={[Function]}
                               role="columnheader"
