@@ -27,6 +27,8 @@ import ControlledSelect from '../../components/ControlledSelect';
 import GitHubActivityChart from '../../components/chartGitHub';
 import { toast } from 'react-toastify';
 import TtlSkeleton from '../../Skeletons/ttl.skeleton';
+import { handleError } from '../../components/ErrorHandle';
+import { h } from '@fullcalendar/core/preact';
 /* istanbul ignore next */
 export default function TtlsPage() {
   const { t } = useTranslation();
@@ -161,7 +163,7 @@ export default function TtlsPage() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 300);
     },
   });
@@ -178,7 +180,7 @@ export default function TtlsPage() {
         setCohorts(data.getCohorts);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
   }, [data]);
@@ -312,7 +314,7 @@ export default function TtlsPage() {
         setTeams(data.getAllTeamInCohort);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
   }
@@ -684,7 +686,7 @@ export default function TtlsPage() {
                           removeTraineeMod();
                         })
                         .catch((error) => {
-                          toast.error(error.message || 'An error occurred'); // Use error.message for better error handling
+                          toast.error(handleError(error)); // Use error.message for better error handling
                         })
                         .finally(() => {
                           setButtonLoading(false); // Set loading to false in finally block to ensure it's set regardless of success or error
@@ -758,7 +760,7 @@ export default function TtlsPage() {
                           undropTTLMod();
                         })
                         .catch((error) => {
-                          toast.error(error.message || 'An error occurred'); // Use error.message for better error handling
+                          toast.error(handleError(error)); // Use error.message for better error handling
                         })
                         .finally(() => {
                           setButtonLoading(false); // Set loading to false in finally block to ensure it's set regardless of success or error

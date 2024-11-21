@@ -25,7 +25,7 @@ const checkOrgTokenExpiration = (): boolean | undefined => {
     localStorage.removeItem('orgName');
     toast.error(
       t(
-        'Your Org token has expired, try to login again',
+        'Please sign in to continue',
       ) as ToastContent<unknown>,
     );
 

@@ -18,6 +18,8 @@ import { GET_PROFILE } from '../queries/user.queries';
 import { UserContext } from '../hook/useAuth';
 import { NotificationSubscription } from '../Mutations/notificationMutation';
 import { getAllNotification } from '../queries/notification.queries';
+import { h } from '@fullcalendar/core/preact';
+import { handleError } from './ErrorHandle';
 
 export const TICKETS_NOTS_SUB = gql`
   subscription OnTicket {
@@ -89,7 +91,7 @@ function DashHeader() {
         setProfileData(data);
       } catch (error: any) {
         /* istanbul ignore next */
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       }
     };
     /* istanbul ignore next */

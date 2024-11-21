@@ -8,6 +8,7 @@ import ControlledSelect from '../../components/ControlledSelect';
 import { PartialUser } from './Cohorts';
 import { Program } from './Programs';
 import { AddProgram } from '../../Mutations/programMutations';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function CreateProgramModal({
   data,
@@ -35,7 +36,7 @@ export default function CreateProgramModal({
   const [addProgramMutation, { loading }] = useMutation(AddProgram, {
     /* istanbul ignore next */
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     /* istanbul ignore next */
     onCompleted() {

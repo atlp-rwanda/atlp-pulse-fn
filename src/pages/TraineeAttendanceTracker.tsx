@@ -22,6 +22,7 @@ import Modal from '../components/ModalAttendance';
 import EditAttendanceButton from '../components/EditAttendenceButton';
 import { UserContext } from '../hook/useAuth';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import { handleError } from '../components/ErrorHandle';
 
 /* istanbul ignore next */
 export interface UserInterface {
@@ -179,9 +180,7 @@ function TraineeAttendanceTracker() {
         setResetDayAndWeek(false);
       },
       onError: (error) => {
-        const errorMessage =
-          error.graphQLErrors?.[0]?.message || 'An unexpected error occurred';
-        toast.error(errorMessage);
+        toast.error(handleError(error));
       },
     },
   );
@@ -210,9 +209,7 @@ function TraineeAttendanceTracker() {
       },
       onError: (error) => {
         setPauseResumeAttendance(false);
-        const errorMessage =
-          error.graphQLErrors?.[0]?.message || 'An unexpected error occurred';
-        toast.error(errorMessage);
+        toast.error(handleError(error));
       },
     });
   useEffect(() => {
@@ -248,10 +245,7 @@ function TraineeAttendanceTracker() {
               setSelectedTeamId(data.getAllTeams[0].id);
             },
             onError: (error) => {
-              const errorMessage =
-                error.graphQLErrors?.[0]?.message ||
-                'An unexpected error occurred';
-              toast.error(errorMessage);
+            toast.error(handleError(error));
             },
           });
         }
@@ -276,10 +270,7 @@ function TraineeAttendanceTracker() {
               setSelectedTeamId(data.getTTLTeams[0].id);
             },
             onError: (error) => {
-              const errorMessage =
-                error.graphQLErrors?.[0]?.message ||
-                'An unexpected error occurred';
-              toast.error(errorMessage);
+             toast.error(handleError(error));
             },
           });
         }
@@ -325,7 +316,7 @@ function TraineeAttendanceTracker() {
           setAttendanceData(data.getTeamAttendance);
         },
         onError: (error) => {
-          toast.error(error.message);
+          toast.error(handleError(error));
         },
       });
   }, [selectedTeamId]);

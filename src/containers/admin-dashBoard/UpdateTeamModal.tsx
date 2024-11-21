@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Team, Cohort } from './Teams';
 import ControlledSelect from '../../components/ControlledSelect';
+import { handleError } from '../../components/ErrorHandle';
 
 export const UpdateTeam = gql`
   mutation UpdateTeam(
@@ -62,7 +63,7 @@ export default function UpdateTeamModal({
   } = useForm();
   const [updateTeamMutation, { loading }] = useMutation(UpdateTeam, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       toast.success(t('Team updated successfully') as TFunction);

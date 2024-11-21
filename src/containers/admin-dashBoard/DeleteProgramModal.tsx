@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Program } from './Programs';
 import { DeleteProgram } from '../../Mutations/programMutations';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function DeleteProgramModal({
   deleteProgramModal,
@@ -21,7 +22,7 @@ export default function DeleteProgramModal({
   const [deleteProgramMutation, { loading }] = useMutation(DeleteProgram, {
     onError(error) {
       /* istanbul ignore next */
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       /* istanbul ignore next */

@@ -17,6 +17,7 @@ import { AddOrganization } from '../Mutations/OrganisationMutations';
 import { GET_ORGANIZATIONS } from '../queries/organization.queries';
 import jwtDecode from 'jwt-decode';
 import { useSearchParams,useNavigate } from 'react-router-dom';
+import { handleError } from './ErrorHandle';
 
 export interface Admin {
   id: string;
@@ -151,7 +152,7 @@ const  ApproveNewOrganization= async (token:string)=>{
         toast.error(`${name} organization approval failed.`);
       }
   } catch (error:any) {
-    toast.error(`An error occurred, Try again`);
+    toast.error(handleError(error));
   }
 }
 
@@ -216,7 +217,7 @@ useEffect(() => {
 
   const [addOrganizationMutation, { loading }] = useMutation(AddOrganization, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       toast.success('Email Sent Successfully');
@@ -227,7 +228,7 @@ useEffect(() => {
   const [RegisterOrganizationMutation] = useMutation(RegisterNewOrganization, {
     onError(error) {
       setIsLoad(false);
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       setIsLoad(false);
@@ -238,11 +239,11 @@ useEffect(() => {
 
   const [deleteOrganizationMutation] = useMutation(DeleteOrganization, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       setIsLoad(false);
-      toast.success('Organisation Deleted.');
+      toast.success('Organization Deleted Successfully');
       getRefetch();
     },
   });
@@ -265,7 +266,7 @@ useEffect(() => {
         return { success: false};
       }
     } catch (error:any) {
-      toast.error(`An error occurred, Try again`);
+      toast.error(handleError(error));
     }
   }
 

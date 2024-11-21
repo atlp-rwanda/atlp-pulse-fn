@@ -179,7 +179,7 @@ function TicketsPage() {
     (action: string) => (error: any) => {
       const errorMessage =
         error.message || `An error occurred while ${action}.`;
-      toast.error(`Error ${action}: ${errorMessage}`);
+      toast.error("Something went wrong!");
       if (errorMessage.includes('no longer exist')) {
         logout();
       }

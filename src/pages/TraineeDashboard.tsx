@@ -47,6 +47,7 @@ import DataTable from '../components/DataTable';
 import SimpleLineChart from '../components/MuiDashboard';
 import { GET_PROFILE } from '../queries/user.queries';
 import { ThemeContext } from '../hook/ThemeProvider';
+import { handleError } from '../components/ErrorHandle';
 
 function traineeDashboard() {
   const [selectedTimeFrame, setSelectedTimeFrame] = useState('All');

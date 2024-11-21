@@ -8,6 +8,7 @@ import { COUNTRIES } from '../constants/countries';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import { GET_PROFILE } from '../queries/user.queries';
 import Square from '../Skeletons/Square';
+import { handleError } from '../components/ErrorHandle';
 
 export function CountryComponent({ country }: any) {
   /* istanbul ignore next */
@@ -42,7 +43,7 @@ export default function Profile() {
         setName(data.getProfile?.name);
         setProfileImage(data.getProfile?.avatar);
       } catch (error: any) {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       }
     };
     fetchData();

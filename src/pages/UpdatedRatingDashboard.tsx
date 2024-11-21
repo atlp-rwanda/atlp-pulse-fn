@@ -10,6 +10,7 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
 import { REJECT_RATING, APPROVE_RATING } from '../Mutations/Ratings';
 import TtlSkeleton from '../Skeletons/ttl.skeleton';
+import { handleError } from '../components/ErrorHandle';
 
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -197,7 +198,7 @@ function UpdatedRatingDashboard() {
     },
     onError: (err) => {
       /* istanbul ignore next */
-      toast.error(err.message || 'something went wrong');
+       toast.error(handleError(err));
       /* istanbul ignore next */
       removeApproveModel();
     },
@@ -218,10 +219,7 @@ function UpdatedRatingDashboard() {
     },
     /* istanbul ignore next */
     onError: (err) => {
-      /* istanbul ignore next */
-      toast.error(
-        err.message || 'something went wrong',
-      ); /* istanbul ignore next */
+      toast.error(handleError(err));
       removeRejectModel();
     },
     /* istanbul ignore next */
@@ -244,7 +242,7 @@ function UpdatedRatingDashboard() {
       },
       onError: (error) => {
         setRatings([])
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       },
     });
   }, [toggle]);

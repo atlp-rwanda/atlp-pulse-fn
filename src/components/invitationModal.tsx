@@ -13,6 +13,7 @@ import {
 } from '../Mutations/invitationMutation';
 import ButtonLoading from './ButtonLoading';
 import validateEmail from '../utils/emailValidation';
+import { handleError } from './ErrorHandle';
 
 const roles: ('trainee' | 'admin' | 'ttl' | 'coordinator')[] = [
   'trainee',
@@ -72,8 +73,8 @@ function InviteForm({ onClose }: InviteFormProps) {
       }
     } catch (err) {
       if (err instanceof ApolloError) {
-        const errorMessage = err.message;
-        toast.error(`${errorMessage}`);
+        // const errorMessage = err.message;
+        toast.error(handleError(err));
       } else {
         toast.error('An error occurred during file upload.');
       }
@@ -127,7 +128,7 @@ function InviteForm({ onClose }: InviteFormProps) {
       setOrgToken('');
       onClose();
     } catch (e: any) {
-      toast.error(`Error sending invitation: ${e.message}`);
+      toast.error("Sending invitation failed");
     }
   };
 

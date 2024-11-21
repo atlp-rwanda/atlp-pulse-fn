@@ -5,6 +5,7 @@ import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from './Buttons';
 import { AddOrganization } from '../Mutations/OrganisationMutations';
+import { handleError } from './ErrorHandle';
 
 export default function CreateOrganizationModal({
   createOrganizationModel,
@@ -24,7 +25,7 @@ export default function CreateOrganizationModal({
   } = useForm();
   const [addOrganizationMutation, { loading }] = useMutation(AddOrganization, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       toast.success(t('Organization added successfully') as TFunction);

@@ -96,7 +96,7 @@ function DashHeader({minimize}: any) {
         const { data } = await getProfile();
         setProfileData(data);
       } catch (error: any) {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error('Something went wrong');
       }
     };
     /* istanbul ignore next */

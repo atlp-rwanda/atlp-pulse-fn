@@ -6,6 +6,7 @@ import Button from '../components/Buttons';
 import ButtonLoading from '../components/ButtonLoading';
 import CREATE_TICKET from '../Mutations/help.mutation';
 import useDocumentTitle from '../hook/useDocumentTitle';
+import { handleError } from '../components/ErrorHandle';
 
 function Help() {
   const { t } = useTranslation();
@@ -34,7 +35,7 @@ function Help() {
       },
       onError(error) {
         /* istanbul ignore next */
-        toast.error(t(`${error.message}`) as ToastContent<unknown>);
+        toast.error(t(`${handleError(error)}`) as ToastContent<unknown>);
       },
     });
   };

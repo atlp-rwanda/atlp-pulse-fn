@@ -29,6 +29,7 @@ import {
 import { isValid } from 'date-fns';
 import InvitationTable from '../components/InvitationTable'
 import usePagination from '../hook/UsePagination'
+import { handleError } from '../components/ErrorHandle';
 
 interface Invitee {
   email: string;
@@ -281,12 +282,12 @@ useEffect(() => {
       setLoading(false);
     }
 
-    if (queryError) {
-      setError(queryError.message);
+    if (error) {
+      setError(handleError(error));
     } else if (searchError) {
-      setError(searchError.message);
+      setError(handleError(error));
     } else if (filterError) {
-      setError(filterError.message);
+      setError(handleError(error));
     }
   }, [
     queryLoading,
@@ -638,7 +639,7 @@ if (currentInvitations && currentInvitations.length > 0) {
       ,onError:(error)=>{
         setTimeout(() => {
           setButtonLoading(false);
-          toast.error(error.message);
+          toast.error(handleError(error));
         }, 500);
       }
 
@@ -713,7 +714,7 @@ if (currentInvitations && currentInvitations.length > 0) {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 500);
     },
   });

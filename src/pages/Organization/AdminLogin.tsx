@@ -120,7 +120,7 @@ function AdminLogin() {
           console.log(err.message);
 
           if (err.networkError)
-            toast.error('There was a problem contacting the server');
+            toast.error('Please check your internet connection');
           else if (err.message.toLowerCase() !== 'invalid credential') {
             const translateError = t(
               'Please wait to be added to a program or cohort',

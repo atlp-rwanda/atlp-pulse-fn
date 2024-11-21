@@ -185,7 +185,7 @@ describe('Calendar Tests', () => {
     await waitFor(async()=>{
       fireEvent.click(handleAddEventModal);
       fireEvent.submit(addEventForm)
-      expect(toast.error).toHaveBeenCalledWith('An error occured')
+      expect(toast.error).toHaveBeenCalledWith("Please check your internet connection and try again")
     })
   });
 

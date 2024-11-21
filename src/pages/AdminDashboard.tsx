@@ -9,6 +9,7 @@ import Comingsoon from './Comingsoon';
 import Button from '../components/Buttons';
 import { UserContext } from '../hook/useAuth';
 import { INVITE_USER_MUTATION } from '../Mutations/manageStudentMutations';
+import { handleError } from '../components/ErrorHandle';
 
 function SupAdDashboard() {
   const { user } = useContext(UserContext);
@@ -42,7 +43,7 @@ function SupAdDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 1000);
     },
   });

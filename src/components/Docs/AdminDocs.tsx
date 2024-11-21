@@ -18,6 +18,7 @@ import {
   UPDATE_DOCUMENTATION,
 } from '../../Mutations/manageStudentMutations';
 import { GET_DOCUMENTATION } from '../../queries/manageStudent.queries';
+import { handleError } from '../ErrorHandle';
 
 function AdminDocs() {
   useDocumentTitle('Documentation');
@@ -68,7 +69,7 @@ function AdminDocs() {
       });
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(handleError(error));
     },
   });
 
@@ -87,7 +88,7 @@ function AdminDocs() {
       });
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(handleError(error));
     },
   });
 
@@ -104,7 +105,7 @@ function AdminDocs() {
       setIsUpdate(false);
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(handleError(error));
     },
   });
 
@@ -127,7 +128,7 @@ function AdminDocs() {
       getDocumentations();
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(handleError(error));
     },
   });
 
@@ -138,7 +139,7 @@ function AdminDocs() {
       getDocumentations();
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(handleError(error));
     },
   });
 

@@ -46,6 +46,8 @@ import GitHubActivityChart from './chartGitHub';
 import BookOpenIcon from '@heroicons/react/outline/BookOpenIcon';
 import { FiEdit3 } from 'react-icons/fi';
 import { VscOrganization } from 'react-icons/vsc';
+import { handleError } from './ErrorHandle';
+import { h } from '@fullcalendar/core/preact';
 
 const organizationToken = localStorage.getItem('orgToken');
 const token = localStorage.getItem('orgToken');
@@ -233,7 +235,7 @@ export default function ProfileTabs({ data: profileData }: any) {
         setTraineeData(data.getAllUsers);
       },
       onError: (error) => {
-        // toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
     getGitHubStatistics({
@@ -315,7 +317,7 @@ export default function ProfileTabs({ data: profileData }: any) {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
         setRepoModel(false);
       }, 1000);
     },

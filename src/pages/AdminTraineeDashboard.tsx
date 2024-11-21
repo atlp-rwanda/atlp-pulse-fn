@@ -42,6 +42,7 @@ import Dropdown from 'react-dropdown-select';
 import ViewWeeklyRatings from '../components/ratings/ViewWeeklyRatings';
 import { FaTimes } from 'react-icons/fa';
 import TtlSkeleton from '../Skeletons/ttl.skeleton';
+import { handleError } from '../components/ErrorHandle';
 const organizationToken = localStorage.getItem('orgToken');
 
 function AdminTraineeDashboard() {
@@ -468,7 +469,7 @@ function AdminTraineeDashboard() {
     },
     fetchPolicy: 'network-only',
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(handleError(error));
     },
   });
 
@@ -498,7 +499,7 @@ function AdminTraineeDashboard() {
         setTeams(data.getAllTeamInCohort);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
   }
@@ -537,7 +538,7 @@ function AdminTraineeDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+         toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -561,7 +562,7 @@ function AdminTraineeDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+       toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -589,7 +590,7 @@ function AdminTraineeDashboard() {
       setTimeout(() => {
         setButtonLoading(false);
         console.error('Mutation error:', err); // Log the error
-        toast.error(err.message);
+         toast.error(handleError(err));
       }, 500);
     },
   });
@@ -616,7 +617,7 @@ function AdminTraineeDashboard() {
       setTimeout(() => {
         setButtonLoading(false);
         console.error('Mutation error:', err); // Log the error
-        toast.error(err.message);
+         toast.error(handleError(err));
       }, 500);
     },
   });
@@ -638,7 +639,7 @@ function AdminTraineeDashboard() {
       onError: (err) => {
         setTimeout(() => {
           setButtonLoading(false);
-          toast.error(err.message);
+           toast.error(handleError(err));
         }, 500);
       },
     },
@@ -665,7 +666,7 @@ function AdminTraineeDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -676,7 +677,7 @@ function AdminTraineeDashboard() {
         setAllUserEmail(data.getUsers);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
     getCohortsQuery({
@@ -685,7 +686,7 @@ function AdminTraineeDashboard() {
         setCohorts(data.getCohorts);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
   }, [registerTraineeModel, removeTraineeModel, toggle]);
@@ -1519,7 +1520,7 @@ function AdminTraineeDashboard() {
                       !Object.values(selectedOption)[1] ||
                       !Object.values(selectedTeamOption)[1]
                     ) {
-                      toast.error(t('Enter all the required information'));
+                      toast.error(t('Select all the required information'));
                     }
                   }}
                   loading={buttonLoading}

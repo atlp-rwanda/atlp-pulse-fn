@@ -16,6 +16,7 @@ import { gql, useQuery } from '@apollo/client';
 import * as FileSaver from 'file-saver';
 import XLSX from 'sheetjs-style';
 import { GET_RATINGS_DATA } from '../components/TraineePerformance';
+import { handleError } from '../components/ErrorHandle';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -164,7 +165,7 @@ const TraineeRatingDashboard = () => {
         setRatings(data?.fetchAllRatings);
       },
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       },
     });
   }, [toggle]);
