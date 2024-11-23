@@ -60,9 +60,28 @@ const TtlTraineeDashboard = () => {
   const [hasData, setHasData] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
+  const [traineesWithAttendance, setTraineesWithAttendance] = useState<any[]>(
+    [],
+  );
 
-  const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>()
-  const [bulkRateModal, setBulkRateModal] = useState<boolean>(false)
+  const traineeAttendancOrTickets = (
+    email: string,
+    type: 'attendance' | 'tickets',
+  ) => {
+    if (traineesWithAttendance) {
+      for (let i = 0; i < traineesWithAttendance.length; i++) {
+        if (traineesWithAttendance[i].traineeInfo.email === email) {
+          return type === 'attendance'
+            ? traineesWithAttendance[i].attendance
+            : traineesWithAttendance[i].numOfTickets;
+        }
+      }
+    }
+    return 0;
+  };
+
+  const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>();
+  const [bulkRateModal, setBulkRateModal] = useState<boolean>(false);
 
   const handleClickOpen2 = async () => {
     setIsLoaded(true);
@@ -116,6 +135,30 @@ const TtlTraineeDashboard = () => {
 
     { Header: t('Team'), accessor: 'team' },
     {
+      Header: t('Attendance'),
+      accessor: '',
+      Cell: ({ row }: any) =>
+        hasData && (
+          <div className="flex ml-[2.5rem] items-center">
+            <div>
+              {traineeAttendancOrTickets(row.original?.email, 'attendance')}
+            </div>
+          </div>
+        ),
+    },
+    {
+      Header: t('Tickets'),
+      accessor: '',
+      Cell: ({ row }: any) =>
+        hasData && (
+          <div className="flex ml-[1.5rem] items-center">
+            <div>
+              {traineeAttendancOrTickets(row.original?.email, 'tickets')}
+            </div>
+          </div>
+        ),
+    },
+    {
       Header: t('Status'),
       accessor: 'status',
 
@@ -128,36 +171,38 @@ const TtlTraineeDashboard = () => {
             }
           >
             <button
-            className={`${row.original?.Status?.status === 'drop'
-              ? 'bg-gray-500'
-              : 'bg-black'
-            } text-white rounded-xl px-3`}
-          onClick={() => {
-              setSelectedTraineeId(row.original?.email);
-              handleClickOpen2();
-          }}
-        >
-          {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
+              className={`${
+                row.original?.Status?.status === 'drop'
+                  ? 'bg-gray-500'
+                  : 'bg-black'
+              } text-white rounded-xl px-3`}
+              onClick={() => {
+                setSelectedTraineeId(row.original?.email);
+                handleClickOpen2();
+              }}
+            >
+              {row.original?.Status?.status === 'drop' ? 'Dropped' : 'View'}
             </button>
           </div>
         );
       },
     },
-
     {
       Header: t('action'),
       accessor: '',
       Cell: ({ row }: any) =>
         hasData && ( // Only render the button if there is data
-          <button
-            onClick={() => {
-              handleClickOpen(row.original?.email);
-            }}
-            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600"
-            aria-label="View Details"
-          >
-            <FaEye className="text-2xl text-[#9e85f5]" />
-          </button>
+          <div className="flex ml-5 items-center">
+            <button
+              onClick={() => {
+                handleClickOpen(row.original?.email);
+              }}
+              className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-600"
+              aria-label="View Details"
+            >
+              <FaEye className="text-2xl text-[#9e85f5]" />
+            </button>
+          </div>
         ),
     },
   ];
@@ -191,14 +236,19 @@ const TtlTraineeDashboard = () => {
     getTTLTrainees({
       fetchPolicy: 'network-only',
       onCompleted: (data) => {
+        console.log(data);
+        const traineeDatas = data.getTTLTrainees.map(
+          (traineeData: any) => traineeData.traineeInfo,
+        );
+        setTraineesWithAttendance(data.getTTLTrainees);
         setTraineeLoading(false);
-        setTraineeData(data.getTTLTrainees);
-        setHasData(data.getTTLTrainees.length > 0);
+        setTraineeData(traineeDatas);
+        setHasData(traineeDatas.length > 0);
         setFetchError(false); // Reset the fetch error state on success
       },
       onError: (error) => {
         setTraineeLoading(false);
-        setFetchError(true); 
+        setFetchError(true);
         toast.error(handleError(error));
       },
     });
@@ -216,20 +266,21 @@ const TtlTraineeDashboard = () => {
           className="rounded-lg relative"
           fullWidth
         >
-         {traineeData.map(data => {
+          {traineeData.map((data) => {
             if (data.email === selectedTraineeId) {
-              return <ViewWeeklyRatings
-            traineeName={data?.profile?.name || 'Unknown Name'}
-            traineeEmail={data?.email || 'Unknown Email'}
-            traineeId={data?.profile?.user?.id || 'Unknown ID'}
-            traineeCohort={data?.team?.cohort?.id || 'Unknown Cohort'}
-            traineeStatus={
-              data?.profile?.user?.status || 'Status Unavailable'
+              return (
+                <ViewWeeklyRatings
+                  traineeName={data?.profile?.name || 'Unknown Name'}
+                  traineeEmail={data?.email || 'Unknown Email'}
+                  traineeId={data?.profile?.user?.id || 'Unknown ID'}
+                  traineeCohort={data?.team?.cohort?.id || 'Unknown Cohort'}
+                  traineeStatus={
+                    data?.profile?.user?.status || 'Status Unavailable'
+                  }
+                />
+              );
             }
-          />
-            }
-          }
-            )}
+          })}
 
           <FaTimes
             size={24}
@@ -421,17 +472,17 @@ const TtlTraineeDashboard = () => {
             <div>
               <div className="min-h-screen overflow-x-hidden overflow-y-auto bg-light-bg dark:bg-dark-frame-bg">
                 <div className="">
-                <div className="my-5">
-                  <Button
+                  <div className="my-5">
+                    <Button
                       variant="primary"
                       size="lg"
                       data-testid="registerModel"
                       style="m-0"
-                      onClick={()=>setBulkRateModal(true)}
+                      onClick={() => setBulkRateModal(true)}
                     >
                       {t('Bulk Rate')}
-                  </Button>
-                </div>
+                    </Button>
+                  </div>
                   {fetchError || traineeData?.length === 0 ? ( // Check both fetchError and traineeData length
                     <DataTable
                       data={[]} // Pass an empty array as data
@@ -449,12 +500,11 @@ const TtlTraineeDashboard = () => {
                   )}
                 </div>
               </div>
-              {
-                bulkRateModal? 
-                <BulkRatingModal
-                setBulkRateModal={setBulkRateModal}
-                /> : ''
-              }
+              {bulkRateModal ? (
+                <BulkRatingModal setBulkRateModal={setBulkRateModal} />
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </div>

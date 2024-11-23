@@ -57,7 +57,7 @@ export const GET_ALL_TTL_USERS = gql`
       }
       email
       role
-      status{
+      status {
         status
       }
       team {
@@ -73,61 +73,65 @@ export const GET_ALL_TTL_USERS = gql`
 export const GET_TTL_TRAINEES = gql`
   query GetTTLTrainees($orgToken: String) {
     getTTLTrainees(orgToken: $orgToken) {
-      profile {
-        firstName
-        lastName
-        city
-        country
-        phoneNumber
-        biography
-        avatar
-        id
-        user {
+      traineeInfo {
+        profile {
+          firstName
+          lastName
+          city
+          country
+          phoneNumber
+          biography
+          avatar
           id
-          status {
-            status
-            date
-            reason
-          }
-        }
-        name
-        githubUsername
-        resume
-      }
-      email
-      role
-      team {
-        name
-        cohort {
-          id
-          startDate
-          program {
-            name
-            manager {
-              profile {
-                name
-              }
-              email
+          user {
+            id
+            status {
+              status
+              date
+              reason
             }
           }
           name
-          phase {
+          githubUsername
+          resume
+        }
+        email
+        role
+        team {
+          name
+          cohort {
+            id
+            startDate
+            program {
+              name
+              manager {
+                profile {
+                  name
+                }
+                email
+              }
+            }
             name
+            phase {
+              name
+            }
+          }
+        }
+        ratings {
+          average
+        }
+        cohort {
+          name
+        }
+        program {
+          name
+          manager {
+            email
           }
         }
       }
-      ratings {
-        average
-      }
-      cohort {
-        name
-      }
-      program {
-        name
-        manager {
-          email
-        }
-      }
+      attendance
+      numOfTickets
     }
   }
 `;
