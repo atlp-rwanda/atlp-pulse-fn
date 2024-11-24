@@ -15,7 +15,7 @@ import Button from '../components/Buttons';
 import { UserContext } from '../hook/useAuth';
 import { INVITE_USER_MUTATION } from '../Mutations/manageStudentMutations';
 import DashboardTableDesign from '../components/AdminDashboardTable';
-import { UserChart } from '../Chart/LineChart';
+import UserGrowth from '../Chart/LineChart';
 
 function AdminDashboard() {
   const { user } = useContext(UserContext);
@@ -130,11 +130,11 @@ function AdminDashboard() {
       <div className="w-full ">
         <DashboardCards />
       </div>
+      <div className="w-full">
+        <UserGrowth />
+      </div>
       <div className="flex flex-col grow bg-light-bg dark:bg-dark-frame-bg">
-        <div className="m-auto w-10/12 bg-tertiary p-10 dark:bg-dark-bg">
-          <UserChart />
-        </div>
-        <div className="w-[80%] h-[100%] pl-[90px] pb-8 flex flex-row ">
+        <div className="w-[80%] h-[100%] pl-[90px] pt-3 pb-8 flex flex-row ">
           <div className="flex flex-col justify-center">
             <span className="mr-[80px] rotate-90 ">Teams</span>
           </div>

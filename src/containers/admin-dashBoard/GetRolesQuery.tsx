@@ -13,6 +13,8 @@ const GET_ROLE_QUERY = gql`
       status {
         status
       }
+      createdAt
+      updatedAt
     }
   }
 `;

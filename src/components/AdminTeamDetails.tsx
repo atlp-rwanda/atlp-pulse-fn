@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa6';
 import TeamChart from '../Chart/TeamChart';
@@ -64,11 +65,10 @@ function TeamDetailsModal({
   );
 
   const average =
-    (parseInt(CurrentTeam[0]?.avgRatings?.quality, 2) +
-      parseInt(CurrentTeam[0]?.avgRatings?.quantity, 2) +
-      parseInt(CurrentTeam[0]?.avgRatings?.professional_Skills, 2)) /
+    (parseFloat(CurrentTeam[0]?.avgRatings?.quality) +
+      parseFloat(CurrentTeam[0]?.avgRatings?.quantity) +
+      parseFloat(CurrentTeam[0]?.avgRatings?.professional_Skills)) /
     3;
-
   const activeMembers = CurrentTeam[0]?.members.filter(
     (item: any) => item.status.status !== 'suspended',
   );
@@ -227,7 +227,7 @@ function TeamDetailsModal({
                   onMouseLeave={handleAttendanceSummaryLeave}
                 >
                   <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    Attendance Summary
+                    Ratings Summary
                     <FaAngleDown
                       className={`ml-2 inline-block transition-transform ${
                         showAttendanceSummary ? 'rotate-180' : ''
@@ -237,14 +237,22 @@ function TeamDetailsModal({
                   {showAttendanceSummary && (
                     <div className="absolute z-10 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-[200px] border border-gray-200 dark:border-gray-700">
                       <p className="text-gray-800 dark:text-gray-200">
-                        Quality: {CurrentTeam[0]?.avgRatings?.quality || 0}
+                        Quality:{' '}
+                        {isNaN(CurrentTeam[0]?.avgRatings?.quality)
+                          ? 0
+                          : CurrentTeam[0]?.avgRatings?.quality}
                       </p>
                       <p className="text-gray-800 dark:text-gray-200">
-                        Quantity: {CurrentTeam[0]?.avgRatings?.quality || 0}
+                        Quantity:{' '}
+                        {isNaN(CurrentTeam[0]?.avgRatings?.quantity)
+                          ? 0
+                          : CurrentTeam[0]?.avgRatings?.quantity}
                       </p>
                       <p className="text-gray-800 dark:text-gray-200">
                         Professionalism:{' '}
-                        {CurrentTeam[0]?.avgRatings?.professional_Skills || 0}
+                        {isNaN(CurrentTeam[0]?.avgRatings?.professional_Skills)
+                          ? 0
+                          : CurrentTeam[0]?.avgRatings?.professional_Skills}
                       </p>
                     </div>
                   )}
@@ -252,11 +260,11 @@ function TeamDetailsModal({
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    Rating Summary
+                    Rating average
                   </label>
                   <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                     <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
-                      {average || '0'} / 5.0
+                      {isNaN(average) ? 0 : average.toFixed(2)} / 5.0
                     </p>
                   </div>
                 </div>
