@@ -75,7 +75,7 @@
     "graphql-ws": "^5.16.0",
     "i18next": "^21.10.0",
     "i18next-browser-languagedetector": "^7.2.1",
-    "i18next-http-backend": "^2.6.0",
+    "i18next-http-backend": "^2.6.2",
     "i18next-xhr-backend": "^3.2.2",
     "istanbul": "^0.4.5",
     "jsonwebtoken": "^9.0.1",
