@@ -27,7 +27,6 @@ function EditAttendanceButton({
   }, [week, phase, day]);
 
   const handleUpdateAttendance = (score: number) => {
-    
     setTraineeAttendanceData((prev) =>
       prev.map((attendanceData) => {
         if (attendanceData.week === week && attendanceData.phase.id === phase) {

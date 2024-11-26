@@ -152,7 +152,21 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
               <UserGroupIcon className="w-5" />
             </SideNavLink>
           </CheckRole>
-          
+
+          {/* FOR COORDINATORS AND A TTL */}
+          <CheckRole roles={['coordinator', 'ttl']}>
+            <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
+              <ClipboardCheckIcon className="w-5 " />
+            </SideNavLink>
+          </CheckRole>
+
+          {/* manger role */}
+          <CheckRole roles={['manager']}>
+            <SideNavLink onClick={toggle} name="Teams" to="/team-cards">
+              <UserGroupIcon className="w-5" />
+            </SideNavLink>
+          </CheckRole>
+
           {/* FOR COORDINATORS AND A TTL */}
           <CheckRole roles={['coordinator', 'ttl']}>
             <SideNavLink onClick={toggle} name="Attendance" to="/attendance">

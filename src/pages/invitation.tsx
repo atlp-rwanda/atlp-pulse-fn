@@ -18,7 +18,7 @@ import {
   CANCEL_INVITATION,
   DELETE_INVITATION,
   UPDATE_INVITATION,
-  RESEND_INVITATION
+  RESEND_INVITATION,
 } from '../Mutations/invitationMutation';
 import Button from '../components/Buttons';
 import {
@@ -27,8 +27,8 @@ import {
   GET_ROLES_AND_STATUSES,
 } from '../queries/invitation.queries';
 import { isValid } from 'date-fns';
-import InvitationTable from '../components/InvitationTable'
-import usePagination from '../hook/UsePagination'
+import InvitationTable from '../components/InvitationTable';
+import usePagination from '../hook/UsePagination';
 import { handleError } from '../components/ErrorHandle';
 
 interface Invitee {
@@ -44,7 +44,7 @@ interface Invitationn {
 
 function Invitation() {
   const [invitationStats, setInvitationStats] = useState<any>(null);
-  const [sortBy,setSortBy]=useState<number>(-1)
+  const [sortBy, setSortBy] = useState<number>(-1);
   const [invitations, setInvitations] = useState<Invitationn[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -59,7 +59,7 @@ function Invitation() {
     startDate: '',
     endDate: '',
   });
-  const [resendInvitationModel,setResendInvatationModel]= useState(false)
+  const [resendInvitationModel, setResendInvatationModel] = useState(false);
   const { t }: any = useTranslation();
   const removeInviteeMod = () => {
     const newState = !removeInviteeModel;
@@ -74,12 +74,12 @@ function Invitation() {
   const [selectedRow, setSelectedRow] = useState<string | null>(null);
   const [removeInviteeModel, setRemoveInviteeModel] = useState(false);
   const [deleteInvitation, setDeleteInvitation] = useState('');
-  const[invitationToResend,setInvitationToResend]=useState('')
+  const [invitationToResend, setInvitationToResend] = useState('');
   const [updateInviteeModel, setUpdateInviteeModel] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
-  const [selectedSort,setSelectedSort] = useState<string>('');
+  const [selectedSort, setSelectedSort] = useState<string>('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [selectedInvitationId, setSelectedInvitationId] = useState('');
@@ -88,11 +88,10 @@ function Invitation() {
     status: '',
   });
 
-
   const [isFiltering, setIsFiltering] = useState(false);
   const { limit, skip, pagination, onPaginationChange } = usePagination(3);
 
-  const[filterDisabled,setFilterDisabled]=useState<boolean>(true)
+  const [filterDisabled, setFilterDisabled] = useState<boolean>(true);
   const modalRef = useRef<any>(null);
   const organizationToken = localStorage.getItem('orgToken');
   const parseRange = (range: string) => {
@@ -133,14 +132,14 @@ function Invitation() {
     error: queryError,
     refetch,
   } = useQuery(GET_ALL_INVITATIONS, {
-    variables:{
+    variables: {
       orgToken: organizationToken,
-      sortBy:sortBy,
+      sortBy: sortBy,
       limit,
-      offset: skip
+      offset: skip,
     },
     fetchPolicy: 'network-only',
-    skip: isFiltering
+    skip: isFiltering,
   });
 
   const [
@@ -148,20 +147,25 @@ function Invitation() {
     { data: searchData, loading: searchLoading, error: searchError },
   ] = useLazyQuery(GET_INVITATIONS, {
     variables: {
-     query: searchQuery,
-     orgToken: organizationToken,
-     limit,
-     offset: skip,
-     sortBy:sortBy
+      query: searchQuery,
+      orgToken: organizationToken,
+      limit,
+      offset: skip,
+      sortBy: sortBy,
     },
     fetchPolicy: 'network-only',
   });
 
   const [
     filterInvitations,
-    { data: filterData, loading: filterLoad, error: filterError, refetch: refetchFiltered },
+    {
+      data: filterData,
+      loading: filterLoad,
+      error: filterError,
+      refetch: refetchFiltered,
+    },
   ] = useLazyQuery(GET_ROLES_AND_STATUSES, {
-    variables:{
+    variables: {
       ...filterVariables,
       limit,
       offset: skip,
@@ -169,37 +173,46 @@ function Invitation() {
     fetchPolicy: 'network-only',
   });
 
-  const isSearching = searchQuery && searchQuery.trim() !== "";
+  const isSearching = searchQuery && searchQuery.trim() !== '';
 
-// Refetch data on pagination change and filter clearing
-useEffect(() => {
-  if (isSearching) {
-    fetchInvitations({
-      variables: {
-        query: searchQuery,
+  // Refetch data on pagination change and filter clearing
+  useEffect(() => {
+    if (isSearching) {
+      fetchInvitations({
+        variables: {
+          query: searchQuery,
+          orgToken: organizationToken,
+          sortBy: sortBy,
+          limit,
+          offset: skip,
+        },
+      });
+    } else if (isFiltering) {
+      refetchFiltered({
+        ...filterVariables,
+        limit,
+        offset: skip,
+      });
+    } else {
+      refetch({
         orgToken: organizationToken,
         sortBy: sortBy,
         limit,
         offset: skip,
-      },
-    });
-  } else if (isFiltering) {
-    refetchFiltered({
-      ...filterVariables,
-      limit,
-      offset: skip,
-    });
-  } else {
-    refetch({
-      orgToken: organizationToken,
-      sortBy: sortBy,
-      limit,
-      offset: skip,
-    });
-  }
-}, [limit, skip, refetch, refetchFiltered, fetchInvitations, isFiltering, filterVariables, searchQuery, isSearching]);
+      });
+    }
+  }, [
+    limit,
+    skip,
+    refetch,
+    refetchFiltered,
+    fetchInvitations,
+    isFiltering,
+    filterVariables,
+    searchQuery,
+    isSearching,
+  ]);
 
- 
   useEffect(() => {
     if (invitationStats) {
       setSelectedStatus(''); // Set the fetched status as the default value
@@ -209,26 +222,33 @@ useEffect(() => {
   // Set email and role when modal opens
   useEffect(() => {
     let invitation;
-  
+
     if (isSearching && searchData?.getInvitations) {
       invitation = searchData.getInvitations.invitations.find(
-        (inv: { id: string; }) => inv.id === selectedInvitationId
+        (inv: { id: string }) => inv.id === selectedInvitationId,
       );
     } else if (isFiltering && filterData?.filterInvitations) {
       invitation = filterData.filterInvitations.invitations.find(
-        (inv: { id: string; }) => inv.id === selectedInvitationId
+        (inv: { id: string }) => inv.id === selectedInvitationId,
       );
     } else if (data && data.getAllInvitations) {
       invitation = data.getAllInvitations.invitations.find(
-        (inv: { id: string; }) => inv.id === selectedInvitationId
+        (inv: { id: string }) => inv.id === selectedInvitationId,
       );
     }
-  
+
     if (invitation && invitation.invitees.length > 0) {
       setEmail(invitation.invitees[0].email);
       setRole(invitation.invitees[0].role);
     }
-  }, [data, searchData, filterData, selectedInvitationId, isSearching, isFiltering]);
+  }, [
+    data,
+    searchData,
+    filterData,
+    selectedInvitationId,
+    isSearching,
+    isFiltering,
+  ]);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -323,7 +343,6 @@ useEffect(() => {
     return () => clearTimeout(delayDebounceFn);
   }, [searchQuery]);
 
-
   useEffect(() => {
     if (selectedRole || selectedStatus) {
       setFilterDisabled(false);
@@ -332,51 +351,50 @@ useEffect(() => {
     }
   }, [selectedRole, selectedStatus]);
 
-const handleRoleChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
-  const role=e.target.value
-  setSelectedRole(role);
-}
+  const handleRoleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const role = e.target.value;
+    setSelectedRole(role);
+  };
 
-const handleStatusChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
-  const status=e.target.value
-    setSelectedStatus(status)
-}
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const status = e.target.value;
+    setSelectedStatus(status);
+  };
 
-// Handle filter application
-const handleFilter = () => {
-  if (!selectedRole && !selectedStatus) {
-    toast.info('Please select role or status.');
-    return;
-  }
+  // Handle filter application
+  const handleFilter = () => {
+    if (!selectedRole && !selectedStatus) {
+      toast.info('Please select role or status.');
+      return;
+    }
 
-  onPaginationChange({ pageSize: pagination.pageSize, pageIndex: 0 });
+    onPaginationChange({ pageSize: pagination.pageSize, pageIndex: 0 });
 
-  setIsFiltering(true);
+    setIsFiltering(true);
 
-  setFilterVariables({
-    role: selectedRole,
-    status: typeof selectedStatus === 'string' ? selectedStatus : '',
-  });
+    setFilterVariables({
+      role: selectedRole,
+      status: typeof selectedStatus === 'string' ? selectedStatus : '',
+    });
 
-  filterInvitations({
-    variables: {
-      role: selectedRole || "",
-      status: selectedStatus || "",
-      orgToken: organizationToken,
-      limit,
-      offset: skip,
-    },
-  });
-};
+    filterInvitations({
+      variables: {
+        role: selectedRole || '',
+        status: selectedStatus || '',
+        orgToken: organizationToken,
+        limit,
+        offset: skip,
+      },
+    });
+  };
 
-
-useEffect(() => {
-  if (selectedRole || selectedStatus) {
-    setFilterDisabled(false);
-  } else {
-    setFilterDisabled(true);
-  }
-}, [selectedRole, selectedStatus]);
+  useEffect(() => {
+    if (selectedRole || selectedStatus) {
+      setFilterDisabled(false);
+    } else {
+      setFilterDisabled(true);
+    }
+  }, [selectedRole, selectedStatus]);
 
   const toggleOptions = (row: string) => {
     setSelectedRow(selectedRow === row ? null : row);
@@ -411,25 +429,58 @@ useEffect(() => {
   };
   const columns = [
     {
-      id: "email",
+      id: 'email',
       header: t('email'),
-      accessor: (row: { email: any; }) => row.email,
-      cell: (info: { getValue: () => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Iterable<ReactI18NextChild> | null | undefined; }) => <div>{info.getValue()}</div>,
+      accessor: (row: { email: any }) => row.email,
+      cell: (info: {
+        getValue: () =>
+          | string
+          | number
+          | boolean
+          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+          | Iterable<React.ReactNode>
+          | React.ReactPortal
+          | Iterable<ReactI18NextChild>
+          | null
+          | undefined;
+      }) => <div>{info.getValue()}</div>,
     },
     {
-      id: "role",
+      id: 'role',
       header: t('role'),
-      accessor: (row: { role: any; }) => row.role,
-      cell: (info: { getValue: () => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Iterable<ReactI18NextChild> | null | undefined; }) => <div>{info.getValue()}</div>,
+      accessor: (row: { role: any }) => row.role,
+      cell: (info: {
+        getValue: () =>
+          | string
+          | number
+          | boolean
+          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+          | Iterable<React.ReactNode>
+          | React.ReactPortal
+          | Iterable<ReactI18NextChild>
+          | null
+          | undefined;
+      }) => <div>{info.getValue()}</div>,
     },
     {
-      id: "Status",
+      id: 'Status',
       header: t('Status'),
-      accessor: (row: { Status: any; }) => row.Status,
-      cell: (info: { getValue: () => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Iterable<ReactI18NextChild> | null | undefined; }) => <div>{info.getValue()}</div>,
+      accessor: (row: { Status: any }) => row.Status,
+      cell: (info: {
+        getValue: () =>
+          | string
+          | number
+          | boolean
+          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+          | Iterable<React.ReactNode>
+          | React.ReactPortal
+          | Iterable<ReactI18NextChild>
+          | null
+          | undefined;
+      }) => <div>{info.getValue()}</div>,
     },
     {
-      id: "Action",
+      id: 'Action',
       header: t('Action'),
       cell: ({ row }: any) => (
         <div className="static">
@@ -442,38 +493,39 @@ useEffect(() => {
               onClick={() => toggleOptions(row.id)}
             />
             {selectedRow === row.id && (
-              <div 
-              ref={modalRef}
-              className= 'absolute z-50 w-64 p-4 mt-2 transform -translate-y-[80%] overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg'>
-              
-              <>
+              <div
+                ref={modalRef}
+                className="absolute z-50 w-64 p-4 mt-2 transform -translate-y-[80%] overflow-hidden border border-gray-300 rounded-lg shadow-md dropdown right-4 bg-light-bg max-h-30 dark:bg-dark-bg"
+              >
+                <>
                   <div className="mb-4"></div>
 
-                  { row.original.Status === 'Pending' &&<div className="mb-4">
-                    <div
-                      className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
-                      onClick={() => {
-                        updateInviteeMod();
-                        setSelectedInvitationId(row.original.id);
-                        toggleOptions(row.original.email);
-                      }}
-                    >
-                      <Icon
-                        icon="el:file-edit-alt"
-                        className="mr-2"
-                        width="38"
-                        height="38"
-                        cursor="pointer"
-                        color="#9e85f5"
-                      />
-                      <div>
-                        <span className="font-bold">Update</span>
-                        <br />
-                        Update invitation
+                  {row.original.Status === 'Pending' && (
+                    <div className="mb-4">
+                      <div
+                        className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                        onClick={() => {
+                          updateInviteeMod();
+                          setSelectedInvitationId(row.original.id);
+                          toggleOptions(row.original.email);
+                        }}
+                      >
+                        <Icon
+                          icon="el:file-edit-alt"
+                          className="mr-2"
+                          width="38"
+                          height="38"
+                          cursor="pointer"
+                          color="#9e85f5"
+                        />
+                        <div>
+                          <span className="font-bold">Update</span>
+                          <br />
+                          Update invitation
+                        </div>
                       </div>
                     </div>
-                  </div>
-                    }
+                  )}
 
                   {/* Conditionally render Cancel button */}
                   {row.original.Status === 'Pending' && (
@@ -527,12 +579,14 @@ useEffect(() => {
 
                   {row.original.Status === 'Pending' && (
                     <div className="mb-4">
-                      <div className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
-                      onClick={() => {
-                        setResendInvatationModel(true);
-                        setInvitationToResend(row.original.id);
-                        toggleOptions(row.original.email);
-                      }}>
+                      <div
+                        className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                        onClick={() => {
+                          setResendInvatationModel(true);
+                          setInvitationToResend(row.original.id);
+                          toggleOptions(row.original.email);
+                        }}
+                      >
                         <Icon
                           icon="mdi:arrow-up-circle"
                           width="40"
@@ -558,32 +612,36 @@ useEffect(() => {
     },
   ];
 
-const datum: any = [];
+  const datum: any = [];
 
-const currentInvitations = isSearching && searchData?.getInvitations
-  ? searchData.getInvitations.invitations
-  : isFiltering && filterData?.filterInvitations
-  ? filterData.filterInvitations.invitations
-  : data?.getAllInvitations?.invitations;
+  const currentInvitations =
+    isSearching && searchData?.getInvitations
+      ? searchData.getInvitations.invitations
+      : isFiltering && filterData?.filterInvitations
+      ? filterData.filterInvitations.invitations
+      : data?.getAllInvitations?.invitations;
 
-const currentInvitationsTotal = isSearching && searchData?.getInvitations
-  ? searchData.getInvitations.totalInvitations
-  : isFiltering && filterData?.filterInvitations
-  ? filterData.filterInvitations.totalInvitations
-  : data?.getAllInvitations?.totalInvitations;
+  const currentInvitationsTotal =
+    isSearching && searchData?.getInvitations
+      ? searchData.getInvitations.totalInvitations
+      : isFiltering && filterData?.filterInvitations
+      ? filterData.filterInvitations.totalInvitations
+      : data?.getAllInvitations?.totalInvitations;
 
-if (currentInvitations && currentInvitations.length > 0) {
-  currentInvitations.forEach((invitation: { invitees: any[]; status: string; id: any; }) => {
-    invitation.invitees?.forEach((invitee: any) => {
-      let entry: any = {};
-      entry.email = invitee.email;
-      entry.role = capitalizeStrings(invitee.role);
-      entry.Status = capitalizeStrings(invitation.status);
-      entry.id = invitation.id;
-      datum.push(entry);
-    });
-  });
-}
+  if (currentInvitations && currentInvitations.length > 0) {
+    currentInvitations.forEach(
+      (invitation: { invitees: any[]; status: string; id: any }) => {
+        invitation.invitees?.forEach((invitee: any) => {
+          let entry: any = {};
+          entry.email = invitee.email;
+          entry.role = capitalizeStrings(invitee.role);
+          entry.Status = capitalizeStrings(invitation.status);
+          entry.id = invitation.id;
+          datum.push(entry);
+        });
+      },
+    );
+  }
 
   if (loading || searchLoading || filterLoad) {
     content = (
@@ -622,28 +680,27 @@ if (currentInvitations && currentInvitations.length > 0) {
     );
   }
 
-  const [ResendInvitation]=useMutation(RESEND_INVITATION,{
-    variables:{
-      invitationId:invitationToResend,
-      orgToken:organizationToken 
+  const [ResendInvitation] = useMutation(RESEND_INVITATION, {
+    variables: {
+      invitationId: invitationToResend,
+      orgToken: organizationToken,
     },
-      onCompleted:(data)=>{
-        setTimeout(()=>{
-          setButtonLoading(false);
-          toast.success(data.resendInvitation.message);
-          refetch();
-          refreshData();
-          setResendInvatationModel(false)
-        })
-      }
-      ,onError:(error)=>{
-        setTimeout(() => {
-          setButtonLoading(false);
-          toast.error(handleError(error));
-        }, 500);
-      }
-
-  })
+    onCompleted: (data) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.success(data.resendInvitation.message);
+        refetch();
+        refreshData();
+        setResendInvatationModel(false);
+      });
+    },
+    onError: (error) => {
+      setTimeout(() => {
+        setButtonLoading(false);
+        toast.error(handleError(error));
+      }, 500);
+    },
+  });
 
   const [DeleteInvitation] = useMutation(DELETE_INVITATION, {
     variables: {
@@ -719,16 +776,13 @@ if (currentInvitations && currentInvitations.length > 0) {
     },
   });
 
-
-  useEffect(()=>{
-      refetch()
-   
-  },[sortBy])
-const  changeSortQuery=(e:React.ChangeEvent<HTMLSelectElement>)=>{
-let sortBy=parseInt(e.target.value)
-setSortBy(sortBy)
-
-}
+  useEffect(() => {
+    refetch();
+  }, [sortBy]);
+  const changeSortQuery = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let sortBy = parseInt(e.target.value);
+    setSortBy(sortBy);
+  };
 
   return (
     <div className="w-full ">
@@ -899,42 +953,42 @@ setSortBy(sortBy)
           The “Search bar” below enables you to effortlessly check the status of
           sent invitations.
           <br />
-          Simply type in the email, or role of the invitee or status of the invitation in the search bar to
-          instantly retrieve real-time updates.
+          Simply type in the email, or role of the invitee or status of the
+          invitation in the search bar to instantly retrieve real-time updates.
         </p>
 
         {/* Search form */}
-        <div className='block lg:flex justify-between items-center'>
-            <div className="flex flex-row md:flex-row gap-2 md:gap-2 md:w-[50%] w-full">
-              <div className="relative flex-1 text-black">
-                <input
-                  type="text"
-                  id="search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search by email, role or status of the invitation."
-                  className="border border-gray-300 outline-none bg-transparent rounded-md pl-10 pr-4 py-1 w-full dark:text-white hover:border-[#7258ce] dark:text:text-white sm:text-normal text-md dark:bg-[#04122F]"
-                />
-                <IoIosSearch
-                  className="absolute text-gray-500 transform -translate-y-1/2 left-3 top-1/2"
-                  size={20}
-                />
-              </div>
-              <div>
-                <select
-                    className="w-full max-w-xs sm:px-2 px-0 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
-                    value={sortBy}
-                    onChange={changeSortQuery}
-                  >
-                    <option value="">Sort by</option>
-                    <option value="-1">Newest</option>
-                    <option value="1">Oldest</option>
-                </select>
-              </div>
+        <div className="block lg:flex justify-between items-center">
+          <div className="flex flex-row md:flex-row gap-2 md:gap-2 md:w-[50%] w-full">
+            <div className="relative flex-1 text-black">
+              <input
+                type="text"
+                id="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by email, role or status of the invitation."
+                className="border border-gray-300 outline-none bg-transparent rounded-md pl-10 pr-4 py-1 w-full dark:text-white hover:border-[#7258ce] dark:text:text-white sm:text-normal text-md dark:bg-[#04122F]"
+              />
+              <IoIosSearch
+                className="absolute text-gray-500 transform -translate-y-1/2 left-3 top-1/2"
+                size={20}
+              />
             </div>
-         
+            <div>
+              <select
+                className="w-full max-w-xs sm:px-2 px-0 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
+                value={sortBy}
+                onChange={changeSortQuery}
+              >
+                <option value="">Sort by</option>
+                <option value="-1">Newest</option>
+                <option value="1">Oldest</option>
+              </select>
+            </div>
+          </div>
+
           <div className="">
-          <div className="flex items-center sm:space-x-4 space-x-2 mt-3 lg:mt-0">
+            <div className="flex items-center sm:space-x-4 space-x-2 mt-3 lg:mt-0">
               <span className="w-full md:w-auto">
                 <select
                   className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:text:text-white dark:bg-[#04122F]"
@@ -953,25 +1007,29 @@ setSortBy(sortBy)
                 <select
                   className="w-full max-w-xs px-2 py-1 text-gray-700 bg-transparent border border-gray-300 rounded outline-none md:w-auto dark:text-white dark:bg-[#04122F]"
                   value={selectedStatus}
-                  onChange={ handleStatusChange}
+                  onChange={handleStatusChange}
                 >
                   <option value="">Status</option>
                   <option value="pending">pending</option>
                   <option value="accepted">accepted</option>
                   <option value="cancelled">cancelled</option>
                 </select>
-              </span> 
+              </span>
               <button
-                      type="button"
-                      disabled={filterDisabled}
-                      onClick={handleFilter}
-                      className={`w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md flex items-center justify-center sm:px-4 px-0 py-1 
-                        ${filterDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
-                    >
-                      Filter
+                type="button"
+                disabled={filterDisabled}
+                onClick={handleFilter}
+                className={`w-full max-w-xs md:w-auto bg-[#9e85f5] text-white text-lg md:text-xl rounded-md flex items-center justify-center sm:px-4 px-0 py-1 
+                        ${
+                          filterDisabled
+                            ? 'cursor-not-allowed opacity-50'
+                            : 'cursor-pointer'
+                        }`}
+              >
+                Filter
               </button>
-              </div>
             </div>
+          </div>
         </div>
         {/* Table view */}
         {content}
@@ -1176,7 +1234,6 @@ setSortBy(sortBy)
         </div>
       </div>
       {/* resend invitation modal */}
-
       <div
         className={`h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center  px-4 ${
           resendInvitationModel === true ? 'block' : 'hidden'
