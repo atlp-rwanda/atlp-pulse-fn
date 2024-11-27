@@ -4,6 +4,11 @@ exports[`CRUD Of Trainee Attendance Renders the TraineeAttendance Page 1`] = `
 <div
   className="bg-tertiary dark:bg-dark-bg p-5 xmd:p-7 md:p-10 rounded-lg font-serif"
 >
+  <span
+    className="opacity-0"
+  >
+    Loading Data...
+  </span>
   <div
     className=""
   >

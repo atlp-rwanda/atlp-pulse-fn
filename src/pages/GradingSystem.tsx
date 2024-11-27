@@ -14,6 +14,7 @@ import MAKE_DEFAULT_GRADING_SYSTEM from '../Mutations/MakeDefault';
 import GRADING_SYSTEM_MUTATION from './GradingSystemMutation';
 import AddGradingSystem from './gradeSystem/addNew';
 import GradingSkeleton from '../Skeletons/gradingSkeleton';
+import { handleError } from '../components/ErrorHandle';
 
 type grade = {
   grade?: string;
@@ -68,7 +69,7 @@ function GradingSystem() {
         toast.success('grading system created');
       },
       onError: (error) => {
-        toast.error(error.message || 'creating grading system fail');
+        toast.error('creating grading system fail');
       },
       refetchQueries: [
         {
@@ -89,9 +90,9 @@ function GradingSystem() {
         toast.success('grading system deleted');
         setDeleteGradingModal(false);
       },
-      onError() {
+      onError(err) {
         setDeleteGradingModal(false);
-        toast.error('Something went wrong!?!?');
+        toast.error(handleError(err));
       },
       refetchQueries: [
         {
@@ -112,8 +113,9 @@ function GradingSystem() {
         toast.success('make a default grading ');
         setRemoveMakeDefaultModal(false);
       },
-      onError() {
-        toast.error('Something went wrong!?!?');
+
+      onError(err) {
+        toast.error(handleError(err));
         setRemoveMakeDefaultModal(false);
       },
       refetchQueries: [

@@ -120,13 +120,16 @@ Array [
     className="w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center p-4 hidden"
   >
     <div
-      className=" bg-indigo-100 dark:bg-neutral-900 w-full md:w-3/4 xl:w-5/12 rounded-lg p-0 sm:p-4 pb-8 overflow-auto max-h-full"
+      className="bg-indigo-100 dark:bg-neutral-900 w-full md:w-3/4 xl:w-5/12 rounded-lg p-0 sm:p-4 pb-8 overflow-auto max-h-full"
+      className="bg-indigo-100 dark:bg-neutral-900 w-full md:w-3/4 xl:w-5/12 rounded-lg p-0 sm:p-4 pb-8 overflow-auto max-h-full"
     >
       <div
-        className="card-title w-full flex flex-wrap justify-center items-center "
+        className="card-title w-full flex flex-wrap justify-center items-center"
+        className="card-title w-full flex flex-wrap justify-center items-center"
       >
         <h3
-          className="font-bold text-base dark:text-white text-center w-11/12 "
+          className="font-bold text-base dark:text-white text-center w-11/12"
+          className="font-bold text-base dark:text-white text-center w-11/12"
         >
           Add Grading System
         </h3>
@@ -139,18 +142,30 @@ Array [
           onSubmit={[Function]}
         >
           <div
-            className="input my-4 "
+            className="input my-4"
+            className="input my-4"
           >
             <div
               className="grouped-input flex items-center w-full rounded-md"
             >
               <input
-                className="border bg-light-bg dark:bg-neutral-700 bg-opacity-95 border-indigo-200 dark:border-neutral-700 rounded focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 dark:ring-0 outline-none px-5 font-sans text-sm py-2 w-full"
-                defaultValue=""
+                aria-invalid="false"
+                className="border bg-light-bg dark:bg-neutral-700 bg-opacity-95 
+                  border-indigo-200
+                  dark:border-neutral-700 rounded focus:outline-none focus:ring-1 
+                  focus:ring-indigo-400 focus:border-indigo-400 dark:ring-0 
+                  outline-none px-5 font-sans text-sm py-2 w-full"
+                aria-invalid="false"
+                className="border bg-light-bg dark:bg-neutral-700 bg-opacity-95 
+                  border-indigo-200
+                  dark:border-neutral-700 rounded focus:outline-none focus:ring-1 
+                  focus:ring-indigo-400 focus:border-indigo-400 dark:ring-0 
+                  outline-none px-5 font-sans text-sm py-2 w-full"
                 name="name"
+                onBlur={[Function]}
+                onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="Label eg: Name of grading system"
-                required={true}
                 type="text"
               />
             </div>
@@ -162,18 +177,20 @@ Array [
               className="undefined flex-1 min-w-max"
             >
               <input
-                defaultChecked={true}
-                onClick={[Function]}
+                aria-label="Toggle percentage requirement"
+                name="isPercentageRequired"
+                onBlur={[Function]}
+                onChange={[Function]}
+                aria-label="Toggle percentage requirement"
+                name="isPercentageRequired"
+                onBlur={[Function]}
+                onChange={[Function]}
                 type="checkbox"
               />
-              <div
-                className="undefined"
-              >
-                <div
-                  className="undefined"
-                >
-                   
-                </div>
+              <div>
+                <div />
+              <div>
+                <div />
                 <span>
                   Add Percentage
                 </span>
@@ -183,18 +200,20 @@ Array [
               className="undefined flex-1 min-w-max"
             >
               <input
-                defaultChecked={false}
-                onClick={[Function]}
+                aria-label="Toggle description requirement"
+                name="isDescriptionRequired"
+                onBlur={[Function]}
+                onChange={[Function]}
+                aria-label="Toggle description requirement"
+                name="isDescriptionRequired"
+                onBlur={[Function]}
+                onChange={[Function]}
                 type="checkbox"
               />
-              <div
-                className="undefined"
-              >
-                <div
-                  className="undefined"
-                >
-                   
-                </div>
+              <div>
+                <div />
+              <div>
+                <div />
                 <span>
                   Require Description
                 </span>
@@ -212,14 +231,18 @@ Array [
                   className="flex flex-col gap-2 p-3 bg-gray-700 bg-opacity-5 dark:bg-neutral-700 dark:bg-opacity-25 rounded-md"
                 >
                   <div
-                    className="flex flex-col gap-4 "
+                    className="flex flex-col gap-4"
+                    className="flex flex-col gap-4"
                   >
                     <input
-                      className="rounded-md appearance-none relative block w-full px-4 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
-                      defaultValue=""
+                      className="rounded-md appearance-none relative block w-full px-4 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
+                      name="grades.0.grade"
+                      onBlur={[Function]}
+                      className="rounded-md appearance-none relative block w-full px-4 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
+                      name="grades.0.grade"
+                      onBlur={[Function]}
                       onChange={[Function]}
                       placeholder="Grade"
-                      required={true}
                     />
                     <div
                       className="flex justify-between gap-3 items-center flex-wrap undefined"
@@ -242,26 +265,78 @@ Array [
                           }
                         }
                       >
-                        <input
-                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
-                          onChange={[Function]}
-                          placeholder="Minimum"
-                          required={true}
-                          type="number"
-                        />
-                        <input
-                          className="rounded-md appearance-none relative block max-w-full flex-1 px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
-                          onChange={[Function]}
-                          placeholder="Maximum"
-                          required={true}
-                          type="number"
-                        />
+                        <div
+                          className="flex-1"
+                        >
+                          <input
+                            className="rounded-md appearance-none relative block w-full px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 
+                        border-indigo-200
+                        dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 
+                        focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
+                            name="grades.0.min"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            placeholder="Minimum"
+                            type="number"
+                          />
+                        </div>
+                        <div
+                          className="flex-1"
+                        >
+                          <input
+                            className="rounded-md appearance-none relative block w-full px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 
+                        border-indigo-200
+                        dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 
+                        focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
+                            name="grades.0.max"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            placeholder="Maximum"
+                            type="number"
+                          />
+                        </div>
+                      >
+                        <div
+                          className="flex-1"
+                        >
+                          <input
+                            className="rounded-md appearance-none relative block w-full px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 
+                        border-indigo-200
+                        dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 
+                        focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
+                            name="grades.0.min"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            placeholder="Minimum"
+                            type="number"
+                          />
+                        </div>
+                        <div
+                          className="flex-1"
+                        >
+                          <input
+                            className="rounded-md appearance-none relative block w-full px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 
+                        border-indigo-200
+                        dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 
+                        focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
+                            name="grades.0.max"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            placeholder="Maximum"
+                            type="number"
+                          />
+                        </div>
                       </div>
                     </div>
                     <textarea
-                      className="w-full h-auto rounded-md appearance-none relative block px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm  dark:text-dark-text-fill"
+                      className="w-full h-auto rounded-md appearance-none relative block px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
+                      className="w-full h-auto rounded-md appearance-none relative block px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
                       data-testid="input-element"
                       defaultValue=""
+                      name="grades.0.description"
+                      onBlur={[Function]}
+                      name="grades.0.description"
+                      onBlur={[Function]}
                       onChange={[Function]}
                       placeholder="description"
                       required={false}
@@ -369,7 +444,7 @@ Array [
                 className="max-w-full"
               >
                 <div
-                  className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 py-8 rounded-md w-full lg:w-auto mx-auto mb-10 undefined"
+                  className="relative font-serif bg-indigo-100 dark:bg-dark-bg shadow-lg h-fit px-5 md:py-4 lg:py-5 rounded-md w-[100%] overflow-auto custom-scrollbar \\"lg:ml-60 mx-auto\\"} lg:mb-10 undefined"
                 >
                   <div
                     className="flex flex-col md:flex-row items-center justify-between pb-6 space-y-4 md:space-y-0"
@@ -380,17 +455,10 @@ Array [
                       >
                         Gradings List
                       </h2>
-                      <input
-                        aria-label="Filter table data"
-                        className="px-4 py-2 mt-4 font-sans text-xs md:text-sm border rounded outline-none border-primary dark:bg-neutral-600 dark:text-white w-full sm:w-52 md:w-96"
-                        onChange={[Function]}
-                        placeholder="Filter"
-                        value=""
-                      />
                     </div>
                   </div>
                   <div
-                    className="overflow-x-auto"
+                    className="overflow-x-auto custom-scrollbar"
                   >
                     <table
                       className="min-w-full leading-normal text-xs md:text-sm"
@@ -401,7 +469,7 @@ Array [
                           role="row"
                         >
                           <th
-                            className="thead "
+                            className="thead w-1/3 text-center  "
                             colSpan={1}
                             onClick={[Function]}
                             role="columnheader"
@@ -415,7 +483,7 @@ Array [
                             Names
                           </th>
                           <th
-                            className="thead "
+                            className="thead w-1/3 text-center  "
                             colSpan={1}
                             onClick={[Function]}
                             role="columnheader"
@@ -429,7 +497,7 @@ Array [
                             action
                           </th>
                           <th
-                            className="thead "
+                            className="thead w-1/3 text-center  "
                             colSpan={1}
                             onClick={[Function]}
                             role="columnheader"
@@ -540,29 +608,37 @@ Array [
                                 <div
                                   className="flex flex-row relative md:ml-80 lg:flex-row   justify-center items-baseline w-full lg:w-1/3 w-1/2 text-xs lg:text-md  mx-2 -mr-5"
                                 >
-                                  <span
-                                    className="flex justify-center sm:w-[50%] w-[70%] lg:mb-0"
+                                  <div
+                                    className="flex justify-center items-center w-full"
                                   >
-                                    Page
-                                     
-                                    <strong>
-                                      1
-                                       of
-                                       0
-                                    </strong>
-                                     
-                                  </span>
+                                    <span
+                                      className="text-gray-900 dark:text-white whitespace-nowrap"
+                                    >
+                                      Page
+                                       
+                                      <strong>
+                                        1
+                                         of
+                                         0
+                                      </strong>
+                                       
+                                    </span>
+                                  </div>
                                   <div
                                     className="flex flex-row sm:justify-center justify-end items-center w-full"
                                   >
                                     <div
                                       className="hidden lg:flex items-center mx-2 mb-2 lg:mb-0"
                                     >
-                                      <span
-                                        className="mr-1"
+                                      <div
+                                        className="text-gray-900 dark:text-white w-[5rem]"
                                       >
-                                        | Go to page: 
-                                      </span>
+                                        <span
+                                          className="mr-1"
+                                        >
+                                          | Go to page: 
+                                        </span>
+                                      </div>
                                       <input
                                         className="pl-1 border rounded-md outline-none appearance-none border-primary dark:bg-primary"
                                         defaultValue={1}

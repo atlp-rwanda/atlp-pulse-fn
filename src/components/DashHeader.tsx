@@ -39,7 +39,7 @@ export const TICKETS_NOTS_SUB = gql`
   }
 `;
 
-function DashHeader() {
+function DashHeader({ minimize }: any) {
   /* istanbul ignore next */
   const { minimized, toggleMinMenu, showNav, toggleNav } =
     useContext(MenuContext);
@@ -96,7 +96,7 @@ function DashHeader() {
         const { data } = await getProfile();
         setProfileData(data);
       } catch (error: any) {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error('Something went wrong');
       }
     };
     /* istanbul ignore next */
@@ -126,7 +126,7 @@ function DashHeader() {
           handleShowProfileDropdown={handleShowProfileDropdown}
         />
       )}
-      <div className="font-serif  transform:sc w-full py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header">
+      <div className="font-serif h-16 transform:sc w-full py-4 z-20 bg-indigo-100 dark:bg-dark-bg page-header">
         <div className="px-3 flex items-center w-full font-serif">
           <div className="flex px-5 lg:hidden">
             <div
@@ -144,7 +144,10 @@ function DashHeader() {
           </div>
           <div className="hidden lg:flex">
             <div
-              onClick={toggleMinMenu}
+              onClick={() => {
+                minimize(!minimized);
+                return toggleMinMenu();
+              }}
               className="w-7"
               role="button"
               tabIndex={0}
@@ -172,7 +175,7 @@ function DashHeader() {
           </div>
           <div className="flex items-center h-full lg:w-full">
             <Link
-              to="/super-admin"
+              to="/"
               className="flex flex-row lg:px-5 text-dark dark:text-dark-text-fill"
             >
               <LogoIcon />

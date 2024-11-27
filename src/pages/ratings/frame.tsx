@@ -6,6 +6,7 @@ import css from './style.module.css';
 import TextArea from './textarea';
 import { UserContext } from '../../hook/useAuth';
 import { ADD_FEEDBACK } from '../../Mutations/Ratings';
+import { handleError } from '../../components/ErrorHandle';
 
 /* Message props */
 type messageProps = {
@@ -54,7 +55,7 @@ export default function Frame({ rows, allFeeds }: props) {
   /* istanbul ignore next */
   const [addFeedBack] = useMutation(ADD_FEEDBACK, {
     onError: (err) => {
-      toast.error(err.message || 'something went wrong');
+      toast.error(handleError(err));
     },
   });
 

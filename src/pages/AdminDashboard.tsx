@@ -14,6 +14,7 @@ import Comingsoon from './Comingsoon';
 import Button from '../components/Buttons';
 import { UserContext } from '../hook/useAuth';
 import { INVITE_USER_MUTATION } from '../Mutations/manageStudentMutations';
+import { handleError } from '../components/ErrorHandle';
 import DashboardTableDesign from '../components/AdminDashboardTable';
 import UserGrowth from '../Chart/LineChart';
 
@@ -48,7 +49,7 @@ function AdminDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 1000);
     },
   });

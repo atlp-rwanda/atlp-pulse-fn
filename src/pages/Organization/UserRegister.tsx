@@ -16,6 +16,7 @@ import ControlledSelect from '../../components/ControlledSelect';
 import { UserContext } from '../../hook/useAuth';
 import useDocumentTitle from '../../hook/useDocumentTitle';
 import { GET_SIGNUP_ORGANIZATION, SIGN_UP_MUTATION } from './Mutations';
+import { handleError } from '../../components/ErrorHandle';
 
 const Signup = () => {
   const token: any = window.location.href.substring(
@@ -80,7 +81,7 @@ const Signup = () => {
       /* istanbul ignore next */
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -255,7 +256,7 @@ const Signup = () => {
 
         return;
       } catch (error: any) {
-        toast.error(error.message);
+        toast.error(handleError(error));
       }
     }, 2000);
   };

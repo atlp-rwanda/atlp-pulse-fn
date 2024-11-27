@@ -3,13 +3,13 @@
 exports[`Admin Login Should render 1`] = `
 Array [
   <div
-    className="grow  dark:bg-dark-frame-bg bg-indigo-50 flex flex-row font-serif"
+    className="flex flex-row font-serif grow dark:bg-dark-frame-bg bg-indigo-50"
   >
     <div
       className="hidden lg:flex w-[50%] h-full  flex-col justify-center items-center mt-10 "
     >
       <div
-        className=" flex flex-col justify-center items-center "
+        className="flex flex-col items-center justify-center "
       >
         <div
           className="relative flex flex-row justify-center"
@@ -40,13 +40,13 @@ Array [
       className=" w-full  lg:w-[50%] lg:p-5 flex flex-row items-end p-5"
     >
       <div
-        className="max-w-lg w-full mx-auto my-28 bg-indigo-100 dark:bg-dark-bg  p-5 sm:p-5 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
+        className="w-full max-w-lg p-5 mx-auto bg-indigo-100 my-28 dark:bg-dark-bg sm:p-5 md:shadow-xl sm:shadow-none md:rounded-xl sm:rounded-none"
       >
         <div
           className=""
         >
           <div
-            className="flex flex-col justify-center items-center"
+            className="flex flex-col items-center justify-center"
           >
             <h2
               className="text-2xl font-bold text-primary dark:text-dark-text-fill "
@@ -59,7 +59,7 @@ Array [
             />
           </div>
           <div
-            className=" text-sm text-center dark:text-dark-text-fill"
+            className="text-sm text-center dark:text-dark-text-fill"
           >
             <a
               className="mx-1 text-primary"
@@ -104,7 +104,7 @@ Array [
                   />
                 </svg>
                 <input
-                  className="bg-gray-100 outline-none text-sm flex-1 px-2 dark:border-white dark:bg-dark-bg dark:text-white "
+                  className="flex-1 px-2 text-sm bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white "
                   data-testid="email"
                   name="email"
                   onBlur={[Function]}
@@ -114,13 +114,13 @@ Array [
                 />
               </div>
               <div
-                className="text-left mb-1 pl-4"
+                className="pl-4 mb-1 text-left"
               />
               <div
-                className="md:w-full border border-gray rounded-md bg-gray-100 p-2 my-4 flex items-center  mb-2 dark:border-white dark:bg-dark-bg"
+                className="flex items-center p-2 my-4 mb-2 bg-gray-100 border rounded-md md:w-full border-gray dark:border-white dark:bg-dark-bg"
               >
                 <svg
-                  className="text-gray-400 mr-2 "
+                  className="mr-2 text-gray-400 "
                   fill="currentColor"
                   height="1em"
                   stroke="currentColor"
@@ -143,7 +143,7 @@ Array [
                   />
                 </svg>
                 <input
-                  className="bg-gray-100 outline-none text-sm flex-1 dark:border-white dark:bg-dark-bg dark:text-white"
+                  className="flex-1 text-sm bg-gray-100 outline-none dark:border-white dark:bg-dark-bg dark:text-white"
                   data-testid="password"
                   name="password"
                   onBlur={[Function]}
@@ -187,7 +187,7 @@ Array [
                 className="pl-4 mb-1 text-left"
               />
               <div
-                className="flex w-full flex-col sm:flex-row justify-between  items-center rounded mb-5 mt-5"
+                className="flex flex-col items-center justify-between w-full mt-5 mb-5 rounded sm:flex-row"
               >
                 <div
                   className="w-50%"
@@ -197,7 +197,7 @@ Array [
                     htmlFor="checkbox"
                   >
                     <input
-                      className="mr-1  dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
+                      className="mr-1 dark:text-dark-text-fill dark:border-white dark:bg-dark-frame-bg"
                       name="remember"
                       type="checkbox"
                     />
@@ -217,7 +217,7 @@ Array [
                 </div>
               </div>
               <div
-                className="w-full justify-center"
+                className="justify-center w-full"
               >
                 <button
                   className="btn transparentbtn md  w-full bg-primary m-0 inline-block rounded-md lg:px-12 lg:py-2 sm:px-4 sm:py-1 md:font-semibold sm:mt-2 sm:font-medium text-white font-serif "

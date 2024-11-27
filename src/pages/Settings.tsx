@@ -1,9 +1,10 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import i18next from 'i18next';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Switch } from '@headlessui/react';
-import { useMutation, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import getLanguage from '../utils/getLanguage';
 import useDocumentTitle from '../hook/useDocumentTitle';
 import {
@@ -11,11 +12,25 @@ import {
   updateEmailNotifications,
 } from '../Mutations/notificationMutation';
 import {
+  EnableTwoFactorAuth,
+  DisableTwoFactorAuth,
+} from './Organization/2faMutation';
+import {
   updatedEmailNotifications,
   updatedPushNotifications,
 } from '../queries/notification.queries';
 import { UserContext } from '../hook/useAuth';
 import { ThemeContext } from '../hook/ThemeProvider';
+
+const GetProfile = gql`
+  query GetProfile {
+    getProfile {
+      user {
+        twoFactorAuth
+      }
+    }
+  }
+`;
 
 function Settings() {
   useDocumentTitle('Settings');
@@ -24,73 +39,86 @@ function Settings() {
   const lan = getLanguage();
   const { colorTheme, setTheme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
+
+  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
+  const [enableTwoFactorAuth] = useMutation(EnableTwoFactorAuth);
+  const [disableTwoFactorAuth] = useMutation(DisableTwoFactorAuth);
   const [updateEmailNotificationsMutation] = useMutation(
     updateEmailNotifications,
   );
   const [updatePushNotificationsMutation] = useMutation(
     updatePushNotifications,
   );
+
+  const { data: profileData } = useQuery(GetProfile, {
+    onCompleted: (data) =>
+      setIsTwoFactorEnabled(data.getProfile.user.twoFactorAuth),
+  });
   const { data: pushData } = useQuery(updatedPushNotifications, {
     variables: { getUpdatedPushNotificationsId: user?.userId },
+    onCompleted: (data) => setPushEnabled(data.getUpdatedPushNotifications),
   });
-  const [pushEnabled, setPushEnabled] = useState(
-    pushData?.getUpdatedPushNotifications || false,
-  );
-  const { data } = useQuery(updatedEmailNotifications, {
+  const { data: emailData } = useQuery(updatedEmailNotifications, {
     variables: { getUpdatedEmailNotificationsId: user?.userId },
+    onCompleted: (data) => setEmailEnabled(data.getUpdatedEmailNotifications),
   });
-  const [emailEnabled, setEmailEnabled] = useState(
-    data?.getUpdatedEmailNotifications || false,
-  );
 
-  const handleThemeChange = (e: { target: { value: any } }) => {
+  const [pushEnabled, setPushEnabled] = useState(false);
+  const [emailEnabled, setEmailEnabled] = useState(false);
+
+  const handleEnableTwoFactor = async () => {
+    try {
+      await enableTwoFactorAuth({ variables: { email: user?.email } });
+      setIsTwoFactorEnabled(true);
+    } catch (error) {
+      console.error('Error enabling two-factor authentication:', error);
+    }
+  };
+
+  const handleDisableTwoFactor = async () => {
+    try {
+      await disableTwoFactorAuth({ variables: { email: user?.email } });
+      setIsTwoFactorEnabled(false);
+    } catch (error) {
+      console.error('Error disabling two-factor authentication:', error);
+    }
+  };
+
+  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setTheme(value);
-    localStorage.setItem('color-theme', colorTheme);
+    localStorage.setItem('color-theme', value);
   };
-  const defaultTheme: any = colorTheme;
-  const userLang = window.navigator.language;
 
-  const handleLanChange = (e: { target: { value: any } }) => {
+  const userLang = window.navigator.language;
+  const handleLanChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
-    i18next.changeLanguage(value);
+    i18next.changeLanguage(value).catch((error) => {
+      console.error('Error changing language:', error);
+    });
   };
 
   const handleEmailNotificationChange = async () => {
     try {
-      const { data } = await updateEmailNotificationsMutation({
+      await updateEmailNotificationsMutation({
         variables: { updateEmailNotificationsId: user?.userId },
       });
-      setEmailEnabled((prevEmailEnabled: any) => !prevEmailEnabled);
-      return data;
-    } catch (error: any) {
-      return `Error updating email notifications:${error}`;
+      setEmailEnabled((prevEmailEnabled) => !prevEmailEnabled);
+    } catch (error) {
+      console.error('Error updating email notifications:', error);
     }
   };
 
   const handlePushNotificationChange = async () => {
     try {
-      const { data: pushData } = await updatePushNotificationsMutation({
+      await updatePushNotificationsMutation({
         variables: { updatePushNotificationsId: user?.userId },
       });
-      setPushEnabled((prevPushEnabled: any) => !prevPushEnabled);
-      return pushData;
-    } catch (error: any) {
-      return `Error updating push notifications: ${error}`;
+      setPushEnabled((prevPushEnabled) => !prevPushEnabled);
+    } catch (error) {
+      console.error('Error updating push notifications:', error);
     }
   };
-
-  useEffect(() => {
-    if (data?.getUpdatedEmailNotifications !== undefined) {
-      setEmailEnabled(data.getUpdatedEmailNotifications);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (pushData?.getUpdatedPushNotifications !== undefined) {
-      setPushEnabled(pushData.getUpdatedPushNotifications);
-    }
-  }, [pushData]);
 
   useEffect(() => {
     if (lanRef.current) {
@@ -132,9 +160,9 @@ function Settings() {
                 </p>
               </div>
               <select
-                value={defaultTheme}
+                value={colorTheme}
                 data-testid="themeChange"
-                onChange={(e) => handleThemeChange(e)}
+                onChange={handleThemeChange}
                 className="ml-auto bg-white border border-gray-400 px-[2vh] h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
               >
                 <option value="light">{t('Light theme')}</option>
@@ -154,7 +182,7 @@ function Settings() {
                 defaultValue={userLang}
                 data-testid="lanChange"
                 ref={lanRef}
-                onChange={(e) => handleLanChange(e)}
+                onChange={handleLanChange}
                 className="ml-auto bg-white border px-2 h-8 rounded-md text-xs md:text-sm text-gray-600 dark:text-dark-text-fill dark:bg-dark-bg outline-none"
               >
                 <option value="en">English</option>
@@ -217,34 +245,32 @@ function Settings() {
             <li className="flex items-center border-b border-gray-400 pt-2 pb-1">
               <div className="w-[33vw]">
                 <h1 className="font-bold dark:text-dark-text-fill">
-                  {t('Privacy and Security')}
+                  {t('Two-factor authentication')}
                 </h1>
                 <p className="text-sm text-gray-600 dark:text-dark-text-fill">
-                  {t('Privacy and Security')}
+                  {t('Get extra security by receiving a code on your email')}
                 </p>
               </div>
-              <Link
-                className="ml-auto mt-2 text-xs md:text-base text-gray-600 dark:text-dark-text-fill"
-                to="#link"
+              <Switch
+                checked={isTwoFactorEnabled}
+                data-testid="2faChange"
+                onChange={
+                  isTwoFactorEnabled
+                    ? handleDisableTwoFactor
+                    : handleEnableTwoFactor
+                }
+                className={`ml-auto border ${
+                  isTwoFactorEnabled ? 'dark:border-primary' : ''
+                } relative inline-flex h-6 w-12 items-center rounded-full`}
               >
-                <h4>{t('Change')}</h4>
-              </Link>
-            </li>
-            <li className="flex items-center pt-2 pb-1">
-              <div className="w-[33vw]">
-                <h1 className="font-bold dark:text-dark-text-fill">
-                  {t('Login Activity')}
-                </h1>
-                <p className="text-sm text-gray-600 dark:text-dark-text-fill">
-                  {t('History of your login sessions')}
-                </p>
-              </div>
-              <Link
-                to="#link"
-                className="ml-auto mt-2 text-xs md:text-base text-gray-600 dark:text-dark-text-fill"
-              >
-                <h4>{t('View')}</h4>
-              </Link>
+                <span
+                  className={`${
+                    isTwoFactorEnabled
+                      ? 'bg-primary   translate-x-6'
+                      : 'bg-gray-300 translate-x-1'
+                  } inline-block h-4 w-4 transform rounded-full`}
+                />
+              </Switch>
             </li>
           </div>
         </div>

@@ -22,8 +22,10 @@ const Adminlogin = React.lazy(() => import('../pages/Organization/AdminLogin'));
 const Pricing = React.lazy(() => import('../pages/Pricing'));
 /* istanbul ignore next */
 const About = React.lazy(() => import('../pages/Comingsoon'));
+const Community = React.lazy(() => import('../pages/Community'));
 /* istanbul ignore next */
 const Product = React.lazy(() => import('../pages/Comingsoon'));
+const ContactUs = React.lazy(() => import('../pages/ContactUs'));
 /* istanbul ignore next */
 const SignupOrgDocs = React.lazy(
   () => import('../components/Docs/SignupOrgDocs'),
@@ -39,15 +41,17 @@ import Noredirect from '../pages/Noredirect';
 import RedirectHandler from '../pages/RedirectHandler';
 import ProtectedRoutes from '../ProtectedRoute';
 import RemoveTokenPage from '../utils/RemoveTokenPage';
-import PrivateRoute from '../utils/PrivateRoute'
+import PrivateRoute from '../utils/PrivateRoute';
 import CalendarConfirmation from '../components/CalendarConfirmation';
 import NotFound from '../components/NotFoundPage';
+import TwoFactorPage from '../pages/LoginWith2fa';
 
 function MainRoutes() {
   return (
     <div className="min-h-screen page-layout">
       <Suspense>
         <Routes>
+          {/* <Route path="/community" element={<h1>Hello my son</h1>} /> */}
           <Route path="/*" element={<DashRoutes />} />
           <Route
             path="/"
@@ -128,6 +132,7 @@ function MainRoutes() {
                 </ProtectedRoutes>
               }
             />
+            <Route path="/users/LoginWith2fa" element={<TwoFactorPage />} />
             <Route
               path="/pricing"
               element={
@@ -145,10 +150,26 @@ function MainRoutes() {
               }
             />
             <Route
+              path="/community"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <Community />
+                </Suspense>
+              }
+            />
+            <Route
               path="/product"
               element={
                 <Suspense fallback={<Skeleton />}>
                   <Product title={'Productpage'} />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/contact-us"
+              element={
+                <Suspense fallback={<Skeleton />}>
+                  <ContactUs />
                 </Suspense>
               }
             />
@@ -164,12 +185,14 @@ function MainRoutes() {
             />
             <Route path="/noredirect" element={<Noredirect />} />
             <Route path="/redirect" element={<RedirectHandler />} />
-            <Route path="/calendar/confirm" element={
-              <PrivateRoute>
-                <CalendarConfirmation/>
-              </PrivateRoute>
-            }>
-            </Route>
+            <Route
+              path="/calendar/confirm"
+              element={
+                <PrivateRoute>
+                  <CalendarConfirmation />
+                </PrivateRoute>
+              }
+            ></Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

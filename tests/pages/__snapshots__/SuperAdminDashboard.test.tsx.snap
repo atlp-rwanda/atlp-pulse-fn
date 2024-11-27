@@ -1,0 +1,538 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Super Admin Dashboard test  Should render SuperAdminDashboard 1`] = `
+<div
+  className="flex flex-col gap-5 lg:gap-8 text-[.92rem] xmd:text-[.95rem]"
+>
+  <div
+    className="flex flex-wrap justify-center gap-7 items-center  bg-tertiary dark:bg-dark-bg rounded-md px-9 py-10"
+  >
+    <div
+      className="h-[7rem] xmd:h-[7.6rem] w-[15rem] md:w-[17rem] lg:w-[18rem] flex flex-col items-center gap-2 bg-tertiary dark:bg-[#262627] py-4 xmd:py-4 px-6 shadow-[1px_4px_8px_-1px_rgba(0,0,0,0.4)] rounded-sm"
+    >
+      <div
+        className="w-full"
+      >
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-5 mb-2 mr-5"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "borderRadius": "50%",
+                "width": "1.25rem",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-5 mb-2"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "calc(100% - 2.6rem)",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-12 mt-2"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+              }
+            }
+          >
+            ‌
+          </span>
+          <br />
+        </span>
+      </div>
+    </div>
+    <div
+      className="h-[7rem] xmd:h-[7.6rem] w-[15rem] md:w-[17rem] lg:w-[18rem] flex flex-col items-center gap-2 bg-tertiary dark:bg-[#262627] py-4 xmd:py-4 px-6 shadow-[1px_4px_8px_-1px_rgba(0,0,0,0.4)] rounded-sm"
+    >
+      <div
+        className="w-full"
+      >
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-5 mb-2 mr-5"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "borderRadius": "50%",
+                "width": "1.25rem",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-5 mb-2"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "calc(100% - 2.6rem)",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-12 mt-2"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+              }
+            }
+          >
+            ‌
+          </span>
+          <br />
+        </span>
+      </div>
+    </div>
+    <div
+      className="h-[7rem] xmd:h-[7.6rem] w-[15rem] md:w-[17rem] lg:w-[18rem] flex flex-col items-center gap-2 bg-tertiary dark:bg-[#262627] py-4 xmd:py-4 px-6 shadow-[1px_4px_8px_-1px_rgba(0,0,0,0.4)] rounded-sm"
+    >
+      <div
+        className="w-full"
+      >
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-5 mb-2 mr-5"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "borderRadius": "50%",
+                "width": "1.25rem",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-5 mb-2"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "calc(100% - 2.6rem)",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-12 mt-2"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+              }
+            }
+          >
+            ‌
+          </span>
+          <br />
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="flex flex-col min-h-[20rem] gap-y-10 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:px-9 xmd:py-10"
+  >
+    <div
+      className="flex justify-between w-full items-center"
+    >
+      <h2
+        className="font-semibold"
+      >
+        Monthly Registrations
+      </h2>
+      <div
+        className="flex md:hidden items-center grouped-input border rounded border-primary/80 overflow-hidden pr-2 dark:bg-dark-tertiary"
+      >
+        <select
+          className="w-full px-2 py-[6px] text-xs text-black dark:text-white outline-none bg-inherit"
+          onChange={[Function]}
+        />
+      </div>
+    </div>
+    <div
+      className="flex"
+    >
+      <div />
+      <div
+        className="hidden md:flex flex-col items-center gap-y-4 ml-6 lg:ml-16 lg:mr-12 text-[.9rem]"
+      />
+    </div>
+  </div>
+  <div
+    className="flex flex-col min-h-[20rem] md:flex-row justify-between gap-5 lg:gap-8"
+  >
+    <div
+      className="w-full md:w-[60%] flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6"
+    >
+      <div>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-8 mb-4"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "40%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <br />
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-8 my-4"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+              }
+            }
+          >
+            ‌
+          </span>
+          <br />
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+        <span
+          aria-busy={true}
+          aria-live="polite"
+        >
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+          <span
+            className="react-loading-skeleton h-6 xmd:h-7 mt-3 ml-1 xsm:ml-2 xmd:ml-4 md:ml-3"
+            style={
+              Object {
+                "--base-color": "#ccd2e3",
+                "--highlight-color": "#bdc5db",
+                "width": "30%",
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      className="w-full  md:w-[40%] flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6"
+    >
+      <div
+        className="flex justify-between w-full"
+      >
+        <h2
+          className="font-semibold"
+        >
+          Upcoming Events
+        </h2>
+      </div>
+      <div
+        className="justify-center flex flex-col gap-y-3 items-center  min-h-[18rem]"
+      >
+        <div
+          className="flex flex-col items-center"
+        >
+          <img
+            alt="NoEventsImage"
+            className="w-[5rem]"
+            src={Object {}}
+          />
+          <p
+            className="text-[.83rem] md:text-[.88rem] lg:text-[.92rem] text-center leading-4"
+          >
+            Oops! No upcoming events scheduled
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="flex flex-col min-h-[20rem] md:flex-row justify-between gap-5 lg:gap-8"
+  >
+    <div
+      className="w-full flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6"
+    >
+      <div
+        className="flex justify-between w-full"
+      >
+        <h2
+          className="font-semibold"
+        >
+          Organization Updates scheduled
+        </h2>
+      </div>
+      <div
+        className="flex flex-col gap-y-4"
+      />
+    </div>
+    <div
+      className="w-full flex flex-col gap-5 bg-tertiary dark:bg-dark-bg rounded-md p-5 xmd:p-6"
+    >
+      <div
+        className="flex justify-between w-full"
+      >
+        <h2
+          className="font-semibold"
+        >
+          Today's Login Overview
+        </h2>
+      </div>
+      <div
+        className="flex flex-col gap-y-3"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { GET_TEAMS_CARDS } from './ManagerCard';
 import { FETCH_ALL_RATINGS } from '../queries/ratings.queries';
 import Spinner from './Spinner';
+import { handleError } from './ErrorHandle';
 
 function TeamDetails() {
   const { teamname } = useParams<{ teamname: string }>();
@@ -189,7 +190,7 @@ function TeamDetails() {
       },
 
       onError: (error) => {
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       },
     });
   }, [toggle]);

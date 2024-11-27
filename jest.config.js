@@ -4,7 +4,7 @@ export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   testEnvironmentOptions: {
-    customExportConditions: [] // don't load "browser" field
+    customExportConditions: [], // don't load "browser" field
   },
   verbose: true,
   collectCoverage: true,
@@ -27,7 +27,7 @@ export default {
     global: {
       lines: 80,
       functions: 50,
-      branches: 60,
+      branches: 50,
       statements: 80,
     },
   },

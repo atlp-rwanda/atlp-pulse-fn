@@ -61,7 +61,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     });
   }
 
-  if (networkError) toast.error(`[Network error]: ${networkError}`);
+  // if (networkError) toast.error(`[Network error]: ${networkError}`);
 });
 
 // Create upload link

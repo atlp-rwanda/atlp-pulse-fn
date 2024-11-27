@@ -7,6 +7,7 @@ import ModalDataTable from '../../components/ModalDataTable';
 import { GET_TEAM_TRAINEE_QUERY } from '../../queries/manageStudent.queries';
 import { TRAINEE_RATING } from '../../queries/ratings.queries';
 import ButtonLoading from '../../components/ButtonLoading';
+import { handleError } from '../../components/ErrorHandle';
 
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -70,7 +71,7 @@ export default function TeamTraineeModal({
         setTraineeData(data.getTeamTrainees);
       },
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     });
   }, [currentTeam]);

@@ -179,7 +179,7 @@ function TicketsPage() {
     (action: string) => (error: any) => {
       const errorMessage =
         error.message || `An error occurred while ${action}.`;
-      toast.error(`Error ${action}: ${errorMessage}`);
+      toast.error('Something went wrong!');
       if (errorMessage.includes('no longer exist')) {
         logout();
       }
@@ -297,7 +297,8 @@ function TicketsPage() {
         accessor: 'message',
         Cell: ({ value }: { value: string }) => {
           const trimmedMessage =
-            value.length > 100 ? `${value.substring(0, 100)}...` : value;
+            value.length > 100 ? `${value.substring(0, 80)}...` : value;
+
           return trimmedMessage;
         },
       },
@@ -362,7 +363,7 @@ function TicketsPage() {
           <button
             type="button"
             onClick={handleNewTicketClick}
-            className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+            className="px-4 py-2 text-white rounded primary hover:bg-primary"
           >
             New Ticket
           </button>

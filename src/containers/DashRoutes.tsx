@@ -42,6 +42,7 @@ const ViewTraineeRatings = React.lazy(
 const TtlTraineeDashboard = React.lazy(
   () => import('../pages/ttlTraineeDashboard'),
 );
+const LoginWith2fa = React.lazy(() => import('../pages/LoginWith2fa'));
 
 const TraineeRatingDashboard = React.lazy(
   () => import('../pages/TraineeRatingDashboard'),
@@ -50,7 +51,9 @@ const AdminRatings = React.lazy(() => import('../pages/AdminRatings'));
 const UpdatedRatingDashboard = React.lazy(
   () => import('../pages/UpdatedRatingDashboard'),
 );
-const SupAdDashboard = React.lazy(() => import('../pages/SupAdDashboard'));
+const SuperAdminDashboard = React.lazy(
+  () => import('../pages/SuperAdminDashboard'),
+);
 const Calendar = React.lazy(() => import('../components/Calendar'));
 const CoordinatorsPage = React.lazy(
   () => import('../containers/admin-dashBoard/CoordinatorModal'),
@@ -81,17 +84,20 @@ const AdminSission = React.lazy(() => import('./admin-dashBoard/Sessions'));
 
 function DashRoutes() {
   const { toggleNav } = useContext(MenuContext);
-
+  const [minimized, setMinimized] = useState(false);
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-
   return (
     <PrivateRoute>
       <MenuProvider>
-        <DashHeader />
+        <DashHeader minimize={setMinimized} />
         <Sidebar toggle={toggleNav} style="" />
       </MenuProvider>
-      <main className=" px-4 md:px-8 py-4 md:py-8 w-[100%] bg-light-bg overflow-hidden  dark:bg-dark-frame-bg">
+      <main
+        className={`px-4 md:px-8 py-4 md:py-8 ${
+          !minimized ? 'lg:w-[calc(100%-14rem)]' : 'lg:w-[calc(100%-5rem)]'
+        } ml-auto mr-0 bg-light-bg overflow-hidden  dark:bg-dark-frame-bg`}
+      >
         <Suspense>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -143,7 +149,7 @@ function DashRoutes() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<EditProfile />} />
             {/* <Route path="*" element={<Error />} /> */}
-            <Route path="/super-admin" element={<SupAdDashboard />} />
+            <Route path="/super-admin" element={<SuperAdminDashboard />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/organizations" element={<Organizations />} />
             <Route path="/coordinators" element={<CoordinatorsPage />} />

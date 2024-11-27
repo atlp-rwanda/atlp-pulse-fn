@@ -12,7 +12,7 @@ import DeleteTeamModal from './DeleteTeamModal';
 import UpdateTeamModal from './UpdateTeamModal';
 import TeamTraineeModal from './TeamTraineeModal';
 import CreateTeamModal from './CreateTeamModal';
-import TtlSkeleton from'../../Skeletons/ttl.skeleton'
+import TtlSkeleton from '../../Skeletons/ttl.skeleton';
 
 export interface Cohort {
   id: string;
@@ -118,6 +118,20 @@ export const getAllTeam = gql`
       name
       description
     }
+    getAllTTLUsers(orgToken: $orgToken) {
+      profile {
+        name
+        id
+      }
+      email
+      role
+      team {
+        name
+        cohort {
+          name
+        }
+      }
+    }
   }
 `;
 
@@ -196,6 +210,7 @@ function AdminTeams() {
       getAllTeams: Team[];
       getAllCohorts: Cohort[];
       getAllUsers: any;
+      getAllTTLUsers: any;
     };
     loading: boolean;
     error?: any;
@@ -311,16 +326,16 @@ function AdminTeams() {
           </div>
         </div>
         <div className="">
-        {getLoading ? (
-          <TtlSkeleton />
-        ) : (
-          <DataTable
-            columns={teamColumns}
-            data={teamData ? (teamData as [any]) : []}
-            title={t('Teams list')}
-            // loading={getLoading}
-          />
-        )}
+          {getLoading ? (
+            <TtlSkeleton />
+          ) : (
+            <DataTable
+              columns={teamColumns}
+              data={teamData ? (teamData as [any]) : []}
+              title={t('Teams list')}
+              // loading={getLoading}
+            />
+          )}
         </div>
       </div>
     </>

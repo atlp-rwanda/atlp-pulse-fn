@@ -10,6 +10,7 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import Button from '../components/Buttons';
 import { REJECT_RATING, APPROVE_RATING } from '../Mutations/Ratings';
 import TtlSkeleton from '../Skeletons/ttl.skeleton';
+import { handleError } from '../components/ErrorHandle';
 
 const organizationToken = localStorage.getItem('orgToken');
 
@@ -184,11 +185,12 @@ function UpdatedRatingDashboard() {
     },
   ];
 
-  const [getRatings, {loading: getRatingsLoading, error: getRatingsError}] = useLazyQuery(GET_USERS, {
-    variables: {
-      orgToken: organizationToken,
-    },
-  });
+  const [getRatings, { loading: getRatingsLoading, error: getRatingsError }] =
+    useLazyQuery(GET_USERS, {
+      variables: {
+        orgToken: organizationToken,
+      },
+    });
 
   const [approveRating] = useMutation(APPROVE_RATING, {
     variables: {
@@ -197,7 +199,7 @@ function UpdatedRatingDashboard() {
     },
     onError: (err) => {
       /* istanbul ignore next */
-      toast.error(err.message || 'something went wrong');
+      toast.error(handleError(err));
       /* istanbul ignore next */
       removeApproveModel();
     },
@@ -218,10 +220,7 @@ function UpdatedRatingDashboard() {
     },
     /* istanbul ignore next */
     onError: (err) => {
-      /* istanbul ignore next */
-      toast.error(
-        err.message || 'something went wrong',
-      ); /* istanbul ignore next */
+      toast.error(handleError(err));
       removeRejectModel();
     },
     /* istanbul ignore next */
@@ -243,8 +242,8 @@ function UpdatedRatingDashboard() {
         setRatings(data.fetchRatingsForAdmin);
       },
       onError: (error) => {
-        setRatings([])
-        toast.error(error?.message || 'Something went wrong');
+        setRatings([]);
+        toast.error(handleError(error));
       },
     });
   }, [toggle]);
@@ -400,12 +399,8 @@ function UpdatedRatingDashboard() {
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg overflow-auto">
                 <div className="min-w-fit">
-                  {
-                    getRatingsLoading ?
-                    <TtlSkeleton/>
-                    : ''
-                  }
-                  { ratings && !getRatingsLoading ? (
+                  {getRatingsLoading ? <TtlSkeleton /> : ''}
+                  {ratings && !getRatingsLoading ? (
                     <DataTable
                       data={ratings}
                       columns={columns}

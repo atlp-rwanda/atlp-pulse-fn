@@ -62,11 +62,11 @@ function Testimonial() {
 
   return (
     <>
-      <div className="block md:hidden flex-col lg:mx-10 md:mx-20 my-20 gap-10 relative font-serif">
+      <div className="block md:hidden flex-col px-4 py-16 bg-gradient-to-b from-white to-indigo-50 dark:from-dark-frame-bg dark:to-dark-bg relative font-serif">
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className={`bg-indigo-100 dark:bg-dark-bg  dark:text-slate-300 lg:w-1/3 p-8 md:w-full rounded-b-3xl sm:mx-3 rounded-t-3xl ${
+            className={`group relative bg-white dark:bg-dark-bg rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
               currentIndex === index ? 'visible' : 'hidden'
             }`}
           >
@@ -105,31 +105,40 @@ function Testimonial() {
         </span>
       </div>
 
-      <div className="hidden md:flex md:flex-row flex-col  lg:mx-0 md:mx-0 my-20 gap-10 md:flex-wrap lg:flex-nowrap font-serif">
+      <div className="hidden md:grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 py-16 bg-gradient-to-b from-white to-indigo-50 dark:from-dark-frame-bg dark:to-dark-bg">
         {testimonials.map((testimonial, index) => (
           <div
             key={testimonial.id}
-            className="bg-indigo-100  dark:bg-dark-bg lg:w-1/3 p-8 md:w-full  rounded-b-3xl sm:mx-3 rounded-t-3xl "
+            className="group relative bg-white dark:bg-dark-bg rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden "
           >
-            <div className="flex flex-col sm:flex-row  mb-6 items-center">
-              <img
-                className="md:w-1/5 sm:w-1/3"
-                src={testimonial.image}
-                alt=""
-              />
-
-              <ul>
-                <li className="text-sm ml-3  dark:text-slate-300  text-neutral-600">
+            <div className="flex items-center space-x-4 mb-6">
+              <div className="relative">
+                <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-indigo-100 dark:ring-indigo-900">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-indigo-500 rounded-full border-2 border-white dark:border-dark-bg" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                   {testimonial.name}
-                </li>
-                <li className="text-sm  dark:text-slate-300  mt-2 ml-3">
-                  {testimonial.role}, {testimonial.organization}
-                </li>
-              </ul>
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {testimonial.role}
+                </p>
+                <p className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
+                  {testimonial.organization}
+                </p>
+              </div>
             </div>
-            <p className="text-base dark:text-slate-300  text-neutral-900">
-              {testimonial.content}
-            </p>
+            <div className="relative">
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {testimonial.content}
+              </p>
+            </div>
           </div>
         ))}
       </div>

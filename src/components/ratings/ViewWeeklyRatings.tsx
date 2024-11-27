@@ -12,6 +12,7 @@ import useViewTraineeRatings from './hooks/useViewTraineeRatings';
 import Button from '../Buttons';
 import { UPDATE_RATING } from '../../Mutations/Ratings';
 import { DEFAULT_GRADE } from '../../queries/DefaultGrading.queries';
+import { handleError } from '../ErrorHandle';
 
 function ViewSprintRatings({
   traineeName,
@@ -58,7 +59,7 @@ function ViewSprintRatings({
       },
 
       onError: (error) => {
-        toast.error(error?.message || 'Failed to load the data');
+        toast.error(handleError(error));
       },
     });
 
@@ -127,7 +128,7 @@ function ViewSprintRatings({
 
       setUpdateMessage('Rating updated successfully');
     } catch (error: any) {
-      toast.error(error.message || 'something went wrong');
+      toast.error(handleError(error));
       setShowActions(true);
     }
     setEditRatingFormVisible(false);

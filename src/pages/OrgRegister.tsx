@@ -12,6 +12,7 @@ import REGISTER_ORGANIZATION_REQUEST from './RegisterOrgMutation';
 import functionTree from '../assets/Functionality_Tree.svg';
 import pulseStars from '../assets/Property 1=Logo_flie (1).svg';
 import OrgRegisterSuccessModel from './OrgRegisterSuccessModel';
+import { handleError } from '../components/ErrorHandle';
 
 export default function OrgRegister() {
   useDocumentTitle('Register organization');
@@ -43,7 +44,7 @@ export default function OrgRegister() {
       await addOrganization({
         variables: { organizationInput },
         onError(error) {
-          toast.error(error.message);
+          toast.error(handleError(error));
         },
         onCompleted(data) {
           // toast.success(data.requestOrganization);

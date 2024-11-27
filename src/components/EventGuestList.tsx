@@ -1,7 +1,8 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import { toast } from "react-toastify";
-import { GET_ALL_USERS_QUERY } from "../queries/manageStudent.queries";
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { toast } from 'react-toastify';
+import { GET_ALL_USERS_QUERY } from '../queries/manageStudent.queries';
+import { handleError } from './ErrorHandle';
 
 export const getRoleColor = (role: string) => {
   switch (role) {
@@ -35,9 +36,15 @@ export const getRoleTitle = (role: string) => {
     default:
       return 'Others';
   }
-}
+};
 
-function EventGuestList({ selectedGuests, handleAddGuest }: { selectedGuests: string[], handleAddGuest: any }) {
+function EventGuestList({
+  selectedGuests,
+  handleAddGuest,
+}: {
+  selectedGuests: string[];
+  handleAddGuest: any;
+}) {
   const { loading: guestDataLoading, data: guestData } = useQuery(
     GET_ALL_USERS_QUERY,
     {
@@ -46,13 +53,13 @@ function EventGuestList({ selectedGuests, handleAddGuest }: { selectedGuests: st
       },
       fetchPolicy: 'network-only',
       onError: (error) => {
-        toast.error(error.message);
+        toast.error(handleError(error));
       },
     },
   );
 
-  const roles = ["admin", "trainee", "ttl", "coordinator","manager"]
-  const authUser = JSON.parse(localStorage.getItem('auth')!)
+  const roles = ['admin', 'trainee', 'ttl', 'coordinator', 'manager'];
+  const authUser = JSON.parse(localStorage.getItem('auth')!);
 
   return (
     <div className="dark:bg-dark-tertiary dark:text-white mt-2 p-2 border border-primary rounded-md h-40 overflow-y-auto">
@@ -66,15 +73,15 @@ function EventGuestList({ selectedGuests, handleAddGuest }: { selectedGuests: st
               {guestData?.getAllUsers
                 .filter((user: any) => user.role === role)
                 .map((guest: any) => (
-                  <div
-                    key={guest.email}
-                    className="flex items-center mb-2"
-                  >
+                  <div key={guest.email} className="flex items-center mb-2">
                     <input
                       type="checkbox"
                       id={`input-${guest.id}`}
                       data-testid={`input-${guest.id}`}
-                      checked={selectedGuests.includes(guest.email) || guest.email === authUser?.email}
+                      checked={
+                        selectedGuests.includes(guest.email) ||
+                        guest.email === authUser?.email
+                      }
                       onChange={() => handleAddGuest(guest.email)}
                       disabled={guest.email === authUser?.email}
                       className="mr-2"
@@ -88,19 +95,23 @@ function EventGuestList({ selectedGuests, handleAddGuest }: { selectedGuests: st
                         className={`w-2 h-2 rounded-full ${getRoleColor(
                           guest.role,
                         )} mr-2`}
-                       />
-                      {guest.profile.firstName}{' '}
-                      {guest.profile.lastName} ({guest.role})
+                      />
+                      {guest.profile.firstName} {guest.profile.lastName} (
+                      {guest.role})
                     </label>
                   </div>
                 ))}
-              {index === roles.length-1 ? ' ': <hr className="border-t border-gray-300 my-4" />}
+              {index === roles.length - 1 ? (
+                ' '
+              ) : (
+                <hr className="border-t border-gray-300 my-4" />
+              )}
             </div>
           ))}
         </>
       )}
     </div>
-  )
+  );
 }
 
-export default EventGuestList
+export default EventGuestList;

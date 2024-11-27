@@ -14,9 +14,17 @@ import OrgSkeleton from '../Skeletons/Organization.skeleton';
 import { DeleteOrganization } from '../Mutations/OrganisationMutations';
 import { RegisterNewOrganization } from '../Mutations/OrganisationMutations';
 import { AddOrganization } from '../Mutations/OrganisationMutations';
+import { GET_ORGANIZATIONS } from '../queries/organization.queries';
+import jwtDecode from 'jwt-decode';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { handleError } from './ErrorHandle';
 
 export interface Admin {
   id: string;
+  profile: {
+    name: string;
+    phoneNumber: string;
+  };
   email: string;
 }
 export interface Organization {
@@ -24,23 +32,9 @@ export interface Organization {
   name: string;
   description: string;
   admin: Admin;
+  status: 'active' | 'rejected' | 'pending';
   [x: string]: any;
 }
-
-export const getOrganizations = gql`
-  query GetOrganizations {
-    getOrganizations {
-      id
-      name
-      description
-      admin {
-        id
-        email
-      }
-      status
-    }
-  }
-`;
 
 function ActionButtons({
   getData,
@@ -143,7 +137,28 @@ const Organizations = () => {
     loading: boolean;
     error?: any;
     refetch: Function;
-  } = useQuery(getOrganizations);
+  } = useQuery(GET_ORGANIZATIONS);
+
+  const ApproveNewOrganization = async (token: string) => {
+    try {
+      const decodedToken: any = await jwtDecode(token);
+      if (!decodedToken) throw new Error('Failed to decode token');
+      const { nm: name, desc: description, email } = decodedToken;
+      const approvalResult = await ApproveOrganization({
+        name,
+        description,
+        email,
+      });
+
+      if (approvalResult && approvalResult.success) {
+        toast.success(`${name} organization has been approved.`);
+      } else {
+        toast.error(`${name} organization approval failed.`);
+      }
+    } catch (error: any) {
+      toast.error(handleError(error));
+    }
+  };
 
   const [createOrganizationModel, setCreateOrganizationModel] = useState(false);
   const [deleteOrganizationModel, setDeleteOrganizationModel] = useState(false);
@@ -161,6 +176,18 @@ const Organizations = () => {
     },
     description: '',
   });
+
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const newOrgToken = searchParams.get('newOrgToken');
+    if (newOrgToken) {
+      ApproveNewOrganization(newOrgToken);
+      searchParams.delete('newOrgToken');
+      navigate(`?${searchParams.toString()}`, { replace: true });
+    }
+  }, []);
 
   const handleShowActions = () => {
     setShowActions(!showActions);
@@ -192,7 +219,7 @@ const Organizations = () => {
 
   const [addOrganizationMutation, { loading }] = useMutation(AddOrganization, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       toast.success('Email Sent Successfully');
@@ -203,7 +230,7 @@ const Organizations = () => {
   const [RegisterOrganizationMutation] = useMutation(RegisterNewOrganization, {
     onError(error) {
       setIsLoad(false);
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       setIsLoad(false);
@@ -214,11 +241,11 @@ const Organizations = () => {
 
   const [deleteOrganizationMutation] = useMutation(DeleteOrganization, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       setIsLoad(false);
-      toast.success('Organisation Deleted.');
+      toast.success('Organization Deleted Successfully');
       getRefetch();
     },
   });
@@ -230,9 +257,19 @@ const Organizations = () => {
   }
 
   async function ApproveOrganization(data: any) {
-    await RegisterOrganizationMutation({
-      variables: { organizationInput: data, action: 'approve' },
-    });
+    try {
+      const { data: mutationResult } = await RegisterOrganizationMutation({
+        variables: { organizationInput: data, action: 'approve' },
+      });
+
+      if (mutationResult) {
+        return { success: true };
+      } else {
+        return { success: false };
+      }
+    } catch (error: any) {
+      toast.error(handleError(error));
+    }
   }
 
   async function RejectOrganization(data: any) {
@@ -540,15 +577,15 @@ const Organizations = () => {
           </div>
         </div>
         <div className="">
-        {getLoading ? (
-          <OrgSkeleton/>
-        ) : (
-          <DataTable
-            columns={organizationColumns}
-            data={organizationData ? (organizationData as [any]) : []}
-            title={t('Organizations list')}
-          />
-        )}
+          {getLoading ? (
+            <OrgSkeleton />
+          ) : (
+            <DataTable
+              columns={organizationColumns}
+              data={organizationData ? (organizationData as [any]) : []}
+              title={t('Organizations list')}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -39,10 +39,10 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
     <div
       className={`${
         showNav ? 'block' : 'hidden'
-      } lg:block page-sideNav fixed lg:static top-16 bottom-0 font-serif`}
+      } lg:block lg:z-0  z-50 fixed top-14 bottom-0 lg:h-[calc(100vh-3rem)] `}
     >
       <div
-        className={`${style} overflow-auto flex-col h-[100%] pt-2 bg-indigo-100 dark:bg-dark-bg shadow-lg lg:shadow-none dark:shadow-border-dark`}
+        className={`${style} overflow-auto flex-col h-[100%] px-3 py-8 bg-indigo-100 dark:bg-dark-bg shadow-lg lg:shadow-none dark:shadow-border-dark`}
       >
         <div className="list-none">
           <SideNavLink onClick={toggle} name="Dashboard" to="/dashboard">
@@ -152,7 +152,21 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
               <UserGroupIcon className="w-5" />
             </SideNavLink>
           </CheckRole>
-          
+
+          {/* FOR COORDINATORS AND A TTL */}
+          <CheckRole roles={['coordinator', 'ttl']}>
+            <SideNavLink onClick={toggle} name="Attendance" to="/attendance">
+              <ClipboardCheckIcon className="w-5 " />
+            </SideNavLink>
+          </CheckRole>
+
+          {/* manger role */}
+          <CheckRole roles={['manager']}>
+            <SideNavLink onClick={toggle} name="Teams" to="/team-cards">
+              <UserGroupIcon className="w-5" />
+            </SideNavLink>
+          </CheckRole>
+
           {/* FOR COORDINATORS AND A TTL */}
           <CheckRole roles={['coordinator', 'ttl']}>
             <SideNavLink onClick={toggle} name="Attendance" to="/attendance">

@@ -9,6 +9,7 @@ import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { Team, Cohort } from './Teams';
 import { AddTeam } from '../../Mutations/teamMutation';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function CreateTeamModal({
   data,
@@ -20,6 +21,7 @@ export default function CreateTeamModal({
     getAllTeams: Team[];
     getAllCohorts: Cohort[];
     getAllUsers: any;
+    getAllTTLUsers: any;
   };
   createTeamModel: boolean;
   removeModel: Function;
@@ -38,7 +40,7 @@ export default function CreateTeamModal({
   /* istanbul ignore next */
   const [addTeamMutation, { loading }] = useMutation(AddTeam, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       toast.success('Team successfully added');
@@ -141,8 +143,8 @@ export default function CreateTeamModal({
                     },
                   }}
                   options={
-                    data?.getAllUsers
-                      ?.filter((user: any) => user.role === 'ttl')
+                    data?.getAllTTLUsers
+                      ?.filter((user: any) => !user.team)
                       ?.map((user: any) => ({
                         value: user.email,
                         label: user.email,

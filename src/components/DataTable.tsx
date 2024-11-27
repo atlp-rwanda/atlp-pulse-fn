@@ -91,7 +91,7 @@ function DataTable({ data, columns, title, loading, className }: TableData) {
         >
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+              <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
                     className={`thead ${column.isSorted ? 'sort-asc' : ''}`}

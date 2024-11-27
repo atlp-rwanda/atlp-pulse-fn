@@ -43,3 +43,12 @@ export const DeleteCohort = gql`
     }
   }
 `;
+
+export const GET_USER_COHORTS = gql`
+  query getUserCohorts($orgToken: String!) {
+    getUserCohorts(orgToken: $orgToken) {
+      id
+      name
+    }
+  }
+`;

@@ -34,6 +34,5 @@ describe('TraineeRatingDashboard Tests', () => {
         </ApolloProvider>
       </BrowserRouter>,
     );
-    screen.debug(undefined, 1000000);
   });
 });

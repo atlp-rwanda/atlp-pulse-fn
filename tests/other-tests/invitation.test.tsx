@@ -1,5 +1,5 @@
 import React from 'react';
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { toast } from 'react-toastify';
@@ -26,7 +26,6 @@ const localStorageMock = (() => {
   };
 })();
 
-
 Object.defineProperty(global, 'localStorage', { value: localStorageMock });
 
 const mocks = [
@@ -35,7 +34,7 @@ const mocks = [
       query: SEND_INVITATION,
       variables: {
         invitees: [{ email: 'test@example.com', role: 'admin' }],
-        orgName:'mockName',
+        orgName: 'mockName',
         orgToken: 'mockToken',
       },
     },
@@ -53,15 +52,15 @@ describe('InviteForm', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     (localStorage.getItem as jest.Mock)
-  .mockReturnValueOnce('mockToken')  
-  .mockReturnValueOnce('mockName');  
+      .mockReturnValueOnce('mockToken')
+      .mockReturnValueOnce('mockName');
   });
 
   it('renders correctly', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <InviteForm onClose={() => {}} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     expect(screen.getByText('Invite users')).toBeInTheDocument();
@@ -74,7 +73,7 @@ describe('InviteForm', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <InviteForm onClose={() => {}} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     const emailInput = screen.getByPlaceholderText('Email address');
@@ -84,7 +83,9 @@ describe('InviteForm', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Please enter a valid email address.')).toBeInTheDocument();
+      expect(
+        screen.getByText('Please enter a valid email address.'),
+      ).toBeInTheDocument();
     });
   });
 
@@ -92,7 +93,7 @@ describe('InviteForm', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <InviteForm onClose={() => {}} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     const roleButton = screen.getByText('Role');
@@ -109,7 +110,7 @@ describe('InviteForm', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <InviteForm onClose={() => {}} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     const emailInput = screen.getByPlaceholderText('Email address');
@@ -122,20 +123,22 @@ describe('InviteForm', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(toast.success).toHaveBeenCalledWith('Invitation sent successfully!');
+      expect(toast.success).toHaveBeenCalledWith(
+        'Invitation sent successfully!',
+      );
     });
   });
 
   it('handles invitation error', async () => {
     const errorMock = {
       ...mocks[0],
-      error: new Error('Invitation failed'),
+      error: new Error('Sending invitation failed'),
     };
 
     render(
       <MockedProvider mocks={[errorMock]} addTypename={false}>
         <InviteForm onClose={() => {}} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     const emailInput = screen.getByPlaceholderText('Email address');
@@ -148,16 +151,15 @@ describe('InviteForm', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('Error sending invitation: Invitation failed');
+      expect(toast.error).toHaveBeenCalledWith('Sending invitation failed');
     });
   });
-
 
   it('displays loading state when submitting', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <InviteForm onClose={() => {}} />
-      </MockedProvider>
+      </MockedProvider>,
     );
 
     const emailInput = screen.getByPlaceholderText('Email address');

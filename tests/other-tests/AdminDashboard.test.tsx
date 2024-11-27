@@ -9,14 +9,26 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 import { act } from 'react-dom/test-utils';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import AdminDashboard from '../../src/pages/AdminDashboard';
 
+beforeAll(() => {
+  global.ResizeObserver = class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+});
+
 const client = new ApolloClient({ cache: new InMemoryCache() });
 
 describe('<Account />', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('should render account component', async () => {
     act(() => {
       render(
@@ -36,7 +48,8 @@ describe('<Account />', () => {
     expect(inviteBtn).toBeInTheDocument();
     expect(removeInviteModel).toBeInTheDocument();
 
-    act(() => {
+    // Simulate user interactions
+    await act(async () => {
       fireEvent.change(inviteInput, {
         target: { value: 'admin@devpulse.co' },
       });

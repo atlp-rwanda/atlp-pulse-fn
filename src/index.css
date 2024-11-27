@@ -22,8 +22,6 @@
     @apply font-serif;
   }
 
-
-
   .max-375-footrt-img img {
     margin-right: 0;
   }
@@ -36,7 +34,6 @@
 .phone-input-container {
   background-color: transparent;
   font-size: 0.8rem;
-  
 }
 .PhoneInputInput {
   padding: 0.3rem;
@@ -46,7 +43,6 @@
   box-shadow: 0 0 0 1px #8667f2;
   border-radius: 2px;
 }
-
 
 .phone-input-container .PhoneInputCountry {
   margin-right: 0.5rem;
@@ -58,8 +54,7 @@
 
 .dark .phone-input-container .PhoneInputCountrySelect {
   background-color: #272728;
-  color: #F3F4F6;
- 
+  color: #f3f4f6;
 }
 
 .phone-input-container .PhoneInputCountryIcon {
@@ -72,19 +67,20 @@
 
 .dark .phone-input-container .PhoneInputInput {
   background-color: rgba(0, 0, 0, 0.45);
-  color: #F3F4F6;
+  color: #f3f4f6;
 }
 
 .dark .phone-input-container .PhoneInputCountrySelectArrow {
-  border-top-color: #F3F4F6;
+  border-top-color: #f3f4f6;
 }
-
 
 /* 404 Page */
 .errorImg {
-  background-image: linear-gradient(90deg,
+  background-image: linear-gradient(
+      90deg,
       rgba(0, 0, 0, 0.724),
-      rgba(17, 0, 43, 0.753)),
+      rgba(17, 0, 43, 0.753)
+    ),
     url(https://res.cloudinary.com/deygsvbub/image/upload/v1691651478/Home_page_image_1_io1spq.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -105,7 +101,7 @@
 .text-style {
   color: var(--neutral-neutral-900, #424242);
   /* font-family: poppins; */
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -117,7 +113,7 @@
 .header-style {
   color: var(--neutral-neutral-900, #424242);
   /* font-family: poppins; */
-  
+
   font-style: normal;
   font-weight: 900;
   line-height: 100%;
@@ -133,7 +129,7 @@
 .card-text {
   color: var(--neutral-neutral-900, #424242);
   /* font-family: poppins; */
-  
+
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -143,13 +139,12 @@
 
 .font {
   /* font-family: Poppins; */
-  
 }
 
 .text-img {
   color: var(--base-light, #fff);
   /* font-family: Poppins; */
-  
+
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
@@ -171,7 +166,6 @@
 }
 
 @supports (-webkit-touch-callout: none) {
-
   /* CSS specific to iOS devices */
   .hero {
     background-attachment: scroll;
@@ -484,14 +478,14 @@ th {
   .page-layout {
     display: grid;
     grid-template-areas:
-      'header header'
-      'side_nav main'
-      'footer footer';
-    grid-template-columns: auto 1fr;
+      'header'
+      'main'
+      'footer';
+    grid-template-columns: auto;
     grid-template-rows: auto 1fr auto;
   }
 
-  .page-layout>* {
+  .page-layout > * {
     max-width: min(100%, 100vw);
     box-sizing: border-box;
   }

@@ -19,6 +19,7 @@ import Avatar from '../assets/avatar.png';
 import Spinner from '../components/ButtonLoading';
 import { UserContext } from '../hook/useAuth';
 import { UPDATE_AVATAR, UPDATE_COVER } from '../Mutations/coverMutations';
+import { handleError } from './ErrorHandle';
 
 export default function ProfileCoverpage({
   currentPage,
@@ -63,7 +64,7 @@ export default function ProfileCoverpage({
       if (updated) {
         setSpinner(false);
         setProfileImage(updated?.data?.updateAvatar?.avatar);
-        toast.success('updated');
+        toast.success('Updated successfully');
       }
       /* istanbul ignore next */
       if (updated?.data?.updateAvatar?.avatar) {
@@ -95,7 +96,7 @@ export default function ProfileCoverpage({
       setSpinnerCover(true);
       if (updated) {
         setSpinnerCover(false);
-        toast.success('updated');
+        toast.success('updated successfully');
       }
       /* istanbul ignore next */
       if (updated?.data?.updateCoverImage?.cover) {
@@ -117,7 +118,7 @@ export default function ProfileCoverpage({
         setProfileData(data);
       } catch (error: any) {
         /* istanbul ignore next */
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       }
     };
     fetchData();

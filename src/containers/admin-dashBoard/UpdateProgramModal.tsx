@@ -7,6 +7,7 @@ import Button from '../../components/Buttons';
 import ControlledSelect from '../../components/ControlledSelect';
 import { PartialUser } from './Cohorts';
 import { Program } from './Programs';
+import { handleError } from '../../components/ErrorHandle';
 
 export const UpdateProgram = gql`
   mutation UpdateProgram(
@@ -55,7 +56,7 @@ export default function UpdateProgramModal({
   /* istanbul ignore next */
   const [updateProgramMutation, { loading }] = useMutation(UpdateProgram, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       refetch();

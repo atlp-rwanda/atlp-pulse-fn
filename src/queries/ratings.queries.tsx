@@ -126,7 +126,10 @@ export const TRAINEE_RATING = gql`
       quantity
       quality
       professional_Skills
+      attendance
       average
+      createdAt
+      updatedAt
       cohort {
         name
         phase {

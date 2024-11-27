@@ -39,17 +39,17 @@ function Comment({ remark }: CommentProps) {
       {isModalOpen && <div className="blur-background" />}
       <dialog
         ref={dialog}
-        className={`rounded-lg shadow-lg w-[40%] ${
+        className={`rounded-lg m-auto shadow-lg w-[40%] ${
           isModalOpen ? 'modal-open' : ''
         }`}
         dat-testid="dialog"
         onClick={(e) => close(e)}
       >
-        <div className="p-3 rounded trainee-model bg-indigo-100 w-[100%] h-[150px] font-serif">
+        <div className="p-3 rounded trainee-model bg-indigo-100 dark:bg-dark-bg h-[150px] dark:text-white text-black">
           {remark ? (
             <div className="comment-content">
               <p className="font-bold my-2 text-lg">From Coordinator:</p>
-              <div className="font-light font-9 text-">{remark}</div>
+              <div className="font-light font-9 px-5">{remark}</div>
             </div>
           ) : (
             <p className="font-bold font-9 text-md m-16">
@@ -59,7 +59,7 @@ function Comment({ remark }: CommentProps) {
         </div>
       </dialog>
       <button
-        className="bg-[#8667F2] flex px-4 py-1 flex-row justify-evenly items-center rounded-xl text-white"
+        className="bg-[#8667F2] flex px-3 py-1 items-center rounded-xl text-white"
         onClick={() => openModel()}
       >
         <AiOutlineEye className="m-1" />

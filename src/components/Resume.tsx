@@ -159,7 +159,7 @@ function Resume() {
         }
       } catch (error) {
         const typedError = error as Error;
-        toast.error(`Error uploading resume: ${typedError.message}`);
+        toast.error('Error uploading resume');
         setButtonLoading(false);
       }
     }

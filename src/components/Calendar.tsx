@@ -13,9 +13,10 @@ import { useLazyQuery, useMutation } from '@apollo/client';
 import { ADD_EVENT, EDIT_EVENT, CANCEL_EVENT } from '../Mutations/event';
 import { GET_EVENTS } from '../queries/event.queries';
 import moment from 'moment';
-import CalendarSkeleton from '../Skeletons/Calender.skeleton'
+import CalendarSkeleton from '../Skeletons/Calender.skeleton';
 import { toast } from 'react-toastify';
 import EventGuestList from './EventGuestList';
+import { handleError } from './ErrorHandle';
 /* istanbul ignore next */
 
 const Calendar = () => {
@@ -48,12 +49,12 @@ const Calendar = () => {
         fetchPolicy: 'network-only',
       });
     } catch (error: any) {
-      toast.error(error.message)
+      toast.error(handleError(error));
     }
   };
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, []);
 
   const renderEvent = (e: EventContentArg) => (
@@ -91,11 +92,11 @@ const Calendar = () => {
         authToken: localStorage.getItem('auth_token'),
         orgToken: localStorage.getItem('orgToken'),
         invitees: selectedGuests,
-      }
+      },
     })
       .then(() => {
-        fetchData()
-        toast.success('Event has been added!'); // {{ edit_1 }}
+        fetchData();
+        toast.success('Event has been added!');
         setNewEvent({
           title: '',
           start: new Date(),
@@ -104,14 +105,13 @@ const Calendar = () => {
           timeToStart: '',
           timeToEnd: '',
         });
-        setSelectedGuests([])
+        setSelectedGuests([]);
         setTimeout(() => {
           setAddEventModel(false);
         }, 1000);
-
       })
       .catch((error) => {
-        toast.error(error.message); // Handle error if needed
+        toast.error(handleError(error));
       });
   };
 
@@ -124,8 +124,8 @@ const Calendar = () => {
   };
 
   //edit section
-  const [editEvent] = useMutation(EDIT_EVENT)
-  const [editEventModel, setEditEventModel] = useState(false)
+  const [editEvent] = useMutation(EDIT_EVENT);
+  const [editEventModel, setEditEventModel] = useState(false);
   const [editedEvent, setEditedEvent] = useState({
     id: '',
     title: '',
@@ -137,9 +137,12 @@ const Calendar = () => {
   });
 
   const handleEditEventModel = async (e: EventInput) => {
-    const event = data?.getEvents.find((event: any)=> event.id === e.event?.id)
+    const event = data?.getEvents.find(
+      (event: any) => event.id === e.event?.id,
+    );
     if (event) {
-      if(event.user !== JSON.parse(localStorage.getItem('auth')!).userId) return
+      if (event.user !== JSON.parse(localStorage.getItem('auth')!).userId)
+        return;
       setEditedEvent((prev) => {
         return {
           ...prev,
@@ -150,16 +153,16 @@ const Calendar = () => {
           hostName: event.hostName,
           timeToStart: event.timeToStart,
           timeToEnd: event.timeToEnd,
-        }
-      })
-      setSelectedGuests(event.invitees.map((invitee: any) => invitee.email))
+        };
+      });
+      setSelectedGuests(event.invitees.map((invitee: any) => invitee.email));
       setEditEventModel(true);
     }
   };
 
   const handleEditEvent = async (e: any) => {
-    e.preventDefault()
-    const { id, ...rest } = editedEvent
+    e.preventDefault();
+    const { id, ...rest } = editedEvent;
     editEvent({
       variables: {
         eventId: id,
@@ -170,7 +173,7 @@ const Calendar = () => {
       },
     })
       .then(() => {
-        fetchData()
+        fetchData();
         toast.success('Event has been updated!');
         setEditedEvent({
           id: '',
@@ -181,42 +184,42 @@ const Calendar = () => {
           timeToStart: '',
           timeToEnd: '',
         });
-        setSelectedGuests([])
+        setSelectedGuests([]);
         setTimeout(() => {
           setEditEventModel(false);
         }, 1000);
       })
       .catch((error) => {
-        toast.error(error.message); // Handle error if needed
+        toast.error(handleError(error));
       });
-  }
+  };
 
   const removeEditModel = (e: any) => {
-    e.preventDefault()
-    setSelectedGuests([])
-    setEditEventModel(!editEventModel)
-  }
+    e.preventDefault();
+    setSelectedGuests([]);
+    setEditEventModel(!editEventModel);
+  };
 
   // delete section
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const [cancelEvent] = useMutation(CANCEL_EVENT)
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [cancelEvent] = useMutation(CANCEL_EVENT);
 
   const handleDeleteConfirmation = (e: any) => {
-    e.preventDefault()
-    setShowDeleteModal(prev => !prev)
-  }
+    e.preventDefault();
+    setShowDeleteModal((prev) => !prev);
+  };
 
   const handleDelete = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     cancelEvent({
       variables: {
         eventId: editedEvent.id,
-        authToken: localStorage.getItem('auth_token')
+        authToken: localStorage.getItem('auth_token'),
       },
     })
       .then(() => {
-        fetchData()
-        toast.success('Event cancelled successfully')
+        fetchData();
+        toast.success('Event cancelled successfully');
         setEditedEvent({
           id: '',
           title: '',
@@ -226,23 +229,24 @@ const Calendar = () => {
           timeToStart: '',
           timeToEnd: '',
         });
-        setSelectedGuests([])
+        setSelectedGuests([]);
         setTimeout(() => {
-          setShowDeleteModal(false)
+          setShowDeleteModal(false);
           setEditEventModel(false);
         }, 1000);
-      }
-      )
-      .catch(err => {
-        toast.error(err.message)
       })
-  }
+      .catch((err) => {
+        toast.error(handleError(err));
+      });
+  };
 
   return (
     <>
       <div
-        data-testid="addEventModal" className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${addEventModel === true ? 'block' : 'hidden'
-          }`}
+        data-testid="addEventModal"
+        className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
+          addEventModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -366,11 +370,14 @@ const Calendar = () => {
                     {showTraineeDropdown ? '-' : '+'}
                   </button>
                 </div>
-                {showTraineeDropdown ?
+                {showTraineeDropdown ? (
                   <EventGuestList
                     selectedGuests={selectedGuests}
                     handleAddGuest={handleAddGuest}
-                  /> : ''}
+                  />
+                ) : (
+                  ''
+                )}
               </div>
 
               <div className="w-full flex justify-between">
@@ -381,7 +388,10 @@ const Calendar = () => {
                 >
                   {t('cancel')}
                 </button>
-                <button data-testid="handleAddEventButton" className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded">
+                <button
+                  data-testid="handleAddEventButton"
+                  className="text-white py-2 w-[40%] md:w-1/3 bg-primary rounded"
+                >
                   {t('save')}
                 </button>
               </div>
@@ -391,8 +401,10 @@ const Calendar = () => {
       </div>
 
       <div
-        data-testid="editEventModal" className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${editEventModel === true ? 'block' : 'hidden'
-          }`}
+        data-testid="editEventModal"
+        className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
+          editEventModel === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -448,7 +460,11 @@ const Calendar = () => {
                     className=" dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholderText={t('Start Date')}
                     style={{ marginRight: '10px' }}
-                    selected={editedEvent.start ? new Date(editedEvent.start) : new Date()}
+                    selected={
+                      editedEvent.start
+                        ? new Date(editedEvent.start)
+                        : new Date()
+                    }
                     onChange={(start: any) =>
                       setEditedEvent({
                         ...editedEvent,
@@ -465,8 +481,12 @@ const Calendar = () => {
                     className="dark:bg-dark-tertiary dark:text-white border border-primary rounded outline-none px-5 font-sans text-xs py-2 w-full"
                     placeholderText={t('End Date')}
                     style={{ marginRight: '10px' }}
-                    selected={editedEvent.end ? new Date(editedEvent.end) : new Date()}
-                    onChange={(end: any) => setEditedEvent({ ...editedEvent, end })}
+                    selected={
+                      editedEvent.end ? new Date(editedEvent.end) : new Date()
+                    }
+                    onChange={(end: any) =>
+                      setEditedEvent({ ...editedEvent, end })
+                    }
                   />
                 </div>
               </div>
@@ -519,11 +539,14 @@ const Calendar = () => {
                     {showTraineeDropdown ? '-' : '+'}
                   </button>
                 </div>
-                {showTraineeDropdown ?
+                {showTraineeDropdown ? (
                   <EventGuestList
                     selectedGuests={selectedGuests}
                     handleAddGuest={handleAddGuest}
-                  /> : ''}
+                  />
+                ) : (
+                  ''
+                )}
               </div>
 
               <div className="w-full flex justify-between">
@@ -534,11 +557,19 @@ const Calendar = () => {
                 >
                   {t('cancel')}
                 </button>
-                <div className='flex justify-end gap-x-1.5 w-[50%]'>
-                  <button data-testid="handleDeleteModal" type='button' className="text-white py-2 md:w-1/3 bg-red-600 rounded" onClick={(e) => handleDeleteConfirmation(e)}>
+                <div className="flex justify-end gap-x-1.5 w-[50%]">
+                  <button
+                    data-testid="handleDeleteModal"
+                    type="button"
+                    className="text-white py-2 md:w-1/3 bg-red-600 rounded"
+                    onClick={(e) => handleDeleteConfirmation(e)}
+                  >
                     {t('Delete')}
                   </button>
-                  <button type='submit' className="text-white py-2 md:w-1/3 bg-primary rounded">
+                  <button
+                    type="submit"
+                    className="text-white py-2 md:w-1/3 bg-primary rounded"
+                  >
                     {t('save')}
                   </button>
                 </div>
@@ -549,8 +580,10 @@ const Calendar = () => {
       </div>
 
       <div
-        data-testid="deleteEventModal" className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${showDeleteModal === true ? 'block' : 'hidden'
-          }`}
+        data-testid="deleteEventModal"
+        className={`font-serif h-screen w-screen bg-black bg-opacity-30 backdrop-blur-sm fixed top-0 left-0 z-20 flex items-center justify-center px-4 ${
+          showDeleteModal === true ? 'block' : 'hidden'
+        }`}
       >
         <div className="bg-indigo-100 dark:bg-dark-bg w-full sm:w-3/4 md:w-1/2  xl:w-4/12 rounded-lg p-4 pb-8">
           <div className="card-title w-full flex  flex-wrap justify-center items-center  ">
@@ -559,16 +592,26 @@ const Calendar = () => {
             </h3>
             <hr className=" bg-primary border-gray-300 my-3 w-full" />
           </div>
-          <p data-testid="deletePrompt" className="text-sm dark:text-white text-center my-8">Please confirm the cancellation of event <strong>{editedEvent.title}</strong>.</p>
+          <p
+            data-testid="deletePrompt"
+            className="text-sm dark:text-white text-center my-8"
+          >
+            Please confirm the cancellation of event{' '}
+            <strong>{editedEvent.title}</strong>.
+          </p>
           <div className="w-full flex justify-between">
             <button
               data-testid="removeDeleteModal"
               className="py-2 w-[40%] md:w-1/3 bg-violet-400 rounded font-sans text-sm text-white"
-              onClick={(e) => setShowDeleteModal(prev => !prev)}
+              onClick={(e) => setShowDeleteModal((prev) => !prev)}
             >
               {t('cancel')}
             </button>
-            <button data-testid="handleDelete" className="text-white py-2 w-[40%] md:w-1/3 bg-red-600 rounded" onClick={(e) => handleDelete(e)}>
+            <button
+              data-testid="handleDelete"
+              className="text-white py-2 w-[40%] md:w-1/3 bg-red-600 rounded"
+              onClick={(e) => handleDelete(e)}
+            >
               {t('Delete')}
             </button>
           </div>
@@ -579,34 +622,36 @@ const Calendar = () => {
         <div className="w-full flex justify-center text-xl md:text-4xl dark:text-primary mb-10">
           <h2>{t('Calendar')}</h2>
         </div>
-        {JSON.parse(localStorage.getItem('auth')!).role !== "trainee" ?
-         <button
-          data-testid="handleAddEventModal"
-          className="text-white py-2 w-1/2 md:w-1/3 bg-primary rounded"
-          onClick={handleAddEventModal}
-        >
-          {t('Add event')}
-        </button>
-        :''}
+        {JSON.parse(localStorage.getItem('auth')!).role !== 'trainee' ? (
+          <button
+            data-testid="handleAddEventModal"
+            className="text-white py-2 w-1/2 md:w-1/3 bg-primary rounded"
+            onClick={handleAddEventModal}
+          >
+            {t('Add event')}
+          </button>
+        ) : (
+          ''
+        )}
         {loading ? (
           <CalendarSkeleton />
         ) : (
-        <FullCalendar
-          eventContent={renderEvent}
-          events={data?.getEvents.map((event: any) => ({
-            id: event.id,
-            end: moment(event.end).add({days:1}).format('YYYY-MM-DD'),
-            start: moment(event.start).format('YYYY-MM-DD'),
-            hostName: event.hostName,
-            timeToStart: event.timeToStart,
-            title: event.title,
-            timeToEnd: event.timeToEnd,
-            allDay: true,
-          }))}
-          plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-          eventClick={handleEditEventModel}
-        />
+          <FullCalendar
+            eventContent={renderEvent}
+            events={data?.getEvents.map((event: any) => ({
+              id: event.id,
+              end: moment(event.end).add({ days: 1 }).format('YYYY-MM-DD'),
+              start: moment(event.start).format('YYYY-MM-DD'),
+              hostName: event.hostName,
+              timeToStart: event.timeToStart,
+              title: event.title,
+              timeToEnd: event.timeToEnd,
+              allDay: true,
+            }))}
+            plugins={[dayGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            eventClick={handleEditEventModel}
+          />
         )}
       </div>
     </>

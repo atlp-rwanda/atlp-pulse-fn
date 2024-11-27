@@ -7,6 +7,7 @@ import { MenuIcon, SunIcon, XIcon } from '@heroicons/react/outline';
 import { MoonIcon, BellIcon } from '@heroicons/react/solid';
 import { useLazyQuery, useSubscription, gql } from '@apollo/client';
 import { toast } from 'react-toastify';
+import { h } from '@fullcalendar/core/preact';
 import Logo from '../assets/logo.svg';
 import LogoWhite from '../assets/logoWhite.svg';
 import Avatar from '../assets/avatar.png';
@@ -18,6 +19,7 @@ import { GET_PROFILE } from '../queries/user.queries';
 import { UserContext } from '../hook/useAuth';
 import { NotificationSubscription } from '../Mutations/notificationMutation';
 import { getAllNotification } from '../queries/notification.queries';
+import { handleError } from './ErrorHandle';
 
 export const TICKETS_NOTS_SUB = gql`
   subscription OnTicket {
@@ -89,7 +91,7 @@ function DashHeader() {
         setProfileData(data);
       } catch (error: any) {
         /* istanbul ignore next */
-        toast.error(error?.message || 'Something went wrong');
+        toast.error(handleError(error));
       }
     };
     /* istanbul ignore next */
@@ -140,7 +142,7 @@ function DashHeader() {
             </div>
           </div>
           <div className="flex items-center h-full lg:w-full">
-            <Link to="/dashboard/super-admin" className="flex flex-row lg:px-5">
+            <Link to="/" className="flex flex-row lg:px-5">
               {colorTheme === 'dark' ? (
                 <img
                   className="w-full cursor-pointer mr-2"

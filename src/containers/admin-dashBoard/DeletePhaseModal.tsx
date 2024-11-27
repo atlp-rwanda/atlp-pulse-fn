@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Phase } from './Phases';
 import { DeletePhase } from '../../Mutations/phaseMutations';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function DeletePhaseModal({
   deletePhaseModal,
@@ -22,7 +23,7 @@ export default function DeletePhaseModal({
     onError(error) {
       /* istanbul ignore next */
       removeModel();
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       /* istanbul ignore next */

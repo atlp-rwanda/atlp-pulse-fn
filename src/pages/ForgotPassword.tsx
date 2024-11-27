@@ -10,6 +10,7 @@ import useDocumentTitle from '../hook/useDocumentTitle';
 import ButtonLoading from '../components/ButtonLoading';
 import { FORGOT_PASSWORD } from '../Mutations/resetPassword';
 import { VERIFY_RESET_PASSWORD_TOKEN } from '../queries/resetPassword.queries';
+import { handleError } from '../components/ErrorHandle';
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ export default function ForgotPassword() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-        toast.error(err.message);
+        toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -74,7 +75,7 @@ export default function ForgotPassword() {
           },
         });
       } catch (error: any) {
-        toast.error(error.message);
+        toast.error(handleError(error));
       }
     }, 2000);
   };

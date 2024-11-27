@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { Team } from './Teams';
 import { DeleteTeam } from '../../Mutations/teamMutation';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function DeleteTeamModal({
   deleteTeamModal,
@@ -20,7 +21,7 @@ export default function DeleteTeamModal({
   const { t } = useTranslation();
   const [deleteTeamMutation, { loading }] = useMutation(DeleteTeam, {
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     onCompleted() {
       refetch();

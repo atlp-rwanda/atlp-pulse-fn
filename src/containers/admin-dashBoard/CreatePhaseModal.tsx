@@ -5,6 +5,7 @@ import { TFunction, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import { AddPhase } from '../../Mutations/phaseMutations';
+import { handleError } from '../../components/ErrorHandle';
 
 export default function CreatePhaseModal({
   createPhaseModel,
@@ -26,7 +27,7 @@ export default function CreatePhaseModal({
   const [addPhaseMutation, { loading }] = useMutation(AddPhase, {
     /* istanbul ignore next */
     onError(error) {
-      toast.error(error.message.toString());
+      toast.error(handleError(error).toString());
     },
     /* istanbul ignore next */
     onCompleted() {
