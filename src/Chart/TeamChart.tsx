@@ -81,6 +81,9 @@ function TeamChart({
         weeklyData[isoWeekNumber - 1].failed += failed;
       }
       // Monthly data
+      if (!monthlyData[month]) {
+        monthlyData[month] = { month: month + 1, success: 0, failed: 0 };
+      }
       monthlyData[month].success += success;
       monthlyData[month].failed += failed;
     }
