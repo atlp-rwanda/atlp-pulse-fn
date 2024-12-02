@@ -24,7 +24,7 @@ const mocks = [
   {
     request: {
       query: GET_TRAINEE_ATTENDANCE,
-      variables: { },
+      variables: {},
     },
     result: {
       data: {
@@ -143,7 +143,6 @@ describe('Renders the TraineeAttendance Page', () => {
   });
 
   it.skip('Shows a message when there is no attendance record for trainee kjlsd', async () => {
-
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <TraineeAttendance />
@@ -156,13 +155,12 @@ describe('Renders the TraineeAttendance Page', () => {
     const phaseElement = await screen.findByText('Phase I');
     expect(phaseElement).toBeInTheDocument();
     fireEvent.click(phaseElement);
-    
+
     const weekElement = await screen.findByTestId('week-test');
     expect(weekElement).toBeInTheDocument();
     fireEvent.change(weekElement, { target: { value: '1' } });
   });
   it('Shows a message when there is no attendance record for trainee', async () => {
-    
     mocks[0].result.data.getTraineeAttendance.phases = [];
 
     render(
@@ -171,7 +169,10 @@ describe('Renders the TraineeAttendance Page', () => {
       </MockedProvider>,
     );
 
-    expect(await screen.findByText("You don't have an attendance record in the system at the moment.")).toBeInTheDocument();
+    expect(
+      await screen.findByText(
+        "You don't have an attendance record in the system at the moment.",
+      ),
+    ).toBeInTheDocument();
   });
-
 });

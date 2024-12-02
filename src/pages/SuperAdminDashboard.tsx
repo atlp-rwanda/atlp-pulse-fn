@@ -682,7 +682,7 @@ function SuperAdminDashboard() {
                           </span>
                         </p>
                         <p className="flex items-center gap-x-1 mb-[2px]">
-                          <MdOutlineMail className='text-[.98rem]'/>
+                          <MdOutlineMail className="text-[.98rem]" />
                           {org.organization.admin &&
                           org.organization.admin.email ? (
                             <a

@@ -91,7 +91,7 @@ function DashHeader() {
         setProfileData(data);
       } catch (error: any) {
         /* istanbul ignore next */
-         toast.error(handleError(error));
+        toast.error(handleError(error));
       }
     };
     /* istanbul ignore next */

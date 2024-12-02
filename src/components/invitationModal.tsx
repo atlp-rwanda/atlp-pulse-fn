@@ -128,7 +128,7 @@ function InviteForm({ onClose }: InviteFormProps) {
       setOrgToken('');
       onClose();
     } catch (e: any) {
-      toast.error("Sending invitation failed");
+      toast.error('Sending invitation failed');
     }
   };
 

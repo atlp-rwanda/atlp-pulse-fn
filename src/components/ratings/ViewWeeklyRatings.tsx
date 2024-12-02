@@ -59,7 +59,7 @@ function ViewSprintRatings({
       },
 
       onError: (error) => {
-         toast.error(handleError(error));
+        toast.error(handleError(error));
       },
     });
 

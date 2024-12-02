@@ -32,6 +32,17 @@ export const GET_TEAMS_CARDS = gql`
           name
           lastName
           firstName
+          address
+          activity {
+            date
+            city
+            IPv4
+            state
+            latitude
+            longitude
+            postal
+            failed
+          }
         }
         status {
           status

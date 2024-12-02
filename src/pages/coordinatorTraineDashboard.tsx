@@ -537,7 +537,7 @@ function CoordinatorTraineeDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-         toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -561,7 +561,7 @@ function CoordinatorTraineeDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-         toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -589,7 +589,7 @@ function CoordinatorTraineeDashboard() {
       setTimeout(() => {
         setButtonLoading(false);
         console.error('Mutation error:', err); // Log the error
-         toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 500);
     },
   });

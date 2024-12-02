@@ -1,10 +1,10 @@
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 import { fireEvent, screen, render, waitFor } from '@testing-library/react';
-import { MockedProvider } from "@apollo/client/testing";
-import { toast } from "react-toastify";
+import { MockedProvider } from '@apollo/client/testing';
+import { toast } from 'react-toastify';
 import AddGradingSystem from '../../src/pages/gradeSystem/addNew';
 import { act } from 'react-dom/test-utils';
-import React from "react";
+import React from 'react';
 
 // Mock dependencies
 jest.mock('react-i18next', () => ({
@@ -39,17 +39,23 @@ describe('AddGradingSystem', () => {
     return render(
       <MockedProvider>
         <AddGradingSystem {...defaultProps} {...props} />
-      </MockedProvider>
+      </MockedProvider>,
     );
   };
 
   describe('Form Rendering', () => {
     it('should render the form with initial values', () => {
       setup();
-      
-      expect(screen.getByPlaceholderText('Label eg: Name of grading system')).toBeInTheDocument();
-      expect(screen.getByLabelText('Toggle percentage requirement')).toBeChecked();
-      expect(screen.getByLabelText('Toggle description requirement')).not.toBeChecked();
+
+      expect(
+        screen.getByPlaceholderText('Label eg: Name of grading system'),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByLabelText('Toggle percentage requirement'),
+      ).toBeChecked();
+      expect(
+        screen.getByLabelText('Toggle description requirement'),
+      ).not.toBeChecked();
       expect(screen.getByText('Add Grade')).toBeInTheDocument();
       expect(screen.getByText('Save')).toBeInTheDocument();
       expect(screen.getByText('Cancel')).toBeInTheDocument();
@@ -59,7 +65,7 @@ describe('AddGradingSystem', () => {
   describe('Form Validation', () => {
     it('should show validation error for empty name', async () => {
       setup();
-      
+
       const saveButton = screen.getByText('Save');
       await act(async () => {
         fireEvent.click(saveButton);
@@ -70,26 +76,32 @@ describe('AddGradingSystem', () => {
 
     it('should show validation error for short name', async () => {
       setup();
-      
-      const nameInput = screen.getByPlaceholderText('Label eg: Name of grading system');
+
+      const nameInput = screen.getByPlaceholderText(
+        'Label eg: Name of grading system',
+      );
       await act(async () => {
         fireEvent.change(nameInput, { target: { value: 'A' } });
       });
 
-      expect(screen.getByText('Name must be at least 2 characters')).toBeInTheDocument();
+      expect(
+        screen.getByText('Name must be at least 2 characters'),
+      ).toBeInTheDocument();
     });
   });
-
 
   describe('Form Reset', () => {
     it('should reset form when cancel button is clicked', async () => {
       setup();
-      
+
       // Fill form data
       await act(async () => {
-        fireEvent.change(screen.getByPlaceholderText('Label eg: Name of grading system'), {
-          target: { value: 'Test Grading System' }
-        });
+        fireEvent.change(
+          screen.getByPlaceholderText('Label eg: Name of grading system'),
+          {
+            target: { value: 'Test Grading System' },
+          },
+        );
       });
 
       // Click cancel
@@ -99,7 +111,9 @@ describe('AddGradingSystem', () => {
 
       expect(mockRemoveModel).toHaveBeenCalled();
       expect(mockSetValue).toHaveBeenCalledWith('');
-      expect(screen.getByPlaceholderText('Label eg: Name of grading system')).toHaveValue('');
+      expect(
+        screen.getByPlaceholderText('Label eg: Name of grading system'),
+      ).toHaveValue('');
     });
   });
 });

@@ -57,7 +57,7 @@ function GradeItem({
   removable = true,
   onRemove,
   validationRules,
-  registerMinMax
+  registerMinMax,
 }: GradeItemProps) {
   const { t } = useTranslation();
 
@@ -82,11 +82,18 @@ function GradeItem({
             )}
 
             {percentageRequired && (
-              <div className={`flex justify-between gap-3 items-center flex-wrap ${percentageRequired && css.firstHeight}`}>
+              <div
+                className={`flex justify-between gap-3 items-center flex-wrap ${
+                  percentageRequired && css.firstHeight
+                }`}
+              >
                 <p className="text-center" style={{ flex: 1 }}>
                   {t('Percentage')}
                 </p>
-                <div className="flex justify-between gap-2 items-center flex-wrap max-w-full" style={{ flex: 99999 }}>
+                <div
+                  className="flex justify-between gap-2 items-center flex-wrap max-w-full"
+                  style={{ flex: 99999 }}
+                >
                   <div className="flex-1">
                     <input
                       {...registerMinMax.min}
@@ -98,7 +105,9 @@ function GradeItem({
                         focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill`}
                     />
                     {errors?.min && (
-                      <p className="text-red-500 text-xs mt-1">{errors.min.message}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.min.message}
+                      </p>
                     )}
                   </div>
                   <div className="flex-1">
@@ -112,7 +121,9 @@ function GradeItem({
                         focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill`}
                     />
                     {errors?.max && (
-                      <p className="text-red-500 text-xs mt-1">{errors.max.message}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.max.message}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -121,7 +132,7 @@ function GradeItem({
 
             <TextArea
               {...register(`grades.${index}.description`, {
-                ...(descriptionRequired ? validationRules.description : {})
+                ...(descriptionRequired ? validationRules.description : {}),
               })}
               className="w-full h-auto rounded-md appearance-none relative block px-3 py-2 border bg-light-bg bg-opacity-95 dark:bg-neutral-700 border-indigo-200 dark:border-neutral-700 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-1 dark:ring-0 focus:ring-indigo-400 focus:border-indigo-400 focus:z-10 sm:text-sm dark:text-dark-text-fill"
               resize="vertical"
@@ -129,7 +140,9 @@ function GradeItem({
               required={descriptionRequired}
             />
             {errors?.description && (
-              <p className="text-red-500 text-xs">{errors.description.message}</p>
+              <p className="text-red-500 text-xs">
+                {errors.description.message}
+              </p>
             )}
           </div>
           {removable && gradeItem.id !== undefined && (

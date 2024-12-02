@@ -44,7 +44,9 @@ function ModalAttendance({
   team,
   teamName,
 }: ModalProps) {
-  const [allTrainees, setAllTrainees] = useState<(UserInterface & {recorded: boolean})[]>([]);
+  const [allTrainees, setAllTrainees] = useState<
+    (UserInterface & { recorded: boolean })[]
+  >([]);
   const [filteredTrainees, setFilteredTrainees] = useState<any[]>([]);
   const [searchName, setSearchName] = useState('');
   const [inputFocus, setInputFocus] = useState(false);
@@ -77,7 +79,7 @@ function ModalAttendance({
       onClose();
     },
     onError: (error) => {
-      toast.error("Something went wrong!");
+      toast.error('Something went wrong!');
     },
   });
 

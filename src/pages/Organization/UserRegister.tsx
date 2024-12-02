@@ -81,7 +81,7 @@ const Signup = () => {
       /* istanbul ignore next */
       setTimeout(() => {
         setButtonLoading(false);
-         toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 1000);
     },
   });

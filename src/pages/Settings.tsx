@@ -11,7 +11,10 @@ import {
   updatePushNotifications,
   updateEmailNotifications,
 } from '../Mutations/notificationMutation';
-import { EnableTwoFactorAuth,DisableTwoFactorAuth } from './Organization/2faMutation';
+import {
+  EnableTwoFactorAuth,
+  DisableTwoFactorAuth,
+} from './Organization/2faMutation';
 import {
   updatedEmailNotifications,
   updatedPushNotifications,
@@ -36,23 +39,28 @@ function Settings() {
   const lan = getLanguage();
   const { colorTheme, setTheme } = useContext(ThemeContext);
   const { user } = useContext(UserContext);
-  
+
   const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
   const [enableTwoFactorAuth] = useMutation(EnableTwoFactorAuth);
   const [disableTwoFactorAuth] = useMutation(DisableTwoFactorAuth);
-  const [updateEmailNotificationsMutation] = useMutation(updateEmailNotifications);
-  const [updatePushNotificationsMutation] = useMutation(updatePushNotifications);
+  const [updateEmailNotificationsMutation] = useMutation(
+    updateEmailNotifications,
+  );
+  const [updatePushNotificationsMutation] = useMutation(
+    updatePushNotifications,
+  );
 
   const { data: profileData } = useQuery(GetProfile, {
-    onCompleted: data => setIsTwoFactorEnabled(data.getProfile.user.twoFactorAuth),
+    onCompleted: (data) =>
+      setIsTwoFactorEnabled(data.getProfile.user.twoFactorAuth),
   });
   const { data: pushData } = useQuery(updatedPushNotifications, {
     variables: { getUpdatedPushNotificationsId: user?.userId },
-    onCompleted: data => setPushEnabled(data.getUpdatedPushNotifications),
+    onCompleted: (data) => setPushEnabled(data.getUpdatedPushNotifications),
   });
   const { data: emailData } = useQuery(updatedEmailNotifications, {
     variables: { getUpdatedEmailNotificationsId: user?.userId },
-    onCompleted: data => setEmailEnabled(data.getUpdatedEmailNotifications),
+    onCompleted: (data) => setEmailEnabled(data.getUpdatedEmailNotifications),
   });
 
   const [pushEnabled, setPushEnabled] = useState(false);
@@ -63,7 +71,7 @@ function Settings() {
       await enableTwoFactorAuth({ variables: { email: user?.email } });
       setIsTwoFactorEnabled(true);
     } catch (error) {
-      console.error("Error enabling two-factor authentication:", error);
+      console.error('Error enabling two-factor authentication:', error);
     }
   };
 
@@ -72,7 +80,7 @@ function Settings() {
       await disableTwoFactorAuth({ variables: { email: user?.email } });
       setIsTwoFactorEnabled(false);
     } catch (error) {
-      console.error("Error disabling two-factor authentication:", error);
+      console.error('Error disabling two-factor authentication:', error);
     }
   };
 
@@ -86,7 +94,7 @@ function Settings() {
   const handleLanChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     i18next.changeLanguage(value).catch((error) => {
-      console.error("Error changing language:", error);
+      console.error('Error changing language:', error);
     });
   };
 
@@ -97,7 +105,7 @@ function Settings() {
       });
       setEmailEnabled((prevEmailEnabled) => !prevEmailEnabled);
     } catch (error) {
-      console.error("Error updating email notifications:", error);
+      console.error('Error updating email notifications:', error);
     }
   };
 
@@ -108,7 +116,7 @@ function Settings() {
       });
       setPushEnabled((prevPushEnabled) => !prevPushEnabled);
     } catch (error) {
-      console.error("Error updating push notifications:", error);
+      console.error('Error updating push notifications:', error);
     }
   };
 

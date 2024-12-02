@@ -23,11 +23,7 @@ const checkOrgTokenExpiration = (): boolean | undefined => {
   } else if (expiration !== null && expiration.exp * 1000 < Date.now()) {
     localStorage.removeItem('orgToken');
     localStorage.removeItem('orgName');
-    toast.error(
-      t(
-        'Please sign in to continue',
-      ) as ToastContent<unknown>,
-    );
+    toast.error(t('Please sign in to continue') as ToastContent<unknown>);
 
     logout();
     window.location.pathname = '/login/org';

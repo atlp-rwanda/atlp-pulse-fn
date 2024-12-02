@@ -111,7 +111,7 @@ const Calendar = () => {
         }, 1000);
       })
       .catch((error) => {
-        toast.error(handleError(error)); 
+        toast.error(handleError(error));
       });
   };
 
@@ -190,7 +190,7 @@ const Calendar = () => {
         }, 1000);
       })
       .catch((error) => {
-        toast.error(handleError(error)); 
+        toast.error(handleError(error));
       });
   };
 

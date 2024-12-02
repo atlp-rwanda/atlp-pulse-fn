@@ -64,7 +64,7 @@ export default function ProfileCoverpage({
       if (updated) {
         setSpinner(false);
         setProfileImage(updated?.data?.updateAvatar?.avatar);
-        toast.success('Updated successfully'); 
+        toast.success('Updated successfully');
       }
       /* istanbul ignore next */
       if (updated?.data?.updateAvatar?.avatar) {

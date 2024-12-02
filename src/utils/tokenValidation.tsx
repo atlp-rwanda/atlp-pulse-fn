@@ -17,7 +17,7 @@ const checkTokenExpiration = async () => {
   if (expiration !== null && expiration.exp * 1000 < Date.now()) {
     localStorage.removeItem('auth');
     localStorage.removeItem('auth_token');
-    toast.error(t('Please sign in to continue') as ToastContent<unknown>,);
+    toast.error(t('Please sign in to continue') as ToastContent<unknown>);
     logout('expired');
     return false;
   }

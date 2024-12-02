@@ -179,7 +179,7 @@ function TicketsPage() {
     (action: string) => (error: any) => {
       const errorMessage =
         error.message || `An error occurred while ${action}.`;
-      toast.error("Something went wrong!");
+      toast.error('Something went wrong!');
       if (errorMessage.includes('no longer exist')) {
         logout();
       }
@@ -298,7 +298,7 @@ function TicketsPage() {
         Cell: ({ value }: { value: string }) => {
           const trimmedMessage =
             value.length > 100 ? `${value.substring(0, 80)}...` : value;
-            
+
           return trimmedMessage;
         },
       },

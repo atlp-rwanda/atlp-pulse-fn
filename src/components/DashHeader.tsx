@@ -39,7 +39,7 @@ export const TICKETS_NOTS_SUB = gql`
   }
 `;
 
-function DashHeader({minimize}: any) {
+function DashHeader({ minimize }: any) {
   /* istanbul ignore next */
   const { minimized, toggleMinMenu, showNav, toggleNav } =
     useContext(MenuContext);
@@ -144,7 +144,10 @@ function DashHeader({minimize}: any) {
           </div>
           <div className="hidden lg:flex">
             <div
-              onClick={() => { minimize(!minimized); return toggleMinMenu() }}
+              onClick={() => {
+                minimize(!minimized);
+                return toggleMinMenu();
+              }}
               className="w-7"
               role="button"
               tabIndex={0}

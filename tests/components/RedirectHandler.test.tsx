@@ -11,10 +11,10 @@ beforeAll(() => {
   Object.defineProperty(window, 'location', {
     configurable: true,
     enumerable: true,
-    value: { 
+    value: {
       ...originalWindow,
       search: '',
-      replace: mockReplace
+      replace: mockReplace,
     },
   });
 });
@@ -42,7 +42,7 @@ describe('RedirectHandler', () => {
   // Test basic rendering
   it('renders loading state correctly', () => {
     render(<RedirectHandler />);
-    
+
     expect(screen.getByText('Redirecting...')).toBeInTheDocument();
     expect(screen.getByText('here')).toBeInTheDocument();
     expect(screen.getByRole('link')).toHaveAttribute('href', '/');
@@ -54,8 +54,10 @@ describe('RedirectHandler', () => {
       value: '?path=/test&dest=web&param1=value1&param2=value2',
     });
     render(<RedirectHandler />);
-    
-    expect(mockReplace).toHaveBeenCalledWith('/test?param1=value1&param2=value2');
+
+    expect(mockReplace).toHaveBeenCalledWith(
+      '/test?param1=value1&param2=value2',
+    );
   });
 
   // Test app destination redirect
@@ -64,9 +66,9 @@ describe('RedirectHandler', () => {
       value: '?path=/test&dest=app&param1=value1&param2=value2',
     });
     render(<RedirectHandler />);
-    
+
     expect(mockReplace).toHaveBeenCalledWith(
-      'com.atlp.pulseapp:///test?param1=value1&param2=value2'
+      'com.atlp.pulseapp:///test?param1=value1&param2=value2',
     );
   });
 
@@ -76,14 +78,17 @@ describe('RedirectHandler', () => {
       value: '?fallback=/custom-fallback',
     });
     render(<RedirectHandler />);
-    
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/custom-fallback');
+
+    expect(screen.getByRole('link')).toHaveAttribute(
+      'href',
+      '/custom-fallback',
+    );
   });
 
   // Test default fallback
   it('uses default fallback when no fallback provided', () => {
     render(<RedirectHandler />);
-    
+
     expect(screen.getByRole('link')).toHaveAttribute('href', '/');
   });
 
@@ -94,7 +99,7 @@ describe('RedirectHandler', () => {
       value: '?dest=web',
     });
     render(<RedirectHandler />);
-    
+
     expect(consoleSpy).toHaveBeenCalledWith('Invalid redirect data');
     consoleSpy.mockRestore();
   });
@@ -102,10 +107,11 @@ describe('RedirectHandler', () => {
   // Test query parameter building
   it('builds query string correctly excluding ignored parameters', () => {
     Object.defineProperty(window.location, 'search', {
-      value: '?path=/test&dest=web&param1=value1&path=ignored&dest=ignored&fallback=ignored',
+      value:
+        '?path=/test&dest=web&param1=value1&path=ignored&dest=ignored&fallback=ignored',
     });
     render(<RedirectHandler />);
-    
+
     expect(mockReplace).toHaveBeenCalledWith('/test?param1=value1');
   });
 
@@ -115,8 +121,10 @@ describe('RedirectHandler', () => {
       value: '?path=/test&dest=web&param1=value1&param2=value2&param3=value3',
     });
     render(<RedirectHandler />);
-    
-    expect(mockReplace).toHaveBeenCalledWith('/test?param1=value1&param2=value2&param3=value3');
+
+    expect(mockReplace).toHaveBeenCalledWith(
+      '/test?param1=value1&param2=value2&param3=value3',
+    );
   });
 
   // Test empty query parameters
@@ -125,7 +133,7 @@ describe('RedirectHandler', () => {
       value: '?path=/test&dest=web',
     });
     render(<RedirectHandler />);
-    
+
     expect(mockReplace).toHaveBeenCalledWith('/test?');
   });
 

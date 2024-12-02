@@ -95,7 +95,7 @@ function AdminTraineeDashboard() {
   const [selectedTraineeId, setSelectedTraineeId] = useState<string[]>();
 
   //BulkRatingModal
-  const [bulkRateModal, setBulkRateModal] = useState(false)
+  const [bulkRateModal, setBulkRateModal] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -542,7 +542,7 @@ function AdminTraineeDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-         toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -566,7 +566,7 @@ function AdminTraineeDashboard() {
     onError: (err) => {
       setTimeout(() => {
         setButtonLoading(false);
-       toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 1000);
     },
   });
@@ -594,7 +594,7 @@ function AdminTraineeDashboard() {
       setTimeout(() => {
         setButtonLoading(false);
         console.error('Mutation error:', err); // Log the error
-         toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 500);
     },
   });
@@ -621,7 +621,7 @@ function AdminTraineeDashboard() {
       setTimeout(() => {
         setButtonLoading(false);
         console.error('Mutation error:', err); // Log the error
-         toast.error(handleError(err));
+        toast.error(handleError(err));
       }, 500);
     },
   });
@@ -643,7 +643,7 @@ function AdminTraineeDashboard() {
       onError: (err) => {
         setTimeout(() => {
           setButtonLoading(false);
-           toast.error(handleError(err));
+          toast.error(handleError(err));
         }, 500);
       },
     },
@@ -960,8 +960,10 @@ function AdminTraineeDashboard() {
                 <p>
                   <i>
                     {' '}
-                    {traineeDetails?.ratings && traineeDetails.ratings.length > 0
-                      ? Number(traineeDetails.ratings[0].average).toFixed(1) ?? 'not yet rated'
+                    {traineeDetails?.ratings &&
+                    traineeDetails.ratings.length > 0
+                      ? Number(traineeDetails.ratings[0].average).toFixed(1) ??
+                        'not yet rated'
                       : 'Not yet rated'}
                   </i>
                 </p>
@@ -1589,12 +1591,11 @@ function AdminTraineeDashboard() {
       </div>
       {/* =========================== End::  RemoveTraineeModel =============================== */}
       {/*============================ Start:: BulkRateModal =================================== */}
-      {
-        bulkRateModal?
-        <BulkRatingModal
-        setBulkRateModal={setBulkRateModal}
-        />: ''
-      }
+      {bulkRateModal ? (
+        <BulkRatingModal setBulkRateModal={setBulkRateModal} />
+      ) : (
+        ''
+      )}
       {/*============================ End:: BulkRateModal =================================== */}
       <div className="flex flex-col">
         <div className="flex flex-row">
@@ -1612,18 +1613,22 @@ function AdminTraineeDashboard() {
                     >
                       {t('add')} +{' '}
                     </Button>
-                    {
-                      JSON.parse(localStorage.getItem('auth')!) && ['coordinator','ttl'].includes(JSON.parse(localStorage.getItem('auth')!).role) ?
+                    {JSON.parse(localStorage.getItem('auth')!) &&
+                    ['coordinator', 'ttl'].includes(
+                      JSON.parse(localStorage.getItem('auth')!).role,
+                    ) ? (
                       <Button
-                      variant="primary"
-                      size="lg"
-                      data-testid="registerModel"
-                      style="m-0"
-                      onClick={()=>setBulkRateModal(true)}
-                    >
-                      {t('Bulk Rate')}
-                    </Button> : ''
-                    }
+                        variant="primary"
+                        size="lg"
+                        data-testid="registerModel"
+                        style="m-0"
+                        onClick={() => setBulkRateModal(true)}
+                      >
+                        {t('Bulk Rate')}
+                      </Button>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </div>
                 <div className="">

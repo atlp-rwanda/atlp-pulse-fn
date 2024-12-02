@@ -55,7 +55,7 @@ export default function Frame({ rows, allFeeds }: props) {
   /* istanbul ignore next */
   const [addFeedBack] = useMutation(ADD_FEEDBACK, {
     onError: (err) => {
-       toast.error(handleError(err));
+      toast.error(handleError(err));
     },
   });
 

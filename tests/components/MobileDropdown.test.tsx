@@ -7,41 +7,44 @@ import MobileDropdown from '../../src/components/Docs/MobileDropdown';
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: () => ({
-    pathname: '/'
-  })
+    pathname: '/',
+  }),
 }));
 
 describe('MobileDropdown', () => {
   // Helper function to render component with router
   const renderWithRouter = (component: React.ReactNode) => {
-    return render(
-      <BrowserRouter>
-        {component}
-      </BrowserRouter>
-    );
+    return render(<BrowserRouter>{component}</BrowserRouter>);
   };
 
   // Test basic rendering
   it('renders all navigation links', () => {
     renderWithRouter(<MobileDropdown />);
-    
+
     expect(screen.getByText('Getting started (new users)')).toBeInTheDocument();
-    expect(screen.getByText('How To SignIn An Organization')).toBeInTheDocument();
-    expect(screen.getByText('How To SignUp A New Organization')).toBeInTheDocument();
+    expect(
+      screen.getByText('How To SignIn An Organization'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('How To SignUp A New Organization'),
+    ).toBeInTheDocument();
   });
 
   // Test correct URLs
   it('has correct href attributes for all links', () => {
     renderWithRouter(<MobileDropdown />);
-    
-    expect(screen.getByText('Getting started (new users)').closest('a'))
-      .toHaveAttribute('href', '/docs/getting-started');
-    
-    expect(screen.getByText('How To SignIn An Organization').closest('a'))
-      .toHaveAttribute('href', '/docs/org-signin');
-    
-    expect(screen.getByText('How To SignUp A New Organization').closest('a'))
-      .toHaveAttribute('href', '/docs/org-signup');
+
+    expect(
+      screen.getByText('Getting started (new users)').closest('a'),
+    ).toHaveAttribute('href', '/docs/getting-started');
+
+    expect(
+      screen.getByText('How To SignIn An Organization').closest('a'),
+    ).toHaveAttribute('href', '/docs/org-signin');
+
+    expect(
+      screen.getByText('How To SignUp A New Organization').closest('a'),
+    ).toHaveAttribute('href', '/docs/org-signup');
   });
 
   // Test active link styling
@@ -49,10 +52,12 @@ describe('MobileDropdown', () => {
     render(
       <MemoryRouter initialEntries={['/docs/getting-started']}>
         <MobileDropdown />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    const activeLink = screen.getByText('Getting started (new users)').closest('a');
+    const activeLink = screen
+      .getByText('Getting started (new users)')
+      .closest('a');
     expect(activeLink).toHaveClass('text-[#4f30be]');
   });
 
@@ -60,16 +65,18 @@ describe('MobileDropdown', () => {
   it('applies dark mode active styles when in dark mode', () => {
     // Mock dark mode by adding dark class to document
     document.documentElement.classList.add('dark');
-    
+
     render(
       <MemoryRouter initialEntries={['/docs/getting-started']}>
         <MobileDropdown />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    const activeLink = screen.getByText('Getting started (new users)').closest('a');
+    const activeLink = screen
+      .getByText('Getting started (new users)')
+      .closest('a');
     expect(activeLink).toHaveClass('dark:text-[#a791f5]');
-    
+
     // Cleanup
     document.documentElement.classList.remove('dark');
   });
@@ -79,10 +86,12 @@ describe('MobileDropdown', () => {
     render(
       <MemoryRouter initialEntries={['/docs/getting-started']}>
         <MobileDropdown />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    const inactiveLink = screen.getByText('How To SignIn An Organization').closest('a');
+    const inactiveLink = screen
+      .getByText('How To SignIn An Organization')
+      .closest('a');
     expect(inactiveLink).not.toHaveClass('text-[#4f30be]');
     expect(inactiveLink).not.toHaveClass('dark:text-[#a791f5]');
   });
@@ -90,12 +99,12 @@ describe('MobileDropdown', () => {
   // Test accessibility
   it('has accessible navigation', () => {
     renderWithRouter(<MobileDropdown />);
-    
+
     // Check if navigation is accessible
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(3);
-    
-    links.forEach(link => {
+
+    links.forEach((link) => {
       expect(link).toBeVisible();
       expect(link).toHaveAttribute('href');
     });

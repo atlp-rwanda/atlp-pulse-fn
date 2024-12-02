@@ -239,7 +239,7 @@ function TraineeRatingDashboard() {
       orgToken: organizationToken,
     },
     onError: (err) => {
-       toast.error(handleError(err));
+      toast.error(handleError(err));
     },
     onCompleted: () => {
       handleToggle();
@@ -259,7 +259,7 @@ function TraineeRatingDashboard() {
       orgToken: organizationToken,
     },
     onError: (err) => {
-       toast.error(handleError(err));
+      toast.error(handleError(err));
       setShowActions(true);
     },
     onCompleted: () => {
@@ -316,7 +316,7 @@ function TraineeRatingDashboard() {
         setTrainee(data?.getCohortTrainees);
       },
       onError: (error) => {
-         toast.error(handleError(error));
+        toast.error(handleError(error));
       },
     });
   }
@@ -329,7 +329,7 @@ function TraineeRatingDashboard() {
         setRatingsByCohort(data?.fetchRatingByCohort);
       },
       onError: (error) => {
-         toast.error(handleError(error));
+        toast.error(handleError(error));
       },
     });
   }
@@ -355,7 +355,7 @@ function TraineeRatingDashboard() {
         setDefaultGrading(data?.getDefaultGrading[0]?.grade);
       },
       onError: (error) => {
-         toast.error(handleError(error));
+        toast.error(handleError(error));
       },
     });
 
@@ -368,7 +368,7 @@ function TraineeRatingDashboard() {
         if (cohorts[0].name) setCohortName(cohorts[0]?.name);
       },
       onError: (error) => {
-         toast.error(handleError(error));
+        toast.error(handleError(error));
       },
     });
   }, [toggle, updateRatings]);
@@ -617,7 +617,7 @@ function TraineeRatingDashboard() {
                                         </>
                                       </select>
                                     </div>
-                                                                        <textarea
+                                    <textarea
                                       name="quantityDescription"
                                       id=""
                                       // value={rows.quantityremark}
@@ -663,7 +663,7 @@ function TraineeRatingDashboard() {
                                         </>
                                       </select>
                                     </div>
-                                                                        <textarea
+                                    <textarea
                                       name="proffessionalDescription"
                                       id=""
                                       // value={rows.professionalRemark}

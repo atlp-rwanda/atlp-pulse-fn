@@ -21,7 +21,9 @@
     "src/pages/About.tsx",
     "src/tests/About.test.tsx",
     "src/components/TraineeDashboardChart.tsx",
-    "src/pages/TraineeRatingDashboard.tsx"
-, "src/constants/SkeletonTable.tsx", "src/pages/TraineeAttendance.tsx"  ],
+    "src/pages/TraineeRatingDashboard.tsx",
+    "src/constants/SkeletonTable.tsx",
+    "src/pages/TraineeAttendance.tsx"
+  ],
   "exclude": ["node_modules"]
 }

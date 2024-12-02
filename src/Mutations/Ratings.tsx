@@ -151,53 +151,63 @@ export const REJECT_RATING = gql`
 `;
 
 export const GET_RATINGS_BY_COHORT = gql`
-  query getRatingsByCohort($cohortId: String!, $orgToken: String!){
-    getRatingsByCohort(cohortId: $cohortId, orgToken: $orgToken){
+  query getRatingsByCohort($cohortId: String!, $orgToken: String!) {
+    getRatingsByCohort(cohortId: $cohortId, orgToken: $orgToken) {
       id
       sprint
+    }
   }
-}
-`
+`;
 
 export const ADD_RATINGS_BY_FILE = gql`
-  mutation addRatingsByFile($file: Upload!, $cohortId: String!, $sprint: Int!, $orgToken: String!){
-    addRatingsByFile(file: $file, cohortId: $cohortId, sprint: $sprint orgToken: $orgToken){
+  mutation addRatingsByFile(
+    $file: Upload!
+    $cohortId: String!
+    $sprint: Int!
+    $orgToken: String!
+  ) {
+    addRatingsByFile(
+      file: $file
+      cohortId: $cohortId
+      sprint: $sprint
+      orgToken: $orgToken
+    ) {
       NewRatings {
-      user {
-        email
-      }
-      sprint
-      phase
-      quality
-      quantity
-      professional_Skills
-      feedbacks {
-        sender {
+        user {
           email
         }
-        content
-        createdAt
+        sprint
+        phase
+        quality
+        quantity
+        professional_Skills
+        feedbacks {
+          sender {
+            email
+          }
+          content
+          createdAt
+        }
+        cohort {
+          name
+        }
       }
-      cohort {
-        name
+      RejectedRatings {
+        email
+        quantity
+        quality
+        professional_skills
+        feedBacks
       }
-    }
-    RejectedRatings{
-      email
-      quantity
-      quality
-      professional_skills
-      feedBacks
-    }
-    UpdatedRatings {
-      quantity
-      quality
-      professional_Skills
-      feedbacks {
-        content
+      UpdatedRatings {
+        quantity
+        quality
+        professional_Skills
+        feedbacks {
+          content
+        }
+        oldFeedback
       }
-      oldFeedback
-    }
     }
   }
-`
+`;

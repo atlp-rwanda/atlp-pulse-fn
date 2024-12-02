@@ -125,14 +125,14 @@ function MainRoutes() {
             <Route
               path="/users/login"
               element={
-                 <ProtectedRoutes>
+                <ProtectedRoutes>
                   <Suspense fallback={<Skeleton />}>
                     <Adminlogin />
                   </Suspense>
-                 </ProtectedRoutes>
+                </ProtectedRoutes>
               }
             />
-             <Route path="/users/LoginWith2fa" element={<TwoFactorPage/>}/>
+            <Route path="/users/LoginWith2fa" element={<TwoFactorPage />} />
             <Route
               path="/pricing"
               element={
@@ -168,9 +168,9 @@ function MainRoutes() {
             <Route
               path="/contact-us"
               element={
-                  <Suspense fallback={<Skeleton />}>
-                    <ContactUs />
-                  </Suspense>
+                <Suspense fallback={<Skeleton />}>
+                  <ContactUs />
+                </Suspense>
               }
             />
             <Route path="/docs/org-signup" element={<SignupOrgDocs />} />

@@ -6,17 +6,24 @@ export const EnableTwoFactorAuth = gql`
   }
 `;
 
-
-export const LoginWithTwoFactorAuthentication= gql`
-mutation LoginWithTwoFactorAuthentication($email: String!, $otp: String!, $twoWayVerificationToken: String!) {
-  loginWithTwoFactorAuthentication(email: $email, otp: $otp, TwoWayVerificationToken: $twoWayVerificationToken) {
-    message
-    token
-    user {
-      email
+export const LoginWithTwoFactorAuthentication = gql`
+  mutation LoginWithTwoFactorAuthentication(
+    $email: String!
+    $otp: String!
+    $twoWayVerificationToken: String!
+  ) {
+    loginWithTwoFactorAuthentication(
+      email: $email
+      otp: $otp
+      TwoWayVerificationToken: $twoWayVerificationToken
+    ) {
+      message
+      token
+      user {
+        email
+      }
     }
   }
-}
 `;
 
 export const DisableTwoFactorAuth = gql`

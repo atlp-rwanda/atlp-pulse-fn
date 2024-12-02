@@ -21,7 +21,7 @@ export default function CreateTeamModal({
     getAllTeams: Team[];
     getAllCohorts: Cohort[];
     getAllUsers: any;
-    getAllTTLUsers:any,
+    getAllTTLUsers: any;
   };
   createTeamModel: boolean;
   removeModel: Function;

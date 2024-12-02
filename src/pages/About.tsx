@@ -68,7 +68,7 @@ function Testimonial() {
             key={testimonial.id}
             className={`group relative bg-white dark:bg-dark-bg rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
               currentIndex === index ? 'visible' : 'hidden'
-              }`}
+            }`}
           >
             <div className="flex flex-col sm:flex-row  mb-6 items-center">
               <img className="sm:w-1/4" src={testimonial.image} alt="" />

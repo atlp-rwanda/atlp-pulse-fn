@@ -1,43 +1,47 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MutationFunction } from '@apollo/client';
-import { useForm, useFieldArray, UseFormRegister, FieldArrayWithId } from 'react-hook-form';
+import {
+  useForm,
+  useFieldArray,
+  UseFormRegister,
+  FieldArrayWithId,
+} from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Button from '../../components/Buttons';
 import GradeItem from './gradeItem';
 import Loader2 from '../../components/loaders/loader2';
 import css from './style.module.css';
 
-
 const VALIDATION_RULES = {
   name: {
     required: 'Name cannot be empty',
     minLength: {
       value: 2,
-      message: 'Name must be at least 2 characters'
-    }
+      message: 'Name must be at least 2 characters',
+    },
   },
   grade: {
     required: 'Grade cannot be empty',
     minLength: {
       value: 1,
-      message: 'Grade cannot be empty'
-    }
+      message: 'Grade cannot be empty',
+    },
   },
   percentage: {
     min: {
-      message: 'Minimum percentage cannot be negative'
+      message: 'Minimum percentage cannot be negative',
     },
     max: {
-      message: 'Maximum percentage cannot exceed 100'
-    }
+      message: 'Maximum percentage cannot exceed 100',
+    },
   },
   description: {
     minLength: {
       value: 3,
-      message: 'Description must be at least 3 characters'
-    }
-  }
+      message: 'Description must be at least 3 characters',
+    },
+  },
 };
 export interface GradeFormData {
   id: number;
@@ -62,7 +66,7 @@ interface Props {
 }
 
 export interface GradeItemProps {
-  gradeItem: FieldArrayWithId<FormData, "grades">;
+  gradeItem: FieldArrayWithId<FormData, 'grades'>;
   register: UseFormRegister<FormData>;
   index: number;
   errors?: any;
@@ -87,11 +91,14 @@ const DEFAULT_VALUES: FormData = {
   isDescriptionRequired: false,
 };
 
-
-
-function AddGradingSystem({ removeModel, setValue, loading = false, create }: Props) {
+function AddGradingSystem({
+  removeModel,
+  setValue,
+  loading = false,
+  create,
+}: Props) {
   const { t } = useTranslation();
-  
+
   const {
     register,
     control,
@@ -101,46 +108,52 @@ function AddGradingSystem({ removeModel, setValue, loading = false, create }: Pr
     watch,
     trigger,
     setError,
-    clearErrors
+    clearErrors,
   } = useForm<FormData>({
     defaultValues: DEFAULT_VALUES,
-    mode: 'onChange'
+    mode: 'onChange',
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'grades'
+    name: 'grades',
   });
 
   const isPercentageRequired = watch('isPercentageRequired');
   const isDescriptionRequired = watch('isDescriptionRequired');
   const grades = watch('grades');
 
-  const validateMinMax = useCallback((index: number) => {
-    const grade = grades[index];
-    if (grade && grade.min > grade.max) {
-      setError(`grades.${index}.min`, {
-        type: 'manual',
-        message: 'Minimum grade cannot be greater than maximum grade'
-      });
-      return false;
-    }
-    clearErrors(`grades.${index}.min`);
-    return true;
-  }, [grades, setError, clearErrors]);
+  const validateMinMax = useCallback(
+    (index: number) => {
+      const grade = grades[index];
+      if (grade && grade.min > grade.max) {
+        setError(`grades.${index}.min`, {
+          type: 'manual',
+          message: 'Minimum grade cannot be greater than maximum grade',
+        });
+        return false;
+      }
+      clearErrors(`grades.${index}.min`);
+      return true;
+    },
+    [grades, setError, clearErrors],
+  );
 
   const addGrade = useCallback(() => {
     append({
       ...initialGrade,
-      id: fields.length > 0 ? fields[fields.length - 1].id + 1 : 0
+      id: fields.length > 0 ? fields[fields.length - 1].id + 1 : 0,
     } as GradeFormData);
   }, [append, fields]);
 
-  const removeGrade = useCallback((index: number) => {
-    if (fields.length > 1) {
-      remove(index);
-    }
-  }, [remove, fields.length]);
+  const removeGrade = useCallback(
+    (index: number) => {
+      if (fields.length > 1) {
+        remove(index);
+      }
+    },
+    [remove, fields.length],
+  );
 
   const onSubmit = async (data: FormData) => {
     const isValid = data.grades.every((_, index) => validateMinMax(index));
@@ -152,19 +165,19 @@ function AddGradingSystem({ removeModel, setValue, loading = false, create }: Pr
       const formattedData = {
         name: data.name,
         grade: data.grades.map(({ grade }) => grade),
-        description: data.grades.map(({ description }) => 
-          description || 'No description'
+        description: data.grades.map(
+          ({ description }) => description || 'No description',
         ),
         percentage: data.grades.map(({ min, max }) =>
-          isPercentageRequired ? `${min} - ${max}` : 'No percentage'
+          isPercentageRequired ? `${min} - ${max}` : 'No percentage',
         ),
       };
 
       await create({
         variables: {
           ...formattedData,
-          orgToken: localStorage.getItem('orgToken')
-        }
+          orgToken: localStorage.getItem('orgToken'),
+        },
       });
 
       reset(DEFAULT_VALUES);
@@ -180,14 +193,14 @@ function AddGradingSystem({ removeModel, setValue, loading = false, create }: Pr
       ...register(`grades.${index}.min`, {
         valueAsNumber: true,
         onChange: () => validateMinMax(index),
-      })
+      }),
     },
     max: {
       ...register(`grades.${index}.max`, {
         valueAsNumber: true,
         onChange: () => validateMinMax(index),
-      })
-    }
+      }),
+    },
   });
 
   return (
@@ -197,7 +210,7 @@ function AddGradingSystem({ removeModel, setValue, loading = false, create }: Pr
           {t('Add Grading System')}
         </h3>
       </div>
-      
+
       <div className="card-body">
         <form onSubmit={handleSubmit(onSubmit)} className="py-3 px-4 md:px-8">
           <div className="input my-4">
@@ -233,7 +246,7 @@ function AddGradingSystem({ removeModel, setValue, loading = false, create }: Pr
                 <span>{t('Add Percentage')}</span>
               </div>
             </label>
-            
+
             <label className={`${css.sm_card} flex-1 min-w-max`}>
               <input
                 type="checkbox"
@@ -276,7 +289,7 @@ function AddGradingSystem({ removeModel, setValue, loading = false, create }: Pr
                 {t('Add Grade')}
               </Button>
             </div>
-            
+
             <div className="flex justify-end gap-2 flex-1">
               {!loading ? (
                 <>
@@ -294,7 +307,7 @@ function AddGradingSystem({ removeModel, setValue, loading = false, create }: Pr
                   >
                     {t('Cancel')}
                   </Button>
-                  
+
                   <Button
                     type="submit"
                     data-testid="saveGrade"

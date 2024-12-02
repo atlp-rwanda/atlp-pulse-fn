@@ -246,7 +246,7 @@ function TraineeAttendanceTracker() {
               setSelectedTeamId(data.getAllTeams[0].id);
             },
             onError: (error) => {
-            toast.error(handleError(error));
+              toast.error(handleError(error));
             },
           });
         }
@@ -271,7 +271,7 @@ function TraineeAttendanceTracker() {
               setSelectedTeamId(data.getTTLTeams[0].id);
             },
             onError: (error) => {
-             toast.error(handleError(error));
+              toast.error(handleError(error));
             },
           });
         }

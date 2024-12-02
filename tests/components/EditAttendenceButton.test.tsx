@@ -57,11 +57,11 @@ describe('attendance update button', () => {
   });
 
   it('Trigger Edit button and update to score 2', () => {
-    
     const setTraineeAttendanceDataMock = jest.fn();
     const setUpdatedMock = jest.fn();
-    setTraineeAttendanceDataMock.mockImplementation((update) => update(initialData))
-
+    setTraineeAttendanceDataMock.mockImplementation((update) =>
+      update(initialData),
+    );
 
     render(
       <MemoryRouter>
@@ -83,11 +83,11 @@ describe('attendance update button', () => {
     fireEvent.click(screen.getByTestId('score-2'));
   });
   it('Trigger Edit button and update to score 1', () => {
-    
     const setTraineeAttendanceDataMock = jest.fn();
     const setUpdatedMock = jest.fn();
-    setTraineeAttendanceDataMock.mockImplementation((update) => update(initialData))
-
+    setTraineeAttendanceDataMock.mockImplementation((update) =>
+      update(initialData),
+    );
 
     render(
       <MemoryRouter>
@@ -109,11 +109,11 @@ describe('attendance update button', () => {
     fireEvent.click(screen.getByTestId('score-1'));
   });
   it('Trigger Edit button and update to score 0', () => {
-    
     const setTraineeAttendanceDataMock = jest.fn();
     const setUpdatedMock = jest.fn();
-    setTraineeAttendanceDataMock.mockImplementation((update) => update(initialData2))
-
+    setTraineeAttendanceDataMock.mockImplementation((update) =>
+      update(initialData2),
+    );
 
     render(
       <MemoryRouter>

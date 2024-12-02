@@ -185,11 +185,12 @@ function UpdatedRatingDashboard() {
     },
   ];
 
-  const [getRatings, {loading: getRatingsLoading, error: getRatingsError}] = useLazyQuery(GET_USERS, {
-    variables: {
-      orgToken: organizationToken,
-    },
-  });
+  const [getRatings, { loading: getRatingsLoading, error: getRatingsError }] =
+    useLazyQuery(GET_USERS, {
+      variables: {
+        orgToken: organizationToken,
+      },
+    });
 
   const [approveRating] = useMutation(APPROVE_RATING, {
     variables: {
@@ -198,7 +199,7 @@ function UpdatedRatingDashboard() {
     },
     onError: (err) => {
       /* istanbul ignore next */
-       toast.error(handleError(err));
+      toast.error(handleError(err));
       /* istanbul ignore next */
       removeApproveModel();
     },
@@ -241,7 +242,7 @@ function UpdatedRatingDashboard() {
         setRatings(data.fetchRatingsForAdmin);
       },
       onError: (error) => {
-        setRatings([])
+        setRatings([]);
         toast.error(handleError(error));
       },
     });
@@ -398,12 +399,8 @@ function UpdatedRatingDashboard() {
             <div>
               <div className="bg-light-bg dark:bg-dark-frame-bg overflow-auto">
                 <div className="min-w-fit">
-                  {
-                    getRatingsLoading ?
-                    <TtlSkeleton/>
-                    : ''
-                  }
-                  { ratings && !getRatingsLoading ? (
+                  {getRatingsLoading ? <TtlSkeleton /> : ''}
+                  {ratings && !getRatingsLoading ? (
                     <DataTable
                       data={ratings}
                       columns={columns}

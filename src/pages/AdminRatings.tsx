@@ -226,9 +226,7 @@ const TraineeRatingDashboard = () => {
                         <td>{rows.quantity}</td>
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200 dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
-                        <th className="p-4 text-semibold">
-                          {t(' Remarks')}
-                        </th>
+                        <th className="p-4 text-semibold">{t(' Remarks')}</th>
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200  dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
                         <th className="p-4 text-semibold">
@@ -237,9 +235,7 @@ const TraineeRatingDashboard = () => {
                         <td>{rows.quality}</td>
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200  dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
-                        <th className="p-4 text-semibold">
-                          {t(' Remarks')}
-                        </th>
+                        <th className="p-4 text-semibold">{t(' Remarks')}</th>
                       </tr>
                       <tr className="bg-slate-200 dark:text-slate-200  dark:bg-dark-frame-bg border border-spacing-4 border-b-white">
                         <th className="p-4 text-semibold">
@@ -248,9 +244,7 @@ const TraineeRatingDashboard = () => {
                         <td>{rows.professional}</td>
                       </tr>
                       <tr className="border dark:text-slate-200  dark:bg-dark-frame-bg border-spacing-4 bg-slate-200 border-b-white">
-                        <th className="p-4 text-semibold">
-                          {t(' Remarks')}
-                        </th>
+                        <th className="p-4 text-semibold">{t(' Remarks')}</th>
                       </tr>
                     </table>
                     <div className="flex justify-center mt-4">

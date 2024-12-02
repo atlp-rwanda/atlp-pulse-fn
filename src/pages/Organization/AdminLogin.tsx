@@ -78,11 +78,10 @@ function AdminLogin() {
         onCompleted: async (data) => {
           if (data.loginUser.otpRequired) {
             setOtpRequired(true);
-            
+
             navigate('/users/LoginWith2fa', {
               state: {
                 email: userInput.email,
-            
               },
             });
           } else {

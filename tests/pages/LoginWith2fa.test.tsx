@@ -16,7 +16,6 @@ jest.mock('react-router-dom', () => ({
   useLocation: () => ({
     state: {
       email: 'user@example.com',
-    
     },
   }),
 }));
@@ -41,7 +40,6 @@ const mocks = [
       variables: {
         email: 'user@example.com',
         otp: '123456',
-  
       },
     },
     result: {
@@ -77,7 +75,6 @@ const mocks = [
       variables: {
         email: 'user@example.com',
         otp: '654321',
-      
       },
     },
     result: {
@@ -119,7 +116,7 @@ describe('TwoFactorPage', () => {
     // Wait for success message and navigation
     await waitFor(() => {
       expect(mockLogin).toHaveBeenCalled();
-     // expect(mockNavigate).toHaveBeenCalledWith('/dashboard', {
+      // expect(mockNavigate).toHaveBeenCalledWith('/dashboard', {
       //   replace: true,
       // });
     });

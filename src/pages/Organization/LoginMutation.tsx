@@ -5,7 +5,7 @@ const LOGIN_MUTATION = gql`
     loginUser(loginInput: $loginInput) {
       token
       otpRequired
-     
+
       user {
         id
         role

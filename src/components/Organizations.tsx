@@ -16,14 +16,14 @@ import { RegisterNewOrganization } from '../Mutations/OrganisationMutations';
 import { AddOrganization } from '../Mutations/OrganisationMutations';
 import { GET_ORGANIZATIONS } from '../queries/organization.queries';
 import jwtDecode from 'jwt-decode';
-import { useSearchParams,useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { handleError } from './ErrorHandle';
 
 export interface Admin {
   id: string;
   profile: {
     name: string;
-    phoneNumber: string
+    phoneNumber: string;
   };
   email: string;
 }
@@ -139,22 +139,26 @@ const Organizations = () => {
     refetch: Function;
   } = useQuery(GET_ORGANIZATIONS);
 
-const  ApproveNewOrganization= async (token:string)=>{
-  try {
-    const decodedToken:any = await jwtDecode(token);
-     if(! decodedToken) throw new Error("Failed to decode token")
-      const {nm:name,desc:description,email}=decodedToken;
-      const approvalResult = await ApproveOrganization({ name, description, email });
+  const ApproveNewOrganization = async (token: string) => {
+    try {
+      const decodedToken: any = await jwtDecode(token);
+      if (!decodedToken) throw new Error('Failed to decode token');
+      const { nm: name, desc: description, email } = decodedToken;
+      const approvalResult = await ApproveOrganization({
+        name,
+        description,
+        email,
+      });
 
       if (approvalResult && approvalResult.success) {
         toast.success(`${name} organization has been approved.`);
       } else {
         toast.error(`${name} organization approval failed.`);
       }
-  } catch (error:any) {
-    toast.error(handleError(error));
-  }
-}
+    } catch (error: any) {
+      toast.error(handleError(error));
+    }
+  };
 
   const [createOrganizationModel, setCreateOrganizationModel] = useState(false);
   const [deleteOrganizationModel, setDeleteOrganizationModel] = useState(false);
@@ -173,19 +177,17 @@ const  ApproveNewOrganization= async (token:string)=>{
     description: '',
   });
 
-  const [searchParams]=useSearchParams()
-const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-
-useEffect(() => {
-  const newOrgToken = searchParams.get("newOrgToken");
-  if (newOrgToken) {
-    ApproveNewOrganization(newOrgToken);
-    searchParams.delete('newOrgToken');
-    navigate(`?${searchParams.toString()}`, { replace: true });
-   
-  }
-}, []);
+  useEffect(() => {
+    const newOrgToken = searchParams.get('newOrgToken');
+    if (newOrgToken) {
+      ApproveNewOrganization(newOrgToken);
+      searchParams.delete('newOrgToken');
+      navigate(`?${searchParams.toString()}`, { replace: true });
+    }
+  }, []);
 
   const handleShowActions = () => {
     setShowActions(!showActions);
@@ -263,9 +265,9 @@ useEffect(() => {
       if (mutationResult) {
         return { success: true };
       } else {
-        return { success: false};
+        return { success: false };
       }
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(handleError(error));
     }
   }
